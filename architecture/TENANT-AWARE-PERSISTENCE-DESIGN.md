@@ -1,6 +1,17 @@
 # Tenant-aware persistence architecture and implementation contract
 Date: 2026-11-21 | Status: design specification, NOT implemented or validated
 
+## Mandatory Strata integration requirement
+**UNB-TEC-STRATA-001 (MANDATORY):** Unbound SHALL use **Strata** as an explicit component of its data/persistence architecture. Strata integration is required, not an optional alternative to be silently replaced by generic database access. Before implementation, discover and verify the actual Strata repository, package/API surface, current release, supported storage backends, append-only guarantees and compatibility with the current EF stack. Record the verified integration contract and pin its version through the approved EF installation/governance process. Do not invent Strata capabilities or claim it is installed before verification.
+
+**UNB-TEC-STRATA-002:** The tenant-aware connection/persistence layer SHALL integrate Strata while preserving all three partner isolation profiles (separate schema, separate database, dedicated infrastructure), or document an explicit incompatibility requiring owner review before implementation.
+
+**UNB-TEC-STRATA-003:** Strata's role in authoritative event persistence, projection management, schema evolution, integrity verification, and correction handling SHALL be determined from verified functionality. Any capabilities Strata does not provide SHALL be implemented through separately governed components, without relaxing append-only requirements.
+
+**UNB-TEC-STRATA-004:** Automated integration and adversarial tests SHALL demonstrate Strata-backed tenant isolation, append-only corrections, bitemporal history, deterministic replay, backup/restore verification, and migration between isolation profiles where supported. Do not mark tests passed without execution evidence.
+
+**Architecture gate:** Strata is a binding product selection. Its specific integration design remains pending technical verification; a discovered limitation is a design blocker to escalate, not permission to substitute it without approval.
+
 ## Scope and decision
 Design one F# modular-monolith persistence boundary supporting per-partner **(A) separate schema in shared database**, **(B) separate database on shared managed infrastructure**, and **(C) dedicated partner database/infrastructure**, without branching domain logic. The actual database engine is **not yet selected**. This specification does not authorize implementation before Unbound's requirements approval and Conditor bootstrap.
 
@@ -134,7 +145,7 @@ These contracts deliberately omit provider-specific connection strings, schema n
 | Source/destination single-writer fencing | Required | Required | Required |
 
 ## Architecture decisions to resolve before implementation
-- **ADR-001:** Managed database engine and true schema isolation capabilities; evaluate PostgreSQL-like schema support without assuming a specific provider.
+- **ADR-001:** Verify Strata's actual persistence role and supported database engines, then select the managed database engine and true schema isolation capabilities; do not assume a specific provider.
 - **ADR-002:** Tenant registry and authorization provenance, including sponsor/partner relationships.
 - **ADR-003:** Connection pooling, schema binding, credential rotation, database role provisioning and SQL injection protections.
 - **ADR-004:** Event envelope, expected-version concurrency, idempotency index, ordering and outbox transaction.
