@@ -341,7 +341,7 @@
       "optionsOrValidation": "Back to fund · sponsor general · redirect",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Counsel",
+        "recommendedAnswer": "Working design: credit recipient grant refunds to the originating DAF's accounting balance by default, not to the donor personally, subject to governing documents, fund status and restrictions, and counsel-approved exceptions. Match every refund to the original grant, payment and recipient; reconcile bank/custodian receipts and ledger entries; preserve an immutable audit trail and correct grant/payment status without deleting the original transaction. Place unmatched, disputed, partial, cross-year or post-closure refunds in a controlled suspense/case workflow pending authorized disposition. Require CFO and counsel review of recognition, tax-reporting consequences and any restrictions before final posting or redirection.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -352,14 +352,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and counsel approval of default destination, governing-document and fund-closure exceptions, restrictions, tax-year and information-return handling; bank-to-ledger reconciliation procedure; identification of partial, duplicate, unidentified and cross-year refunds; authorized suspense and correction controls; external CPA input where material."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD09-01",
+          "SIM-OD09-02",
+          "SIM-OD09-03",
+          "SIM-OD09-04",
+          "SIM-OD09-05",
+          "SIM-OD09-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected default credit to originating DAF accounting balance, subject to governing documents, counsel-approved exceptions, accounting/tax review, reconciliation and audit. Formal CFO/counsel approvals outstanding."
+        }
+      ]
     },
     {
       "id": "OD-10",
