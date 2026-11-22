@@ -505,7 +505,7 @@
       "optionsOrValidation": "1C · 1D · 1E (pool buffer) · hybrid",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "**Open: no program recommendation.** Rev 1 recommended a hybrid; the architecture and economics reviews dispute it and prefer 1E + 1C (alternatives §1)",
+        "recommendedAnswer": "Provisional architecture preference, not a validated or authorized funding mechanism: combine 1E sponsor-governed pooled liquidity buffer with 1C risk-adjusted dollar-denominated grant reservations; use targeted dedicated cash sleeves for concentrated, illiquid, exceptional or otherwise high-risk situations. Maintain legally and economically appropriate fund-level ownership, ledger segregation, liquidity attribution, fee allocation and loss allocation; pooled operational liquidity must not imply unrestricted inter-fund lending, subsidization or shifting losses. Specify reservation haircuts, eligible asset valuation, redemption assumptions, liquidity buffer sizing and replenishment triggers under CFO and Investment Committee governance. Gate any adoption on counsel and accounting validation, advisor-partner compatibility, scenario-based liquidity stress tests and formally authorized policies. Compare 1E+1C against 1D and broad hybrid alternatives on economics, risk, fairness and complexity.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -516,14 +516,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO, Investment Committee and advisor-partner evaluation; counsel validation of pooled liquidity structure, DAF asset restrictions and permissible inter-fund arrangements; accounting validation of segregation and attribution; comparative cost/cash-drag analysis against cash sleeves; correlated market drawdowns, high grant demand, redemption gates, stale prices, delayed settlement and fund-specific illiquidity stress simulations. No implementation or production authorization."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD13-01",
+          "SIM-OD13-02",
+          "SIM-OD13-03",
+          "SIM-OD13-04",
+          "SIM-OD13-05",
+          "SIM-OD13-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User provisionally favors 1E pooled buffer plus 1C risk-adjusted currency reservations, with targeted cash sleeves for exceptional liquidity risks. Requires fund-level segregation, legal/accounting validation, stress testing and Investment Committee approval; not a final architectural decision."
+        }
+      ]
     },
     {
       "id": "OD-14",
