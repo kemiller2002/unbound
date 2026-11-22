@@ -546,7 +546,7 @@
       "optionsOrValidation": "Confirm above cap · confirm new recipients · confirm all",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Confirm new recipients always, plus caps",
+        "recommendedAnswer": "Working design: every agent-originated recommendation to a new recipient and every recommendation exceeding donor-authorized per-grant, cumulative or periodic caps requires affirmative human confirmation by the donor or authorized advisor. Require confirmation for additional risk triggers, including changed recipient payment instructions, suspicious recipient/account changes, unusual velocity, delegation changes, sanctions/compliance flags and elevated fraud signals. Allow bounded recurring recommendations to established recipients without per-instance donor confirmation only under explicit, informed, revocable, scope- and time-limited donor delegation with clear thresholds and notifications. Agents cannot grant themselves authority, approve grants on the sponsor's behalf or bypass compliance holds; sponsor approval and funding reservation remain separate gated actions. Log delegation provenance, agent identity, proposal, confirmations, revocations and final outcomes with tamper-evident audit history.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -557,14 +557,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: product owner and CRCO approval of delegation scope, confirmation triggers, recipient identity and payment-change rules, cap definitions, revocation propagation and authentication assurance; counsel review of donor/advisor authority and consent; security/fraud and usability testing of prompt fatigue, spoofed approvals, agent impersonation, concurrency and delegated recurring recommendations."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD14-01",
+          "SIM-OD14-02",
+          "SIM-OD14-03",
+          "SIM-OD14-04",
+          "SIM-OD14-05",
+          "SIM-OD14-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected confirmation for every new recipient, cap breaches and additional risk triggers, with explicitly delegated and revocable bounded recurring recommendations for established recipients. Sponsor approval retained; formal product/compliance review pending."
+        }
+      ]
     },
     {
       "id": "OD-15",
