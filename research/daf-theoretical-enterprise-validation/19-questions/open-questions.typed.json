@@ -136,7 +136,7 @@
       "optionsOrValidation": "0 · per-donor limit · full credit",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Per-donor limit, default 0 for new donors; acknowledgment timing per counsel",
+        "recommendedAnswer": "Working design: use risk-based provisional credit limits for reversible contributions, defaulting to zero for new donors. Approved donor-specific limits must be bounded, documented, monitored and revocable, with exposure controls for returns, fraud, concentration and outstanding grant commitments. Model contribution receipt, sponsor gift acceptance, and grant-funding availability as distinct events and states; receipt or provisional posting alone does not establish irrevocable funds or permission to fund grants. Charitable acknowledgment issuance and tax-effective timing require counsel review and must not be inferred from grant-funding availability.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -147,14 +147,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO-approved risk appetite, donor limit criteria, aggregate exposure caps, limit review/revocation process and reconciliation controls; legal counsel opinion on gift acceptance and charitable acknowledgment timing by contribution method and year-end edge cases; pilot return/fraud data and negative tests for post-grant reversal, partial return, insufficient liquidity and fraudulent funding."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD04-01",
+          "SIM-OD04-02",
+          "SIM-OD04-03",
+          "SIM-OD04-04",
+          "SIM-OD04-05",
+          "SIM-OD04-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected risk-based provisional contribution credit, default zero for new donors and approved donor-specific limits; distinct receipt, gift acceptance and grant-funding availability; acknowledgment timing reserved for counsel review. Not a formal CFO or counsel approval."
+        }
+      ]
     },
     {
       "id": "OD-05",
