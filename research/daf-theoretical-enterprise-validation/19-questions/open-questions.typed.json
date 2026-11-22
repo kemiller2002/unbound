@@ -13,7 +13,7 @@
       "optionsOrValidation": "Yes with conditions · batch human approval · per-grant human",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Seek opinion; until then treat DD-004 as a hypothesis",
+        "recommendedAnswer": "Working design: conditional, board-delegated, version-pinned policy approval for routine grants, only if sponsor counsel confirms legality and the sponsor board formally authorizes a bounded policy and delegation. Until then use an authorized human approval route; do not treat policy evaluation as sponsor approval.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -24,14 +24,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: written counsel opinion on applicable sponsor/grant law; sponsor board resolution defining delegation, eligible grants, exclusions, monetary limits, version pinning, independent policy publication, revocation and oversight; per-grant decision evidence linking policy version and delegation; independent assurance testing."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD01-01",
+          "SIM-OD01-02",
+          "SIM-OD01-03",
+          "SIM-OD01-04",
+          "SIM-OD01-05",
+          "SIM-OD01-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected conditional policy-based approval as the proposed design, explicitly subject to counsel and sponsor board approval. This is not a legal conclusion or formal sponsor authorization."
+        }
+      ]
     },
     {
       "id": "OD-02",
