@@ -874,7 +874,7 @@
       "optionsOrValidation": "Never · break-glass with dual control",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Never directly. Break-glass only through a domain command with dual control, and every authoritative change matched to a command event before payment (round 2 S-9)",
+        "recommendedAnswer": "Working design: prohibit direct modifications to authoritative payee/payment instructions, advisor or delegated authority, ledger balances, policy and other financial-control data outside governed domain commands, including during incidents. Emergency break-glass operations must use explicitly authorized, narrowly scoped, time-limited domain commands with dual control, authenticated actors, documented incident justification, tamper-evident immutable command events, independent review and reconciliation to authoritative state. Fail closed on missing, mismatched or unverifiable command provenance: block payment execution until affected authoritative changes are reconciled to command history and required controls pass. Define incident access revocation, alerts, exception escalation, recovery testing and audit evidence; no undocumented database or vendor-console bypass.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -885,14 +885,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CTO, CRCO and Audit Committee approval of domain-command-only policy and break-glass authority; security and operational validation of dual control, time limits, immutable events, payment fail-closed checks, incident recovery and independent review; adversarial simulations of privileged database edits, forged events, vendor-console changes, emergency override, unavailable command infrastructure and reconciliation failure. No emergency control implementation or testing claimed."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD22-01",
+          "SIM-OD22-02",
+          "SIM-OD22-03",
+          "SIM-OD22-04",
+          "SIM-OD22-05",
+          "SIM-OD22-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected no direct authoritative edits; break-glass only through dual-controlled domain commands with justification, immutable events, reconciliation and independent review; block payments until changes match command history. Formal CTO/CRCO/Audit Committee approval pending."
+        }
+      ]
     },
     {
       "id": "TVC-001",
