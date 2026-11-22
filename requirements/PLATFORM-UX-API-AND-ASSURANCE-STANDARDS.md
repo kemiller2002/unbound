@@ -60,3 +60,7 @@ Date: 2026-11-21 | Status: owner-directed mandatory product requirements; implem
 4. Threat model and failure-mode matrix covering all partner isolation profiles.
 5. Full fund lifecycle and successor-account authority/state matrix.
 6. Regulatory-control row-level crosswalk and contradiction register.
+
+
+## Mandatory SOC 2 evidence-by-design directive (2026-11-21)
+All subsequent design, research, agent missions, implementation and operations MUST follow [SOC 2 Controls, Evidence and Enterprise Directive](../requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md) and [Sponsor Authority and Autonomous Operations](../requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md). For every claimed control specify owner, scope, procedure, cadence, expected evidence, monitoring, exception handling, test and retention. Log security-relevant and consequential actions with attributable tamper-evident evidence while excluding secrets and unnecessary personal data. Include negative tests and report gaps truthfully. SOC 2 readiness is a design requirement, not a claim of completed attestation or operational compliance. No live outbound payment execution is authorized.
