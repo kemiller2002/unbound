@@ -54,7 +54,7 @@
       "optionsOrValidation": "None · enumerated classes with QA sampling",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Enumerated classes; a model never clears",
+        "recommendedAnswer": "Working design: permit deterministic clearing only for explicitly enumerated and version-controlled false-positive classes approved by compliance and counsel, supported by verifiable identity evidence, independent QA sampling, audit records, revocation controls and mandatory human escalation for all ambiguous or non-enumerated matches. AI models may identify or flag possible matches but must not independently clear sanctions holds.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -65,14 +65,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CRCO and counsel approval of specific false-positive classes and rule predicates; current sanctions screening obligations and source applicability; negative and adversarial test sets; false-clear rate and independent QA thresholds; evidence retention, rule-change approval and emergency suspension design."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD02-01",
+          "SIM-OD02-02",
+          "SIM-OD02-03",
+          "SIM-OD02-04",
+          "SIM-OD02-05",
+          "SIM-OD02-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected bounded deterministic clearing of enumerated sanctions false-positive classes, subject to compliance and legal review; no approval of actual classes or rules yet."
+        }
+      ]
     },
     {
       "id": "OD-03",
