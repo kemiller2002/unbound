@@ -201,3 +201,23 @@ TVC-034, TVC-041, TVA-020, TVR-DR-001-Q, TVF-228 and TVF-234. These remain unres
 ## Traceability coverage
 
 139 of 183 registry questions are directly linked in the 16 proposed canonical requirements. The remaining 44 questions retain their own registry dispositions and are **not** claimed reconciled by this overlay: TVC-013, TVC-014, TVC-017, TVC-018, TVC-019, TVC-020, TVC-021, TVC-022, TVC-023, TVC-027, TVC-034, TVC-042, TVC-043, TVA-001, TVA-007, TVA-008, TVA-013, TVA-015, TVA-016, TVA-017, TVA-019, TVA-023, TVA-025, TVA-026, TVA-027, TVA-029, TVA-030, TVR-GR-001-Q, TVR-FIN-002-Q, TVR-SEC-006-Q, TVR-CMP-003-Q, TVR-WID-001-Q, TVR-WID-002-Q, TVR-WID-006-Q, TVR-UX-003-Q, TVR-PAY-006-Q, TVR-SEC-007-Q, TVR-SEC-008-Q, TVR-SEC-009-Q, TVR-SEC-010-Q, TVF-149, TVF-226, TVF-232, TVF-252.
+
+## Supplemental source-question mapping (traceability only)
+
+The 44 initially unlinked registry questions are additionally mapped below to an existing canonical requirement. **Mapping is not a claim of resolved source-text conflict or validated acceptance.** In particular TVC-034 remains deferred despite being linked to the records/traceability area.
+
+- **REQ-X-001:** TVC-042, TVF-252.
+- **REQ-X-002:** TVC-021, TVC-022, TVC-043, TVR-GR-001-Q, TVR-FIN-002-Q.
+- **REQ-X-003:** TVC-023, TVA-016.
+- **REQ-X-004:** TVF-226.
+- **REQ-X-005:** TVF-232, TVR-PAY-006-Q, TVR-SEC-008-Q, TVR-SEC-009-Q.
+- **REQ-X-006:** TVR-SEC-006-Q.
+- **REQ-X-007:** TVF-149.
+- **REQ-X-008:** TVA-027.
+- **REQ-X-009:** TVA-007, TVA-008, TVA-015.
+- **REQ-X-010:** TVA-017, TVR-CMP-003-Q.
+- **REQ-X-011:** TVC-013, TVC-014, TVA-013, TVA-019, TVA-025, TVA-026, TVR-WID-001-Q, TVR-WID-002-Q, TVR-WID-006-Q, TVR-UX-003-Q, TVR-SEC-007-Q, TVR-SEC-010-Q.
+- **REQ-X-012:** TVC-027, TVC-034, TVA-023.
+- **REQ-X-013:** TVC-017, TVC-018, TVC-019, TVC-020, TVA-001, TVA-029, TVA-030.
+
+All 183 questions now have at least one proposed canonical-requirement linkage across the main mapping and this supplement. This does not constitute full requirement-level source reconciliation.
