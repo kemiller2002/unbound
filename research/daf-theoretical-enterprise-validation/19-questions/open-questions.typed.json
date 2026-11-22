@@ -259,7 +259,7 @@
       "optionsOrValidation": "At approval · at liquidation",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "At approval",
+        "recommendedAnswer": "Working design: for ordinary percentage-based grants, calculate and fix the dollar amount at sponsor approval using a documented, time-stamped valuation snapshot, fund scope, percentage, applicable available-capacity basis and rounding rule. Preserve that snapshot and calculation as decision evidence and atomically reserve the fixed amount under OD-06. Do not silently reprice an approved grant after market movements; material correction requires an authorized amendment and reservation adjustment. Define separately governed exceptions for recurring percentage instructions (each instance calculated at its designated approval event) and residual/sweep grants (amount fixed at the specified later valuation or final-settlement event). Donor-facing UI must identify whether an amount is indicative or fixed and the applicable valuation date.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -270,14 +270,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and product-owner approval of valuation snapshot definition, time zone, precision and rounding, eligible balance basis, stale price rules, capacity and reservation linkage; explicit recurring/residual exception taxonomy; accounting review of corrections; donor comprehension and adverse-market-move tests."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD07-01",
+          "SIM-OD07-02",
+          "SIM-OD07-03",
+          "SIM-OD07-04",
+          "SIM-OD07-05",
+          "SIM-OD07-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected fixed-dollar ordinary percentage grants at approval using documented valuation snapshot, with separately defined exceptions for recurring and residual grants. Formal CFO/product approval outstanding."
+        }
+      ]
     },
     {
       "id": "OD-08",
