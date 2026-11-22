@@ -628,7 +628,7 @@
       "optionsOrValidation": "Keep · move to ADR-gated candidate list",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Move to candidate list",
+        "recommendedAnswer": "Working design: separate business outcomes, functional behavior, security, accessibility, interoperability and operational requirements from technology implementation choices. Retain F# and the Echelon ecosystem as the preferred architectural direction, but treat Limen, Forma, Folio and WASM as ADR-gated candidates rather than automatically binding requirements. Each ADR must document capability and maturity validation, compatibility and integration constraints, alternatives, tradeoffs, performance and accessibility evidence, exception criteria, accountable approval and traceability to the requirements it satisfies. Do not weaken an independently justified requirement to fit a favored technology; deviations from preferred stack require explicit architectural review. No implementation selection is formally approved by this working design.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -639,14 +639,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: product-owner and architecture-owner approval of separation policy and ADR gates; technology readiness and capability evidence for Limen, Forma, Folio and WASM; traceability from each ADR to functional and nonfunctional requirements; tests for exceptions, compatibility, accessibility, performance and fallback paths. ADRs not claimed created or approved."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD16-01",
+          "SIM-OD16-02",
+          "SIM-OD16-03",
+          "SIM-OD16-04",
+          "SIM-OD16-05",
+          "SIM-OD16-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected separating business/functional requirements from technology commitments; F#/Echelon preferred, Limen/Forma/Folio/WASM subject to ADR capability validation, exception governance and traceability. Formal architecture/product approvals pending."
+        }
+      ]
     },
     {
       "id": "OD-17",
