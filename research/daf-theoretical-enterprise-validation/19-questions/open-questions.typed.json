@@ -710,7 +710,7 @@
       "optionsOrValidation": "—",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Yes",
+        "recommendedAnswer": "Working design: assign preparation and operational ownership of financial reconciliations to the Controller function, with independent verification by appropriately segregated finance-control reviewers who did not prepare or alter the underlying entries. The CFO owns remediation accountability, unresolved-break escalation, materiality thresholds and timely closure; the Audit Committee receives periodic independent oversight reporting and prompt escalation of material, recurring or potentially fraudulent discrepancies. Enforce separation of duties, maker-checker controls, immutable evidence, reviewer attestations, exception aging, root-cause and corrective-action tracking, and documented escalation. AI agents may prepare matches, identify anomalies and propose corrections but cannot self-certify or independently approve their own work; AI-generated reconciliations require independent human review under risk-based controls.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -721,14 +721,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and Audit Committee approval of reconciliation accountability, materiality and escalation policy; internal-control assessment of segregation of duties, reviewer independence, staffing fallback, evidence retention, exception aging and remediation ownership; tests for preparer/reviewer conflicts, AI-generated false matches, stale feeds, unresolved breaks, collusion and material discrepancies. No operating certification or audit completed."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD18-01",
+          "SIM-OD18-02",
+          "SIM-OD18-03",
+          "SIM-OD18-04",
+          "SIM-OD18-05",
+          "SIM-OD18-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected Controller preparation, segregated independent finance verification, CFO remediation/escalation and Audit Committee material-issue oversight, including evidence retention and independent review of AI-generated reconciliations. Formal CFO/Audit Committee approval pending."
+        }
+      ]
     },
     {
       "id": "OD-19",
