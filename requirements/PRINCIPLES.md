@@ -20,3 +20,7 @@ Hypothesis: Echelon Foundry can create and improve an enterprise more effectivel
 
 ## Hard boundaries
 No real sponsor representation, tax advice, investment advice, asset custody, bank transfers, grant payments, or regulatory filings from this reference environment. Use synthetic identities and simulated transactions. Production claims require separate approvals and independent review.
+
+
+## Mandatory SOC 2 evidence-by-design directive (2026-11-21)
+All subsequent design, research, agent missions, implementation and operations MUST follow [SOC 2 Controls, Evidence and Enterprise Directive](../requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md) and [Sponsor Authority and Autonomous Operations](../requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md). For every claimed control specify owner, scope, procedure, cadence, expected evidence, monitoring, exception handling, test and retention. Log security-relevant and consequential actions with attributable tamper-evident evidence while excluding secrets and unnecessary personal data. Include negative tests and report gaps truthfully. SOC 2 readiness is a design requirement, not a claim of completed attestation or operational compliance. No live outbound payment execution is authorized.
