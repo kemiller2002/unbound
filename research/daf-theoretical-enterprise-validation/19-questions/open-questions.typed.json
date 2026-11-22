@@ -587,7 +587,7 @@
       "optionsOrValidation": "Merge · cross-reference map · keep separate",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Cross-reference map now; merge before any implementation",
+        "recommendedAnswer": "Working design: immediately establish a bidirectional, provenance-preserving cross-reference map between requirements in docs/ and research/ai-native-daf-enterprise/, identifying identical, overlapping, conflicting, superseded and missing requirements, with source references and ownership. Before any implementation, reconcile conflicts through authorized review and consolidate into one authoritative, versioned requirements registry with stable canonical IDs, aliases for historical IDs, change history, approval status, validation evidence, scenario coverage and traceability to source research, workflows, UI components and dependent designs. Preserve original documents as historical evidence rather than deleting or silently rewriting them; prevent competing active authoritative definitions and require controlled migration and integrity checks.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -598,14 +598,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: product-owner approval of canonical registry and migration policy; inventory and bidirectional mapping of both requirement bodies; duplicate/conflict/gap classification with provenance; ID stability and alias tests; traceability and coverage checks; formal conflict resolution and change control before implementation. Mapping and consolidation are requirements, not claimed completed work."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD15-01",
+          "SIM-OD15-02",
+          "SIM-OD15-03",
+          "SIM-OD15-04",
+          "SIM-OD15-05",
+          "SIM-OD15-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected immediate bidirectional cross-reference mapping and pre-implementation consolidation into a single authoritative versioned registry with stable IDs, approvals, provenance and validation traceability. Actual mapping/consolidation not yet performed."
+        }
+      ]
     },
     {
       "id": "OD-16",
