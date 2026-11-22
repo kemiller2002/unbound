@@ -1043,6 +1043,10 @@
         {
           "event": "user-lossless-failover-direction",
           "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
+        },
+        {
+          "event": "user-dr-durable-intake-queue-direction",
+          "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
         }
       ]
     },
@@ -2321,6 +2325,10 @@
         {
           "event": "cross-requirement-consistency-review-v2",
           "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
+        },
+        {
+          "event": "user-dr-durable-intake-queue-direction",
+          "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
         }
       ]
     },
@@ -5009,7 +5017,7 @@
       "optionsOrValidation": "DR drill",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "User-selected design objective: no loss of acknowledged authoritative financial/security commits, safe near-seamless failover and failback, synchronized durable state across failure domains, collision-resistant globally generated business identifiers, stable idempotency keys, quorum-elected fenced single writer, rejoin/catch-up before failback, no double financial execution, and preservation of payment Unknown. Never acknowledge a critical commit before it is durably committed to the required quorum. An isolated site must not continue financial writes without quorum. Unacknowledged in-flight requests and external provider effects require reconciliation; zero loss of all conceivable data cannot be claimed without defining scope. Define and test RTO, topology, quorum witness, latency, costs, security and external-system recovery.",
+        "recommendedAnswer": "User-selected design objective: no loss of acknowledged authoritative financial/security commits, safe near-seamless failover and failback, synchronized durable state across failure domains, collision-resistant globally generated business identifiers, stable idempotency keys, quorum-elected fenced single writer, rejoin/catch-up before failback, no double financial execution, and preservation of payment Unknown. Never acknowledge a critical commit before it is durably committed to the required quorum. An isolated site must not continue financial writes without quorum. Unacknowledged in-flight requests and external provider effects require reconciliation; zero loss of all conceivable data cannot be claimed without defining scope. Define and test RTO, topology, quorum witness, latency, costs, security and external-system recovery. During quorum loss, pause authoritative financial writes but allow independently durable, non-authoritative intake of eligible user instructions where independently acknowledged durability can be proven. Queue receipts explicitly mean pending intake, not sponsor approval, grant reservation or payment. On restoration reconcile security holds/cancellations first, deduplicate by stable intent/request identity, then revalidate current authority, eligibility, policy, funds, sanctions, expiration and changed circumstances before domain-command execution; if safe intake durability is unavailable, stop submissions rather than promise queuing. Preserve user-visible queue status and audit trail.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -5039,6 +5047,10 @@
         {
           "event": "user-lossless-failover-direction",
           "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
+        },
+        {
+          "event": "user-dr-durable-intake-queue-direction",
+          "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
         }
       ]
     },
@@ -5887,6 +5899,10 @@
         {
           "event": "user-lossless-failover-direction",
           "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
+        },
+        {
+          "event": "user-dr-durable-intake-queue-direction",
+          "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
         }
       ]
     },
@@ -5963,6 +5979,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Emergency access, restore and external authority. Conflict: Domain-command-only controls are incomplete if custody, bank portals and identity systems retain independent write channels. Restoring a consistent snapshot can discard later evidence, revocations, cancellation requests or payment identities. An outage may prevent normal emergency commands. Harmonized direction: No value-moving direct edits. Monitor and reconcile external entitlement/settlement changes to approved commands. Preserve append-only evidence beyond restore boundary and protect revocations, holds, cancellations and payment identifiers. During outage default to protective freeze/observation, not payment release; independent emergency command path requires validated design. Severity: Critical. Status: partial; TVF-228 and TVR-DR-001-Q deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-dr-durable-intake-queue-direction",
+          "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
         }
       ]
     },
