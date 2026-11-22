@@ -300,7 +300,7 @@
       "optionsOrValidation": "Approval order · pro rata · sponsor discretion",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Approval order, with case review",
+        "recommendedAnswer": "Working design: allocate scarce grant-funding capacity by the sequence of valid, effective reservations, preserving existing encumbrances unless an authorized legal or compliance hold or correction requires otherwise. Exceptional grants approved pending funding have no reservation priority until a valid reservation is created; maintain them in a controlled, transparent queue with documented ordering and re-evaluation. Sponsor-authorized exceptions require documented rationale, appropriate delegation-of-authority approval, legal and accounting checks, affected-party impact review and immutable audit history. Never use queue reordering to evade enforceable recipient commitments, sanctions holds or funding restrictions. Partial funding requires separately approved sponsor policy; do not silently reduce fixed grants.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -311,14 +311,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: sponsor board approval of reservation priority and exception authority; legal/accounting review of enforceable recipient obligations and funding restrictions; concurrency-safe reservation sequence definition, queue fairness and starvation controls, revaluation/return handling, and auditability; simulation of competing reservations, capacity loss, queue reordering and partial funding."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD08-01",
+          "SIM-OD08-02",
+          "SIM-OD08-03",
+          "SIM-OD08-04",
+          "SIM-OD08-05",
+          "SIM-OD08-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected valid reservation sequence with preservation of existing reservations, controlled pending-funding queue and sponsor-authorized documented exceptions subject to legal checks and audit history. Formal board approval pending."
+        }
+      ]
     },
     {
       "id": "OD-09",
