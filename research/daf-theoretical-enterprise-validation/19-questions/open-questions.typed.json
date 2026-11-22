@@ -218,7 +218,7 @@
       "optionsOrValidation": "Atomic (approval fails on capacity) · separate (approved-pending-capacity)",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Atomic for routine path; separate for human-approved large grants",
+        "recommendedAnswer": "Working design: routine grant approval and reservable-capacity encumbrance are one atomic, concurrency-safe operation; if either fails, neither takes effect and no approval or funding claim is communicated. For large or exceptional grants, a separately authorized internal decision may enter an explicit 'approved pending funding' state without reserved capacity, but must not be represented as funded, released, payable or externally committed. External commitments and recipient notifications are gated on applicable funding, accounting, legal, sponsor-authority and compliance conditions. State transitions, reservation ordering, expirations, rechecks and exception approval must be auditable.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -229,14 +229,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and product-owner approval; legal and accounting review of when an internal approval becomes an enforceable promise or recognized grant; sponsor delegation-of-authority and exception limits; concurrency and idempotency design; documented notification gates; testing for simultaneous approvals, stale valuations, partial failures, retries, reversals and reservation expiry."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD06-01",
+          "SIM-OD06-02",
+          "SIM-OD06-03",
+          "SIM-OD06-04",
+          "SIM-OD06-05",
+          "SIM-OD06-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected atomic approval and reservation for routine grants; separate authorized pending-funding state for large/exceptional grants; prohibit external commitments until funding and legal conditions are satisfied. Formal approvals and legal/accounting review pending."
+        }
+      ]
     },
     {
       "id": "OD-07",
