@@ -177,7 +177,7 @@
       "optionsOrValidation": "Rates per class",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Set with back-test against historical drawdowns",
+        "recommendedAnswer": "Working design: govern reservable-capacity valuation through approved asset-class baseline haircuts, with bounded and explainable adjustments for volatility, market liquidity, portfolio concentration, stale or unreliable prices, and expected liquidation timing. CFO and Investment Committee approve the methodology, thresholds, exceptions and revisions. Back-test against historical drawdowns and liquidation outcomes, stress-test correlated market/liquidity shocks, and apply conservative capacity treatment when inputs are missing or stale. No arbitrary numerical haircut percentages are approved by this decision.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -188,14 +188,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and Investment Committee approval; asset-class risk taxonomy, approved data sources and price-age limits; historical drawdown and liquidation back-tests; correlated stress tests and scenario thresholds; model monitoring, overrides, independent challenge and change-control procedures; reconciliation against custodian holdings and available cash. Numerical rates remain open."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD05-01",
+          "SIM-OD05-02",
+          "SIM-OD05-03",
+          "SIM-OD05-04",
+          "SIM-OD05-05",
+          "SIM-OD05-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected governed risk-sensitive valuation haircuts with approved asset-class baselines, volatility/liquidity/concentration/stale-price/liquidation adjustments, CFO and Investment Committee approval, back-testing and stress testing. No rates or formal approvals established."
+        }
+      ]
     },
     {
       "id": "OD-06",
