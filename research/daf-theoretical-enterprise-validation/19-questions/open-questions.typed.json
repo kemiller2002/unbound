@@ -1039,6 +1039,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Emergency access, restore and external authority. Conflict: Domain-command-only controls are incomplete if custody, bank portals and identity systems retain independent write channels. Restoring a consistent snapshot can discard later evidence, revocations, cancellation requests or payment identities. An outage may prevent normal emergency commands. Harmonized direction: No value-moving direct edits. Monitor and reconcile external entitlement/settlement changes to approved commands. Preserve append-only evidence beyond restore boundary and protect revocations, holds, cancellations and payment identifiers. During outage default to protective freeze/observation, not payment release; independent emergency command path requires validated design. Severity: Critical. Status: partial; TVF-228 and TVR-DR-001-Q deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-lossless-failover-direction",
+          "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
         }
       ]
     },
@@ -1081,6 +1085,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Data architecture, evidence and operating model. Conflict: Technology-specific declarations conflict with outcome-based requirements; '100% control coverage' and staffing/economic figures are unverified. Immutable evidence and privacy deletion are not automatically compatible without retention classes and legal holds. Harmonized direction: Require bitemporal reconstruction, traceable source requirements and record-class retention; architecture by ADR, not premature stack mandate. Treat coverage, FTE floors and economic inputs as measured hypotheses with explicit denominators and ranges. Verify uncertain cross-reference rather than guessing. Severity: High. Status: partial; TVC-034 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-lossless-failover-direction",
+          "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
         }
       ]
     },
@@ -5001,7 +5009,7 @@
       "optionsOrValidation": "DR drill",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": null,
+        "recommendedAnswer": "User-selected design objective: no loss of acknowledged authoritative financial/security commits, safe near-seamless failover and failback, synchronized durable state across failure domains, collision-resistant globally generated business identifiers, stable idempotency keys, quorum-elected fenced single writer, rejoin/catch-up before failback, no double financial execution, and preservation of payment Unknown. Never acknowledge a critical commit before it is durably committed to the required quorum. An isolated site must not continue financial writes without quorum. Unacknowledged in-flight requests and external provider effects require reconciliation; zero loss of all conceivable data cannot be claimed without defining scope. Define and test RTO, topology, quorum witness, latency, costs, security and external-system recovery.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -5013,7 +5021,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter."
+        "evidence": "User specified lossless DR and minimal disruption, including bidirectional failover/failback and non-colliding IDs. Validate with failure injection: acknowledged commits survive site loss, partition prevents dual writers, leader fencing, no payment duplicates on replay, external Unknown reconciliation, stale replica catch-up and safe failback; quantify RTO and durability of noncritical telemetry and in-flight commands. Architecture is proposed, not implemented."
       },
       "simulation": {
         "scenarioIds": [],
@@ -5027,6 +5035,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Emergency access, restore and external authority. Conflict: Domain-command-only controls are incomplete if custody, bank portals and identity systems retain independent write channels. Restoring a consistent snapshot can discard later evidence, revocations, cancellation requests or payment identities. An outage may prevent normal emergency commands. Harmonized direction: No value-moving direct edits. Monitor and reconcile external entitlement/settlement changes to approved commands. Preserve append-only evidence beyond restore boundary and protect revocations, holds, cancellations and payment identifiers. During outage default to protective freeze/observation, not payment release; independent emergency command path requires validated design. Severity: Critical. Status: partial; TVF-228 and TVR-DR-001-Q deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-lossless-failover-direction",
+          "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
         }
       ]
     },
@@ -5871,6 +5883,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Emergency access, restore and external authority. Conflict: Domain-command-only controls are incomplete if custody, bank portals and identity systems retain independent write channels. Restoring a consistent snapshot can discard later evidence, revocations, cancellation requests or payment identities. An outage may prevent normal emergency commands. Harmonized direction: No value-moving direct edits. Monitor and reconcile external entitlement/settlement changes to approved commands. Preserve append-only evidence beyond restore boundary and protect revocations, holds, cancellations and payment identifiers. During outage default to protective freeze/observation, not payment release; independent emergency command path requires validated design. Severity: Critical. Status: partial; TVF-228 and TVR-DR-001-Q deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-lossless-failover-direction",
+          "note": "User direction: no loss of data, transition to DR and back with minimal disruption, replicated database state and no independently colliding DB-created business IDs. Working architectural refinement: zero acknowledged-commit loss for authoritative internal financial/security state using quorum-durable commits; single fenced writer/leader with third failure domain or equivalent quorum witness, application/global IDs and separate idempotency identities, replay-safe outbox and external payment Unknown reconciliation; rejoin/catch-up before failback. Must explicitly distinguish durability of acknowledged internal commits from in-flight/unacknowledged requests and external-provider execution. CAP tradeoff: financial writes may pause on loss of quorum. RTO and cost not yet selected. No tested guarantee or design approval."
         }
       ]
     },
