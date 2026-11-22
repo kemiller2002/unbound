@@ -669,7 +669,7 @@
       "optionsOrValidation": "One DoA table",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "One table as data",
+        "recommendedAnswer": "Working design: establish one authoritative, sponsor-board-approved and versioned delegation-of-authority (DoA) registry as governed data, covering grant approval, write-offs, fee waivers and financial exceptions, with extensible action and risk classes. Each rule defines authorized roles/committees, conditions, approval limits once approved, escalation, effective dates, required evidence and segregation-of-duties controls. Enforce the same effective policy version across workflows, administrative UI, APIs and agents, with deny-by-default behavior when authority is absent or ambiguous. Preserve historical policy snapshots and decision provenance; prohibit self-approval, unilateral self-escalation and retroactive policy substitution. Changes require authorized dual control and audit. Do not invent numeric thresholds or treat a working design as board approval.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -680,14 +680,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: sponsor board adoption of DoA action taxonomy, roles, numerical thresholds, escalation paths and effective dates; counsel/compliance review where applicable; security and internal-controls review of segregation of duties, dual control, agent authority and historical version pinning; tests for threshold boundaries, conflicting rules, policy changes, concurrent approvals, self-approval attempts and revoked authority. Numeric limits remain undecided."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD17-01",
+          "SIM-OD17-02",
+          "SIM-OD17-03",
+          "SIM-OD17-04",
+          "SIM-OD17-05",
+          "SIM-OD17-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected one board-approved, versioned DoA registry across grants, write-offs, fee waivers and exceptions, consistent enforcement across UI/workflows/APIs/agents, segregation of duties and historical policy versions. No numerical thresholds invented; formal board approval pending."
+        }
+      ]
     },
     {
       "id": "OD-18",
