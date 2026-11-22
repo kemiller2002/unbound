@@ -751,7 +751,7 @@
       "optionsOrValidation": "At approval · at notification to the charity · at payment",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "CPA opinion; does notifying the charity at approval create an unconditional promise?",
+        "recommendedAnswer": "Working design: use a formally CFO- and external-CPA-validated accounting policy, based on applicable ASC 958 and related guidance, to determine when a grant creates a recognizable payable or expense. Model internal sponsor approval, grant reservation, communication/external commitment, satisfaction of recognition criteria, payable recognition, and cash payment as distinct events; do not presume any one of approval, notification or payment universally controls recognition. Capture event-occurrence time, ingestion/recording time, effective accounting date and reporting period/tax-year attribution, with source evidence and policy-version provenance. Late-arriving, cross-year, uncertain and Unknown items must enter governed classification/review workflows; corrections use traceable reversing or adjusting entries and do not rewrite historical records. Respect period-close controls, financial statement and tax-reporting differences, and prevent externally communicated commitments inconsistent with funding/legal gates.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -762,14 +762,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO and external CPA written position on ASC 958 recognition, conditional versus unconditional promises, communication and enforceability, payable/expense and reporting-period treatment, late/cross-year adjustments and Unknown-item disposition; counsel review of enforceable grant commitments; tests for approval versus notification versus payment across year-end, period close, backdated evidence, reversals, changed commitments and financial-versus-tax reporting. No accounting opinion yet obtained."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD19-01",
+          "SIM-OD19-02",
+          "SIM-OD19-03",
+          "SIM-OD19-04",
+          "SIM-OD19-05",
+          "SIM-OD19-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected CFO/external-CPA-validated ASC 958 recognition policy separating approval, reservation, commitment, payable recognition and payment, with event/period attribution, immutable corrections and audit. Formal CPA opinion pending."
+        }
+      ]
     },
     {
       "id": "OD-20",
