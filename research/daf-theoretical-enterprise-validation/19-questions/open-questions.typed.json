@@ -833,7 +833,7 @@
       "optionsOrValidation": "Donor only · donor + primary advisor",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Donor only, until the confirmation-independence rule (TVC-041) is designed",
+        "recommendedAnswer": "Working design: initially permit AI-agent delegation only through donor-controlled authority, verified against the DAF's governing documents and current advisor rights. Expansion to duly authorized primary or successor advisors is gated on validated governing-document authority, explicit bounded scope and duration, independent human confirmation controls, revocation propagation and product/compliance approval. No delegator may confer permissions beyond their own lawful authority, expand their own powers through an agent, create circular self-confirmation, or bypass sponsor-reserved approval or compliance holds. Align confirmation triggers, recurring recommendations and recipient/payment changes with OD-14. Preserve delegation chain, identity, scope, effective policy version, confirmations, revocations and actions in tamper-evident audit history; define safe handling for donor death, succession, advisor removal and conflicting instructions.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -844,14 +844,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: product owner and CRCO approval of staged delegation and confirmation-independence controls; counsel review of donor, primary-advisor and successor-advisor authority under governing documents; security validation of identity, consent, least privilege, delegated scope, revocation and anti-circular approval; tests for succession, death, conflicting advisors, privilege escalation, compromised agents, payment changes and OD-14 trigger consistency. Advisor-originated delegation not yet authorized."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD21-01",
+          "SIM-OD21-02",
+          "SIM-OD21-03",
+          "SIM-OD21-04",
+          "SIM-OD21-05",
+          "SIM-OD21-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected donor-controlled AI delegation initially, with primary/successor advisor delegation only after governing-document authority, scope and independent confirmation validation; no self-expansion, revocation/audit required, aligned with OD-14. Formal approvals pending."
+        }
+      ]
     },
     {
       "id": "OD-22",
