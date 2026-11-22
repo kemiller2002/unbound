@@ -464,7 +464,7 @@
       "optionsOrValidation": "—",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Counsel",
+        "recommendedAnswer": "Working design: maintain a counsel-approved, versioned retention and disposition schedule by record class, specifying applicable legal basis and jurisdiction, retention start/stop trigger, retention period once legally validated, access restrictions, privacy deletion eligibility, legal hold precedence, and defensible deletion or preservation procedures. Do not invent default periods. Apply policy to primary records, backups, exports, partner copies, AI context/derived artifacts and generated evidence, with practical propagation and backup-expiry controls. Honor eligible privacy deletion and minimization requests while preserving records subject to legal, regulatory, tax, accounting or litigation holds; document decisions, authority, exceptions and immutable audit evidence without retaining unnecessarily sensitive deleted content.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -475,14 +475,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: general counsel approval of record-class taxonomy, applicable jurisdictions, statutory/contractual retention periods, legal hold and privacy deletion precedence; privacy/security review of data inventories and deletion propagation to backups, vendors, AI stores and exports; operational tests for hold/release, subject access/deletion, scheduled disposition, exceptions and auditability. No numeric retention periods approved."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD12-01",
+          "SIM-OD12-02",
+          "SIM-OD12-03",
+          "SIM-OD12-04",
+          "SIM-OD12-05",
+          "SIM-OD12-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected counsel-approved retention by record class with legal basis, jurisdiction, triggers, holds, privacy deletion eligibility, minimization and auditable disposition; no arbitrary periods until validated. Formal counsel approval pending."
+        }
+      ]
     },
     {
       "id": "OD-13",
