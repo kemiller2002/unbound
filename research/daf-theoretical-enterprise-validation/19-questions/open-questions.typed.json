@@ -46,6 +46,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -639,6 +643,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -786,6 +794,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Finance segregation, loss allocation and pooled liquidity. Conflict: Controller ownership of reconciliation preparation cannot also imply independent certification of its own payment/ledger work. Liquidity buffers and valuation haircuts do not settle who bears operational errors, insolvency exposure or inter-fund losses. Harmonized direction: Controller prepares; segregated finance verifies; CFO remediates; Audit Committee oversees material issues. Versioned DoA governs exceptions/write-offs. Explicitly separate market/investment losses, fund-specific exposures and sponsor/vendor operational losses; require legally reviewed make-whole decisions. Severity: High. Status: proposed; staffing and legal/insurance validation pending. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -970,6 +982,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -1141,6 +1157,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -2015,6 +2035,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -2559,7 +2583,7 @@
       "optionsOrValidation": null,
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Owner decision: who may delegate to agents; confirmation must come from a principal other than the agent's delegator when the delegator is not the donor",
+        "recommendedAnswer": "User-selected working rule: No person or AI agent may approve their own originated, prepared, submitted or materially modified item. Donor confirmation authenticates intent only; it never constitutes sponsor approval. Approval requires an independent authorized sponsor decision-maker or independently governed board-delegated deterministic policy, with effective identity/provenance separation and no originator control over policy publication or approval. Material changes invalidate approvals and trigger independent reapproval. Applies to grants, exceptions, fees, write-offs and consequential financial decisions. Legal and governance validation remains pending.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -2571,7 +2595,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios."
+        "evidence": "Validate board delegation and sponsor authority, SoD across identities and agents, independent policy publishing, material-change invalidation, staff roles, automated approval boundaries, accessibility and collusion testing. User directive resolves design preference but not legal approval."
       },
       "simulation": {
         "scenarioIds": [],
@@ -2585,6 +2609,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
@@ -5625,6 +5653,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-segregation-of-duties-directive",
+          "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
         }
       ]
     },
