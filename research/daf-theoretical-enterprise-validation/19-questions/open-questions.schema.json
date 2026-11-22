@@ -1,0 +1,213 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Unbound Open Questions",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "sourceCsv",
+    "sourceBlobSha",
+    "authorityPolicy",
+    "questions"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "sourceCsv": {
+      "type": "string"
+    },
+    "sourceBlobSha": {
+      "type": "string"
+    },
+    "authorityPolicy": {
+      "type": "string"
+    },
+    "questions": {
+      "type": "array",
+      "items": {
+        "$ref": "#/$defs/question"
+      }
+    }
+  },
+  "$defs": {
+    "question": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "question",
+        "blocks",
+        "authority",
+        "optionsOrValidation",
+        "decision",
+        "priority",
+        "source",
+        "validation",
+        "simulation",
+        "reviewHistory"
+      ],
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "owner-decision",
+            "contradiction",
+            "assumption-to-validate",
+            "requirement-open-question",
+            "severity-5-finding",
+            "open-finding-needs-design",
+            "external-evidence"
+          ]
+        },
+        "question": {
+          "type": "string"
+        },
+        "blocks": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "authority": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "optionsOrValidation": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "decision": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "recommendedAnswer",
+            "approvedAnswer",
+            "approvalEvidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "unanswered",
+                "proposed",
+                "under-review",
+                "approved",
+                "rejected",
+                "deferred",
+                "superseded"
+              ]
+            },
+            "recommendedAnswer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "approvedAnswer": {
+              "type": [
+                "string",
+                "null"
+              ]
+            },
+            "approvalEvidence": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "priority": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "source": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "register",
+            "csvLine",
+            "blobSha"
+          ],
+          "properties": {
+            "register": {
+              "type": "string"
+            },
+            "csvLine": {
+              "type": "integer",
+              "minimum": 2
+            },
+            "blobSha": {
+              "type": "string"
+            }
+          }
+        },
+        "validation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "status",
+            "evidence"
+          ],
+          "properties": {
+            "status": {
+              "enum": [
+                "not-validated",
+                "evidence-pending",
+                "validated",
+                "falsified",
+                "not-applicable"
+              ]
+            },
+            "evidence": {
+              "type": [
+                "string",
+                "null"
+              ]
+            }
+          }
+        },
+        "simulation": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "scenarioIds",
+            "coverageStatus"
+          ],
+          "properties": {
+            "scenarioIds": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "coverageStatus": {
+              "enum": [
+                "not-mapped",
+                "mapped",
+                "reviewed",
+                "executed"
+              ]
+            }
+          }
+        },
+        "reviewHistory": {
+          "type": "array",
+          "items": {
+            "type": "object"
+          }
+        }
+      }
+    }
+  }
+}
