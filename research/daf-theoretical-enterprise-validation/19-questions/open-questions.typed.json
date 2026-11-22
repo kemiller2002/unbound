@@ -382,7 +382,7 @@
       "optionsOrValidation": "Fee first · grants first",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Fee accrual reduces capacity (FI-25), which makes this rare; decide anyway",
+        "recommendedAnswer": "Working design: recognize and accrue authorized sponsor fees before computing new grant-reservable capacity, using the approved fee schedule and accounting policy. Preserve valid existing grant reservations; fee accrual or collection must not silently consume, subordinate, or release already reserved grant capacity. Where reversals, valuation changes, fee corrections, or other events create a genuine shortfall, place affected activity under a controlled hold and require sponsor-authorized resolution with documented financial, legal and contractual review. Available remedies may include authorized fee deferral or waiver, sponsor-funded remediation, and other legally permissible adjustments; never automatically reduce a fixed approved grant or override an enforceable recipient obligation.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -393,14 +393,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: CFO approval of fee accrual timing, reservable-capacity waterfall and shortfall authority; counsel/accounting review of governing documents, enforceable grants and fee waiver or deferral treatment; controls for stale NAV, reversals, accrued-versus-collected fees, fee corrections and conflicting reservations; independent reconciliation and audit of all exceptions."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD10-01",
+          "SIM-OD10-02",
+          "SIM-OD10-03",
+          "SIM-OD10-04",
+          "SIM-OD10-05",
+          "SIM-OD10-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected fee accrual before new grant-capacity calculation, protection of existing valid reservations and sponsor-authorized review of genuine shortfalls. No silent consumption of reserved funds; formal CFO and legal/accounting approvals pending."
+        }
+      ]
     },
     {
       "id": "OD-11",
