@@ -95,7 +95,7 @@
       "optionsOrValidation": "Complete · hold for successor · cancel",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Complete (sponsor's own decision); suspend standing recommendations",
+        "recommendedAnswer": "Working design: donor or sole-advisor death does not automatically cancel sponsor-approved unpaid grants; proceed with previously authorized grants only if still valid and free of legal, compliance, funding, sanctions or payment holds. Suspend standing recommendations and new advisory instructions pending verification of death, effective authority, successor arrangements and sponsor review. Recheck material changes and preserve sponsor discretion under governing documents.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -106,14 +106,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: sponsor board and counsel approval; review of governing documents, applicable succession law and donor-advisor authority; definition of effective death notice, standing instruction suspension, post-approval changes and permissible holds; audit evidence of authority rechecks."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD03-01",
+          "SIM-OD03-02",
+          "SIM-OD03-03",
+          "SIM-OD03-04",
+          "SIM-OD03-05",
+          "SIM-OD03-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User chose continuation of sponsor-approved unpaid grants after donor or sole-advisor death, subject to legal and compliance holds; suspend standing and future recommendations pending authority review. Sponsor board and counsel approval remain outstanding."
+        }
+      ]
     },
     {
       "id": "OD-04",
