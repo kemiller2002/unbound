@@ -792,7 +792,7 @@
       "optionsOrValidation": "Fund bears · sponsor bears · party at fault",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Party at fault makes the fund whole; the donor's fund never silently bears sponsor or vendor error",
+        "recommendedAnswer": "Working design: use responsibility-based loss attribution and remediation for forged or misdirected payments, payment-provider insolvency (including PA-8 Lost), and inter-fund accounting or transfer errors. Do not silently charge an affected donor-advised fund for sponsor or vendor operational failures; distinguish ordinary investment losses and contractually allocated market risks from preventable operational losses. Immediately contain incidents, preserve evidence, trace funds and liability, reconcile affected ledgers, pursue reversals, recoveries and insurance or contractual remedies, and document sponsor-authorized make-whole or interim protection decisions. Allocation and reimbursement must follow governing documents, vendor contracts, applicable law, insurance terms and board-approved policy; do not presume that fault alone establishes enforceable reimbursement or that provider insolvency losses are always recoverable. Require independent oversight, escalation, donor/recipient communications where appropriate, and immutable audit history.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -803,14 +803,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: sponsor board and CFO approval of loss allocation, financial reserves, recovery authority and make-whole policy; counsel review of liability, contractual risk allocation, insolvency, recovery and disclosure obligations; insurance broker/coverage review; accounting and internal-controls review of suspense, write-offs, inter-fund corrections and reconciliations; stress tests for forged instructions, provider failure, unrecoverable losses, multi-fund contamination, partial recovery and delayed discovery."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD20-01",
+          "SIM-OD20-02",
+          "SIM-OD20-03",
+          "SIM-OD20-04",
+          "SIM-OD20-05",
+          "SIM-OD20-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected responsibility-based loss attribution and remediation for payment fraud, provider insolvency and inter-fund errors, no silent allocation of sponsor/vendor operational errors to DAFs, with containment, recovery, documented make-whole decisions, insurance/contract/legal review and board/CFO approval pending."
+        }
+      ]
     },
     {
       "id": "OD-21",
