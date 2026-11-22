@@ -95,6 +95,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Sanctions, recipient diligence and 180-day reverification. Conflict: Automated charity re-verification every 180 days is not equivalent to point-of-payment screening. Deterministic clearing of approved false-positive classes must not become AI-driven hold release or allow stale eligibility between review cycles. Harmonized direction: Separate periodic comprehensive recipient re-verification, event-triggered rechecks and execution-time sanctions/eligibility gates. Only published deterministic classes can clear eligible false positives; models may flag but not clear holds. Failed or unavailable checks hold release and produce reviewable evidence. Severity: Critical. Status: proposed; counsel and data-source validation outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
@@ -2153,6 +2157,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Sanctions, recipient diligence and 180-day reverification. Conflict: Automated charity re-verification every 180 days is not equivalent to point-of-payment screening. Deterministic clearing of approved false-positive classes must not become AI-driven hold release or allow stale eligibility between review cycles. Harmonized direction: Separate periodic comprehensive recipient re-verification, event-triggered rechecks and execution-time sanctions/eligibility gates. Only published deterministic classes can clear eligible false positives; models may flag but not clear holds. Failed or unavailable checks hold release and produce reviewable evidence. Severity: Critical. Status: proposed; counsel and data-source validation outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
@@ -2571,6 +2579,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Sanctions, recipient diligence and 180-day reverification. Conflict: Automated charity re-verification every 180 days is not equivalent to point-of-payment screening. Deterministic clearing of approved false-positive classes must not become AI-driven hold release or allow stale eligibility between review cycles. Harmonized direction: Separate periodic comprehensive recipient re-verification, event-triggered rechecks and execution-time sanctions/eligibility gates. Only published deterministic classes can clear eligible false positives; models may flag but not clear holds. Failed or unavailable checks hold release and produce reviewable evidence. Severity: Critical. Status: proposed; counsel and data-source validation outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
@@ -3461,7 +3473,7 @@
       "optionsOrValidation": "GAP-012 counsel (falsified if: Counsel says reliance not available)",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "DEFERRED FOR USER CLARIFICATION: Cross-sponsor reliance on determinations cannot be assumed; scope, liability and sponsor accountability need legal and commercial evidence.",
+        "recommendedAnswer": "User-selected working direction: Unbound uses a single standardized charity vetting framework and reusable authoritative charity verification result across all participating sponsors. A charity verified under the shared standard need not repeat identical vetting for another sponsor; common verification status, evidence, date, expiration, scope and material adverse changes are propagated platform-wide. Each sponsor retains independent grant approval and any sponsor-specific restrictions on grants, not duplicate charity vetting. Automated re-verification at least every 180 days, material-change triggers and execution-time sanctions/eligibility checks. Vetting exceptions require independent approval, never self-approval. Legal reliance, responsibility, cross-jurisdiction and recipient-category exceptions remain subject to counsel and sponsor governance validation.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -3473,7 +3485,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria."
+        "evidence": "User selected centralized uniform cross-sponsor charity vetting. Verify legal reliance and sponsor fiduciary responsibilities by jurisdiction and recipient class; contracts, liability, evidence freshness, global hold propagation, 180-day periodic refresh, execution screening, no-self-approval, and independence of exceptions. No legal determination has been made."
       },
       "simulation": {
         "scenarioIds": [],
@@ -3487,6 +3499,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Third-party concentration, donor experience and economic assumptions. Conflict: Projected touchless economics assume vendor features, low exception rates, donor acceptance and sponsor-to-sponsor reliance that are not proven. Fourth-party concentration and partner insolvency can break the entire workflow. Harmonized direction: Do not promote assumptions to guarantees. Model worst-case throughput and loss exposure; validate contractual capabilities and shared infrastructure, donor testing, third-party ownership changes and actual sponsor cohorts before setting service levels or staffing. Severity: High. Status: partial; TVA-020 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
@@ -4627,6 +4643,10 @@
         {
           "event": "cross-requirement-consistency-review-v2",
           "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
@@ -5083,6 +5103,10 @@
         {
           "event": "cross-requirement-consistency-review-v2",
           "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
+        },
+        {
+          "event": "user-centralized-charity-vetting-directive",
+          "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
         }
       ]
     },
