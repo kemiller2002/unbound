@@ -1047,6 +1047,10 @@
         {
           "event": "user-dr-durable-intake-queue-direction",
           "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
+        },
+        {
+          "event": "user-accepted-protective-emergency-design",
+          "note": "User agreed to jointly design DR intake and emergency controls as separate authority paths. Protective-only independent emergency controls may suspend release, revoke access, apply holds and record evidence while normal command service is unavailable; no approvals, balance changes, payee edits or money movement. Emergency hold removal requires independent authorized approval after core recovery and reconciliation, enforcing no-self-approval. Outage intake cannot override emergency holds; protective actions reconciled before queued commands replay. Independently durable controls and failure-injection testing required; working design, not tested or legally approved."
         }
       ]
     },
@@ -5051,6 +5055,10 @@
         {
           "event": "user-dr-durable-intake-queue-direction",
           "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
+        },
+        {
+          "event": "user-accepted-protective-emergency-design",
+          "note": "User agreed to jointly design DR intake and emergency controls as separate authority paths. Protective-only independent emergency controls may suspend release, revoke access, apply holds and record evidence while normal command service is unavailable; no approvals, balance changes, payee edits or money movement. Emergency hold removal requires independent authorized approval after core recovery and reconciliation, enforcing no-self-approval. Outage intake cannot override emergency holds; protective actions reconciled before queued commands replay. Independently durable controls and failure-injection testing required; working design, not tested or legally approved."
         }
       ]
     },
@@ -5869,7 +5877,7 @@
       "optionsOrValidation": "open: revision 4 not drafted (see revision-3-amendments §D)",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "B6 creates break-glass for the period when the command service is down; OD-22 permits break-glass only through a domain command, which cannot exist then. B6 also does not limit its scope. Requirement: outage break-glass is restricted to the A12 protective set and to observation recording; it cannot ",
+        "recommendedAnswer": "User-selected working design: independent, durable, protective-only emergency control plane remains available when the normal domain-command service is down. Permitted actions are suspending payment release, applying protective holds, revoking access and recording incident observations; it cannot approve grants, initiate payments, modify balances or change destinations. Protective actions reconcile into authoritative domain history before normal execution or queued-intake replay resumes. Removing a hold requires an independent authorized approver after integrity recovery, never the person or agent that originated the action. Test split-brain, evidence integrity, operator compromise, queue/hold ordering, revocation and recovery. No financial write bypass.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -5881,7 +5889,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact."
+        "evidence": "User accepted design direction. Must prove independent emergency service durability, dual-control/segregation, protective actions under outage, hold-first reconciliation, replay barriers, audit evidence and no unauthorized payment path in failure-injection tests."
       },
       "simulation": {
         "scenarioIds": [],
@@ -5903,6 +5911,10 @@
         {
           "event": "user-dr-durable-intake-queue-direction",
           "note": "User accepts pause of financial writes when quorum is unsafe and prefers batching outage requests for replay if safely possible. Working design: independently durable outage intake with collision-resistant request IDs, authenticated origin, captured intent, tamper-evident receipt, no authoritative financial commit or approval; never claim queued unless durable acknowledgment from independent failure domain. On recovery reconcile protective holds/cancellations first, de-duplicate and revalidate identity, sponsor authority, policy, recipient, funds, sanctions, expiry and user confirmation when material changes; release only through restored domain commands. If intake durability unavailable, fail closed and permit local drafts without claim of submission. Must assess intake service split-brain, ordering, loss, confidentiality, retention, and user-visible pending semantics. No external payments or approval while core lacks quorum."
+        },
+        {
+          "event": "user-accepted-protective-emergency-design",
+          "note": "User agreed to jointly design DR intake and emergency controls as separate authority paths. Protective-only independent emergency controls may suspend release, revoke access, apply holds and record evidence while normal command service is unavailable; no approvals, balance changes, payee edits or money movement. Emergency hold removal requires independent authorized approval after core recovery and reconciliation, enforcing no-self-approval. Outage intake cannot override emergency holds; protective actions reconciled before queued commands replay. Independently durable controls and failure-injection testing required; working design, not tested or legally approved."
         }
       ]
     },
