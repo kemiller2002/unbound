@@ -423,7 +423,7 @@
       "optionsOrValidation": "Successor fund · sponsor unrestricted · original grantee",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Per agreement; default sponsor policy",
+        "recommendedAnswer": "Working design: classify every post-closure receipt by source and legal character (including grant refund, investment distribution, custodian correction, recovery and unidentified receipt), retain linkage to the closed DAF and original transactions, and follow governing documents plus documented closure instructions. Where legally eligible, allocate trailing receipts to the valid designated successor DAF first; otherwise apply a sponsor-board-approved charitable disposition policy, with counsel and accounting review as appropriate. Do not automatically reopen a closed DAF, redirect funds to a donor personally, or treat all receipt types as interchangeable. Use controlled suspense accounting for ambiguous, disputed or unmatched receipts; require bank/custodian reconciliation, authorized posting, tax/reporting review and immutable audit history.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -434,14 +434,26 @@
         "blobSha": "0e919c8044045b82f365a9247077ea91a8bc1f49"
       },
       "validation": {
-        "status": "not-validated",
-        "evidence": null
+        "status": "evidence-pending",
+        "evidence": "Required: sponsor board and counsel approval of default charitable disposition and governing-document precedence; closure/successor designation validity checks; CFO/accounting review of trailing receipt classifications, restrictions, suspense accounts and cross-period treatment; reconciliation and evidence controls for post-closure receipts, duplicate receipts, invalid successors and unidentified payments."
       },
       "simulation": {
-        "scenarioIds": [],
-        "coverageStatus": "not-mapped"
+        "scenarioIds": [
+          "SIM-OD11-01",
+          "SIM-OD11-02",
+          "SIM-OD11-03",
+          "SIM-OD11-04",
+          "SIM-OD11-05",
+          "SIM-OD11-06"
+        ],
+        "coverageStatus": "mapped"
       },
-      "reviewHistory": []
+      "reviewHistory": [
+        {
+          "event": "working-design-selected",
+          "note": "User selected governing documents and closure instructions first, valid designated successor DAF for eligible trailing receipts, otherwise sponsor-approved charitable disposition, with classification, reconciliation, legal review and audit. Board/counsel approvals outstanding."
+        }
+      ]
     },
     {
       "id": "OD-12",
