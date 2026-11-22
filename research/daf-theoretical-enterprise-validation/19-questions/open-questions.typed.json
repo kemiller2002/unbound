@@ -132,6 +132,10 @@
         {
           "event": "working-design-selected",
           "note": "User chose continuation of sponsor-approved unpaid grants after donor or sole-advisor death, subject to legal and compliance holds; suspend standing and future recommendations pending authority review. Sponsor board and counsel approval remain outstanding."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -492,6 +496,10 @@
         {
           "event": "working-design-selected",
           "note": "User selected governing documents and closure instructions first, valid designated successor DAF for eligible trailing receipts, otherwise sponsor-approved charitable disposition, with classification, reconciliation, legal review and audit. Board/counsel approvals outstanding."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -1395,6 +1403,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Asset-class-specific machines ([state models §5](../06-state-models/state-models.md#5-contribution)) Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -1505,6 +1517,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Admin P0 governs domain; UI priority must not lag a P0 domain that needs staff screens Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2147,6 +2163,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: GR-8 (complete sponsor-approved grants; suspend standing recommendations) [P][C]; OD-03 Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2257,6 +2277,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: FI-09 + REC-3: each instance re-checks authority; notice of death applies holds retroactively to the effective date for unfunded instances Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2595,6 +2619,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: SM-6 re-checks the *releaser's* authority and the grant state, not that of past approvers; recorded Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2667,6 +2695,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: REC-7 re-confirmation at execution; AUTH-I7 Justification: Conflicting specifications would let different components enforce different outcomes; one authoritative invariant and cross-reference avoids silent divergence. Challenge: A single canonical rule may hide different lifecycle states, regulatory regimes, sponsor configurations or exception paths; check against existing owner decisions and legal gates. Validation: Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2701,6 +2733,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2849,6 +2885,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -2883,6 +2923,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3031,6 +3075,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3065,6 +3113,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3099,6 +3151,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3133,6 +3189,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Partner deprovisioning and accessible delegated channels. Proposed integrated rule: Treat partner deprovisioning and display controls as unverified until enforceable contracts, tested revocation propagation and sponsor-hosted fallback exist. Challenge: partners may refuse low-latency SLAs; avoid implying remote data can be recalled after disclosure. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3205,6 +3265,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3277,6 +3341,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3539,6 +3607,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3725,6 +3797,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Treat as an unproven hypothesis, not an operating fact or guaranteed planning input. Justification: The claim determines operating capacity, compliance exposure, unit economics or partner feasibility; relying on an unmeasured assumption would turn a design hypothesis into an undocumented control. Challenge: The hypothesis may fail by sponsor, asset class, season, user cohort or partner. Require measured baseline, confidence interval, adverse-case sensitivity and explicit fallback before use. Validation: Collect attributable primary evidence or controlled experiment; model failure and sensitivity; record evidence owner and acceptance criteria. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3797,6 +3873,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3945,6 +4025,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -3979,6 +4063,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4013,6 +4101,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4123,6 +4215,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4157,6 +4253,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4229,6 +4329,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4377,6 +4481,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4411,6 +4519,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4483,6 +4595,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4517,6 +4633,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4627,6 +4747,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4737,6 +4861,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4771,6 +4899,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Finance, provider feasibility and operating-model boundaries. Proposed integrated rule: Separate sponsor versus infrastructure/custody obligations. Require domain-ready admin workflows alongside P0 functions; validate delegated approval with counsel, provider nonreceipt and custodian redemption via contract tests, haircut and cash sleeve by stress model, independent reconciliation by operational scale, external-register event matching and snapshot provenance. Minimize retained bank data while preserving portable independent verification. Challenge: no fixed provider capability, staffing floor, haircut or assurance threshold is yet evidenced; privacy retention and recovery can conflict. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4881,6 +5013,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4915,6 +5051,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -4949,6 +5089,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Preserve the stated control outcome; leave numerical thresholds, provider selection, legal interpretation and operational tuning as explicit gated parameters. Justification: The underlying requirement describes an important safety, auditability, usability or operational outcome, but the open question cannot be responsibly converted into an unsupported universal value. Challenge: Overly restrictive defaults may block legitimate grants and accessibility; permissive defaults may permit fraud, loss or regulatory breaches. Validation: Define an accountable owner, legal/technical evidence and adversarial simulation before setting the open parameter. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Succession, closure and delayed instructions. Proposed integrated rule: Previously approved unpaid grants remain subject to sponsor holds; donor death suspends future and recurring recommendations until verified successor authority. Historical staff approval stays evidentiary, but release authority is checked anew. Post-closure receipts follow legally valid closure instructions and reconcile to successor or sponsor-directed charitable disposition. Challenge: retroactive death notices and delayed plans can invalidate seemingly authorized future actions; define effective-time versus discovery-time and prohibit automatic reactivation. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5059,6 +5203,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5131,6 +5279,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5317,6 +5469,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5693,6 +5849,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5917,6 +6077,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -5951,6 +6115,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6061,6 +6229,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6095,6 +6267,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6129,6 +6305,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6163,6 +6343,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6197,6 +6381,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6231,6 +6419,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6265,6 +6457,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6299,6 +6495,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6333,6 +6533,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6367,6 +6571,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6481,6 +6689,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Governance, delegated approval and AI confirmation. Conflict: Board delegation to a versioned policy is not the same as delegating sponsor approval authority to an AI agent. Advisor-originated agent requests must not bypass sponsor approval. OD-21's donor-only launch and TVC-041's separate-confirming-principal rule may conflict; confirmation independence must be expressed as agent-versus-authorized-human, plus risk-specific maker/checker requirements, not a blanket ban on the delegator confirming. Harmonized direction: Maintain sponsor-controlled deterministic approval only after board/counsel authorization; AI agents recommend or submit within bounded revocable scopes. Keep advisor delegation disabled pending TVC-041 clarification. At execution, re-check authority, recipient novelty, payment destination, policy version and independent confirmation where risk requires. Severity: High. Status: partial; TVC-041 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Risk assurance, novelty and anti-evasion. Proposed integrated rule: Re-evaluate identity assurance, recipient novelty, authority novelty, aggregate exposure and sliding-window limits at submission and release. Credential remaps and principal additions restart relevant risk clocks; warning-only UX cannot substitute for release control. Measure peak projected exposure before transfer, not after settlement. Challenge: attackers can wait out fixed windows, split grants, cycle accounts or force fallback; balance false positives against mandatory step-up. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6553,6 +6765,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Adopt the identified protective requirement as a proposed design control, subject to architecture and operational validation; fail closed for unauthorized value movement. Justification: The finding identifies a concrete exploit path, missing invariant or unsafe reconciliation/authority dependency; an explicit guard is preferable to relying on staff vigilance. Challenge: A local fix may introduce bypasses through third parties, recovery paths, stale data, accessibility channels or correlated evidence sources. Validation: Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Security incident, independent evidence and recovery. Proposed integrated rule: Threat-model collusion, compromised sponsor domains, correlated custody/provider evidence, uncertain clocks, triggerable fallback, triage starvation, aggregate exposure and repeated return cycles. Require independent evidence, incident lookback, bounded queue ownership, tamper-evident time-uncertain observations, rate-limited holds and cumulative exposure caps. Challenge: independent channels may share infrastructure; do not claim two sources independent without control/ownership analysis. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6815,6 +7031,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Create a specific external-evidence gate; do not claim the answer is known. Justification: This depends on third-party capabilities, empirical measurements, legal texts or user testing outside the current theoretical model. Challenge: Marketing statements, vendor demonstrations and single-sponsor samples may not generalize or constitute enforceable proof. Validation: Obtain primary contract/API/rule text, representative data or documented user study; independently verify and track expiry. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Contribution lifecycle, reversals and collection. Proposed integrated rule: Track acceptance, receipt, availability, valuation, allocation, acknowledgment and finality separately by asset/rail. Reversible ACH may be provisionally credited only under OD-04; a later return creates a receivable/exposure and collection policy, not silent negative charitable balance. Acknowledgment wording and timing require tax counsel and primary Nacha text. Challenge: no universally safe 60-day rule or automatic acknowledgment; return windows vary by reason, account type and governing rules. Evidence remains pending; no validation executed."
         }
       ]
     },
@@ -6849,6 +7069,10 @@
         {
           "event": "batch-working-recommendation-challenged",
           "note": "Batch critical review. Proposed direction: Create a specific external-evidence gate; do not claim the answer is known. Justification: This depends on third-party capabilities, empirical measurements, legal texts or user testing outside the current theoretical model. Challenge: Marketing statements, vendor demonstrations and single-sponsor samples may not generalize or constitute enforceable proof. Validation: Obtain primary contract/API/rule text, representative data or documented user study; independently verify and track expiry. Not formally approved or empirically validated."
+        },
+        {
+          "event": "cross-requirement-consistency-review-v2",
+          "note": "Cluster: Recipient regulation, compliance and AI reviewer quality. Proposed integrated rule: Hold adverse/conflicting charity evidence for sponsor review; distinguish legally blocked versus rejected sanctions actions. Exclude ER/supporting-org and related-party risk from routine path unless validated. Test sanctions transliteration recall and reviewer automation bias using blinded known-answer cases and evidence-before-summary presentation. Challenge: 'most adverse source wins' can lock legitimate recipients; require bounded appeal and authoritative source adjudication without auto-clearing legal holds. Evidence remains pending; no validation executed."
         }
       ]
     },
