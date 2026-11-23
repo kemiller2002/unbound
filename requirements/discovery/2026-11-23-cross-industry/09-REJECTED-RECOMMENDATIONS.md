@@ -1,0 +1,119 @@
+# 09: Rejected recommendations register (deliverable 9, mission §12)
+
+These ideas were deliberately excluded. Each record gives the strongest argument for the idea, the argument against it, the existing alternative, the reason it was rejected, and the condition that would justify revisiting it. Gate D5 checks that these fields are present.
+
+**Why so much was rejected.** Every research pass was told not to treat every discovery as essential, and to prefer the simplest valid alternative. The rejections fall into five groups:
+
+1. **Banking obligations that do not bind a charity.**
+   - Donor CIP, CDD and SAR modules.
+   - Dunning.
+   - Instant payment rails as the default.
+2. **Machinery sized for industries with far higher volume.**
+   - Erlang workforce tooling.
+   - Order management systems.
+   - Per-account GIPS performance reporting.
+   - A durable workflow engine.
+   - A message broker.
+3. **ERP or CRM scope that belongs to the operator's own systems.**
+   - Procurement, budgeting, HR and payroll.
+   - The B2B sales pipeline.
+4. **Mechanisms that would weaken legal control or create perverse incentives.**
+   - A float credit, which rewards slow payment.
+   - Pricing per approved grant, which rewards approving unsafe grants.
+   - A donor statutory transfer right on the HSA model.
+5. **Analogies that break down.**
+   - Funds transfer pricing.
+   - Claimant fair hearings.
+   - TIN matching.
+   - Transfer-agency investor servicing.
+
+<!-- BEGIN GENERATED: rejected -->
+| ID | Idea | Source industry | Argument for | Argument against | Reason rejected | Revisit if |
+|---|---|---|---|---|---|---|
+| XRJ-BNK-001 | Build a bank-style CIP/CDD program for donors | Banking | Uniform identity standard; comfort for partners. | Sponsor is not a BSA FI (OB-32); nonprofit CDD duty sits on its bank; adds friction and PII. | No legal basis; control objective (authorized actor, sanctions) achieved more cheaply. | Counsel finds a contractual CIP flow-down from a custodian/processor, or a vendor holding funds becomes an MSB. |
+| XRJ-BNK-002 | SAR filing module | Banking | Familiar AML vocabulary. | No SAR obligation for sponsor; OFAC blocking/reporting already modeled. | Unnecessary. | Operating model makes Unbound vendor a BSA FI. |
+| XRJ-BNK-003 | Automatic retries/dunning for failed contribution debits | Billing/subscriptions | Recovers revenue. | Donors owe nothing; retries raise unauthorized returns; Nacha limits. | Wrong incentive for charitable gifts. | Donors explicitly opt in to auto-retry. |
+| XRJ-BNK-004 | Instant payments (RTP/FedNow) as grant rail in release 1 | Banking | Speed for disaster grants. | Irrevocable; charities rarely need seconds; BEC speed risk; receiving reach uncertain. | No demonstrated demand; risk>benefit. | Sponsor demand plus receiving-bank coverage evidence. |
+| XRJ-BNK-005 | Platform-held FBO/omnibus account through Unbound vendor | Payments (marketplaces) | Simplifies onboarding. | Triggers TPS/money transmission questions; Flipcause-type commingling risk. | Legal and insolvency exposure. | Counsel-approved licensed partner structure. |
+| XRJ-BNK-006 | Contesting all card disputes | Merchant processing | Reduces loss. | Donor trust harm; costly for small gifts. | Cost and reputation. | Friendly-fraud rate becomes material. |
+| XRJ-BNK-007 | ML cash forecasting model | Treasury | Better accuracy. | Disbursements are scheduled; deterministic projection suffices. | Unneeded complexity. | Check-clearing variance becomes material. |
+| XRJ-BNK-008 | Own card vault (store PAN) for recurring gifts | Merchant processing | Processor portability. | Full PCI scope; breach exposure. | Security cost. | Never, unless a PCI-certified vault partner is used. |
+| XRJ-BNK-009 | Separate payments ledger in processor/bank adapter | Payments | Faster adapter build. | Violates single ledger writer; reconciliation duplication. | Architecture principle. | Never. |
+| XRJ-INV-001 | Full event-sourced ledger where journals are projections re-derived from events | Software event sourcing / fintech ledgers | One source; replay elegance. | Auditors test posted ledgers; code/policy changes would rewrite history. | Journals are evidence, not cache. | Never for authoritative journals. |
+| XRJ-INV-002 | Fund-level money-weighted and time-weighted returns for every DAF | Wealth management (GIPS) | Familiar to advisors. | Units already carry pool TWR; cost and confusion. | Low value. | Sponsor sells SMA-heavy programs needing per-account performance. |
+| XRJ-INV-003 | Native trade order management / rebalancer for pools run by external managers | Asset management OMS | Control. | Duplicates OCIO/custodian; requires entitlements. | Over-scope. | Sponsor runs in-house discretionary management. |
+| XRJ-INV-004 | General capital-gains tax-lot relief engine (FIFO/HIFO/min-tax) | Taxable wealth management | Standard in wealth tech. | Sponsor pays no capital-gains tax. | No legal need. | UBTI volume grows materially. |
+| XRJ-INV-005 | GIPS-compliant composite performance claims | Asset management | Marketing credibility. | Not required; verification cost. | Optional marketing. | Sponsor markets performance competitively. |
+| XRJ-INV-006 | Investor-style transfer-agency features for units (KYC on unitholders, 1099s, unit transfers) | Mutual-fund transfer agency | Analogy. | Unitholders are internal funds; no external investors. | Analogy fails. | Multi-sponsor pool becomes external fund. |
+| XRJ-INV-007 | Real-time (intraday) NAV for pools | ETF/indexing | Freshness. | Grants pay in days; daily forward NAV suffices. | Cost without benefit. | Instant-liquidity product launched. |
+| XRJ-INV-008 | Auto-approval of audit adjustments by AI | AI close tools | Speed. | Accounting judgment and SoD. | Authority. | Never. |
+| XRJ-SVC-001 | Build a native contact-center platform (ACD, telephony, dialer) in Unbound | Call centers | One system | Commodity, regulated telephony; violates minimal infrastructure (UNB-TEC-002) | Integration suffices | Never; reconsider adapter vendor only |
+| XRJ-SVC-002 | Real-time supervisor barge/whisper and wallboards | Call centers | Coaching | Presumes large agent pools; DAF volumes small | Low value at volume | A sponsor runs >50 concurrent live agents |
+| XRJ-SVC-003 | Voice biometrics authentication | Call centers | Low friction | Deepfake risk; biometric privacy law; consent burden | Risk/regulatory cost exceeds benefit | Mature liveness standards and counsel approval |
+| XRJ-SVC-004 | Sentiment-driven automatic goodwill credits or fee waivers | Call centers | Retention | Money movement on probabilistic signal; fee waivers need approval (WF-13) | Violates authority boundary | Never automatic |
+| XRJ-SVC-005 | AI autonomous complaint closure | Call centers | Cost | Complaints need human judgment and accountability | Accountability | Never |
+| XRJ-SVC-006 | Per-agent AHT ranking/gamification | Call centers | Productivity | Encourages rushing and cherry-picking; HWQ forbids raw-speed ranking | Perverse incentives | Never |
+| XRJ-SVC-007 | Relational NPS as headline service KPI | Call centers | Common benchmark | Low switching and infrequent contact make NPS a weak signal | Weak signal | Sponsor commercially needs NPS for board reporting (optional) |
+| XRJ-SVC-008 | Separate CRM, ticketing and case systems for contacts, cases, transactions and exceptions | Call centers / enterprise | Best-of-breed | Duplicates state, splits audit; contrary to REQ-X-057 | Integration and consistency cost | Never |
+| XRJ-SVC-009 | One universal case lifecycle for all case kinds | Cross-industry | Simplicity | Couples clocks, access, holds (XIF-SVC-001) | Harmful coupling | n/a |
+| XRJ-SVC-010 | Outbound predictive dialing campaigns | Call centers | Engagement | TCPA/consent exposure (unverified for charities); not a DAF need | Unnecessary risk | Never |
+| XRJ-CLM-001 | Per-grant claim reserves | Insurance | Familiar to insurers | Grant amounts known; reservations exist (UNB-RCN-FIN-009) | Redundant | Never |
+| XRJ-CLM-002 | Mandatory external independent review organization for reconsideration | Healthcare/insurance | Fairness | Sponsor holds exclusive legal control; cost; not required | Disproportionate | Regulator requires or sponsor requests |
+| XRJ-CLM-003 | Automated SIU scoring that auto-declines grants | Insurance | Speed | Auto-asserting fraud forbidden (EXC-16, UNB-GEX-033) | Legal/fairness risk | Never |
+| XRJ-CLM-004 | Donor-visible accounting of every staff access (HIPAA 164.528 analog) | Healthcare | Transparency | Not required; reveals investigations; cost | Speculative (P4) | Donor demand or privacy law requires |
+| XRJ-CLM-005 | Full legal matter management system | Legal | Completeness | Counsel uses own systems; small sponsors | Scope creep | Large institutional sponsor demand |
+| XRJ-ERP-001 | Native procurement and purchase orders | Enterprise resource planning | One system for sponsor staff. | Unrelated to fund administration; mature ERPs exist. | Scope creep; no DAF outcome. | A sponsor contract makes it a condition and an owner decision approves. |
+| XRJ-ERP-002 | Native budgeting/forecasting | Enterprise resource planning | Sponsor finance convenience. | Fund balances are not budgets. | RCD-013. | Never for fund assets. |
+| XRJ-ERP-003 | Native HR/payroll | Enterprise resource planning | Workforce identity. | HRIS exists. | Not DAF administration. | — |
+| XRJ-ERP-004 | Native operating accounts payable | Enterprise resource planning | Single payee master. | Mixing payees is the risk (XIF-ERP-004). | Separation is safer. | Sponsor without ERP in outsourced-admin model — then a separate module with its own entity. |
+| XRJ-ERP-005 | Full third-party risk management suite | Enterprise resource planning | Complete TPRM. | GRC tools exist. | Only freshness/CUEC matter for platform. | — |
+| XRJ-CRM-001 | Native sales pipeline/opportunity management | CRM, sales and relationship management | Track prospects. | Donor acquisition is establishment intake; B2B sales is operator CRM. | Not platform. | — |
+| XRJ-CRM-002 | Customer 360 view across all capacities | CRM, sales and relationship management | Service efficiency. | PII and conflict hazard. | Privacy. | — |
+| XRJ-CRM-003 | AI churn-prevention interventions inside transfer flows | CRM, sales and relationship management | Retention. | Obstructs donor's lawful request; sponsor decides transfers. | Harm. | — |
+| XRJ-CRM-004 | Profitability-based service tiers that change grant processing speed | CRM, sales and relationship management | Economics. | Grant processing must not depend on fund profitability. | Fairness/compliance. | — |
+| XRJ-ERP-006 | Household/relationship fee-tier aggregation by default | Subscription billing (M partial) | Wealth-industry breakpoint practice. | Links funds and exposes data; DAF funds are separate arrangements. | Default off. | Sponsor demand with consent model (XID-ERP-004). |
+| XRJ-TRS-001 | Automatic execution of letter-of-wishes intent | Trust, estate and family-office administration | Honors donor. | Non-binding; sponsor discretion. | Legal. | — |
+| XRJ-TRS-002 | Native consolidated family-office reporting of non-DAF assets | Trust, estate and family-office administration | Family office demand. | Out of scope. | Not DAF. | — |
+| XRJ-NPG-001 | Foundation-style signed grant agreement for every DAF grant | Private foundations | Uniform evidence of terms. | No legal need for public-charity grants; heavy friction at millions of grants. | Cost without legal benefit. | Counsel requires agreements for a class. |
+| XRJ-NPG-002 | Block grants to charities delinquent on a state charity registry | State charity regulation | Signals poor governance. | Restriction binds the grantee, not the grantor; would block lawful grants. | Not a legal requirement for grantors. | A state imposes a grantor-side duty. |
+| XRJ-NPG-003 | Mandatory grantee impact reports for all grants | Foundation reporting | Donor engagement. | Nonprofit burden; legally needed only for ER. | Burden. | Sponsor offers restricted-program product. |
+| XRJ-NPG-004 | Build an in-house ED practice using AI | Regtech | Lower ED cost. | Rev. Proc. 2017-53 requires written advice from a qualified tax practitioner; AI is not one. | Legal standard. | IRS changes reliance standard. |
+| XRJ-NPG-005 | Universal per-grant manual charity vetting | Foundations | Thoroughness. | Routine eligibility pool is about $0.14/grant automated vs $55-$135 total cost per grant; manual vetting multiplies cost with no added legal protection under Rev. Proc.… | Uneconomic. | Measured false-clearance rate is material. |
+| XRJ-NPG-006 | Require grantee receipts before closing grants | Individual-donor receipting | Proof of delivery. | Settlement evidence suffices; receipts risk deductible-gift confusion. | Convention only. | Never. |
+| XRJ-GOV-001 | Constitutional-style fair-hearing process for charity eligibility denials | Benefits administration | Fairness. | Sponsor is private with exclusive legal control; reconsideration case suffices. | Analogy breaks. | Regulators require it. |
+| XRJ-GOV-002 | Use IRS TIN Matching for grant payees | Tax administration | Identity assurance. | Program is for payers of 1099-reportable income (general knowledge); grants to charities are not; EIN/name match against BMF already available. | Likely unavailable and redundant. | Sponsor pays reportable amounts (e.g. ER grants to for-profits) and counsel confirms eligibility. |
+| XRJ-REG-001 | Adopt full bank-style KYC/CIP for donors and grantees as legal requirement | Banking | Fraud reduction. | No BSA mandate for a charity paying its own grants (RCF-REG-007). | Not law; friction. | Operator becomes an MSB (see UNB-XIN-REG-001). |
+| XRJ-REG-002 | Treat WCAG conformance as a statutory obligation | Accessibility | Clear standard. | No DOJ Title III web regulation (general knowledge); keep as industry practice target. | Mislabels authority. | DOJ issues Title III web rule. |
+| XRJ-SAS-001 | Tenant-authored code/scripting (Apex-style extensions) for sponsor-specific rules | enterprise SaaS platform operations | Unlimited sponsor flexibility. | Executable tenant logic breaks one-system invariant, audit and §4966 control proofs. | SCP:8 requires declarative non-executable configuration. | Policy catalogue repeatedly cannot express a validated sponsor need. |
+| XRJ-SAS-002 | Public integration marketplace with listing, billing and revenue share | enterprise SaaS platform operations | Ecosystem growth. | Commerce, curation and liability; few DAF integrators. | Not needed for any of the 10 models at release 1. | >20 third-party apps request access. |
+| XRJ-SAS-003 | Shared-schema row-level security as default isolation | enterprise SaaS platform operations | Lowest cost per tenant. | Single-bug cross-sponsor leak; not approved profile. | Isolation between legal sponsors outweighs cost. | Benchmarks show db-per-sponsor uneconomic at target scale and counsel accepts RLS. |
+| XRJ-SAS-004 | Per-tenant code version pinning (tenants choose when to upgrade) | enterprise SaaS platform operations | Enterprise buyers like change control. | N versions to support; violates one release. | RR-REQ-X-057-r1. | Regulator requires frozen version for a tenant. |
+| XRJ-SAS-005 | Usage-based billing engine inside Unbound | enterprise SaaS platform operations | Monetize metering. | Billing is ERP scope (RCD-013). | Metering is for cost attribution. | Pricing model becomes usage-based and volume justifies. |
+| XRJ-WFA-001 | Adopt Temporal/Camunda-class durable workflow engine at release 1 | enterprise workflow automation | Mature timers, retries, visibility. | Second durable store whose state must reconcile with ledger; determinism constraints on workflow code; contrary to UNB-TEC-002 minimal infrastructure. | No orchestration need found that the in-DB approach cannot meet. | Cross-cell orchestration volume or >50 distinct long-running process types make in-house scheduler maintenance costly. |
+| XRJ-WFA-002 | Sponsor-authored BPMN process models | enterprise workflow automation | Visual flexibility. | Sponsors could remove statutory gates; executable tenant logic. | Same as XRJ-SAS-001. | Never for financial gates; maybe for non-financial case checklists. |
+| XRJ-OTH-001 | Lottery-style annuitized or installment payouts to recipients | lottery and prize payout | Smooth multi-year grants. | Recurring grants already exist; annuity math irrelevant. | No unmet need. | Never. |
+| XRJ-OTH-002 | Owner-directed transfer right modelled on HSA/IRA trustee-to-trustee transfer | HSA custodians | Donor-friendly portability. | DAF donor has advisory privilege only; sponsor discretion required. | Legal mismatch. | Law changes DAF control rules. |
+| XRJ-IAM-001 | Building an in-house CIAM/identity provider | identity and access management | Full control. | Security-critical commodity; high risk. | Buy over build for authentication. | No managed IdP meets realm/step-up needs. |
+| XRJ-REC-001 | Automatic deletion at retention expiry | records management | Minimizes data. | Indefensible against racing holds; REQ-X-038 forbids. | Approval needed for defensibility. | Counsel approves auto-disposition for low-risk classes (e.g. telemetry C4). |
+| XRJ-ECO-001 | Funds transfer pricing for cash and balances | Banking | Would attribute balance-related economics to business units. | No lending/deposit book; fund assets are irrevocably contributed charitable assets; a float credit would reward delayed grant payment. | Economic substrate absent; creates harmful incentive. | Sponsor operates a lending or credit-line product to funds. |
+| XRJ-ECO-002 | Real-time attribution of all costs (streaming cost pipeline) | Cloud FinOps | Immediate visibility. | Most pools are known monthly; real-time adds infrastructure contrary to UNB-PLAT-006/UNB-TEC-002 and gives false precision. | Cost exceeds decision value. | A cost category becomes large, variable and controllable intra-month. |
+| XRJ-ECO-003 | Posting activity-based allocations to the GL or charging funds automatically | Corporate accounting | Single set of numbers. | Allocation rules change; fund charges need fee authority and disclosure; violates ledger immutability spirit. | Integrity and legal risk. | Never for funds; for sponsor opex only if CPA requires. |
+| XRJ-ECO-004 | Per-donor profitability or LTV driving service level, queue priority or review depth | Banking / SaaS | Focus scarce staff on valuable relationships. | Fiduciary and fairness concerns; compliance review depth must follow risk, not revenue; reputational harm. | Contaminates control decisions. | Never for control paths; maybe for optional concierge services under explicit sponsor policy. |
+| XRJ-ECO-005 | Autonomous AI cost optimisation that changes routing, thresholds or policies | AI ops / cloud autoscaling | Faster savings. | AI cannot exercise sponsor discretion; REQ-X-042 Tier C; risk of control erosion. | Authority boundary. | Only Tier A non-financial UX content within existing REQ-X-042 policy. |
+| XRJ-ECO-006 | Traditional survey-based ABC with periodic employee time surveys | Management accounting | Familiar. | Costly, subjective, abandoned in practice per Kaplan & Anderson; surveillance concerns. | Inferior method. | No. |
+| XRJ-ECO-007 | Keystroke/screen-time employee tracking for touch time | BPO / contact centre | Precise touch minutes. | Surveillance, employment-law and morale risk; per-worker data prohibited by ECO-021. | Privacy and proportionality. | Never at individual level. |
+| XRJ-ECO-008 | Separate cost data warehouse or FinOps microservice | Cloud FinOps tooling | Off-the-shelf features. | Violates modular-monolith preference; duplicates read models. | Infrastructure without demonstrated necessity. | Data volumes exceed managed DB capability. |
+| XRJ-ECO-009 | Insurance-style combined/expense ratio as headline target | Insurance | Single comparable ratio. | DAF has no premiums/losses; bps of AUM moves with markets; composite hides controls (REQ-X-043 rejects composite health score). | Misleading. | No. |
+| XRJ-ECO-010 | Dynamic (demand-based) donor pricing, e.g. December surcharges | Cloud spot pricing / airlines | Shifts load off peak. | Discourages charitable giving at peak; reputational and reasonableness concerns; disclosures. | Harm to mission. | Voluntary discounts for off-peak scheduling, sponsor-approved. |
+| XRJ-ECO-011 | Erlang-C as the sole staffing model for review work | Contact centre WFM | Standard and simple. | Assumes perishable short contacts; review work carries backlog over days. | Wrong model class. | Contact channel staffing. |
+| XRJ-EVA-001 | Kafka (or other) message broker as the enterprise event backbone | Large-scale e-commerce, trading platforms | Replayable fan-out, decoupled teams, high throughput | Second durable system; dual-write problem moves to broker; volumes are 1-2 orders of magnitude below single-PostgreSQL capacity (REPORT volume table); adds ops and skills | No demonstrated necessity (UNB-XIN-EVA-013) | UNB-XIN-EVA-013 thresholds met by benchmark |
+| XRJ-EVA-002 | Single generic append-only event table/EventStore for all business facts | Event-sourcing frameworks | One mechanism; full replay | Mixes authority classes; prevents per-class constraints and privileges; duplicates the journal | Harmful shared abstraction | Never for financial facts |
+| XRJ-EVA-003 | External workflow engine (Temporal, Camunda) for long-running processes | Fintech orchestration | Durable timers, visibility, retries | New runtime and persistence; skills; not F#-native; process state outside the transactional core | Infra footprint vs modest workflow count | Workflow count and complexity outgrow hand-written PMs (e.g., >50 distinct long-running workflows) |
+| XRJ-EVA-004 | Full event sourcing of CRM, communications and service cases | Event-sourced SaaS | Uniform audit | Erasure conflicts; upcasting cost; no replay need | Cost without benefit | A regulator requires replay of engagement history |
+| XRJ-EVA-005 | Change-data-capture (logical replication/Debezium) as the event source for consumers | Data platform practice | No app changes | Row changes are not business intent; leaks internal schema as contract | Couples consumers to tables | Analytics warehouse feed only (non-authoritative) |
+| XRJ-EVA-006 | Separate read database (CQRS) for reporting | High-scale SaaS | Isolates reporting load | Adds replication lag and second store; snapshots solve determinism | Not needed at volume | Reporting load measured to starve OLTP after tuning |
+| XRJ-EVA-007 | Event schemas as the public partner API | API-first platforms | Single source | Freezes domain model; exposes internal states | Harmful coupling | n/a |
+| XRJ-EVA-008 | PostgreSQL LISTEN/NOTIFY as the durable event bus | PostgreSQL apps | No extra infra | Notifications not durable if no listener; payload limits | Durability | n/a |
+| XRJ-EVA-009 | Distributed sagas across per-capability microservices for grant approval | Microservice architectures | Team autonomy | Reservation and hold invariants need one transaction; compensation cannot undo payments | Invariants | Never for C0 invariants |
+| XRJ-EVA-010 | Blockchain/DLT ledger for DAF transactions | Crypto/fintech marketing | Tamper evidence | Sponsor is sole legal controller; no multi-party trust problem; cost | No trust problem to solve | Multi-sponsor shared settlement with no trusted operator |
+<!-- END GENERATED: rejected -->
