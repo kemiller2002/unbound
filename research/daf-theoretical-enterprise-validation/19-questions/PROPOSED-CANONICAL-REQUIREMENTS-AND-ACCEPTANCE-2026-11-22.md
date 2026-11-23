@@ -520,3 +520,33 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Owner decision:** Unbound MUST remain one component monolith with one authoritative fund accounting/ledger core, sponsor-scoped policy and delegated authority, shared work orchestration, typed provider integration/evidence, semantic reporting, document/communication lifecycle, AI assistance contracts and reusable UI design system. Institutional sponsor SaaS, outsourced administration, turnkey sponsor partnership, digital donor channels, advisor programs, nonprofit-facing experiences and embedded giving MUST reuse these core domain commands and records. Differences are expressed through declarative configuration, legal/contractual role boundaries, permitted adapters and persona-specific views, not cloned products, separate financial state machines or microservices. Preserve legal sponsor asset separation and tenant isolation; the previously specified protective-only DR exception cannot move funds.
 
 **Acceptance (not executed):** `ONE-SYSTEM-MULTI-OPERATING-MODEL-ARCHITECTURAL-INVARIANT-2026-11-23.md`; trace SCN-01..SCN-10 to single domain owners and test sponsor isolation, unified financial truth and shared authorization.
+
+## DAF landscape P0 operating capability requirements (2026-11-23)
+
+### REQ-X-058: Nonprofit recipient operations and self-service
+
+**Proposed:** Specify the full operating workflow in `NONPROFIT-RECIPIENT-OPERATIONS-AND-SELF-SERVICE-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-059: Complex contributions, gift acceptance and liquidation
+
+**Proposed:** Specify the full operating workflow in `COMPLEX-CONTRIBUTIONS-GIFT-ACCEPTANCE-AND-LIQUIDATION-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-060: Sponsor regulatory, tax and audit operations
+
+**Proposed:** Specify the full operating workflow in `SPONSOR-REGULATORY-TAX-AND-AUDIT-OPERATIONS-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-061: Legacy migration, portability and sponsor exit
+
+**Proposed:** Specify the full operating workflow in `LEGACY-MIGRATION-PORTABILITY-AND-SPONSOR-EXIT-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-062: Advisor, wealth manager, custody and CRM integration
+
+**Proposed:** Specify the full operating workflow in `ADVISOR-WEALTH-MANAGER-CUSTODY-AND-CRM-INTEGRATION-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-063: External DAF checkout and embedded grant initiation
+
+**Proposed:** Specify the full operating workflow in `EXTERNAL-DAF-CHECKOUT-EMBEDDED-GRANT-INITIATION-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+### REQ-X-064: Legal operating models, sponsor contracts and responsibility matrix
+
+**Proposed:** Specify the full operating workflow in `LEGAL-OPERATING-MODELS-SPONSOR-CONTRACTS-AND-RESPONSIBILITY-MATRIX-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
