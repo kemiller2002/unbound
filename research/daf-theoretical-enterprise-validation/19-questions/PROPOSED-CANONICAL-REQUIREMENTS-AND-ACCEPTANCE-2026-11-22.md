@@ -242,3 +242,7 @@ All 183 questions now have at least one proposed canonical-requirement linkage a
 **Acceptance (not executed):** A complete low-risk grant passes deterministic rules and incurs zero AI calls and zero human touches; ambiguous recipient documentation invokes a bounded evidence-only AI investigation; a sanctions match remains blocked even when AI confidently recommends release; a human who originated the case cannot approve it; repeated AI failure routes to a safe hold or independently authorized human, never a fail-open decision.
 
 **Sources:** User directive 2026-11-23, OD-01, OD-02, OD-14, OD-17, OD-21, TVC-003, TVC-006, TVC-007, TVC-041, TVF-153. Detailed adversarial specifications: `ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md` (ADV-001 through ADV-030). No tests executed.
+
+## 2026-11-23 enterprise decision inventory
+
+The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENTORY-2026-11-23.md`, covering 62 decision types across nine domains. It applies REQ-X-017 to each process with rules-first behavior, conditional AI evidence work, independently authorized human exceptions, hard stops and acceptance invariants. This is initial inventory coverage, not exhaustive proof or executed tests. Cross-check against `ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md` and original registers before source migration.
