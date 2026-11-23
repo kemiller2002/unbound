@@ -1,0 +1,103 @@
+[
+  {
+    "page": "S-001-giving-home.html",
+    "requirement_ids": [
+      "UNB-UI-S-001"
+    ],
+    "states": [
+      {
+        "id": "s001-1",
+        "title": "Normal: two attention items first",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-001 AC-2, UNB-UI-G-004 AC-1, UNB-UI-G-001 AC-2, UNB-UI-G-015 AC-1, UNB-UI-G-010"
+      },
+      {
+        "id": "s001-2",
+        "title": "Loading",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-013 loading state (skeleton with busy semantics)"
+      },
+      {
+        "id": "s001-3",
+        "title": "Empty: no contributions or grants yet",
+        "persona": "Donor, new fund",
+        "demonstrates": "UNB-UI-G-013 AC-1 (empty-state 'No grants yet' with 'Recommend a grant')"
+      },
+      {
+        "id": "s001-4",
+        "title": "Capacity evidence not current",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-003 AC-1 (market value 'Not current'; authoritative Available to grant used instead), UNB-UI-G-004"
+      },
+      {
+        "id": "s001-5",
+        "title": "Fund suspended pending succession",
+        "persona": "Successor before activation",
+        "demonstrates": "UNB-UI-S-001 AC-1 (blocked, no grant action)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-001",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "State 5: operation-status with blocked lozenge 'Suspended pending succession' and heading 'This fund is suspended pending succession'; no Recommend a grant action is rendered. The sentence is the heading, not the lozenge, because lozenge text does not wrap (see FORMA-GAP-NEW lozenge length)."
+      },
+      {
+        "requirement_id": "UNB-UI-S-001",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": true,
+        "note": "State 1: work-queue 'Needs your attention' is first in source order with 2 items, each with exactly one named action. Ordering and rule creation are application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-004",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Separate metric cards for Available to grant ($100,000.00), Market value (informational) and Pending; native disclosure 'How this is calculated' lists the three components with deducted values labelled in text."
+      },
+      {
+        "requirement_id": "UNB-UI-G-003",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 4 shows 'Not current' (unknown) with as-of time and states that Available to grant is used instead. Computing staleness against the business-day limit is application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-001",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": true,
+        "note": "Held grant item reads 'On hold: charity eligibility' (data-state=blocked) with a text reason."
+      },
+      {
+        "requirement_id": "UNB-UI-G-013",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "State 3 empty-state 'No grants yet' with a 'Recommend a grant' action; state 2 skeleton loading with aria-busy."
+      },
+      {
+        "requirement_id": "UNB-UI-G-015",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Paid grant shown as feed-item; no toast used. Sourcing from the notification catalog is application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-014",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "site-footer shows legal sponsor name, EIN and control statement (requires the marketing .forma-site frame; see gap on application footer)."
+      },
+      {
+        "requirement_id": "UNB-UI-G-010",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "scope-trail shows sponsor, program and fund. Re-authorizing and reloading on scope change is application behaviour."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-07",
+      "FORMA-GAP-08",
+      "FORMA-GAP-10"
+    ]
+  }
+]

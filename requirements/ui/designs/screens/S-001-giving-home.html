@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-001 Giving home | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-001. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html" aria-current="page">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html" aria-current="page">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-001</p>
+        <h1>Giving home</h1>
+        <p class="forma-lead">How much is available to grant, what is pending and why, and what to do next, on one phone screen.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s001-1">State 1: Normal: two attention items first</a></li><li><a href="#s001-2">State 2: Loading</a></li><li><a href="#s001-3">State 3: Empty: no contributions or grants yet</a></li><li><a href="#s001-4">State 4: Capacity evidence not current</a></li><li><a href="#s001-5">State 5: Fund suspended pending succession</a></li></ul></nav>
+    <section class="forma-section" id="s001-1" aria-labelledby="s001-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 5 · Donor</p>
+      <h2 id="s001-1-title">Normal: two attention items first</h2>
+      <p>Demonstrates: UNB-UI-S-001 AC-2, UNB-UI-G-004 AC-1, UNB-UI-G-001 AC-2, UNB-UI-G-015 AC-1, UNB-UI-G-010</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li aria-current="page">Lindqvist Family Fund (F-2026-000418)</li></ol></nav></forma-scope-trail>
+<forma-work-queue class="forma-component-tag"><section class="forma-work-queue" aria-labelledby="s001-1-attention">
+  <header class="forma-work-queue__header">
+    <div><span class="forma-component-kicker">Created by sponsor rules</span><h3 id="s001-1-attention">Needs your attention</h3></div>
+    <span class="forma-status-lozenge" data-state="attention">2 items</span>
+  </header>
+  <ol class="forma-work-queue__list">
+    <li class="forma-work-queue__item">
+      <div><strong>Grant 2026-004811 to Northgate Literacy Project is on hold</strong><p><span class="forma-status-lozenge" data-state="blocked">On hold: charity eligibility</span> The charity's IRS status could not be confirmed on 27 Nov 2026. Your sponsor is checking; you can redirect the grant if you prefer.</p></div>
+      <button type="button" aria-label="View held grant 2026-004811">View held grant</button>
+    </li>
+    <li class="forma-work-queue__item">
+      <div><strong>Annual donor certification is due 15 Dec 2026</strong><p><span class="forma-status-lozenge" data-state="attention">Waiting on you</span> Confirm that no grant from this fund gave you or your family a personal benefit in 2026.</p></div>
+      <button type="button">Complete certification</button>
+    </li>
+  </ol>
+</section></forma-work-queue>
+<forma-dashboard-grid class="forma-component-tag"><section class="forma-dashboard-grid" aria-label="Fund summary">
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-1-avail">
+  <div class="forma-metric-card__label" id="s001-1-avail">Available to grant</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$100,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="ok">Ledger confirmed</span></div>
+  <p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p><forma-disclosure class="forma-component-tag"><details class="forma-disclosure" data-forma-motion-weight="light">
+  <summary>How this is calculated</summary>
+  <div class="forma-disclosure__content"><dl class="forma-key-value-list"><div><dt>Market value</dt><dd><span class="forma-identifier">$120,000.00</span></dd></div><div><dt>Less: reserved for 3 grants awaiting payment (deducted)</dt><dd><span class="forma-identifier">−$15,000.00</span></dd></div><div><dt>Less: ACH contribution still inside its return window (deducted)</dt><dd><span class="forma-identifier">−$5,000.00</span></dd></div><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span></dd></div></dl><p>Calculated by the Example Charitable Foundation ledger. Market value is informational; only Available to grant is used when you recommend a grant.</p></div>
+</details></forma-disclosure>
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-1-market">
+  <div class="forma-metric-card__label" id="s001-1-market">Market value (informational)</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$120,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge">Informational</span></div>
+  <p class="forma-freshness"><span class="forma-freshness__label">Priced</span> <time datetime="2026-11-30T16:00:00-06:00">30 Nov 2026, 4:00 PM CT</time> <span class="forma-freshness__state">Current</span></p>
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-1-pending">
+  <div class="forma-metric-card__label" id="s001-1-pending">Pending</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$20,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="attention">In progress</span></div>
+  <dl class="forma-key-value-list"><div><dt>Reserved for 3 grants awaiting payment</dt><dd><span class="forma-identifier">$15,000.00</span></dd></div><div><dt>ACH contribution received 24 Nov 2026</dt><dd><span class="forma-identifier">$5,000.00</span><br>Available to grant on <time datetime="2026-12-08">8 Dec 2026</time></dd></div></dl>
+</article></forma-metric-card>
+</section></forma-dashboard-grid>
+<section class="forma-stack" aria-labelledby="s001-1-activity">
+  <h3 id="s001-1-activity">Recent activity</h3>
+  <forma-feed-item class="forma-component-tag"><article class="forma-feed-item" aria-labelledby="s001-1-f1">
+  <div class="forma-feed-item__primary">
+    <p class="forma-feed-item__source">Grant 2026-004790</p>
+    <h4 id="s001-1-f1">Grant to Riverside Food Bank was paid</h4>
+  </div>
+  <div class="forma-feed-item__meta"><span class="forma-status-lozenge" data-state="ok">Paid</span><time datetime="2026-11-30T10:12:00-06:00">Yesterday, 10:12 AM</time></div>
+  <p class="forma-feed-item__summary">$2,500.00 sent by ACH to the charity's verified account.</p>
+  
+</article></forma-feed-item>
+  <forma-feed-item class="forma-component-tag"><article class="forma-feed-item" aria-labelledby="s001-1-f2">
+  <div class="forma-feed-item__primary">
+    <p class="forma-feed-item__source">Contribution C-2026-000377</p>
+    <h4 id="s001-1-f2">ACH contribution received</h4>
+  </div>
+  <div class="forma-feed-item__meta"><span class="forma-status-lozenge" data-state="attention">Inside return window</span><time datetime="2026-11-24T09:03:00-06:00">24 Nov, 9:03 AM</time></div>
+  <p class="forma-feed-item__summary">$5,000.00 from Lakeshore Credit Union ••••4821. Available to grant on 8 Dec 2026.</p>
+  
+</article></forma-feed-item>
+</section>
+<forma-mobile-action-bar class="forma-component-tag"><nav class="forma-mobile-action-bar" aria-label="Giving home actions"><a class="forma-button forma-mobile-action-bar__secondary" href="S-005-add-money.html">Add money</a><a class="forma-button forma-mobile-action-bar__primary" href="S-003-grant-recommendation.html">Recommend a grant</a></nav></forma-mobile-action-bar>
+</section>
+<section class="forma-section" id="s001-2" aria-labelledby="s001-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 5 · Donor</p>
+      <h2 id="s001-2-title">Loading</h2>
+      <p>Demonstrates: UNB-UI-G-013 loading state (skeleton with busy semantics)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li aria-current="page">Lindqvist Family Fund (F-2026-000418)</li></ol></nav></forma-scope-trail>
+<forma-skeleton class="forma-component-tag"><section class="forma-skeleton" aria-busy="true" aria-label="Loading fund summary">
+  <span class="forma-visually-hidden">Loading fund summary</span>
+  <div class="forma-skeleton__line forma-skeleton__line--title"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line forma-skeleton__line--short"></div>
+</section></forma-skeleton>
+<forma-skeleton class="forma-component-tag"><section class="forma-skeleton" aria-busy="true" aria-label="Loading items that need your attention">
+  <span class="forma-visually-hidden">Loading items that need your attention</span>
+  <div class="forma-skeleton__line forma-skeleton__line--title"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line forma-skeleton__line--short"></div>
+</section></forma-skeleton>
+</section>
+<section class="forma-section" id="s001-3" aria-labelledby="s001-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 5 · Donor, new fund</p>
+      <h2 id="s001-3-title">Empty: no contributions or grants yet</h2>
+      <p>Demonstrates: UNB-UI-G-013 AC-1 (empty-state 'No grants yet' with 'Recommend a grant')</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li aria-current="page">Lindqvist Family Fund (F-2026-000512)</li></ol></nav></forma-scope-trail>
+<forma-dashboard-grid class="forma-component-tag"><section class="forma-dashboard-grid" aria-label="Fund summary"><forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Available to grant</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$0.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="ok">Ledger confirmed</span></div>
+  <p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p>
+</article></forma-metric-card></section></forma-dashboard-grid>
+<forma-empty-state class="forma-component-tag"><section class="forma-empty-state" aria-labelledby="s001-3-e1">
+  <div class="forma-empty-state__symbol" aria-hidden="true">□</div>
+  <h3 id="s001-3-e1">No contributions yet</h3>
+  <p>Add money by bank transfer, wire, check or securities. It becomes available to grant once received and settled.</p>
+  <a class="forma-button" href="S-005-add-money.html">Add money</a>
+</section></forma-empty-state>
+<forma-empty-state class="forma-component-tag"><section class="forma-empty-state" aria-labelledby="s001-3-e2">
+  <div class="forma-empty-state__symbol" aria-hidden="true">□</div>
+  <h3 id="s001-3-e2">No grants yet</h3>
+  <p>You can draft a recommendation now; it is checked against Available to grant before submission.</p>
+  <a class="forma-button" href="S-003-grant-recommendation.html">Recommend a grant</a>
+</section></forma-empty-state>
+<forma-mobile-action-bar class="forma-component-tag"><nav class="forma-mobile-action-bar" aria-label="Giving home actions"><a class="forma-button forma-mobile-action-bar__secondary" href="S-005-add-money.html">Add money</a><a class="forma-button forma-mobile-action-bar__primary" href="S-003-grant-recommendation.html">Recommend a grant</a></nav></forma-mobile-action-bar>
+</section>
+<section class="forma-section" id="s001-4" aria-labelledby="s001-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 5 · Donor</p>
+      <h2 id="s001-4-title">Capacity evidence not current</h2>
+      <p>Demonstrates: UNB-UI-G-003 AC-1 (market value 'Not current'; authoritative Available to grant used instead), UNB-UI-G-004</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li aria-current="page">Lindqvist Family Fund (F-2026-000418)</li></ol></nav></forma-scope-trail>
+<forma-dashboard-grid class="forma-component-tag"><section class="forma-dashboard-grid" aria-label="Fund summary">
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-4-avail">
+  <div class="forma-metric-card__label" id="s001-4-avail">Available to grant</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$100,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="ok">Ledger confirmed</span></div>
+  <p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p><forma-disclosure class="forma-component-tag"><details class="forma-disclosure" data-forma-motion-weight="light">
+  <summary>How this is calculated</summary>
+  <div class="forma-disclosure__content"><dl class="forma-key-value-list"><div><dt>Market value</dt><dd><span class="forma-identifier">$120,000.00</span></dd></div><div><dt>Less: reserved for 3 grants awaiting payment (deducted)</dt><dd><span class="forma-identifier">−$15,000.00</span></dd></div><div><dt>Less: ACH contribution still inside its return window (deducted)</dt><dd><span class="forma-identifier">−$5,000.00</span></dd></div><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span></dd></div></dl><p>Calculated by the Example Charitable Foundation ledger. Market value is informational; only Available to grant is used when you recommend a grant.</p></div>
+</details></forma-disclosure>
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-4-market">
+  <div class="forma-metric-card__label" id="s001-4-market">Market value (informational)</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$120,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="unknown">Not current</span></div>
+  <p class="forma-freshness"><span class="forma-freshness__label">Priced</span> <time datetime="2026-11-27T16:00:00-06:00">27 Nov 2026, 4:00 PM CT</time> <span class="forma-status-lozenge" data-state="unknown">Not current</span></p><p>Older than the 1-business-day pricing limit. It is not used for grant decisions; Recommend a grant uses Available to grant instead.</p>
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s001-4-pending">
+  <div class="forma-metric-card__label" id="s001-4-pending">Pending</div>
+  <div class="forma-metric-card__value"><span class="forma-identifier">$20,000.00</span></div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="attention">In progress</span></div>
+  <dl class="forma-key-value-list"><div><dt>Reserved for 3 grants awaiting payment</dt><dd><span class="forma-identifier">$15,000.00</span></dd></div><div><dt>ACH contribution received 24 Nov 2026</dt><dd><span class="forma-identifier">$5,000.00</span><br>Available to grant on <time datetime="2026-12-08">8 Dec 2026</time></dd></div></dl>
+</article></forma-metric-card>
+</section></forma-dashboard-grid>
+<forma-mobile-action-bar class="forma-component-tag"><nav class="forma-mobile-action-bar" aria-label="Giving home actions"><a class="forma-button forma-mobile-action-bar__secondary" href="S-005-add-money.html">Add money</a><a class="forma-button forma-mobile-action-bar__primary" href="S-003-grant-recommendation.html">Recommend a grant</a></nav></forma-mobile-action-bar>
+</section>
+<section class="forma-section" id="s001-5" aria-labelledby="s001-5-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 5 of 5 · Successor before activation</p>
+      <h2 id="s001-5-title">Fund suspended pending succession</h2>
+      <p>Demonstrates: UNB-UI-S-001 AC-1 (blocked, no grant action)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li aria-current="page">Lindqvist Family Fund (F-2026-000418)</li></ol></nav></forma-scope-trail>
+<forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s001-5-susp">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Suspended pending succession</span>
+    <h3 id="s001-5-susp">This fund is suspended pending succession</h3>
+    <p>Example Charitable Foundation recorded a verified death on 18 Nov 2026. No grants or contributions can be made until the successor plan is activated. Your successor invitation is being prepared; we will email you when you can accept it.</p>
+  </div>
+  <div class="forma-operation-status__actions"><a class="forma-button" href="S-006-participants-successors.html">View succession status</a><button type="button">Contact your sponsor</button></div>
+</section></forma-operation-status>
+<dl class="forma-key-value-list"><div><dt>Fund value when suspended</dt><dd><span class="forma-identifier">$120,000.00</span> (informational)</dd></div><div><dt>Next step</dt><dd>Sponsor activates the successor plan; no action is needed from you yet</dd></div></dl>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>
