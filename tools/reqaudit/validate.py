@@ -78,12 +78,13 @@ def baseline_file(root: Path, path: str) -> str:
     return r.stdout if r.returncode == 0 else ""
 
 
-def resolver(baseline: FrozenSet[str], new: FrozenSet[str], narr: FrozenSet[str]) -> Callable[[str], bool]:
+def resolver(baseline: FrozenSet[str], new: FrozenSet[str], narr: FrozenSet[str],
+             known_undefined: FrozenSet[str] = frozenset()) -> Callable[[str], bool]:
     families = frozenset(re.sub(r"-[A-Z]?\d{1,4}[A-Za-z]?(?:-Q)?$", "", i) for i in baseline | new)
 
     def ok(ref: str) -> bool:
         ref = ref.strip().rstrip(".")
-        if ref in baseline or ref in new or ref in narr:
+        if ref in baseline or ref in new or ref in narr or ref in known_undefined:
             return True
         if ref.endswith("-*"):
             return ref[:-2] in families
@@ -183,8 +184,12 @@ def main(argv) -> int:
         "scenarios": tuple(s["scenario_id"] for s in scens), "decisions": tuple(d["decision_id"] for d in decs),
     }
     new = frozenset(i for ids in sets.values() for i in ids)
-    ok = resolver(baseline, new, narr)
-    split = lambda s: tuple(x.strip() for x in re.split(r"[;,]", s or "") if x.strip())
+    known_undefined = frozenset(r["identifier"] for r in load_csv(data / "undefined-references.csv"))
+    ok = resolver(baseline, new, narr, known_undefined)
+    strict = resolver(baseline, new, narr)
+    sys.path.insert(0, str(Path(__file__).parent))
+    from graph import ids_in
+    split = ids_in
     issues = (
         *g_dupes(sets), *g_collide(new, baseline),
         *g_refinements(root, refs_, baseline),
@@ -200,6 +205,8 @@ def main(argv) -> int:
         *(i for g in gaps for i in g_refs("links", g["id"], g.get("links", ()), ok)),
         *g_edges(edges, ok), *g_reports(root, ok),
         *g_tested(sets["refinements"] + sets["gaps"], edges),
+        *(Issue("WARN", "G8u", e["source"], f"references {e['target']}, which the baseline cites but never defines")
+          for e in edges if ok(e["target"]) and not strict(e["target"])),
     )
     errors = tuple(i for i in issues if i.level == "ERROR")
     for i in issues:

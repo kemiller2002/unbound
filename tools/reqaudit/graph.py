@@ -25,8 +25,19 @@ Edge = Tuple[str, str, str, str]  # source, relationship, target, provenance
 ID = re.compile(r"\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[A-Z]?\d{1,4}(?:-r\d+)?\*?\b|\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-\*")
 
 
+RANGE = re.compile(r"\b([A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-)([A-Z]?)(\d{1,4})\.\.(?:\1)?\2?(\d{1,4})\b")
+
+
+def expand_ranges(text: str) -> str:
+    """UNB-SUCC-001..014 -> UNB-SUCC-001 UNB-SUCC-002 ... (zero padding preserved)."""
+    def rep(m):
+        width = len(m.group(3))
+        return " ".join(f"{m.group(1)}{m.group(2)}{n:0{width}d}" for n in range(int(m.group(3)), int(m.group(4)) + 1))
+    return RANGE.sub(rep, text or "")
+
+
 def ids_in(text: str) -> Tuple[str, ...]:
-    return tuple(dict.fromkeys(m.group(0) for m in ID.finditer(text or "")))
+    return tuple(dict.fromkeys(m.group(0) for m in ID.finditer(expand_ranges(text))))
 
 
 def jsonl(path: Path) -> Tuple[dict, ...]:
@@ -54,28 +65,36 @@ def gap_edges(recs: Iterable[dict]) -> Iterator[Edge]:
 
 def finding_edges(recs: Iterable[dict]) -> Iterator[Edge]:
     for f in recs:
-        yield from ((f["finding_id"], "affects", a.strip(), "findings.csv")
-                    for a in f.get("affected_ids", "").split(";") if a.strip())
+        yield from ((f["finding_id"], "affects", a, "findings.csv") for a in ids_in(f.get("affected_ids", "")))
         yield from ((f["finding_id"], "derived_from", p, "findings.csv") for p in ids_in(f.get("prior_ids", "")))
 
 
 def conflict_edges(recs: Iterable[dict]) -> Iterator[Edge]:
     for c in recs:
-        a, b = c["requirement_a"].split(";"), c["requirement_b"].split(";")
-        yield from ((x.strip(), "conflicts_with", y.strip(), c["conflict_id"]) for x in a for y in b if x.strip() and y.strip())
+        a, b = ids_in(c["requirement_a"]), ids_in(c["requirement_b"])
+        yield from ((x, "conflicts_with", y, c["conflict_id"]) for x in a for y in b if x != y)
 
 
 def duplicate_edges(recs: Iterable[dict]) -> Iterator[Edge]:
     for f in recs:
         if f.get("title", "").lower().startswith("duplicate"):
-            ids = [a.strip() for a in f["affected_ids"].split(";") if a.strip()]
+            ids = list(ids_in(f["affected_ids"]))
             yield from ((ids[i], "duplicates", ids[0], f["finding_id"]) for i in range(1, len(ids)))
 
 
 def scenario_edges(recs: Iterable[dict]) -> Iterator[Edge]:
     for s in recs:
-        yield from ((r.strip(), "tested_by", s["scenario_id"], "scenarios.csv")
-                    for r in re.split(r"[;,]", s.get("requirement_ids", "")) if r.strip())
+        yield from ((r, "tested_by", s["scenario_id"], "scenarios.csv") for r in ids_in(s.get("requirement_ids", "")))
+
+
+def inherited_test_edges(refs: Iterable[dict], scen: Iterable[dict]) -> Iterator[Edge]:
+    """A scenario that cites an original requirement also validates its refinement(s)."""
+    by_orig = {}
+    for r in refs:
+        by_orig.setdefault(r["original_id"], []).append(r["refinement_id"])
+    for s in scen:
+        for rid in ids_in(s.get("requirement_ids", "")):
+            yield from ((rr, "tested_by", s["scenario_id"], "scenarios.csv (via original)") for rr in by_orig.get(rid, ()))
 
 
 def decision_edges(recs: Iterable[dict]) -> Iterator[Edge]:
@@ -91,6 +110,7 @@ def build(data: Path) -> Tuple[Edge, ...]:
         *duplicate_edges(rows(data / "findings.csv")),
         *conflict_edges(rows(data / "conflicts.csv")),
         *scenario_edges(rows(data / "scenarios.csv")),
+        *inherited_test_edges(jsonl(data / "refinements.jsonl"), rows(data / "scenarios.csv")),
         *decision_edges(rows(data / "decisions.csv")),
     )
     return tuple(dict.fromkeys(edges))

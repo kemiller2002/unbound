@@ -34,7 +34,7 @@ from typing import Iterable, Iterator, Optional, Tuple
 ID = r"[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[A-Z]?\d{1,4}[A-Za-z]?(?:-Q)?"
 ID_RE = re.compile(rf"\b({ID})\b")
 BULLET_RE = re.compile(rf"^\s*[-*]\s+(?:\*\*({ID})\b[^*]*\*\*|({ID})\s*:)\s*:?\s*(.*)$")
-LINE_RE = re.compile(rf"^({ID}):\s+(\S.*)$")
+LINE_RE = re.compile(rf"^(?:\*\*)?({ID})(?:\s*\([^)]*\))?:(?:\*\*)?\s+(\S.*)$")
 HEADING_RE = re.compile(rf"^(#{{1,6}})\s+({ID})\s*[:.—-]?\s*(.*)$")
 TABLE_RE = re.compile(rf"^\|\s*`?({ID})`?\s*\|(.*)$")
 CATALOG_RE = re.compile(rf"^({ID})\s+([A-Z][A-Za-z0-9]+.*)$")
