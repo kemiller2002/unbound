@@ -454,3 +454,15 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Establish role-based, configurable, sponsor-scoped dashboards using pinned public Forma components and Forma Studio design authoring, with Unbound-owned semantic metrics, versioned widget/layout definitions, safe filters, secure embedding, source freshness and authoritative actions. Reuse Folio's public print primitives for governed financial/operational reports, but validate renderer tiers, multipage financial fidelity, accessible/archival PDF, determinism, immutable as-issued artifact integrity and Typst interoperability before committing to production rendering. Track gaps in owning Forma, Forma Studio and Folio repositories rather than duplicate shared presentation systems. Confirm commercial license suitability before deployment.
 
 **Acceptance (not executed):** ADV-687..ADV-722 and `SHARED-DASHBOARD-FRAMEWORK-FORMA-FOLIO-CAPABILITY-ASSESSMENT-2026-11-23.md`. Require version-pinned consumer fixtures, responsive/accessibility checks, secure widget tests, rendering evidence, archival/provenance verification and documented unsupported capabilities.
+
+## REQ-X-051: AI-discoverable API, input and configuration assistance contracts (2026-11-23)
+
+**Proposed:** Every public API operation, input field, configuration property, workflow action, dashboard widget and email block/token MUST expose authoritative, versioned, machine-readable AI assistance metadata covering purpose, types, dependencies, valid values, policy, permissions, side effects, errors, Unknown states, examples, source provenance and safe guidance. Generate contextual help and agent tool descriptions from typed contracts with reviewed semantic annotations, test for drift, and enforce caller-scoped discovery. AI can explain, guide and propose diffs, but cannot grant itself authority or bypass sponsor rules, approvals, holds or domain commands.
+
+**Acceptance (not executed):** ADV-723..ADV-752 and `AI-DISCOVERABLE-CONTRACTS-AND-SAFE-ASSISTANCE-2026-11-23.md`.
+
+## REQ-X-052: Typed email template expression language and AI-assisted authoring (2026-11-23)
+
+**Proposed:** Extend the existing Forma email document/block model with a versioned, declarative, typed content expression AST supporting event-scoped tokens, formatters, constrained conditionals, bounded repetition, approved fragments and localization. Offer optional readable syntax and visual Studio authoring, with static type checking, contextual encoding, deterministic HTML/plain-text/subject output, synthetic previews, AI explanation and reviewed proposed diffs. Never allow arbitrary code, donor-data queries, unauthorized token access, removal of mandatory disclosures or AI publishing. Unbound owns event data, sponsor policy, publication and delivery; Forma owns reusable document contracts; Studio owns editing UX.
+
+**Acceptance (not executed):** ADV-753..ADV-782 and `TYPED-EMAIL-TEMPLATE-LANGUAGE-AND-AI-AUTHORING-ASSISTANCE-2026-11-23.md`.
