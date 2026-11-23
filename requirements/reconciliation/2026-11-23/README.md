@@ -39,6 +39,8 @@
 | `DKS-<DOMAIN>-<nnn>` | Dokimos-ready acceptance scenario |
 | `NARR-<8 hex>` | Content-addressed surrogate for a normative statement that has no identifier |
 
+Withdrawn identifiers are listed with their replacement in `data/withdrawn-ids.csv` and must never be reused (gate G1).
+
 Domains: `GRT` grants, charities and payments · `FIN` finance, contributions and investments · `PLT` platform, AI, UI and governance · `ENT` enterprise, donor lifecycle and operating model · `REG` regulatory · `ARC` architecture.
 
 ## Relationship vocabulary (`data/trace-edges.csv`)
@@ -51,6 +53,7 @@ Domains: `GRT` grants, charities and payments · `FIN` finance, contributions an
 python3 -I tools/reqaudit/inventory.py . requirements/reconciliation/2026-11-23/data   # baseline inventory
 python3 -I tools/reqaudit/quality.py requirements/reconciliation/2026-11-23/data .     # heuristic signals
 python3 -I tools/reqaudit/graph.py requirements/reconciliation/2026-11-23/data          # regenerate edges
+python3 -I tools/reqaudit/render.py .                                                    # refresh generated tables in reports
 python3 -I tools/reqaudit/validate.py .                                                  # gates G1-G11; non-zero exit on error
 ```
 

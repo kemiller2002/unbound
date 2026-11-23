@@ -1,6 +1,6 @@
 # 01 — Requirements inventory and baseline (pre-change)
 
-Date: 2026-11-23 | Baseline revision: `777a70d27a70e7e6851560ed513a872b5b4d134b` (branch `main` at fork) | Status: observational record of the repository **before** any reconciliation change. Nothing in this file alters an original requirement.
+Date: 2026-11-23 | Baseline revision: `777a70d27a70e7e6851560ed513a872b5b4d134b` (branch `main` at fork) | Status: observational record of the repository **before** any reconciliation change. Nothing in this file alters an original requirement. `data/summary.json` records `originals_identical_to_baseline: true`, so the counts below describe the baseline even when re-run later on this branch.
 
 ## 1. Repository discovery
 
@@ -16,17 +16,17 @@ Date: 2026-11-23 | Baseline revision: `777a70d27a70e7e6851560ed513a872b5b4d134b`
 
 ## 2. Corpus scope and extraction method
 
-The extractor `tools/reqaudit/inventory.py` (pure functional pipeline, re-runnable) scans 181 files in `requirements/`, `architecture/` and `research/daf-theoretical-enterprise-validation/`. It recognises seven definition styles found in the repository:
+The extractor `tools/reqaudit/inventory.py` (pure functional pipeline, re-runnable) scans 181 files in `requirements/`, `architecture/` and `research/daf-theoretical-enterprise-validation/`. It recognises eight definition styles found in the repository:
 
 | Site | Example | Count of definition sites |
 |---|---|---:|
 | bold bullet | `- **UNB-ACC-001:** …`, `- **ADM-001 Title** (owner): …` | 1,729 |
-| line-start | `GOV-AUTH-001: …`, `CHAR-T01: …` | 288 |
+| line-start | `GOV-AUTH-001: …`, `CHAR-T01: …`, `**UNB-TEC-STRATA-001 (MANDATORY):**` | 326 |
 | heading | `### REQ-X-001: …` (heading plus following block) | 341 |
 | table row | `\| INV-01 \| … \|` | 884 |
 | catalog line | `GR-EVT-001 GrantIntentRecorded` | 113 |
 | CSV first column | `"UNB-CTRL-001", …` | 1,537 |
-| **Total definition sites** | | **4,892** |
+| **Total definition sites** | | **4,930** |
 
 Crosswalk CSVs whose first column *references* a requirement are excluded from definitions (`REQUIREMENT-TO-CONTROL-CROSSWALK-WAVE-01.csv`, `DETAILED-REQUIREMENT-CONTROL-LINKS-WAVE-02.csv`, `ENTERPRISE-CAPABILITY-TO-CONTROL-CROSSWALK.csv`, the empty simulation template). Bullets in `13-adversarial-reviews/raw/` are reviewer commentary and are excluded. Bullets that are only lists of identifiers are treated as cross-references.
 
@@ -34,16 +34,16 @@ Every definition site records identifier, kind, path, line, git blob SHA at the 
 
 ## 3. Identifier inventory
 
-4,200 distinct identifiers (`data/summary.json`):
+4,238 distinct identifiers (`data/summary.json`):
 
 | Kind | Distinct IDs | Notes |
 |---|---:|---|
-| requirement | 1,140 | 1,112 after excluding `-Q` question restatements (the denominator used in reports 02 and 15) |
+| requirement | 1,176 | 1,148 after excluding `-Q` question restatements (the denominator used in reports 02 and 15) |
 | scenario | 1,503 | `ADV-*` (963 numbered), `TVS-*` (513), `SIM-*`, `SC-*`, `XSIM-*`, `UNB-XSC-*` |
 | test | 272 | `*-T01..` style acceptance cases embedded in domain files and CSVs |
 | finding | 274 | `TVF-*`, `GAP-*` |
 | control | 238 | `UNB-CTRL-*` (90), `UNB-SCTRL-*` (46), `CTL-*`, `TVCTL-*`, `VAL-*`, `CTRL-*` |
-| decision | 121 | `OD-*`, `*-ADR-*`, `*-DEC-*` |
+| decision | 123 | `OD-*`, `*-ADR-*`, `*-DEC-*` |
 | invariant | 69 | `FI-*`, `INV-*`, `CONC-*` |
 | regulatory assertion | 65 | `REG-*` |
 | other | 298 | document-local labels (`ACC-01`, `P-01`, `A-1`, …) |
@@ -73,7 +73,7 @@ Largest requirement families: REQ-X 84, UNB-NAV 53, ADM 49, UNB-GRANT 48, UNB-CH
 | Same-file redefinition (true collision) | 3 IDs | `REQ-X-041` defined twice (lines 392, 398, identical titles: probable copy-paste); `REQ-X-054` defined **three** times with different scopes (lines 476, 488, 500); `REQ-X-055` defined three times (lines 482, 494, 506), all in `19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md` |
 | Cross-file divergent text (needs human review) | 120 IDs | Confirmed namespace collisions: `INV-01..16` mean different invariants in `CROSS-WORKFLOW-FINANCIAL-AUTHORITY-AND-IRREVERSIBILITY-INVARIANTS-2026-11-23.md` and `TYPED-DECISION-CONTRACTS-STATE-TRANSITIONS-AND-CONCURRENCY-2026-11-23.md`; `P-01..06` differ between `DECISION-INVENTORY-SECOND-PASS` and `ENTERPRISE-DECISION-INVENTORY`. The remainder are mostly terse summaries of longer definitions (for example `TVA-*` in the executive summary). |
 | Mirror or summary (benign) | 356 IDs | `OPS-001..032` in both `CONTROL-OPERATIONS-LIFECYCLE.md` and `CONTROL-OPERATIONS-REQUIREMENTS.csv`; REQ-X-058..077 summarised in the overlay and specified in detail files |
-| Referenced but never defined in this repository | 643 IDs | 85 requirement-kind: e.g. `UNB-DATA-001..012` (cited by `FULL-ACCOUNTING-SYSTEM.md:87`, defined nowhere), `AUTH-03/06/07/09/10`, `OPS-01..03`, `TVR-WID-004`, `UX-F19`, `ADM-12/20/23`. 25 workflow IDs `CW-21..CW-45` are defined only in `daf-landscape`. 82 `ADV-*` identifiers are cited but not defined. |
+| Referenced but never defined in this repository | 605 IDs | 49 requirement-kind: e.g. `AUTH-03/06/07/09/10`, `OPS-01..03`, `TVR-WID-004`, `TVR-GR-007`, `UX-F19`, `ADM-12/20/23`. 25 workflow IDs `CW-21..CW-45` are defined only in `daf-landscape`. 82 `ADV-*` identifiers are cited but not defined. |
 
 ## 6. Prior reviews, questions and exceptions located
 
@@ -84,12 +84,12 @@ Largest requirement families: REQ-X 84, UNB-NAV 53, ADM 49, UNB-GRANT 48, UNB-CH
 
 ## 7. Baseline quality signals
 
-Heuristic triage only (`tools/reqaudit/quality.py`; definitions in report 02). Denominator: the 1,112 canonical requirement identifiers.
+Heuristic triage only (`tools/reqaudit/quality.py`; definitions in report 02). Denominator: the 1,148 canonical requirement identifiers.
 
 | Area | Requirements | No RFC 2119 keyword | No acceptance signal | Vague terms | ≥8 clauses | Cited by any test/scenario |
 |---|---:|---:|---:|---:|---:|---:|
-| architecture | 40 | 40 | 37 | 4 | 2 | 0 |
-| requirements/(root) | 302 | 156 | 247 | 59 | 46 | 0 |
+| architecture | 44 | 40 | 38 | 6 | 3 | 0 |
+| requirements/(root) | 334 | 168 | 277 | 60 | 51 | 0 |
 | requirements/accounting | 12 | 12 | 12 | 0 | 2 | 0 |
 | requirements/administration | 48 | 48 | 44 | 4 | 0 | 0 |
 | requirements/ai | 36 | 36 | 34 | 1 | 0 | 0 |
@@ -100,7 +100,7 @@ Heuristic triage only (`tools/reqaudit/quality.py`; definitions in report 02). D
 | requirements/investments | 95 | 76 | 87 | 20 | 14 | 0 |
 | requirements/ui | 32 | 32 | 31 | 12 | 12 | 0 |
 | research/…/validation (REQ-X, TVR) | 153 | 151 | 22 | 18 | 89 | 24 |
-| **Total** | **1,112** | **902** | **871** | **181** | **203** | **24** |
+| **Total** | **1,148** | **914** | **902** | **184** | **209** | **24** |
 
 The structural headline: **acceptance tests exist (272 `*-T*` cases) but do not cite the requirement IDs they verify**. Only 24 requirements are referenced by ID in any test or scenario record. Bidirectional requirement↔test traceability therefore does not exist at baseline.
 

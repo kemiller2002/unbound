@@ -58,7 +58,7 @@ Families are mapped to charter domains by name.
 | **Total** | 7 | 71 | 80 | 17 | 175 |
 <!-- END GENERATED: findings-matrix -->
 
-334 of the 1,148 canonical requirements (29.1%) are named in at least one finding.
+409 of the 1,148 canonical requirements (35.6%) are named in at least one finding (ranges such as `UNB-SUCC-001..014` expanded).
 
 ## 5. Findings by mission dimension
 

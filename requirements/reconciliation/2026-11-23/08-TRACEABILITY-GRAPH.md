@@ -67,13 +67,13 @@ Reading the coverage numbers:
 | scenarios | 124 |
 | decisions | 31 |
 | trace edges | 2176 |
-| **errors** | 2 |
+| **errors** |  |
 | warnings | 30 |
 <!-- END GENERATED: validation -->
 
 Warnings are kept visible on purpose:
 - **G11:** refinements and gap requirements that have their own Given/When/Then criteria but no adversarial scenario yet.
-- **G8u:** references to identifiers the baseline cites but never defines (for example `TVR-GR-007`, `UNB-DATA-001..012`).
+- **G8u:** references to identifiers the baseline cites but never defines (for example `TVR-GR-007`).
 
 ## 5. Example queries
 

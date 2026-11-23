@@ -39,6 +39,8 @@ HEADING_RE = re.compile(rf"^(#{{1,6}})\s+({ID})\s*[:.—-]?\s*(.*)$")
 TABLE_RE = re.compile(rf"^\|\s*`?({ID})`?\s*\|(.*)$")
 CATALOG_RE = re.compile(rf"^({ID})\s+([A-Z][A-Za-z0-9]+.*)$")
 
+BASELINE = "777a70d27a70e7e6851560ed513a872b5b4d134b"  # revision audited by the 2026-11-23 reconciliation
+
 # Corpus scope: files that hold requirement-bearing content in this repository.
 SCOPE_GLOBS = (
     "requirements/**/*.md",
@@ -291,8 +293,12 @@ def main(argv: Tuple[str, ...]) -> int:
     kinds = Counter(v[0].kind for v in grouped.values())
     fams = Counter(v[0].family for v in grouped.values())
     summary = {
-        "baseline_commit": subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"],
-                                          capture_output=True, text=True).stdout.strip(),
+        "scanned_commit": subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"],
+                                         capture_output=True, text=True).stdout.strip(),
+        "baseline_revision": BASELINE,
+        "originals_identical_to_baseline": subprocess.run(
+            ["git", "-C", str(root), "diff", "--quiet", BASELINE, "HEAD", "--", "requirements", "architecture",
+             "research", ":!requirements/reconciliation"]).returncode == 0,
         "files_scanned": len(corpus_files(root)),
         "definition_sites": len(records),
         "distinct_identifiers": len(grouped),

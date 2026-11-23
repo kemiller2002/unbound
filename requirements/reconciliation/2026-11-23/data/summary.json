@@ -1,5 +1,7 @@
 {
-  "baseline_commit": "618f034c7fc1a86964f43655069a5b815f486092",
+  "scanned_commit": "c2f91a2a93f6b1ac66a3125743f3b4c7da3a44ea",
+  "baseline_revision": "777a70d27a70e7e6851560ed513a872b5b4d134b",
+  "originals_identical_to_baseline": true,
   "files_scanned": 181,
   "definition_sites": 4930,
   "distinct_identifiers": 4238,
