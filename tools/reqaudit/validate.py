@@ -40,8 +40,8 @@ RECON = Path("requirements/reconciliation/2026-11-23")
 BASELINE_REV = "777a70d"
 REL_VOCAB = frozenset({"refines", "supersedes", "conflicts_with", "duplicates", "depends_on", "derived_from",
                        "validated_by", "implemented_by", "tested_by", "affects", "decided_by"})
-NEW_ID = re.compile(r"^(UNB-UI-[GSDWP]-\d{3}|RR-.+-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})$")
-CITED = re.compile(r"\b(UNB-UI-[GSDWP]-\d{3}|RR-[A-Z0-9-]+?-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})\b")
+NEW_ID = re.compile(r"^(UNB-UI-(?:[GSDWPNFRAV]|DS)-\d{3}|RR-.+-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})$")
+CITED = re.compile(r"\b(UNB-UI-(?:[GSDWPNFRAV]|DS)-\d{3}|RR-[A-Z0-9-]+?-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})\b")
 ANY_ID = re.compile(r"^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-(?:[A-Z]?\d{1,4}[A-Za-z]?(?:-Q)?|\*)$")
 
 REQUIRED = {

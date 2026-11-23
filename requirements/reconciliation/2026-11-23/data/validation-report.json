@@ -5,8 +5,8 @@
     "findings": 178,
     "conflicts": 39,
     "scenarios": 124,
-    "decisions": 49,
-    "ui": 38
+    "decisions": 53,
+    "ui": 147
   },
   "trace_edges": 2604,
   "errors": 0,
