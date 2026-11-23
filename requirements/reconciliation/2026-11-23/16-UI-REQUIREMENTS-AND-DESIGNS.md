@@ -59,7 +59,7 @@ What this does **not** prove: application behaviour that Forma leaves to the app
 | UNB-UI-S-009 | screen | Case workspace | record-header, facts, evidence-relationship, conflict-review, provenance-trail, obligation-panel, readiness-checklist, dialog, textarea, flyout, conversation,… |  | FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11, FORMA-GAP-13, FORMA-GAP-15, FORMA-GAP-16, FORMA-GAP-17 | 2 |
 | UNB-UI-S-010 | screen | Sponsor policy configuration and approval | form, form-row, rule-builder, diff-viewer, comparison-pairs, readiness-checklist, dialog, date-time-field, validation-summary, flyout |  | FORMA-GAP-02, FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11 | 1 |
 | UNB-UI-S-011 | screen | Sponsor overview | dashboard-grid, metric-card, metric-value-change, data-grid, status-lozenge, freshness |  | FORMA-GAP-05, FORMA-GAP-06, FORMA-GAP-08 | 1 |
-| UNB-UI-S-012 | screen | Charity view | data-grid, status-lozenge, identifier, key-value-list, form, callout, timeline |  | FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08 | 2 |
+| UNB-UI-S-012 | screen | Charity view | data-grid, status-lozenge, identifier, key-value-list, form, callout, timeline |  | FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08 | 3 |
 | UNB-UI-S-013 | screen | Notification preferences | switch, form, form-row, callout |  | FORMA-GAP-06, FORMA-GAP-11 | 1 |
 | UNB-UI-D-001 | document | Contribution acknowledgment |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note, ef-print-page-num… | FOLIO-GAP-01, FOLIO-GAP-02, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07 | 1 |
 | UNB-UI-D-002 | document | Fund statement |  | ef-print-document, ef-print-title-page, ef-print-header, ef-print-footer, ef-print-page-number, ef-print-section, ef-pr… | FOLIO-GAP-03, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-08, FOLIO-GAP-09, FOLIO-GAP-11 | 1 |
@@ -440,14 +440,16 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
 
 ### UNB-UI-S-012 — Charity view (screen)
 - **Requirement:** Charities MUST see grants addressed to them (sponsor as legal donor; donor name only where the donor chose recognition), remittance details, payment status and their verified payment destinations. Destination changes MUST follow the DestinationEvidence process, without self-service activation.
-- **Traces to:** REQ-X-058, UNB-RCN-GRT-011, UNB-RCN-GRT-017, RR-REQ-X-005-r1
+- **Traces to:** REQ-X-058, UNB-RCN-GRT-011, UNB-RCN-GRT-017, RR-REQ-X-005-r1, UNB-RCN-GRT-015, RCD-045
 - **Actors:** Charity finance user
 - **Forma components:** `data-grid`, `status-lozenge`, `identifier`, `key-value-list`, `form`, `callout`, `timeline`
+- **Actions:** Decline this grant (before release; reason required; RCD-045); Request destination change; Download remittance
 - **Responsive:** phone-complete
 - **Capability gaps:** FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given an anonymous grant; when the charity views it; then the donor field reads 'Anonymous donor via <sponsor>'.
   - **AC-2** Given a destination change request; when submitted; then it shows 'Pending independent verification' and payments continue to the previous verified destination.
+  - **AC-3** Given an approved grant not yet released; when the charity declines it with a reason; then the grant shows 'Declined by charity', no payment is released, and the funds return to the originating fund or its trailing destination (RCD-040).
 
 ### UNB-UI-S-013 — Notification preferences (screen)
 - **Requirement:** Users MUST be able to switch optional notification classes on and off per channel. Mandatory-legal and security classes are shown as always on, with the reason.

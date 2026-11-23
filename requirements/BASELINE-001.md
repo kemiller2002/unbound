@@ -57,7 +57,7 @@ Determine legal entity and sponsor model; applicable jurisdictions; public vs pr
 Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
 
 ### RR-UNB-ADV-001-r1 (refines `UNB-ADV-001`) — adopted
-- **Original:** `requirements/BASELINE-001.md:29` @ `777a70d` (kept verbatim) · **Decisions:** —
+- **Original:** `requirements/BASELINE-001.md:29` @ `777a70d` (kept verbatim) · **Decisions:** RCD-041
 - **Requirement:** Every advisory-privilege holder and every professional advisor MUST act only through role grants that are explicit, scoped (fund set, command set, amount limits) and effective-dated. Grants MUST be revocable by the granting party or the sponsor, effective at the next authorization check, at most the policy-defined propagation bound. Advisory privileges MUST NOT confer trading, payment or approval authority (UNB-LEG-002).
 - **Acceptance criteria:**
   - AC-1: Given an advisor revoked at T; when it submits at T+1s; then denied.

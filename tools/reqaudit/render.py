@@ -43,7 +43,8 @@ def load(data: Path):
     return dict(F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 E=cv("trace-edges.csv"), Q=cv("requirements-quality.csv"), R=jl("refinements.jsonl"),
                 G=jl("gap-requirements.jsonl"), U=jl("ui-requirements.jsonl") if (data / "ui-requirements.jsonl").exists() else (),
-                UG=cv("ui-component-gaps.csv") if (data / "ui-component-gaps.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
+                UG=cv("ui-component-gaps.csv") if (data / "ui-component-gaps.csv").exists() else (), W=tuple(json.loads(p.read_text(encoding="utf-8")) for p in sorted((data.parent / "workflows").glob("WFM-*.json"))),
+                IA=cv("surface-ia.csv") if (data / "surface-ia.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
 
 
 def g_findings_matrix(d) -> str:
@@ -204,7 +205,27 @@ def g_ui_gaps(d) -> str:
                  ((g["gap_id"], g["component"], g["owner"], g.get("filed_as", ""), cell(g["need"], 200), cell(g["workaround_r1"], 220), cell(g["acceptance"], 200)) for g in d["UG"]))
 
 
+def g_workflows(d) -> str:
+    rows = []
+    for w in d["W"]:
+        tr = w["transitions"]
+        rows.append((w["workflow_id"], w["name"], len(w["states"]), len(tr),
+                     sum(1 for t in tr if t.get("actor_type") == "human"), sum(1 for t in tr if t.get("actor_type") in ("deterministic", "timer")),
+                     sum(1 for t in tr if t.get("actor_type") == "external"), sum(1 for t in tr if t.get("actor_type") == "ai"),
+                     sum(1 for t in tr if t.get("scenario_ids"))))
+    return table(("Workflow", "Name", "States", "Transitions", "Human", "Deterministic/timer", "External", "AI", "With scenario"), rows)
+
+
+def g_ia(d) -> str:
+    by = {}
+    for r in d["IA"]:
+        by.setdefault((r["workspace_id"], r["workspace"], r["audience"], r["responsive"]), []).append(r)
+    return table(("Workspace", "Name", "Audience", "Responsive", "Views and panels (surface → transitions, max authority)"),
+                 ((k[0], k[1], k[2], k[3], "; ".join(f"{r['panel_or_view']} ({r['transitions']}, {r['max_authority']})" for r in v)) for k, v in sorted(by.items())))
+
+
 GENERATORS: Dict[str, Callable] = {
+    "workflows": g_workflows, "ia": g_ia,
     "ui-index": g_ui_index, "ui-records": g_ui_records, "ui-gaps": g_ui_gaps,
     "findings-matrix": g_findings_matrix, "findings-dimension": g_findings_dimension,
     "findings-severe": g_findings_severe, "findings-other": g_findings_other,

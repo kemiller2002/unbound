@@ -126,9 +126,9 @@ Next artifacts: detailed grant event/state catalog, donor/grantee experience jou
 Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
 
 ### RR-REQ-X-002-r1 (refines `REQ-X-002`) — adopted-provisional
-- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:28` @ `777a70d` (kept verbatim) · **Decisions:** RCD-017
-- **Requirement:** Grant approval and fund reservation MUST commit in one authoritative transaction against net grantable capacity, serialised on every constrained ancestor (fund, pool, legal entity, custodial account). The reservation unit MUST match the funding source: currency for settled cash, and units with a configured valuation haircut for pooled or positional sources. A grant that needs liquidation MUST enter ApprovedPendingLiquidity, which creates no external commitment and no payment instruction, until redemption settles. If proceeds fall short, the sponsor-configured shortfall rule MUST apply and MUST NOT draw on capacity reserved for other grants.
-- **Validation still required:** RCD-017: CFO/investment committee confirms buffer default
+- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:28` @ `777a70d` (kept verbatim) · **Decisions:** RCD-017, RCD-039, RCD-042, RCD-043, RCD-044, RCD-045, RCD-046, RCD-047, RCD-048, RCD-049
+- **Requirement:** Grant approval and fund reservation MUST commit in one authoritative transaction against net grantable capacity, serialised on every constrained ancestor (fund, pool, legal entity, custodial account). The reservation unit MUST match the funding source: currency for settled cash, and units with a configured valuation haircut for pooled or positional sources. A grant that needs liquidation MUST be Approved and Reserved and then enter FundingPlanned/LiquidationPending (UNB-RCN-FIN-008 names, RCD-049), which creates no external commitment and no payment instruction, until redemption settles. If proceeds fall short, the sponsor-configured shortfall rule MUST apply and MUST NOT draw on capacity reserved for other grants.
+- **Validation still required:** RCD-017: CFO/investment committee confirms buffer default; RCD-042: CFO approval of the aging tiers; RCD-044: Counsel; RCD-046: Sponsor owners confirm defaults; RCD-047: Counsel per state
 - **Acceptance criteria:**
   - AC-1: Given $100 net capacity and two concurrent $80 cash-funded grants; when both are approved; then exactly one is ApprovedAndReserved and the other is Rejected with no reservation.
   - AC-2: Given a $10,000 grant funded from Pool A units with a 5% haircut; when it is approved; then units worth $10,500 at the pinned NAV are reserved and the grant is ApprovedPendingLiquidity.
@@ -146,7 +146,7 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-REQ-X-004-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
 
 ### RR-REQ-X-005-r1 (refines `REQ-X-005`) — adopted-provisional
-- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:61` @ `777a70d` (kept verbatim) · **Decisions:** RCD-028
+- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:61` @ `777a70d` (kept verbatim) · **Decisions:** RCD-028, RCD-048
 - **Requirement:** Automated release MUST require destination evidence that meets the rail's minimum combination in the Treasury-published DestinationEvidence table, and the pinned destination version MUST match the version bound at authorization. Any destination change, including a corrected ACH Notification of Change, MUST create a new destination version through an independently authorized verification. The change requester and the verifier MUST be different principals. Rails or providers that cannot meet the minimum MUST be ineligible for automated release.
 - **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
 - **Acceptance criteria:**
@@ -230,7 +230,7 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-003); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
 
 ### UNB-RCN-GRT-004 (P0, origin: gap-analysis) — adopted-provisional
-- **Exposed by:** RCF-GRT-010 · **Parent:** UNB-GRANT-027 · **Decisions:** RCD-028
+- **Exposed by:** RCF-GRT-010 · **Parent:** UNB-GRANT-027 · **Decisions:** RCD-028, RCD-043
 - **Requirement:** Each recurring occurrence MUST have the idempotency key (scheduleId, scheduleVersion, periodKey). An occurrence held for eligibility, sanctions, authority or funding MUST stay Held until the configured OccurrenceHoldWindow ends. If it clears within the window, it proceeds once. If not, it becomes Skipped with a reason. There is no automatic catch-up payment in a later period unless the schedule's sponsor policy explicitly allows catch-up. After ConsecutiveAdverseHolds held or skipped occurrences for an adverse reason, the schedule MUST move to Suspended and needs donor reconfirmation and a fresh affirmation to resume. The donor MUST be notified on every hold, skip and suspension.
 - **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
 - **Acceptance criteria:**
@@ -281,7 +281,7 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-012); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
 
 ### UNB-RCN-GRT-015 (P1, origin: gap-analysis) — adopted-provisional
-- **Exposed by:** RCF-GRT-037 · **Parent:** UNB-GRANT-028 · **Decisions:** RCD-028
+- **Exposed by:** RCF-GRT-037 · **Parent:** UNB-GRANT-028 · **Decisions:** RCD-028, RCD-045
 - **Requirement:** Returned, recalled, refunded or recipient-declined grant funds MUST be re-credited to the originating fund via a linked compensating entry. They MUST NOT generate a contribution acknowledgment or tax receipt. Capacity is restored only after reconciliation, and the donor is notified. A recipient MUST be able to decline a grant before release, which cancels the reservation. Accounting treatment is subject to CPA approval.
 - **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
 - **Acceptance criteria:**
@@ -296,7 +296,7 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-016); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
 
 ### UNB-RCN-GRT-017 (P0, origin: gap-analysis) — adopted-provisional
-- **Exposed by:** RCF-GRT-018 · **Parent:** REQ-X-005 · **Decisions:** RCD-028
+- **Exposed by:** RCF-GRT-018 · **Parent:** REQ-X-005 · **Decisions:** RCD-028, RCD-048
 - **Requirement:** Treasury MUST publish a versioned DestinationEvidence table per rail. It names evidence types (for example bank-originated account-owner match, prenote or return absence, independent callback using a contact sourced separately from the change request, positive-pay reconciled clearing), assigns each an evidence class, and sets the minimum combination for automated release. Rails or providers that cannot meet the minimum MUST be ineligible for automated release.
 - **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
 - **Acceptance criteria:**

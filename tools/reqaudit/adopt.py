@@ -35,6 +35,7 @@ DOMAIN_FILE = {
     "ARC": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
     "ENT": "requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md",
     "REG": "requirements/charities/JURISDICTION-AWARE-REGULATORY-RULES-AND-ELIGIBILITY.md",
+    "WF": "requirements/ENTERPRISE-GAP-REGISTER-AND-CROSS-DOMAIN-SCENARIOS.md",
 }
 ENT_GOVERNANCE = ("UNB-RCN-ENT-001", "UNB-RCN-ENT-002", "UNB-RCN-ENT-003")
 ID = re.compile(r"\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[A-Z]?\d{1,4}(?:-r\d+)?\b")

@@ -61,9 +61,9 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-PAY-006-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
 
 ### UNB-RCN-GRT-005 (P1, origin: gap-analysis) — adopted-provisional
-- **Exposed by:** RCF-GRT-012 · **Parent:** UNB-PAY-006 · **Decisions:** RCD-028
+- **Exposed by:** RCF-GRT-012 · **Parent:** UNB-PAY-006 · **Decisions:** RCD-028, RCD-047
 - **Requirement:** The check rail MUST model the states Issued, Outstanding, AgedOutreach (at configurable day thresholds), StaleDated, VoidRequested, VoidConfirmed (positive-pay void acknowledged), Cleared, and UnclaimedPropertyReportable. Each state MUST have a defined grant, reservation and ledger effect. Reissue requires VoidConfirmed, verified recipient eligibility and destination, and a linked replacement chain. When a check reaches the jurisdiction-specific dormancy rule, the system MUST either produce unclaimed-property report and remittance evidence or record the counsel-approved alternative disposition. It MUST NOT silently release the funds to the fund.
-- **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
+- **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence; RCD-047: Counsel per state
 - **Acceptance criteria:**
   - AC-1: Given a check outstanding past the AgedOutreach threshold; when the daily aging job runs; then an outreach case is opened for the recipient and the grant stays Outstanding (not Paid).
   - AC-2: Given a voided check is later presented; when the positive-pay exception arrives; then it is rejected and no ledger effect occurs.

@@ -1,15 +1,15 @@
 {
   "records": {
     "refinements": 46,
-    "gaps": 67,
-    "findings": 175,
+    "gaps": 97,
+    "findings": 178,
     "conflicts": 39,
     "scenarios": 124,
-    "decisions": 31,
+    "decisions": 49,
     "ui": 38
   },
-  "trace_edges": 2377,
+  "trace_edges": 2604,
   "errors": 0,
-  "warnings": 30,
+  "warnings": 60,
   "errors_by_gate": {}
 }

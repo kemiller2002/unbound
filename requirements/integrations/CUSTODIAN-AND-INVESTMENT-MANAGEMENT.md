@@ -98,7 +98,7 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-CUST-015-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
 
 ### UNB-RCN-FIN-008 (P0, origin: gap-analysis) — adopted
-- **Exposed by:** RCF-FIN-014 · **Parent:** UNB-GFUND-014 · **Decisions:** —
+- **Exposed by:** RCF-FIN-014 · **Parent:** UNB-GFUND-014 · **Decisions:** RCD-049
 - **Requirement:** The grant lifecycle MUST include FundingPlanned, LiquidationPending, Funded and FundingShortfall states, and PaymentInstructionAuthorized MUST require Funded or an approved, limit-checked liquidity advance recorded as an interfund receivable.
 - **Acceptance criteria:**
   - AC-1: Given a reserved grant without settled cash; when payment authorization is requested; then it is refused with NotFunded.

@@ -192,7 +192,9 @@ def main(argv) -> int:
         frozenset(r["obligation_id"] for r in load_csv(data / "regulatory-obligations.csv")) | \
         frozenset(r["identifier"] for r in load_csv(data / "withdrawn-ids.csv")) | \
         frozenset(r["new_id"] for r in load_csv(data / "renamed-ids.csv")) | \
-        frozenset(r["gap_id"] for r in load_csv(data / "ui-component-gaps.csv"))
+        frozenset(r["gap_id"] for r in load_csv(data / "ui-component-gaps.csv")) | \
+        frozenset(x for p in sorted((root / RECON / "workflows").glob("WFM-*.json"))
+                  for w in [json.loads(p.read_text(encoding="utf-8"))] for x in [w["workflow_id"], *(t["id"] for t in w["transitions"])])
     refs_, gaps = load_jsonl(data / "refinements.jsonl"), load_jsonl(data / "gap-requirements.jsonl")
     finds, confs = load_csv(data / "findings.csv"), load_csv(data / "conflicts.csv")
     scens, decs = load_csv(data / "scenarios.csv"), load_csv(data / "decisions.csv")
