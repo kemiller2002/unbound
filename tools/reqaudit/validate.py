@@ -12,7 +12,9 @@ Checks:
   G5 required fields present and non-empty (refinements, gaps, findings, conflicts, scenarios, decisions)
   G6 acceptance criteria are Given/When/Then objects
   G7 gap requirements declare origin=gap-analysis, a gap finding that exists, and why_no_predecessor
-  G8 every reference in records resolves (baseline id, new id, family wildcard, or NARR surrogate)
+  G8 every reference in records resolves (baseline id, new id, family wildcard, NARR surrogate,
+     competitive capability CAP-*, regulatory obligation OB-*, or a withdrawn id
+     listed with its replacement in withdrawn-ids.csv)
   G9 trace-edge relationships belong to the vocabulary and endpoints resolve
   G10 identifiers cited in reconciliation Markdown reports resolve
   G11 every refinement and gap requirement has at least one tested_by edge (WARN)
@@ -173,7 +175,10 @@ def main(argv) -> int:
     data = root / RECON / "data"
     inv = load_csv(data / "inventory.csv")
     baseline = frozenset(r["identifier"] for r in inv)
-    narr = frozenset(r["surrogate_id"] for r in load_csv(data / "narrative-requirements.csv"))
+    narr = frozenset(r["surrogate_id"] for r in load_csv(data / "narrative-requirements.csv")) | \
+        frozenset(r["capability_id"] for r in load_csv(data / "competitive-rollup.csv")) | \
+        frozenset(r["obligation_id"] for r in load_csv(data / "regulatory-obligations.csv")) | \
+        frozenset(r["identifier"] for r in load_csv(data / "withdrawn-ids.csv"))
     refs_, gaps = load_jsonl(data / "refinements.jsonl"), load_jsonl(data / "gap-requirements.jsonl")
     finds, confs = load_csv(data / "findings.csv"), load_csv(data / "conflicts.csv")
     scens, decs = load_csv(data / "scenarios.csv"), load_csv(data / "decisions.csv")
@@ -205,6 +210,8 @@ def main(argv) -> int:
         *(i for g in gaps for i in g_refs("links", g["id"], g.get("links", ()), ok)),
         *g_edges(edges, ok), *g_reports(root, ok),
         *g_tested(sets["refinements"] + sets["gaps"], edges),
+        *(Issue("ERROR", "G1", w["identifier"], "withdrawn id is still used by a live record")
+          for w in load_csv(data / "withdrawn-ids.csv") if w["identifier"] in new),
         *(Issue("WARN", "G8u", e["source"], f"references {e['target']}, which the baseline cites but never defines")
           for e in edges if ok(e["target"]) and not strict(e["target"])),
     )

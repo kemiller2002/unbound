@@ -122,12 +122,13 @@ RR-UNB-CUST-015-r1,depends_on,UNB-GFUND-014,refinements.jsonl
 RR-UNB-PLAT-008-r1,refines,UNB-PLAT-008,refinements.jsonl
 RR-UNB-PLAT-008-r1,derived_from,RCF-PLT-001,refinements.jsonl
 RR-UNB-PLAT-008-r1,derived_from,RCF-PLT-006,refinements.jsonl
+RR-UNB-PLAT-008-r1,depends_on,REQ-X-057,refinements.jsonl
+RR-UNB-PLAT-008-r1,depends_on,UNB-RCN-PLT-001,refinements.jsonl
 RR-UNB-PLAT-008-r1,depends_on,UNB-TEN-001,refinements.jsonl
 RR-UNB-PLAT-008-r1,depends_on,UNB-TEN-004,refinements.jsonl
 RR-UNB-PLAT-008-r1,depends_on,UNB-TEN-007,refinements.jsonl
 RR-UNB-PLAT-008-r1,depends_on,UNB-TEN-013,refinements.jsonl
 RR-UNB-PLAT-008-r1,depends_on,UNB-TEN-018,refinements.jsonl
-RR-UNB-PLAT-008-r1,depends_on,REQ-X-057,refinements.jsonl
 RR-UNB-TEN-004-r1,refines,UNB-TEN-004,refinements.jsonl
 RR-UNB-TEN-004-r1,derived_from,RCF-PLT-044,refinements.jsonl
 RR-UNB-TEN-004-r1,depends_on,UNB-TEN-001,refinements.jsonl
@@ -568,6 +569,13 @@ UNB-RCN-ARC-002,depends_on,REQ-X-030,gap-requirements.jsonl
 UNB-RCN-ARC-002,depends_on,UNB-EXP-002,gap-requirements.jsonl
 UNB-RCN-ARC-002,depends_on,UNB-PLAT-009,gap-requirements.jsonl
 UNB-RCN-ARC-002,depends_on,UNB-RCN-PLT-007,gap-requirements.jsonl
+UNB-RCN-PLT-014,derived_from,RCF-PLT-048,gap-requirements.jsonl
+UNB-RCN-PLT-014,derived_from,CAP-12,gap-requirements.jsonl
+UNB-RCN-PLT-014,derived_from,UNB-CHAR-001,gap-requirements.jsonl
+UNB-RCN-PLT-014,depends_on,UNB-CHAR-001,gap-requirements.jsonl
+UNB-RCN-PLT-014,depends_on,REQ-X-011,gap-requirements.jsonl
+UNB-RCN-PLT-014,depends_on,UNB-UX-001,gap-requirements.jsonl
+UNB-RCN-PLT-014,depends_on,RCC-GRT-004,gap-requirements.jsonl
 RCF-ENT-002,derived_from,TR-1,findings.csv
 RCF-ENT-002,derived_from,TR-2,findings.csv
 RCF-ENT-002,derived_from,TR-3,findings.csv
@@ -1563,6 +1571,9 @@ RCF-ARC-003,affects,REQ-X-051,findings.csv
 RCF-ARC-004,affects,REQ-X-047,findings.csv
 RCF-ARC-004,affects,REQ-X-020,findings.csv
 RCF-ARC-004,affects,REQ-X-021,findings.csv
+RCF-PLT-048,affects,UNB-CHAR-001,findings.csv
+RCF-PLT-048,affects,UNB-UX-001,findings.csv
+RCF-PLT-048,affects,REQ-X-011,findings.csv
 UNB-GAP-002,duplicates,UNB-GAP-001,RCF-ENT-008
 UNB-GAP-003,duplicates,UNB-GAP-001,RCF-ENT-008
 UNB-GAP-004,duplicates,UNB-GAP-001,RCF-ENT-008
@@ -1942,6 +1953,11 @@ UNB-RCN-GRT-014,tested_by,DKS-XD-010,scenarios.csv
 RR-REQ-X-007-r1,tested_by,DKS-XD-010,scenarios.csv
 UNB-RCN-GRT-017,tested_by,DKS-XD-011,scenarios.csv
 REQ-X-005,tested_by,DKS-XD-011,scenarios.csv
+UNB-RCN-PLT-014,tested_by,DKS-XD-012,scenarios.csv
+REQ-X-002,tested_by,DKS-XD-013,scenarios.csv
+REQ-X-019,tested_by,DKS-XD-013,scenarios.csv
+ADM-027,tested_by,DKS-XD-013,scenarios.csv
+RR-REQ-X-002-r1,tested_by,DKS-XD-013,scenarios.csv
 RR-UNB-SUCC-008-r1,tested_by,DKS-ENT-001,scenarios.csv (via original)
 RR-UNB-SUCC-008-r1,tested_by,DKS-ENT-002,scenarios.csv (via original)
 RR-REQ-X-008-r1,tested_by,DKS-ENT-003,scenarios.csv (via original)
@@ -2017,6 +2033,7 @@ RR-UNB-SUCC-008-r1,tested_by,DKS-XD-001,scenarios.csv (via original)
 RR-REQ-X-002-r1,tested_by,DKS-XD-005,scenarios.csv (via original)
 RR-AIN-003-r1,tested_by,DKS-XD-008,scenarios.csv (via original)
 RR-REQ-X-005-r1,tested_by,DKS-XD-011,scenarios.csv (via original)
+RR-REQ-X-002-r1,tested_by,DKS-XD-013,scenarios.csv (via original)
 RCF-ENT-002,decided_by,RCD-001,decisions.csv
 RCF-PLT-031,decided_by,RCD-001,decisions.csv
 RCF-ENT-001,decided_by,RCD-002,decisions.csv
@@ -2034,6 +2051,10 @@ RCF-PLT-005,decided_by,RCD-004,decisions.csv
 RCF-PLT-006,decided_by,RCD-004,decisions.csv
 RCF-ENT-031,decided_by,RCD-004,decisions.csv
 RCC-ARC-001,decided_by,RCD-004,decisions.csv
+RCC-PLT-001,decided_by,RCD-004,decisions.csv
+RCC-PLT-002,decided_by,RCD-004,decisions.csv
+RCC-PLT-003,decided_by,RCD-004,decisions.csv
+RCC-PLT-009,decided_by,RCD-004,decisions.csv
 REQ-X-057,decided_by,RCD-004,decisions.csv
 UNB-TEN-002,decided_by,RCD-004,decisions.csv
 UNB-TEC-STRATA-002,decided_by,RCD-004,decisions.csv

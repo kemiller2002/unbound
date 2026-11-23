@@ -1,0 +1,1045 @@
+# 07 — Requirements refinement records
+
+Date: 2026-11-23 | Machine-readable (all fields): [`data/refinements.jsonl`](data/refinements.jsonl).
+
+## 1. What a refinement record is
+
+Each record refines (or, where the original is unimplementable or wrong, supersedes) one original requirement. It preserves the original's **identifier, path, line, baseline revision `777a70d` and exact text**. The validator (gate G4) confirms the text against `git show 777a70d:<path>`. The record then adds the full executable specification the mission requires: statement (MUST/SHOULD/MAY), objective, actors, preconditions, inputs, processing rules, outputs, postconditions, failure behaviour, security, auditability, configuration, AI assistance, UI, API and reporting implications, Given/When/Then acceptance criteria, dependencies, rationale, evidence, assumptions, alternatives, tradeoffs, regulatory implications, confidence, validation and decision status. Inapplicable dimensions say so explicitly.
+
+`decision_status`:
+- `autonomous-reversible`: the refinement can be adopted without legal, financial or strategic authority.
+- `requires-owner-decision`: adoption waits for the linked RCD in [14](14-OPEN-DECISIONS.md).
+
+Every record is `proposed-not-validated`: none has been reviewed by counsel or the owner, and none has been tested.
+
+## 2. Selection and consolidation
+
+Refinements were chosen by risk, not volume: money movement, eligibility, authority, tenant isolation, contribution and acknowledgment, funding and capacity, persistence, succession and lifecycle, retention, AI contracts, and the vaguest high-impact requirements. **46 of the 1,148 canonical requirements (4.0%) have full refinement records.** The remaining defects are recorded as findings and gap requirements, not refinements.
+
+When two domain audits refined the same original, the integrating review kept one record and merged the other's distinct rules and acceptance criteria into it (marked "merged from … draft"), so no content was lost:
+
+| Original | Kept | Merged in |
+|---|---|---|
+| REQ-X-057 | PLT (deployment cells) | ENT (single authoritative implementation list) |
+| UNB-ACC-006 | FIN (typed contribution facts) | REG (acknowledgment content, partial and duplicate receipt ACs) |
+| REQ-X-036 | REG (OFAC 10-year class) | PLT (FinancialRetentionYears parameter, batch disposition) |
+| REQ-X-007 | REG (grant-date reliance, per-sponsor snapshot) | GRT (FreshnessPolicy, refresh before expiry) |
+| UNB-GFUND-013 | FIN (FixingEvent for all amount modes) | GRT (requote tolerance) |
+
+Two integration amendments were also made: `RR-UNB-PLAT-008-r1` (the tenant for Profile B is the legal sponsor, RCD-004) and `RR-REQ-X-051-r1` (contract fields required by mission §10; report 11).
+
+## 3. Index
+
+<!-- BEGIN GENERATED: refinement-index -->
+| Refinement | Original | Relation | Domain | Decision status | Confidence | ACs |
+|---|---|---|---|---|---|---|
+| RR-UNB-SUCC-008-r1 | UNB-SUCC-008 (MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:28) | supersedes | ENT | autonomous-reversible | medium | 3 |
+| RR-REQ-X-008-r1 | REQ-X-008 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:94) | refines | ENT | requires-owner-decision | medium | 3 |
+| RR-UNB-SUCC-004-r1 | UNB-SUCC-004 (MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:24) | refines | ENT | requires-owner-decision | medium | 3 |
+| RR-UNB-PART-007-r1 | UNB-PART-007 (MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:16) | refines | ENT | requires-owner-decision | medium | 3 |
+| RR-UNB-PART-003-r1 | UNB-PART-003 (MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:12) | refines | ENT | autonomous-reversible | medium | 2 |
+| RR-UNB-ADV-001-r1 | UNB-ADV-001 (BASELINE-001.md:29) | refines | ENT | autonomous-reversible | high | 2 |
+| RR-UNB-WF-015-r1 | UNB-WF-015 (DAF-LANDSCAPE-CONVERSION-WAVE-02.md:37) | refines | ENT | requires-owner-decision | medium | 3 |
+| RR-UNB-WF-014-r1 | UNB-WF-014 (DAF-LANDSCAPE-CONVERSION-WAVE-02.md:36) | refines | ENT | requires-owner-decision | medium | 2 |
+| RR-REQ-X-061-r1 | REQ-X-061 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:540) | refines | ENT | autonomous-reversible | high | 2 |
+| RR-REQ-X-060-r1 | REQ-X-060 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:536) | refines | ENT | requires-owner-decision | medium | 2 |
+| RR-UNB-ACC-006-r1 | UNB-ACC-006 (FULL-ACCOUNTING-SYSTEM.md:15) | refines | FIN+REG | requires-owner-decision | medium | 7 |
+| RR-UNB-ACC-002-r1 | UNB-ACC-002 (FULL-ACCOUNTING-SYSTEM.md:11) | refines | FIN | requires-owner-decision | high | 3 |
+| RR-UNB-ACC-026-r1 | UNB-ACC-026 (FULL-ACCOUNTING-SYSTEM.md:35) | supersedes | FIN | requires-owner-decision | high | 3 |
+| RR-UNB-ACC-012-r1 | UNB-ACC-012 (FULL-ACCOUNTING-SYSTEM.md:21) | supersedes | FIN | requires-owner-decision | medium | 2 |
+| RR-UNB-GFUND-013-r1 | UNB-GFUND-013 (MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:20) | refines | FIN+GRT | requires-owner-decision | high | 4 |
+| RR-UNB-GFUND-021-r1 | UNB-GFUND-021 (MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:28) | refines | FIN | autonomous-reversible | high | 2 |
+| RR-UNB-NAV-033-r1 | UNB-NAV-033 (NAV-UNITIZATION-VALUATION-ENGINE.md:46) | refines | FIN | requires-owner-decision | high | 3 |
+| RR-UNB-INV-002-r1 | UNB-INV-002 (ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:9) | refines | FIN | requires-owner-decision | medium | 2 |
+| RR-UNB-ACC-018-r1 | UNB-ACC-018 (FULL-ACCOUNTING-SYSTEM.md:27) | refines | FIN | requires-owner-decision | high | 3 |
+| RR-UNB-INV-012-r1 | UNB-INV-012 (ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:19) | refines | FIN | requires-owner-decision | medium | 2 |
+| RR-REQ-X-009-r1 | REQ-X-009 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:105) | refines | FIN | requires-owner-decision | medium | 1 |
+| RR-UNB-CUST-015-r1 | UNB-CUST-015 (CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:30) | refines | FIN | autonomous-reversible | high | 2 |
+| RR-UNB-PLAT-008-r1 | UNB-PLAT-008 (PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:12) | refines | PLT | requires-owner-decision | medium | 4 |
+| RR-UNB-TEN-004-r1 | UNB-TEN-004 (PARTNER-SEGREGATION-AND-TENANCY.md:13) | refines | PLT | autonomous-reversible | high | 3 |
+| RR-REQ-X-057-r1 | REQ-X-057 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:520) | refines | PLT+ENT | requires-owner-decision | medium | 2 |
+| RR-REQ-X-020-r1 | REQ-X-020 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:268) | refines | PLT | autonomous-reversible | high | 3 |
+| RR-REQ-X-051-r1 | REQ-X-051 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:460) | refines | PLT+integration | autonomous-reversible | medium | 4 |
+| RR-AIN-003-r1 | AIN-003 (AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md:13) | refines | PLT | requires-owner-decision | medium | 3 |
+| RR-UNB-AI-STD-003-r1 | UNB-AI-STD-003 (PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:42) | refines | PLT | autonomous-reversible | high | 2 |
+| RR-REQ-X-048-r1 | REQ-X-048 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:442) | refines | PLT | autonomous-reversible | high | 3 |
+| RR-UNB-UX-003-r1 | UNB-UX-003 (PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:26) | refines | PLT | autonomous-reversible | high | 2 |
+| RR-SOC2-007-r1 | SOC2-007 (SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:14) | refines | PLT | autonomous-reversible | high | 2 |
+| RR-REQ-X-029-r1 | REQ-X-029 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:322) | supersedes | PLT | requires-owner-decision | medium | 2 |
+| RR-REQ-X-002-r1 | REQ-X-002 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:28) | refines | GRT | requires-owner-decision | medium | 3 |
+| RR-REQ-X-004-r1 | REQ-X-004 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:50) | refines | GRT | requires-owner-decision | medium | 3 |
+| RR-REQ-X-005-r1 | REQ-X-005 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:61) | refines | GRT | requires-owner-decision | medium | 3 |
+| RR-REQ-X-083-r1 | REQ-X-083 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:646) | refines | GRT | autonomous-reversible | high | 3 |
+| RR-UNB-GRANT-011-r1 | UNB-GRANT-011 (END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:26) | supersedes | GRT | requires-owner-decision | medium | 3 |
+| RR-UNB-GRANT-023-r1 | UNB-GRANT-023 (END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:38) | refines | GRT | requires-owner-decision | medium | 2 |
+| RR-UNB-GRANT-027-r1 | UNB-GRANT-027 (END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:42) | refines | GRT | requires-owner-decision | medium | 2 |
+| RR-UNB-PAY-006-r1 | UNB-PAY-006 (DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:12) | refines | GRT | requires-owner-decision | medium | 1 |
+| RR-UNB-EXT-004-r1 | UNB-EXT-004 (COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:11) | refines | GRT | requires-owner-decision | medium | 1 |
+| RR-UNB-GRANT-012-r1 | UNB-GRANT-012 (END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:27) | supersedes | GRT | requires-owner-decision | medium | 1 |
+| RR-REQ-X-007-r1 | REQ-X-007 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:79) | refines | REG+GRT | requires-owner-decision | high | 9 |
+| RR-REQ-X-036-r1 | REQ-X-036 (PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:362) | refines | REG+PLT | requires-owner-decision | high | 7 |
+| RR-UNB-PLAT-007-r1 | UNB-PLAT-007 (PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:11) | supersedes | REG/ARC | autonomous-reversible | high | 3 |
+<!-- END GENERATED: refinement-index -->
+
+## 4. Records
+
+<!-- BEGIN GENERATED: refinement-records -->
+### RR-UNB-SUCC-008-r1 — supersedes `UNB-SUCC-008`
+- **Source:** `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:28` @ `777a70d` · domain ENT · autonomous-reversible · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-SUCC-008:** Succession activation SHALL atomically or recoverably suspend/revoke former advisory authority, establish successor permissions, enforce open-grant and standing-instruction policies, and preserve pending commitments and restrictions.
+- **Refined statement:** The system MUST split authority transition on a death or incapacity notice into three independently recorded steps. (1) ProtectiveHold, on any notice: blocks new recommendations, recurring-instance releases and contact or payee changes for rights derived from the subject party. (2) DerivedRightsSuspended, on verified evidence: suspends every session, credential binding, delegated agent principal and privilege derived from the subject party. (3) SuccessionActivated, on sponsor approval: grants successor rights. Steps 2 and 3 MUST each be atomic within the authoritative store. Rights of other participants that do not derive from the subject MUST remain in force.
+- **Business objective:** Close the window in which a deceased or incapacitated party's authority can be exercised, without disrupting independent co-advisors or pre-empting the sponsor's decision.
+- **Reason for change:** The original ties suspension to activation, which leaves a live-authority window and does not scope suspension to derived rights.
+- **Processing rules:** On SuccessionTriggerReported at any assurance level, append ProtectiveHoldPlaced scoped to rights whose authority chain includes the subject party.; ProtectiveHold blocks new recommendation submission, release of recurring instances and sensitive profile changes. It does not cancel anything.; On SuccessionTriggerVerified, in one transaction: append DerivedRightsSuspended; revoke sessions and credential bindings for the subject and for agent principals delegated by the subject; and mark pending unapproved recommendations from the subject as Held.; Pending sponsor-approved grants follow death_pending_grant_policy (RR-REQ-X-008-r1). They are not altered by this step.; SuccessionActivated requires sponsor approval, references the SuccessionPlan version and evidence snapshot, and grants successor rights from the approved effective time.; If the trigger is later corrected as false, append ProtectiveHoldReleased or RightsReinstated. Never delete the suspension history.
+- **Failure behaviour:** If session revocation fails at the identity provider, the domain-level authorization check still denies, and an incident is raised.; If evidence conflicts, the case moves to Disputed and the hold persists.
+- **Security / audit:** Notice submission is rate-limited and authenticated where possible.; Step-up verification is required for anyone lifting a hold.; No self-approval: a notifier who is also a successor-designate cannot verify the notice. / Immutable events with actor, evidence hash, policy version and effective/recorded times.; Affected-actions report retained with the case.
+- **Configuration:** Sponsor MAY configure evidence types accepted for verification (owner: GC).; Sponsor MAY configure which actions ProtectiveHold blocks, provided recommendation submission and payee/contact changes are always included. Not configurable: suspension on verified evidence.
+- **AI assistance:** **advisory:** extract fields from death certificates and court letters for human comparison; summarize affected pending actions; **autonomous:** place ProtectiveHold (deterministic rule on notice receipt); **prohibited:** verify death; lift holds; activate succession; choose successors; **human_approval_boundary:** Verification and activation are human or sponsor-authorized. AI output is evidence only.
+- **UI / API / reporting:** Co-advisor view shows a neutral 'fund under review' banner without disclosing the reason unless policy permits.; Notifier receives a receipt and the next steps. / Command ReportSuccessionTrigger (idempotency key = notifier + subject + evidence hash).; Command VerifySuccessionTrigger.; Events ProtectiveHoldPlaced and DerivedRightsSuspended.; Error AUTH_SUBJECT_SUSPENDED. / Open succession cases with age.; Count of blocked actions.
+- **Regulatory:** Needs counsel: acceptable documentary evidence of death or incapacity by jurisdiction.; Needs counsel: authority of a personal representative versus a successor designation.
+- **Dependencies:** UNB-PART-004; UNB-SUCC-006; UNB-SUCC-007; REQ-X-008; GOV-AUTH-015 · **Findings:** RCF-ENT-016; RCF-ENT-011
+- **Assumptions / alternatives / tradeoffs:** Death-notice assurance levels will be defined by counsel and sponsor policy. / Suspend everything on any notice (rejected: a denial-of-service vector); Suspend only at activation (rejected: authority window) / Holds on unverified notices can delay legitimate co-advisor activity in edge cases.
+- **Evidence:** requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:28; requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:26; daf-landscape:research/ai-native-daf-enterprise/03-workflow-redesign/wf-relationships-servicing.md:83
+- **Acceptance criteria:**
+  - **AC-1** Given a fund with advisors A (donor) and B (independent co-advisor) and an unverified death notice for A; when A's credential submits a recommendation; then it is rejected with AUTH_SUBJECT_HELD, and B can still submit within scope.
+  - **AC-2** Given verified death of A, who delegated an AI agent; when the agent requests a grant; then it is denied, and DerivedRightsSuspended predates the request.
+  - **AC-3** Given a notice later proven false; when the reviewer records the correction; then RightsReinstated is appended and the original hold remains in history.
+
+### RR-REQ-X-008-r1 — refines `REQ-X-008`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:94` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Normative proposed requirement:** Donor death does not automatically cancel valid sponsor-approved unpaid grants; future instructions suspend until successor authority verified; each recurring instance rechecks authority and eligibility.
+- **Refined statement:** On verified death of a party, the disposition of that party's pending items MUST follow the sponsor's versioned death_pending_grant_policy. The policy sets one value for sponsor-approved unpaid grants (complete | hold_for_review | cancel_by_sponsor_decision), one for unapproved recommendations (lapse | hold), and one for recurring templates (suspend). Each recurring instance MUST re-check current authority and eligibility at release. Rights of other participants that do not derive from the deceased MUST NOT be suspended. Until the sponsor board decides OD-03, the system MUST apply hold_for_review and MUST NOT complete or cancel automatically.
+- **Business objective:** Apply the sponsor's own governing decision to pending grants after a death, consistently and auditably.
+- **Reason for change:** The original encodes an unanswered owner decision and is ambiguous for multi-participant funds.
+- **Processing rules:** Classify each pending item by state: Approved-unpaid, Submitted-unapproved, RecurringTemplate, InstanceScheduled.; Apply the policy value per class. If the policy is unset, default to hold_for_review for every class.; Completing an approved grant requires no new donor action but MUST re-run eligibility, sanctions and capacity checks at release.; Cancelling an approved grant requires a recorded sponsor decision. It is never automatic.; Recurring instances after verification are not released. Templates are suspended pending successor authority.
+- **Failure behaviour:** Policy lookup failure leads to hold_for_review.
+- **Security / audit:** Only sponsor-authorized roles may change the policy (A4). / Disposition events are linked to the case and the policy version.
+- **Configuration:** Sponsor MUST choose a value per class (owner: sponsor board + GC). The hold_for_review default is not configurable until OD-03 is decided.
+- **AI assistance:** **advisory:** list affected items and draft charity notifications; **autonomous:** deterministic classification and application of the chosen policy; **prohibited:** choosing the policy value; cancelling approved grants; **human_approval_boundary:** Policy selection and any cancellation are A4 sponsor decisions.
+- **UI / API / reporting:** Successor and estate see the disposition of each pending item with its reason. / Query PendingItemsForSubject.; Event PendingItemDispositioned.; Error POLICY_UNSET_HELD. / Grants completed after death are reported normally. The death flag is used only for internal analytics.
+- **Regulatory:** Needs counsel and board: OD-03.
+- **Dependencies:** RR-UNB-SUCC-008-r1; OD-03; INV-13 · **Findings:** RCF-ENT-015
+- **Assumptions / alternatives / tradeoffs:** Sponsor discretion over pending approved grants is a governance matter. / Hard-code complete; Hard-code cancel / Hold-by-default delays charities until the sponsor decides.
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:94; research/daf-theoretical-enterprise-validation/16-registers/owner-decisions.md:9; research/daf-theoretical-enterprise-validation/16-registers/contradiction-register.md:38
+- **Acceptance criteria:**
+  - **AC-1** Given an approved unpaid grant and an unset policy; when the death is verified; then the grant moves to HeldForReview and is not paid.
+  - **AC-2** Given policy=complete and a charity that became ineligible; when release runs; then the grant is held by the eligibility check, not paid.
+  - **AC-3** Given a 5-advisor fund and the death of advisor 3; when verification occurs; then advisors 1, 2, 4 and 5 keep their scoped rights.
+
+### RR-UNB-SUCC-004-r1 — refines `UNB-SUCC-004`
+- **Source:** `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:24` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-SUCC-004:** A succession plan MAY specify fractional or amount-based allocations to multiple successor accounts, subject to approved minimums, restrictions, liquidity and valuation rules. Allocations must be deterministic, auditable and reconcile exactly; no assumed automatic division.
+- **Refined statement:** A successor allocation MUST be computed by a deterministic, versioned algorithm. Inputs: the approved plan; one sponsor-designated valuation point; the fund's available capacity net of reservations, accrued fees and approved-unpaid grants; and per-position divisibility. The algorithm MUST express shares in the fund's unit of account. It MUST assign any rounding residual by a declared rule. It MUST post one balanced allocation journal whose successor credits sum exactly to the origin debit, and MUST hold the split for sponsor decision when any constraint (minimum, restriction, illiquidity, open commitment) cannot be met.
+- **Business objective:** Make multi-successor splits reproducible and exactly reconciled.
+- **Reason for change:** The original requires exact reconciliation without defining the computation.
+- **Processing rules:** Compute distributable capacity C as the value at the valuation point, minus reservations, minus accrued fees, minus approved-unpaid grants that the policy says to complete.; Amount-based allocations are satisfied first in plan priority order. Percentages then apply to the remainder.; Round each share down to the smallest currency or unit increment. Assign the residual to the successor ranked first in plan priority (configurable rule).; Divisible positions are allocated pro rata in kind if policy allows; otherwise they are liquidated under sponsor approval before allocation.; If any successor share is below the account minimum, or a restriction cannot follow, place the split on SplitHeld for sponsor decision.; Trailing receipts and returns after the split are routed by the sponsor parameter trailing_receipt_destination (OD-11).
+- **Failure behaviour:** Valuation is unavailable or stale: hold.; Replay: the idempotency key (case id + plan version) prevents a duplicate posting.
+- **Security / audit:** Allocation and approval by different actors (SoD). / Preview, inputs, algorithm version and journal are linked.
+- **Configuration:** Sponsor MAY configure valuation point (decision date | posting date | specific close), residual rule, in-kind permission and trailing-receipt destination (owner: CFO). Not configurable: exact balancing.
+- **AI assistance:** **advisory:** explain allocation preview; flag constraint conflicts; **autonomous:** compute preview; **prohibited:** approving or posting the allocation; **human_approval_boundary:** Sponsor approves posting.
+- **UI / API / reporting:** Preview table showing each successor's share, residual line and held reasons; accessible tabular alternative to graph (UNB-SUCC-013). / Query PreviewSuccessorAllocation (pure).; Command PostSuccessorAllocation (idempotent).; Error SPLIT_CONSTRAINT_UNMET. / Internal allocation is not a grant and not a contribution for Schedule D purposes, pending CPA confirmation.
+- **Regulatory:** Needs CPA: classification of internal allocations versus grants.
+- **Dependencies:** UNB-SUCC-009; OD-11; REQ-X-084 · **Findings:** RCF-ENT-017
+- **Assumptions / alternatives / tradeoffs:** Funds are unitized or currency-denominated per NAV requirements. / Largest-remainder method; Residual to sponsor unrestricted / The residual rule favors one successor by at most one minor unit.
+- **Evidence:** requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:24; requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:64; research/daf-theoretical-enterprise-validation/16-registers/owner-decisions.md:17
+- **Acceptance criteria:**
+  - **AC-1** Given C=$100,000.01 and a 50/30/20 plan with residual to priority 1; when preview is computed; then the shares are 50,000.01, 30,000.00 and 20,000.00, summing exactly to C.
+  - **AC-2** Given one successor share below the minimum; when posting is requested; then SplitHeld is recorded and no journal is posted.
+  - **AC-3** Given posting is retried after a timeout; when a duplicate command arrives; then exactly one journal exists.
+
+### RR-UNB-PART-007-r1 — refines `UNB-PART-007`
+- **Source:** `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:16` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-PART-007:** Onboarding SHALL support invitation, acceptance, identity verification, declined invitation, inactive status and removal without deleting history.
+- **Refined statement:** Participant onboarding MUST record identity-related checks as four separately classified obligations, each with an authority type and owner: (a) sanctions screening; (b) identity proofing at a sponsor-configured assurance level for authentication and fraud control; (c) any customer-identification or AML program, enabled only when counsel records that it applies, by law or by contract with a custodian or payment provider; (d) source-of-funds or gift-acceptance diligence under sponsor policy. The system MUST NOT label any check 'KYC' or 'legally required' without a linked applicability record.
+- **Business objective:** Collect only the identity data that the applicable authority justifies, and make failure outcomes deterministic.
+- **Reason for change:** The original blends legally distinct regimes into one step and is silent on applicability.
+- **Processing rules:** Resolve the applicable regimes from the applicability register for (sponsor, role, channel).; Run only the enabled regimes. Store raw identity evidence in the segregated identity vault, and keep only references and outcomes in authoritative events (UNB-DATA-007).; Outcome per regime is Pass, Fail, Refer or Unavailable. Unavailable never equals Pass.; Role activation requires every enabled regime to be Pass, or Refer resolved by an authorized human.; If a contribution arrived before a Fail, apply the sponsor's failed_identity_contribution_policy. The fund never becomes grantable until resolved (TVF-113).
+- **Failure behaviour:** Provider outage: role remains pending; the invitee is told which step is pending, without exposing screening details.
+- **Security / audit:** Sanctions match details are visible only to compliance roles.; Vault access is logged. / Every check records the regime, authority type, provider, version and reviewer.
+- **Configuration:** Sponsor MAY configure the assurance level for (b) and the scope of (d) (owner: CRCO). Regime (c) can be enabled only through a counsel applicability record (owner: GC). Not configurable: (a) where counsel records it as applicable.
+- **AI assistance:** **advisory:** summarize Refer evidence; **autonomous:** route outcomes; **prohibited:** clearing sanctions matches; overriding Fail; **human_approval_boundary:** Refer resolution by compliance roles (A4 for sanctions).
+- **UI / API / reporting:** Plain-language reason for each requested document.; Accessible alternative proofing channel. / Command InviteParticipant.; Command RecordIdentityCheck (idempotent per provider reference).; Event ParticipantActivated.; Error IDENTITY_PENDING. / Onboarding funnel by regime and outcome, without personal data.
+- **Regulatory:** Needs counsel: BSA/AML applicability to the sponsor and to the platform operator; OFAC scope; state privacy rules for identity data.
+- **Dependencies:** UNB-DATA-007; REQ-X-072; UNB-PART-004 · **Findings:** RCF-ENT-014; RCF-ENT-013
+- **Assumptions / alternatives / tradeoffs:** Applicability of customer-identification rules to a sponsoring charity is undetermined. / Always collect full KYC (rejected: minimization); Rely on custodian only / More configuration states.
+- **Evidence:** requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:16; research/daf-theoretical-enterprise-validation/19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:53; requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md:19; requirements/DAF-LANDSCAPE-CONVERSION-WAVE-04.md:179
+- **Acceptance criteria:**
+  - **AC-1** Given a regime (c) applicability record that is absent; when onboarding runs; then no CIP-style data is requested.
+  - **AC-2** Given the sanctions provider is unavailable; when activation is attempted; then the role remains pending and is not activated.
+  - **AC-3** Given contribution received, then identity Fail; when the fund state is evaluated; then capacity is not grantable and the case follows policy.
+
+### RR-UNB-PART-003-r1 — refines `UNB-PART-003`
+- **Source:** `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:12` @ `777a70d` · domain ENT · autonomous-reversible · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-PART-003:** Relationships SHALL distinguish contributor/donor, original advisor, additional advisor, authorized viewer, administrative contact, professional advisor, successor advisor, successor-designate, and sponsor staff; these are independently assignable and may overlap.
+- **Refined statement:** The relationship model MUST provide distinct role types, each independently assignable, overlapping only by explicit grant: contributor; advisory-privilege holder (original or additional); authorized viewer; administrative contact; professional advisor; successor advisor; successor-designate; legal representative (subtypes: agent under power of attorney, guardian/conservator, personal representative/executor, trustee, entity authorized signatory); and sponsor staff. Each role type MUST declare its permitted commands, the evidence required to grant it, an expiry rule, and whether it can delegate.
+- **Business objective:** Make every person's authority explicit and evidence-backed.
+- **Reason for change:** The original omits legal representatives and does not bind roles to permissions or evidence.
+- **Processing rules:** A role grant without the required evidence type is rejected.; A legal-representative grant requires the document type, the issuing authority and a scope limited to the represented party's own rights.; A professional advisor cannot hold advisory privileges unless explicitly also granted one, and that grant is flagged for counsel-defined conflict review.
+- **Failure behaviour:** Unknown role type: rejected.
+- **Security / audit:** Representatives cannot expand the represented party's scope. / Grant events carry the evidence reference.
+- **Configuration:** Sponsor MAY disable role types (owner: Product owner). Not configurable: the permission semantics of each type.
+- **AI assistance:** **advisory:** classify uploaded authority documents for review; **autonomous:** —; **prohibited:** granting roles; **human_approval_boundary:** Representative and successor roles require sponsor review.
+- **UI / API / reporting:** Role labels may be renamed by branding but meaning is fixed (one-system rule). / Command GrantRole.; Error ROLE_EVIDENCE_MISSING. / Role counts by type per sponsor.
+- **Regulatory:** Needs counsel: whether a POA agent may exercise advisory privileges, per sponsor program terms.
+- **Dependencies:** UNB-ADV-001; UNB-SUCC-007 · **Findings:** RCF-ENT-026; RCF-ENT-024
+- **Assumptions / alternatives / tradeoffs:** Representative documents vary by jurisdiction. / Free-form role labels / A longer role catalogue.
+- **Evidence:** requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:12; requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md:27
+- **Acceptance criteria:**
+  - **AC-1** Given a POA document; when an agent is granted the representative role; then the agent may act only within the principal's scope, and the grant expires on revocation or death of the principal.
+  - **AC-2** Given a professional advisor; when it attempts a grant recommendation without an advisory-privilege role; then the attempt is denied.
+
+### RR-UNB-ADV-001-r1 — refines `UNB-ADV-001`
+- **Source:** `requirements/BASELINE-001.md:29` @ `777a70d` · domain ENT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - UNB-ADV-001: Advisors SHALL operate only within explicit, revocable, scoped delegated permissions.
+- **Refined statement:** Every advisory-privilege holder and every professional advisor MUST act only through role grants that are explicit, scoped (fund set, command set, amount limits) and effective-dated. Grants MUST be revocable by the granting party or the sponsor, effective at the next authorization check, at most the policy-defined propagation bound. Advisory privileges MUST NOT confer trading, payment or approval authority (UNB-LEG-002).
+- **Business objective:** Bound advisor authority and make revocation immediate.
+- **Reason for change:** The original is ambiguous between advisor kinds and has no revocation semantics.
+- **Processing rules:** Authorization evaluates role, scope, limits and effective period on every command.; On revocation, pending unapproved recommendations created under the revoked grant go to Held for re-affirmation by a remaining authorized party.
+- **Failure behaviour:** Authorization service unavailable: deny.
+- **Security / audit:** Step-up authentication for grant changes. / Every grant and revocation is an event.
+- **Configuration:** Sponsor MAY set the propagation bound (owner: CRCO) and per-role limits.
+- **AI assistance:** **advisory:** explain why denied; **autonomous:** —; **prohibited:** self-granting; **human_approval_boundary:** Grants by an authorized party only.
+- **UI / API / reporting:** Revocation confirmation shows the affected pending items. / Command RevokeRole.; Event FundParticipantRoleRevoked.; Error ROLE_REVOKED. / Revocation latency metric.
+- **Regulatory:** —
+- **Dependencies:** UNB-PART-004; GOV-AUTH-015 · **Findings:** RCF-ENT-024
+- **Assumptions / alternatives / tradeoffs:** — / Grant-time-only checks / —
+- **Evidence:** requirements/BASELINE-001.md:29; requirements/CHARTER.md:25
+- **Acceptance criteria:**
+  - **AC-1** Given an advisor revoked at T; when it submits at T+1s; then denied.
+  - **AC-2** Given a revoked advisor's pending recommendation; when revocation occurs; then it is Held and the donor is notified.
+
+### RR-UNB-WF-015-r1 — refines `UNB-WF-015`
+- **Source:** `requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:37` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** UNB-WF-015: Dormant accounts (WF-15) SHALL follow approved notice, successor and charitable-default policies.
+- **Refined statement:** Fund inactivity MUST be governed by a sponsor-approved, versioned dormancy policy. Parameters: the activity events that reset the clock; Quiet, Inactive and Unresponsive thresholds; required outreach channels and attempts; and the default disposition (charitable default to sponsor-designated purposes or charities, transfer to a donor-named charitable beneficiary under UNB-SUCC-011, or continued holding). The lifecycle is Active > Quiet > Inactive > Unresponsive > DispositionPending > Disposed or Reactivated. Any disposition distributing assets MUST be an A4 sponsor decision run through the normal grant lifecycle. Escheat handling MUST NOT apply to fund balances unless counsel records it as applicable.
+- **Business objective:** Resolve dormant funds lawfully and consistently, without coercive or conflicted nudging.
+- **Reason for change:** The original is a single sentence. The administration framing ('unclaimed') conflates fund balances with escheat.
+- **Processing rules:** The clock resets on any event in the policy's activity set (grant recommendation, login with authenticated action, contribution, explicit 'keep active' affirmation).; Each threshold transition is deterministic and appends an event.; Outreach goes to every verified channel of every advisory-privilege holder and successor-designate. Each attempt and its delivery evidence are recorded.; Any authorized activity before Disposed returns the fund to Active.; Disposition creates grant recommendations attributed to the sponsor-policy actor. These grants follow the normal eligibility and approval lifecycle.
+- **Failure behaviour:** Undeliverable channels are recorded. Disposition still requires the minimum number of documented attempts.
+- **Security / audit:** Dormancy reminders must not recommend recipients in which the sponsor or platform has a financial interest. / Full outreach history retained.
+- **Configuration:** Sponsor MUST set thresholds and disposition (owner: sponsor board). Not configurable: an A4 decision before any distribution.
+- **AI assistance:** **advisory:** draft outreach copy; suggest charities from the donor's own history only; **autonomous:** clock and threshold transitions; **prohibited:** deciding disposition; paid-placement suggestions; **human_approval_boundary:** Disposition is A4.
+- **UI / API / reporting:** Clear 'keep my fund active' action; accessible notices. / Events FundQuiet, FundInactive, FundUnresponsive, DispositionApproved.; Command AffirmActive. / Dormancy counts by stage; disposition totals included in normal grant reporting.
+- **Regulatory:** Needs counsel: whether any state unclaimed-property rule reaches DAF balances (presumed not; verify).; Program documents must disclose the policy.
+- **Dependencies:** UNB-SUCC-011; AccountInactivityThresholdReached; CTL-044 · **Findings:** RCF-ENT-019
+- **Assumptions / alternatives / tradeoffs:** Inactivity rules are sponsor program policy. / No dormancy policy; Automatic sweep / Outreach cost.
+- **Evidence:** requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:37; requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md:34; daf-landscape:research/ai-native-daf-enterprise/03-workflow-redesign/wf-relationships-servicing.md:160
+- **Acceptance criteria:**
+  - **AC-1** Given an Inactive fund; when the donor affirms activity; then the fund is Active and the clock resets.
+  - **AC-2** Given an Unresponsive fund with fewer outreach attempts than the policy minimum; when disposition is proposed; then rejected.
+  - **AC-3** Given a disposition grant to an ineligible charity; when eligibility runs; then held.
+
+### RR-UNB-WF-014-r1 — refines `UNB-WF-014`
+- **Source:** `requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:36` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** UNB-WF-014: Outbound transfer (WF-14) SHALL preserve history, restrictions, accounting reconciliation and sponsor approval.
+- **Refined statement:** A donor-recommended transfer of all or part of a fund to another sponsoring organization MUST be processed as a sponsor distribution through the standard grant lifecycle, with purpose code DAF_TRANSFER_OUT, unless counsel records a different classification. It MUST include: receiving-organization eligibility; the sponsor's discretion to approve or decline; cash as the default, with in-kind only where both custodians accept and policy allows; carrying over donor-stated restrictions as non-binding recommendation text; a transfer history package to the receiving sponsor when the donor consents; and, for full transfers, fund closure under UNB-RCN-ENT-006.
+- **Business objective:** Let donors move funds with history while preserving sponsor control and accurate reporting.
+- **Reason for change:** The original is one sentence; classification and reporting are undefined.
+- **Processing rules:** Validate the receiving organization as an eligible grantee.; Reserve capacity. Liquidate or prepare in-kind delivery per policy.; Pay through the standard payment state machine. Tag the grant DAF_TRANSFER_OUT for reporting.; Generate the history package (grants, contributions, successor plan, restrictions) only with consent, excluding other participants' private data.
+- **Failure behaviour:** Receiving sponsor rejects: returned funds follow the return flow and the fund reopens if it had been closing.
+- **Security / audit:** Receiving-fund reference verified out of band for first-time pairs. / Package hash recorded.
+- **Configuration:** Sponsor MAY set minimums and in-kind policy (owner: CFO). Not configurable: grant lifecycle controls.
+- **AI assistance:** **advisory:** prepare the package; **autonomous:** tagging; **prohibited:** approving; **human_approval_boundary:** Standard grant approval authority.
+- **UI / API / reporting:** Donor sees the expected timeline and that the receiving sponsor's acceptance is separate. / Command RequestTransferOut (idempotent).; Event TransferOutRequested. / DAF_TRANSFER_OUT is reported separately so payout can be computed net of DAF-to-DAF transfers.
+- **Regulatory:** Needs counsel: classification and any acknowledgment the receiving sponsor issues; Schedule D effect (CPA).
+- **Dependencies:** UNB-RCN-ENT-006; UNB-RCN-ENT-007 · **Findings:** RCF-ENT-021
+- **Assumptions / alternatives / tradeoffs:** Treatment as a grant is a source claim to verify. / Treat as an internal transfer (rejected: different legal entity) / —
+- **Evidence:** requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:36; daf-landscape:research/ai-native-daf-enterprise/03-workflow-redesign/wf-relationships-servicing.md:127; daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:168
+- **Acceptance criteria:**
+  - **AC-1** Given a full transfer approved and settled; when post-settlement processing runs; then the fund enters the closing workflow.
+  - **AC-2** Given no consent; when the package is requested; then no history is sent.
+
+### RR-REQ-X-061-r1 — refines `REQ-X-061`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:540` @ `777a70d` · domain ENT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** **Proposed:** Specify the full operating workflow in `LEGACY-MIGRATION-PORTABILITY-AND-SPONSOR-EXIT-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+- **Refined statement:** Institutional migration MUST run as a MigrationRun through Contracted > Inventoried > Mapped > ImportedToStaging > Reconciled > ParallelValidated > CutoverAuthorized > SingleWriterActive > PostCutoverVerified > Archived. Every imported standing-data record (payee and bank, successor, advisor, contact) MUST carry source system, source record id, import batch, and verification_status=imported_unverified. A payment MUST NOT be released to an imported_unverified destination. Cutover MUST fence the legacy writer before Unbound posts. Every migration MUST declare in advance a rollback boundary and the compensation procedure that applies after the first live posting.
+- **Business objective:** Move institutions onto Unbound without fabricated history, dual writers or redirected payments.
+- **Reason for change:** The original omits standing-data provenance and the rollback boundary.
+- **Processing rules:** Staging writes are non-authoritative.; Reconciled requires tie-out by fund, position, period and pending payment against independent legacy statements.; CutoverAuthorized requires sponsor approval and evidence that the legacy writer is fenced.; Before the first live posting, rollback means discarding staging. After it, rollback requires compensating journals approved by the sponsor.; Imported payees verify through the normal payee-verification flow without asking charities to resubmit data the sponsor already holds (TVF-244).
+- **Failure behaviour:** A tie-out break blocks cutover.; A legacy write detected after fencing raises an incident and blocks.
+- **Security / audit:** Import files are integrity-checked and signed.; Imported data is not trusted for payment until verified. / Full lineage per record.
+- **Configuration:** Sponsor MAY set materiality thresholds for tie-out (owner: CFO). Not configurable: fencing and imported_unverified blocking.
+- **AI assistance:** **advisory:** propose field mappings; explain breaks; **autonomous:** deterministic matching; **prohibited:** accepting breaks; authorizing cutover; **human_approval_boundary:** Cutover and break acceptance are A4.
+- **UI / API / reporting:** Migration status visible to sponsor admins; donors see historical data labelled with its source. / Commands StageImport, AuthorizeCutover.; Error PAYEE_UNVERIFIED. / As-issued legacy statements are preserved separately from new statements. Schedule D needs pre- and post-cutover aggregates (TVS-307).
+- **Regulatory:** Needs counsel: record-retention obligations for legacy data.
+- **Dependencies:** INV-07; UNB-DATA-010 · **Findings:** RCF-ENT-027
+- **Assumptions / alternatives / tradeoffs:** — / Big-bang cutover without parallel run / Parallel run cost.
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:540; research/daf-theoretical-enterprise-validation/19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:29; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:197
+- **Acceptance criteria:**
+  - **AC-1** Given an imported payee; when a grant release is attempted; then blocked until verified.
+  - **AC-2** Given a legacy write after fencing; when it is detected; then an incident is raised and Unbound posting pauses.
+
+### RR-REQ-X-060-r1 — refines `REQ-X-060`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:536` @ `777a70d` · domain ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Proposed:** Specify the full operating workflow in `SPONSOR-REGULATORY-TAX-AND-AUDIT-OPERATIONS-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+- **Refined statement:** For each legal sponsor and tax year, the system MUST produce a reproducible DAF annual reporting data package from the locked ledger. Contents: count of donor-advised funds held at year end; aggregate contributions to, grants from, and year-end value of those funds (each defined in a CPA-approved data dictionary that maps to the current form lines); the DAF_TRANSFER_OUT subset; and evidence supporting the donor written-disclosure questions. Synthetic and canary items MUST be excluded. Which account types count as donor-advised funds MUST come from a counsel-approved account-type classification register. The package MUST carry an as-of and known-at snapshot. Preparation, review, signature, filing and acceptance MUST be distinct states, with no AI signing or filing authority.
+- **Business objective:** Support accurate sponsor annual reporting of DAF activity.
+- **Reason for change:** The original is a pointer with generic text; DAF-specific reporting is not specified.
+- **Processing rules:** Aggregate by legal sponsor EIN and tax year using CPA-approved recognition rules (OD-19).; Post-filing corrections produce a new package version linked to the as-filed one.
+- **Failure behaviour:** Classification register missing: package blocked.
+- **Security / audit:** Restricted to finance and audit roles. / As-filed snapshot immutable.
+- **Configuration:** Not configurable: exclusion of synthetic items. Sponsor-specific line mapping per CPA (owner: CFO).
+- **AI assistance:** **advisory:** variance explanations; **autonomous:** aggregation; **prohibited:** signing; filing; classifying account types; **human_approval_boundary:** CPA review and authorized signer.
+- **UI / API / reporting:** Reviewer workspace shows drill-down to funds. / Query DafAnnualPackage(sponsor, year, asOf, knownAt). / Primary consumer: CPA.
+- **Regulatory:** Needs CPA and counsel: the statutory DAF reporting requirement and current Schedule D instructions; account-type classification.
+- **Dependencies:** UNB-RCN-ENT-011; UNB-RCN-ENT-012; OD-19 · **Findings:** RCF-ENT-029
+- **Assumptions / alternatives / tradeoffs:** Current form lines per CPA. / — / —
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:536; daf-landscape:research/DAF-INDUSTRY-REPORT-2026-11.md:44
+- **Acceptance criteria:**
+  - **AC-1** Given canary grants in the period; when the package is built; then they are excluded.
+  - **AC-2** Given a correction after filing; when the package is rebuilt; then a new version links to as-filed and as-filed is unchanged.
+
+### RR-UNB-ACC-006-r1 — refines `UNB-ACC-006`
+- **Source:** `requirements/FULL-ACCOUNTING-SYSTEM.md:15` @ `777a70d` · domain FIN+REG · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-ACC-006:** Record contribution lifecycle from intent through receipt, valuation, restrictions, acceptance, acknowledgment, settlement and disposition, with distinct cash, securities and complex noncash treatments.
+- **Refined statement:** Unbound MUST record each contribution as distinct, timestamped facts: Intent, Received (by rail), CompletedGiftDetermined, SponsorAccepted, Valued (separate typed values: sponsor book value, custody receipt value, optional informational acknowledgment value, sale proceeds), Acknowledged, Settled/Final, and Disposed. Acknowledged MUST NOT occur before CompletedGiftDetermined and SponsorAccepted. Grantable capacity MUST NOT increase before Final, unless a sponsor provisional-credit policy (OD-04) applies.
+- **Business objective:** Produce lawful, correct donor substantiation and correct fund value without acknowledging or spending gifts that do not complete.
+- **Reason for change:** UNB-ACC-006 is a list of nouns with an order that permits acknowledgment before settlement and defines no gates (RCF-FIN-001, RCF-FIN-002).
+- **Processing rules:** Completed-gift date = rule(assetType, rail, evidence) from a versioned table (UNB-RCN-FIN-012); missing evidence => state stays Received; Acceptance uses sponsor gift-acceptance policy by asset class; complex assets require specialist decision (CTL-021); Acknowledgment issuance is a separate command gated on CompletedGiftDetermined AND SponsorAccepted AND template validation (UNB-RCN-FIN-001); Capacity contribution = settled value for final rails; provisional value only within the OD-04 limit; Every fact is append-only with effective and recorded times; (merged from REG draft) Acknowledgment content:  a written acknowledgment for every contribution that (a) states the amount of cash or a description (not a value) of noncash property, (b) states whether any goods or services were provided and, if so, a good-faith estimate of their value, and (c) states that the sponsoring organization has exclusive legal control over the contributed assets (IRC 170(f)(18)(B)). For noncash property it MUST track Form 8283 Section B donee signature requests and every disposition within 3 years of receipt that requires a Form 8282 (filed within 125 days, copy to donor).
+- **Failure behaviour:** Missing evidence => Received, with an exception case; Template validation fails => issuance blocked, case to Controller; Rail return after acknowledgment => ReturnedContributionExposure fact plus acknowledgment void/correction workflow; original preserved
+- **Security / audit:** Tenant, sponsor and fund scoping on every command; Donor cannot self-accept; Acknowledgment content changes require counsel-approved template version / Each fact stores actor, policy version, evidence hash, effective and recorded times; Acknowledgment links to the exact contribution facts and template version
+- **Configuration:** Sponsor: accepted asset classes and rails; Sponsor: provisional-credit limit (OD-04, owner sponsor CFO); Sponsor: whether informational values appear on acknowledgments and by what method (counsel-approved); not configurable: the ordering Acknowledged after CompletedGiftDetermined and SponsorAccepted
+- **AI assistance:** **advisory:** Classify incoming unidentified deposits to candidate donors/funds; Draft gift-acceptance dossiers for complex assets; **autonomous:** Deterministic matching of rail evidence to intents (not AI); **prohibited:** Accepting gifts; Issuing or editing acknowledgments; Stating deductibility; **human_approval_boundary:** Any acceptance, acknowledgment issuance or correction requires an authorized human or a counsel-approved deterministic sponsor policy.
+- **UI / API / reporting:** Donor sees Received / Accepted / Acknowledged / Available as distinct labelled states with as-of time; Admin acceptance queue only for policy exceptions / Commands: RecordContributionIntent, RecordReceipt, DetermineCompletedGift, AcceptContribution, IssueAcknowledgment, VoidAcknowledgment; Events: ContributionReceived, CompletedGiftDetermined, ContributionAccepted, AcknowledgmentIssued, ContributionReturned; Idempotency: provider event ID for receipts; contribution ID + template version for acknowledgment; Errors: AcknowledgmentNotPermitted(reason), TemplateInvalid(missingElements) / Annual donor summary lists only acknowledged, non-returned contributions with counsel-approved disclosures; Schedule D contribution totals source data
+- **Regulatory:** IRC 170(f)(8) and 170(f)(18) (statute): counsel to approve template and timing; Completed-gift date per rail: needs counsel
+- **Dependencies:** UNB-RCN-FIN-001; UNB-RCN-FIN-012; REQ-X-009; OD-04 · **Findings:** RCF-FIN-001; RCF-FIN-002; RCF-FIN-020; RCF-REG-004
+- **Assumptions / alternatives / tradeoffs:** Completed-gift rules per rail will be supplied by counsel / Acknowledge at receipt and void on return (rejected: creates defective records) / Donors wait longer for acknowledgments on reversible rails
+- **Evidence:** requirements/FULL-ACCOUNTING-SYSTEM.md:15; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:4; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:5; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:6; daf-landscape:docs/recurring-contributions-decision-record-v0.1.md; requirements/reconciliation/2026-11-23/data/regulatory-obligations.csv:10; requirements/reconciliation/2026-11-23/data/regulatory-obligations.csv:11
+- **Acceptance criteria:**
+  - **AC-1** Given an ACH contribution received but within the return window and no provisional policy; when IssueAcknowledgment is called; then the command is rejected with AcknowledgmentNotPermitted(NotFinal) unless sponsor policy defines ACH completed-gift at receipt, and no document is produced.
+  - **AC-2** Given a sponsor template lacking the exclusive-legal-control element; when IssueAcknowledgment runs; then issuance is blocked and an exception case is opened.
+  - **AC-3** Given an acknowledged ACH contribution that returns R10; when the return is recorded; then a ReturnedContributionExposure fact and an acknowledgment correction task are created and the original acknowledgment remains retrievable.
+  - **AC-4** Given Donor declares 1,000 shares; custodian delivers 600; when the feed is processed; then contribution PartiallyReceived; 600 shares Received; no acknowledgment issued; fund grantable balance unchanged until acceptance and settlement policy satisfied.
+  - **AC-5** Given The same custodian receipt message delivered twice; when both are processed; then one Received event; second recorded as duplicate; one journal entry.
+  - **AC-6** Given A cash contribution of $300; when acknowledgment is issued; then document states amount, 'no goods or services were provided' (or estimate), and the exclusive-legal-control statement.
+  - **AC-7** Given Section B property received on 2026-03-01 and sold 2027-02-01; when the sale settles; then a Form8282Due obligation exists with due date 2027-06-06 and donor-copy task.
+
+### RR-UNB-ACC-002-r1 — refines `UNB-ACC-002`
+- **Source:** `requirements/FULL-ACCOUNTING-SYSTEM.md:11` @ `777a70d` · domain FIN · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** - **UNB-ACC-002:** All accounting postings SHALL be double-entry, balanced by defined accounting entity and currency/measurement rules, with immutable journal headers/lines, unique posting IDs, effective dates, recorded dates, authorizers and provenance.
+- **Refined statement:** Every posted journal MUST balance (sum of debits = sum of credits, in exact decimal) separately for each combination of accounting entity, transaction currency and every balancing segment declared in the posting policy; fund and restriction MUST be declared balancing segments for DAF books. A journal failing any check MUST be rejected, not posted.
+- **Business objective:** Make per-fund and per-restriction balances provably correct, not only entity totals.
+- **Reason for change:** The illustrative successor transfer passes entity-level balancing but is unbalanced per fund (RCF-FIN-010).
+- **Processing rules:** Group lines by (entity, currency, each balancing segment); each group must net to zero; Reject lines with both debit and credit, negative amounts, or missing required dimensions; Cross-fund transfers must use net-asset transfer or 3900 clearing lines so each fund group balances; 3900 must net to zero per entity and currency; Multicurrency events post separate balanced currency groups linked by an FX bridge
+- **Failure behaviour:** Reject with the failing group keys; no partial posting; Policy without declared segments => posting refused (fail closed)
+- **Security / audit:** Only the ledger component writes journals; no external caller posts unrestricted journals (UNB-ACC-023) / Rejections recorded with source event and failing groups
+- **Configuration:** Additional balancing segments (e.g., program) per sponsor policy; not configurable: fund and restriction as balancing segments; exact decimal arithmetic
+- **AI assistance:** **advisory:** Draft journals and explain rejections; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Posting or overriding balance checks; **human_approval_boundary:** AI drafts only; posting is deterministic and authorized.
+- **UI / API / reporting:** Journal detail shows per-fund balance check results / Command: PostJournal(idempotencyKey); Error: Unbalanced{groups:[{entity,currency,fund,restriction,difference}]}; Idempotent on idempotencyKey + request hash / Per-fund trial balance report; 3900 clearing proof
+- **Regulatory:** Net asset classification per ASC 958 requires CPA review (accounting standard, not law)
+- **Dependencies:** ACC-MDL-003; UNB-RCN-FIN-006 · **Findings:** RCF-FIN-010; RCF-FIN-011; RCF-FIN-026
+- **Assumptions / alternatives / tradeoffs:** Sponsor CPA accepts self-balancing fund segments / Entity-level balancing plus a separate fund subledger reconciliation (weaker: detects after the fact) / More lines per transfer journal
+- **Evidence:** requirements/FULL-ACCOUNTING-SYSTEM.md:11; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:11; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:66; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:71; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:90
+- **Acceptance criteria:**
+  - **AC-1** Given a journal Dr 1030 fund S 5000 / Cr 1030 fund O 5000; when PostJournal is called; then it is rejected as Unbalanced for groups (fund S, +5000) and (fund O, -5000).
+  - **AC-2** Given a transfer with Dr 3900 O / Cr 1030 O and Dr 1030 S / Cr 3900 S, 5000 each; when PostJournal is called; then it posts and 3900 nets to zero.
+  - **AC-3** Given a USD/EUR journal that nets to zero numerically across currencies; when PostJournal is called; then it is rejected per currency group.
+
+### RR-UNB-ACC-026-r1 — supersedes `UNB-ACC-026`
+- **Source:** `requirements/FULL-ACCOUNTING-SYSTEM.md:35` @ `777a70d` · domain FIN · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** - **UNB-ACC-026:** Strata integration SHALL preserve immutable posting, correction links, temporal queries, tenant isolation, replay-safe projections and integrity checks; gaps in verified Strata functionality are blockers or require governed companion components.
+- **Refined statement:** The ledger component MUST provide immutable posting, correction links, bitemporal (effective and recorded) queries, tenant isolation, replay-safe projections and integrity checkpoints on the approved PostgreSQL persistence. Strata MAY be used only for declarative schema management of these stores, and its deployment MUST refuse destructive changes (drop, truncate, type narrowing, removal of append-only triggers or privilege revocations) to ledger tables. No requirement may claim these guarantees come from Strata.
+- **Business objective:** Make the accounting persistence guarantees implementable and testable with verified technology.
+- **Reason for change:** Strata is a schema management tool; the original requirement assigns event-store and ledger guarantees to it (RCF-FIN-009).
+- **Processing rules:** Operational roles have INSERT and SELECT only on journal and event tables; UPDATE, DELETE and TRUNCATE are revoked; Each journal batch carries a hash linking to the prior checkpoint; Recorded time is assigned by the database, not the caller; Schema deployments are diffed; destructive diffs against ledger tables are refused unless a separately approved migration plan exists
+- **Failure behaviour:** Integrity mismatch => halt trusted projections and open an incident (UNB-IMM-007); Destructive schema diff => deployment refused
+- **Security / audit:** Separate migration role from runtime roles; Tenant isolation by schema/database per partner profile / Schema deployment records with diff and approver; Integrity check results retained
+- **Configuration:** not configurable: append-only guarantees
+- **AI assistance:** **advisory:** Explain integrity failures; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Running migrations; Altering privileges; **human_approval_boundary:** Schema changes to ledger stores require architecture owner approval.
+- **UI / API / reporting:** not applicable: infrastructure requirement / Query: GetJournal(asOfEffective, asOfRecorded); Event: IntegrityCheckFailed / Integrity verification report per close
+- **Regulatory:** not applicable: architecture
+- **Dependencies:** UNB-PLAT-007; UNB-IMM-001; UNB-IMM-004; UNB-IMM-007 · **Findings:** RCF-FIN-009
+- **Assumptions / alternatives / tradeoffs:** PostgreSQL remains the persistence baseline (daf-landscape financial-core) / Adopt a dedicated event store (adds a component; not required by daf-landscape financial-core) / Ledger component owns more infrastructure code
+- **Evidence:** requirements/FULL-ACCOUNTING-SYSTEM.md:35; requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:11; requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:68; daf-landscape:docs/financial-core-control-spec-v0.5.md; /home/user/kemiller2002/strata README (schema management, pilot)
+- **Acceptance criteria:**
+  - **AC-1** Given a runtime role; when it issues UPDATE on a posted journal row; then the database rejects it and the row digest is unchanged.
+  - **AC-2** Given a schema change dropping the journal append trigger; when deployment runs; then the deploy is refused as destructive.
+  - **AC-3** Given a backdated correction recorded today; when the ledger is queried as known at yesterday; then the correction is absent.
+
+### RR-UNB-ACC-012-r1 — supersedes `UNB-ACC-012`
+- **Source:** `requirements/FULL-ACCOUNTING-SYSTEM.md:21` @ `777a70d` · domain FIN · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-ACC-012:** Support accounts payable, purchasing/expense approvals, vendor master controls, reimbursements, accruals, prepaid expenses and payment reconciliation for sponsor operations.
+- **Refined statement:** Unbound MUST NOT natively implement sponsor operating accounts payable, purchasing, vendor master, reimbursements or prepaid accounting in the initial scope. It MUST export balanced, summarized, dimension-complete journals for DAF program activity to the sponsor's system of record for operating finance, and reconcile the receiving control accounts. A native AP module MAY be added only by a recorded owner decision with a demonstrated outcome need.
+- **Business objective:** Keep the platform focused on DAF administration and avoid duplicating sponsor ERPs.
+- **Reason for change:** Operating AP/AR/payroll/budgeting is ERP scope, not a DAF administration outcome (RCF-FIN-008).
+- **Processing rules:** Export is idempotent per period and close version; Mapping must be total over posted accounts; unmapped accounts block export; Receiving totals must tie back per account and currency
+- **Failure behaviour:** ERP rejection => export stays Pending with case; never re-export a different version under the same key
+- **Security / audit:** Scoped credentials per sponsor; no cross-sponsor export / Export manifest, mapping version, tie-out evidence
+- **Configuration:** Sponsor: ERP target and mapping; Sponsor: summarization level
+- **AI assistance:** **advisory:** Propose chart mappings; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Approving mappings; **human_approval_boundary:** Mapping versions require Controller approval.
+- **UI / API / reporting:** Close command center shows export and tie-out status / Command: ExportPeriodJournals(period, closeVersion); Event: ErpExportReconciled; Error: UnmappedAccount / Export tie-out report
+- **Regulatory:** not applicable: scope decision
+- **Dependencies:** UNB-ACC-028; UNB-ACC-017 · **Findings:** RCF-FIN-008
+- **Assumptions / alternatives / tradeoffs:** Sponsors operate an ERP for operating finance / Native full ERP (original); Native GL only, no AP (partial) / Dependency on sponsor ERP integration quality
+- **Evidence:** requirements/FULL-ACCOUNTING-SYSTEM.md:5; requirements/FULL-ACCOUNTING-SYSTEM.md:21; requirements/FULL-ACCOUNTING-SYSTEM.md:79; requirements/FULL-ACCOUNTING-SYSTEM.md:82; daf-landscape:docs/financial-core-control-spec-v0.5.md
+- **Acceptance criteria:**
+  - **AC-1** Given a closed period with an unmapped account; when export runs; then export is blocked with UnmappedAccount.
+  - **AC-2** Given an export retried after timeout; when the same close version is exported again; then the ERP receives one logical export (same key) and totals tie once.
+
+### RR-UNB-GFUND-013-r1 — refines `UNB-GFUND-013`
+- **Source:** `requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:20` @ `777a70d` · domain FIN+GRT · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** - **UNB-GFUND-013:** Market value movement after recommendation SHALL not silently alter a fixed-dollar grant. Percentage-based grants require an explicit policy deciding whether the amount locks at recommendation, sponsor approval or execution, with clear preview and immutable snapshot.
+- **Refined statement:** Every grant amount mode MUST have exactly one FixingEvent at which it becomes a fixed currency amount: FixedAmount at recommendation; Percentage at the sponsor-configured fixing point (default: sponsor approval using the latest approved NAV/valuation snapshot); ResidualSweep and ProceedsLinked after the last relevant settlement. After fixing, the amount MUST NOT change; later valuation corrections MUST NOT re-fix it.
+- **Business objective:** Grant amounts are predictable and never silently move with markets.
+- **Reason for change:** Lock point left open; residual and proceeds-linked modes missing (RCF-FIN-022).
+- **Processing rules:** Preview amounts are labelled estimates with snapshot time; At FixingEvent: amount = round(rate x base(snapshot)) to minor units per rounding policy; Stale or provisional snapshot at fixing => hold with requote; FI-10: no re-fix on NAV restatement; (merged from GRT draft) A fixed-dollar grant amount MUST NOT change with market value. For percentage grants, the system MUST compute the amount from a base snapshot at the sponsor-configured lock point (Recommendation, Approval or Execution). The snapshot MUST include all reservations committed before it and exclude the grant's own reservation, and the snapshot and calculation MUST be stored immutably. If the base is stale beyond requote tolerance at the lock point, the grant MUST be held for requote.
+- **Failure behaviour:** Stale snapshot => GrantHeld(StaleValuation); Base unavailable => reject
+- **Security / audit:** Base inputs scoped to the fund; cross-tenant snapshot IDs denied / Snapshot ID, policy version, actor
+- **Configuration:** Sponsor: percentage fixing point (recommendation | approval | funding), owner sponsor grants policy (OD-07); not configurable: single fixing
+- **AI assistance:** **advisory:** Explain estimate differences; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Changing fixed amounts; **human_approval_boundary:** Amendments after fixing require sponsor approval.
+- **UI / API / reporting:** Show 'estimated now' vs 'fixed at approval' distinctly; distinguish percent of base from funding weights (UNB-GFUND-008) / Event: GrantAmountFixed; Error: StaleValuation, AlreadyFixed / Grant register shows fixing event and snapshot
+- **Regulatory:** not applicable
+- **Dependencies:** UNB-GFUND-001; UNB-GFUND-002; UNB-RCN-FIN-008 · **Findings:** RCF-FIN-022; RCF-GRT-016
+- **Assumptions / alternatives / tradeoffs:** Default fixing at approval subject to owner decision OD-07 / Fix at payment (exposes recipient to market moves) / Fund bears market risk between fixing and liquidation
+- **Evidence:** requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:20; requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:77; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:60; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:65
+- **Acceptance criteria:**
+  - **AC-1** Given a 5% grant previewed at $10,000; when NAV falls 3% before approval with fixing at approval; then the fixed amount is computed from the approval snapshot and the donor sees both values.
+  - **AC-2** Given a fixed grant; when a NAV restatement occurs after fixing; then the grant amount is unchanged and a NAV-error case is opened instead.
+  - **AC-3** Given a 100% closing grant; when approval occurs; then the amount remains unfixed until the last settlement and the grant is held in FundingPlanned.
+  - **AC-4** Given two simultaneous 50% grants of the available-to-recommend base; when both are approved; then the second is computed on the base net of the first's reservation, or retried.
+
+### RR-UNB-GFUND-021-r1 — refines `UNB-GFUND-021`
+- **Source:** `requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:28` @ `777a70d` · domain FIN · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-GFUND-021:** Prevent concurrent recommendations or liquidation requests from committing the same liquidity twice using controlled reservations, authorization and idempotency.
+- **Refined statement:** A grant reservation MUST be created only within one serializable transaction that computes reservable capacity from authoritative ledger, reservation and hold records for the fund and every constrained ancestor (pool cash buffer, custody account, legal entity, restricted sub-balance), acquiring locks in a deterministic order. Display projections MUST NOT be used for this check.
+- **Business objective:** No liquidity is committed twice.
+- **Reason for change:** Capacity defined as a projection; transactional check not mandated (RCF-FIN-015).
+- **Processing rules:** C(x,t) per ancestor computed in-transaction; amount <= min over ancestors of C; Same idempotency key and hash returns original result; different hash rejected
+- **Failure behaviour:** Lock timeout => retryable error, no partial reservation; Capacity failure => grant stays approved-pending-capacity or declined per OD-06
+- **Security / audit:** Fund and tenant scope on every ancestor read / Capacity inputs snapshot hash recorded with reservation
+- **Configuration:** not configurable: serialization; sponsor: OD-06 outcome on failure
+- **AI assistance:** **advisory:** Suggest alternative sources; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Creating or releasing reservations; **human_approval_boundary:** Reservations only via deterministic command after authorization.
+- **UI / API / reporting:** Truthful status when a concurrent grant consumed capacity / Command: ReserveGrantFunding; Errors: InsufficientCapacity, ConcurrencyConflict / Reservation register reconciled to capacity
+- **Regulatory:** not applicable
+- **Dependencies:** REQ-X-022; UNB-RCN-FIN-009 · **Findings:** RCF-FIN-015
+- **Assumptions / alternatives / tradeoffs:** Serializable or explicit row locking available in PostgreSQL / Optimistic projection with compensation (rejected: allows payment overcommit) / Contention on shared ancestors during surges
+- **Evidence:** requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:28; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:12; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:48; daf-landscape:docs/financial-core-control-spec-v0.5.md
+- **Acceptance criteria:**
+  - **AC-1** Given fund capacity $10,000 and two $6,000 approvals submitted concurrently; when both reservations execute; then exactly one succeeds and the other returns InsufficientCapacity.
+  - **AC-2** Given two funds sharing a pool cash buffer of $5,000 paying ahead of redemption; when each reserves $4,000 against the buffer; then the second fails at the pool ancestor.
+
+### RR-UNB-NAV-033-r1 — refines `UNB-NAV-033`
+- **Source:** `requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:46` @ `777a70d` · domain FIN · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** - **UNB-NAV-033:** Accrue liabilities before NAV strike when required by approved policy; ensure fees are not charged twice at pool and DAF levels.
+- **Refined statement:** Every fee accrual MUST be computed from a declared FeeBase contract recording: measurement basis (average daily balance or point-in-time), period, included and excluded components, NAV/valuation version, tier method (marginal or whole-balance), minimum and waiver rules, and fee recipient type. The base MUST exclude accrued unpaid fees and any fee already embedded in a pool NAV for the same service; a DAF-level fee and a pool-level fee for the same service MUST NOT both accrue.
+- **Business objective:** Fees are correct, disclosed, recomputable and never charged on fees or twice.
+- **Reason for change:** Fee base undefined (RCF-FIN-013).
+- **Processing rules:** base = basis(valuations net of accrued fees, excluding configured components); fee = tiers(base) per tier method; apply minimum and waivers; Duplicate-service check across pool and DAF levels; Accrual reduces capacity when accrued (FI-25); Restated NAV => current-period adjustment with effective date (FI-27)
+- **Failure behaviour:** Missing or stale valuation => accrual held; Fee exceeding available value => apply OD-10 priority policy; never silent negative balance
+- **Security / audit:** Fee schedule edits require approval separate from author / Full calculation trace stored
+- **Configuration:** Sponsor: basis, tiers, minimums, waivers, recipient (owner sponsor CFO); not configurable: no fee-on-fee; no duplicate service charge
+- **AI assistance:** **advisory:** Flag anomalous fee changes; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Changing schedules or waiving fees; **human_approval_boundary:** Waivers and schedule changes need authorized humans.
+- **UI / API / reporting:** Fund statement shows fee basis and method / Query: ExplainFee(feeId); Error: DuplicateServiceFee, FeeBaseUnavailable / Fee disclosure report; fee reasonableness (CTL-025)
+- **Regulatory:** Fee disclosure obligations per sponsor agreements; needs counsel for related-party fees
+- **Dependencies:** UNB-RCN-FIN-005; UNB-ACC-010; OD-10 · **Findings:** RCF-FIN-012; RCF-FIN-013
+- **Assumptions / alternatives / tradeoffs:** Tier example uses the daf-landscape published-schedule shape (fee scenarios: $600,000 -> $3,300) / Fees on gross NAV (rejected: fee-on-fee) / Daily valuation storage required
+- **Evidence:** requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:46; daf-landscape:research/batch-1b-sponsor-financial-flows-2026-11-12.md:14; daf-landscape:research/batch-1d-vanguard-npt-dafgiving360-fee-audit-2026-11-12.md:12; daf-landscape:data/daf-admin-fee-scenarios-2026.csv; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:90
+- **Acceptance criteria:**
+  - **AC-1** Given a pool NAV that embeds a 0.60% sponsor admin fee and a DAF-level 0.60% sponsor admin fee configured; when accrual runs; then the DAF-level accrual is rejected as DuplicateServiceFee.
+  - **AC-2** Given a fund with $100,000 average daily balance and $50 accrued unpaid fee; when monthly accrual runs; then the base excludes the $50.
+  - **AC-3** Given marginal tiers 0.60% to $500k then 0.30%; when the base is $600,000 for a year; then the annual fee is $3,300.
+
+### RR-UNB-INV-002-r1 — refines `UNB-INV-002`
+- **Source:** `requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:9` @ `777a70d` · domain FIN · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-INV-002:** Support a DAF mapped to one or many segregated custody accounts, and one custody account supporting multiple DAFs via explicitly governed omnibus allocation.
+- **Refined statement:** Each custody account that supports more than one DAF MUST declare one attribution method, either PerFundLotSubAccounting (every position lot carries exactly one fund owner) or Unitized (governed by UNB-NAV rules). For PerFundLotSubAccounting, income, corporate actions and realized results MUST follow lot ownership, and the sum of fund-owned lots MUST equal the custodian position after known in-transit items.
+- **Business objective:** Correct attribution of investment results across donors' funds in shared accounts.
+- **Reason for change:** Omnibus allocation method unspecified (RCF-FIN-016).
+- **Processing rules:** Undeclared or mixed method => account cannot accept multi-fund allocations; Dividends attributed to lots held on record date; Unallocatable residuals post to an explicit residual account with owner
+- **Failure behaviour:** Mismatch => break case; affected funds' capacity limited to the explained portion (FI-29)
+- **Security / audit:** Fund lots visible only within sponsor scope / Attribution method version and change approvals
+- **Configuration:** Sponsor: method per account (owner investment committee); not configurable: single declared method per account
+- **AI assistance:** **advisory:** Explain breaks; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Reallocating lots; **human_approval_boundary:** Lot reallocation is an authorized correction.
+- **UI / API / reporting:** Fund holdings show attribution method / Command: DeclareAttributionMethod; Error: AttributionMethodUndeclared / Omnibus attribution reconciliation
+- **Regulatory:** not applicable
+- **Dependencies:** UNB-INV-026; UNB-RCN-FIN-007 · **Findings:** RCF-FIN-016; RCF-FIN-017
+- **Assumptions / alternatives / tradeoffs:** Custodian reports record-date positions / Pro-rata by period-end balance (rejected: misattributes timing) / Lot-level storage volume
+- **Evidence:** requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:9; requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:61; research/daf-theoretical-enterprise-validation/19-questions/DAF-FUND-ACCOUNTING-AUM-VALUATION-AND-RECONCILIATION-2026-11-23.md:88
+- **Acceptance criteria:**
+  - **AC-1** Given an omnibus account with lot sub-accounting holding 100 shares split 60/40; when a $1.00/share dividend is received; then funds receive $60 and $40.
+  - **AC-2** Given an account with no declared method; when a second fund allocation is attempted; then it is rejected.
+
+### RR-UNB-ACC-018-r1 — refines `UNB-ACC-018`
+- **Source:** `requirements/FULL-ACCOUNTING-SYSTEM.md:27` @ `777a70d` · domain FIN · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** - **UNB-ACC-018:** Reconcile GL and subledgers to independent bank, custodian, payment-rail, investment and partner statements, with aged breaks, ownership, evidence and escalation.
+- **Refined statement:** Reconciliation differences MUST be classified against three versioned thresholds per reconciliation class and scope: RoundingTolerance (auto-clear with evidence), Materiality (blocks close certification, NAV publication and new reservations for the affected scope only), and an AgingLimit for unexplained immaterial differences (escalate on expiry regardless of amount). Loosening any threshold MUST require a second approver.
+- **Business objective:** Close completes on time without certifying unexplained material differences.
+- **Reason for change:** Inconsistent blocking rules and ownerless thresholds (RCF-FIN-018).
+- **Processing rules:** Difference = authoritative - external per declared field source (FI-29); |d| <= tolerance and explained => cleared; |d| > materiality => block scope; unexplained and age > AgingLimit => escalate; Unknown evidence is never zero
+- **Failure behaviour:** Missing source => Unknown => close blocked for scope
+- **Security / audit:** Preparer cannot approve own exception resolution / Threshold version, evidence, resolver
+- **Configuration:** Sponsor: thresholds per class (owner Controller; loosening requires second approver)
+- **AI assistance:** **advisory:** Investigate and propose explanations with citations; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Clearing material or unexplained breaks; **human_approval_boundary:** Material and aged breaks require an authorized human.
+- **UI / API / reporting:** Break list by scope with aging / Event: BreakDetected, BreakCleared; Error: ThresholdChangeRequiresSecondApprover / Aged break report
+- **Regulatory:** Auditor expectations (best practice, not law)
+- **Dependencies:** ACC-MDL-009; UNB-NAV-007; REQ-X-040 · **Findings:** RCF-FIN-018; RCF-FIN-019
+- **Assumptions / alternatives / tradeoffs:** Threshold values supplied by sponsor Controller / Zero tolerance (paralysis) / Governance overhead for thresholds
+- **Evidence:** requirements/FULL-ACCOUNTING-SYSTEM.md:27; requirements/accounting/CANONICAL-CHART-AND-POSTING-RULES.md:17; requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:14; research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:386; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:99
+- **Acceptance criteria:**
+  - **AC-1** Given a $0.37 explained rounding difference under a $1 tolerance; when reconciliation runs; then it auto-clears with evidence.
+  - **AC-2** Given a $0.37 unexplained difference older than the aging limit; when the aging check runs; then an escalation case opens though the close is not blocked.
+  - **AC-3** Given a $25,000 custody cash difference above materiality; when close certification is attempted; then certification is denied for the affected sponsor scope.
+
+### RR-UNB-INV-012-r1 — refines `UNB-INV-012`
+- **Source:** `requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:19` @ `777a70d` · domain FIN · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-INV-012:** Support in-kind contribution and in-kind transfer workflows, including asset acceptance, restrictions, valuation, liquidation policy and custody settlement.
+- **Refined statement:** In-kind contribution workflows MUST, before acceptance of a non-publicly-traded or complex asset, record: asset classification, completed-gift rule, gift-acceptance decision, excess-business-holdings test result (UNB-RCN-FIN-004), Form 8283 Section B donee-signature task where requested, and liquidation policy. Any disposition of property for which the sponsor signed a Form 8283 Section B MUST create a Form 8282 obligation record with deadline unless a counsel-approved exception applies.
+- **Business objective:** Accept complex gifts lawfully, with donee reporting obligations met.
+- **Reason for change:** 8283/8282 and 4943(e) absent from requirements (RCF-FIN-003, RCF-FIN-005).
+- **Processing rules:** Acceptance blocked until EBH test recorded; 8283 signature acknowledges receipt only; no value attestation; Disposition within the statutory window => 8282 obligation with due date (counsel-supplied rule); Liquidation proceeds alone fund grants (FI-24)
+- **Failure behaviour:** Missing EBH data => hold; Overdue 8282 => escalation to tax compliance
+- **Security / audit:** Restricted access to donor financial documents / All decisions and filings with receipts
+- **Configuration:** Sponsor: accepted asset classes, committee thresholds (CTL-021); not configurable: obligation creation on qualifying disposition
+- **AI assistance:** **advisory:** Summarize asset dossiers and flag risks (UBIT, debt, prearranged sale); **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Accepting assets; Determining filing exceptions; **human_approval_boundary:** Acceptance and filing exception decisions are human (counsel/tax).
+- **UI / API / reporting:** Tax compliance obligation queue only for created obligations / Events: Form8283Signed, AssetDisposed, Form8282ObligationCreated, Form8282Filed / Open 8282 obligations; Schedule D/990 noncash support
+- **Regulatory:** IRC 6050L / Form 8282 (statute and IRS guidance); IRC 170(f)(11) / Form 8283 (statute, guidance); IRC 4943(e) (statute): counsel to set limits
+- **Dependencies:** UNB-RCN-FIN-002; UNB-RCN-FIN-003; UNB-RCN-FIN-004; REQ-X-059 · **Findings:** RCF-FIN-003; RCF-FIN-004; RCF-FIN-005; RCF-FIN-007
+- **Assumptions / alternatives / tradeoffs:** Counsel supplies exception tables and limits / Manual tracking outside the platform / More acceptance-time data collection
+- **Evidence:** requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:19; research/daf-theoretical-enterprise-validation/19-questions/COMPLEX-CONTRIBUTIONS-GIFT-ACCEPTANCE-AND-LIQUIDATION-2026-11-23.md:10; research/daf-theoretical-enterprise-validation/19-questions/COMPLEX-CONTRIBUTIONS-GIFT-ACCEPTANCE-AND-LIQUIDATION-2026-11-23.md:13; requirements/DAF-LANDSCAPE-CONVERSION-WAVE-04.md:102; requirements/DAF-LANDSCAPE-CONVERSION-WAVE-04.md:103; requirements/reconciliation/2026-11-23/data/regulatory-obligations.csv:8; requirements/reconciliation/2026-11-23/data/regulatory-obligations.csv:13; requirements/reconciliation/2026-11-23/data/regulatory-obligations.csv:14
+- **Acceptance criteria:**
+  - **AC-1** Given closely held shares accepted with sponsor-signed 8283 Section B; when the shares are sold 14 months later; then an 8282 obligation is created with a due date per the counsel rule table.
+  - **AC-2** Given a gift of business interest where donor relatives hold related interests; when acceptance is attempted without an EBH test; then acceptance is blocked.
+
+### RR-REQ-X-009-r1 — refines `REQ-X-009`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:105` @ `777a70d` · domain FIN · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Normative proposed requirement:** Rail-specific receipt, provisional availability, acknowledgment and finality remain distinct; returned funds trigger receivable, sponsor exposure and recovery classification without erasing disbursements.
+- **Refined statement:** When a contribution that contributed to capacity is returned or reversed, Unbound MUST record a ReturnedContributionExposure fact linked to the original receipt, reduce capacity immediately, preserve all downstream disbursements, and post entries selected by the CPA-approved returned-contribution policy; it MUST NOT presume a donor receivable unless counsel has confirmed an enforceable claim for that rail and case.
+- **Business objective:** Correct exposure and loss attribution without fictitious receivables or erased history.
+- **Reason for change:** 'Receivable' conflicts with REQ-X-084 example and presumes legal claim (RCF-FIN-020).
+- **Processing rules:** Capacity reduced by returned amount at recording; If capacity < 0, fund over-committed: block new reservations; loss-bearer per OD-20; Units issued against the contribution cancelled per policy; NAV differential absorbed per policy (FI-23); Acknowledgment correction task if acknowledged
+- **Failure behaviour:** Duplicate return evidence => idempotent no-op
+- **Security / audit:** Write-off requires second approver (CTL-016) / Links original, return, disbursements
+- **Configuration:** Sponsor: posting policy and loss-bearer (OD-20); not configurable: no erasure
+- **AI assistance:** **advisory:** Draft recovery communications for review; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Contacting donors about debts; Writing off; **human_approval_boundary:** Recovery actions and write-offs require humans.
+- **UI / API / reporting:** Fund shows exposure, not negative cash / Event: ContributionReturned; Error: DuplicateReturn / Exposure aging
+- **Regulatory:** Completed gift and claim against donor: needs counsel; NACHA return rules (private rules)
+- **Dependencies:** OD-04; OD-20; UNB-ACC-006 · **Findings:** RCF-FIN-020
+- **Assumptions / alternatives / tradeoffs:** not applicable: no additional assumptions / Always receivable (rejected) / Policy step per sponsor
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:105; research/daf-theoretical-enterprise-validation/19-questions/ILLUSTRATIVE-FUND-ACCOUNTING-JOURNAL-CONTRACTS-AND-REVERSALS-2026-11-23.md:14; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:6; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:83
+- **Acceptance criteria:**
+  - **AC-1** Given a $1,000 ACH funded a reserved $800 grant then returned; when the return is recorded; then capacity becomes -$800 equivalent exposure, new reservations block, the grant payment record is preserved and a case opens.
+
+### RR-UNB-CUST-015-r1 — refines `UNB-CUST-015`
+- **Source:** `requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:30` @ `777a70d` · domain FIN · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-CUST-015:** Model liquidity and unsettled proceeds separately from settled spendable cash; grant approval and payment gating must account for market movement, restrictions and settlement risk.
+- **Refined statement:** A grant MUST NOT reach PaymentInstructionAuthorized unless the grant is Funded: settled, unencumbered cash equal to the fixed amount is allocated to it in the paying account. Liquidation-dependent grants MUST pass through FundingPlanned and LiquidationPending, and enter FundingShortfall when a source cannot deliver. A sponsor-approved liquidity advance MAY fund a grant before redemption settles only if recorded as an interfund receivable within an approved limit.
+- **Business objective:** No payment is made from cash that belongs to other funds or does not exist.
+- **Reason for change:** Missing funding states (RCF-FIN-014; TVF-001 open).
+- **Processing rules:** Funded requires settled cash allocation; Advances require limit check and interfund receivable posting; Shortfall => re-plan within donor preferences or hold (FI-13)
+- **Failure behaviour:** Gate or suspension => FundingShortfall case
+- **Security / audit:** Advance approval separate from payment release / Funding evidence per grant
+- **Configuration:** Sponsor: advance policy and limit (owner sponsor treasurer)
+- **AI assistance:** **advisory:** Propose funding plans; **autonomous:** not applicable: no autonomous AI action permitted; **prohibited:** Approving advances; **human_approval_boundary:** Advances require sponsor treasury approval.
+- **UI / API / reporting:** Grant shows funding progress distinct from payment / Events: FundingPlanned, LiquidationPending, GrantFunded, FundingShortfall / Unfunded approved grants aging
+- **Regulatory:** not applicable
+- **Dependencies:** UNB-RCN-FIN-008; UNB-GFUND-014 · **Findings:** RCF-FIN-014
+- **Assumptions / alternatives / tradeoffs:** not applicable: no additional assumptions / Pay from buffer without accounting (rejected: cross-subsidy, TVF-073) / Slower payment for liquidation-dependent grants
+- **Evidence:** requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:30; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:12; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:13; research/daf-theoretical-enterprise-validation/07-financial-invariants/financial-invariants.md:63
+- **Acceptance criteria:**
+  - **AC-1** Given a $10,000 grant from a fund with only pool units; when payment authorization is requested before redemption settles; then authorization is refused with NotFunded.
+  - **AC-2** Given a pool redemption gate; when the funding source cannot deliver; then the grant enters FundingShortfall and a sponsor decision case opens.
+
+### RR-UNB-PLAT-008-r1 — refines `UNB-PLAT-008`
+- **Source:** `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:12` @ `777a70d` · domain PLT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-PLAT-008:** Partner data isolation SHALL support separate schemas, separate databases and dedicated infrastructure, selected per partner; all shared services must preserve tenant boundaries.
+- **Refined statement:** Unbound MUST isolate each tenant's authoritative and derived data by binding every data access to exactly one VerifiedTenantContext. The platform MUST support Profile B (dedicated database per tenant on shared managed infrastructure) as the default. Profile A (schema per tenant in a shared database) and Profile C (dedicated deployment cell) MAY be activated per tenant only after an approved TenantIsolationDecision citing a contractual or regulatory requirement and a passing isolation test suite for that profile. All profiles MUST run the identical release of the same codebase.
+- **Business objective:** Give partners verifiable data segregation without multiplying architectures before evidence of need.
+- **Reason for change:** Three mandatory concurrent profiles conflict with one-system invariant and add untested surface without evidence of need.
+- **Processing rules:** Default profile = B unless an approved TenantIsolationDecision selects A or C.; Profile activation requires: approved decision, provisioned stores, passing per-profile isolation suite, recorded binding generation.; Every connection lease is obtained from the TenantConnectionBroker using VerifiedTenantContext; application code never receives connection strings, schema or database names.; Shared services (charity registry, identity, telemetry, model services) are classified per UNB-TEN-007; any read of tenant-classified data from a shared service requires the caller's VerifiedTenantContext.; A tenant binding change (profile migration) follows UNB-TEN-013 single-writer fencing.; (integration note) The tenant for Profile B is the legal sponsor, not the distribution partner; partners of one sponsor get separate schemas inside that sponsor's database, so sponsor-level transactions stay atomic. Resolved by the integrating reviewer to remove the conflict with RCF-PLT-003; pending RCD-004.
+- **Failure behaviour:** Broker cannot resolve binding -> request fails closed with error TENANT_BINDING_UNAVAILABLE; no fallback to default schema; Per-profile isolation suite fails -> profile activation blocked
+- **Security / audit:** Per-tenant database roles with least privilege; no shared superuser in application path; Separate encryption keys per tenant for Profiles B and C; Break-glass access time-limited and dual-approved (scenario 4) / TenantIsolationDecision, binding generations and broker lease grants are append-only audit events with principal, tenant, profile and generation
+- **Configuration:** Isolation profile per tenant: B default; A or C only via approved decision (owner: Architecture owner + Security lead); Key management mode per tenant where contract requires (owner: Security lead)
+- **AI assistance:** **advisory:** Summarise contractual isolation clauses and propose a profile with cited clauses; **autonomous:** —; **prohibited:** Select or change a tenant's isolation profile; Read cross-tenant data to construct context; **human_approval_boundary:** Profile selection and activation require human approval by Architecture owner and Security lead.
+- **UI / API / reporting:** Partner admin console shows active isolation profile and last isolation test date (read-only) / Command ProposeTenantIsolationProfile; command ApproveTenantIsolationDecision (dual approval); query GetTenantIsolationStatus; event TenantIsolationProfileActivated; idempotency on decision ID; errors TENANT_BINDING_UNAVAILABLE, PROFILE_NOT_ACTIVATED / Isolation profile register per tenant with history (UNB-TEN-017)
+- **Regulatory:** Needs counsel: whether any target partner's regulator requires dedicated infrastructure; Data processing agreements must state the profile
+- **Dependencies:** REQ-X-057; UNB-RCN-PLT-001; UNB-TEN-001; UNB-TEN-004; UNB-TEN-007; UNB-TEN-013; UNB-TEN-018 · **Findings:** RCF-PLT-001; RCF-PLT-006
+- **Assumptions / alternatives / tradeoffs:** Managed PostgreSQL or equivalent supports database-per-tenant at expected tenant counts (to be benchmarked per UNB-TEN-018) / All three profiles mandatory (current); Single shared schema with row-level security; Profile C only / Profile B costs more per small tenant than A; Deferring A/C may delay a deal requiring them
+- **Evidence:** requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:12; requirements/PARTNER-SEGREGATION-AND-TENANCY.md:5; requirements/PARTNER-SEGREGATION-AND-TENANCY.md:11; requirements/PARTNER-SEGREGATION-AND-TENANCY.md:38; research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:520
+- **Acceptance criteria:**
+  - **AC-1** Given tenant T has no approved decision; when T is provisioned; then T is placed in Profile B.
+  - **AC-2** Given an approved decision selects Profile A for T and the Profile A isolation suite has failed; when activation is attempted; then activation is rejected and no binding generation is created.
+  - **AC-3** Given a principal entitled only to tenant T1; when it issues any query with a forged tenant hint for T2; then the broker binds T1 or denies; zero T2 rows are returned and a denial event is logged.
+  - **AC-4** Given tenants in Profiles B and C; when a release is deployed; then both cells report the same release version before traffic resumes.
+
+### RR-UNB-TEN-004-r1 — refines `UNB-TEN-004`
+- **Source:** `requirements/PARTNER-SEGREGATION-AND-TENANCY.md:13` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-TEN-004:** Tenant routing SHALL derive from verified identity and authorized tenancy context, never a client-supplied schema/database name or unverified header. Use an independently tested routing and connection-broker boundary.
+- **Refined statement:** The TenantConnectionBroker MUST derive the tenant for every request from the authenticated principal's server-held entitlement set. A client MAY submit an opaque tenant selection token only if it was issued by the server from that entitlement set for the current session; the broker MUST revalidate membership and delegation validity on every request and MUST ignore any schema, database, host or raw tenant identifier supplied by a client, partner API, widget host or AI agent.
+- **Business objective:** Prevent cross-tenant access through routing manipulation while supporting users entitled to several tenants.
+- **Reason for change:** Original forbids client hints but multi-tenant users need a safe selection mechanism.
+- **Processing rules:** If entitlement set has one tenant, use it; ignore any client tenant hint.; If several, require a selection token minted by the server for this session; reject absent/foreign tokens with TENANT_SELECTION_REQUIRED.; Resolve the requested resource's owning tenant; if it differs from the selected tenant, deny with RESOURCE_NOT_FOUND (no existence leak).; Re-check delegation validity (not expired/revoked) at each request.; Agents inherit the initiating principal's selected tenant; delegation never widens it.
+- **Failure behaviour:** Revoked entitlement mid-session -> next request denied, session tenant selection cleared; Broker unavailable -> fail closed
+- **Security / audit:** Selection tokens are signed, session-bound, short-lived; No tenant identifiers in URLs beyond opaque resource IDs / Every tenant selection, switch and denial logged with principal, tenant, session and reason
+- **Configuration:** not configurable: security invariant
+- **AI assistance:** **advisory:** —; **autonomous:** —; **prohibited:** Choosing or changing tenant context; Supplying tenant hints; **human_approval_boundary:** Not applicable: no approval path; routing is deterministic.
+- **UI / API / reporting:** Global context selector (INT-001) shows only entitled tenants; switching clears prior tenant data before loading new data / Query ListMyTenants; command SelectTenant (returns token); errors TENANT_SELECTION_REQUIRED, RESOURCE_NOT_FOUND; idempotent SelectTenant per session / Denied cross-tenant attempts reported to security monitoring
+- **Regulatory:** not applicable: security design, no regulatory determination
+- **Dependencies:** UNB-TEN-001; UNB-TEN-020; INT-001; UNB-AI-STD-001 · **Findings:** RCF-PLT-044
+- **Assumptions / alternatives / tradeoffs:** Entitlements are authoritative in the platform, not only in partner identity providers / Separate login per tenant; Subdomain per tenant / Extra round trip on tenant switch
+- **Evidence:** requirements/PARTNER-SEGREGATION-AND-TENANCY.md:13; requirements/PARTNER-SEGREGATION-AND-TENANCY.md:29; requirements/ui/DETAILED-FORMA-SCREEN-CONTRACTS-WAVE-01.md:118
+- **Acceptance criteria:**
+  - **AC-1** Given advisor A entitled to tenants T1 and T2 with T1 selected; when A requests a T2 fund by ID; then response is RESOURCE_NOT_FOUND and a denial event is recorded.
+  - **AC-2** Given a request carries header X-Tenant: T2 and schema hint 'partner_b'; when the principal is entitled only to T1; then the hints are ignored and the request executes in T1 or is denied.
+  - **AC-3** Given A's delegation for T2 is revoked; when A sends the next request with a valid T2 selection token; then the request is denied and the token invalidated.
+
+### RR-REQ-X-057-r1 — refines `REQ-X-057`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:520` @ `777a70d` · domain PLT+ENT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Owner decision:** Unbound MUST remain one component monolith with one authoritative fund accounting/ledger core, sponsor-scoped policy and delegated authority, shared work orchestration, typed provider integration/evidence, semantic reporting, document/communication lifecycle, AI assistance contracts and reusable UI design system. Institutional sponsor SaaS, outsourced administration, turnkey sponsor partnership, digital donor channels, advisor programs, nonprofit-facing experiences and embedded giving MUST reuse these core domain commands and records. Differences are expressed through declarative configuration, legal/contractual role boundaries, permitted adapters and persona-specific views, not cloned products, separate financial state machines or microservices. Preserve legal sponsor asset separation and tenant isolation; the previously specified protective-only DR exception cannot…
+- **Refined statement:** Unbound MUST be one codebase implementing one domain model, one ledger and policy engine, one authorization model and one case model, released as one version to every deployment cell. A deployment cell is a running instance of that release with its tenant-bound authoritative stores. Operating models MUST differ only by declarative configuration, role assignments, adapters and view composition. Cross-cell interactions (shared charity facts, global holds, sponsor-level consolidation) MUST use versioned inter-cell contracts with idempotency and reconciliation; no cell may hold a second authoritative copy of another cell's financial state.
+- **Business objective:** Keep one coherent product while allowing physically separated tenant cells.
+- **Reason for change:** Make the invariant compatible with tenant isolation by defining 'one system' precisely.
+- **Processing rules:** Release promotion requires all active cells to run the same version within a defined window (parameter: max version skew, owner Architecture owner).; A feature flag may vary by tenant; code paths may not fork by operating model.; Global reference data is owned by one cell or shared service and consumed via versioned feed.; A proposal for a second ledger, policy engine or queue is rejected unless an approved ADR establishes a protective-only exception.; (merged from ENT draft) Unbound MUST be built as one codebase and one domain model, released on one release train. It MUST have exactly one authoritative implementation each of: the ledger contract, policy engine, identity/delegation framework, work orchestration, provider-integration framework, reporting semantics and document lifecycle. It MAY be deployed as multiple isolated instances to meet the tenancy profiles in UNB-TEN-002. Within any instance, each legal sponsor has exactly one authoritative ledger. Differences between service or channel models MUST be expressed only through versioned configuration, role relationships, adapters and views. Forks, per-channel financial state machines and shadow balances are prohibited.
+- **Failure behaviour:** Version skew beyond window -> new commands that depend on changed contracts are refused in the lagging cell
+- **Security / audit:** Inter-cell messages authenticated and tenant-scoped / Release version and configuration version recorded on every authoritative event
+- **Configuration:** Max version skew window (owner: Architecture owner); Operating-model configuration per sponsor (owner: Sponsor governance within platform limits)
+- **AI assistance:** **advisory:** Detect configuration that implies a fork and propose declarative alternative; **autonomous:** —; **prohibited:** Approving architecture exceptions; **human_approval_boundary:** Architecture exceptions require Architecture owner ADR approval.
+- **UI / API / reporting:** Persona-specific views composed from shared components; no product-specific shells with separate state / Inter-cell contracts versioned like public APIs; events CellReleaseUpgraded / Cell/version inventory report
+- **Regulatory:** not applicable: architectural
+- **Dependencies:** UNB-PLAT-008; REQ-X-020; REQ-X-021 · **Findings:** RCF-ENT-004; RCF-ENT-031; RCF-PLT-001; RCF-PLT-003
+- **Assumptions / alternatives / tradeoffs:** Cells are few (tens), not thousands / One runtime instance for all tenants; Separate products per operating model / Inter-cell contracts add latency to global hold propagation
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:520; research/daf-theoretical-enterprise-validation/19-questions/ONE-SYSTEM-MULTI-OPERATING-MODEL-ARCHITECTURAL-INVARIANT-2026-11-23.md:5; research/daf-theoretical-enterprise-validation/19-questions/ONE-SYSTEM-MULTI-OPERATING-MODEL-ARCHITECTURAL-INVARIANT-2026-11-23.md:41; requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:12
+- **Acceptance criteria:**
+  - **AC-1** Given two cells; when a release is promoted; then both run the same version or the lagging cell rejects dependent commands.
+  - **AC-2** Given a sponsor uses two operating models; when a grant is recommended in each; then both use the same GrantRecommendation command and state machine.
+
+### RR-REQ-X-020-r1 — refines `REQ-X-020`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:268` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** **Ordering:** Global charity/hold publication and payment release must have a provable serialization point. Holds are binding on releases ordered after their durable commit. A preexisting release intent is not the same as irreversible external submission; dispatch rechecks holds where possible. Post-submission holds cannot guarantee reversal. Quorum loss stops authoritative financial writes; replay reconciles protective state before execution. Historical policy/evidence and exact external Unknown status remain auditable.
+- **Refined statement:** Each global hold (charity, sanctions, recipient) MUST be committed in the hold registry with a strictly increasing HoldPublicationVersion. A payment release in any cell MUST, inside the release transaction, obtain the registry's current HoldPublicationVersion and verify that the recipient has no active hold at that version; it MUST record that version on the release. If the registry is unreachable or the cell's replicated watermark is behind the registry version, the release MUST remain in ReleaseBlocked and MUST NOT be dispatched. Dispatch MUST re-check holds immediately before irreversible external submission.
+- **Business objective:** Guarantee that no payment is released to a recipient held before the release committed, across separated tenant stores.
+- **Reason for change:** Original assumes a single serialization point which does not exist across separated stores.
+- **Processing rules:** Read registry version V and recipient hold status at V within the release gate.; If any active hold applies at V: transition grant payment to Held(reason=hold ID).; If registry unavailable: ReleaseBlocked(reason=HOLD_REGISTRY_UNAVAILABLE); retry with bounded backoff.; Record V on ReleaseAuthorized.; At dispatch: re-read registry; if a hold with version > V applies, do not submit; transition to Held.
+- **Failure behaviour:** Registry outage pauses releases (fail closed); protective holds still committable via emergency plane
+- **Security / audit:** Only compliance roles can create/lift holds; AI cannot lift holds / Release and dispatch events carry observed HoldPublicationVersion; hold events carry author and evidence
+- **Configuration:** not configurable: legal safety gate
+- **AI assistance:** **advisory:** Explain why a release is blocked and which hold applies; **autonomous:** —; **prohibited:** Lifting or bypassing holds; Dispatching while registry unavailable; **human_approval_boundary:** Lifting a hold requires an authorized compliance human per OD-02.
+- **UI / API / reporting:** Grant status shows Held or Release blocked with reason; never Paid / Event HoldPublished(version); event ReleaseAuthorized(holdVersion); error HOLD_REGISTRY_UNAVAILABLE; dispatch idempotency key = PaymentInstructionId / Releases blocked by registry outage reported with duration
+- **Regulatory:** Sanctions screening obligations (OFAC) apply; needs counsel on post-submission hold handling
+- **Dependencies:** UNB-KNOW-012; REQ-X-006; REQ-X-057; UNB-TEN-002 · **Findings:** RCF-PLT-002
+- **Assumptions / alternatives / tradeoffs:** Hold registry is a single strongly consistent store / Copy holds into each cell transactionally; Accept eventual consistency with post-payment review / Release availability depends on registry availability
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:268; architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:34; requirements/PARTNER-SEGREGATION-AND-TENANCY.md:11
+- **Acceptance criteria:**
+  - **AC-1** Given hold H on charity C published at version 41; when a release for C commits reading version 41; then the grant is Held and no instruction is dispatched.
+  - **AC-2** Given release authorized at version 40 and hold H published at 41 before dispatch; when dispatcher runs; then submission is suppressed and the grant becomes Held.
+  - **AC-3** Given registry unreachable; when a release is attempted; then state is ReleaseBlocked and no instruction exists.
+
+### RR-REQ-X-051-r1 — refines `REQ-X-051`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:460` @ `777a70d` · domain PLT+integration · autonomous-reversible · confidence medium · proposed-not-validated
+- **Original text:** **Proposed:** Every public API operation, input field, configuration property, workflow action, dashboard widget and email block/token MUST expose authoritative, versioned, machine-readable AI assistance metadata covering purpose, types, dependencies, valid values, policy, permissions, side effects, errors, Unknown states, examples, source provenance and safe guidance. Generate contextual help and agent tool descriptions from typed contracts with reviewed semantic annotations, test for drift, and enforce caller-scoped discovery. AI can explain, guide and propose diffs, but cannot grant itself authority or bypass sponsor rules, approvals, holds or domain commands.
+- **Refined statement:** Every public API operation, configuration property and workflow action MUST publish an AssistanceContract conforming to the Unbound AssistanceContract JSON Schema (draft 2020-12) version-pinned with the API contract. Required core fields: contractId (stable URN), version (semver), ownerComponent, kind (enum: apiOperation|configProperty|workflowAction|uiField|templateToken), purpose (text, max 280 chars), inputSchemaRef, outputSchemaRef, sideEffects (enum list: none|createsDraft|changesConfig|changesAuthoritativeState|externalEffect), authorityClass (A0..A5 per GOV authority tiers), confirmationRequired (bool), reversibility (enum: reversible|compensatable|irreversible), unknownStates (list), errors (list of error codes), visibility (enum: public|tenantScoped|roleScoped|restricted). Editorial annotations (examples, troubleshooting, policy source) are optional. A surface is 'assistant-ready' only when its contract validates and matches the deployed API schema hash. (Integration amendment, mission section 10.) The following fields are also REQUIRED, not optional: validationRules (machine-readable constraints, generated from the input schema plus policy references), businessConstraints (policy IDs and versions that can block the operation), permittedActorTypes (deterministic policy, AI agent, human role; from the authority matrix UNB-RCN-PLT-005), safeActions and prohibitedActions for AI callers, humanApprovalBoundary (text plus authorityClass), outcomeExplanation (template mapping each result and error code to a plain-language explanation with the evidence fields to cite), and at least one example (request, response and one error).
+- **Business objective:** Let assistants and humans rely on one accurate, typed description of what an operation does and who may perform it.
+- **Reason for change:** Original lists fields but no schema, required core or readiness definition.
+- **Processing rules:** Generate core fields from F# types and OpenAPI; editorial fields from reviewed annotation files.; CI validates every contract against the schema and against the deployed schema hash; mismatch fails the build.; Discovery returns only contracts whose visibility permits the caller's role and tenant.; authorityClass >= A3 forces confirmationRequired=true and blocks agent execution unless an explicit delegation exists.
+- **Failure behaviour:** Invalid or missing contract -> surface marked not assistant-ready; assistant answers 'not documented' instead of guessing
+- **Security / audit:** No secrets, live PII or cross-tenant policy in contract text; Restricted contracts never exposed via discovery / Contract versions and generation provenance stored; assistant answers cite contractId@version
+- **Configuration:** Editorial annotations per sponsor locale (owner: Product owner); core fields not configurable
+- **AI assistance:** **advisory:** Explain purpose, inputs, effects, authority; Propose drafts; **autonomous:** Answer definitional questions from contracts (A0); **prohibited:** Executing actions with authorityClass A4/A5; Inventing fields or defaults absent from the contract; **human_approval_boundary:** Any action with authorityClass >= A3 requires the confirmation and authority defined in the authority matrix; contract text never grants permission.
+- **UI / API / reporting:** Field help and 'Explain this' rendered from the same contract / Query ListAssistanceContracts(scope); query GetAssistanceContract(id, version); CI-only command PublishContractIndex / Coverage: assistant-ready surfaces / total public surfaces
+- **Regulatory:** not applicable
+- **Dependencies:** UNB-API-STD-001; UNB-API-STD-006; REQ-X-053; GOV-AUTH-001 · **Findings:** RCF-PLT-018; RCF-PLT-019
+- **Assumptions / alternatives / tradeoffs:** OpenAPI is generated from F# types / MCP tool descriptions as canonical; Free-text docs / Smaller required core means less explanatory richness by default
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:460; research/daf-theoretical-enterprise-validation/19-questions/AI-DISCOVERABLE-CONTRACTS-AND-SAFE-ASSISTANCE-2026-11-23.md:8-11
+- **Acceptance criteria:**
+  - **AC-1** Given an API operation with no contract; when an assistant is asked to perform it; then the assistant reports it is undocumented and makes no call.
+  - **AC-2** Given contract hash differs from deployed OpenAPI; when CI runs; then the build fails.
+  - **AC-3** Given a restricted contract; when a donor role queries discovery; then the contract is not returned.
+  - **AC-4** Given An apiOperation contract missing outcomeExplanation or prohibitedActions; when CI validates contracts; then the build fails and the surface is not assistant-ready.
+
+### RR-AIN-003-r1 — refines `AIN-003`
+- **Source:** `requirements/ai/AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md:13` @ `777a70d` · domain PLT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **AIN-003 Human authority checkpoints** (Governance): Reserved legal, grant, financial, trading and payment decisions require authorized humans.
+- **Refined statement:** Decisions classified A4 (reserved human authority) MUST be approved by an authorized human who did not originate, prepare or materially modify the item. Decisions classified A3 MAY be executed by board-delegated deterministic policy only when OD-01 is approved for that decision type; otherwise they require an authorized human. An AI agent MUST NOT approve any A3, A4 or A5 decision; it MAY prepare proposals (A1) and perform A2 actions listed in the authority matrix.
+- **Business objective:** Keep legal and financial authority with accountable humans or board-delegated rules, never with AI.
+- **Reason for change:** Reconcile with REQ-X-017 and one authority scale.
+- **Processing rules:** Look up decision type class in authority matrix.; A4: require human approver not in {originator, preparer, modifier}.; A3 with OD-01 approved: deterministic policy may decide; record policy version.; Agent actor attempting A3+ approval: deny AGENT_APPROVAL_PROHIBITED.
+- **Failure behaviour:** Matrix lookup fails -> treat as A4
+- **Security / audit:** Approver strong authentication per GOV-AUTH-006 / Approval, denial and agent attempts logged
+- **Configuration:** Per-sponsor mapping of decision types to A3/A4 within platform minimums (owner: Sponsor board)
+- **AI assistance:** **advisory:** Prepare evidence bundles and recommendations; **autonomous:** A2 actions listed in matrix; **prohibited:** Approve A3/A4; Self-approve; Alter evidence; **human_approval_boundary:** A4 always human; A3 human unless board-delegated deterministic policy approved under OD-01.
+- **UI / API / reporting:** Approval screens show who prepared and why the current user is eligible / Command ApproveDecision rejects agent principals; error AGENT_APPROVAL_PROHIBITED, SELF_APPROVAL_PROHIBITED / Share of decisions by approver type
+- **Regulatory:** Needs counsel: whether board-delegated rules satisfy sponsor 'exclusive legal control' for DAFs (IRC 4966(d)(2))
+- **Dependencies:** REQ-X-017; REQ-X-001; GOV-AUTH-003; OD-01 · **Findings:** RCF-PLT-019; RCF-PLT-020
+- **Assumptions / alternatives / tradeoffs:** OD-01 decided per decision type / Human for all grant decisions / Automated approvals depend on board/counsel
+- **Evidence:** requirements/ai/AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md:13; research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:240; requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md:8-13
+- **Acceptance criteria:**
+  - **AC-1** Given an agent principal; when it calls ApproveDecision on a grant; then denied with AGENT_APPROVAL_PROHIBITED.
+  - **AC-2** Given a human who edited the grant amount; when they attempt approval; then denied with SELF_APPROVAL_PROHIBITED.
+  - **AC-3** Given OD-01 approved for routine grants; when a routine grant passes deterministic policy; then approval recorded with approver type deterministicPolicy and policy version.
+
+### RR-UNB-AI-STD-003-r1 — refines `UNB-AI-STD-003`
+- **Source:** `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:42` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-AI-STD-003:** Deterministic controls govern money, access, eligibility gates and policy publication; agents may not self-approve or clear their own alerts.
+- **Refined statement:** Money movement, access grants, eligibility gates, hold lifting and policy publication MUST be decided only by versioned deterministic rules or authorized humans. AI outputs MUST be typed as Proposal, Finding or Explanation and MUST NOT be accepted as input to these gates except as evidence attached for a human reviewer. No agent may resolve, suppress or close an alert, case or finding that it raised or that concerns its own action.
+- **Business objective:** Keep consequential gates reproducible and auditable.
+- **Reason for change:** Make the prohibition testable by typing AI outputs.
+- **Processing rules:** Gate input schemas exclude AI output types.; Case close command rejects actor == raiser or actor == subject agent.; AI unavailable -> gates continue on deterministic inputs; ambiguous cases route to humans.
+- **Failure behaviour:** Model outage never opens a gate
+- **Security / audit:** Agents have no permission on gate commands / Gate decisions log rule version and inputs digest
+- **Configuration:** not configurable: control invariant
+- **AI assistance:** **advisory:** Explain gate outcome; Propose evidence requests; **autonomous:** —; **prohibited:** Decide gates; Close own alerts; **human_approval_boundary:** Gate overrides require authorized human per authority matrix.
+- **UI / API / reporting:** AI content visually labelled as proposal / Gate commands reject agent principals; error AGENT_NOT_PERMITTED / Count of agent-raised findings closed by humans
+- **Regulatory:** not applicable
+- **Dependencies:** AIN-003; REQ-X-017 · **Findings:** RCF-PLT-019
+- **Assumptions / alternatives / tradeoffs:** — / Allow high-confidence AI to pass gates / Less automation of ambiguous cases
+- **Evidence:** requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:42
+- **Acceptance criteria:**
+  - **AC-1** Given an agent raised finding F; when the same agent calls CloseCase(F); then denied and logged.
+  - **AC-2** Given the model service is down; when a routine eligibility gate evaluates; then gate decides from deterministic inputs only.
+
+### RR-REQ-X-048-r1 — refines `REQ-X-048`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:442` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** **Proposed:** Provide shared sponsor-scoped human work orchestration for grant and charity vetting cases. Support deterministic round robin, sticky sponsor/fund/account ownership, cradle-to-grave case continuity, specialist/skills routing, capacity-weighted assignment, manual audited overrides and hybrid routing. Distinguish relationship owner, case owner, task assignee, independent decision authority and backup. Preserve eligibility, sponsor authorization, conflicts, segregation of duties, absences, SLA escalation, assignment audit and seven-year retention of financially material work evidence. Case completion never independently approves grants, clears charity/sanctions holds or releases payment. Provide My Work, My Accounts, Team Queue and Supervisor dashboard requirements; routine safe automated cases should not create unnecessary human tasks.
+- **Refined statement:** A WorkItem MUST be created only when a deterministic process cannot complete because of (a) a rule-defined hold, (b) missing or conflicting evidence, (c) a decision requiring human authority, or (d) a provider Unknown requiring reconciliation. Each WorkItem MUST reference the blocked outcome, the rule or event that created it and the exit condition. Assignment MUST use the sponsor's routing policy (round robin, sticky owner, skill, capacity, hybrid) and MUST NOT confer decision authority. WorkItems MUST auto-close when their exit condition is met by system events.
+- **Business objective:** Spend human time only where judgment or authority is required.
+- **Reason for change:** Prevent queues from becoming the default path.
+- **Processing rules:** Reject WorkItem creation without creatingRuleId and exitCondition.; Route deterministically; record AssignmentDecision with cursor/score.; On subject event satisfying exitCondition: close with SourceVerified.; Completing a WorkItem never approves a grant or lifts a hold; those are separate commands.
+- **Failure behaviour:** No eligible worker -> FallbackQueue and escalation to supervisor
+- **Security / audit:** Visibility scoped by tenant and role; restricted compliance details hidden / Assignment, reassignment and closure logged
+- **Configuration:** Routing strategy per queue/case class (owner: Sponsor operations within platform limits); SLA targets (owner: Sponsor operations)
+- **AI assistance:** **advisory:** Summarise case and propose next action; **autonomous:** Classification and routing suggestions applied only when deterministic routing policy allows (A2); **prohibited:** Approving or closing decision-bearing items; **human_approval_boundary:** Decision commands require authority per matrix; assignment never equals approval.
+- **UI / API / reporting:** Exception inbox shows blocked outcome and why the item exists / Command CreateWorkItem requires creatingRuleId; event WorkItemAutoClosed; claim with optimistic concurrency, error ALREADY_CLAIMED / Straight-through-processing rate; human touches per grant; items created per rule
+- **Regulatory:** not applicable
+- **Dependencies:** REQ-X-017; REQ-X-049; REQ-X-057; ADM-031 · **Findings:** RCF-PLT-023; RCF-PLT-025
+- **Assumptions / alternatives / tradeoffs:** — / Department queues / Less visibility of routine work (by design)
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:442; research/daf-theoretical-enterprise-validation/19-questions/ONE-SYSTEM-MULTI-OPERATING-MODEL-ARCHITECTURAL-INVARIANT-2026-11-23.md:11; requirements/ui/DAF-ADMINISTRATION-AND-SPONSOR-EXPERIENCE.md:29
+- **Acceptance criteria:**
+  - **AC-1** Given a routine grant passing all rules; when processing completes; then no WorkItem is created.
+  - **AC-2** Given a grant held for missing charity evidence; when the evidence arrives and rules pass; then the WorkItem closes automatically.
+  - **AC-3** Given two workers claim the same item; when both submit; then one succeeds, the other gets ALREADY_CLAIMED.
+
+### RR-UNB-UX-003-r1 — refines `UNB-UX-003`
+- **Source:** `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:26` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-UX-003:** Interfaces SHALL expose pending, completed, blocked, failed and uncertain states distinctly; never imply a recommendation was approved or a payment completed when only requested.
+- **Refined statement:** Every screen, widget, notification and document MUST display a subject's status using the authoritative domain state from that subject's state machine, including Unknown/Uncertain and Failed where the state machine defines them. UI technical states (loading, stale, offline, error) MUST be shown separately from domain state. The UI MUST NOT display a terminal success state until the authoritative command result and evidence confirm it.
+- **Business objective:** Never mislead users about money or approvals.
+- **Reason for change:** Screen contracts lack Unknown/Failed.
+- **Processing rules:** Map each domain state to one label; sponsor terminology may rename but not merge states.; Unknown renders with explanation and next step, never as Paid or Failed.; Stale data labelled with as-of time.
+- **Failure behaviour:** State fetch failure shows UI error plus last known state with as-of time
+- **Security / audit:** Status text in notifications excludes sensitive detail / Not applicable: display
+- **Configuration:** Labels per state per locale (owner: Product owner); merging states not configurable
+- **AI assistance:** **advisory:** Explain state meaning; **autonomous:** —; **prohibited:** Rendering inferred states; **human_approval_boundary:** Not applicable.
+- **UI / API / reporting:** Screen contracts list domain states per subject / Queries return state enum and asOf / Not applicable
+- **Regulatory:** not applicable
+- **Dependencies:** AIN-014; REQ-X-011; TVC-008 · **Findings:** RCF-PLT-027
+- **Assumptions / alternatives / tradeoffs:** — / — / —
+- **Evidence:** requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:26; requirements/ui/DETAILED-FORMA-SCREEN-CONTRACTS-WAVE-01.md:15
+- **Acceptance criteria:**
+  - **AC-1** Given payment outcome Unknown; when donor opens grant; then status shows 'Outcome being confirmed' and no Paid label.
+  - **AC-2** Given command accepted but not approved; when widget shows status; then label is 'Submitted'.
+
+### RR-SOC2-007-r1 — refines `SOC2-007`
+- **Source:** `requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:14` @ `777a70d` · domain PLT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** SOC2-007: All requirements and PRs MUST map to applicable control IDs, tests, evidence artifacts and owners; absence requires documented non-applicability decision.
+- **Refined statement:** Each control in the control register MUST list the requirement IDs it enforces, reviewed by the control owner and an independent reviewer. Each requirement classified as risk-bearing (money, authority, eligibility, tenant isolation, evidence integrity, privacy, AI tool use) MUST link to at least one validated control or record a reviewed gap. Requirements classified presentation-only MUST record 'no control required' with reviewer. Machine-generated candidate links MUST NOT count toward coverage.
+- **Business objective:** Make control coverage meaningful and reviewable.
+- **Reason for change:** Current links are keyword noise.
+- **Processing rules:** Coverage = risk-bearing requirements with validated link or reviewed gap / risk-bearing requirements.; Links with status candidate excluded from coverage.
+- **Failure behaviour:** Unreviewed link remains candidate
+- **Security / audit:** Not applicable / Mapping changes versioned with reviewer
+- **Configuration:** not configurable: assurance method
+- **AI assistance:** **advisory:** Propose candidate links with rationale; **autonomous:** —; **prohibited:** Marking links validated; **human_approval_boundary:** Validation by control owner plus independent reviewer.
+- **UI / API / reporting:** Not applicable / Not applicable / Coverage with numerator and denominator
+- **Regulatory:** SOC 2 scope with CPA
+- **Dependencies:** MATRIX-001; OPS-031 · **Findings:** RCF-PLT-031; RCF-PLT-032
+- **Assumptions / alternatives / tradeoffs:** — / — / Fewer links, more review effort per link
+- **Evidence:** requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:14; requirements/governance/HIGH-RISK-CONTROL-GAP-CLOSURE-WAVE-03.md:8
+- **Acceptance criteria:**
+  - **AC-1** Given 1,893 keyword candidates; when coverage is computed; then they contribute zero.
+  - **AC-2** Given GOV-AUTH-019; when mapping is reviewed; then it links to UNB-SCTRL-030 or records a gap.
+
+### RR-REQ-X-029-r1 — supersedes `REQ-X-029`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:322` @ `777a70d` · domain PLT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Proposed:** Authorized clients can style emails through a constrained WYSIWYG/block editor and reusable, versioned brand kit (logos, colors, typography, spacing, header/footer, buttons), responsive layouts and per-event content. Template, layout and theme revisions are independently governed and pinned for as-sent historical reconstruction. Provide desktop/mobile/dark-mode/plain-text previews, accessibility and email-client compatibility validation, safe image hosting, typed tokens, approval workflow and optional restricted sanitized HTML mode. Mandatory clauses, tenant boundaries and verified sender domains cannot be bypassed by styling.
+- **Refined statement:** For the initial release, sponsors SHOULD customise communications through a constrained template model: each communication event has a platform-defined block layout; sponsors MAY edit permitted text slots, select approved Brand Kit theme variants, insert typed tokens from the event's allowlist and add locale variants; mandatory clauses are locked. Templates MUST have draft/review/publish, synthetic preview (desktop, mobile, plain text), accessibility checks and version pinning for as-sent reconstruction. A free-form visual designer or raw HTML mode MUST NOT be provided until a documented sponsor demand decision approves it.
+- **Business objective:** Branded, correct, accessible transactional communication with minimal build and attack surface.
+- **Reason for change:** Visual designer not justified for transactional notices.
+- **Processing rules:** Validate tokens against event allowlist and types.; Locked clauses cannot be edited or removed.; Publishing requires approver != author.; Render deterministically from template version + Brand Kit version + token snapshot.
+- **Failure behaviour:** Missing required token -> message not sent; case opened
+- **Security / audit:** No raw HTML; contextual escaping of tokens / Template revisions and approvals retained
+- **Configuration:** Slot text, theme variant, locale per sponsor (owner: Sponsor communications)
+- **AI assistance:** **advisory:** Draft slot text; Explain token meaning; **autonomous:** —; **prohibited:** Publishing templates; Removing locked clauses; **human_approval_boundary:** Publishing requires human approver distinct from author.
+- **UI / API / reporting:** Form-based slot editor with live preview; keyboard and mobile operable / Commands DraftTemplate, PublishTemplate; error TOKEN_NOT_ALLOWED, LOCKED_CLAUSE / Template change history
+- **Regulatory:** Needs counsel: CAN-SPAM applicability to transactional vs relationship messages
+- **Dependencies:** REQ-X-027; REQ-X-028; REQ-X-030 · **Findings:** RCF-PLT-011; RCF-PLT-012
+- **Assumptions / alternatives / tradeoffs:** Sponsors primarily need branding and wording control / Full WYSIWYG designer; No customisation / Less layout freedom for sponsors
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:322; research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:334
+- **Acceptance criteria:**
+  - **AC-1** Given a slot containing {{fund.balance}} not allowed for event GrantPaid; when author saves; then TOKEN_NOT_ALLOWED.
+  - **AC-2** Given published template v3; when a message is sent; then as-sent record references v3 and Brand Kit version.
+
+### RR-REQ-X-002-r1 — refines `REQ-X-002`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:28` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Normative proposed requirement:** Routine grant approval and currency reservation commit atomically against net capacity under concurrency; exceptional pending-funding approvals cannot create external commitment.
+- **Refined statement:** Grant approval and fund reservation MUST commit in one authoritative transaction against net grantable capacity, serialised on every constrained ancestor (fund, pool, legal entity, custodial account). The reservation unit MUST match the funding source: currency for settled cash, and units with a configured valuation haircut for pooled or positional sources. A grant that needs liquidation MUST enter ApprovedPendingLiquidity, which creates no external commitment and no payment instruction, until redemption settles. If proceeds fall short, the sponsor-configured shortfall rule MUST apply and MUST NOT draw on capacity reserved for other grants.
+- **Business objective:** No overcommitment and no external promise without funding.
+- **Reason for change:** The original requirement assumes cash funding and does not cover liquidation-funded or percentage grants.
+- **Processing rules:** Lock constrained resources in a deterministic order; Compute the required reservation per source in its unit; If any source is insufficient, reject atomically: no approval and no reservation; For units, reserve units x (1 + haircut) at the pinned NAV; On redemption settlement, convert the unit reservation to a cash reservation; on shortfall apply ShortfallRule {Hold, ReduceWithReaffirmation, WaterfallTopUp}
+- **Failure behaviour:** Concurrency conflict: retry with a new snapshot or reject; never partially reserve; Valuation stale: hold for requote (GF-T03)
+- **Security / audit:** Approval principal independent of originator (REQ-X-001); Capacity cannot be edited directly / Pinned policy, capacity version, NAV, haircut and decision trace
+- **Configuration:** Haircut per source class (owner: CFO); ShortfallRule per sponsor (owner: sponsor finance); not configurable: atomicity and no-overcommitment
+- **AI assistance:** **advisory:** Propose a funding mix and estimated proceeds; **autonomous:** Not applicable; **prohibited:** Approving or reserving; Choosing a shortfall resolution; **human_approval_boundary:** Approval follows REQ-X-017 routing. Shortfall resolution needs no human unless the configured rule is Hold.
+- **UI / API / reporting:** Donor sees 'Approved - funding in progress' separately from 'Approved - funds reserved' / Command ApproveAndReserve(grantId, capacityVersion, idempotencyKey); Error CAPACITY_INSUFFICIENT, CAPACITY_VERSION_CONFLICT; Event GrantApprovedPendingLiquidity / Reserved vs pending-liquidity exposure per fund and pool
+- **Regulatory:** CPA: whether ApprovedPendingLiquidity creates a payable (REQ-X-084)
+- **Dependencies:** REQ-X-001; UNB-GFUND-011; UNB-GFUND-021; REQ-X-084 · **Findings:** RCF-GRT-015; RCF-GRT-016
+- **Assumptions / alternatives / tradeoffs:** Pool redemption timing is known at approval / Sell before approval; Dollar reservation with absorbing waterfall / Extra state; haircut ties up capacity
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:28; requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:18; requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:80; daf-landscape:docs/financial-core-control-spec-v0.5.md (invariant 6)
+- **Acceptance criteria:**
+  - **AC-1** Given $100 net capacity and two concurrent $80 cash-funded grants; when both are approved; then exactly one is ApprovedAndReserved and the other is Rejected with no reservation.
+  - **AC-2** Given a $10,000 grant funded from Pool A units with a 5% haircut; when it is approved; then units worth $10,500 at the pinned NAV are reserved and the grant is ApprovedPendingLiquidity.
+  - **AC-3** Given redemption proceeds of $9,800 under ShortfallRule=Hold; when settlement is recorded; then the grant is held, no payment instruction exists, and other grants' reservations are unchanged.
+
+### RR-REQ-X-004-r1 — refines `REQ-X-004`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:50` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Normative proposed requirement:** Unknown payment state blocks duplicate submission until contractually sufficient independently controlled evidence proves non-receipt; durable payment identity survives restore.
+- **Refined statement:** When a payment's dispatch or provider outcome is Unknown, the system MUST block any new dispatch, reissue or settlement posting for that payment chain. The Unknown MUST be resolved only through the rail's published UnknownResolutionProtocol, and declaring NotReceived MUST require the protocol's evidence combination plus approval by a principal independent of the dispatcher. The payment identity, idempotency key and attempt history MUST survive restore and failover. Unknown items MUST escalate through configured aging tiers.
+- **Business objective:** No duplicate payment and no indefinite limbo.
+- **Reason for change:** TVF-024: the original has no path to resolution.
+- **Processing rules:** A timeout after a possible send sets DispatchOutcomeUnknown; Query the provider by idempotency key on the configured schedule; Any later evidence of execution moves the payment to Acknowledged or Executed through RecordProviderEvidence; After the rail settlement window, match statements; an absent debit plus a provider no-execution attestation plus (where configured) recipient non-receipt allows a NotReceived proposal; An independent approval sets NotReceived and permits ReissuePayment linked to the original
+- **Failure behaviour:** A late settlement of the original after a reissue opens a duplicate-payment recovery case automatically
+- **Security / audit:** Dispatcher cannot approve NotReceived / Raw provider evidence hashes, query log, approver identity
+- **Configuration:** Settlement window per rail and aging tiers (owner: Treasury); not configurable: no blind retry
+- **AI assistance:** **advisory:** Summarise evidence for approver; **autonomous:** Scheduled status queries; **prohibited:** Declaring NotReceived; Resending; **human_approval_boundary:** An independent payment approver declares NotReceived.
+- **UI / API / reporting:** Show 'Confirmation pending since <time>' with no 'failed' wording / Command DeclareNotReceived(paymentId, evidenceRefs, authority); Error UNKNOWN_OUTCOME_BLOCKS_RETRY / Unknown count and age by rail and provider
+- **Regulatory:** Provider contract: query semantics and attestations
+- **Dependencies:** REQ-X-083; REQ-X-006 · **Findings:** RCF-GRT-017
+- **Assumptions / alternatives / tradeoffs:** Providers support status query by idempotency key / Indefinite hold; Auto-retry after timeout / Some risk of late double settlement, managed by recovery
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:50; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:25; research/daf-theoretical-enterprise-validation/19-questions/PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md:18
+- **Acceptance criteria:**
+  - **AC-1** Given provider timeout followed by a restore from backup; when an operator retries; then the retry is refused and the original identity remains.
+  - **AC-2** Given an Unknown ACH past its settlement window with a no-execution attestation and no statement debit; when an independent approver declares NotReceived; then a linked reissue becomes eligible.
+  - **AC-3** Given an original payment that settles after a reissue was sent; when the settlement is recorded; then a duplicate recovery case opens and both are posted correctly.
+
+### RR-REQ-X-005-r1 — refines `REQ-X-005`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:61` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** **Normative proposed requirement:** Every automated payment requires independently verifiable proof both that the destination is authorized and controlled by the intended charity and that the actual execution destination matches the sponsor-controlled authorization, including cryptographically or independently bound tokenized rails. Provider self-attestation alone is insufficient. Changes require independent authorization without self-approval. Missing or conflicting proof blocks automatic execution; noncompliant providers/rails are ineligible for fully automated payment. Reconcile authorization, execution and settlement evidence.
+- **Refined statement:** Automated release MUST require destination evidence that meets the rail's minimum combination in the Treasury-published DestinationEvidence table, and the pinned destination version MUST match the version bound at authorization. Any destination change, including a corrected ACH Notification of Change, MUST create a new destination version through an independently authorized verification. The change requester and the verifier MUST be different principals. Rails or providers that cannot meet the minimum MUST be ineligible for automated release.
+- **Business objective:** Funds reach the intended charity.
+- **Reason for change:** The original sets the standard but names no qualifying evidence, and is silent on NOC.
+- **Processing rules:** Classify each evidence item by type to an E-class; Pass G08 only if the rail's minimum combination is met; Change request -> DestinationVersion Pending -> independently verified -> Effective; Payments authorized on an earlier version stay pinned. If the earlier version is revoked for fraud, hold them
+- **Failure behaviour:** Missing evidence: release held, not rejected
+- **Security / audit:** Bank details are encrypted and field-access limited; Out-of-band contact must come from an independent source / Every version change, verifier and evidence is recorded
+- **Configuration:** DestinationEvidence table (owner: Treasury, independent publication); Cooling-off period after change (owner: Treasury)
+- **AI assistance:** **advisory:** Detect document anomalies in bank letters; **autonomous:** Not applicable; **prohibited:** Approving destination changes; **human_approval_boundary:** An independent verifier approves the change when the deterministic evidence is insufficient.
+- **UI / API / reporting:** Recipient portal shows pending verification status for a change / Command RequestDestinationChange / VerifyDestinationVersion; Error DESTINATION_EVIDENCE_INSUFFICIENT / Changes per recipient, verification time, failed attempts
+- **Regulatory:** Treasury and counsel: NACHA NOC obligations (private network rule)
+- **Dependencies:** REQ-X-083; TX-19; UNB-RCN-GRT-017 · **Findings:** RCF-GRT-018; RCF-GRT-019; RCF-GRT-030
+- **Assumptions / alternatives / tradeoffs:** Some bank-originated validation exists for each rail / Manual verification of all payments / Onboarding friction
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:61; research/daf-theoretical-enterprise-validation/19-questions/POLICY-PRECEDENCE-EVIDENCE-TRUST-AND-CRITICAL-WORKFLOWS-2026-11-23.md:36; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:211
+- **Acceptance criteria:**
+  - **AC-1** Given a provider returns a self-issued fingerprint that conflicts with the sponsor record; when release is evaluated; then release is blocked.
+  - **AC-2** Given an ACH NOC correcting the account number; when it is received; then a new destination version is created Pending and further entries are held until it is Effective.
+  - **AC-3** Given the requester tries to verify their own change; when verification is attempted; then it is rejected.
+
+### RR-REQ-X-083-r1 — refines `REQ-X-083`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:646` @ `777a70d` · domain GRT · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** **Proposed:** Model payment authorization, dispatch, provider knowledge, settlement proof, accounting reconciliation, recipient acknowledgement and work case as distinct dimensions. Provider timeout produces Unknown, not failure; accepted dispatch is not settlement; recipient handoff is not check clearing. Pin verified payee destination version, retain immutable request/event evidence, deduplicate callbacks, forbid blind retries, and require controlled recall/reissue/return compensation. Reuse one authoritative payment/ledger system for all channels and sponsors.
+- **Refined statement:** The payment aggregate MUST persist six orthogonal dimensions (Authorization, Dispatch, ProviderKnowledge, SettlementEvidence, AccountingReconciliation, RecipientAcknowledgement) plus a WorkCase. ProviderKnowledge and SettlementEvidence MUST include Blocked. The check rail MUST include Outstanding, AgedOutreach, StaleDated, VoidRequested, VoidConfirmed and UnclaimedPropertyReportable. Provider callbacks MUST be authenticated and deduplicated on (provider, providerEventId) and on a semantic key. This model supersedes UNB-GRANT-022, UNB-PAY-001 and UNB-PAY-009 and the TX-13 merged state.
+- **Business objective:** One precise, auditable payment truth.
+- **Reason for change:** Adds the missing Blocked and check-aging states and callback authentication, and resolves vocabulary duplication.
+- **Processing rules:** Each command checks its allowed source states per dimension; Callback: verify signature, then apply the deduplication keys, then the monotonic-knowledge rule; a contradiction opens a case without rewriting; Blocked: freeze the chain; no retry, reissue or capacity restoration; Check aging: thresholds move Outstanding -> AgedOutreach -> StaleDated; a void requires positive-pay acknowledgment; Reissue only from NotReceived, VoidConfirmed or Returned with a linked chain
+- **Failure behaviour:** Unauthenticated callback rejected and logged; Contradictory evidence: WorkCase Investigating
+- **Security / audit:** Callback endpoints authenticated; Bank portal exceptions are payment decisions with role control / Raw evidence hash, observed and effective time on each transition
+- **Configuration:** Aging thresholds (owner: Controller); Settlement windows (owner: Treasury); not configurable: dimension set and Blocked semantics
+- **AI assistance:** **advisory:** Explain status, summarise contradictions; **autonomous:** Not applicable; **prohibited:** Any state transition on money dimensions; **human_approval_boundary:** Release from Blocked requires independent compliance with license evidence. Reissue follows REQ-X-004.
+- **UI / API / reporting:** One derived label with as-of time; 'Check issued - not yet cashed' for Outstanding / Events per command; Errors INVALID_TRANSITION, CALLBACK_UNAUTHENTICATED / Outstanding checks by age, Blocked items, Unknown items
+- **Regulatory:** Counsel: OFAC reporting, unclaimed property
+- **Dependencies:** REQ-X-004; UNB-RCN-GRT-005; UNB-RCN-GRT-006 · **Findings:** RCF-GRT-011; RCF-GRT-012; RCF-GRT-013; RCF-GRT-020; RCF-GRT-021; RCF-GRT-028
+- **Assumptions / alternatives / tradeoffs:** Banks support positive-pay void files / Linear status (rejected) / More states to test
+- **Evidence:** research/daf-theoretical-enterprise-validation/19-questions/PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md:5; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:160; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:24; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:14
+- **Acceptance criteria:**
+  - **AC-1** Given the same provider event delivered three times with different IDs but the same semantic key; when callbacks are processed; then one accounting effect.
+  - **AC-2** Given an intermediary bank blocks a wire; when the block notice is recorded; then ProviderKnowledge=Blocked and no capacity is restored.
+  - **AC-3** Given a check outstanding past the stale threshold; when the void is requested and positive pay acknowledges it; then the state is VoidConfirmed and a reissue becomes eligible after eligibility recheck.
+
+### RR-UNB-GRANT-011-r1 — supersedes `UNB-GRANT-011`
+- **Source:** `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:26` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-GRANT-011:** Evaluate prohibited benefits, conflicts of interest, pledges, earmarking and other legal/policy concerns, escalating uncertain cases to qualified review.
+- **Refined statement:** Before sponsor approval and again at release, every grant MUST pass a BenefitAndPurposeGate evaluating: (1) the recipient class (UNB-RCN-GRT-001); (2) related-party payee or beneficiary (UNB-RCN-GRT-002); (3) the donor's AffirmationEvidence (UNB-RCN-GRT-010); (4) the declared purpose and host context, against a counsel-approved catalogue of benefit types (tickets, tables, auction items, memberships with more-than-incidental benefits, personal goods or services, tuition, political campaign purposes); (5) the sponsor's pledge policy (UNB-RCN-GRT-009). The gate's deterministic outcomes are Pass, Reject or Hold. Only Hold cases go to qualified review.
+- **Business objective:** Prevent 4967 and 4958 exposure without blanket rules.
+- **Reason for change:** The original is a vague 'evaluate'. G05 over-prohibits pledges.
+- **Processing rules:** Prohibited categories in counsel catalogue -> Reject; Declared or detected benefit with sponsor policy Conditional -> Hold; Pledge per sponsor policy; Text signals from AI are advisory and can only raise Hold
+- **Failure behaviour:** Catalogue unavailable -> Hold
+- **Security / audit:** Reviewer cannot be originator / Catalogue version, affirmation hash, reasons
+- **Configuration:** Sponsor: stricter categories, pledge policy (owner: sponsor counsel); not configurable: statutory prohibitions as determined by counsel
+- **AI assistance:** **advisory:** Classify free-text purpose, flag possible benefits; **autonomous:** Not applicable; **prohibited:** Passing a held case; Affirming on the donor's behalf; **human_approval_boundary:** A qualified compliance reviewer resolves Hold.
+- **UI / API / reporting:** Conditional follow-up questions instead of blanket disclaimers / Error BENEFIT_PROHIBITED, BENEFIT_REVIEW_REQUIRED / Holds by category, false-hold rate
+- **Regulatory:** Counsel: 4967 and 4958 scope; Notice 2017-73 reliance; ticket bifurcation treatment
+- **Dependencies:** UNB-RCN-GRT-001; UNB-RCN-GRT-002; UNB-RCN-GRT-009; UNB-RCN-GRT-010; REQ-X-018 · **Findings:** RCF-GRT-005; RCF-GRT-006; RCF-GRT-007; RCF-GRT-008; RCF-GRT-009
+- **Assumptions / alternatives / tradeoffs:** Counsel produces a benefit catalogue / Global pledge ban; Pure human review / Catalogue maintenance
+- **Evidence:** requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:26; research/daf-theoretical-enterprise-validation/19-questions/POLICY-PRECEDENCE-EVIDENCE-TRUST-AND-CRITICAL-WORKFLOWS-2026-11-23.md:51; daf-landscape:docs/sponsor-white-label-grant-policy-affirmations-v0.1.md (WL-09, WL-10); daf-landscape:research/mission-2026-11-14/b41n16-b42n20-daf-tax-guidance.md (lines 86-96)
+- **Acceptance criteria:**
+  - **AC-1** Given a recommendation with HostContext EventTicket; when it is submitted; then it is held or rejected per sponsor policy and is never auto-approved.
+  - **AC-2** Given a NoticeConditions sponsor and a pledge-linked grant with no other benefit; when evaluated; then Pass, with remittance pledge-suppression flagged.
+  - **AC-3** Given AI flags 'gala' in the purpose text; when the gate evaluates; then Hold, not Reject.
+
+### RR-UNB-GRANT-023-r1 — refines `UNB-GRANT-023`
+- **Source:** `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:38` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-GRANT-023:** Support grants to domestic public charities, qualifying fiscal sponsors and other permitted recipients, with legal review for nonstandard and international grants.
+- **Refined statement:** Grants MUST be made only to recipients whose RecipientClass maps to Permitted, or to ERRequired with a completed ER case, under the counsel-approved RecipientClass rule. Natural persons and non-charitable purposes MUST be rejected. Disqualified supporting organizations and recipients needing expenditure responsibility MUST NOT use the routine path. Recipients absent from IRS files MUST be verifiable through the EntityTypeEvidence matrix.
+- **Business objective:** Lawful distributions only.
+- **Reason for change:** 'Other permitted recipients' is undefined.
+- **Processing rules:** Deterministic class mapping; Disqualified SO test checks donor/advisor control of supported orgs; Unknown class -> CounselReview hold
+- **Failure behaviour:** Data missing -> Hold
+- **Security / audit:** Classification overrides require counsel authority / Rule version, codes used
+- **Configuration:** Sponsor may prohibit additional classes such as private foundations (owner: sponsor board); not configurable: statutory prohibited classes
+- **AI assistance:** **advisory:** Locate evidence for non-BMF entities; **autonomous:** Not applicable; **prohibited:** Assigning a class; **human_approval_boundary:** Counsel decides CounselReview cases.
+- **UI / API / reporting:** Donor search marks recipients that need special handling before submission / Query GetRecipientClass(charityId, asOf) / Grants by recipient class
+- **Regulatory:** Counsel: IRC 4966(c)/(d)(4) application; Rev. Proc. 2011-33 reliance; 2023 proposed regs (not final)
+- **Dependencies:** UNB-RCN-GRT-001; UNB-RCN-GRT-003; UNB-RCN-GRT-013 · **Findings:** RCF-GRT-005; RCF-GRT-034; RCF-GRT-038
+- **Assumptions / alternatives / tradeoffs:** IRS codes are reliable enough for first-pass classification, subject to counsel / Allow-list of 501(c)(3) only / Excludes some lawful grants unless the matrix is maintained
+- **Evidence:** requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:38; research/daf-theoretical-enterprise-validation/08-compliance/compliance-and-controls.md:168; daf-landscape:research/mission-2026-11-14/b40n1202-b43n26-03-non-bmf-recipients.md (lines 15-36)
+- **Acceptance criteria:**
+  - **AC-1** Given a recipient coded as a private non-operating foundation; when a routine grant is submitted; then it is routed to the ER path or rejected per sponsor policy.
+  - **AC-2** Given a church absent from IRS files with matrix evidence; when evaluated; then Permitted.
+
+### RR-UNB-GRANT-027-r1 — refines `UNB-GRANT-027`
+- **Source:** `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:42` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-GRANT-027:** Handle recurring grants when charity eligibility, DAF funding, donor role or sponsor policy changes between installments.
+- **Refined statement:** Each recurring occurrence MUST be evaluated as a new grant at its due time against current authority, affirmation validity, common status, sanctions, sponsor policy and capacity, keyed by (scheduleId, scheduleVersion, periodKey). Held occurrences MUST resolve within OccurrenceHoldWindow or become Skipped. There is no catch-up unless policy allows it. After ConsecutiveAdverseHolds the schedule MUST be Suspended.
+- **Business objective:** Honour donor intent without stale or duplicate payments.
+- **Reason for change:** 'Handle' is not testable.
+- **Processing rules:** Occurrence due -> run gates; Pass -> grant Submitted with occurrence key; Hold -> Held, notify donor; Window elapsed -> Skipped; Counter reaches the threshold -> schedule Suspended
+- **Failure behaviour:** Scheduler crash -> replay idempotently
+- **Security / audit:** Resume requires donor reconfirmation / Each occurrence's gate trace
+- **Configuration:** OccurrenceHoldWindow, ConsecutiveAdverseHolds, AllowCatchUp (owner: sponsor policy)
+- **AI assistance:** **advisory:** Explain why held; **autonomous:** Not applicable; **prohibited:** Resuming schedules; Re-affirming; **human_approval_boundary:** Resuming requires donor action. A sponsor override follows REQ-X-017.
+- **UI / API / reporting:** Calendar shows held and skipped occurrences / Event OccurrenceHeld, OccurrenceSkipped, ScheduleSuspended / Skipped amount by reason
+- **Regulatory:** Counsel: standing affirmation validity
+- **Dependencies:** REQ-X-008; UNB-RCN-GRT-004 · **Findings:** RCF-GRT-010
+- **Assumptions / alternatives / tradeoffs:** Sponsors accept skip as the default / Catch-up by default / Some donor intent lost on long holds
+- **Evidence:** requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:42; research/daf-theoretical-enterprise-validation/19-questions/TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv:19; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:87
+- **Acceptance criteria:**
+  - **AC-1** Given a revoked charity; when the occurrence is due; then Held, donor notified, no payment.
+  - **AC-2** Given a hold window that expired before reinstatement; when the next occurrence is due; then one grant only.
+
+### RR-UNB-PAY-006-r1 — refines `UNB-PAY-006`
+- **Source:** `requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:12` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-PAY-006:** Support bank/rail outages, failed transfers, returned ACH, lost/voided checks, partial payments, payment holds, escheat/unclaimed property applicability and fraud escalation.
+- **Refined statement:** The payment model MUST define explicit handling for rail outage, failure, ACH return, lost, voided and stale checks, partial payments, holds, Blocked, and unclaimed-property disposition, with states, ledger effects, configured thresholds and owners, as specified in RR-REQ-X-083-r1 and UNB-RCN-GRT-005.
+- **Business objective:** No silent limbo for exceptional payments.
+- **Reason for change:** 'Applicability' is not a requirement.
+- **Processing rules:** See RR-REQ-X-083-r1
+- **Failure behaviour:** Threshold breach -> case
+- **Security / audit:** Not applicable: inherits payment security / Aging and disposition evidence
+- **Configuration:** Aging thresholds per jurisdiction (owner: Controller with counsel)
+- **AI assistance:** **advisory:** Draft outreach to charities; **autonomous:** Aging transitions; **prohibited:** Void, reissue or escheat decisions; **human_approval_boundary:** The Controller approves disposition.
+- **UI / API / reporting:** Operator aging view / Commands RequestVoidOrRecall, ReportUnclaimedProperty / Outstanding check aging report
+- **Regulatory:** Counsel: state unclaimed property law for grant checks
+- **Dependencies:** REQ-X-083; CTL-044 · **Findings:** RCF-GRT-012
+- **Assumptions / alternatives / tradeoffs:** Jurisdiction rules can be configured / Manual spreadsheet / Configuration effort
+- **Evidence:** requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:12; requirements/DAF-LANDSCAPE-CONVERSION-WAVE-04.md:125
+- **Acceptance criteria:**
+  - **AC-1** Given a check outstanding for longer than the configured stale threshold; when the aging job runs; then StaleDated with outreach case.
+
+### RR-UNB-EXT-004-r1 — refines `UNB-EXT-004`
+- **Source:** `requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:11` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-EXT-004:** OFAC and other legally applicable sanctions/debarment/exclusion lists, with source freshness and exact legal screening applicability; do not equate name similarity with a sanctions match.
+- **Refined statement:** Sanctions screening MUST follow the counsel-approved ScreeningScope matrix (subjects, lists, triggers, match rules, owners). It MUST run at onboarding, approval and release, and on every list update for all unreleased payment chains and outstanding checks. Name similarity alone MUST NOT cause an adverse determination, and an unresolved potential match MUST hold release. A true match MUST lead to Blocked handling.
+- **Business objective:** Lawful screening coverage.
+- **Reason for change:** Scope undefined.
+- **Processing rules:** Screen each subject against lists; Deterministic false-positive classes (OD-02) may clear; Unresolved -> Hold; True match -> Blocked
+- **Failure behaviour:** List feed stale -> Hold release
+- **Security / audit:** Screening results access-restricted / List version and matching trace
+- **Configuration:** Matrix (owner: sanctions officer + GC); not configurable: execution-time screening
+- **AI assistance:** **advisory:** Research ambiguous matches; **autonomous:** Not applicable; **prohibited:** Clearing matches; **human_approval_boundary:** The sanctions officer resolves matches.
+- **UI / API / reporting:** Operator match review / Event SanctionsScreeningCompleted per subject / Screening coverage and false-positive rate
+- **Regulatory:** Counsel: OFAC applicability incl. ownership aggregation
+- **Dependencies:** UNB-RCN-GRT-006; UNB-RCN-GRT-007 · **Findings:** RCF-GRT-013; RCF-GRT-014
+- **Assumptions / alternatives / tradeoffs:** Lists accessible / Recipient-only screening / Higher screening volume
+- **Evidence:** requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:11; research/daf-theoretical-enterprise-validation/16-registers/findings.csv:160
+- **Acceptance criteria:**
+  - **AC-1** Given a list update naming a fiscal sponsor; when it is ingested; then unreleased grants to its projects are held.
+
+### RR-UNB-GRANT-012-r1 — supersedes `UNB-GRANT-012`
+- **Source:** `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:27` @ `777a70d` · domain GRT · requires-owner-decision · confidence medium · proposed-not-validated
+- **Original text:** - **UNB-GRANT-012:** Route human approvals according to role, amount, risk, relationship, exception and delegation limits; enforce dual control where required.
+- **Refined statement:** Grant approval authority MUST be routed under REQ-X-017. Tier 1 is deterministic board-delegated sponsor policy, permitted only where OD-01 is validated for that sponsor. Tier 3 is the human routing matrix by role, amount, risk, relationship and exception, with dual control where the sponsor policy requires it. The approver MUST be independent of the originator and of anyone who materially edited the grant.
+- **Business objective:** Automate routine approvals while preserving accountability.
+- **Reason for change:** Conflict with rules-first.
+- **Processing rules:** Tier 1 if delegation active and all gates Pass; Otherwise route to Tier 3 by matrix
+- **Failure behaviour:** Delegation missing -> Tier 3
+- **Security / audit:** Matrix changes four-eyes / Authority reference per decision
+- **Configuration:** Matrix thresholds (owner: sponsor board)
+- **AI assistance:** **advisory:** Prepare the case summary; **autonomous:** Not applicable; **prohibited:** Approving; **human_approval_boundary:** Tier 3 approvers per matrix.
+- **UI / API / reporting:** Approver queue only for routed cases / Decision receipt / STP rate
+- **Regulatory:** Counsel and board: delegation validity (TVC-003)
+- **Dependencies:** REQ-X-017; OD-01 · **Findings:** RCF-GRT-023
+- **Assumptions / alternatives / tradeoffs:** OD-01 approved for some sponsors / Human for all / Two operating modes
+- **Evidence:** requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:27; research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:240
+- **Acceptance criteria:**
+  - **AC-1** Given a sponsor with validated delegation and a complete low-risk grant; when it is evaluated; then approved by policy with zero human touches.
+
+### RR-REQ-X-007-r1 — refines `REQ-X-007`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:79` @ `777a70d` · domain REG+GRT · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** Unbound maintains one authoritative, standardized charity-vetting framework and reusable evidence/status across sponsors. A vetted charity does not undergo duplicate routine vetting solely because another sponsor uses it. Record scope, evidence provenance, effective date and expiry; reverify at least every 180 days, on material changes, and check current sanctions/eligibility at execution. Adverse findings propagate to all affected sponsors. Sponsor-specific grant restrictions and approvals remain distinct from common charity vetting; no self-approved vetting exceptions. Cross-sponsor legal reliance, liability, jurisdictions and recipient classes require counsel validation; model never clears holds.
+- **Refined statement:** For every grant, the system MUST evaluate recipient eligibility at two points, approval and payment release, against (a) a current IRS-status observation (TEOS/Pub 78 or EO BMF, plus the Auto-Revocation List) whose retrieval timestamp is no older than the sponsor-configured status-freshness window, and (b) current sanctions screening. It MUST store a per-sponsor, per-grant immutable snapshot of that observation containing the fields required by Rev. Proc. 2018-32 §8.01. A shared cross-sponsor charity evidence record MAY be reused as an input, but each sponsor's reliance snapshot MUST be written to that sponsor's partition. A comprehensive charity review (deep vetting) MUST occur at the sponsor-configured deep-review interval (default 180 days, a sponsor policy and not a legal safe harbor) and on any material-change signal. An expired deep review MUST hold new approvals but MUST NOT be the sole basis for payment-time eligibility.
+- **Business objective:** Avoid taxable distributions under IRC 4966 by preserving the sponsor's grant-date reliance under Rev. Proc. 2018-32, while not repeating costly deep vetting for every sponsor.
+- **Reason for change:** The original wording makes 180-day reverification the currency standard and describes the execution-time check mainly as a sanctions check. Under Rev. Proc. 2018-32, reliance is assessed as of the grant date and the grantor must keep its own copy of the third-party report (§8.01). Shared evidence alone does not satisfy per-sponsor retention.
+- **Processing rules:** If the IRS-status observation is older than status_freshness_window (a sponsor parameter, owner: sponsor compliance; no default asserted as law), fetch a fresh observation before deciding; if retrieval fails, outcome = Unknown and the grant is held.; Eligible only if the observation shows 509(a)(1)/(2)/(3) public charity status AND not on the Auto-Revocation List AND (if 509(a)(3)) a type that is not non-functionally-integrated Type III AND a current donor-control certification exists for Type I/II/FI-III.; Any recipient outside the excepted classes is routed to expenditure-responsibility or rejection; never auto-approved.; Sanctions: a potential match produces Hold; only an authorized human may disposition a potential match; AI may summarize evidence only.; Write snapshot {sponsorId, grantId, decisionPoint, EIN, name, subsection/509(a) code, supporting-org type, deductibility, source, BMF revision date, retrieval datetime, evidence hash} to the sponsor partition.; Deep review expiry: new approvals Hold with reason DeepReviewExpired; payments for already-approved grants proceed only if the release-time IRS-status and sanctions checks pass and no adverse signal is open.; Adverse signal on a shared charity record creates Hold events for all affected open grants across sponsors within the same commit, without disclosing one sponsor's data to another.; (merged from GRT draft) Unbound MUST keep one platform-wide CommonVerificationStatus per canonical charity identity. Each status MUST rest on typed evidence facts, each governed by the active FreshnessPolicy. The system MUST refresh evidence before it reaches its maximum age and MUST reverify on material change events. At every payment release, the system MUST recheck sanctions, common status and global holds. A sponsor MAY require stricter freshness for its own grants and MUST NOT weaken the platform policy. A global adverse hold MUST be raised only on E0/E1 evidence or by independent compliance authority, and MUST be propagated to sponsors as a typed status and reason class without sponsor-private evidence.
+- **Failure behaviour:** Data-source outage: Unknown, then Hold. Never treat stale data as current.; Conflicting sources (e.g., Pub 78 vs BMF): Disputed, then Hold, then a human reviewer.; Snapshot write failure aborts the eligibility transaction.
+- **Security / audit:** Snapshots partitioned by sponsor; shared charity facts contain no sponsor-private data; Only Eligibility component may write EligibilityEvaluated / Snapshot retained under the tax-reliance retention class (RR-REQ-X-036-r1); Policy version, data-source revision date and rule trace on every decision
+- **Configuration:** status_freshness_window (sponsor; must be set before go-live; counsel question Q2); deep_review_interval (sponsor; default 180 days); Additional sponsor restrictions may only make eligibility stricter
+- **AI assistance:** **advisory:** Summarize adverse media or document evidence for a human reviewer; Propose entity-resolution candidates with confidence; **autonomous:** None that change eligibility; **prohibited:** Clearing a sanctions potential match; Overriding Ineligible or Unknown; Asserting legal status; **human_approval_boundary:** Any Disputed, Unknown-after-retry, expenditure-responsibility or sanctions potential-match outcome
+- **UI / API / reporting:** Grant status shows eligibility dimension with reason and as-of time; Charity profile shows last IRS observation time and deep review date separately / Query: GET eligibility/{grantId}?decisionPoint= returns outcome and snapshot reference; Event: EligibilityEvaluated v2 with decisionPoint field; idempotent on (grantId, decisionPoint, policyVersion, observationHash); Error: 409 EligibilityUnknown when the source is unavailable / Count of holds by reason and age; Reconstruct as-of eligibility for any grant on any date
+- **Regulatory:** IRC 4966 taxable distribution risk; Rev. Proc. 2018-32 §§4-5, 8.01; Counsel Q2 (shared evidence), Q3 (supporting-org certification)
+- **Dependencies:** REQ-X-018; REQ-X-036; UNB-CHAR-*; UNB-RCN-GRT-001; UNB-RCN-GRT-014; UNB-RCN-REG-002 · **Findings:** RCF-GRT-001; RCF-GRT-002; RCF-GRT-003; RCF-GRT-004; RCF-GRT-025; RCF-REG-001; RCF-REG-005
+- **Assumptions / alternatives / tradeoffs:** A third-party data provider can supply all §8.01 fields with a timestamp; Sponsors accept shared evidence as an input subject to counsel opinion (Q2) / Keep 180-day currency and add sanctions only at release (rejected: loses grant-date reliance); Live IRS lookup on every grant with no shared evidence (viable; higher latency, no deep-review reuse); Per-sponsor full vetting (rejected: duplicates cost without legal benefit) / Release-time lookup adds a dependency on data-source availability; mitigated by Hold-not-fail-open semantics
+- **Evidence:** daf-landscape:docs/automated-charity-assurance-180-day-decision-record-v0.1.md:4; daf-landscape:docs/automated-charity-assurance-180-day-decision-record-v0.1.md:51; Rev. Proc. 2018-32, IRB 2018-23 (https://www.irs.gov/irb/2018-23_IRB, accessed 2026-11-23); research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:83; research/daf-theoretical-enterprise-validation/19-questions/POLICY-PRECEDENCE-EVIDENCE-TRUST-AND-CRITICAL-WORKFLOWS-2026-11-23.md:20
+- **Acceptance criteria:**
+  - **AC-1** Given A charity deep-reviewed 30 days ago whose IRS status is revoked (posted to the Auto-Revocation List) today; when its approved grant reaches payment release; then outcome Ineligible, payment held, snapshot records the revocation observation.
+  - **AC-2** Given A charity whose deep review expired yesterday and an approved grant whose release-time IRS and sanctions checks pass; when payment release runs; then payment proceeds; a DeepReviewExpired task is open; no new approvals for that charity proceed.
+  - **AC-3** Given Two sponsors grant to the same charity; when both grants are evaluated; then one shared evidence record is read; two snapshots exist, one in each sponsor partition; neither sponsor can read the other's snapshot.
+  - **AC-4** Given The TEOS/BMF source is unreachable and the cached observation is older than status_freshness_window; when approval is attempted; then outcome Unknown, grant held, no AI or human override path that bypasses the hold except a fresh observation.
+  - **AC-5** Given A Type I supporting organization with no current donor-control certification; when a grant is recommended; then outcome Hold with reason SupportingOrgCertificationMissing.
+  - **AC-6** Given a charity verified 179 days ago with clean refresh results; when the refresh job runs at the lead time; then the status stays Verified, no grant is held and no human task is created.
+  - **AC-7** Given a charity verified 30 days ago; when an authenticated OFAC listing arrives; then the status is HeldAdverse and a pending release for that charity is refused.
+  - **AC-8** Given a sponsor configures a stricter 90-day comprehensive review; when a grant from that sponsor is released to a charity last reviewed 120 days ago; then release is held for refresh while other sponsors' grants are unaffected.
+  - **AC-9** Given sponsor A's private fraud allegation with only E4 evidence; when sponsor A requests a global hold; then the request is rejected and a sponsor-A overlay hold is created.
+
+### RR-REQ-X-036-r1 — refines `REQ-X-036`
+- **Source:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:362` @ `777a70d` · domain REG+PLT · requires-owner-decision · confidence high · proposed-not-validated
+- **Original text:** Retain all financial documents and substantiating financial evidence for **at least seven years**, with longer applicable legal, regulatory, contractual, sponsor or litigation-hold requirements taking precedence. This is a nonwaivable platform floor, not a legal conclusion that all records can be deleted after seven years. Retention clocks must be approved per record class; fund closure, donor death, advisor change and sponsor offboarding do not shorten retention. Originals and corrections remain immutable and linked; legal holds apply to existing and future matching evidence. Expiry triggers governed disposition review, never automatic deletion.
+- **Refined statement:** Every stored record MUST be assigned exactly one retention class at creation. Each class MUST declare its authority (statute, regulation, contract, sponsor policy), trigger event, and minimum period. The effective retention of a record MUST be the maximum over all applicable classes, the platform floor (7 years from trigger, sponsor policy) and any legal hold. At minimum the catalog MUST include: OFAC/sanctions records (10 years from the transaction or screening decision, 31 CFR 501.601); tax-reliance snapshots (≥ the platform floor and until the related return period is closed, per counsel Q5); cost-basis and carryover records (until 7 years after the final disposition the record substantiates); and personal data not required as a financial record (deletable on request after its financial-record role ends). Expiry MUST create a disposition review task; deletion MUST NOT occur automatically.
+- **Business objective:** Make the 'longer obligation prevails' rule executable deterministically, and avoid both premature deletion and unlimited retention of personal data.
+- **Reason for change:** The original makes 'longer requirements take precedence' a principle without naming any longer requirement. OFAC's 10-year rule (effective 2025-03-21) and §6001 'as long as material' for basis records are not represented, so the precedence clause is not executable.
+- **Processing rules:** Class assignment by record type is deterministic; unknown record type is rejected at write; effective_until = max(trigger+class period for all applicable classes, trigger+platform floor, hold release); Trigger re-evaluated on correction or settlement events; never shortened by fund closure, donor death, advisor change or sponsor offboarding; Disposition requires an approved review by a role other than the requester; (merged from PLT draft) Each record class MUST have a retention rule with: trigger event, minimum period, authority type (statute|regulation|IRS guidance|contract|sponsor policy|business policy), citation or approver, and disposition method. Financial record classes MUST default to a minimum of FinancialRetentionYears (configuration parameter, initial value 7, owner GC) from the class trigger, unless a counsel-approved class rule specifies longer. Sponsor configuration MAY extend but not shorten the effective period. Legal holds MUST suspend disposition for all matching present and future records. Disposition MUST execute only through an approved class-level DispositionBatch.
+- **Failure behaviour:** Missing class: write rejected; Catalog change: recompute asynchronously; until complete, deletion is blocked platform-wide
+- **Security / audit:** Disposition is an A4 reserved action; agents cannot approve; Sponsor offboarding exports do not remove Unbound's retained copy before effective_until / Class catalog versioned; each assignment records catalog version; Disposition evidence retained beyond the disposed record (metadata only)
+- **Configuration:** Sponsors MAY lengthen any class; MUST NOT shorten below the platform floor or legal minimum
+- **AI assistance:** **advisory:** Propose class for a new record type for compliance review; **autonomous:** —; **prohibited:** Approving disposition; Releasing legal holds; **human_approval_boundary:** All dispositions and catalog changes
+- **UI / API / reporting:** Record detail shows retention class, authority and effective-until date; Disposition review list contains only expired, hold-free records / Command: AssignRetentionClass (internal only); Query: GET retention/{recordId}; Error: 423 Locked on delete of retained record / Records by class and expiry month; Holds by matter
+- **Regulatory:** 31 CFR 501.601 (10 years); IRC 6001; State privacy deletion rights; Counsel Q5
+- **Dependencies:** REQ-X-037; REQ-X-038; REQ-X-034 · **Findings:** RCF-PLT-013; RCF-PLT-014; RCF-REG-003
+- **Assumptions / alternatives / tradeoffs:** The platform floor remains an owner-directed 7 years / Single 10-year floor for everything (simpler, but over-retains personal data and conflicts with privacy deletion); Indefinite retention (rejected: privacy and cost) / A class catalog requires compliance ownership and maintenance
+- **Evidence:** 31 CFR 501.601 as amended, FR 2025-04864 (https://www.govinfo.gov/content/pkg/FR-2025-03-21/html/2025-04864.htm, accessed 2026-11-23); research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:362; research/daf-theoretical-enterprise-validation/19-questions/DETERMINISTIC-RETENTION-POLICY-ENGINE-HOLDS-AND-DISPOSITION-2026-11-23.md:32
+- **Acceptance criteria:**
+  - **AC-1** Given A sanctions screening decision dated 2026-01-15; when retention is computed; then effective_until is no earlier than 2036-01-15 even though the platform floor would give 2033-01-15.
+  - **AC-2** Given A fund closed in 2027 with contributions from 2026; when the retention job runs in 2030; then no contribution record of that fund is eligible for disposition.
+  - **AC-3** Given A record whose classes have all expired and no hold; when the expiry date passes; then a disposition review task opens; the record still exists until approved.
+  - **AC-4** Given A new record type with no catalog entry; when a write is attempted; then the write is rejected with RetentionClassMissing.
+  - **AC-5** Given a statement class with FinancialRetentionYears=7 and sponsor extension 10; when year 8 begins; then the record is not eligible.
+  - **AC-6** Given a legal hold matching fund F; when a new statement for F is issued; then it is under hold immediately.
+  - **AC-7** Given an approved batch; when a record acquires a hold before execution; then that record is skipped and reported.
+
+### RR-UNB-PLAT-007-r1 — supersedes `UNB-PLAT-007`
+- **Source:** `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md:11` @ `777a70d` · domain REG/ARC · autonomous-reversible · confidence high · proposed-not-validated
+- **Original text:** - **UNB-PLAT-007:** **Strata** SHALL be used in the persistence architecture. All authoritative business history is append-only; corrections and reversals append new records. Physical storage guarantees and Strata integration must be verified.
+- **Refined statement:** Authoritative business history MUST be stored by an Unbound-owned Ledger/Event Store component on managed PostgreSQL, in which authoritative tables are insert-only for the application role (no UPDATE/DELETE grants), corrections and reversals are new linked records, and each append is assigned a per-stream sequence number checked under optimistic concurrency. Strata MUST be used as the schema governance layer: every schema object for the authoritative store, including grants, triggers and row-level-security policies that enforce append-only and tenant isolation, MUST be declared in Strata source, deployed only through Strata plans, and checked for drift before each release; a 'not-compared' or 'unverifiable' Strata state for any such object MUST block release.
+- **Business objective:** Keep tamper-resistant, reconstructable financial and authority history without assuming capabilities Strata does not have.
+- **Reason for change:** Strata (v0.1.1, pilot) is a declarative PostgreSQL schema management tool with no data API; it cannot provide append-only history, posting, temporal queries or replay. The original assigns these to Strata.
+- **Processing rules:** Application role holds INSERT and SELECT only on authoritative tables; Append = (streamId, expectedVersion, events); mismatch → ConcurrencyConflict; Break-glass role use raises an incident and is logged outside the database
+- **Failure behaviour:** Drift detected in production: release blocked; incident opened; Strata reports not-compared for a policy: treated as failure, not pass
+- **Security / audit:** RLS policies by tenant on every authoritative table (see tenancy decision RCD-004) / Strata signed artifacts retained per release; Hash chain over each stream (Unbound-owned) for tamper evidence
+- **Configuration:** not configurable: integrity property
+- **AI assistance:** **advisory:** Explain a Strata plan or drift report; **autonomous:** —; **prohibited:** Applying schema changes; Using break-glass credentials; **human_approval_boundary:** Every schema deployment
+- **UI / API / reporting:** not applicable: infrastructure requirement with no direct user interface / Internal append API only; no external caller writes authoritative events directly / As-of reconstruction from event streams
+- **Regulatory:** not applicable: no direct legal obligation; supports audit evidence
+- **Dependencies:** REQ-X-020; REQ-X-022; UNB-ACC-026 · **Findings:** RCF-ARC-001
+- **Assumptions / alternatives / tradeoffs:** Managed PostgreSQL 16 is acceptable for the authoritative store / Dedicated event-store product (adds a runtime dependency and ADR); Do not use Strata (loses verified drift control) / Unbound must build and test its own append, concurrency and hash-chain logic
+- **Evidence:** kemiller2002/strata@c6a384e:README.md; echelon-registry@fef1f94 sets/echelon-current/1.39.0.json
+- **Acceptance criteria:**
+  - **AC-1** Given The application database role; when it issues UPDATE on a journal table; then the database rejects it with permission denied.
+  - **AC-2** Given A release candidate whose live database has a manually added trigger; when the Strata drift check runs; then state differs; release blocked.
+  - **AC-3** Given Two concurrent appends to one fund stream at expectedVersion 7; when both commit; then exactly one succeeds; the other receives ConcurrencyConflict and no partial events exist.
+
+<!-- END GENERATED: refinement-records -->

@@ -1,13 +1,13 @@
 {
   "records": {
     "refinements": 46,
-    "gaps": 66,
-    "findings": 174,
+    "gaps": 67,
+    "findings": 175,
     "conflicts": 39,
-    "scenarios": 122,
+    "scenarios": 124,
     "decisions": 31
   },
-  "trace_edges": 2155,
+  "trace_edges": 2176,
   "errors": 0,
   "warnings": 30,
   "errors_by_gate": {}
