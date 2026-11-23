@@ -412,3 +412,27 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Establish a shared decision-oriented operational intelligence layer with versioned metric definitions, authoritative source lineage, sponsor isolation, reconciliation/freshness/coverage disclosure and safe drilldowns. Cover financial integrity/AUM, grants and payments, donor experience, charity/compliance, unit economics, documents and operational prevention. Distinguish approved financial close figures from live estimates; never conflate Approved with Paid, AUM with available-to-grant, or AI-assisted with verified automation. Dashboard actions invoke authoritative domain commands and cannot bypass financial, legal or security controls. Preserve bitemporal report provenance and privacy-safe aggregated benchmarks. Treat role-based dashboard UX, embedded widgets, formal report catalog/designer and scheduling as explicitly deferred dedicated requirements phase.
 
 **Acceptance (not executed):** ADV-543..ADV-578 and `ENTERPRISE-OPERATIONAL-INTELLIGENCE-METRICS-AND-DECISION-ARCHITECTURE-2026-11-23.md`. Validate metric definitions, denominators, financial reconciliation, freshness, sponsor isolation, official versus estimated reporting, privacy and action gates.
+
+## REQ-X-044: Enterprise decision rights and delegated authority (2026-11-23)
+
+**Proposed:** Versioned sponsor/platform authority, delegation scope/expiry, independent approvals, no AI or emergency money-moving override, execution-time recheck.
+
+**Acceptance (not executed):** Relevant ADV-579..ADV-618; `ENTERPRISE-DECISION-RIGHTS-AND-DELEGATED-AUTHORITY-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
+
+## REQ-X-045: Sponsor configuration and policy lifecycle (2026-11-23)
+
+**Proposed:** Declarative validated sponsor configuration, legal-safe white labeling, versioned policy simulation/approval/activation, no bypass of financial seven-year floor or protective holds.
+
+**Acceptance (not executed):** Relevant ADV-579..ADV-618; `SPONSOR-CONFIGURATION-POLICY-LIFECYCLE-AND-ISOLATION-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
+
+## REQ-X-046: Provider data contracts and integration evidence (2026-11-23)
+
+**Proposed:** Typed adapters, provenance, effective/known-at dates, provider Unknown, reconciliation, idempotency, tenant security and comprehensive mock interactions.
+
+**Acceptance (not executed):** Relevant ADV-579..ADV-618; `ENTERPRISE-DATA-CONTRACTS-PROVIDER-INTEGRATION-AND-EVIDENCE-GOVERNANCE-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
+
+## REQ-X-047: Operational resilience and protective continuity (2026-11-23)
+
+**Proposed:** Fenced authoritative financial writer, explicit fault-assumption RPO/RTO, protective-only emergency plane, safe outage queue, recoverable archive and provider-status reconciliation.
+
+**Acceptance (not executed):** Relevant ADV-579..ADV-618; `ENTERPRISE-RESILIENCE-CONTINUITY-AND-PROTECTIVE-OPERATIONS-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
