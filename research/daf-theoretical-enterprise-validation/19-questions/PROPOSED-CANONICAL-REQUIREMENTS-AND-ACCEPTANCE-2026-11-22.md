@@ -620,3 +620,15 @@ All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a 
 **Proposed:** Enforce INV-01..INV-18 across contribution acceptance, grantable capacity, atomic reservation, payment finality, provider Unknown, sponsor policy changes, sponsor identity, recipient bank changes, sponsor financial close, reporting, migration fencing, fee conflicts, tax receipts, donor anonymity, recurrence, and AI authority. External providers cannot participate in an imaginary atomic database transaction; use durable idempotency, reconciliation and compensation.
 
 **Acceptance (not executed):** `CROSS-WORKFLOW-FINANCIAL-AUTHORITY-AND-IRREVERSIBILITY-INVARIANTS-2026-11-23.md`. Require synthetic before/after balance and authority snapshots, failure injection, concurrency and replay checks, independent legal/accounting review as applicable.
+
+## REQ-X-080: Typed transaction state-transition matrix and authoritative accounting boundaries (2026-11-23)
+
+**Proposed:** Specify and maintain machine-readable transaction transition contracts for contribution, complex asset acceptance, grants, recurring schedules, payment, charity payee change, fees, close, filing, migration, delegated rights, external checkout, charity reverification and sponsor activation. Every transition declares source/target state, authority, single in-process owner, atomicity classification, evidence, accounting effect, stable idempotency, failure/recovery and truthful user-visible state. External banks, custodians and regulators are not participants in a single database transaction.
+
+**Acceptance (not executed):** `TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv` contains 28 first-pass transitions. Future checks must verify allowed edges, cross-domain invariants, versioned commands, audit, compensation, sponsor isolation and explicit Unknown handling. No generated code or passing tests claimed.
+
+## REQ-X-081: Adversarial transaction simulation and recovery fixture catalog (2026-11-23)
+
+**Proposed:** Maintain deterministic synthetic failure fixtures for concurrent grants, returned payments, delayed provider outcomes, payee fraud, stale custody values, policy/authority changes, migration dual-writer risk, legal acceptance, sponsor reporting, AI overreach and disaster recovery. Each fixture requires before/after balances, authorization/policy snapshot, provider response, audit, UX status and recovery path. Reconciliation must precede retry after ambiguous external outcomes.
+
+**Acceptance (not executed):** `ADVERSARIAL-TRANSACTION-SIMULATIONS-AND-RECOVERY-CONTRACTS-2026-11-23.md` defines 28 first-pass simulations, 0 executed or independently signed off.
