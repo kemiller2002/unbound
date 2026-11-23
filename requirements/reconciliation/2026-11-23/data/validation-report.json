@@ -1,0 +1,16 @@
+{
+  "records": {
+    "refinements": 4,
+    "gaps": 6,
+    "findings": 14,
+    "conflicts": 0,
+    "scenarios": 0,
+    "decisions": 0
+  },
+  "trace_edges": 90,
+  "errors": 12,
+  "warnings": 10,
+  "errors_by_gate": {
+    "G10": 12
+  }
+}
