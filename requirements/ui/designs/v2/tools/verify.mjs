@@ -116,7 +116,16 @@ const checkPage = async (browser, axeSrc, p, vp) => {
   await page.evaluate(() => document.fonts.ready);
   const base = await page.evaluate(pageChecks);
   await page.addScriptTag({ content: axeSrc });
-  const axe = await page.evaluate(async (tags) => (await window.axe.run(document, { runOnly: { type: "tag", values: tags } })).violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, target: v.nodes[0]?.target?.join(" ") })), AXE_TAGS);
+  // axe marks some contrast cases "incomplete" (e.g. single characters, v1 audit UXD-002);
+  // those are treated as failures unless their measured ratio passes.
+  const axeRun = await page.evaluate(async (tags) => {
+    const r = await window.axe.run(document, { runOnly: { type: "tag", values: tags } });
+    return {
+      violations: r.violations.map((v) => ({ id: v.id, impact: v.impact, nodes: v.nodes.length, target: v.nodes[0]?.target?.join(" ") })),
+      contrastIncomplete: r.incomplete.filter((v) => v.id === "color-contrast").flatMap((v) => v.nodes).filter((n) => { const d = n.any?.[0]?.data; return d && d.contrastRatio && d.contrastRatio < (parseFloat(d.expectedContrastRatio) || 4.5); }).map((n) => n.target.join(" ")),
+    };
+  }, AXE_TAGS);
+  const axe = [...axeRun.violations, ...axeRun.contrastIncomplete.map((t) => ({ id: "color-contrast-incomplete", impact: "serious", nodes: 1, target: t }))];
   const focus = await walkKeyboard(page);
   const shotDir = vp.reference ? path.join(root, "rendered", p.screen) : path.join(OUT_EXTRA, p.screen);
   await mkdir(shotDir, { recursive: true });

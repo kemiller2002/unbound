@@ -1,0 +1,249 @@
+/*
+ * Donor grants: proposed components for S-003 (grant recommendation) and
+ * S-004 (grant detail). DESIGN PROTOTYPE, not production UI.
+ *
+ * Same discipline as ../unbound-app.css: no brand selector, every rule scoped
+ * under .unb-app, reads only --forma-* and --unb-* tokens, declares only
+ * --unb-x-* properties. Each block names the reusable component it proposes.
+ * Load order: forma all.css -> brand css -> unbound-app.css -> this file.
+ */
+@layer unbound.proto {
+  /* ---- Proposed: Task page layout (form or record + context aside) ------
+     Source order = priority order. Phone: one column. Desktop: the working
+     column keeps a readable measure; the aside holds context, never actions. */
+  .unb-app .unb-x-flow { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .unb-app .unb-x-flow > * { min-inline-size: 0; display: grid; gap: var(--forma-space-5); align-content: start; }
+  @media (min-width: 64rem) {
+    .unb-app .unb-x-flow { grid-template-columns: minmax(0, 44rem) minmax(16rem, 1fr); }
+    .unb-app .unb-x-flow[data-layout="record"] { grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr); }
+  }
+
+  /* ---- Proposed: Selectable result list (charity search results) --------
+     Each result: identity first, eligibility in words + glyph, then the one
+     action. Ineligible results show why instead of an action. */
+  .unb-app .unb-x-results { list-style: none; margin: 0; padding: 0; display: grid; }
+  .unb-app .unb-x-result {
+    display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--forma-space-2);
+    padding: var(--forma-space-4) 0; border-block-start: 1px solid var(--unb-rule-soft);
+  }
+  .unb-app .unb-x-result:first-child { border-block-start: 0; padding-block-start: 0; }
+  .unb-app .unb-x-result:last-child { padding-block-end: 0; }
+  .unb-app .unb-x-result__name { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-result__elig { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-1) var(--forma-space-3); font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-result__action { justify-self: start; }
+  @container (min-width: 34rem) {
+    .unb-app .unb-x-result { grid-template-columns: minmax(0, 1fr) auto; column-gap: var(--forma-space-5); }
+    .unb-app .unb-x-result > :not(.unb-x-result__action) { grid-column: 1; }
+    .unb-app .unb-x-result__action { grid-column: 2; grid-row: 1 / span 2; align-self: center; }
+  }
+
+  /* ---- Proposed: Selected record summary (the chosen charity) ------------ */
+  .unb-app .unb-x-picked {
+    display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3);
+    padding: var(--forma-space-4); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-container);
+    background: var(--unb-canvas);
+  }
+  .unb-app .unb-x-picked[data-state="blocked"] { border-inline-start: 4px solid var(--unb-danger); }
+  .unb-app .unb-x-picked > .unb-task__icon { grid-row: span 4; }
+  .unb-app .unb-x-picked > :not(.unb-task__icon) { grid-column: 2; }
+  .unb-app .unb-x-picked .unb-task__action { margin-block-start: var(--forma-space-1); }
+
+  /* ---- Proposed: Form stack (one column, sections divided by rules) -------
+     Forma's form/field own the controls; this owns rhythm and measure. */
+  .unb-app .unb-x-form { display: grid; gap: var(--forma-space-6); }
+  .unb-app .unb-x-form > * { min-inline-size: 0; }
+  .unb-app .unb-x-form fieldset { margin: 0; padding: 0; border: 0; min-inline-size: 0; }
+  .unb-app .unb-x-form :is(textarea, .forma-select-field, .forma-choice-group, .forma-disclosure) { max-inline-size: 36rem; }
+  .unb-app .unb-x-form .forma-choice { border-radius: var(--unb-radius-control); }
+  .unb-app .unb-x-form :is(input, textarea, select) { border-radius: var(--unb-radius-control); }
+  .unb-app .unb-x-form .forma-checkbox { align-items: start; }
+  .unb-app .unb-x-form .forma-checkbox__box { margin-block-start: 0.1rem; }
+  .unb-app .unb-x-form .forma-checkbox__label { font-weight: 500; line-height: 1.45; }
+  .unb-app .unb-x-form .forma-binary-choice__options { border-radius: var(--unb-radius-control); overflow: hidden; }
+  .unb-app .unb-x-fieldset-note { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); margin-block: calc(var(--forma-space-2) * -1) var(--forma-space-3); }
+  .unb-app .unb-x-form .forma-disclosure { border-color: var(--unb-rule-soft); }
+  .unb-app .unb-x-form .forma-disclosure > summary {
+    display: flex; align-items: center; justify-content: space-between; gap: var(--forma-space-3);
+    min-block-size: var(--unb-target); font-weight: 650; color: var(--forma-color-text-heading); cursor: pointer;
+  }
+  .unb-app .unb-x-form .forma-disclosure__content { display: grid; gap: var(--forma-space-5); padding-block: var(--forma-space-2) var(--forma-space-5); }
+  .unb-app .unb-x-derived { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-derived strong { color: var(--forma-color-text-heading); }
+
+  /* ---- Proposed: Currency input (text field with a fixed unit prefix) -----
+     Forma text-field has no adornment slot; the prefix is decorative, the
+     label says "US dollars". */
+  .unb-app .unb-x-money-input { display: grid; grid-template-columns: auto minmax(0, 1fr); max-inline-size: 16rem; }
+  .unb-app .unb-x-money-input > span {
+    display: grid; place-items: center; padding: 0 var(--forma-space-3);
+    border: 1px solid var(--forma-color-border-functional); border-inline-end: 0;
+    border-radius: var(--unb-radius-control) 0 0 var(--unb-radius-control);
+    background: var(--unb-sunken); font-weight: 650; color: var(--forma-color-text-on-secondary-surface);
+  }
+  .unb-app .unb-x-money-input > input {
+    border-start-start-radius: 0; border-end-start-radius: 0;
+    font-variant-numeric: tabular-nums; font-size: 1.125rem; font-weight: 600;
+  }
+
+  /* ---- Proposed: Form action row (in flow, never sticky) ----------------- */
+  .unb-app .unb-x-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-3) var(--forma-space-4); }
+  .unb-app .unb-x-actions__note { flex-basis: 100%; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  @media (max-width: 29.99rem) {
+    .unb-app .unb-x-actions > .forma-button { inline-size: 100%; }
+  }
+
+  /* ---- Proposed: Milestone track (one record's progress with dates) -------
+     Extends the shared steps (.unb-steps) with a date line per milestone;
+     vertical on narrow containers so dates never truncate. */
+  .unb-app .unb-x-track { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
+  .unb-app .unb-x-track li {
+    position: relative; display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); column-gap: var(--forma-space-3);
+    padding-block-end: var(--forma-space-4);
+  }
+  .unb-app .unb-x-track li:last-child { padding-block-end: 0; }
+  .unb-app .unb-x-track li::before {
+    content: ""; grid-row: span 2; inline-size: 1rem; block-size: 1rem; margin: 0.2rem 0.25rem 0;
+    border-radius: 50%; border: 2px solid var(--forma-color-border-functional); background: var(--unb-raised); box-sizing: border-box; z-index: 1;
+  }
+  .unb-app .unb-x-track li:not(:last-child)::after {
+    content: ""; position: absolute; inset-inline-start: calc(0.75rem - 1px); inset-block: 1.2rem 0;
+    border-inline-start: 2px solid var(--unb-rule-soft);
+  }
+  .unb-app .unb-x-track li[data-step="done"]::before { background: var(--forma-color-text-on-secondary-surface); border-color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-track li[data-step="done"]:not(:last-child)::after { border-color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-track li[data-step="current"]::before { background: var(--unb-accent); border-color: var(--unb-accent); box-shadow: 0 0 0 3px var(--unb-accent-wash); }
+  .unb-app .unb-x-track li[data-step="failed"]::before { background: var(--unb-danger); border-color: var(--unb-danger); }
+  .unb-app .unb-x-track__label { font-weight: 600; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-track li[data-step="current"] .unb-x-track__label { font-weight: 750; }
+  .unb-app .unb-x-track li[data-step="failed"] .unb-x-track__label { color: var(--unb-danger); font-weight: 750; }
+  .unb-app .unb-x-track li[data-step="todo"] .unb-x-track__label { font-weight: 500; color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-track__when { grid-column: 2; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  @container (min-width: 36rem) {
+    .unb-app .unb-x-track { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--forma-space-3); }
+    .unb-app .unb-x-track li { grid-template-columns: minmax(0, 1fr); row-gap: var(--forma-space-1); padding: 0; }
+    .unb-app .unb-x-track li::before { grid-row: auto; inline-size: 100%; block-size: 4px; margin: 0 0 var(--forma-space-2); border: 0; border-radius: 2px; background: var(--unb-rule-soft); box-shadow: none; }
+    .unb-app .unb-x-track li:not(:last-child)::after { display: none; }
+    .unb-app .unb-x-track__when { grid-column: 1; }
+  }
+
+  /* ---- Proposed: Event timeline (absolute dates, newest first) -----------
+     Lighter than Forma timeline (no boxed cards, no mono meta): a glyph per
+     event state, date line, title, optional plain-language detail. */
+  .unb-app .unb-x-timeline { list-style: none; margin: 0; padding: 0; display: grid; }
+  .unb-app .unb-x-timeline > li { position: relative; display: grid; grid-template-columns: 2rem minmax(0, 1fr); column-gap: var(--forma-space-3); padding-block-end: var(--forma-space-5); }
+  .unb-app .unb-x-timeline > li:last-child { padding-block-end: 0; }
+  .unb-app .unb-x-timeline > li:not(:last-child)::before { content: ""; position: absolute; inset-inline-start: calc(1rem - 0.5px); inset-block: 2.1rem 0.1rem; border-inline-start: 1px solid var(--unb-rule); }
+  .unb-app .unb-x-timeline__mark {
+    grid-row: span 3; inline-size: 2rem; block-size: 2rem; border-radius: 50%; display: grid; place-items: center;
+    border: 1.5px solid currentColor; color: var(--forma-color-text-on-secondary-surface); background: var(--unb-raised);
+  }
+  .unb-app .unb-x-timeline__mark svg { inline-size: 1rem; block-size: 1rem; }
+  .unb-app .unb-x-timeline > li[data-state="ok"] .unb-x-timeline__mark { color: var(--unb-ok); }
+  .unb-app .unb-x-timeline > li[data-state="attention"] .unb-x-timeline__mark { color: var(--unb-warn); }
+  .unb-app .unb-x-timeline > li[data-state="blocked"] .unb-x-timeline__mark { color: var(--unb-danger); }
+  .unb-app .unb-x-timeline > li[data-state="info"] .unb-x-timeline__mark { color: var(--unb-info); }
+  .unb-app .unb-x-timeline__when { grid-column: 2; font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); font-variant-numeric: tabular-nums; }
+  .unb-app .unb-x-timeline__title { grid-column: 2; font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-timeline__text { grid-column: 2; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+
+  /* ---- Proposed: Record header (identity, status, amount) -----------------
+     Status and amount lead; the reference is quiet but copyable (G-016). */
+  .unb-app .unb-x-record { display: grid; gap: var(--forma-space-3); }
+  .unb-app .unb-x-record__crumbs { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-2); font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-record__crumbs a { color: inherit; display: inline-block; padding-block: 0.125rem; }
+  .unb-app .unb-x-record__row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--forma-space-2) var(--forma-space-6); }
+  .unb-app .unb-x-record__who { display: grid; gap: var(--forma-space-1); min-inline-size: 0; }
+  .unb-app .unb-x-record__amount { font-family: var(--forma-type-family-display); font-weight: 500; font-size: var(--unb-type-display); line-height: 1.05; letter-spacing: -0.02em; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-record__status { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-2) var(--forma-space-3); }
+  .unb-app .unb-x-record__status .unb-chip { font-size: var(--unb-type-small); padding: 0.25rem 0.625rem 0.25rem 0.5rem; }
+  .unb-app .unb-x-record__next { font-size: var(--unb-type-small); color: var(--forma-color-text-on-secondary-surface); }
+
+  /* ---- Proposed: Copyable reference (FORMA-GAP-07) ---------------------- */
+  .unb-app .unb-x-ref { display: inline-flex; align-items: center; gap: var(--forma-space-1); white-space: nowrap; }
+  .unb-app .unb-x-copy {
+    display: inline-grid; place-items: center; inline-size: 2rem; block-size: 2rem; padding: 0;
+    border: 1px solid transparent; border-radius: var(--unb-radius-control); background: transparent; color: inherit; cursor: pointer;
+  }
+  .unb-app .unb-x-copy:hover { border-color: var(--unb-rule); background: var(--unb-raised); }
+  .unb-app .unb-x-copy svg { inline-size: 1rem; block-size: 1rem; }
+
+  /* ---- Proposed: Decision options (choose between outcomes) ---------------
+     Each option states its consequence next to its own action; no option is
+     pre-selected, the default if the person does nothing is stated in text. */
+  .unb-app .unb-x-options { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-3); }
+  .unb-app .unb-x-option {
+    display: grid; gap: var(--forma-space-2); align-content: start; padding: var(--forma-space-4);
+    border: 1px solid var(--unb-rule); border-radius: var(--unb-radius-container); background: var(--unb-canvas);
+  }
+  .unb-app .unb-x-option h3 { font-size: 1rem; }
+  .unb-app .unb-x-option p { font-size: var(--unb-type-small); color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-option .forma-button { justify-self: start; margin-block-start: var(--forma-space-2); }
+  @container (min-width: 34rem) {
+    .unb-app .unb-x-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .unb-app .unb-x-option { grid-template-rows: auto 1fr auto; }
+  }
+
+  /* ---- Proposed: Outcome header (result of a submitted command) ----------- */
+  .unb-app .unb-x-outcome { display: grid; grid-template-columns: 2.75rem minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-4); align-items: start; }
+  .unb-app .unb-x-outcome__icon { grid-row: span 2; inline-size: 2.75rem; block-size: 2.75rem; border-radius: 50%; display: grid; place-items: center; border: 2px solid currentColor; }
+  .unb-app .unb-x-outcome[data-state="ok"] .unb-x-outcome__icon { color: var(--unb-ok); }
+  .unb-app .unb-x-outcome[data-state="unknown"] .unb-x-outcome__icon { color: var(--unb-info); }
+  .unb-app .unb-x-outcome__icon svg { inline-size: 1.4rem; block-size: 1.4rem; }
+  .unb-app .unb-x-outcome h2 { font-size: 1.25rem; }
+  .unb-app .unb-x-outcome p { color: var(--forma-color-text-on-secondary-surface); }
+
+  /* ---- Proposed: Commitment summary (amount -> recipient, review step) ---- */
+  .unb-app .unb-x-commit { display: grid; gap: var(--forma-space-1); padding-block-end: var(--forma-space-4); border-block-end: 1px solid var(--unb-rule-soft); }
+  .unb-app .unb-x-commit__amount { font-family: var(--forma-type-family-display); font-weight: 500; font-size: var(--unb-type-display); line-height: 1.05; letter-spacing: -0.02em; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-commit__to { font-weight: 650; color: var(--forma-color-text-heading); }
+
+  /* ---- Proposed: Consequence list (G-005 four answers, stacked) ----------- */
+  .unb-app .unb-x-consequences { margin: 0; display: grid; gap: var(--forma-space-3); }
+  .unb-app .unb-x-consequences > div { display: grid; grid-template-columns: 1.5rem minmax(0, 1fr); column-gap: var(--forma-space-3); }
+  .unb-app .unb-x-consequences svg { grid-row: span 2; inline-size: 1.25rem; block-size: 1.25rem; margin-block-start: 0.1rem; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-consequences dt { font-weight: 650; color: var(--forma-color-text-heading); font-size: var(--unb-type-small); }
+  .unb-app .unb-x-consequences dd { margin: 0; font-size: var(--unb-type-small); color: var(--forma-color-text-on-secondary-surface); }
+
+  /* ---- Proposed: Stacked key-value list (long values, e.g. purpose) ------- */
+  .unb-app .unb-x-kv { margin: 0; display: grid; gap: var(--forma-space-3); }
+  .unb-app .unb-x-kv > div { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .unb-app .unb-x-kv dt { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-kv dd { margin: 0; font-weight: 550; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-kv dd small { display: block; font-weight: 400; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  @container (min-width: 30rem) {
+    .unb-app .unb-x-kv > div { grid-template-columns: 11rem minmax(0, 1fr); column-gap: var(--forma-space-4); align-items: baseline; }
+  }
+
+  /* ---- Proposed: Document list (download rows) --------------------------- */
+  .unb-app .unb-x-docs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-1); }
+  .unb-app .unb-x-docs li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: 0 var(--forma-space-3); align-items: start; padding-block: var(--forma-space-2); }
+  .unb-app .unb-x-docs svg { margin-block-start: 0.6rem; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-docs a { display: inline-flex; align-items: center; min-block-size: var(--unb-target); font-weight: 650; color: var(--forma-color-text-heading); text-underline-offset: 0.2em; }
+  .unb-app .unb-x-docs span { grid-column: 2; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-docs li[data-state="pending"] p { min-block-size: var(--unb-target); display: flex; align-items: center; color: var(--forma-color-text-secondary); font-weight: 600; }
+
+  /* ---- Proposed: Unavailable action with reason (FORMA-GAP-11) ------------
+     The action is named but not offered; the reason and the alternative are text. */
+  .unb-app .unb-x-unavailable { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3); font-size: var(--unb-type-small); }
+  .unb-app .unb-x-unavailable > svg { grid-row: span 3; margin-block-start: 0.1rem; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-unavailable__title { font-weight: 650; color: var(--forma-color-text-heading); font-size: var(--unb-type-body); }
+  .unb-app .unb-x-unavailable p:not(.unb-x-unavailable__title) { color: var(--forma-color-text-on-secondary-surface); }
+
+  /* ---- Proposed: Confirmation dialog skin (Forma dialog in the app frame) -- */
+  .unb-app .forma-dialog {
+    padding: 0; border: 1px solid var(--unb-rule); border-radius: var(--unb-radius-container);
+    background: var(--unb-raised); color: var(--forma-color-text-primary);
+  }
+  .unb-app .forma-dialog .forma-dialog__body { display: grid; gap: var(--forma-space-4); }
+  .unb-app .forma-dialog h2 { font-size: 1.25rem; }
+  .unb-app .forma-dialog__actions { border-block-start-color: var(--unb-rule-soft); }
+  .unb-app .forma-button[data-unb-x-tone="danger"] { color: var(--unb-danger); border-color: currentColor; }
+
+  /* ---- Forced colours ----------------------------------------------------- */
+  @media (forced-colors: active) {
+    .unb-app .unb-x-track li::before, .unb-app .unb-x-track li::after { forced-color-adjust: none; background: CanvasText; border-color: CanvasText; }
+    .unb-app .unb-x-track li[data-step="current"]::before { background: Highlight; border-color: Highlight; }
+    .unb-app .unb-x-track li[data-step="todo"]::before { background: Canvas; }
+    .unb-app :is(.unb-x-picked, .unb-x-option, .unb-x-timeline__mark) { border-color: CanvasText; }
+  }
+}

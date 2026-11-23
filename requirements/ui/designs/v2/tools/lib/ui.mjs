@@ -114,7 +114,7 @@ const NAV = {
   donor: [
     ["home", "Home", "home"],
     ["grants", "Grants", "send"],
-    ["money", "Add money", "add"],
+    ["money", "Contributions", "download"],
     ["documents", "Documents", "file-text"],
     ["people", "People", "users"],
   ],

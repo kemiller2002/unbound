@@ -1,28 +1,26 @@
 [
   {
-    "file": "screens/S-001-giving-home/normal.html",
+    "file": "screens/S-001-giving-home/failed-payment.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "normal",
-    "title": "Normal: pending grants and two attention items",
-    "persona": "Donor (primary advisor)",
+    "state": "failed-payment",
+    "title": "Failed payment: grant payment returned by charity's bank",
+    "persona": "Donor",
     "scenarios": [
-      "normal",
-      "pending-grants",
+      "failed-payment",
       "attention-required"
     ],
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/white-label.html",
+    "file": "screens/S-001-giving-home/integration-unavailable.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "white-label",
-    "title": "White-labelled sponsor (Harbor Giving brand manifest)",
-    "persona": "Donor (primary advisor)",
+    "state": "integration-unavailable",
+    "title": "Investment pricing unavailable (integration down)",
+    "persona": "Donor",
     "scenarios": [
-      "white-label",
-      "normal"
+      "integration-unavailable"
     ],
     "kind": "app"
   },
@@ -64,26 +62,28 @@
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/stale-balance.html",
+    "file": "screens/S-001-giving-home/normal.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "stale-balance",
-    "title": "Available to grant cannot be confirmed (stale)",
-    "persona": "Donor",
+    "state": "normal",
+    "title": "Normal: pending grants and two attention items",
+    "persona": "Donor (primary advisor)",
     "scenarios": [
-      "stale-balances"
+      "normal",
+      "pending-grants",
+      "attention-required"
     ],
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/integration-unavailable.html",
+    "file": "screens/S-001-giving-home/read-only.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "integration-unavailable",
-    "title": "Investment pricing unavailable (integration down)",
-    "persona": "Donor",
+    "state": "read-only",
+    "title": "Read-only: financial advisor with view access",
+    "persona": "Financial advisor (view only)",
     "scenarios": [
-      "integration-unavailable"
+      "read-only"
     ],
     "kind": "app"
   },
@@ -100,14 +100,14 @@
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/suspended.html",
+    "file": "screens/S-001-giving-home/stale-balance.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "suspended",
-    "title": "Fund suspended by sponsor",
+    "state": "stale-balance",
+    "title": "Available to grant cannot be confirmed (stale)",
     "persona": "Donor",
     "scenarios": [
-      "suspended-fund"
+      "stale-balances"
     ],
     "kind": "app"
   },
@@ -125,28 +125,215 @@
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/read-only.html",
+    "file": "screens/S-001-giving-home/suspended.html",
     "screen": "S-001",
     "requirement": "UNB-UI-S-001",
-    "state": "read-only",
-    "title": "Read-only: financial advisor with view access",
-    "persona": "Financial advisor (view only)",
+    "state": "suspended",
+    "title": "Fund suspended by sponsor",
+    "persona": "Donor",
     "scenarios": [
+      "suspended-fund"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/white-label.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "white-label",
+    "title": "White-labelled sponsor (Harbor Giving brand manifest)",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "white-label",
+      "normal"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-008-work-queue/empty.html",
+    "screen": "S-008",
+    "requirement": "UNB-UI-S-008",
+    "state": "empty",
+    "title": "Empty queue: nothing needs you",
+    "persona": "Sponsor operations preparer",
+    "scenarios": [
+      "empty"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-008-work-queue/loading.html",
+    "screen": "S-008",
+    "requirement": "UNB-UI-S-008",
+    "state": "loading",
+    "title": "Loading: skeleton matches the queue layout",
+    "persona": "Sponsor operations preparer",
+    "scenarios": [
+      "loading"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-008-work-queue/proposed-by-me.html",
+    "screen": "S-008",
+    "requirement": "UNB-UI-S-008",
+    "state": "proposed-by-me",
+    "title": "Same break after proposing: preparer cannot approve own proposal",
+    "persona": "Sponsor operations preparer who proposed",
+    "scenarios": [
+      "segregation-of-duties",
+      "pending-approval",
       "read-only"
     ],
     "kind": "app"
   },
   {
-    "file": "screens/S-001-giving-home/failed-payment.html",
-    "screen": "S-001",
-    "requirement": "UNB-UI-S-001",
-    "state": "failed-payment",
-    "title": "Failed payment: grant payment returned by charity's bank",
-    "persona": "Donor",
+    "file": "screens/S-008-work-queue/queue.html",
+    "screen": "S-008",
+    "requirement": "UNB-UI-S-008",
+    "state": "queue",
+    "title": "Exception-first queue sorted by SLA risk",
+    "persona": "Sponsor operations preparer",
     "scenarios": [
-      "failed-payment",
+      "normal",
+      "attention-required",
+      "sla-breach"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-008-work-queue/reconciliation-break.html",
+    "screen": "S-008",
+    "requirement": "UNB-UI-S-008",
+    "state": "reconciliation-break",
+    "title": "Reconciliation break selected: bank vs ledger, candidates and who can resolve",
+    "persona": "Sponsor operations preparer (owner of the item)",
+    "scenarios": [
+      "reconciliation-exception",
+      "segregation-of-duties",
       "attention-required"
     ],
     "kind": "app"
+  },
+  {
+    "file": "screens/S-011-sponsor-overview/integration-unavailable.html",
+    "screen": "S-011",
+    "requirement": "UNB-UI-S-011",
+    "state": "integration-unavailable",
+    "title": "Bank feed unavailable: what is stale, what still works",
+    "persona": "Operations lead",
+    "scenarios": [
+      "integration-unavailable",
+      "stale-balances"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-011-sponsor-overview/normal.html",
+    "screen": "S-011",
+    "requirement": "UNB-UI-S-011",
+    "state": "normal",
+    "title": "Overview with grants-paid chart, holds and reconciliation",
+    "persona": "Operations lead / sponsor executive",
+    "scenarios": [
+      "normal",
+      "chart",
+      "stale-balances"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-012-charity-view/bank-reverify.html",
+    "screen": "S-012",
+    "requirement": "UNB-UI-S-012",
+    "state": "bank-reverify",
+    "title": "Bank details need re-verification after a returned payment",
+    "persona": "Charity finance user",
+    "scenarios": [
+      "failed-payment",
+      "restricted",
+      "attention-required"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-012-charity-view/grant-detail.html",
+    "screen": "S-012",
+    "requirement": "UNB-UI-S-012",
+    "state": "grant-detail",
+    "title": "One grant's detail with acknowledgment",
+    "persona": "Charity finance user",
+    "scenarios": [
+      "normal",
+      "acknowledgment"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-012-charity-view/grants-received.html",
+    "screen": "S-012",
+    "requirement": "UNB-UI-S-012",
+    "state": "grants-received",
+    "title": "Grants received, one waiting for acknowledgment",
+    "persona": "Charity finance user",
+    "scenarios": [
+      "normal",
+      "attention-required",
+      "anonymous-donor"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/W-001-grant-status-widget/expired.html",
+    "screen": "W-001",
+    "requirement": "UNB-UI-W-001",
+    "state": "expired",
+    "title": "Expired or invalid token: safe message, no grant data",
+    "persona": "Donor whose partner session expired",
+    "scenarios": [
+      "error",
+      "embedded"
+    ],
+    "kind": "widget"
+  },
+  {
+    "file": "screens/W-001-grant-status-widget/host-page.html",
+    "screen": "W-001",
+    "requirement": "UNB-UI-W-001",
+    "state": "host-page",
+    "title": "Partner host page embedding the widget at 360 px and 600 px",
+    "persona": "Donor on the partner's client portal",
+    "scenarios": [
+      "embedded",
+      "white-label",
+      "normal"
+    ],
+    "kind": "host"
+  },
+  {
+    "file": "screens/W-001-grant-status-widget/widget-harbor.html",
+    "screen": "W-001",
+    "requirement": "UNB-UI-W-001",
+    "state": "widget-harbor",
+    "title": "Widget under the Harbor Giving sponsor brand",
+    "persona": "Donor viewing a partner site (valid token)",
+    "scenarios": [
+      "white-label",
+      "embedded"
+    ],
+    "kind": "widget"
+  },
+  {
+    "file": "screens/W-001-grant-status-widget/widget.html",
+    "screen": "W-001",
+    "requirement": "UNB-UI-W-001",
+    "state": "widget",
+    "title": "Widget document: approved grant, read-only card",
+    "persona": "Donor viewing a partner site (valid token)",
+    "scenarios": [
+      "normal",
+      "embedded"
+    ],
+    "kind": "widget"
   }
 ]

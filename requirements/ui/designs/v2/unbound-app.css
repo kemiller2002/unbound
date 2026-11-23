@@ -293,6 +293,11 @@
   .unb-alloc__legend .unb-money { text-align: end; }
   .unb-alloc__legend li > span:not(.unb-money, .unb-alloc__key) { overflow-wrap: break-word; min-inline-size: 0; }
   .unb-pagehead__actions .forma-button { white-space: normal; text-align: center; padding-block: var(--forma-space-2); }
+  /* Phone: the breakdown keeps its amounts; explanations move behind 'How we calculate this'
+     so the attention heading stays in the first 844 px viewport (UNB-UI-N-006). */
+  @media (max-width: 47.99rem) {
+    .unb-alloc__legend li:not([data-part="total"]) small, .unb-panel__foot .unb-hide-phone { display: none; }
+  }
   .unb-alloc__legend small { display: block; color: var(--forma-color-text-secondary); font-size: var(--unb-type-micro); }
 
   /* ---- Status chip (UNB-UI-DS-008; FORMA-GAP-21) ---------------------------
@@ -384,8 +389,8 @@
   .unb-steps li[data-step="failed"] { color: var(--unb-danger); font-weight: 700; }
 
   /* ---- Layout grids (UNB-UI-R-002) ----------------------------------------- */
-  /* Home grid: source order = priority order on phone (attention, balance,
-     grants, activity); named areas place them on wider screens (UNB-UI-R-003). */
+  /* Home grid: source order = priority order (balance, attention, grants, activity);
+     named areas place them on wider screens without changing reading order (UNB-UI-R-003). */
   .unb-grid-home { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
   .unb-grid-home > [data-area] { min-inline-size: 0; display: grid; gap: var(--forma-space-5); }
   .unb-stack { display: grid; gap: var(--forma-space-5); align-content: start; min-inline-size: 0; }
@@ -432,8 +437,9 @@
     .unb-main { padding: var(--forma-space-6) var(--forma-space-6) var(--forma-space-8); }
     .unb-appbar__context { display: inline; }
     .unb-pagehead__actions { display: flex; inline-size: auto; }
-    .unb-grid-home { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); grid-template-areas: "balance attention" "balance side"; grid-template-rows: auto 1fr; }
-    .unb-grid-home:not(:has(> [data-area="attention"])) { grid-template-areas: "balance side"; grid-template-rows: auto; }
+    .unb-grid-home { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); grid-template-areas: "balance attention" "main side"; }
+    .unb-grid-home:not(:has(> [data-area="attention"])) { grid-template-areas: "balance side" "main side"; grid-template-rows: auto 1fr; }
+    .unb-grid-home > [data-area="main"] { grid-area: main; }
     .unb-grid-home > [data-area="attention"] { grid-area: attention; }
     .unb-grid-home > [data-area="balance"] { grid-area: balance; }
     .unb-grid-home > [data-area="side"] { grid-area: side; }

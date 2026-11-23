@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 // Builds the v2 prototypes: one HTML page per screen state, plus an index.
 // Usage: node tools/build.mjs   (from designs/v2)
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
 import { fileURLToPath, pathToFileURL } from "node:url";
 import path from "node:path";
 import { appPage } from "./lib/ui.mjs";
@@ -26,6 +26,9 @@ const index = (pages) => `<!doctype html><html lang="en"><head><meta charset="ut
 const screens = await Promise.all(SCREENS.map(load));
 const pages = screens.flatMap(pagesOf);
 await Promise.all(pages.map(async (p) => { await mkdir(path.dirname(path.join(root, p.file)), { recursive: true }); await writeFile(path.join(root, p.file), p.html); }));
-await writeFile(path.join(root, "index.html"), index(pages));
-await writeFile(path.join(root, "pages.json"), JSON.stringify(pages.map((p) => ({ file: p.file, ...p.meta })), null, 2) + "\n");
+// Merge with pages of screens not rebuilt this run, so partial builds do not drop other screens.
+const prior = await readFile(path.join(root, "pages.json"), "utf8").then(JSON.parse).catch(() => []);
+const metas = [...prior.filter((m) => !SCREENS.includes(m.screen)), ...pages.map((p) => ({ file: p.file, ...p.meta }))].sort((a, b) => a.file.localeCompare(b.file));
+await writeFile(path.join(root, "index.html"), index(metas.map((m) => ({ file: m.file, meta: m }))));
+await writeFile(path.join(root, "pages.json"), JSON.stringify(metas, null, 2) + "\n");
 console.log(`built ${pages.length} pages`);

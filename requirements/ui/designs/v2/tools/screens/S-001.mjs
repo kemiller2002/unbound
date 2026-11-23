@@ -44,7 +44,7 @@ const balance = ({ f = fund, valueState = "current", availableState = "current",
 <li><span class="unb-alloc__key" data-part="settling"></span><span>Contributions still settling<small>Available to grant on ${time("2026-12-08", "Dec 8, 2026")}</small></span>${money(f.settling)}</li>
 ${valueRow}
 </ul></div></div>`,
-    foot: `${quiet("How we calculate this", { href: "#calc", iconName: "chevron-right" })}<span class="unb-small unb-muted">Only Available to grant can be recommended.</span>`,
+    foot: `${quiet("How we calculate this", { href: "#calc", iconName: "chevron-right" })}<span class="unb-small unb-muted unb-hide-phone">Only Available to grant can be recommended.</span>`,
   });
 };
 
@@ -118,9 +118,10 @@ const activity = (rows = ACTIVITY) =>
 const ACTIONS = [button("Add money", { href: "#add-money" }), button("Recommend a grant", { primary: true, href: "#recommend" })];
 const head = (extra = {}) => pagehead({ title: FUND, fundSwitch: true, sub: extra.sub ?? "Donor-advised fund · You are the primary advisor", actions: extra.actions ?? ACTIONS });
 
-// Priority order in the source (attention, balance column, side column); CSS areas place them.
-const home = ({ attention: att = "", left, right }) =>
-  `<div class="unb-grid-home">${att ? `<div data-area="attention">${att}</div>` : ""}<div data-area="balance">${left}</div><div data-area="side">${right}</div></div>`;
+// Priority order in the source: balance (what can I give), attention (what needs me), then the rest.
+// On a 390x844 phone the headline figure and the attention heading both fall in the first viewport.
+const home = ({ attention: att = "", left, main = "", right }) =>
+  `<div class="unb-grid-home"><div data-area="balance">${left}</div>${att ? `<div data-area="attention">${att}</div>` : ""}${main ? `<div data-area="main">${main}</div>` : ""}<div data-area="side">${right}</div></div>`;
 
 const sponsorOf = (brand) => (brand === "example-harbor" ? "Example Charitable Foundation" : "Example Community Foundation");
 
@@ -130,7 +131,7 @@ const base = (brand) => ({ title: "Home", nav: "home", audience: "donor", user: 
 const normal = (brand) => ({
   ...base(brand),
   pagehead: head(),
-  body: home({ left: `${balance({ sponsor: sponsorOf(brand) })}${grantsInProgress()}`, attention: attention([T.certify, T.hold]), right: `${activity()}` }),
+  body: home({ left: balance({ sponsor: sponsorOf(brand) }), main: grantsInProgress(), attention: attention([T.certify, T.hold]), right: `${activity()}` }),
   mobileActions: ACTIONS.join(""),
 });
 
@@ -219,7 +220,7 @@ export const states = [
       ...base("unbound-default"),
       pagehead: head(),
       body: `${notice({ state: "info", iconName: "clock", title: "We can't confirm today's balance yet", body: `<p>The amounts below are from the last confirmed update on ${time("2026-11-27T16:58:00-06:00", "Nov 27 at 4:58 PM CT")}. You can still recommend grants; each one is checked against the confirmed balance before it is approved.</p>` })}
-${home({ left: `${balance({ availableState: "stale", sponsor: "Example Community Foundation" })}${grantsInProgress()}`, attention: attention([T.certify]), right: `${activity()}` })}`,
+${home({ left: balance({ availableState: "stale", sponsor: "Example Community Foundation" }), main: grantsInProgress(), attention: attention([T.certify]), right: `${activity()}` })}`,
       mobileActions: ACTIONS.join(""),
     },
   },
@@ -231,7 +232,7 @@ ${home({ left: `${balance({ availableState: "stale", sponsor: "Example Community
     page: {
       ...base("unbound-default"),
       pagehead: head(),
-      body: home({ left: `${balance({ valueState: "unavailable", sponsor: "Example Community Foundation" })}${grantsInProgress()}`, right: `${notice({ state: "info", iconName: "wifi-off", title: "Investment values are temporarily unavailable", body: "<p>We can't reach the investment pricing service. Your Available to grant amount isn't affected and you can keep recommending grants. We'll update values automatically.</p>" })}${activity()}`, attention: attention([T.certify]) }),
+      body: home({ left: balance({ valueState: "unavailable", sponsor: "Example Community Foundation" }), main: grantsInProgress(), right: `${notice({ state: "info", iconName: "wifi-off", title: "Investment values are temporarily unavailable", body: "<p>We can't reach the investment pricing service. Your Available to grant amount isn't affected and you can keep recommending grants. We'll update values automatically.</p>" })}${activity()}`, attention: attention([T.certify]) }),
       mobileActions: ACTIONS.join(""),
     },
   },
@@ -244,7 +245,7 @@ ${home({ left: `${balance({ availableState: "stale", sponsor: "Example Community
       ...base("unbound-default"),
       pagehead: head({ actions: [button("Add money", { href: "#add-money" })] }),
       body: `${notice({ state: "attention", iconName: "lock", title: "Grant recommendations are paused", body: `<p>Example Community Foundation is reviewing a recent change to your account details. Reviews usually finish within 2 business days. Contributions, documents and grants already approved are not affected.</p>`, actions: [button("Contact donor services", { href: "#contact" })] })}
-${home({ left: `${balance({ sponsor: "Example Community Foundation" })}${grantsInProgress()}`, right: `${panel({ id: "why", title: "What you can still do", body: dl([["Add money", chip("ok", "Available")], ["View and download documents", chip("ok", "Available")], ["Recommend a grant", chip("blocked", "Paused")], ["Change advisors or successors", chip("blocked", "Paused")]]) })}${activity()}` })}`,
+${home({ left: balance({ sponsor: "Example Community Foundation" }), main: grantsInProgress(), right: `${panel({ id: "why", title: "What you can still do", body: dl([["Add money", chip("ok", "Available")], ["View and download documents", chip("ok", "Available")], ["Recommend a grant", chip("blocked", "Paused")], ["Change advisors or successors", chip("blocked", "Paused")]]) })}${activity()}` })}`,
       mobileActions: button("Add money", { href: "#add-money" }),
     },
   },
@@ -285,7 +286,7 @@ ${home({ left: panel({ id: "next", title: "What happens next", body: `<ol class=
       user: { name: "Jordan Patel", initials: "JP", role: "View only" },
       notifications: 0,
       pagehead: head({ sub: `Donor-advised fund · ${chip("neutral", "View only")} Shared with you by Elin Lindqvist`, actions: [button("Download statement", { href: "#statement" })] }),
-      body: home({ left: `${balance({ sponsor: "Example Community Foundation" })}${grantsInProgress()}`, right: `${panel({ id: "acc", title: "Your access", body: `<p class="unb-small">You can see balances, grants and statements. Only the fund's advisors can add money or recommend grants. Access expires ${time("2027-06-30", "Jun 30, 2027")}.</p>` })}${activity()}` }),
+      body: home({ left: balance({ sponsor: "Example Community Foundation" }), main: grantsInProgress(), right: `${panel({ id: "acc", title: "Your access", body: `<p class="unb-small">You can see balances, grants and statements. Only the fund's advisors can add money or recommend grants. Access expires ${time("2027-06-30", "Jun 30, 2027")}.</p>` })}${activity()}` }),
     },
   },
   {
@@ -298,7 +299,7 @@ ${home({ left: panel({ id: "next", title: "What happens next", body: `<ol class=
       notifications: 3,
       pagehead: head(),
       body: home({
-        left: `${balance({ f: { ...fund, available: 102500, committed: 12500 }, sponsor: "Example Community Foundation" })}${grantsInProgress([{ to: "Riverside Food Bank", id: "Grant 2026-004790", amount: 2500, chip: chip("blocked", "Payment returned"), next: "Waiting for your choice", steps: [["Submitted", "done"], ["Approved", "done"], ["Payment returned", "failed"]] }, GRANTS[1], { ...GRANTS[2], amount: 2500 }])}`,
+        left: balance({ f: { ...fund, available: 102500, committed: 12500 }, sponsor: "Example Community Foundation" }), main: grantsInProgress([{ to: "Riverside Food Bank", id: "Grant 2026-004790", amount: 2500, chip: chip("blocked", "Payment returned"), next: "Waiting for your choice", steps: [["Submitted", "done"], ["Approved", "done"], ["Payment returned", "failed"]] }, GRANTS[1], { ...GRANTS[2], amount: 2500 }]),
         attention: attention([T.returned, T.certify]), right: `${activity([{ what: "Grant payment returned", sub: "Riverside Food Bank", status: chip("blocked", "Returned"), date: time("2026-12-02", "Dec 2, 2026"), amount: money(2500, { signed: true }) }, ...ACTIVITY])}`,
       }),
       mobileActions: ACTIONS.join(""),
