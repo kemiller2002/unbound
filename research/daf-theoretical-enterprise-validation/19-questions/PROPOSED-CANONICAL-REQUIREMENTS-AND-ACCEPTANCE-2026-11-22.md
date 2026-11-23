@@ -436,3 +436,9 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Fenced authoritative financial writer, explicit fault-assumption RPO/RTO, protective-only emergency plane, safe outage queue, recoverable archive and provider-status reconciliation.
 
 **Acceptance (not executed):** Relevant ADV-579..ADV-618; `ENTERPRISE-RESILIENCE-CONTINUITY-AND-PROTECTIVE-OPERATIONS-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
+
+## REQ-X-048: Human work queues, round-robin routing and cradle-to-grave ownership (2026-11-23)
+
+**Proposed:** Provide shared sponsor-scoped human work orchestration for grant and charity vetting cases. Support deterministic round robin, sticky sponsor/fund/account ownership, cradle-to-grave case continuity, specialist/skills routing, capacity-weighted assignment, manual audited overrides and hybrid routing. Distinguish relationship owner, case owner, task assignee, independent decision authority and backup. Preserve eligibility, sponsor authorization, conflicts, segregation of duties, absences, SLA escalation, assignment audit and seven-year retention of financially material work evidence. Case completion never independently approves grants, clears charity/sanctions holds or releases payment. Provide My Work, My Accounts, Team Queue and Supervisor dashboard requirements; routine safe automated cases should not create unnecessary human tasks.
+
+**Acceptance (not executed):** ADV-619..ADV-654 and `HUMAN-WORK-QUEUES-ROUTING-OWNERSHIP-AND-CASE-CONTINUITY-2026-11-23.md`. Validate concurrent fair assignment, sticky ownership, specialist handoffs, authorization, absence coverage, shared charity vetting privacy and immutable history.
