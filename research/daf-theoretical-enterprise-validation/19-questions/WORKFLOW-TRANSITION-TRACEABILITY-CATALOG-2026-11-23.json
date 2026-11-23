@@ -1,0 +1,811 @@
+{
+  "schema_version": "0.1.0",
+  "status": "design-only-not-executed",
+  "sources": [
+    "TRANSACTION-STATE-TRANSITION-MATRIX-2026-11-23.csv",
+    "END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md",
+    "CROSS-WORKFLOW-FINANCIAL-AUTHORITY-AND-IRREVERSIBILITY-INVARIANTS-2026-11-23.md",
+    "ADVERSARIAL-TRANSACTION-SIMULATIONS-AND-RECOVERY-CONTRACTS-2026-11-23.md"
+  ],
+  "workflow_ids": [
+    "WF-01",
+    "WF-02",
+    "WF-03",
+    "WF-04",
+    "WF-05",
+    "WF-06",
+    "WF-07",
+    "WF-08",
+    "WF-09",
+    "WF-10",
+    "WF-11",
+    "WF-12",
+    "WF-13",
+    "WF-14",
+    "WF-15",
+    "WF-16",
+    "WF-17",
+    "WF-18"
+  ],
+  "invariant_ids": [
+    "INV-01",
+    "INV-02",
+    "INV-03",
+    "INV-04",
+    "INV-05",
+    "INV-06",
+    "INV-07",
+    "INV-08",
+    "INV-09",
+    "INV-10",
+    "INV-11",
+    "INV-12",
+    "INV-13",
+    "INV-14",
+    "INV-15",
+    "INV-16",
+    "INV-17",
+    "INV-18"
+  ],
+  "transitions": [
+    {
+      "id": "TX-01",
+      "aggregate": "Cash contribution",
+      "from": "Intent",
+      "to": "Submitted",
+      "authority": "Donor/authorized intake",
+      "owner": "Contribution",
+      "atomicity": "No",
+      "evidence": "ContributionIntent",
+      "financial_effect": "No ledger entry",
+      "idempotency": "Same-key replay returns original intent",
+      "recovery": "Invalid donor/fund -> reject; no posting",
+      "ux": "Submitted, not received",
+      "simulation_refs": []
+    },
+    {
+      "id": "TX-02",
+      "aggregate": "Cash contribution",
+      "from": "Submitted",
+      "to": "ProviderPending",
+      "authority": "Contribution worker",
+      "owner": "Provider adapter",
+      "atomicity": "No",
+      "evidence": "Payment request + idempotency key",
+      "financial_effect": "No fund availability",
+      "idempotency": "Unknown provider result -> reconcile, no blind retry",
+      "recovery": "Provider timeout -> Unknown; query by external key",
+      "ux": "Processing",
+      "simulation_refs": []
+    },
+    {
+      "id": "TX-03",
+      "aggregate": "Cash contribution",
+      "from": "ProviderPending",
+      "to": "ReceivedUnaccepted",
+      "authority": "Verified settlement evidence",
+      "owner": "Contribution/Ledger",
+      "atomicity": "Yes, local",
+      "evidence": "Settlement evidence",
+      "financial_effect": "Cash/clearing ledger entry, not yet grantable",
+      "idempotency": "Settlement event dedup by provider event ID",
+      "recovery": "Returned or misdirected -> suspense/reversal",
+      "ux": "Received, acceptance pending",
+      "simulation_refs": [
+        "SIM-02",
+        "SIM-20"
+      ]
+    },
+    {
+      "id": "TX-04",
+      "aggregate": "Cash contribution",
+      "from": "ReceivedUnaccepted",
+      "to": "Accepted",
+      "authority": "Sponsor-delegated acceptance policy",
+      "owner": "Gift Acceptance/Ledger",
+      "atomicity": "Yes, local",
+      "evidence": "Legal acceptance evidence",
+      "financial_effect": "Accepted contribution posting; restricted status retained",
+      "idempotency": "Unique acceptance command per contribution",
+      "recovery": "Ineligible donor/source -> hold/reject with evidence",
+      "ux": "Accepted, availability pending",
+      "simulation_refs": [
+        "SIM-25"
+      ]
+    },
+    {
+      "id": "TX-05",
+      "aggregate": "Cash contribution",
+      "from": "Accepted",
+      "to": "Available",
+      "authority": "Finance reconciliation and liquidity checks",
+      "owner": "Ledger/Capacity",
+      "atomicity": "Yes, local",
+      "evidence": "Reconciled settlement and restrictions",
+      "financial_effect": "Increase grantable capacity net of restrictions/fees",
+      "idempotency": "Capacity version check",
+      "recovery": "Late ACH return -> compensating debit and holds",
+      "ux": "Available",
+      "simulation_refs": [
+        "SIM-02",
+        "SIM-25"
+      ]
+    },
+    {
+      "id": "TX-06",
+      "aggregate": "Complex asset",
+      "from": "Intent",
+      "to": "ConditionallyReviewed",
+      "authority": "Gift officer / policy",
+      "owner": "Gift Acceptance",
+      "atomicity": "No",
+      "evidence": "Asset docs, restrictions, risks",
+      "financial_effect": "No recognized gift or capacity",
+      "idempotency": "Asset intake ID",
+      "recovery": "Appraisal missing -> pending specialist review",
+      "ux": "Under review",
+      "simulation_refs": [
+        "SIM-11"
+      ]
+    },
+    {
+      "id": "TX-07",
+      "aggregate": "Complex asset",
+      "from": "ConditionallyReviewed",
+      "to": "LegallyAccepted",
+      "authority": "Authorized sponsor acceptance",
+      "owner": "Gift Acceptance/Ledger",
+      "atomicity": "Yes, local",
+      "evidence": "Signed acceptance, effective date, legal review",
+      "financial_effect": "Asset recognized only under approved accounting policy; not liquid capacity",
+      "idempotency": "Asset transfer/acceptance dedup",
+      "recovery": "Custody mismatch -> reconciliation case, do not fabricate receipt",
+      "ux": "Accepted, custody pending",
+      "simulation_refs": [
+        "SIM-11"
+      ]
+    },
+    {
+      "id": "TX-08",
+      "aggregate": "Complex asset",
+      "from": "LegallyAccepted",
+      "to": "CustodiedAndValued",
+      "authority": "Custodian confirmation + valuation policy",
+      "owner": "Custody/Accounting",
+      "atomicity": "Yes, local after external evidence",
+      "evidence": "Position, lot, price/appraisal evidence",
+      "financial_effect": "Asset position and valuation; liquidity restrictions persist",
+      "idempotency": "Custody position and valuation version",
+      "recovery": "Stale/contested valuation -> hold or haircut per policy",
+      "ux": "Held asset, valuation as-of",
+      "simulation_refs": [
+        "SIM-05",
+        "SIM-11",
+        "SIM-12",
+        "SIM-24"
+      ]
+    },
+    {
+      "id": "TX-09",
+      "aggregate": "Complex asset",
+      "from": "CustodiedAndValued",
+      "to": "LiquidatedAndReconciled",
+      "authority": "Approved trade/custodian settlement",
+      "owner": "Custody/Ledger",
+      "atomicity": "No across custodian; local posting atomic",
+      "evidence": "Trade, fees, cash settlement",
+      "financial_effect": "Asset-to-cash entries; grantable only after liquidity checks",
+      "idempotency": "Trade execution/settlement event keys",
+      "recovery": "Partial fill, failed trade, price slippage -> reconcile",
+      "ux": "Sale pending / proceeds available",
+      "simulation_refs": [
+        "SIM-12"
+      ]
+    },
+    {
+      "id": "TX-10",
+      "aggregate": "Grant",
+      "from": "Draft",
+      "to": "Submitted",
+      "authority": "Donor recommender with required affirmation",
+      "owner": "Grant",
+      "atomicity": "Yes, local",
+      "evidence": "Purpose, recipient, donor attestation, policy snapshot",
+      "financial_effect": "No reservation yet",
+      "idempotency": "Client request key",
+      "recovery": "Prohibited benefit or expired authority -> reject",
+      "ux": "Submitted, not approved",
+      "simulation_refs": [
+        "SIM-17"
+      ]
+    },
+    {
+      "id": "TX-11",
+      "aggregate": "Grant",
+      "from": "Submitted",
+      "to": "SponsorApprovedAndReserved",
+      "authority": "Delegated sponsor authority and fresh charity evidence",
+      "owner": "Grant/Policy/Ledger",
+      "atomicity": "Yes, single local transaction",
+      "evidence": "Policy, eligibility, capacity, approvals",
+      "financial_effect": "Atomic fund reservation, no cash disbursement",
+      "idempotency": "Grant decision ID + fund balance version",
+      "recovery": "Concurrent requests -> one reservation fails; charity hold -> block",
+      "ux": "Approved and reserved, not paid",
+      "simulation_refs": [
+        "SIM-01",
+        "SIM-02",
+        "SIM-05",
+        "SIM-07",
+        "SIM-08",
+        "SIM-16",
+        "SIM-20",
+        "SIM-24"
+      ]
+    },
+    {
+      "id": "TX-12",
+      "aggregate": "Grant",
+      "from": "SponsorApprovedAndReserved",
+      "to": "PaymentInstructionAuthorized",
+      "authority": "Payment role and payee verified",
+      "owner": "Payment/Policy",
+      "atomicity": "Yes, local",
+      "evidence": "Verified payee version, grant reservation, legal holds",
+      "financial_effect": "No payment finality; reserved capacity remains",
+      "idempotency": "Unique payment instruction per grant installment",
+      "recovery": "Bank change, sponsor hold -> suspend",
+      "ux": "Payment authorized",
+      "simulation_refs": [
+        "SIM-04",
+        "SIM-07",
+        "SIM-08",
+        "SIM-22",
+        "SIM-23",
+        "SIM-28"
+      ]
+    },
+    {
+      "id": "TX-13",
+      "aggregate": "Payment",
+      "from": "PaymentInstructionAuthorized",
+      "to": "ProviderUnknownOrAccepted",
+      "authority": "Authorized dispatch through adapter",
+      "owner": "Payment/Provider",
+      "atomicity": "No external atomicity",
+      "evidence": "Provider request ID and acknowledgement",
+      "financial_effect": "No settlement entry based solely on acceptance",
+      "idempotency": "Provider idempotency key; query before retry",
+      "recovery": "Timeout -> Unknown; do not reissue",
+      "ux": "Processing / confirmation pending",
+      "simulation_refs": [
+        "SIM-03",
+        "SIM-23"
+      ]
+    },
+    {
+      "id": "TX-14",
+      "aggregate": "Payment",
+      "from": "ProviderUnknownOrAccepted",
+      "to": "Settled",
+      "authority": "Verified rail-specific settlement evidence",
+      "owner": "Payment/Ledger",
+      "atomicity": "Yes, local after external evidence",
+      "evidence": "Bank/custodian settlement, trace and effective date",
+      "financial_effect": "Post settlement and consume reservation once",
+      "idempotency": "Unique settlement trace and payment ID",
+      "recovery": "Late duplicate event -> no duplicate posting",
+      "ux": "Settled, receipt not necessarily confirmed",
+      "simulation_refs": [
+        "SIM-03",
+        "SIM-16",
+        "SIM-19",
+        "SIM-20",
+        "SIM-26"
+      ]
+    },
+    {
+      "id": "TX-15",
+      "aggregate": "Payment",
+      "from": "Settled",
+      "to": "ReturnedOrReversed",
+      "authority": "Verified return/recall evidence",
+      "owner": "Payment/Ledger",
+      "atomicity": "Yes, local",
+      "evidence": "Return code, amount, original settlement link",
+      "financial_effect": "Compensating ledger entries; restore capacity only under policy",
+      "idempotency": "Unique return event and original payment link",
+      "recovery": "Partial return or closed period -> adjustment and new case",
+      "ux": "Returned, remediation pending",
+      "simulation_refs": [
+        "SIM-02",
+        "SIM-18",
+        "SIM-26"
+      ]
+    },
+    {
+      "id": "TX-16",
+      "aggregate": "Payment",
+      "from": "ProviderUnknownOrAccepted",
+      "to": "VoidOrReissuePending",
+      "authority": "Authorized payment operator + rail evidence",
+      "owner": "Payment/Work Case",
+      "atomicity": "No external atomicity",
+      "evidence": "Void/stop confirmation, prior instruction",
+      "financial_effect": "No new payment until prior outcome established",
+      "idempotency": "Replacement chain ID",
+      "recovery": "Lost check -> stop payment, verify, then reissue",
+      "ux": "Investigation / replacement pending",
+      "simulation_refs": [
+        "SIM-26"
+      ]
+    },
+    {
+      "id": "TX-17",
+      "aggregate": "Recurring grant",
+      "from": "Scheduled",
+      "to": "OccurrenceDue",
+      "authority": "Durable scheduler",
+      "owner": "Schedule/Grant",
+      "atomicity": "Yes, local",
+      "evidence": "Schedule version, due period, occurrence ID",
+      "financial_effect": "No funds reserved yet",
+      "idempotency": "Unique schedule version + occurrence key",
+      "recovery": "DST/payroll shift, cancellation -> skip with reason",
+      "ux": "Scheduled occurrence pending",
+      "simulation_refs": [
+        "SIM-06"
+      ]
+    },
+    {
+      "id": "TX-18",
+      "aggregate": "Recurring grant",
+      "from": "OccurrenceDue",
+      "to": "SubmittedOrHeld",
+      "authority": "Current policy/charity/capacity",
+      "owner": "Grant/Policy",
+      "atomicity": "Yes, local",
+      "evidence": "Fresh checks and current sponsor rules",
+      "financial_effect": "New grant per occurrence; reserve only via TX-11",
+      "idempotency": "Occurrence ID maps to one grant",
+      "recovery": "Expired vetting/insufficient funds -> held case",
+      "ux": "Needs attention / submitted",
+      "simulation_refs": [
+        "SIM-06"
+      ]
+    },
+    {
+      "id": "TX-19",
+      "aggregate": "Recipient bank change",
+      "from": "Requested",
+      "to": "VerifiedForFutureUse",
+      "authority": "Independently authorized verifier",
+      "owner": "Identity/Recipient",
+      "atomicity": "Yes, local",
+      "evidence": "Affiliation, bank proof, independent callback",
+      "financial_effect": "No automatic rerouting of in-flight payments",
+      "idempotency": "Payee destination version",
+      "recovery": "Account takeover -> freeze and review",
+      "ux": "Verified new payment details",
+      "simulation_refs": [
+        "SIM-04",
+        "SIM-21"
+      ]
+    },
+    {
+      "id": "TX-20",
+      "aggregate": "Fee",
+      "from": "Assessed",
+      "to": "AccruedAndPosted",
+      "authority": "Contract fee rule + finance controls",
+      "owner": "Fee/Ledger",
+      "atomicity": "Yes, local",
+      "evidence": "Contract version, AUM/transaction basis",
+      "financial_effect": "Fund charge and payee liability entries, segregated",
+      "idempotency": "Fee period + contract version + fund",
+      "recovery": "Related-party conflict, stale valuation -> hold",
+      "ux": "Fee posted / under review",
+      "simulation_refs": [
+        "SIM-13"
+      ]
+    },
+    {
+      "id": "TX-21",
+      "aggregate": "Close",
+      "from": "ReconciledOpen",
+      "to": "ClosedAndIssued",
+      "authority": "Independent finance signoff",
+      "owner": "Close/Artifact Registry",
+      "atomicity": "Yes, local snapshot + artifact binding",
+      "evidence": "Reconciliation proof, signoff, artifact hash",
+      "financial_effect": "Immutable period snapshot; later changes adjustments",
+      "idempotency": "Close period/version unique",
+      "recovery": "Late custody event -> amendment/reissue workflow",
+      "ux": "Statement issued as-of date",
+      "simulation_refs": [
+        "SIM-05",
+        "SIM-13",
+        "SIM-18",
+        "SIM-27"
+      ]
+    },
+    {
+      "id": "TX-22",
+      "aggregate": "Annual filing",
+      "from": "Prepared",
+      "to": "SubmittedThenAccepted",
+      "authority": "Qualified reviewer and authorized signer",
+      "owner": "Compliance/Artifacts",
+      "atomicity": "No external atomicity",
+      "evidence": "Signed return, submission receipt, acceptance notice",
+      "financial_effect": "No ledger mutation merely from filing",
+      "idempotency": "Filing year/type/version key",
+      "recovery": "Rejection -> corrected submission, not accepted status",
+      "ux": "Filed / accepted / correction needed",
+      "simulation_refs": [
+        "SIM-14",
+        "SIM-27"
+      ]
+    },
+    {
+      "id": "TX-23",
+      "aggregate": "Migration",
+      "from": "ParallelReconciled",
+      "to": "CutoverAuthorized",
+      "authority": "Sponsor + finance + operations dual approval",
+      "owner": "Migration/Ledger",
+      "atomicity": "Yes, local fencing",
+      "evidence": "Opening tie-out, pending payments, writer token",
+      "financial_effect": "No duplicate opening balances; only one active writer",
+      "idempotency": "Migration run and fencing epoch",
+      "recovery": "Failed cutover -> rollback only before live commit",
+      "ux": "Cutover scheduled / completed",
+      "simulation_refs": [
+        "SIM-09",
+        "SIM-10",
+        "SIM-20",
+        "SIM-28"
+      ]
+    },
+    {
+      "id": "TX-24",
+      "aggregate": "Migration",
+      "from": "SingleWriterActive",
+      "to": "VerifiedOrCompensating",
+      "authority": "Independent post-cutover reconciliation",
+      "owner": "Migration/Accounting",
+      "atomicity": "No automatic rollback after live posts",
+      "evidence": "Post-cutover balances, audit trail, provider acknowledgements",
+      "financial_effect": "Corrections posted as compensating entries",
+      "idempotency": "Migration run + original transaction IDs",
+      "recovery": "Unresolved discrepancy -> protective hold and governed repair",
+      "ux": "Active with reconciliation exception",
+      "simulation_refs": [
+        "SIM-09",
+        "SIM-10"
+      ]
+    },
+    {
+      "id": "TX-25",
+      "aggregate": "Rights change",
+      "from": "Approved",
+      "to": "EffectiveAndRevalidated",
+      "authority": "Sponsor-approved relationship authority",
+      "owner": "Identity/Policy",
+      "atomicity": "Yes, local",
+      "evidence": "Death, succession, termination, revocation evidence",
+      "financial_effect": "No automatic asset transfer or reversal",
+      "idempotency": "Authority version and effective time",
+      "recovery": "In-flight grants/payment instructions rechecked at defined boundary",
+      "ux": "Access changed / action paused",
+      "simulation_refs": [
+        "SIM-07",
+        "SIM-17"
+      ]
+    },
+    {
+      "id": "TX-26",
+      "aggregate": "External checkout",
+      "from": "AuthorizedIntent",
+      "to": "CanonicalGrantSubmitted",
+      "authority": "Scoped donor consent and external app",
+      "owner": "API/Grant",
+      "atomicity": "Yes, local",
+      "evidence": "Signed origin, charity, amount, consent, request ID",
+      "financial_effect": "Same grant lifecycle; no external financial posting",
+      "idempotency": "External idempotency key",
+      "recovery": "Replay, revoked consent, provider callback reorder -> reject/reconcile",
+      "ux": "Recommendation submitted, not donated",
+      "simulation_refs": [
+        "SIM-16"
+      ]
+    },
+    {
+      "id": "TX-27",
+      "aggregate": "Charity recheck",
+      "from": "CurrentEvidence",
+      "to": "ExpiredOrAdverseHeld",
+      "authority": "Scheduled 180-day trigger or material adverse event",
+      "owner": "Charity Registry/Policy",
+      "atomicity": "Yes, local",
+      "evidence": "Evidence version, policy, adverse source",
+      "financial_effect": "Blocks affected unexecuted grants per policy; no automatic settled reversal",
+      "idempotency": "Charity ID + evidence trigger key",
+      "recovery": "False positive -> governed review; do not clear hard hold by AI",
+      "ux": "Eligibility review required",
+      "simulation_refs": [
+        "SIM-08",
+        "SIM-15",
+        "SIM-21",
+        "SIM-22"
+      ]
+    },
+    {
+      "id": "TX-28",
+      "aggregate": "Sponsor activation",
+      "from": "Configured",
+      "to": "Active",
+      "authority": "Legal contract + board delegation + finance readiness signoff",
+      "owner": "Sponsor Lifecycle",
+      "atomicity": "Yes, local",
+      "evidence": "Executed agreement, sponsor role map, opening balances, integration checks",
+      "financial_effect": "No fund posting without active legal sponsor authority",
+      "idempotency": "Sponsor activation epoch",
+      "recovery": "Missing signoff -> stay inactive; partial setup retained",
+      "ux": "Program active / awaiting readiness",
+      "simulation_refs": [
+        "SIM-28"
+      ]
+    }
+  ],
+  "simulations": [
+    {
+      "id": "SIM-01",
+      "title": "Concurrent grants",
+      "transition_refs": [
+        "TX-11"
+      ]
+    },
+    {
+      "id": "SIM-02",
+      "title": "ACH return after grant reservation",
+      "transition_refs": [
+        "TX-03",
+        "TX-05",
+        "TX-11",
+        "TX-15"
+      ]
+    },
+    {
+      "id": "SIM-03",
+      "title": "Provider timeout then settlement",
+      "transition_refs": [
+        "TX-13",
+        "TX-14"
+      ]
+    },
+    {
+      "id": "SIM-04",
+      "title": "Charity bank takeover",
+      "transition_refs": [
+        "TX-12",
+        "TX-19"
+      ]
+    },
+    {
+      "id": "SIM-05",
+      "title": "Late valuation correction",
+      "transition_refs": [
+        "TX-08",
+        "TX-11",
+        "TX-21"
+      ]
+    },
+    {
+      "id": "SIM-06",
+      "title": "Two recurring scheduler deliveries",
+      "transition_refs": [
+        "TX-17",
+        "TX-18"
+      ]
+    },
+    {
+      "id": "SIM-07",
+      "title": "Donor death before grant payout",
+      "transition_refs": [
+        "TX-11",
+        "TX-12",
+        "TX-25"
+      ]
+    },
+    {
+      "id": "SIM-08",
+      "title": "Sponsor policy changed mid-flight",
+      "transition_refs": [
+        "TX-11",
+        "TX-12",
+        "TX-27"
+      ]
+    },
+    {
+      "id": "SIM-09",
+      "title": "Migration dual writer",
+      "transition_refs": [
+        "TX-23",
+        "TX-24"
+      ]
+    },
+    {
+      "id": "SIM-10",
+      "title": "Migration issue after live posting",
+      "transition_refs": [
+        "TX-23",
+        "TX-24"
+      ]
+    },
+    {
+      "id": "SIM-11",
+      "title": "Complex asset not yet accepted",
+      "transition_refs": [
+        "TX-06",
+        "TX-07",
+        "TX-08"
+      ]
+    },
+    {
+      "id": "SIM-12",
+      "title": "Partial securities liquidation",
+      "transition_refs": [
+        "TX-08",
+        "TX-09"
+      ]
+    },
+    {
+      "id": "SIM-13",
+      "title": "Fee contract retroactive change",
+      "transition_refs": [
+        "TX-20",
+        "TX-21"
+      ]
+    },
+    {
+      "id": "SIM-14",
+      "title": "Regulatory return rejected",
+      "transition_refs": [
+        "TX-22"
+      ]
+    },
+    {
+      "id": "SIM-15",
+      "title": "Cross-sponsor charity evidence leak",
+      "transition_refs": [
+        "TX-27"
+      ]
+    },
+    {
+      "id": "SIM-16",
+      "title": "External checkout success mismatch",
+      "transition_refs": [
+        "TX-26",
+        "TX-11",
+        "TX-14"
+      ]
+    },
+    {
+      "id": "SIM-17",
+      "title": "Advisor revocation during session",
+      "transition_refs": [
+        "TX-25",
+        "TX-10"
+      ]
+    },
+    {
+      "id": "SIM-18",
+      "title": "Charity payment returned after month close",
+      "transition_refs": [
+        "TX-15",
+        "TX-21"
+      ]
+    },
+    {
+      "id": "SIM-19",
+      "title": "Duplicate settlement callback",
+      "transition_refs": [
+        "TX-14"
+      ]
+    },
+    {
+      "id": "SIM-20",
+      "title": "Disaster recovery failover",
+      "transition_refs": [
+        "TX-03",
+        "TX-11",
+        "TX-14",
+        "TX-23"
+      ]
+    },
+    {
+      "id": "SIM-21",
+      "title": "Recipient identity merge",
+      "transition_refs": [
+        "TX-19",
+        "TX-27"
+      ]
+    },
+    {
+      "id": "SIM-22",
+      "title": "AI proposes unauthorized payment release",
+      "transition_refs": [
+        "TX-12",
+        "TX-27"
+      ]
+    },
+    {
+      "id": "SIM-23",
+      "title": "Unclaimed charity recipient",
+      "transition_refs": [
+        "TX-12",
+        "TX-13"
+      ]
+    },
+    {
+      "id": "SIM-24",
+      "title": "Stale custodian feed",
+      "transition_refs": [
+        "TX-08",
+        "TX-11"
+      ]
+    },
+    {
+      "id": "SIM-25",
+      "title": "Refund after legal acceptance",
+      "transition_refs": [
+        "TX-04",
+        "TX-05"
+      ]
+    },
+    {
+      "id": "SIM-26",
+      "title": "Payment canceled after settlement",
+      "transition_refs": [
+        "TX-14",
+        "TX-15",
+        "TX-16"
+      ]
+    },
+    {
+      "id": "SIM-27",
+      "title": "Annual close with unreconciled bank",
+      "transition_refs": [
+        "TX-21",
+        "TX-22"
+      ]
+    },
+    {
+      "id": "SIM-28",
+      "title": "Contract expiration mid-program",
+      "transition_refs": [
+        "TX-28",
+        "TX-12",
+        "TX-23"
+      ]
+    }
+  ],
+  "checks": {
+    "counts": {
+      "workflows": 18,
+      "invariants": 18,
+      "transitions": 28,
+      "simulations": 28
+    },
+    "invalid_simulation_references": [],
+    "transitions_without_explicit_simulation": [
+      "TX-01",
+      "TX-02"
+    ],
+    "missing_machine_workflow_transition_links": true,
+    "missing_machine_invariant_transition_links": true,
+    "missing_expected_ledger_postings": true,
+    "missing_exact_transition_guard_expressions": true
+  }
+}
