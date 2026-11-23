@@ -550,3 +550,61 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ### REQ-X-064: Legal operating models, sponsor contracts and responsibility matrix
 
 **Proposed:** Specify the full operating workflow in `LEGAL-OPERATING-MODELS-SPONSOR-CONTRACTS-AND-RESPONSIBILITY-MATRIX-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+
+## DAF landscape remaining 13 capability requirements and reconciliation (2026-11-23)
+
+### REQ-X-065: International grants and cross-border controls
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-008. See the dedicated REQ-X-065 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-066: Donor tax-fit and charitable opportunity guidance
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-009. See the dedicated REQ-X-066 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-067: Partner economics, fee waterfalls and conflicts
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-010. See the dedicated REQ-X-067 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-068: Family governance, collaborative giving and succession
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-011. See the dedicated REQ-X-068 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-069: Nonprofit impact, restrictions and grant outcomes
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-012. See the dedicated REQ-X-069 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-070: Workplace, payroll, matching and corporate giving
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-013. See the dedicated REQ-X-070 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-071: Institution implementation, service levels and operations
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-014. See the dedicated REQ-X-071 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-072: Identity, donor fraud and account recovery
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-015. See the dedicated REQ-X-072 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-073: Vendor assurance, SOC control ownership and evidence
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-016. See the dedicated REQ-X-073 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-074: Private foundations, trusts and planned-giving boundaries
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-017. See the dedicated REQ-X-074 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-075: Community campaigns, peer giving and attribution
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-018. See the dedicated REQ-X-075 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-076: Sponsor conflicts, related-party transactions and board governance
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-019. See the dedicated REQ-X-076 specification dated 2026-11-23. No implementation or tests claimed.
+
+### REQ-X-077: Recipient interoperability, grant IDs and CRM attribution
+
+**Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-020. See the dedicated REQ-X-077 specification dated 2026-11-23. No implementation or tests claimed.
+
+### Reconciliation checkpoint
+
+All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a cross-component ownership and collision register in `ONE-SYSTEM-CROSS-COMPONENT-RECONCILIATION-ALL-20-DAF-LANDSCAPE-GAPS-2026-11-23.md`. This is high-level design coverage, not exhaustive research-source traceability, verified competitor parity or production readiness.
