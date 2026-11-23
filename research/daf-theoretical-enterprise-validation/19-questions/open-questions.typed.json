@@ -2349,7 +2349,7 @@
       "optionsOrValidation": "—",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "Probably REG-058",
+        "recommendedAnswer": "Source verification required, not a policy choice. The contradiction register records REG-007 referencing REG-057 and REG-061, describes REG-061 as NYC LL144, and guesses REG-058 as the replacement. Do not adopt REG-058 without checking original REG-007 and regulatory requirement definitions. Preserve existing citation with a documented suspect-reference warning until original source is located; then correct with source evidence and traceability.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -2361,7 +2361,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Cross-reference both conflicting sources, map state transitions and exception paths, and run conflicting-input and historical-reconstruction scenarios."
+        "evidence": "Verified source: research/daf-theoretical-enterprise-validation/16-registers/contradiction-register.md row TVC-034. Original regulatory requirement register/REG-007, REG-057, REG-058, REG-061 definitions not yet verified. GitHub code search returned no matches for REG IDs, so proposed replacement remains unverified. Required: locate original source, compare requirement meanings and record exact corrected reference with link."
       },
       "simulation": {
         "scenarioIds": [],
@@ -2375,6 +2375,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Data architecture, evidence and operating model. Conflict: Technology-specific declarations conflict with outcome-based requirements; '100% control coverage' and staffing/economic figures are unverified. Immutable evidence and privacy deletion are not automatically compatible without retention classes and legal holds. Harmonized direction: Require bitemporal reconstruction, traceable source requirements and record-class retention; architecture by ADR, not premature stack mandate. Treat coverage, FTE floors and economic inputs as measured hypotheses with explicit denominators and ranges. Verify uncertain cross-reference rather than guessing. Severity: High. Status: partial; TVC-034 deferred. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "source-cross-reference-investigation-2026-11-23",
+          "note": "Fetched original contradiction-register.md TVC-034 row. It identifies REG-007 (REG-057, REG-061), labels REG-061 NYC LL144 and proposes 'Probably REG-058'. Attempts to locate original REG definitions via repository search did not yield evidence. Therefore no correction made; guess explicitly rejected pending original-source inspection. Canonical overlay updated to flag unresolved editorial source defect."
         }
       ]
     },
