@@ -835,6 +835,41 @@
       ],
       "scenario_ids": [],
       "notes": "PA-6: settlement evidence after NotReceived/NotPaid, or a late return after Final."
+    },
+    {
+      "id": "WFM-10-T22",
+      "from": "AchPaymentUnknown",
+      "to": "AchNotReceived",
+      "trigger": "command",
+      "name": "ResolveUnknownByDualTreasuryDecision",
+      "actor_type": "human",
+      "actor_role": "Two independent treasury approvers",
+      "authority": "A4",
+      "guards": [
+        "final-aging-tier-reached",
+        "two-independent-approvers",
+        "duplicate-risk-accepted",
+        "recovery-plan-recorded",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(paymentAttemptId, resolutionDecisionId)",
+      "failure": [
+        {
+          "condition": "SecondApproverNotIndependent",
+          "to_state": "AchPaymentUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-WF-022",
+        "RCD-042",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Unknown payment resolution",
+      "notes": "Added by integrating review 2026-11-23: RCD-042 fallback when NotReceived evidence cannot be obtained within the final aging tier (panel UNB-UI-P-018)."
     }
   ],
   "invariants": [

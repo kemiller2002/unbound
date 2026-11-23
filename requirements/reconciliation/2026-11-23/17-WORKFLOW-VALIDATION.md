@@ -149,7 +149,7 @@ Every human transition names a surface. The workflows need **66 surfaces**: 13 e
 <!-- END GENERATED: ia -->
 
 Reading the table:
-- **Typed panels inside the case workspace (WS-10).** Twenty decision surfaces (sanctions match, charity hold, unknown payment, gift acceptance and others) are panels inside one case frame (S-009). Each needs its own evidence layout and decision options, which S-009 alone did not specify. The case workspace carries 64 transitions from 16 workflows, which confirms it must be a frame with typed panels, not one generic screen.
+- **Typed panels inside the case workspace (WS-10).** Eighteen decision surfaces (sanctions match, charity hold, unknown payment, gift acceptance and others) are panels inside one case frame (S-009). Each needs its own evidence layout and decision options, which S-009 alone did not specify. The case workspace carries 64 transitions from 16 workflows, which confirms it must be a frame with typed panels, not one generic screen.
 - **Operational workspaces (WS-12..WS-18).** These group month-end, treasury, reporting, retention, lifecycle, implementation and migration work by goal and period, not by department.
 - **Donor, advisor and charity side (WS-01..WS-08, WS-22).** These stay on the screens already specified. New additions: recurring schedules, invitation acceptance, representative evidence, verified-channel confirmation, fund opening, closure and transfer requests, and support status.
 

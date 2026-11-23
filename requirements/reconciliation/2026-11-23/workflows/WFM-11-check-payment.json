@@ -779,6 +779,40 @@
       "scenario_ids": [
         "DKS-GRT-023"
       ]
+    },
+    {
+      "id": "WFM-11-T23",
+      "from": "CheckStaleDated",
+      "to": "CheckVoidRequested",
+      "trigger": "command",
+      "name": "ReturnStalePresentment",
+      "actor_type": "human",
+      "actor_role": "Treasury operator",
+      "authority": "A3",
+      "guards": [
+        "presentment-received",
+        "before-bank-cutoff"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(checkId, presentmentId)",
+      "failure": [
+        {
+          "condition": "Timeout: bank cutoff passed; default Return applied by bank",
+          "to_state": "CheckVoidRequested"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-WF-027",
+        "RCD-046",
+        "UNB-RCN-GRT-005"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ],
+      "ui_surface": "NEW:Positive pay exception decision",
+      "notes": "Added by integrating review 2026-11-23: explicit, auditable Return decision for a stale-dated presentment (default Return per RCD-046)."
     }
   ],
   "invariants": [
