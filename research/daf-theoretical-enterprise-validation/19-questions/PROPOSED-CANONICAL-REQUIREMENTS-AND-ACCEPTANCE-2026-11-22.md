@@ -1,6 +1,6 @@
 # Proposed canonical cross-domain requirements and acceptance criteria
 
-Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed reconciliation overlay. Original registers remain authoritative until explicit migration. No simulation below has been run. Six challenged questions remain deferred.
+Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed reconciliation overlay. Original registers remain authoritative until explicit migration. No simulation below has been run. Five substantive challenged directions have been recorded from user decisions, and TVC-034 remains source-verification pending. All remain subject to formal governance, legal and technical validation.
 
 ## Reconciliation method
 - Requirements describe observable business/control outcomes, not prematurely selected implementation technology.
@@ -14,11 +14,11 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 **Source questions:** OD-01, OD-14, OD-17, OD-21, TVC-003, TVC-026, TVC-041, TVF-047, TVF-153, TVF-251.
 
-**Normative proposed requirement:** Every agent/staff/advisor command has a verified principal, scope, policy version and authorization at execution; sponsor approval stays sponsor-controlled. Advisor-originated agent delegation remains disabled until validated.
+**Normative proposed requirement:** Every agent/staff/advisor command has verified principal, scope, policy version and authorization at execution. No person, agent or automated process may approve an item it originated, submitted, prepared or materially changed; separate logins do not establish independence. Donor confirmation authenticates recommendation intent, not sponsor approval. Independently governed sponsor-delegated deterministic policy may authorize routine grants only when board and counsel validate delegation, publication segregation and independent control. Material changes invalidate prior approval. Advisor-originated agent delegation remains disabled until validated.
 
 **Acceptance scenario (not executed):** Given a revoked donor delegation, when an agent submits a new recipient grant, then the command is rejected, no reservation or payment is created, and evidence identifies the revocation.
 
-**Open dependencies:** TVC-041.
+**Open dependencies:** Board/counsel authorization of deterministic approvals, independence control design and adversarial testing.
 
 
 ### REQ-X-002: Atomic grant approval and reservation
@@ -58,29 +58,29 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 **Source questions:** OD-22, TVF-222, TVF-223, TVF-233, TVF-234, TVF-236, TVF-250, TVR-PAY-005-Q.
 
-**Normative proposed requirement:** Before release, sponsor-authorized destination, provider execution destination and relevant custodian/bank settlement instructions must reconcile using independently controlled evidence; mismatches hold payment.
+**Normative proposed requirement:** Every automated payment requires independently verifiable proof both that the destination is authorized and controlled by the intended charity and that the actual execution destination matches the sponsor-controlled authorization, including cryptographically or independently bound tokenized rails. Provider self-attestation alone is insufficient. Changes require independent authorization without self-approval. Missing or conflicting proof blocks automatic execution; noncompliant providers/rails are ineligible for fully automated payment. Reconcile authorization, execution and settlement evidence.
 
 **Acceptance scenario (not executed):** Given a provider-substituted account, when provider returns a self-issued matching fingerprint but sponsor-controlled evidence differs, then release is blocked.
 
-**Open dependencies:** TVF-234.
+**Open dependencies:** Rail/provider-specific independently verifiable destination proof and contract testing.
 
 
 ### REQ-X-006: Outage, restoration and emergency safeguards
 
 **Source questions:** OD-22, TVF-139, TVF-227, TVF-228, TVF-230, TVF-254, TVR-DR-001-Q, TVR-PAY-004-Q.
 
-**Normative proposed requirement:** Direct authoritative edits remain prohibited; while commands are unavailable, no value-moving bypass exists; preserve protective holds, cancellations, credentials, event history and payment IDs across recovery.
+**Normative proposed requirement:** Critical financial and security commits must be durably quorum-replicated before success acknowledgment (RPO zero for acknowledged authoritative commits). Use globally collision-resistant business IDs, stable intent/idempotency keys, a fenced single writer, quorum-based leadership and replica catch-up before failback; suspend authoritative financial writes without safe quorum. An independently durable non-authoritative intake plane may acknowledge queued requests, never approvals, reservations or payments; otherwise submissions fail closed. Replay only after reconciliation, deduplication and current-state revalidation, prioritizing protective holds and cancellations. A separately durable protective-only emergency plane may freeze releases, impose holds, revoke access and capture incident evidence but may not approve, change payees/balances or move funds. Independent authorization is required to remove holds after recovery. External payment outcomes remain Unknown until independently reconciled; no automatic duplicate execution.
 
 **Acceptance scenario (not executed):** Given backup predating a hold and cancellation, when restored, then payment release remains disabled until later security events and protective requests are reconciled.
 
-**Open dependencies:** TVF-228 TVR-DR-001-Q.
+**Open dependencies:** DR quorum topology, RTO target, independent queue durability, emergency-plane threat model, fault injection and provider reconciliation.
 
 
 ### REQ-X-007: Charity verification and sanctions
 
 **Source questions:** OD-02, TVC-006, TVC-007, TVC-040, TVA-009, TVA-028, TVR-SAN-001-Q, TVR-SAN-002-Q, TVF-027, TVF-048.
 
-**Normative proposed requirement:** Each recipient has a recorded periodic reverification no older than sponsor-approved 180-day interval, material-change rechecks and execution-time sanctions/eligibility checks; model never clears holds.
+**Normative proposed requirement:** Unbound maintains one authoritative, standardized charity-vetting framework and reusable evidence/status across sponsors. A vetted charity does not undergo duplicate routine vetting solely because another sponsor uses it. Record scope, evidence provenance, effective date and expiry; reverify at least every 180 days, on material changes, and check current sanctions/eligibility at execution. Adverse findings propagate to all affected sponsors. Sponsor-specific grant restrictions and approvals remain distinct from common charity vetting; no self-approved vetting exceptions. Cross-sponsor legal reliance, liability, jurisdictions and recipient classes require counsel validation; model never clears holds.
 
 **Acceptance scenario (not executed):** Given a recipient verified 30 days ago and sanctioned today, when payment releases, then the current adverse signal holds the grant despite valid periodic review.
 
@@ -146,11 +146,11 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 **Source questions:** TVA-002, TVA-003, TVA-004, TVA-005, TVA-006, TVA-014, TVA-018, TVA-020, TVA-021, TVA-022, TVA-024, EXT-01, EXT-02, EXT-03, EXT-04, EXT-05, EXT-09, TVF-237, TVF-238.
 
-**Normative proposed requirement:** Do not treat provider capabilities, economic projections, shared sponsor determinations or deprovisioning latency as facts until supported by primary evidence and enforceable terms.
+**Normative proposed requirement:** Do not treat provider capabilities, economic projections, cross-sponsor legal reliance or deprovisioning latency as facts until supported by primary evidence and enforceable terms. The business direction is common standardized charity vetting with reusable platform-wide evidence; whether sponsors may legally rely on a shared determination requires counsel-reviewed governance and contracts.
 
 **Acceptance scenario (not executed):** Given a provider without independently provable non-receipt, when onboarding is evaluated, then the payment integration is not marked eligible for automatic retry.
 
-**Open dependencies:** TVA-020.
+**Open dependencies:** Counsel validation of cross-sponsor reliance and liability, plus evidence of provider capabilities.
 
 
 ### REQ-X-014: Regulatory classification and reviewer bias
@@ -188,7 +188,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 ## Final clarification queue (unchanged)
 
-TVC-034, TVC-041, TVA-020, TVR-DR-001-Q, TVF-228 and TVF-234. These remain unresolved and must not be silently approved.
+TVC-034 remains unverified as a source citation. User design directions have been recorded for TVC-041, TVA-020, TVR-DR-001-Q, TVF-228 and TVF-234, but implementation, legal/governance authority and test evidence are not thereby approved.
 
 ## Canonical migration controls
 
@@ -221,3 +221,16 @@ The 44 initially unlinked registry questions are additionally mapped below to an
 - **REQ-X-013:** TVC-017, TVC-018, TVC-019, TVC-020, TVA-001, TVA-029, TVA-030.
 
 All 183 questions now have at least one proposed canonical-requirement linkage across the main mapping and this supplement. This does not constitute full requirement-level source reconciliation.
+
+## 2026-11-23 integrated architecture challenge and validation gates
+
+1. **Single standard versus legal sponsor responsibility:** Share charity evidence and routine determination across sponsors, but do not infer that each sponsor's fiduciary/legal duty disappears. Counsel must define reliance agreements, liability, jurisdictional scope and any category-specific supplements without duplicating routine investigation.
+2. **Automation versus independent approval:** The originator cannot approve their own item, even using a different identity or delegated agent. A separately governed board-authorized policy may make routine decisions only with independently controlled policy publication and evidence of delegation; donor confirmation is not sponsor approval.
+3. **Zero-loss versus availability:** RPO zero applies to acknowledged authoritative financial/security commits, not every in-flight message or external bank action. Quorum failure pauses financial writes. Test site loss, network partition, witness failure, fencing and return/failback, with measurable RTO and latency costs.
+4. **Queue versus commitment:** Durable intake acknowledgment must not masquerade as financial commitment. If the queue lacks independent durability, fail closed. On recovery reconcile protective events first, deduplicate stable intent identities and re-evaluate authority, charity status, funding and policy before execution.
+5. **Protective plane versus attack surface:** Emergency capability is protective-only, independently durable and separately authorized; it must not become an alternative payment route. Test compromise of emergency credentials, replay, forged hold release and ordering under partial recovery.
+6. **Payment verification versus provider opacity:** Verify charity control of destination and provider execution destination independently. Tokenization requires an independently verifiable binding, not provider-only fingerprints. Test destination substitution, account change, settlement mismatch and unavailable verification; disqualify nonconforming automated rails.
+7. **Cross-cutting identity:** Globally collision-resistant IDs prevent ID reuse, not duplicate business effects. Require idempotency identity, replay protection, deterministic ordering rules, and authoritative command outcomes.
+8. **Traceability:** TVC-034 currently quotes REG-007 as referring to REG-057 and REG-061, with REG-061 described in the contradiction register as NYC LL144. The original regulatory requirements source has not yet been located/verified. REG-058 is a guess and MUST NOT be substituted without original-source inspection. Treat as an editorial cross-reference defect pending verification, not a substantive policy decision.
+
+**Validation status:** All above are draft proposed requirements. No production implementation, fault-injection test, external provider certification, counsel opinion, board delegation or source-register migration is claimed.
