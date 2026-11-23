@@ -130,7 +130,7 @@ const G = {
     ein: "00-0000103",
     amount: 2500,
     chip: chip("blocked", "Payment returned"),
-    next: `Waiting for your choice. If you don't choose by ${d("2026-12-16", "Dec 16, 2026")}, we'll wait for new bank details.`,
+    next: `Waiting for your choice by ${d("2026-12-16", "Dec 16, 2026")}.`,
     track: [
       { label: "Submitted", when: d("2026-11-19", "Nov 19, 2026"), step: "done" },
       { label: "Approved", when: d("2026-11-23", "Nov 23, 2026"), step: "done" },
@@ -214,7 +214,7 @@ const page = ({ g, title, main, side, user, brand }) => ({
 });
 
 // Withdraw is offered only while the sponsor has not approved (A2: confirmation dialog).
-const withdrawFoot = (amount) =>
+const withdrawFoot = () =>
   `<p class="unb-small unb-muted">You can withdraw this recommendation until it's approved.</p>${button(`Withdraw recommendation`, { id: "withdraw" })}`;
 
 const withdrawDialog = (g) => `<dialog class="forma-dialog" id="withdraw-dialog" aria-labelledby="wd-title" aria-describedby="wd-desc">
@@ -244,7 +244,7 @@ const inReview = (extra = "") =>
   page({
     g: G.review,
     title: "In review",
-    main: `${progress(G.review, withdrawFoot(G.review.amount))}${history(G.review)}${extra}`,
+    main: `${progress(G.review, withdrawFoot())}${history(G.review)}${extra}`,
     side: `${details(G.review)}${documents([DOC_CONFIRM(G.review, d("2026-11-30", "Nov 30, 2026")), DOC_REMIT_PENDING])}`,
   });
 

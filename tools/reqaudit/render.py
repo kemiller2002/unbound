@@ -44,7 +44,10 @@ def load(data: Path):
                 E=cv("trace-edges.csv"), Q=cv("requirements-quality.csv"), R=jl("refinements.jsonl"),
                 G=jl("gap-requirements.jsonl"), U=jl("ui-requirements.jsonl") if (data / "ui-requirements.jsonl").exists() else (),
                 UG=cv("ui-component-gaps.csv") if (data / "ui-component-gaps.csv").exists() else (), W=tuple(json.loads(p.read_text(encoding="utf-8")) for p in sorted((data.parent / "workflows").glob("WFM-*.json"))),
-                IA=cv("surface-ia.csv") if (data / "surface-ia.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
+                IA=cv("surface-ia.csv") if (data / "surface-ia.csv").exists() else (),
+                UM=cv("ui-state-matrix.csv") if (data / "ui-state-matrix.csv").exists() else (),
+                UC=cv("ui-scenario-coverage.csv") if (data / "ui-scenario-coverage.csv").exists() else (),
+                UT=cv("ui-refinement-trace.csv") if (data / "ui-refinement-trace.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
 
 
 def g_findings_matrix(d) -> str:
@@ -224,7 +227,32 @@ def g_ia(d) -> str:
                  ((k[0], k[1], k[2], k[3], "; ".join(f"{r['panel_or_view']} ({r['transitions']}, {r['max_authority']})" for r in v)) for k, v in sorted(by.items())))
 
 
+UIQ_FAMILIES = ("UNB-UI-DS-", "UNB-UI-N-", "UNB-UI-F-", "UNB-UI-R-", "UNB-UI-A-", "UNB-UI-V-")
+
+
+def g_uiq_requirements(d) -> str:
+    return table(("ID", "Kind", "Title", "Traces (inbound and governing)", "Gaps", "ACs"),
+                 ((u["id"], u["kind"], u["title"], cell(", ".join(u["traces"]), 120), ", ".join(u["capability_gaps"]) or "—", len(u["acceptance_criteria"]))
+                  for u in d["U"] if u["id"].startswith(UIQ_FAMILIES)))
+
+
+def g_uiq_coverage(d) -> str:
+    return table(("Required scenario", "v2 states (passing all checks)", "Count"), ((c["scenario"], c["covered_by"].replace(";", ", "), c["count"]) for c in d["UC"]))
+
+
+def g_uiq_states(d) -> str:
+    v2 = [r for r in d["UM"] if r["version"] == "v2"]
+    return table(("Screen", "State", "Title", "Persona", "Scenarios", "Verified"),
+                 ((r["screen"], r["state_id"], r["state_title"], r["persona"], r["scenario_tags"].replace(";", ", "), r["verification"]) for r in v2))
+
+
+def g_uiq_trace(d) -> str:
+    return table(("UIR", "Refined requirement", "Defects", "Original inbound", "Status", "Tested by"),
+                 ((t["refinement_id"], t["refined_requirement"], t["defects"].replace(";", ", "), cell(t["original_inbound"].replace(";", ", "), 120), t["status"], t["tested_by"].replace(";", ", ") or "—") for t in d["UT"]))
+
+
 GENERATORS: Dict[str, Callable] = {
+    "uiq-requirements": g_uiq_requirements, "uiq-coverage": g_uiq_coverage, "uiq-states": g_uiq_states, "uiq-trace": g_uiq_trace,
     "workflows": g_workflows, "ia": g_ia,
     "ui-index": g_ui_index, "ui-records": g_ui_records, "ui-gaps": g_ui_gaps,
     "findings-matrix": g_findings_matrix, "findings-dimension": g_findings_dimension,

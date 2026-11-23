@@ -8,6 +8,9 @@ export const CSS = ["proposed/ops-charity-widget.css"];
 const PREPARER = { name: "Dana Ruiz", initials: "DR", role: "Preparer" };
 const NOW = ["2026-12-01T16:55:00-06:00", "today at 4:55 PM CT"];
 
+/** Facts list for side rails: the term column keeps a readable width. */
+export const facts = (rows) => dl(rows).replace('class="unb-dl"', 'class="unb-dl unb-x-facts"');
+
 // ---------- local helpers (promote to shared layer) ----------
 /** Copyable staff reference: monospace identifier + 24px+ copy button (Forma identifier has no copy affordance). */
 export const ref = (id, label = "reference") =>
@@ -149,7 +152,6 @@ const proposedPanel = () =>
   panel({
     id: "res",
     title: "Resolve this break",
-    meta: chip("attention", "Waiting for approval"),
     tone: "attention",
     body: `<p><strong>You proposed:</strong> match to the returned payment to Riverside Food Bank, on ${time("2026-12-01T17:12:00-06:00", "Dec 1, 2026 at 5:12 PM CT")}.</p>
 ${authority([
@@ -178,7 +180,7 @@ const factsPanel = () =>
   panel({
     id: "facts",
     title: "Details",
-    body: dl([
+    body: facts([
       ["Reference", ref(BREAK.ref)],
       ["Created by rule", "REC-01 daily bank match"],
       ["Created", time("2026-11-28T10:55:00-06:00", "Nov 28, 2026, 10:55 AM CT")],

@@ -9,9 +9,9 @@
 @layer unbound.proto {
   /* ===== Proposed: unb-x-ref (copyable staff reference) =====================
      Closest Forma: identifier. Gap: no copy affordance, no target size. */
-  :is(.unb-app, .unb-widget) .unb-x-mono,
-  :is(.unb-app, .unb-widget) .unb-x-ref code { font-family: var(--forma-type-family-mono); font-size: 0.875em; white-space: nowrap; }
-  .unb-app .unb-x-ref { display: inline-flex; align-items: center; gap: var(--forma-space-1); }
+  :is(.unb-app, .unb-widget) :is(.unb-x-mono, .unb-x-ref code) { font-family: var(--forma-type-family-mono); font-size: 0.875em; }
+  .unb-app .unb-x-ref code { white-space: nowrap; }
+  .unb-app .unb-x-ref { display: inline-flex; flex-wrap: wrap; justify-content: end; align-items: center; gap: var(--forma-space-1); }
   .unb-app .unb-x-ref__copy {
     display: inline-grid; place-items: center; inline-size: 2rem; block-size: 2rem; padding: 0;
     border: 1px solid var(--unb-rule); border-radius: var(--unb-radius-control); background: var(--unb-raised);
@@ -25,19 +25,19 @@
      a staff strip needs four compact figures in one row that reflow to 2x2. */
   .unb-app .unb-x-metrics {
     list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-3);
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
   }
   .unb-app .unb-x-metric {
     display: grid; gap: 2px; align-content: start; padding: var(--forma-space-3) var(--forma-space-4);
     background: var(--unb-raised); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-container);
-    border-block-start: 3px solid var(--unb-rule);
+    border-block-start: 3px solid var(--unb-rule); container-type: inline-size;
   }
   .unb-app .unb-x-metric[data-state="blocked"] { border-block-start-color: var(--unb-danger); }
   .unb-app .unb-x-metric[data-state="attention"] { border-block-start-color: var(--unb-warn); }
   .unb-app .unb-x-metric[data-state="unknown"] { border-block-start-color: var(--unb-info); border-block-start-style: dashed; }
   .unb-app .unb-x-metric__label { font-size: var(--unb-type-small); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); }
   .unb-app .unb-x-metric__value {
-    font-family: var(--forma-type-family-display); font-size: 1.75rem; line-height: 1.15; font-weight: 550;
+    font-family: var(--forma-type-family-display); font-size: clamp(1rem, 12cqi, 1.75rem); line-height: 1.15; font-weight: 550;
     color: var(--forma-color-text-heading); font-variant-numeric: tabular-nums; white-space: nowrap;
   }
   .unb-app .unb-x-metric__value .unb-chip { font-family: var(--forma-type-family-body); font-size: var(--unb-type-small); vertical-align: middle; }
@@ -98,7 +98,8 @@
   .unb-app [aria-sort] > .unb-x-sort svg { opacity: 1; }
   /* Narrow containers: each row becomes a record; title and amount stay on the first line. */
   @container (max-width: 44rem) {
-    .unb-app .unb-x-queue thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+    /* Sorting moves to the "Sort by" select; hidden header buttons must not take focus. */
+    .unb-app .unb-x-queue thead { display: none; }
     .unb-app .unb-x-queue tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--forma-space-1) var(--forma-space-3); padding: var(--forma-space-3) 0; border-block-end: 1px solid var(--unb-rule-soft); }
     .unb-app .unb-x-queue tr[data-mine] { box-shadow: inset 3px 0 0 var(--unb-accent); padding-inline-start: var(--forma-space-3); }
     .unb-app .unb-x-queue tr[data-mine] td:first-child { box-shadow: none; padding-inline-start: 0; }
@@ -120,8 +121,11 @@
   .unb-app .unb-x-detail { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
   .unb-app .unb-x-detail__main, .unb-app .unb-x-detail__side { display: grid; gap: var(--forma-space-5); min-inline-size: 0; }
   @media (min-width: 64rem) { .unb-app .unb-x-detail { grid-template-columns: minmax(0, 1.65fr) minmax(16rem, 1fr); } }
+  /* Facts in the side rail: the term keeps a readable minimum width. */
+  .unb-app .unb-x-facts > div { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr); }
   .unb-app .unb-x-headmeta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-1) var(--forma-space-3); }
   .unb-app .unb-x-actions { display: flex; flex-wrap: wrap; gap: var(--forma-space-3); }
+  .unb-app .unb-x-actions .forma-button { white-space: normal; text-align: center; padding-block: var(--forma-space-2); }
   .unb-app .unb-pagehead__actions .unb-btn-quiet { justify-self: start; }
 
   /* ===== Proposed: unb-x-compare (side-by-side evidence comparison) =========
@@ -190,7 +194,7 @@
      Closest Forma: none (FORMA-GAP-05: charts deferred). Text sizes stay in CSS px
      at every width because the SVG has no viewBox; bar lengths are percentages.
      The data table in the disclosure is the source of truth. */
-  .unb-app .unb-x-chart { display: grid; gap: var(--forma-space-3); }
+  .unb-app .unb-x-chart { display: grid; gap: var(--forma-space-3); margin: 0; }
   .unb-app .unb-x-chart svg { display: block; inline-size: 100%; overflow: visible; }
   .unb-app .unb-x-chart__bar { fill: var(--unb-accent); }
   .unb-app .unb-x-chart__track { fill: var(--unb-sunken); }
@@ -227,6 +231,7 @@
   .unb-app .unb-x-table tbody th { font-weight: 500; }
   .unb-app .unb-x-table :is(th, td):last-child { padding-inline-end: 0; }
   .unb-app .unb-x-table [data-col="num"] { text-align: end; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .unb-app .unb-x-table thead [data-col="num"] { white-space: normal; }
   .unb-app .unb-x-table tfoot :is(th, td) { font-weight: 700; border-block-end: 0; border-block-start: 1px solid var(--unb-rule); }
 
   /* ===== Proposed: unb-x-overview (dashboard layout) =========================
@@ -247,6 +252,7 @@
   .unb-app .unb-x-record:last-child { padding-block-end: 0; }
   .unb-app .unb-x-record__title { font-weight: 650; color: var(--forma-color-text-heading); }
   .unb-app .unb-x-record__title a { color: inherit; text-underline-offset: 0.2em; display: inline-block; padding-block: 2px; }
+  .unb-app .unb-x-record__title .unb-small { font-weight: 400; }
   .unb-app .unb-x-record > .unb-money { font-weight: 650; text-align: end; }
   .unb-app .unb-x-record__meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--forma-space-1) var(--forma-space-3); align-items: center; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
 

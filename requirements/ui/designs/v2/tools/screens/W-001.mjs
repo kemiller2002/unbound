@@ -94,8 +94,8 @@ const host = () => `<!doctype html>
 <main class="h-main" id="main">
 <div><h1>Your charitable giving</h1><p class="h-lead">Your donor-advised fund is held by your giving sponsor. The cards below come straight from the sponsor and update on their own.</p></div>
 <div class="h-grid">
-<section class="h-slot h-slot--wide" aria-labelledby="wide-t"><h2 id="wide-t">Latest grant</h2><p>Wide slot, 600 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (wide)" height="392" loading="lazy"></iframe></section>
-<section class="h-slot h-slot--narrow" aria-labelledby="narrow-t"><h2 id="narrow-t">Grant status</h2><p>Sidebar slot, 360 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (sidebar)" height="452" loading="lazy"></iframe></section>
+<section class="h-slot h-slot--wide" aria-labelledby="wide-t"><h2 id="wide-t">Latest grant</h2><p>Wide slot, 600 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (wide)" height="392" tabindex="-1"></iframe></section>
+<section class="h-slot h-slot--narrow" aria-labelledby="narrow-t"><h2 id="narrow-t">Grant status</h2><p>Sidebar slot, 360 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (sidebar)" height="452" tabindex="-1"></iframe></section>
 </div>
 <p class="h-foot">Fairway Wealth Partners does not hold or control your donor-advised fund. Grant information is provided read-only by your sponsor.</p>
 </main>

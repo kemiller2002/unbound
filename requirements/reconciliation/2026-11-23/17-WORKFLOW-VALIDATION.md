@@ -40,8 +40,8 @@ Three role-separated agents (grants and payments, finance, enterprise and platfo
 | WFM-07 | Grant recommendation (donor and advisor side) | 11 | 17 | 9 | 8 |  |  | 7 |
 | WFM-08 | Grant approval, reservation and funding (sponsor side) | 21 | 35 | 16 | 18 | 1 |  | 20 |
 | WFM-09 | Recurring grant schedule and occurrences | 9 | 14 | 6 | 8 |  |  | 9 |
-| WFM-10 | ACH grant payment via partner rail | 16 | 21 | 4 | 11 | 6 |  | 12 |
-| WFM-11 | Check grant payment with positive pay | 18 | 22 | 8 | 11 | 3 |  | 9 |
+| WFM-10 | ACH grant payment via partner rail | 16 | 22 | 5 | 11 | 6 |  | 12 |
+| WFM-11 | Check grant payment with positive pay | 18 | 23 | 9 | 11 | 3 |  | 10 |
 | WFM-12 | Sanctions screening, disposition and blocking | 10 | 16 | 8 | 8 |  |  | 7 |
 | WFM-13 | Charity payment destination change | 12 | 15 | 8 | 5 | 2 |  | 7 |
 | WFM-14 | Pool valuation and unit pricing | 17 | 18 | 7 | 8 | 3 |  | 17 |

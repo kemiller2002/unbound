@@ -26,16 +26,16 @@ Bidirectionality: every edge can be queried from either end. For example, "which
 <!-- BEGIN GENERATED: trace-summary -->
 | Relationship | Edges |
 |---|---|
+| derived_from | 1544 |
 | affects | 842 |
-| derived_from | 614 |
-| depends_on | 442 |
+| depends_on | 647 |
 | tested_by | 307 |
-| decided_by | 200 |
+| decided_by | 213 |
 | duplicates | 97 |
 | conflicts_with | 56 |
 | refines | 39 |
 | supersedes | 7 |
-| **Total** | 2604 |
+| **Total** | 3752 |
 <!-- END GENERATED: trace-summary -->
 
 ## 3. Coverage (denominators stated)
@@ -64,10 +64,10 @@ Reading the coverage numbers:
 | gaps | 97 |
 | findings | 178 |
 | conflicts | 39 |
-| scenarios | 124 |
-| decisions | 49 |
-| ui | 38 |
-| trace edges | 2604 |
+| scenarios | 144 |
+| decisions | 53 |
+| ui | 147 |
+| trace edges | 3752 |
 | **errors** |  |
 | warnings | 60 |
 <!-- END GENERATED: validation -->

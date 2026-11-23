@@ -1,7 +1,7 @@
 // S-012 Charity view, v2. One page per state.
 // Data first, then pure renderers. Synthetic data only.
 import { money, chip, panel, notice, button, quiet, icon, time, pagehead, dl, tasks, steps } from "../lib/ui.mjs";
-import { CSS } from "./S-008.mjs";
+import { CSS, facts } from "./S-008.mjs";
 
 const USER = { name: "Jamie Cole", initials: "JC", role: "Riverside Food Bank" };
 const SPONSOR = "Example Community Foundation";
@@ -73,7 +73,7 @@ ${panel({
 ${panel({
   id: "facts",
   title: "Grant details",
-  body: dl([
+  body: facts([
     ["Legal donor", `${SPONSOR}<br><span class="unb-small unb-muted">EIN <span class="unb-num">00-0000001</span></span>`],
     ["Recommended by", "Elin Lindqvist, Lindqvist Family Fund"],
     ["Purpose", "General operating support"],

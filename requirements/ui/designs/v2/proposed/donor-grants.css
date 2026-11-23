@@ -14,7 +14,7 @@
   .unb-app .unb-x-flow { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
   .unb-app .unb-x-flow > * { min-inline-size: 0; display: grid; gap: var(--forma-space-5); align-content: start; }
   @media (min-width: 64rem) {
-    .unb-app .unb-x-flow { grid-template-columns: minmax(0, 44rem) minmax(16rem, 1fr); }
+    .unb-app .unb-x-flow { grid-template-columns: minmax(0, 40rem) minmax(18rem, 1fr); }
     .unb-app .unb-x-flow[data-layout="record"] { grid-template-columns: minmax(0, 1.6fr) minmax(17rem, 1fr); }
   }
 
@@ -44,9 +44,11 @@
     background: var(--unb-canvas);
   }
   .unb-app .unb-x-picked[data-state="blocked"] { border-inline-start: 4px solid var(--unb-danger); }
-  .unb-app .unb-x-picked > .unb-task__icon { grid-row: span 4; }
+  .unb-app .unb-x-picked { grid-template-columns: 2.25rem minmax(0, 1fr) auto; }
+  .unb-app .unb-x-picked > .unb-task__icon { grid-row: span 3; }
   .unb-app .unb-x-picked > :not(.unb-task__icon) { grid-column: 2; }
-  .unb-app .unb-x-picked .unb-task__action { margin-block-start: var(--forma-space-1); }
+  .unb-app .unb-x-picked > .unb-task__action { grid-column: 3; grid-row: 1 / span 3; align-self: center; margin: 0; }
+  .unb-app .unb-x-picked[data-state="blocked"] > .unb-task__action { grid-column: 2 / -1; grid-row: auto; margin-block-start: var(--forma-space-2); }
 
   /* ---- Proposed: Form stack (one column, sections divided by rules) -------
      Forma's form/field own the controls; this owns rhythm and measure. */
@@ -64,9 +66,14 @@
   .unb-app .unb-x-form .forma-disclosure { border-color: var(--unb-rule-soft); }
   .unb-app .unb-x-form .forma-disclosure > summary {
     display: flex; align-items: center; justify-content: space-between; gap: var(--forma-space-3);
-    min-block-size: var(--unb-target); font-weight: 650; color: var(--forma-color-text-heading); cursor: pointer;
+    min-block-size: var(--unb-target); font-weight: 650; color: var(--forma-color-text-heading); cursor: pointer; overflow: visible;
   }
   .unb-app .unb-x-form .forma-disclosure__content { display: grid; gap: var(--forma-space-5); padding-block: var(--forma-space-2) var(--forma-space-5); }
+  /* Native radios fill their option so the whole card is the hit target (2.5.8). */
+  .unb-app :is(.forma-choice, .forma-binary-option) > input { inset: 0; inline-size: 100%; block-size: 100%; margin: 0; cursor: pointer; }
+  /* Error summary links meet the 24px target minimum. */
+  .unb-app .forma-validation-summary a { padding-block: 0.25rem; }
+  .unb-app .forma-validation-summary__list li + li { margin-block-start: var(--forma-space-1); }
   .unb-app .unb-x-derived { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
   .unb-app .unb-x-derived strong { color: var(--forma-color-text-heading); }
 
@@ -88,6 +95,8 @@
   /* ---- Proposed: Form action row (in flow, never sticky) ----------------- */
   .unb-app .unb-x-actions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-3) var(--forma-space-4); }
   .unb-app .unb-x-actions__note { flex-basis: 100%; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-panel__foot > .unb-x-actions { flex: 1 1 100%; min-inline-size: 0; }
+  .unb-app :is(.unb-x-actions, .unb-x-option, .unb-task__action) > .forma-button { white-space: normal; text-align: center; padding-block: var(--forma-space-2); }
   @media (max-width: 29.99rem) {
     .unb-app .unb-x-actions > .forma-button { inline-size: 100%; }
   }
@@ -118,11 +127,12 @@
   .unb-app .unb-x-track li[data-step="failed"] .unb-x-track__label { color: var(--unb-danger); font-weight: 750; }
   .unb-app .unb-x-track li[data-step="todo"] .unb-x-track__label { font-weight: 500; color: var(--forma-color-text-secondary); }
   .unb-app .unb-x-track__when { grid-column: 2; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
-  @container (min-width: 36rem) {
+  @container (min-width: 30rem) {
     .unb-app .unb-x-track { grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--forma-space-3); }
-    .unb-app .unb-x-track li { grid-template-columns: minmax(0, 1fr); row-gap: var(--forma-space-1); padding: 0; }
+    .unb-app .unb-x-track li { grid-template-columns: minmax(0, 1fr); row-gap: var(--forma-space-1); padding: 0; align-content: start; }
     .unb-app .unb-x-track li::before { grid-row: auto; inline-size: 100%; block-size: 4px; margin: 0 0 var(--forma-space-2); border: 0; border-radius: 2px; background: var(--unb-rule-soft); box-shadow: none; }
     .unb-app .unb-x-track li:not(:last-child)::after { display: none; }
+    .unb-app .unb-x-track li[data-step="current"]::before { box-shadow: none; }
     .unb-app .unb-x-track__when { grid-column: 1; }
   }
 
@@ -178,7 +188,7 @@
   .unb-app .unb-x-option h3 { font-size: 1rem; }
   .unb-app .unb-x-option p { font-size: var(--unb-type-small); color: var(--forma-color-text-on-secondary-surface); }
   .unb-app .unb-x-option .forma-button { justify-self: start; margin-block-start: var(--forma-space-2); }
-  @container (min-width: 34rem) {
+  @container (min-width: 32rem) {
     .unb-app .unb-x-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .unb-app .unb-x-option { grid-template-rows: auto 1fr auto; }
   }
@@ -217,10 +227,10 @@
   /* ---- Proposed: Document list (download rows) --------------------------- */
   .unb-app .unb-x-docs { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-1); }
   .unb-app .unb-x-docs li { display: grid; grid-template-columns: 1.25rem minmax(0, 1fr); gap: 0 var(--forma-space-3); align-items: start; padding-block: var(--forma-space-2); }
-  .unb-app .unb-x-docs svg { margin-block-start: 0.6rem; color: var(--forma-color-text-on-secondary-surface); }
-  .unb-app .unb-x-docs a { display: inline-flex; align-items: center; min-block-size: var(--unb-target); font-weight: 650; color: var(--forma-color-text-heading); text-underline-offset: 0.2em; }
+  .unb-app .unb-x-docs svg { margin-block-start: 0.35rem; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-docs a { display: inline-flex; align-items: center; min-block-size: 2rem; font-weight: 650; color: var(--forma-color-text-heading); text-underline-offset: 0.2em; }
   .unb-app .unb-x-docs span { grid-column: 2; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
-  .unb-app .unb-x-docs li[data-state="pending"] p { min-block-size: var(--unb-target); display: flex; align-items: center; color: var(--forma-color-text-secondary); font-weight: 600; }
+  .unb-app .unb-x-docs li[data-state="pending"] p { min-block-size: 2rem; display: flex; align-items: center; color: var(--forma-color-text-secondary); font-weight: 600; }
 
   /* ---- Proposed: Unavailable action with reason (FORMA-GAP-11) ------------
      The action is named but not offered; the reason and the alternative are text. */

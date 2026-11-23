@@ -150,6 +150,212 @@
     "kind": "app"
   },
   {
+    "file": "screens/S-003-grant-recommendation/choose-charity.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "choose-charity",
+    "title": "Choose a charity: search results with eligibility in plain words",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "normal",
+      "charity-search",
+      "ineligible-charity"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/details.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "details",
+    "title": "Amount and details: one column, progressive disclosure",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "normal"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/more-options.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "more-options",
+    "title": "More options open: percentage of fund value and repeat (phone reference)",
+    "persona": "Donor on a phone",
+    "scenarios": [
+      "phone",
+      "percentage-grant",
+      "recurring"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/outcome-unknown.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "outcome-unknown",
+    "title": "Outcome unknown after submit timeout (G-006)",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "outcome-unknown",
+      "integration-unavailable"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/restricted.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "restricted",
+    "title": "Restricted: recommending paused, draft still possible",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "restricted-fund"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/review.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "review",
+    "title": "Review and submit: the single G-005 confirmation",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "confirmation"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/submitted.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "submitted",
+    "title": "Submitted: what happens next",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "success",
+      "pending-grants"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/validation-errors.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "validation-errors",
+    "title": "Validation: amount above Available to grant, missing purpose, charity on hold",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "validation-error",
+      "ineligible-charity",
+      "eligibility-hold"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-003-grant-recommendation/white-label.html",
+    "screen": "S-003",
+    "requirement": "UNB-UI-S-003",
+    "state": "white-label",
+    "title": "Amount and details under the Harbor Giving brand",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "white-label"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/advisor-view.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "advisor-view",
+    "title": "Read-only: financial advisor with view access",
+    "persona": "Financial advisor (view only)",
+    "scenarios": [
+      "read-only"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/approved.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "approved",
+    "title": "Approved, payment scheduled; withdraw unavailable with reason",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "approved",
+      "action-unavailable"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/in-review.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "in-review",
+    "title": "In review: progress with expected dates, withdraw available",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "pending-grants",
+      "normal"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/on-hold.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "on-hold",
+    "title": "On hold: charity eligibility",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "eligibility-hold",
+      "attention-required"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/paid.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "paid",
+    "title": "Paid: proof of payment and charity acknowledgment (percentage grant)",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "paid",
+      "percentage-grant"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/payment-returned.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "payment-returned",
+    "title": "Failed payment: returned by the charity's bank, wait or redirect",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "failed-payment",
+      "attention-required"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-004-grant-detail/withdraw-confirm.html",
+    "screen": "S-004",
+    "requirement": "UNB-UI-S-004",
+    "state": "withdraw-confirm",
+    "title": "Withdraw: consequential confirmation dialog",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "withdraw",
+      "confirmation"
+    ],
+    "kind": "app"
+  },
+  {
     "file": "screens/S-008-work-queue/empty.html",
     "screen": "S-008",
     "requirement": "UNB-UI-S-008",

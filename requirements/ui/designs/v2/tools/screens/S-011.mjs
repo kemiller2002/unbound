@@ -45,7 +45,6 @@ const chartSvg = (months, unconfirmed = 0) => {
       const confirmedW = isLast && unconfirmed ? pct(m.amount - unconfirmed, max) : w;
       const part = isLast && unconfirmed ? `<rect class="unb-x-chart__part" x="${(X0 + +confirmedW).toFixed(2)}%" y="${y + 6}" width="${(w - confirmedW).toFixed(2)}%" height="${ROW - 12}"/>` : "";
       return `<g><text class="unb-x-chart__month" x="0" y="${y + ROW / 2}" dy="0.35em">${m.short}</text>
-<rect class="unb-x-chart__track" x="${X0}%" y="${y + 6}" width="56%" height="${ROW - 12}" rx="2"/>
 <rect class="unb-x-chart__bar" x="${X0}%" y="${y + 6}" width="${confirmedW}%" height="${ROW - 12}" rx="2"/>${part}
 <text class="unb-x-chart__value" x="${(X0 + +w).toFixed(2)}%" dx="6" y="${y + ROW / 2}" dy="0.35em">${short(m.amount)}</text></g>`;
     })
