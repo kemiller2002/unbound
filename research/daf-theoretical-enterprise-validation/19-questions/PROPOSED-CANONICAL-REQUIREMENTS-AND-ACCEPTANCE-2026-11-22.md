@@ -472,3 +472,15 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Provide AI assistance across all Unbound APIs, inputs, configuration, grants, charity vetting, work queues, dashboards, reports, email templates and operational support using the versioned AI-discoverable contracts in REQ-X-051. Use one in-process Assistance Orchestrator for caller-scoped capability discovery, context retrieval, explanations, guided workflows, validated draft proposals, impact previews and narrowly gated domain commands. Separate verified facts, operational observations, inferences and recommendations; label Unknown and stale evidence. Enforce sponsor privacy, authorization, independent approvals, financial/compliance holds, auditable confirmation and human escalation. Proactive checks should propose safe remediation rather than silently change policies or money movement. Reuse Forma, Forma Studio and Folio capabilities without duplicating domain authority.
 
 **Acceptance (not executed):** ADV-783..ADV-842 and `PLATFORM-WIDE-AI-ASSISTANCE-ARCHITECTURE-CONTEXTUAL-GUIDANCE-AND-GOVERNED-ACTIONS-2026-11-23.md`. Validate source/contract versioning, cross-sponsor security, safe proposals, stale/Unknown status handling, AI prompt-injection resistance, accessible contextual UX, regression evaluation and execution-time authorization.
+
+## REQ-X-054: Reactive contextual AI assistance and guided configuration (2026-11-23)
+
+**Proposed:** Provide caller-scoped contextual AI help on every documented input, API, action, configuration and relevant case/report/dashboard/email surface. Support explain, guide, analyze, validated typed draft, impact preview, safe correction, source attribution, uncertainty, accessibility and human escalation. Preserve ordinary direct UI controls. AI cannot self-publish or bypass domain permissions, holds, approval or segregation of duties.
+
+**Acceptance (not executed):** ADV-843..ADV-866 and `REACTIVE-AI-ASSISTANCE-CONTEXTUAL-UX-AND-GUIDED-CONFIGURATION-2026-11-23.md`.
+
+## REQ-X-055: Proactive AI assistance, deterministic detection and preventive operations (2026-11-23)
+
+**Proposed:** Detect known risks through versioned deterministic checks, optionally use bounded AI for explanation/investigation/proposals, and route findings into existing Exception Management and Work Queue components. Cover charity reverification, grant routing, sponsor policy, recurring activity, accounting, payments, retention, integrations and UI/report quality. Require deduplication, risk tiers, evidence, ownership, SLA, false-positive review, expiry-bound suppression and independent resolution verification. Do not create a competing alert/case engine or permit AI independent money/compliance authority.
+
+**Acceptance (not executed):** ADV-867..ADV-890 and `PROACTIVE-AI-ASSISTANCE-DETERMINISTIC-DETECTION-AND-PREVENTIVE-OPERATIONS-2026-11-23.md`.
