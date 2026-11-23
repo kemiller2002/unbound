@@ -48,7 +48,9 @@ CITED = re.compile(
     r"RR-[A-Z0-9-]+?-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})\b")
 
 COVERAGE = frozenset({"covered", "partial", "contradictory", "missing"})
-NECESSITY = frozenset({"legal", "operational", "commercial", "conventional"})
+# The mission enumerates legal/operational/commercial/conventional; PRINCIPLES.md step 3 additionally
+# distinguishes fiduciary and contractual obligations, which agents used where a step is neither statute nor convention.
+NECESSITY = frozenset({"legal", "fiduciary", "contractual", "operational", "commercial", "conventional"})
 EQUIV = frozenset({"yes", "partial", "no"})
 AUTOMATION = frozenset({"deterministic", "ai-assisted", "configuration", "human-required", "mixed"})
 AUTHORITY = frozenset({"authoritative-financial", "authoritative-nonfinancial", "derived", "informational", "observation-ai"})
@@ -83,6 +85,23 @@ def g_enum(gate: str, recs: Iterable[dict], key: str, field: str, allowed: Froze
 def g_fields(gate: str, recs: Iterable[dict], key: str, fields: Tuple[str, ...]) -> Tuple[Issue, ...]:
     return tuple(Issue("ERROR", gate, r.get(key, "?"), f"missing or empty field '{f}'")
                  for r in recs for f in fields if empty(r.get(f)))
+
+
+def csv_row_text(root: Path, path: str, line: int) -> str:
+    """inventory.py renders a CSV definition row as its cells joined by ' | '; rebuild that text at baseline."""
+    import csv as _csv
+    import io
+    rows = list(_csv.reader(io.StringIO(v.baseline_file(root, path))))
+    return " | ".join(rows[line - 1]) if 0 < line <= len(rows) else ""
+
+
+def g_refinements_csv_aware(root: Path, refs: Tuple[dict, ...], baseline: FrozenSet[str]) -> Tuple[Issue, ...]:
+    """validate.g_refinements, except G4 for CSV-defined originals compares against the rebuilt row text."""
+    def csv_ok(i: Issue) -> bool:
+        r = next((x for x in refs if x.get("refinement_id") == i.subject), {})
+        return (i.gate == "G4" and str(r.get("original_path", "")).endswith(".csv")
+                and v.normalize(r.get("original_text", ""))[:160] in v.normalize(csv_row_text(root, r["original_path"], int(r.get("original_line", 0)))))
+    return tuple(i for i in v.g_refinements(root, refs, baseline) if not csv_ok(i))
 
 
 def g_events(events: Tuple[dict, ...]) -> Tuple[Issue, ...]:
@@ -120,7 +139,7 @@ def g_landscape(root: Path) -> Tuple[Issue, ...]:
 
 def g_reports(mission: Path, ok: Callable[[str], bool]) -> Tuple[Issue, ...]:
     return tuple(Issue("ERROR", "D9", d.name, f"cites unknown identifier {m}")
-                 for d in sorted(mission.glob("*.md")) for m in sorted(set(CITED.findall(d.read_text(encoding="utf-8"))))
+                 for d in sorted(mission.rglob("*.md")) for m in sorted(set(CITED.findall(d.read_text(encoding="utf-8"))))
                  if not ok(m))
 
 
@@ -161,7 +180,7 @@ def main(argv) -> int:
     ok = v.resolver(baseline, new | prior, narr, known_undefined)
     issues = (
         *v.g_dupes(sets), *g_scheme(new, baseline, prior),
-        *v.g_refinements(root, refs_, baseline),
+        *g_refinements_csv_aware(root, refs_, baseline),
         *v.g_required("refinements", refs_, "refinement_id"), *v.g_required("gaps", gaps, "id"),
         *v.g_required("findings", finds, "finding_id"), *v.g_required("conflicts", confs, "conflict_id"),
         *v.g_required("scenarios", scens, "scenario_id"), *v.g_required("decisions", decs, "decision_id"),

@@ -1,0 +1,19 @@
+{
+  "records": {
+    "refinements": 31,
+    "gaps": 148,
+    "findings": 186,
+    "conflicts": 24,
+    "scenarios": 194,
+    "decisions": 74,
+    "atlas": 368,
+    "rejected": 86,
+    "failures": 148,
+    "events": 96,
+    "regulatory": 20
+  },
+  "trace_edges": 2158,
+  "errors": 0,
+  "warnings": 0,
+  "errors_by_gate": {}
+}
