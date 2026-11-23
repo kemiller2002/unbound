@@ -23,7 +23,7 @@ DOMAINS = ("GRT", "FIN", "PLT", "ENT", "REG", "ARC")
 
 
 def cell(text: str, limit: int = 220) -> str:
-    t = re.sub(r"\s+", " ", str(text or "")).replace("|", "\\|").strip()
+    t = re.sub(r"(?<!\\)\|", r"\\|", re.sub(r"\s+", " ", str(text or ""))).strip()  # idempotent pipe escape
     return t if len(t) <= limit else t[: limit - 1].rstrip() + "…"
 
 
