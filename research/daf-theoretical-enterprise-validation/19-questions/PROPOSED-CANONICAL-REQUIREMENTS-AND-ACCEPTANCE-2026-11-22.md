@@ -632,3 +632,11 @@ All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a 
 **Proposed:** Maintain deterministic synthetic failure fixtures for concurrent grants, returned payments, delayed provider outcomes, payee fraud, stale custody values, policy/authority changes, migration dual-writer risk, legal acceptance, sponsor reporting, AI overreach and disaster recovery. Each fixture requires before/after balances, authorization/policy snapshot, provider response, audit, UX status and recovery path. Reconciliation must precede retry after ambiguous external outcomes.
 
 **Acceptance (not executed):** `ADVERSARIAL-TRANSACTION-SIMULATIONS-AND-RECOVERY-CONTRACTS-2026-11-23.md` defines 28 first-pass simulations, 0 executed or independently signed off.
+
+## REQ-X-082: Machine-readable bidirectional workflow traceability and static consistency gates (2026-11-23)
+
+**Proposed:** Require a typed, versioned traceability catalog connecting all WF, TX, INV, SIM and canonical REQ identifiers. Every transaction must link its owning workflow, relevant invariants, exact authority/policy guard, financial journal, evidence, user-visible state, idempotency and failure/recovery fixture. CI should reject invalid references, missing mandatory fields, unreachable transitions, orphan scenarios, inconsistent completion semantics and absent financial invariant assertions.
+
+**Baseline actually checked:** `WORKFLOW-TRANSITION-TRACEABILITY-CATALOG-2026-11-23.json` and `STATIC-WORKFLOW-TRACEABILITY-CHECK-AND-CONTRADICTION-REGISTER-2026-11-23.md` report 18 WF, 18 INV, 28 TX, 28 SIM, 0 invalid SIM->TX references and 2 TX lacking explicit SIM references (TX-01, TX-02). This is a static ID-level check only. No runtime tests, automated CI, complete WF/INV links or numerical ledger validation were executed.
+
+**Required follow-up:** split externally ambiguous state combinations, add exact debit/credit journal expectations and compensation, define irreversible boundaries, expand coverage to full requirement corpus and create executable validator only when implementation is authorized.
