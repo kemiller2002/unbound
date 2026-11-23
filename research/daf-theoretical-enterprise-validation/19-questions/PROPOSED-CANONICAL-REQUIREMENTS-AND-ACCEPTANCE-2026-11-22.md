@@ -640,3 +640,15 @@ All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a 
 **Baseline actually checked:** `WORKFLOW-TRANSITION-TRACEABILITY-CATALOG-2026-11-23.json` and `STATIC-WORKFLOW-TRACEABILITY-CHECK-AND-CONTRADICTION-REGISTER-2026-11-23.md` report 18 WF, 18 INV, 28 TX, 28 SIM, 0 invalid SIM->TX references and 2 TX lacking explicit SIM references (TX-01, TX-02). This is a static ID-level check only. No runtime tests, automated CI, complete WF/INV links or numerical ledger validation were executed.
 
 **Required follow-up:** split externally ambiguous state combinations, add exact debit/credit journal expectations and compensation, define irreversible boundaries, expand coverage to full requirement corpus and create executable validator only when implementation is authorized.
+
+## REQ-X-083: Orthogonal payment state machine, rail-specific proof and governed recovery (2026-11-23)
+
+**Proposed:** Model payment authorization, dispatch, provider knowledge, settlement proof, accounting reconciliation, recipient acknowledgement and work case as distinct dimensions. Provider timeout produces Unknown, not failure; accepted dispatch is not settlement; recipient handoff is not check clearing. Pin verified payee destination version, retain immutable request/event evidence, deduplicate callbacks, forbid blind retries, and require controlled recall/reissue/return compensation. Reuse one authoritative payment/ledger system for all channels and sponsors.
+
+**Acceptance (not executed):** `PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md` defines commands, six payment state dimensions plus work-case state, rail proof hierarchy and PAY-01..09 adversarial fixtures. Exact bank/custodian proof thresholds require provider and sponsor review.
+
+## REQ-X-084: Sponsor-approved double-entry journal contracts, recognition gates and numerical fixtures (2026-11-23)
+
+**Proposed:** Require balanced, sponsor/fund-scoped, immutable, versioned double-entry journal batches, with explicit source evidence, posting/effective/known-at times, corrections and accounting policy. Separate legal gift acceptance, revenue recognition, grant reservation, unconditional grant payable recognition, bank settlement, investment valuation, fund liquidity, fee accrual and late-period returns. Capacity is a derived controlled projection, not a directly editable ledger balance.
+
+**Acceptance (illustrative, not accounting-certified):** `ILLUSTRATIVE-FUND-ACCOUNTING-JOURNAL-CONTRACTS-AND-REVERSALS-2026-11-23.md` and `ILLUSTRATIVE-LEDGER-JOURNAL-FIXTURES-2026-11-23.csv` document ten balanced synthetic journal examples. A qualified nonprofit fund accountant/CPA must approve actual chart of accounts, recognition timing, reversal treatment and regulatory reporting. No accounting engine or runtime tests executed.
