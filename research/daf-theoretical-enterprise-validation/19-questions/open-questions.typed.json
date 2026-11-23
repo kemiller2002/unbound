@@ -50,6 +50,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -99,6 +103,10 @@
         {
           "event": "user-centralized-charity-vetting-directive",
           "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -651,6 +659,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -806,6 +818,10 @@
         {
           "event": "user-mandatory-independent-destination-verification",
           "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -994,6 +1010,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -1185,6 +1205,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -1299,6 +1323,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Sanctions, recipient diligence and 180-day reverification. Conflict: Automated charity re-verification every 180 days is not equivalent to point-of-payment screening. Deterministic clearing of approved false-positive classes must not become AI-driven hold release or allow stale eligibility between review cycles. Harmonized direction: Separate periodic comprehensive recipient re-verification, event-triggered rechecks and execution-time sanctions/eligibility gates. Only published deterministic classes can clear eligible false positives; models may flag but not clear holds. Failed or unavailable checks hold release and produce reviewable evidence. Severity: Critical. Status: proposed; counsel and data-source validation outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -1337,6 +1365,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Sanctions, recipient diligence and 180-day reverification. Conflict: Automated charity re-verification every 180 days is not equivalent to point-of-payment screening. Deterministic clearing of approved false-positive classes must not become AI-driven hold release or allow stale eligibility between review cycles. Harmonized direction: Separate periodic comprehensive recipient re-verification, event-triggered rechecks and execution-time sanctions/eligibility gates. Only published deterministic classes can clear eligible false positives; models may flag but not clear holds. Failed or unavailable checks hold release and produce reviewable evidence. Severity: Critical. Status: proposed; counsel and data-source validation outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -2653,6 +2685,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -3531,6 +3567,10 @@
         {
           "event": "user-centralized-charity-vetting-directive",
           "note": "User direction 2026-11-22: same charity vetting requirements across all sponsors; a charity vetted once is vetted across the platform. Working interpretation: one shared authoritative charity eligibility/evidence record and uniform minimum vetting standard, reusable without redundant investigation; distinct sponsor grant-policy decisions and legal sponsor accountability remain. Global adverse evidence triggers affected-recipient suspension and re-evaluation; 180-day maximum periodic re-verification plus event-driven and payment-time checks. No self-approval of vetting exceptions. Counsel must validate cross-sponsor reliance, contractual liability, jurisdiction/recipient-type applicability, and whether supplemental legally required checks are necessary. Do not claim legal reliance already established."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -5067,6 +5107,10 @@
         {
           "event": "user-accepted-protective-emergency-design",
           "note": "User agreed to jointly design DR intake and emergency controls as separate authority paths. Protective-only independent emergency controls may suspend release, revoke access, apply holds and record evidence while normal command service is unavailable; no approvals, balance changes, payee edits or money movement. Emergency hold removal requires independent authorized approval after core recovery and reconciliation, enforcing no-self-approval. Outage intake cannot override emergency holds; protective actions reconciled before queued commands replay. Independently durable controls and failure-injection testing required; working design, not tested or legally approved."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -5927,6 +5971,10 @@
         {
           "event": "user-mandatory-independent-destination-verification",
           "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
@@ -6163,6 +6211,10 @@
         {
           "event": "user-mandatory-independent-destination-verification",
           "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
+        },
+        {
+          "event": "adversarial-tiered-architecture-2026-11-23",
+          "note": "User directed rules-first deterministic resolution, AI only if needed, then independent humans if AI cannot safely resolve. New REQ-X-017 and 30 adversarial scenario specifications ADV-001..ADV-030 in ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md. Model-generated recommendation does not confer sponsor approval; hard safety gates hold. Tests are specified but not executed; no evidence status upgrade."
         }
       ]
     },
