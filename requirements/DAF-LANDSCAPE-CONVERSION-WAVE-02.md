@@ -34,7 +34,9 @@ UNB-WF-011: Donor AI agents (WF-11) SHALL act only within explicit scoped delega
 UNB-WF-012: Advisor onboarding (WF-12) SHALL verify institution, individual authority, privileges, revocation and integration contracts.
 UNB-WF-013: Donor death and succession (WF-13) SHALL handle document conflicts, authority transitions and dispute holds.
 UNB-WF-014: Outbound transfer (WF-14) SHALL preserve history, restrictions, accounting reconciliation and sponsor approval.
+> Adopted 2026-11-23: refined by `RR-UNB-WF-014-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 UNB-WF-015: Dormant accounts (WF-15) SHALL follow approved notice, successor and charitable-default policies.
+> Adopted 2026-11-23: refined by `RR-UNB-WF-015-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 UNB-WF-016: Documentation requests (WF-16) SHALL produce accurate evidence-grounded documents with authorization and privacy controls.
 UNB-WF-017: Liquidity shocks (WF-17) SHALL model available cash, market movements, custodian outages and approvals outside the playbook.
 UNB-WF-018: NAV, unitization and fees (WF-18) SHALL track valuation inputs, pricing exceptions, effective schedules and corrections.
@@ -70,3 +72,54 @@ UNB-AGT-005: Policy/rule decisions and human decisions SHALL be independently id
 3. Convert each design into outcome, constraint, hypothesis, acceptance test or rejected alternative. Do not automatically mandate an architecture from research.
 4. Run contradiction checks between the existing Unbound baseline and source operating model; explicitly document conflicts.
 5. Confirm current Conditor installation and EF capability selection before executing any implementation. Requirements analysis and GitHub documentation may continue without falsely claiming installation.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-WF-015-r1 (refines `UNB-WF-015`) — adopted-provisional
+- **Original:** `requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:37` @ `777a70d` (kept verbatim) · **Decisions:** RCD-022
+- **Requirement:** Fund inactivity MUST be governed by a sponsor-approved, versioned dormancy policy. Parameters: the activity events that reset the clock; Quiet, Inactive and Unresponsive thresholds; required outreach channels and attempts; and the default disposition (charitable default to sponsor-designated purposes or charities, transfer to a donor-named charitable beneficiary under UNB-SUCC-011, or continued holding). The lifecycle is Active > Quiet > Inactive > Unresponsive > DispositionPending > Disposed or Reactivated. Any disposition distributing assets MUST be an A4 sponsor decision run through the normal grant lifecycle. Escheat handling MUST NOT apply to fund balances unless counsel records it as applicable.
+- **Validation still required:** RCD-022: Sponsor operations owner; counsel on escheat of balances (Q11)
+- **Acceptance criteria:**
+  - AC-1: Given an Inactive fund; when the donor affirms activity; then the fund is Active and the clock resets.
+  - AC-2: Given an Unresponsive fund with fewer outreach attempts than the policy minimum; when disposition is proposed; then rejected.
+  - AC-3: Given a disposition grant to an ineligible charity; when eligibility runs; then held.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-WF-015-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### RR-UNB-WF-014-r1 (refines `UNB-WF-014`) — adopted-provisional
+- **Original:** `requirements/DAF-LANDSCAPE-CONVERSION-WAVE-02.md:36` @ `777a70d` (kept verbatim) · **Decisions:** RCD-022
+- **Requirement:** A donor-recommended transfer of all or part of a fund to another sponsoring organization MUST be processed as a sponsor distribution through the standard grant lifecycle, with purpose code DAF_TRANSFER_OUT, unless counsel records a different classification. It MUST include: receiving-organization eligibility; the sponsor's discretion to approve or decline; cash as the default, with in-kind only where both custodians accept and policy allows; carrying over donor-stated restrictions as non-binding recommendation text; a transfer history package to the receiving sponsor when the donor consents; and, for full transfers, fund closure under UNB-RCN-ENT-006.
+- **Validation still required:** RCD-022: Sponsor operations owner; counsel on escheat of balances (Q11)
+- **Acceptance criteria:**
+  - AC-1: Given a full transfer approved and settled; when post-settlement processing runs; then the fund enters the closing workflow.
+  - AC-2: Given no consent; when the package is requested; then no history is sent.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-WF-014-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-ENT-005 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-ENT-019 · **Parent:** UNB-WF-015 · **Decisions:** RCD-022
+- **Requirement:** The system MUST implement the sponsor-parameterized dormancy lifecycle in RR-UNB-WF-015-r1. Escheat processing MUST be limited to payment instruments unless counsel records otherwise.
+- **Validation still required:** RCD-022: Sponsor operations owner; counsel on escheat of balances (Q11)
+- **Acceptance criteria:**
+  - AC-1: Given no approved dormancy policy; when a fund passes the time thresholds; then no disposition is proposed and the policy gap is reported.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-005); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-ENT-007 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-ENT-021 · **Parent:** UNB-WF-014 · **Decisions:** RCD-022
+- **Requirement:** Outbound transfers to another sponsoring organization MUST follow RR-UNB-WF-014-r1, and inbound transfers MUST be classified by a counsel-approved rule covering contributor of record, acknowledgment, restrictions and successor plans.
+- **Validation still required:** RCD-022: Sponsor operations owner; counsel on escheat of balances (Q11)
+- **Acceptance criteria:**
+  - AC-1: Given an inbound transfer; when it is received; then classification is recorded before capacity becomes grantable.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-007); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-ENT-012 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-ENT-029 · **Parent:** REQ-X-060 · **Decisions:** RCD-024
+- **Requirement:** The system MUST produce the DAF annual reporting data package defined in RR-REQ-X-060-r1.
+- **Validation still required:** RCD-024: Counsel on future product types
+- **Acceptance criteria:**
+  - AC-1: Given a year with DAF_TRANSFER_OUT grants; when the package is built; then the transfer subset is reported separately and reconciles to the grant total.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-012); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

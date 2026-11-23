@@ -18,6 +18,7 @@ Outputs (in <output-dir>):
 from __future__ import annotations
 
 import csv
+import os
 import hashlib
 import io
 import json
@@ -126,14 +127,34 @@ def sha(text: str) -> str:
     return hashlib.sha256(normalize(text).encode()).hexdigest()[:16]
 
 
+# Revision scanned: the audited baseline by default, so the inventory stays reproducible after
+# originals are annotated during adoption. Set REQAUDIT_REV=WORKTREE to scan the working tree.
+REV = os.environ.get("REQAUDIT_REV", BASELINE)
+
+
+def read_file(root: Path, rel: str) -> str:
+    if REV == "WORKTREE":
+        return (root / rel).read_text(encoding="utf-8", errors="replace")
+    return subprocess.run(["git", "-C", str(root), "show", f"{REV}:{rel}"], capture_output=True,
+                          text=True, errors="replace").stdout
+
+
+def list_files(root: Path) -> Tuple[str, ...]:
+    if REV == "WORKTREE":
+        return tuple(str(p.relative_to(root)) for g in SCOPE_GLOBS for p in root.glob(g) if p.is_file())
+    out = subprocess.run(["git", "-C", str(root), "ls-tree", "-r", "--name-only", REV], capture_output=True, text=True).stdout
+    pats = tuple(re.compile("^" + re.escape(g).replace(r"\*\*/", "(?:.*/)?").replace(r"\*", "[^/]*") + "$") for g in SCOPE_GLOBS)
+    return tuple(f for f in out.splitlines() if any(p.match(f) for p in pats))
+
+
 def git_blob(root: Path, rel: str) -> str:
-    result = subprocess.run(["git", "-C", str(root), "rev-parse", f"HEAD:{rel}"],
+    result = subprocess.run(["git", "-C", str(root), "rev-parse", f"{'HEAD' if REV == 'WORKTREE' else REV}:{rel}"],
                             capture_output=True, text=True)
     return result.stdout.strip() if result.returncode == 0 else "untracked"
 
 
 def corpus_files(root: Path) -> Tuple[str, ...]:
-    found = {str(p.relative_to(root)) for g in SCOPE_GLOBS for p in root.glob(g) if p.is_file()}
+    found = set(list_files(root))
     return tuple(sorted(f for f in found if not f.startswith(EXCLUDE_PREFIXES)))
 
 
@@ -197,7 +218,7 @@ def collision_class(recs: Tuple[Record, ...]) -> str:
 
 
 def md_records(root: Path, rel: str) -> Tuple[Record, ...]:
-    lines = tuple((root / rel).read_text(encoding="utf-8", errors="replace").splitlines())
+    lines = tuple(read_file(root, rel).splitlines())
     heads = headings_by_line(lines)
     blob = git_blob(root, rel)
 
@@ -225,7 +246,7 @@ def md_records(root: Path, rel: str) -> Tuple[Record, ...]:
 def csv_records(root: Path, rel: str) -> Tuple[Record, ...]:
     if Path(rel).name in REFERENCE_ONLY_CSV:
         return ()
-    raw = (root / rel).read_text(encoding="utf-8", errors="replace")
+    raw = read_file(root, rel)
     rows = tuple(csv.reader(io.StringIO(raw)))
     blob = git_blob(root, rel)
     if not rows:
@@ -245,7 +266,7 @@ def csv_records(root: Path, rel: str) -> Tuple[Record, ...]:
 
 def references(root: Path, files: Tuple[str, ...]) -> Counter:
     def ids_in(rel: str) -> Iterator[str]:
-        return (m.group(1) for m in ID_RE.finditer((root / rel).read_text(encoding="utf-8", errors="replace")))
+        return (m.group(1) for m in ID_RE.finditer(read_file(root, rel)))
     return Counter(i for rel in files for i in ids_in(rel))
 
 
@@ -293,6 +314,7 @@ def main(argv: Tuple[str, ...]) -> int:
     kinds = Counter(v[0].kind for v in grouped.values())
     fams = Counter(v[0].family for v in grouped.values())
     summary = {
+        "scanned_revision": REV,
         "scanned_commit": subprocess.run(["git", "-C", str(root), "rev-parse", "HEAD"],
                                          capture_output=True, text=True).stdout.strip(),
         "baseline_revision": BASELINE,

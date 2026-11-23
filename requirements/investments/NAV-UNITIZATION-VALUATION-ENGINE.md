@@ -44,6 +44,7 @@ Define the deterministic investment valuation and unitization engine for sponsor
 ## Fees, performance and liquidity
 - **UNB-NAV-032:** Support sponsor, manager, custodian, investment pool and performance-related fees only where policy/contract permits, with explicit assessment base, accrual frequency, tiers, minimums, waivers and effective dates.
 - **UNB-NAV-033:** Accrue liabilities before NAV strike when required by approved policy; ensure fees are not charged twice at pool and DAF levels.
+> Adopted 2026-11-23: refined by `RR-UNB-NAV-033-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-NAV-034:** Define distribution/income reinvestment, fund-level allocation and realized/unrealized gain treatment independently of unit price changes.
 - **UNB-NAV-035:** Distinguish total NAV, settled cash, unsettled cash, encumbered cash, redemption proceeds pending, grant commitments and available-to-recommend funds.
 - **UNB-NAV-036:** Support liquidity buffers, redemption gates, side pockets if approved, market halts and stress tests; do not promise immediate cash from illiquid holdings.
@@ -109,3 +110,37 @@ NAV-ADR-010: Market data licensing, retention and redisplay rights.
 
 ## Traceability and status
 Extends UNB-INV-001..042, UNB-CUST-001..028, UNB-ACC-001..036, ACC-MDL-001..012, UNB-SUCC-001..014 and UNB-TEN-001..020. These are design candidates. No code compiled, tests executed, market data licensed, Schwab integration confirmed or accounting/legal approval obtained.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-NAV-033-r1 (refines `UNB-NAV-033`) — adopted-provisional
+- **Original:** `requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:46` @ `777a70d` (kept verbatim) · **Decisions:** RCD-018
+- **Requirement:** Every fee accrual MUST be computed from a declared FeeBase contract recording: measurement basis (average daily balance or point-in-time), period, included and excluded components, NAV/valuation version, tier method (marginal or whole-balance), minimum and waiver rules, and fee recipient type. The base MUST exclude accrued unpaid fees and any fee already embedded in a pool NAV for the same service; a DAF-level fee and a pool-level fee for the same service MUST NOT both accrue.
+- **Validation still required:** RCD-018: Sponsor CFO
+- **Acceptance criteria:**
+  - AC-1: Given a pool NAV that embeds a 0.60% sponsor admin fee and a DAF-level 0.60% sponsor admin fee configured; when accrual runs; then the DAF-level accrual is rejected as DuplicateServiceFee.
+  - AC-2: Given a fund with $100,000 average daily balance and $50 accrued unpaid fee; when monthly accrual runs; then the base excludes the $50.
+  - AC-3: Given marginal tiers 0.60% to $500k then 0.30%; when the base is $600,000 for a year; then the annual fee is $3,300.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-NAV-033-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-FIN-005 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-013 · **Parent:** UNB-NAV-033 · **Decisions:** RCD-018
+- **Requirement:** Every fee schedule MUST declare a FeeBase contract (measurement basis, inclusions/exclusions, valuation version, tier method, minimums, waivers, recipient type, service identity), and every accrual MUST store the computed base and be deterministically recomputable; accrued unpaid fees and fees embedded in pool NAV for the same service MUST be excluded from any base.
+- **Validation still required:** RCD-018: Sponsor CFO
+- **Acceptance criteria:**
+  - AC-1: Given a recorded accrual; when it is recomputed from stored inputs; then the result matches to the minor unit.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-005); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-011 (P2, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-007 · **Parent:** UNB-INV-021 · **Decisions:** RCD-019
+- **Requirement:** For assets traded continuously, every valuation MUST record an exact UTC timestamp, the sponsor-configured valuation convention, and the price source; contributed crypto above counsel-configured thresholds MUST be flagged as requiring donor qualified appraisal per counsel-approved guidance.
+- **Validation still required:** RCD-019: CPA on completed-gift rule table
+- **Acceptance criteria:**
+  - AC-1: Given a crypto gift received at 23:59:59 local time; when valuation runs; then the UTC timestamp and configured convention are recorded and two sources disagreeing beyond tolerance raise an exception.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-011); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

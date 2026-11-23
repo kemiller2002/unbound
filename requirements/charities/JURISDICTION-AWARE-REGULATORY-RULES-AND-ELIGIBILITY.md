@@ -142,3 +142,58 @@ ADR-RULE-010: Disclosure and data-rights constraints for decisions and dossiers.
 ## Traceability and gates
 Related: requirements/charities/FIRST-PARTY-CHARITY-REGISTRY-AND-ELIGIBILITY.md; requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md; architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md; research/charity-sources/FIVE-STATE-COMPARATIVE-FINDINGS.md.
 Before implementation: counsel-reviewed legal assertion matrix; verified source data access; approved rule schema; privacy and tenant controls; scenario fixtures; governance ownership; audit/replay design. Payment execution remains deferred.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-REQ-X-007-r1 (refines `REQ-X-007`) — adopted-provisional
+- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:79` @ `777a70d` (kept verbatim) · **Decisions:** RCD-006, RCD-014, RCD-029
+- **Requirement:** For every grant, the system MUST evaluate recipient eligibility at two points, approval and payment release, against (a) a current IRS-status observation (TEOS/Pub 78 or EO BMF, plus the Auto-Revocation List) whose retrieval timestamp is no older than the sponsor-configured status-freshness window, and (b) current sanctions screening. It MUST store a per-sponsor, per-grant immutable snapshot of that observation containing the fields required by Rev. Proc. 2018-32 §8.01. A shared cross-sponsor charity evidence record MAY be reused as an input, but each sponsor's reliance snapshot MUST be written to that sponsor's partition. A comprehensive charity review (deep vetting) MUST occur at the sponsor-configured deep-review interval (default 180 days, a sponsor policy and not a legal safe harbor) and on any material-change signal. An expired deep review MUST hold new approvals but MUST NOT be the sole basis for payment-time eligibility.
+- **Validation still required:** RCD-006: Counsel Q2; RCD-014: Counsel Q3, Q4; RCD-029: Counsel on defamation-sensitive facts
+- **Acceptance criteria:**
+  - AC-1: Given A charity deep-reviewed 30 days ago whose IRS status is revoked (posted to the Auto-Revocation List) today; when its approved grant reaches payment release; then outcome Ineligible, payment held, snapshot records the revocation observation.
+  - AC-2: Given A charity whose deep review expired yesterday and an approved grant whose release-time IRS and sanctions checks pass; when payment release runs; then payment proceeds; a DeepReviewExpired task is open; no new approvals for that charity proceed.
+  - AC-3: Given Two sponsors grant to the same charity; when both grants are evaluated; then one shared evidence record is read; two snapshots exist, one in each sponsor partition; neither sponsor can read the other's snapshot.
+  - AC-4: Given The TEOS/BMF source is unreachable and the cached observation is older than status_freshness_window; when approval is attempted; then outcome Unknown, grant held, no AI or human override path that bypasses the hold except a fresh observation.
+  - AC-5: Given A Type I supporting organization with no current donor-control certification; when a grant is recommended; then outcome Hold with reason SupportingOrgCertificationMissing.
+  - AC-6: Given a charity verified 179 days ago with clean refresh results; when the refresh job runs at the lead time; then the status stays Verified, no grant is held and no human task is created.
+  - AC-7: Given a charity verified 30 days ago; when an authenticated OFAC listing arrives; then the status is HeldAdverse and a pending release for that charity is refused.
+  - AC-8: Given a sponsor configures a stricter 90-day comprehensive review; when a grant from that sponsor is released to a charity last reviewed 120 days ago; then release is held for refresh while other sponsors' grants are unaffected.
+  - AC-9: Given sponsor A's private fraud allegation with only E4 evidence; when sponsor A requests a global hold; then the request is rejected and a sponsor-A overlay hold is created.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-REQ-X-007-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### RR-REQ-X-036-r1 (refines `REQ-X-036`) — adopted-provisional
+- **Original:** `research/daf-theoretical-enterprise-validation/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md:362` @ `777a70d` (kept verbatim) · **Decisions:** RCD-007
+- **Requirement:** Every stored record MUST be assigned exactly one retention class at creation. Each class MUST declare its authority (statute, regulation, contract, sponsor policy), trigger event, and minimum period. The effective retention of a record MUST be the maximum over all applicable classes, the platform floor (7 years from trigger, sponsor policy) and any legal hold. At minimum the catalog MUST include: OFAC/sanctions records (10 years from the transaction or screening decision, 31 CFR 501.601); tax-reliance snapshots (≥ the platform floor and until the related return period is closed, per counsel Q5); cost-basis and carryover records (until 7 years after the final disposition the record substantiates); and personal data not required as a financial record (deletable on request after its financial-record role ends). Expiry MUST create a disposition review task; deletion MUST NOT occur automatically.
+- **Validation still required:** RCD-007: Counsel Q5
+- **Acceptance criteria:**
+  - AC-1: Given A sanctions screening decision dated 2026-01-15; when retention is computed; then effective_until is no earlier than 2036-01-15 even though the platform floor would give 2033-01-15.
+  - AC-2: Given A fund closed in 2027 with contributions from 2026; when the retention job runs in 2030; then no contribution record of that fund is eligible for disposition.
+  - AC-3: Given A record whose classes have all expired and no hold; when the expiry date passes; then a disposition review task opens; the record still exists until approved.
+  - AC-4: Given A new record type with no catalog entry; when a write is attempted; then the write is rejected with RetentionClassMissing.
+  - AC-5: Given a statement class with FinancialRetentionYears=7 and sponsor extension 10; when year 8 begins; then the record is not eligible.
+  - AC-6: Given a legal hold matching fund F; when a new statement for F is issued; then it is under hold immediately.
+  - AC-7: Given an approved batch; when a record acquires a hold before execution; then that record is skipped and reported.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-REQ-X-036-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-GRT-014 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-GRT-001 · **Parent:** REQ-X-007 · **Decisions:** RCD-006
+- **Requirement:** Common verification freshness MUST be configured as a versioned FreshnessPolicy: fact type, maximum age, monitoring source, refresh lead time, execution-time recheck flag, owner and legal-basis classification (statute, regulation, guidance, or policy). It MUST be published under independent governance. Sponsors MAY impose stricter values for their own grants only. No requirement, gate or state machine may hard-code a numeric interval.
+- **Validation still required:** RCD-006: Counsel Q2
+- **Acceptance criteria:**
+  - AC-1: Given a published FreshnessPolicy with comprehensive-review maxAge P180D; when a sponsor configures P90D; then that sponsor's grants require evidence no older than 90 days and other sponsors are unaffected.
+  - AC-2: Given a sponsor configures P365D; when it is published; then publication is rejected because it is weaker than the platform value.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-014); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-REG-002 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-REG-005 · **Parent:** REQ-X-007 · **Decisions:** RCD-006, RCD-014
+- **Requirement:** Before approving a grant to a Type I, Type II or functionally integrated Type III supporting organization, the system MUST hold a current certification (from the grantee or the donor/advisors, per counsel-approved form) that no donor, advisor or related person controls the organization. A missing or expired certification MUST place the grant on Hold.
+- **Validation still required:** RCD-006: Counsel Q2; RCD-014: Counsel Q3, Q4
+- **Acceptance criteria:**
+  - AC-1: Given A Type II supporting organization with no certification; when a grant is recommended; then Hold with reason SupportingOrgCertificationMissing.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-REG-002); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

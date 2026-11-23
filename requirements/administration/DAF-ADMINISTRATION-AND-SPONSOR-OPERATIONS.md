@@ -98,3 +98,34 @@ Sponsor-specific legal entity arrangements; minimum contribution and grant polic
 
 ## Acceptance
 See DAF-ADMINISTRATION-ACCEPTANCE-TESTS.csv. Tests are specified, not executed. Requirements are proposals awaiting sponsor/legal/accounting/technical review.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-ENT-006 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-ENT-022 · **Parent:** ADM-025 · **Decisions:** RCD-022
+- **Requirement:** Fund closure MUST be a state machine (ClosureRequested > ObligationsResolved > FinalFeesPosted > ResidualDisposed > Closed > Archived) with typed triggers (donor request, zero balance, dormancy disposition, succession split, full outbound transfer, sponsor exit). Closed MUST require: no open reservations; every payment attempt terminal or transferred to an outstanding-instrument liability; and a recorded destination for trailing receipts (OD-11).
+- **Validation still required:** RCD-022: Sponsor operations owner; counsel on escheat of balances (Q11)
+- **Acceptance criteria:**
+  - AC-1: Given an outstanding issued check; when closure is requested; then the fund reaches Closed only with the check carried as a liability, or the request is blocked per policy.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-006); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-PLT-006 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-PLT-023 · **Parent:** REQ-X-048 · **Decisions:** RCD-026
+- **Requirement:** Unbound MUST measure, per sponsor and workflow, straight-through-processing rate, human touches per completed outcome and WorkItems created per rule, and MUST require each new WorkItem-creating rule to state its expected volume and the decision only a human can make.
+- **Acceptance criteria:**
+  - AC-1: Given a new rule creating WorkItems without stated human decision; when it is submitted for approval; then rejected.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-006); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-PLT-007 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-PLT-040 · **Parent:** REQ-X-030 · **Decisions:** RCD-003
+- **Requirement:** Brand Kit publication MUST validate terminology overrides against a protected-term registry of legally meaningful terms (e.g. grant recommendation, sponsoring organization legal name, tax acknowledgment wording) whose meaning may not be altered; violations block publication.
+- **Validation still required:** RCD-003: Owner may rename the platform; if so, choose a name other than Strata
+- **Acceptance criteria:**
+  - AC-1: Given sponsor maps 'grant recommendation' to 'donation'; when Brand Kit published; then blocked with PROTECTED_TERM.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-007); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

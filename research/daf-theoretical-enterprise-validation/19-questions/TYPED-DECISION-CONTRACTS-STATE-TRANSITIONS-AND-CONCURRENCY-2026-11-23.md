@@ -73,22 +73,22 @@ Every decision receives a versioned typed envelope, not an unstructured prompt. 
 
 | ID | Property | Forbidden counterexample |
 |---|---|---|
-| INV-01 | No self-approval across controlling principals, agents and policy authors | Same operator approves through another login |
-| INV-02 | No grant reservation over net available capacity | Two simultaneous grants both reserve final dollar |
-| INV-03 | No money movement while a current mandatory hold applies | Hold arrives after approval but before release |
-| INV-04 | No automated payment without independent destination control and execution binding | Provider substitutes payee with self-fingerprint |
-| INV-05 | No duplicate external effect from Unknown payment retry | Timeout after bank execution causes blind resend |
-| INV-06 | No loss of acknowledged authoritative commit within defined fault model | Primary acknowledges before quorum durability |
-| INV-07 | No split-brain authoritative writes | Partitioned old leader accepts payment |
-| INV-08 | No approval from missing, stale or disputed critical evidence | Null sanction result treated as clean |
-| INV-09 | No cross-sponsor donor data disclosure via shared charity evidence | Sponsor B reads Sponsor A grant notes |
-| INV-10 | No stale recurring authorization | Revoked mandate continues to generate payments |
-| INV-11 | No retroactive rewrite of policy/evidence history | Policy version backdated to legalize grant |
-| INV-12 | No fee duplicate from replay | Fee service event charged twice |
-| INV-13 | No UI false finality | Queue receipt shown as Paid |
-| INV-14 | No AI-induced policy/authority bypass | Injected charity PDF tells model to clear hold |
-| INV-15 | No unauthorized emergency financial commands | Protective plane edits bank destination |
-| INV-16 | No automated grant to prohibited private benefit | Ticket purchase disguised as donation |
+| TDC-INV-01 | No self-approval across controlling principals, agents and policy authors | Same operator approves through another login |
+| TDC-INV-02 | No grant reservation over net available capacity | Two simultaneous grants both reserve final dollar |
+| TDC-INV-03 | No money movement while a current mandatory hold applies | Hold arrives after approval but before release |
+| TDC-INV-04 | No automated payment without independent destination control and execution binding | Provider substitutes payee with self-fingerprint |
+| TDC-INV-05 | No duplicate external effect from Unknown payment retry | Timeout after bank execution causes blind resend |
+| TDC-INV-06 | No loss of acknowledged authoritative commit within defined fault model | Primary acknowledges before quorum durability |
+| TDC-INV-07 | No split-brain authoritative writes | Partitioned old leader accepts payment |
+| TDC-INV-08 | No approval from missing, stale or disputed critical evidence | Null sanction result treated as clean |
+| TDC-INV-09 | No cross-sponsor donor data disclosure via shared charity evidence | Sponsor B reads Sponsor A grant notes |
+| TDC-INV-10 | No stale recurring authorization | Revoked mandate continues to generate payments |
+| TDC-INV-11 | No retroactive rewrite of policy/evidence history | Policy version backdated to legalize grant |
+| TDC-INV-12 | No fee duplicate from replay | Fee service event charged twice |
+| TDC-INV-13 | No UI false finality | Queue receipt shown as Paid |
+| TDC-INV-14 | No AI-induced policy/authority bypass | Injected charity PDF tells model to clear hold |
+| TDC-INV-15 | No unauthorized emergency financial commands | Protective plane edits bank destination |
+| TDC-INV-16 | No automated grant to prohibited private benefit | Ticket purchase disguised as donation |
 
 ## Theoretical concurrency schedules to challenge
 
@@ -109,7 +109,7 @@ Every decision receives a versioned typed envelope, not an unstructured prompt. 
 
 ## Proposed model-checking harness (theoretical)
 
-Model finite sets of two sponsors, two grants, two sites, two agents, two payment intents and three evidence states. Generate interleavings of policy updates, holds, approval, reservation, payment submission, provider acknowledgment loss, revocation, quorum loss and recovery. Assert INV-01..INV-16 after every transition and check liveness under fair recovery (held requests eventually resolve or receive explicit terminal disposition, not silently disappear). Counterexamples must record minimal event trace, initial snapshot, rule version and expected fix. Include negative tests that prove safety holds remain effective even when AI/human attempts an override.
+Model finite sets of two sponsors, two grants, two sites, two agents, two payment intents and three evidence states. Generate interleavings of policy updates, holds, approval, reservation, payment submission, provider acknowledgment loss, revocation, quorum loss and recovery. Assert TDC-INV-01..TDC-INV-16 after every transition and check liveness under fair recovery (held requests eventually resolve or receive explicit terminal disposition, not silently disappear). Counterexamples must record minimal event trace, initial snapshot, rule version and expected fix. Include negative tests that prove safety holds remain effective even when AI/human attempts an override.
 
 **Important:** The model can prove invariants only under explicitly declared assumptions. It cannot establish real bank finality, external provider truth, legal compliance or resilience to correlated failure without additional evidence.
 

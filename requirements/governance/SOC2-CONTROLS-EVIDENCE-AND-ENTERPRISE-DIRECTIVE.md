@@ -12,6 +12,7 @@ SOC2-004: Control evidence MUST be generated as a byproduct of normal operations
 SOC2-005: Evidence MUST show both successful operation and failures, denials, exceptions, remediation, reviews and overdue controls.
 SOC2-006: Design immutable/append-only audit records, integrity verification, independent protected storage, restricted access, backup and retention/legal hold; actual implementation to be validated.
 SOC2-007: All requirements and PRs MUST map to applicable control IDs, tests, evidence artifacts and owners; absence requires documented non-applicability decision.
+> Adopted 2026-11-23: refined by `RR-SOC2-007-r1` (adopted); the adopted requirement is below under 'Adopted reconciliation requirements'.
 SOC2-008: No control may be marked implemented, operating, tested or audit-ready without actual observed evidence and review.
 SOC2-009: Control evidence MUST be exportable into auditor-ready, time-bounded, reproducible Folio packages with chain of custody and access redaction.
 SOC2-010: Access management MUST cover MFA, provisioning/deprovisioning, least privilege, privileged access, service identities, agent identities and periodic review.
@@ -90,3 +91,34 @@ SOC-T18 Evidence gaps are included, not hidden, in audit package.
 5. Independently test effectiveness, remediate gaps.
 6. Engage independent CPA firm for SOC 2 examination and report.
 No control is presently asserted operational by this document.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-SOC2-007-r1 (refines `SOC2-007`) — adopted
+- **Original:** `requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:14` @ `777a70d` (kept verbatim) · **Decisions:** RCD-001
+- **Requirement:** Each control in the control register MUST list the requirement IDs it enforces, reviewed by the control owner and an independent reviewer. Each requirement classified as risk-bearing (money, authority, eligibility, tenant isolation, evidence integrity, privacy, AI tool use) MUST link to at least one validated control or record a reviewed gap. Requirements classified presentation-only MUST record 'no control required' with reviewer. Machine-generated candidate links MUST NOT count toward coverage.
+- **Acceptance criteria:**
+  - AC-1: Given 1,893 keyword candidates; when coverage is computed; then they contribute zero.
+  - AC-2: Given GOV-AUTH-019; when mapping is reviewed; then it links to UNB-SCTRL-030 or records a gap.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-SOC2-007-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-PLT-008 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-PLT-032 · **Parent:** SOC2-007 · **Decisions:** —
+- **Requirement:** Every risk-bearing requirement MUST have a reviewed control link or reviewed gap; candidate links do not count (see RR-SOC2-007-r1).
+- **Acceptance criteria:**
+  - AC-1: Given UNB-PAY requirements; when coverage report runs; then each has validated link or gap.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-008); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-PLT-013 (P2, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-PLT-036 · **Parent:** SOC2-001 · **Decisions:** RCD-031
+- **Requirement:** The assurance scope MUST state, per service, whether SOC 1 Type II (ICFR-relevant fund accounting) and/or SOC 2 applies, agreed with a CPA, and the control register MUST tag each control with the report(s) it supports.
+- **Validation still required:** RCD-031: Compliance owner
+- **Acceptance criteria:**
+  - AC-1: Given control UNB-SCTRL-025 balanced journals; when register viewed; then tagged SOC 1.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-013); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

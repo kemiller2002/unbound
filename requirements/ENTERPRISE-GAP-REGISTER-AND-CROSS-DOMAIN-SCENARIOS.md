@@ -81,3 +81,18 @@ For each domain and cross-domain scenario, record: owner, sponsor/legal authorit
 6. Final traceability, contradiction and adversarial test matrix.
 
 This document is a prioritized requirements backlog, not a claim that other requirement files are absent or that any test has passed.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-ENT-016 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-ENT-033 · **Parent:** BASELINE scenario 'sponsor decision appeal' · **Decisions:** —
+- **Requirement:** Donors and charities MUST be able to request reconsideration of a sponsor decision through a case with a defined outcome set, owner and response time. Staff-assisted actions MUST record channel, assurance level and staff identity, and MUST be confirmed through the donor's verified channel before any consequential effect.
+- **Acceptance criteria:**
+  - AC-1: Given a phone-assisted payee change; when it is entered by staff; then it is not effective until confirmed on a verified channel.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-016); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

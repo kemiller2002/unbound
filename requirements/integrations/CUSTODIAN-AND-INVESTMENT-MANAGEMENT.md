@@ -28,6 +28,7 @@ Unbound SHALL support external investment custodians and investment managers thr
 - **UNB-CUST-013:** Apply Strata-backed append-only persistence requirements and tenant isolation to custody data, authorization, raw files, normalized events, ledger postings, outbox, credentials and audit evidence.
 - **UNB-CUST-014:** Support advisor-managed accounts, model portfolios, sponsor-approved investment pools, managed portfolios and self-directed recommendations only where program policy and provider contracts permit.
 - **UNB-CUST-015:** Model liquidity and unsettled proceeds separately from settled spendable cash; grant approval and payment gating must account for market movement, restrictions and settlement risk.
+> Adopted 2026-11-23: refined by `RR-UNB-CUST-015-r1` (adopted); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-CUST-016:** Corporate actions, distributions, splits, reorganizations, fees, dividends, interest and realized/unrealized gains must have deterministic posting rules and independent reconciliation.
 - **UNB-CUST-017:** Support provider-specific authentication, scoped credentials, key rotation, secure transport, rate limits, service accounts, incident response, data licensing and entitlement verification.
 - **UNB-CUST-018:** Provide a partner- and sponsor-aware integration registry recording each provider's verified capability matrix, data freshness, connection status, authority, contract, sandbox, service-level objectives and operational owner.
@@ -81,3 +82,26 @@ Before specifying actual Schwab endpoints, verify the **specific Schwab business
 
 ## Traceability
 Extends UNB-ACC-001..036, ACC-MDL-001..012, UNB-AST-001..002, UNB-ADV-001..002, UNB-API-STD-001..006, UNB-TEN-001..020, UNB-SUCC-001..014 and UNB-PLAT-001..009. These are requirements, not evidence that Schwab or any other provider has granted API access, and no integration was implemented or tested.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-CUST-015-r1 (refines `UNB-CUST-015`) — adopted
+- **Original:** `requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:30` @ `777a70d` (kept verbatim) · **Decisions:** —
+- **Requirement:** A grant MUST NOT reach PaymentInstructionAuthorized unless the grant is Funded: settled, unencumbered cash equal to the fixed amount is allocated to it in the paying account. Liquidation-dependent grants MUST pass through FundingPlanned and LiquidationPending, and enter FundingShortfall when a source cannot deliver. A sponsor-approved liquidity advance MAY fund a grant before redemption settles only if recorded as an interfund receivable within an approved limit.
+- **Acceptance criteria:**
+  - AC-1: Given a $10,000 grant from a fund with only pool units; when payment authorization is requested before redemption settles; then authorization is refused with NotFunded.
+  - AC-2: Given a pool redemption gate; when the funding source cannot deliver; then the grant enters FundingShortfall and a sponsor decision case opens.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-CUST-015-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-FIN-008 (P0, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-FIN-014 · **Parent:** UNB-GFUND-014 · **Decisions:** —
+- **Requirement:** The grant lifecycle MUST include FundingPlanned, LiquidationPending, Funded and FundingShortfall states, and PaymentInstructionAuthorized MUST require Funded or an approved, limit-checked liquidity advance recorded as an interfund receivable.
+- **Acceptance criteria:**
+  - AC-1: Given a reserved grant without settled cash; when payment authorization is requested; then it is refused with NotFunded.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-008); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->
