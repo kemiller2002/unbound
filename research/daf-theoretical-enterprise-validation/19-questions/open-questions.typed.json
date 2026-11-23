@@ -802,6 +802,10 @@
         {
           "event": "user-segregation-of-duties-directive",
           "note": "User directive 2026-11-22: No one can approve their own item. This supersedes prior TVC-041 suggestion that donor confirmation could serve as approval. Distinguish authenticating/confirming a recommendation from approving it. No person, agent or policy author may approve an item they originated, prepared or materially modified; independent sponsor-authorized approval must be enforced by identity and provenance across grants, exceptions, fees, write-offs and other consequential decisions. Independently governed version-pinned policy automation may approve only if legal board delegation and maker-checker separation are proven; no originator-controlled policy or self-delegated agent may self-approve. Changes to material item fields invalidate prior approval and require independent reapproval. Proposed working rule, subject to sponsor legal/governance approval."
+        },
+        {
+          "event": "user-mandatory-independent-destination-verification",
+          "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
         }
       ]
     },
@@ -5915,6 +5919,10 @@
         {
           "event": "user-accepted-protective-emergency-design",
           "note": "User agreed to jointly design DR intake and emergency controls as separate authority paths. Protective-only independent emergency controls may suspend release, revoke access, apply holds and record evidence while normal command service is unavailable; no approvals, balance changes, payee edits or money movement. Emergency hold removal requires independent authorized approval after core recovery and reconciliation, enforcing no-self-approval. Outage intake cannot override emergency holds; protective actions reconciled before queued commands replay. Independently durable controls and failure-injection testing required; working design, not tested or legally approved."
+        },
+        {
+          "event": "user-mandatory-independent-destination-verification",
+          "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
         }
       ]
     },
@@ -6121,7 +6129,7 @@
       "optionsOrValidation": "open: revision 4 not drafted (see revision-3-amendments §D)",
       "decision": {
         "status": "proposed",
-        "recommendedAnswer": "B18 accepts 'account fingerprint or name-match result', but a fingerprint computed by the provider is controlled by the party whose compromise B18 is meant to detect. Requirement: at least one destination confirmation per payment, or per sample, comes from outside the provider (receiving-bank confir",
+        "recommendedAnswer": "User-selected mandatory control: no automated payment without independent verification both that the destination is authorized and controlled by the intended charity and that the actual destination used by the payment provider matches the independently maintained authorization. For tokenized or opaque rails require independently verifiable destination identity or cryptographic binding, not an uncorroborated provider fingerprint or self-attestation. Independently authorize changes; originators cannot approve their own destination changes. Fail closed on missing, stale or conflicting proof; reconcile instruction, execution and settlement evidence; disqualify providers/rails that cannot meet this standard for fully automated payment. Manual exceptional pathways, if any, require separate sponsor-governed policy and must not bypass legally necessary safeguards.",
         "approvedAnswer": null,
         "approvalEvidence": null
       },
@@ -6133,7 +6141,7 @@
       },
       "validation": {
         "status": "evidence-pending",
-        "evidence": "Decision deferred after challenge. Threat-model the end-to-end path, define independent evidence and recovery, test adversarial bypasses, outages and legitimate-user impact."
+        "evidence": "User accepted mandatory verification even at cost of provider availability. Validate charity ownership/control evidence, cryptographic or independent binding under tokenization, rail-specific observability, provider contracts, stale destination handling, adversarial substitution, replay, reconciliation and exception governance. No provider is yet proven compliant."
       },
       "simulation": {
         "scenarioIds": [],
@@ -6147,6 +6155,10 @@
         {
           "event": "cross-requirement-consistency-review",
           "note": "Cluster: Payment finality, Unknown, retries and fraud. Conflict: Stable idempotency keys and provider status queries do not prove non-receipt, particularly after disaster recovery or when multiple evidence feeds share a provider. A provider-generated destination fingerprint is not an independent payee-integrity check. Harmonized direction: Treat Unknown as a blocking unresolved payment state; never infer failure from timeout. Unique globally durable payment identity across restore, independent bank/provider reconciliation and authenticated destination verification before release. Reattempt only after contractually sufficient non-receipt evidence; segregate payment loss remediation. Severity: Critical. Status: partial; TVF-234 deferred; provider evidence outstanding. This is a proposed cross-check, not an implementation or completed validation."
+        },
+        {
+          "event": "user-mandatory-independent-destination-verification",
+          "note": "User explicitly requires independent destination verification for every automated payment, even if this disqualifies payment providers. Maintain sponsor-authorized recipient/destination independently from payment provider; verify charity ownership/control of destination and independently verify actual executed destination via verifiable evidence or cryptographic binding, including tokenized rails. Changes need independent approval and no self-approval. Fail closed on missing evidence/mismatch, reconcile authorization vs provider execution and settlement. Legal and technical proof, provider contracts and rails-specific feasibility still require validation."
         }
       ]
     },
