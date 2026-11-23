@@ -42,7 +42,7 @@ def load(data: Path):
     cv = lambda p: tuple(csv.DictReader((data / p).open(encoding="utf-8")))
     return dict(F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 E=cv("trace-edges.csv"), Q=cv("requirements-quality.csv"), R=jl("refinements.jsonl"),
-                G=jl("gap-requirements.jsonl"), V=json.loads((data / "validation-report.json").read_text()))
+                G=jl("gap-requirements.jsonl"), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
 
 
 def g_findings_matrix(d) -> str:
@@ -160,9 +160,14 @@ def g_scenario_counts(d) -> str:
 
 
 def g_decisions(d) -> str:
-    return table(("ID", "Type", "Decision required", "Owner", "Recommendation", "Blocks impl.", "Linked records"),
-                 ((x["decision_id"], x["type"], x["question"], x["decision_owner"], cell(x["recommendation"], 260),
-                   x["blocks_implementation"], cell(x["affected_ids"], 140)) for x in d["D"]))
+    return table(("ID", "Type", "Decision", "Status", "Decided option", "Validation still required", "Owner to confirm", "Linked records"),
+                 ((x["decision_id"], x["type"], x["question"], x.get("status", ""), cell(x.get("decided_option", x["recommendation"]), 420),
+                   x.get("validation_required", ""), x["decision_owner"], cell(x["affected_ids"], 120)) for x in d["D"]))
+
+
+def g_counsel(d) -> str:
+    return table(("Question", "Topic", "Provisional working position", "Status"),
+                 ((q["question_id"], q["topic"], q["provisional_position"], q["status"]) for q in d["K"]))
 
 
 def g_validation(d) -> str:
@@ -178,7 +183,7 @@ GENERATORS: Dict[str, Callable] = {
     "refinement-index": g_refinement_index, "refinement-records": g_refinement_records,
     "trace-summary": g_trace_summary, "trace-coverage": g_trace_coverage,
     "scenarios": g_scenarios, "scenario-counts": g_scenario_counts,
-    "decisions": g_decisions, "validation": g_validation,
+    "decisions": g_decisions, "counsel": g_counsel, "validation": g_validation,
 }
 BLOCK = re.compile(r"(<!-- BEGIN GENERATED: ([a-z-]+) -->)(.*?)(<!-- END GENERATED: \2 -->)", re.S)
 
