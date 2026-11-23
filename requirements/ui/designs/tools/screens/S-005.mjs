@@ -148,5 +148,5 @@ ${timeline("Contribution C-2026-000355 history", [
     { requirement_id: "UNB-UI-S-005", acceptance_id: "AC-2", satisfied_by_markup: true, note: "State 5: Pending row shows $5,000.00 and 'available to grant on 8 Dec 2026'; Available to grant excludes it." },
     { requirement_id: "UNB-UI-S-005", acceptance_id: "statement", satisfied_by_markup: "needs-application-behaviour", note: "Distinct lifecycle states composed from steps + lozenge (same gap as G-002). Rail-partner linking is an external hand-off." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-08", "FORMA-GAP-09", "FORMA-GAP-10"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-08", "FORMA-GAP-09"],
 };

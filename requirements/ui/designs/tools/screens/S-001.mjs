@@ -152,7 +152,7 @@ export default {
   lead: "How much is available to grant, what is pending and why, and what to do next, on one phone screen.",
   states: [st1, st2, st3, st4, st5],
   coverage: [
-    { requirement_id: "UNB-UI-S-001", acceptance_id: "AC-1", satisfied_by_markup: true, note: "State 5: operation-status with blocked lozenge 'Suspended pending succession' and heading 'This fund is suspended pending succession'; no Recommend a grant action is rendered. The sentence is the heading, not the lozenge, because lozenge text does not wrap (see FORMA-GAP-NEW lozenge length)." },
+    { requirement_id: "UNB-UI-S-001", acceptance_id: "AC-1", satisfied_by_markup: true, note: "State 5: operation-status with blocked lozenge 'Suspended pending succession' and heading 'This fund is suspended pending succession'; no Recommend a grant action is rendered. The sentence is the heading, not the lozenge, because lozenge text does not wrap (lozenges do wrap at 320 px inside Forma containers, verified)." },
     { requirement_id: "UNB-UI-S-001", acceptance_id: "AC-2", satisfied_by_markup: true, note: "State 1: work-queue 'Needs your attention' is first in source order with 2 items, each with exactly one named action. Ordering and rule creation are application behaviour." },
     { requirement_id: "UNB-UI-G-004", acceptance_id: "AC-1", satisfied_by_markup: true, note: "Separate metric cards for Available to grant ($100,000.00), Market value (informational) and Pending; native disclosure 'How this is calculated' lists the three components with deducted values labelled in text." },
     { requirement_id: "UNB-UI-G-003", acceptance_id: "AC-1", satisfied_by_markup: "needs-application-behaviour", note: "State 4 shows 'Not current' (unknown) with as-of time and states that Available to grant is used instead. Computing staleness against the business-day limit is application behaviour." },
@@ -162,5 +162,5 @@ export default {
     { requirement_id: "UNB-UI-G-014", acceptance_id: "AC-1", satisfied_by_markup: true, note: "site-footer shows legal sponsor name, EIN and control statement (requires the marketing .forma-site frame; see gap on application footer)." },
     { requirement_id: "UNB-UI-G-010", acceptance_id: "AC-1", satisfied_by_markup: "needs-application-behaviour", note: "scope-trail shows sponsor, program and fund. Re-authorizing and reloading on scope change is application behaviour." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-08", "FORMA-GAP-10"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-08", "FORMA-GAP-13"],
 };

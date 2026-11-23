@@ -54,12 +54,14 @@ const grid = (p) =>
 
 const pagination = tag("pagination", `<nav class="forma-pagination" aria-label="Inbox pages"><a class="forma-pagination__control" href="?page=1" rel="prev">Previous</a><ol class="forma-pagination__pages"><li><a href="?page=1" aria-current="page">1</a></li></ol><a class="forma-pagination__control" href="?page=1" rel="next">Next</a><span class="forma-pagination__summary">Page 1 of 1</span></nav>`);
 
+const inspector = (p) => tag("surface", `<section class="forma-surface" aria-labelledby="${p}-insp"><h4 id="${p}-insp">Selected: SAN-02 Potential sanctions match</h4>${kv([["Created by rule", "SAN-02 v4, 27 Nov 2026"], ["Exit condition", "A reviewer other than the preparer records a decision"], ["SLA", "3 business days"]])}</section>`);
+
 const shell = (p, primary, inspector) =>
   tag(
     "workspace-shell",
     `<div class="forma-workspace-shell">
   <header class="forma-workspace-shell__landmark"><h3>Harbor Giving exceptions</h3><p role="status">Updated 1 Dec 2026, 4:55 PM CT</p></header>
-  <nav class="forma-workspace-shell__navigation" aria-label="Saved views"><a href="#${p}" aria-current="page">All open</a><a href="#${p}-mine">Assigned to me</a><a href="#${p}-closed">Recently closed</a></nav>
+  <nav class="forma-workspace-shell__navigation" aria-label="Saved views"><a href="#s008-1" aria-current="page">All open</a><a href="#s008-3">Recently closed</a></nav>
   <section class="forma-workspace-shell__primary" aria-label="Exception list">${primary}</section>
   <aside class="forma-workspace-shell__inspector" aria-label="Selected exception">${inspector}</aside>
 </div>`
@@ -78,7 +80,13 @@ export default {
       title: "Open items sorted by SLA risk",
       persona: "Sponsor operations",
       demonstrates: "Rule, subject, age against SLA, owner and next action per row; summary row with straight-through rate and open items by age",
-      body: (p) => `${scope}${summary(p)}${shell(p, `${toolbar(p)}${active(p)}${grid(p)}${pagination}`, `<h4>SAN-02 Potential sanctions match</h4>${kv([["Created by rule", "SAN-02 v4, 27 Nov 2026"], ["Exit condition", "A reviewer other than the preparer records a decision"], ["SLA", "3 business days"]])}`)}`,
+      body: (p) => `${scope}${summary(p)}${toolbar(p)}${active(p)}${grid(p)}${pagination}${inspector(p)}`,
+    },
+    {
+      title: "Gap evidence: workspace-shell nested in the application frame",
+      persona: "Sponsor operations (composition that does not fit)",
+      demonstrates: "FORMA-GAP-15: workspace-shell, collection-toolbar and data-grid adapt by viewport, not container; inside the navigation-shell content column the toolbar collapses at 1280 px",
+      body: (p) => `${shell(p, `${toolbar(p)}${grid(p)}`, `<h4>SAN-02 Potential sanctions match</h4>${kv([["Created by rule", "SAN-02 v4, 27 Nov 2026"], ["SLA", "3 business days"]])}`)}`,
     },
     {
       title: "Item closed automatically",
@@ -90,12 +98,13 @@ export default {
       title: "Inbox empty",
       persona: "Sponsor operations",
       demonstrates: "Empty state (UNB-UI-G-013)",
-      body: (p) => `${scope}${emptyState({ id: `${p}-e`, title: "No open exceptions", text: "Every item created by a rule is resolved. Checked 1 Dec 2026, 4:55 PM CT.", action: '<a class="forma-button" href="#s008-2">View recently closed items</a>' })}`,
+      body: (p) => `${scope}${emptyState({ id: `${p}-e`, title: "No open exceptions", text: "Every item created by a rule is resolved. Checked 1 Dec 2026, 4:55 PM CT.", action: '<a class="forma-button" href="#s008-3">View recently closed items</a>' })}`,
     },
   ],
   coverage: [
     { requirement_id: "UNB-UI-S-008", acceptance_id: "AC-1", satisfied_by_markup: "needs-application-behaviour", note: "State 2 shows the closed item with 'Resolved (auto-closed)' and 'Exit condition met'. Closing on the IRS observation is rule-engine behaviour." },
+    { requirement_id: "UNB-UI-S-008", acceptance_id: "statement (workspace-shell)", satisfied_by_markup: false, note: "State 2 nests workspace-shell inside the application frame: at 1280 px its primary column is ~330 px and collection-toolbar collapses (labels set vertically). State 1 therefore omits workspace-shell and stacks toolbar, grid and an inspector surface. FORMA-GAP-15." },
     { requirement_id: "UNB-UI-S-008", acceptance_id: "statement (sort by SLA risk)", satisfied_by_markup: "needs-application-behaviour", note: "aria-sort=descending on SLA risk and a sort select for phones; sorting itself is Limen/application." },
   ],
-  gaps: ["FORMA-GAP-06", "FORMA-GAP-08"],
+  gaps: ["FORMA-GAP-06", "FORMA-GAP-08", "FORMA-GAP-15"],
 };

@@ -145,5 +145,5 @@ ${opStatus({ id: `${p}-blk`, state: "blocked", label: "Cannot be paid", symbol: 
     { requirement_id: "UNB-UI-G-017", acceptance_id: "AC-1", satisfied_by_markup: true, note: "Text '10% of fund value at approval → $12,345.67 (fixed 24 Nov 2026)'." },
     { requirement_id: "UNB-UI-G-018", acceptance_id: "AC-1", satisfied_by_markup: "needs-application-behaviour", note: "Legal dates shown as absolute dates in CT with UTC in details; time-zone conversion is application behaviour." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-09"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-07", "FORMA-GAP-09", "FORMA-GAP-14"],
 };

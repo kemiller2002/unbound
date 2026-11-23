@@ -121,7 +121,7 @@
           "requirement_id": "UNB-UI-S-001",
           "acceptance_id": "AC-1",
           "satisfied_by_markup": true,
-          "note": "State 5: operation-status with blocked lozenge 'Suspended pending succession' and heading 'This fund is suspended pending succession'; no Recommend a grant action is rendered. The sentence is the heading, not the lozenge, because lozenge text does not wrap (see FORMA-GAP-NEW lozenge length)."
+          "note": "State 5: operation-status with blocked lozenge 'Suspended pending succession' and heading 'This fund is suspended pending succession'; no Recommend a grant action is rendered. The sentence is the heading, not the lozenge, because lozenge text does not wrap (lozenges do wrap at 320 px inside Forma containers, verified)."
         },
         {
           "requirement_id": "UNB-UI-S-001",
@@ -173,11 +173,26 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-07",
-        "FORMA-GAP-08",
-        "FORMA-GAP-10"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-07",
+          "description": "NEW. Identifier has no copy affordance (G-016 requires one); prototypes place a plain Copy button beside .forma-identifier with no defined layout, feedback or announcement. Forma lists 'copyable field' as planned P1."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-13",
+          "description": "NEW (catalog defect). Canonical feed-item pattern uses data-state=\"warning\", which is not a status-lozenge value (renders the neutral bullet). Prototypes use the documented ok|attention|unknown|blocked values."
+        }
       ]
     },
     {
@@ -291,8 +306,14 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-06",
-        "FORMA-GAP-08"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        }
       ]
     },
     {
@@ -475,10 +496,34 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-02",
-        "FORMA-GAP-06",
-        "FORMA-GAP-09"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-02",
+          "description": "Existing. Field invalid/disabled/read-only styling. The 1.0.2 build ships [aria-invalid=true]/:user-invalid, :disabled and :read-only rules in foundations (catalog/known-issues.json still lists it); prototypes use aria-invalid + validation-message. Appears closed pending the 3:1 contrast browser proof in the gap's acceptance."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-09",
+          "description": "NEW. No multi-dimension status track (G-002, S-005 lifecycle): steps is static site content with no per-item state; wizard__steps only knows complete/current. Prototypes compose steps + status-lozenge + time per item, with no headline slot."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-11",
+          "description": "NEW. Unavailable action with reason (segregation of duties S-009/S-010, required notices S-013): no pattern ties a disabled command to a visible reason; the reason is ad-hoc text referenced by aria-describedby. Disabled switch dims its own description (the reason) to 0.62 opacity; obligation-panel has no 'not available to you' state."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-14",
+          "description": "NEW. Dialog consequence preview on phones: no pinned header or action row, so a G-005 dialog with 7 consequence rows at 320x800 scrolls the title and amount out of view when focus lands on the actions; key-value values indent under labels, lengthening it."
+        }
       ]
     },
     {
@@ -647,10 +692,26 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-07",
-        "FORMA-GAP-09"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-07",
+          "description": "NEW. Identifier has no copy affordance (G-016 requires one); prototypes place a plain Copy button beside .forma-identifier with no defined layout, feedback or announcement. Forma lists 'copyable field' as planned P1."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-09",
+          "description": "NEW. No multi-dimension status track (G-002, S-005 lifecycle): steps is static site content with no per-item state; wizard__steps only knows complete/current. Prototypes compose steps + status-lozenge + time per item, with no headline slot."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-14",
+          "description": "NEW. Dialog consequence preview on phones: no pinned header or action row, so a G-005 dialog with 7 consequence rows at 320x800 scrolls the title and amount out of view when focus lands on the actions; key-value values indent under labels, lengthening it."
+        }
       ]
     },
     {
@@ -783,12 +844,26 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-07",
-        "FORMA-GAP-08",
-        "FORMA-GAP-09",
-        "FORMA-GAP-10"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-07",
+          "description": "NEW. Identifier has no copy affordance (G-016 requires one); prototypes place a plain Copy button beside .forma-identifier with no defined layout, feedback or announcement. Forma lists 'copyable field' as planned P1."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-09",
+          "description": "NEW. No multi-dimension status track (G-002, S-005 lifecycle): steps is static site content with no per-item state; wizard__steps only knows complete/current. Prototypes compose steps + status-lozenge + time per item, with no headline slot."
+        }
       ]
     },
     {
@@ -915,9 +990,22 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-12"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-12",
+          "description": "NEW (low). No read-only allocation summary or text-equivalent pattern for a percentage split (successor plan); allocation is input-only. Prototype uses a plain ordered list."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-14",
+          "description": "NEW. Dialog consequence preview on phones: no pinned header or action row, so a G-005 dialog with 7 consequence rows at 320x800 scrolls the title and amount out of view when focus lands on the actions; key-value values indent under labels, lengthening it."
+        }
       ]
     },
     {
@@ -1008,7 +1096,10 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-06"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        }
       ]
     },
     {
@@ -1039,6 +1130,7 @@
         "site-header",
         "skip-link",
         "status-lozenge",
+        "surface",
         "text-roles",
         "visually-hidden",
         "workspace-shell"
@@ -1053,12 +1145,18 @@
         },
         {
           "id": "s008-2",
+          "title": "Gap evidence: workspace-shell nested in the application frame",
+          "persona": "Sponsor operations (composition that does not fit)",
+          "demonstrates": "FORMA-GAP-15: workspace-shell, collection-toolbar and data-grid adapt by viewport, not container; inside the navigation-shell content column the toolbar collapses at 1280 px"
+        },
+        {
+          "id": "s008-3",
           "title": "Item closed automatically",
           "persona": "Sponsor operations",
           "demonstrates": "UNB-UI-S-008 AC-1 (work item closes with reason 'Exit condition met')"
         },
         {
-          "id": "s008-3",
+          "id": "s008-4",
           "title": "Inbox empty",
           "persona": "Sponsor operations",
           "demonstrates": "Empty state (UNB-UI-G-013)"
@@ -1093,14 +1191,30 @@
         },
         {
           "requirement_id": "UNB-UI-S-008",
+          "acceptance_id": "statement (workspace-shell)",
+          "satisfied_by_markup": false,
+          "note": "State 2 nests workspace-shell inside the application frame: at 1280 px its primary column is ~330 px and collection-toolbar collapses (labels set vertically). State 1 therefore omits workspace-shell and stacks toolbar, grid and an inspector surface. FORMA-GAP-15."
+        },
+        {
+          "requirement_id": "UNB-UI-S-008",
           "acceptance_id": "statement (sort by SLA risk)",
           "satisfied_by_markup": "needs-application-behaviour",
           "note": "aria-sort=descending on SLA risk and a sort select for phones; sorting itself is Limen/application."
         }
       ],
       "gaps": [
-        "FORMA-GAP-06",
-        "FORMA-GAP-08"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-15",
+          "description": "NEW. Container adaptation: collection-toolbar, obligation-panel, workspace-shell and navigation-shell reflow only by viewport media queries. Placed in a pane (workspace-shell primary, split-pane secondary) at 1280 px the toolbar sets labels vertically and obligation text breaks one word per line."
+        }
       ]
     },
     {
@@ -1227,6 +1341,12 @@
           "note": "AI flyout (s009-1-ai) contains conversation and handoff-summary with no Approve/Release controls (the canonical handoff-summary action cluster was deliberately omitted). Decision dialog has a required rationale textarea (required minlength); enforcement is application behaviour."
         },
         {
+          "requirement_id": "UNB-UI-S-009",
+          "acceptance_id": "statement (layout)",
+          "satisfied_by_markup": true,
+          "note": "Permitted actions (obligation-panel) are placed in the split-pane primary column: in the secondary column at 1280 px the obligation grid crushes its text to one word per line (rendered/gap-evidence/FORMA-GAP-15-*.png). FORMA-GAP-15."
+        },
+        {
           "requirement_id": "UNB-UI-G-011",
           "acceptance_id": "AC-1",
           "satisfied_by_markup": true,
@@ -1234,9 +1354,34 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-11"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-11",
+          "description": "NEW. Unavailable action with reason (segregation of duties S-009/S-010, required notices S-013): no pattern ties a disabled command to a visible reason; the reason is ad-hoc text referenced by aria-describedby. Disabled switch dims its own description (the reason) to 0.62 opacity; obligation-panel has no 'not available to you' state."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-13",
+          "description": "NEW (catalog defect). Canonical feed-item pattern uses data-state=\"warning\", which is not a status-lozenge value (renders the neutral bullet). Prototypes use the documented ok|attention|unknown|blocked values."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-15",
+          "description": "NEW. Container adaptation: collection-toolbar, obligation-panel, workspace-shell and navigation-shell reflow only by viewport media queries. Placed in a pane (workspace-shell primary, split-pane secondary) at 1280 px the toolbar sets labels vertically and obligation text breaks one word per line."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-16",
+          "description": "NEW. AI output labelling (G-011): conversation and handoff-summary have no slot for 'AI-generated, not a decision', sources or freshness; the canonical handoff-summary includes Approve/Reject buttons, which G-011 forbids in AI surfaces. Prototype adds a caution callout and omits the buttons."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-17",
+          "description": "NEW. Flyout body is a scroll container with no focusable element when content is text-only, failing axe scrollable-region-focusable (serious) at 320 and 1280 px. Fixed in markup with role=region tabindex=0 aria-label on .forma-flyout__body; the canonical pattern should carry it."
+        }
       ]
     },
     {
@@ -1353,9 +1498,18 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-01",
-        "FORMA-GAP-06",
-        "FORMA-GAP-11"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-01",
+          "description": "Existing. Button variants (primary, destructive) and async button. 1.0.2 now styles :disabled (dashed, 0.62 opacity) and [aria-busy=true] (spinner glyph) for application buttons; data-forma-variant=primary exists only inside .forma-site and no destructive variant exists. Prototypes use native buttons; the action label carries the consequence."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-11",
+          "description": "NEW. Unavailable action with reason (segregation of duties S-009/S-010, required notices S-013): no pattern ties a disabled command to a visible reason; the reason is ad-hoc text referenced by aria-describedby. Disabled switch dims its own description (the reason) to 0.62 opacity; obligation-panel has no 'not available to you' state."
+        }
       ]
     },
     {
@@ -1432,9 +1586,18 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-05",
-        "FORMA-GAP-06",
-        "FORMA-GAP-08"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-05",
+          "description": "Existing. Charts deferred; S-011 uses tables and metric cards only."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        }
       ]
     },
     {
@@ -1524,9 +1687,18 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-06",
-        "FORMA-GAP-07",
-        "FORMA-GAP-08"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-07",
+          "description": "NEW. Identifier has no copy affordance (G-016 requires one); prototypes place a plain Copy button beside .forma-identifier with no defined layout, feedback or announcement. Forma lists 'copyable field' as planned P1."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        }
       ]
     },
     {
@@ -1590,8 +1762,14 @@
         }
       ],
       "gaps": [
-        "FORMA-GAP-06",
-        "FORMA-GAP-11"
+        {
+          "gap_id_or_NEW": "FORMA-GAP-06",
+          "description": "NEW. No application page frame: .forma-app-shell is planned (P0). Page gutters exist only in .forma-site__main and the legal-sponsor footer only as the marketing site-footer, so every prototype composes the marketing shell around navigation-shell."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-11",
+          "description": "NEW. Unavailable action with reason (segregation of duties S-009/S-010, required notices S-013): no pattern ties a disabled command to a visible reason; the reason is ad-hoc text referenced by aria-describedby. Disabled switch dims its own description (the reason) to 0.62 opacity; obligation-panel has no 'not available to you' state."
+        }
       ]
     },
     {
@@ -1665,8 +1843,14 @@
         }
       ],
       "gaps": [
-        "UNB-GAP-W-01",
-        "FORMA-GAP-08"
+        {
+          "gap_id_or_NEW": "UNB-GAP-W-01",
+          "description": "Existing. Widget host, frame protocol and scoped tokens (Unbound-owned)."
+        },
+        {
+          "gap_id_or_NEW": "FORMA-GAP-08",
+          "description": "NEW. Money presentation (G-017): metric-card, data-grid and key-value-list do not use tabular numerals; data-grid has no numeric/end-aligned column; metric-card values break mid-amount in a 3-column dashboard-grid inside navigation-shell at 1280 px: plain '$100,000.0|0' (overflow-wrap:break-word) and '$100,00|0.00' with .forma-identifier (overflow-wrap:anywhere), see rendered/gap-evidence/FORMA-GAP-08-*.png; no convention for labelled negative amounts."
+        }
       ]
     }
   ]

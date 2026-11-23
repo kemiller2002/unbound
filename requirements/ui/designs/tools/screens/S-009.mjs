@@ -89,8 +89,8 @@ const workspace = (p, preparer) =>
   tag(
     "split-pane",
     `<section class="forma-split-pane" aria-label="Case workspace">
-  <div class="forma-split-pane__primary">${evidence(p)}${conflict(p)}${rule(p)}</div>
-  <aside class="forma-split-pane__secondary" aria-label="Decision and assistance">${permitted(p, preparer)}</aside>
+  <div class="forma-split-pane__primary">${evidence(p)}${conflict(p)}${permitted(p, preparer)}</div>
+  <aside class="forma-split-pane__secondary" aria-label="How this case was raised">${rule(p)}</aside>
 </section>`
   );
 
@@ -126,7 +126,8 @@ ${callout(`${p}-dec`, "decision", "Decision record", kv([["Decision", "False pos
   coverage: [
     { requirement_id: "UNB-UI-S-009", acceptance_id: "AC-1", satisfied_by_markup: "needs-application-behaviour", note: "State 2: native disabled Record decision button described by the text 'You prepared this case; another reviewer must decide'. Segregation of duties must be enforced server-side." },
     { requirement_id: "UNB-UI-S-009", acceptance_id: "AC-2", satisfied_by_markup: true, note: "AI flyout (s009-1-ai) contains conversation and handoff-summary with no Approve/Release controls (the canonical handoff-summary action cluster was deliberately omitted). Decision dialog has a required rationale textarea (required minlength); enforcement is application behaviour." },
+    { requirement_id: "UNB-UI-S-009", acceptance_id: "statement (layout)", satisfied_by_markup: true, note: "Permitted actions (obligation-panel) are placed in the split-pane primary column: in the secondary column at 1280 px the obligation grid crushes its text to one word per line (rendered/gap-evidence/FORMA-GAP-15-*.png). FORMA-GAP-15." },
     { requirement_id: "UNB-UI-G-011", acceptance_id: "AC-1", satisfied_by_markup: true, note: "Flyout opened from 'Explain this case', labelled 'AI-generated, not a decision', cites sources with freshness, offers no consequential control." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-11"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-11", "FORMA-GAP-13", "FORMA-GAP-15", "FORMA-GAP-16", "FORMA-GAP-17"],
 };

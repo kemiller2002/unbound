@@ -176,5 +176,5 @@ ${tag("binary-choice", `<fieldset class="forma-binary-choice" aria-describedby="
     { requirement_id: "UNB-UI-G-002", acceptance_id: "AC-1/AC-2", satisfied_by_markup: "needs-application-behaviour", note: "Five dimensions rendered with steps + lozenge + as-of. Headline derivation is application logic; see S-004 for both AC examples." },
     { requirement_id: "UNB-UI-G-009", acceptance_id: "AC-1", satisfied_by_markup: true, note: "Every step renders at 320 px with no page-level horizontal scroll (verification.json)." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-02", "FORMA-GAP-06", "FORMA-GAP-09"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-02", "FORMA-GAP-06", "FORMA-GAP-08", "FORMA-GAP-09", "FORMA-GAP-11", "FORMA-GAP-14"],
 };

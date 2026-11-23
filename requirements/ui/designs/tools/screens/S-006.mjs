@@ -111,5 +111,5 @@ ${dataGrid({ label: "Successors", cols: [["Successor"], ["Share"], ["Status"]], 
     { requirement_id: "UNB-UI-G-005", acceptance_id: "revoke", satisfied_by_markup: true, note: "Revoke dialog states what changes, irreversibility, who acts next; confirm names the action. No destructive visual variant (FORMA-GAP-01)." },
     { requirement_id: "UNB-UI-S-006", acceptance_id: "statement (text equivalent)", satisfied_by_markup: true, note: "State 3 'Successor plan in words' ordered list. Forma has no read-only allocation summary; composed from plain list (FORMA-GAP-12)." },
   ],
-  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-12"],
+  gaps: ["FORMA-GAP-01", "FORMA-GAP-06", "FORMA-GAP-12", "FORMA-GAP-14"],
 };

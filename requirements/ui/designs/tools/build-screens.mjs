@@ -7,6 +7,7 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { page } from "./lib/shell.mjs";
 import { stateSection } from "./lib/markup.mjs";
+import { GAPS } from "./lib/gaps.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const outDir = path.resolve(here, "../screens");
@@ -31,7 +32,7 @@ const toManifestEntry = (screen) => ({
   requirement_ids: screen.reqIds,
   states: screen.states.map((s, i) => ({ id: prefixFor(screen.id, i), title: s.title, persona: s.persona, demonstrates: s.demonstrates })),
   requirement_coverage: screen.coverage,
-  gaps: screen.gaps,
+  gaps: screen.gaps.map((id) => ({ gap_id_or_NEW: id, description: GAPS[id] ?? "undocumented" })),
 });
 
 const loadScreen = async (id) => (await import(`./screens/${id}.mjs`)).default;
