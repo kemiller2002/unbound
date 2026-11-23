@@ -190,3 +190,20 @@ AI may add holds, never clear them.
 ## 12. Provenance
 
 Produced 2026-11-23 by an AI agent: four role-separated domain audit passes plus an integrating review, all from one model family. No human, counsel, CPA or owner has reviewed any finding. `daf-landscape` was not modified. Other Echelon repositories were read only. Commands that reproduce every table: [README](README.md#quality-gates).
+
+## 13. Update after owner instructions (2026-11-23, second pass)
+
+| Owner instruction | Done | Effect on §9 blockers |
+|---|---|---|
+| Merge | PR #2 merged into `main` | — |
+| Make best decisions and note | All 31 decisions recorded: 12 `decided`, 19 `decided-provisional` with named validation; counsel working positions for Q1–Q11 (`data/counsel-positions.csv`) | Blockers 1 (scope), 3 (tenant unit) and 5 (renderer) are resolved for design. Blocker 4 (counsel) is now a production gate, not a design gate. |
+| Adopt | 113 records folded into 23 domain files: 37 `adopted`, 76 `adopted-provisional`; originals kept verbatim and annotated (`data/adoption.csv`). Identifier collisions fixed with a register (`data/renamed-ids.csv`). | Blocker 2 is resolved for design (the persistence design is adopted provisionally pending spike DG-09). |
+| Refine UI before converting; make sure Forma and Folio can handle everything | 38 UI requirements ([16](16-UI-REQUIREMENTS-AND-DESIGNS.md)); 14 screen and 7 document prototypes built on the real Forma and Folio with no custom CSS; gate G12 | Every screen fits with recorded gaps. The fund statement needs render-time page rules. |
+| File the gaps in their repositories | Forma #186–#198, Folio #59–#67, and evidence on folio#47 | — |
+
+**Gate verdict remains FAIL.** What still stands between this and an implementation gate:
+- counsel validation of the 19 provisional decisions;
+- execution of the scenarios (no test harness yet, DG-10);
+- the persistence and renderer spikes (DG-09, DG-04);
+- the Conditor prerequisite (RCD-002 waiver covers requirements work only);
+- conversion to a Praxis catalog, deferred by the owner (RCD-010).

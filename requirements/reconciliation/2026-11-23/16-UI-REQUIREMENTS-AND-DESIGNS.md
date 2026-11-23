@@ -31,43 +31,43 @@ What this does **not** prove: application behaviour that Forma leaves to the app
 | ID | Kind | Title | Forma components | Folio elements | Capability gaps | ACs |
 |---|---|---|---|---|---|---|
 | UNB-UI-G-001 | global | Status vocabulary and visual mapping | status-lozenge, operation-status |  | — | 2 |
-| UNB-UI-G-002 | global | Five-dimension grant progress | steps, status-lozenge, timeline, freshness |  | — | 2 |
+| UNB-UI-G-002 | global | Five-dimension grant progress | steps, status-lozenge, timeline, freshness |  | FORMA-GAP-09 | 2 |
 | UNB-UI-G-003 | global | Freshness of evidence and projections | freshness, status-lozenge |  | — | 1 |
 | UNB-UI-G-004 | global | Authoritative amounts versus informational values | metric-card, key-value-list, freshness |  | — | 1 |
-| UNB-UI-G-005 | global | Consequential action confirmation | dialog, key-value-list, callout, button |  | FORMA-GAP-01 | 1 |
+| UNB-UI-G-005 | global | Consequential action confirmation | dialog, key-value-list, callout, button |  | FORMA-GAP-01, FORMA-GAP-14 | 1 |
 | UNB-UI-G-006 | global | Unknown command outcome handling | operation-status, status-lozenge, recovery-actions |  | — | 1 |
 | UNB-UI-G-007 | global | Sponsor terminology and protected legal text | prose, text-roles |  | — | 1 |
 | UNB-UI-G-008 | global | Accessibility conformance | skip-link, visually-hidden, validation-summary, landmark-region |  | — | 1 |
 | UNB-UI-G-009 | global | Responsive classification | mobile-action-bar, bounded-overflow, data-grid, responsive-grid |  | — | 1 |
 | UNB-UI-G-010 | global | Scope and tenant context | scope-trail, select, dialog |  | — | 1 |
-| UNB-UI-G-011 | global | AI assistance placement and labelling | flyout, conversation, composer, evidence-relationship, callout |  | — | 1 |
+| UNB-UI-G-011 | global | AI assistance placement and labelling | flyout, conversation, composer, evidence-relationship, callout |  | FORMA-GAP-16, FORMA-GAP-17 | 1 |
 | UNB-UI-G-012 | global | Validation and fault presentation | validation-summary, validation-message, fault-inline, fault-banner, fault-reference, form, form-row |  | FORMA-GAP-02 | 1 |
 | UNB-UI-G-013 | global | Loading and empty states | skeleton, empty-state, spinner |  | — | 1 |
-| UNB-UI-G-014 | global | Brand and legal-sponsor disclosure | site-footer, app-identity, navigation-shell | ef-print-footer | — | 1 |
+| UNB-UI-G-014 | global | Brand and legal-sponsor disclosure | site-footer, app-identity, navigation-shell | ef-print-footer | FORMA-GAP-06 | 1 |
 | UNB-UI-G-015 | global | In-app notification behaviour | toast, feed-item, timeline |  | — | 1 |
-| UNB-UI-G-016 | global | Human-readable record references | identifier | ef-print-header | — | 1 |
-| UNB-UI-G-017 | global | Money and percentage display | measure, key-value-list |  | — | 1 |
+| UNB-UI-G-016 | global | Human-readable record references | identifier | ef-print-header | FORMA-GAP-07 | 1 |
+| UNB-UI-G-017 | global | Money and percentage display | measure, key-value-list |  | FORMA-GAP-08 | 1 |
 | UNB-UI-G-018 | global | Dates and time zones | timeline, facts |  | — | 1 |
-| UNB-UI-S-001 | screen | Giving home (donor, advisor, successor) | navigation-shell, scope-trail, metric-card, key-value-list, freshness, work-queue, feed-item, mobile-action-bar, status-lozenge, empty-state, site-footer, disc… |  | FORMA-GAP-01 | 2 |
-| UNB-UI-S-002 | screen | Charity search and selection | search, collection-toolbar, active-filter-summary, data-grid, status-lozenge, freshness, pagination, empty-state, form |  | — | 2 |
-| UNB-UI-S-003 | screen | Grant recommendation flow | wizard, steps, form, form-row, text-field, textarea, choice-group, checkbox, select, date-time-field, callout, validation-summary, validation-message, dialog,… |  | FORMA-GAP-01, FORMA-GAP-02 | 3 |
-| UNB-UI-S-004 | screen | Grant detail | record-header, identifier, steps, status-lozenge, facts, key-value-list, timeline, freshness, operation-status, dialog, provenance-trail |  | — | 2 |
-| UNB-UI-S-005 | screen | Add money (contribution intent) and contribution status | choice-group, form, form-row, text-field, numeric-stepper, identifier, callout, steps, status-lozenge, data-grid, key-value-list, timeline, dialog |  | FORMA-GAP-02 | 2 |
-| UNB-UI-S-006 | screen | Participants, delegation and successors | data-grid, status-lozenge, dialog, form, select, allocation, hierarchy-tree, validation-summary |  | — | 1 |
-| UNB-UI-S-007 | screen | Document center | data-grid, collection-toolbar, select, identifier, status-lozenge, empty-state, pagination |  | — | 1 |
-| UNB-UI-S-008 | screen | Staff exception inbox | workspace-shell, work-queue, data-grid, collection-toolbar, active-filter-summary, status-lozenge, metric-card, empty-state, pagination |  | — | 1 |
-| UNB-UI-S-009 | screen | Case workspace | record-header, facts, evidence-relationship, conflict-review, provenance-trail, obligation-panel, readiness-checklist, dialog, textarea, flyout, conversation,… |  | FORMA-GAP-01 | 2 |
-| UNB-UI-S-010 | screen | Sponsor policy configuration and approval | form, form-row, rule-builder, diff-viewer, comparison-pairs, readiness-checklist, dialog, date-time-field, validation-summary, flyout |  | FORMA-GAP-02 | 1 |
-| UNB-UI-S-011 | screen | Sponsor overview | dashboard-grid, metric-card, metric-value-change, data-grid, status-lozenge, freshness |  | FORMA-GAP-05 | 1 |
-| UNB-UI-S-012 | screen | Charity view | data-grid, status-lozenge, identifier, key-value-list, form, callout, timeline |  | — | 2 |
-| UNB-UI-S-013 | screen | Notification preferences | switch, form, form-row, callout |  | — | 1 |
+| UNB-UI-S-001 | screen | Giving home (donor, advisor, successor) | navigation-shell, scope-trail, metric-card, key-value-list, freshness, work-queue, feed-item, mobile-action-bar, status-lozenge, empty-state, site-footer, disc… |  | FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08, FORMA-GAP-13 | 2 |
+| UNB-UI-S-002 | screen | Charity search and selection | search, collection-toolbar, active-filter-summary, data-grid, status-lozenge, freshness, pagination, empty-state, form |  | FORMA-GAP-06, FORMA-GAP-08 | 2 |
+| UNB-UI-S-003 | screen | Grant recommendation flow | wizard, steps, form, form-row, text-field, textarea, choice-group, checkbox, select, date-time-field, callout, validation-summary, validation-message, dialog,… |  | FORMA-GAP-01, FORMA-GAP-02, FORMA-GAP-06, FORMA-GAP-08, FORMA-GAP-09, FORMA-GAP-11, FORMA-GAP-14 | 3 |
+| UNB-UI-S-004 | screen | Grant detail | record-header, identifier, steps, status-lozenge, facts, key-value-list, timeline, freshness, operation-status, dialog, provenance-trail |  | FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-09, FORMA-GAP-14 | 2 |
+| UNB-UI-S-005 | screen | Add money (contribution intent) and contribution status | choice-group, form, form-row, text-field, numeric-stepper, identifier, callout, steps, status-lozenge, data-grid, key-value-list, timeline, dialog |  | FORMA-GAP-02, FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08, FORMA-GAP-09 | 2 |
+| UNB-UI-S-006 | screen | Participants, delegation and successors | data-grid, status-lozenge, dialog, form, select, allocation, hierarchy-tree, validation-summary |  | FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-12, FORMA-GAP-14 | 1 |
+| UNB-UI-S-007 | screen | Document center | data-grid, collection-toolbar, select, identifier, status-lozenge, empty-state, pagination |  | FORMA-GAP-06 | 1 |
+| UNB-UI-S-008 | screen | Staff exception inbox | workspace-shell, work-queue, data-grid, collection-toolbar, active-filter-summary, status-lozenge, metric-card, empty-state, pagination |  | FORMA-GAP-06, FORMA-GAP-08, FORMA-GAP-15 | 1 |
+| UNB-UI-S-009 | screen | Case workspace | record-header, facts, evidence-relationship, conflict-review, provenance-trail, obligation-panel, readiness-checklist, dialog, textarea, flyout, conversation,… |  | FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11, FORMA-GAP-13, FORMA-GAP-15, FORMA-GAP-16, FORMA-GAP-17 | 2 |
+| UNB-UI-S-010 | screen | Sponsor policy configuration and approval | form, form-row, rule-builder, diff-viewer, comparison-pairs, readiness-checklist, dialog, date-time-field, validation-summary, flyout |  | FORMA-GAP-02, FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11 | 1 |
+| UNB-UI-S-011 | screen | Sponsor overview | dashboard-grid, metric-card, metric-value-change, data-grid, status-lozenge, freshness |  | FORMA-GAP-05, FORMA-GAP-06, FORMA-GAP-08 | 1 |
+| UNB-UI-S-012 | screen | Charity view | data-grid, status-lozenge, identifier, key-value-list, form, callout, timeline |  | FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08 | 2 |
+| UNB-UI-S-013 | screen | Notification preferences | switch, form, form-row, callout |  | FORMA-GAP-06, FORMA-GAP-11 | 1 |
 | UNB-UI-D-001 | document | Contribution acknowledgment |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note, ef-print-page-num… | FOLIO-GAP-01, FOLIO-GAP-02, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07 | 1 |
 | UNB-UI-D-002 | document | Fund statement |  | ef-print-document, ef-print-title-page, ef-print-header, ef-print-footer, ef-print-page-number, ef-print-section, ef-pr… | FOLIO-GAP-03, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-08, FOLIO-GAP-09, FOLIO-GAP-11 | 1 |
 | UNB-UI-D-003 | document | Grant confirmation and remittance advice |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note | FOLIO-GAP-01, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07 | 1 |
 | UNB-UI-D-004 | document | Annual DAF reporting package (Schedule D Part I support) |  | ef-print-document, ef-print-title-page, ef-print-section, ef-print-metric, ef-print-table, ef-print-integrity, ef-print… | FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-12 | 1 |
 | UNB-UI-D-005 | document | Case decision record |  | ef-print-document, ef-print-header, ef-print-section, ef-print-table, ef-print-finding, ef-print-callout, ef-print-foot… | FOLIO-GAP-04, FOLIO-GAP-06, FOLIO-GAP-11, FOLIO-GAP-12 | 1 |
 | UNB-UI-D-006 | document | Audit evidence package |  | ef-print-document, ef-print-title-page, ef-print-toc, ef-print-section, ef-print-table, ef-print-integrity, ef-print-pa… | FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-10 | 1 |
-| UNB-UI-W-001 | widget | Embedded grant status widget (partner host) | surface, status-lozenge, key-value-list, identifier |  | UNB-GAP-W-01 | 1 |
+| UNB-UI-W-001 | widget | Embedded grant status widget (partner host) | surface, status-lozenge, key-value-list, identifier |  | UNB-GAP-W-01, FORMA-GAP-08 | 1 |
 <!-- END GENERATED: ui-index -->
 
 ## 4. Capability gaps (Forma, Folio and Unbound-owned)
@@ -77,8 +77,8 @@ Gaps were filed as issues in the Forma and Folio repositories on owner instructi
 <!-- BEGIN GENERATED: ui-gaps -->
 | Gap | Component | Owner | Filed as | Need | Release-1 workaround | Acceptance |
 |---|---|---|---|---|---|---|
-| FORMA-GAP-01 | Button variants (primary, destructive) and async action button | Forma | kemiller2002/forma#186 | Distinguish the one primary action per view and destructive actions (Revoke, Void) in application UI; show in-progress state on submit without double submission. | Use native button with text labels; confirm destructive actions via dialog (G-005); disable the button and show operation-status while pending. Acceptable for design; not for production visual hierarchy. | data-forma-variant=primary\|destructive styles exist in components.css outside the marketing scope; an aria-busy button state is styled and announced; axe passes. |
-| FORMA-GAP-02 | Field invalid, disabled and read-only styling | Forma | kemiller2002/forma#187 | Forms must show invalid fields and read-only policy values distinctly (G-012). | validation-message text plus aria-invalid; the visual distinction relies on adjacent message text only. | :disabled, :read-only, [aria-invalid=true] and :user-invalid styles exist in foundations.css with 3:1 non-text contrast; a browser test proves each. |
+| FORMA-GAP-01 | Button variants (primary, destructive) and async action button | Forma | kemiller2002/forma#186 (narrowed: busy and disabled states already exist) | Partly implemented: disabled and aria-busy button states exist (components.css ~5751); primary (outside marketing scope) and destructive variants missing. | Use native button with text labels; confirm destructive actions via dialog (G-005); disable the button and show operation-status while pending. Acceptable for design; not for production visual hierarchy. | data-forma-variant=primary\|destructive styles exist in components.css outside the marketing scope; an aria-busy button state is styled and announced; axe passes. |
+| FORMA-GAP-02 | Field invalid, disabled and read-only styling | Forma | kemiller2002/forma#187 (corrected: styles exist at d7c499e; contrast test and inventory correction remain) | Implemented at d7c499e (foundations.css 160-177); remaining: contrast browser test and correcting COMPONENT-INVENTORY, which still lists it as unimplemented. | Use as shipped. | :disabled, :read-only, [aria-invalid=true] and :user-invalid styles exist in foundations.css with 3:1 non-text contrast; a browser test proves each. |
 | FORMA-GAP-03 | Data table styling for plain table | Forma | not filed: not needed for release 1 | Not required by release-1 designs: data-grid and dense-ledger cover all tables. | Use data-grid or dense-ledger. | n/a for release 1 |
 | FORMA-GAP-04 | Bulk action bar | Forma | not filed: not needed for release 1 | Not required by release 1: the exception inbox has no bulk actions by design (each decision is individual). One-click batch approval (RCD-005) is a single dialog listing items. | dialog + data-grid | n/a for release 1 |
 | FORMA-GAP-05 | Visualization primitives and chart accessibility contract | Forma | kemiller2002/forma#188 | Trend views for sponsor overview and investment performance (post release 1). | Tables and metric-value-change only (S-011). | A chart primitive with a mandatory text-table equivalent and axe-tested contrast. |
@@ -95,11 +95,72 @@ Gaps were filed as issues in the Forma and Folio repositories on owner instructi
 | FOLIO-GAP-10 | ef-print-toc target page numbers | Folio | kemiller2002/folio#65 | Tables of contents with page numbers (D-002, D-006). | Two-pass render in the Unbound render service fills data-page from the first-pass PDF; or omit page numbers in release 1. | P2 export fills [data-page] from a first-pass layout; numbers match the PDF. |
 | FOLIO-GAP-11 | Tagged PDF in the P2 export contract | Folio + Unbound render service | kemiller2002/folio#66 | Distributed PDFs should be tagged; RCD-009 makes the HTML twin the accessible rendition. | Render with Chromium tagged:true and outline:true (measured: Tagged: yes); HTML twin remains the conformance rendition. | P2 pins tagged:true; structure validated by a PDF/UA checker (veraPDF or PAC) with documented limits. |
 | FOLIO-GAP-12 | Signature / approval block recipe | Folio | kemiller2002/folio#62 | Preparer/signer (D-004) and decider (D-005) blocks. | ef-meta-list inside ef-print-keep. | Recipe with name, role, date and signature evidence, kept together, semantic dl, three documented examples. |
+| FORMA-GAP-06 | Application shell (.forma-app-shell) with footer legal-note slot | Forma | kemiller2002/forma#189 | One application frame with gutters, header, nav, main and a footer holding the legal-sponsor disclosure (G-014). | Compose .forma-site + .forma-site__main + site-footer around navigation-shell (all 14 prototypes). | .forma-app-shell ships with regions and a legal-note slot, works without .forma-site, 0 axe violations and no horizontal scroll at 320/1280. |
+| FORMA-GAP-07 | Copyable identifier | Forma | kemiller2002/forma#193 | Copy control for record references (G-016). | Plain Copy button beside forma-identifier; announcement via application. | Button named 'Copy <label> <value>', status announcement, 24x24 target, wraps at 320 px. |
+| FORMA-GAP-08 | Numeric/money value presentation | Forma | kemiller2002/forma#190 | Amounts intact, tabular numerals, end-aligned numeric columns, labelled negatives (G-017). | Avoid 3-column metric grids for large amounts; use key-value-list and dense-ledger; accept proportional digits in release 1 design review only. | Numeric value hook with tabular numerals and no mid-number break in metric-card, data-grid (end-aligned) and key-value dd. |
+| FORMA-GAP-09 | Multi-dimension status track | Forma | kemiller2002/forma#191 | Five grant dimensions each with state and as-of time plus headline (G-002). | steps items each containing status-lozenge and time (composition proven in S-004, S-005). | Per-item data-state ok/attention/unknown/blocked/neutral with label and time, headline slot, list semantics, forced-colors proof. |
+| FORMA-GAP-11 | Unavailable-action pattern (disabled control with visible reason) | Forma | kemiller2002/forma#192 | Segregation-of-duties and required-notice reasons visible (S-009, S-010, S-013). | Ad-hoc reason text linked via aria-describedby; keep reason outside disabled switch description. | Disabled control plus visible reason at >= 4.5:1, linked by aria-describedby, in button rows, record-header, obligation-panel and switch. |
+| FORMA-GAP-12 | Read-only allocation summary | Forma | kemiller2002/forma#193 | Text equivalent of a successor percentage split (S-006). | Ordered list with names and shares. | Read-only allocation summary with names, shares, total and as-of version, list semantics. |
+| FORMA-GAP-13 | feed-item canonical markup defect (data-state=warning) | Forma | kemiller2002/forma#194 | Canonical patterns must use the lozenge vocabulary. | Unbound uses data-state=attention. | Pattern fixed; catalog test rejects unknown data-state values. |
+| FORMA-GAP-14 | Dialog confirmation variant with pinned header and actions | Forma | kemiller2002/forma#195 | Consequence preview usable on a phone (G-005). | Limit phone confirmation to 4 key consequence rows with a 'Show all details' disclosure. | Pinned title + key consequence and pinned action row; tested at 320x568 and 320x800. |
+| FORMA-GAP-15 | Container-query reflow (collection-toolbar, obligation-panel, shells) | Forma | kemiller2002/forma#196 | Components inside panes reflow by container width (S-008, S-009). | Place toolbar above workspace-shell and obligation-panel in the primary column (working layouts used in prototypes). | Container queries; screenshot tests in a 20rem pane at 1280 px show no clipped or single-word lines. |
+| FORMA-GAP-16 | AI output provenance label and action-free handoff-summary | Forma | kemiller2002/forma#197 | AI output labelled with sources; no consequential controls in AI panels (G-011). | callout with the label plus evidence-relationship for sources; handoff-summary without actions. | Label and sources slot in conversation turns; action-free handoff-summary variant documented. |
+| FORMA-GAP-17 | Flyout keyboard-scrollable body (axe scrollable-region-focusable) | Forma | kemiller2002/forma#198 | Keyboard access to overflowing flyout content. | role=region tabindex=0 aria-label on .forma-flyout__body. | Canonical markup fixed; axe test with overflowing text passes. |
 <!-- END GENERATED: ui-gaps -->
 
 ## 5. Fit evidence from the prototypes
 
-FIT-EVIDENCE-PLACEHOLDER
+**Verdict:** both component systems can carry the release-1 UI, **with recorded gaps and workarounds**. No screen fails outright. One document, the fund statement, does not fit Folio 0.4.2 unaided: it has no "Page n of N" and no running header or footer. It does fit once the Unbound render service injects the page-margin rules, which was measured as working on 7 of 7 documents.
+
+### Screens (Forma 1.0.2, compiled from source)
+
+[Fit report](../../ui/designs/screens/FORMA-FIT-REPORT.md) · [verification.json](../../ui/designs/screens/verification.json) · screenshots in `requirements/ui/designs/rendered/`
+
+| Result | Screens |
+|---|---|
+| Fits fully | W-001 (apart from the money-format gap FORMA-GAP-08 and the Unbound-owned widget runtime) |
+| Fits with recorded gaps | S-001 to S-013 |
+| Most affected | S-004 and S-005: the five-dimension status track is a composition (FORMA-GAP-09). S-008 and S-009: components break inside panes (FORMA-GAP-15). The prototypes keep the broken layouts as evidence and use working layouts instead. |
+
+Measured:
+- 0 axe violations (WCAG 2.2 AA tag sets) on all 14 pages, and in 10 opened dialogs and flyouts, at 320 px and 1280 px.
+- No page-level horizontal scroll.
+- No `<style>`, `style=` or `<script>` in any page.
+
+Not tested: keyboard walkthroughs, focus order after submission, high-contrast mode and zoom. axe does not check contrast on disabled controls.
+
+The checks distinguish what markup demonstrates from what depends on the Unbound engine. The markup demonstrates 12 global and 11 screen-level acceptance criteria. Eleven of each depend on application behaviour: sorting, staleness rules, focus, segregation-of-duties enforcement, idempotent status checks and tokens.
+
+### Documents (Folio 0.4.2)
+
+[Fit report](../../ui/designs/documents/FOLIO-FIT-REPORT.md) · [verification.json](../../ui/designs/documents/verification.json) · PDFs in `requirements/ui/designs/rendered/`
+
+| Document | Pages | Verdict |
+|---|---:|---|
+| D-001 acknowledgment (cash, securities) | 1 each | Fits with gaps. The legal sentences print verbatim, and the securities variant states no dollar value. |
+| D-002 fund statement | 8 | **Does not fit unaided.** It fits with the render-time page-margin injection (FOLIO-GAP-04/05/08). |
+| D-003 remittance | 2 | Fits with gaps. No pledge text anywhere in the PDF, its metadata or the HTML. |
+| D-004 DAF reporting package | 3 | Fits with gaps |
+| D-005 case decision record | 2 | Fits |
+| D-006 audit evidence package | 6 | Fits with gaps |
+
+Measured:
+- **Text determinism:** the per-page text hash is stable for 7 of 7 documents.
+- **Raw PDF bytes:** identical for 7 of 7 once `/CreationDate` and `/ModDate` are fixed, so the render service MUST stamp them from the snapshot.
+- **Render time:** about 0.25 s per document.
+- **Accessibility:** 0 axe violations on the HTML renditions.
+- **Tagging:** PDFs are untagged by default; tagged with `tagged:true` (structure not yet validated).
+
+### Correction recorded
+
+The first issue filing for FORMA-GAP-01 and FORMA-GAP-02 relied on Forma's `docs/COMPONENT-INVENTORY.md`. The fit work then showed that at the same commit Forma already styles disabled, read-only and invalid fields (`foundations.css` lines 160–177) and busy buttons (`components.css` ~5751). forma#186 and forma#187 were rewritten on GitHub to ask only for what is still missing: the primary and destructive variants, a contrast test, and an inventory correction.
+
+### Where the gaps were filed
+
+- **Forma:** #186–#198.
+- **Folio:** #59–#67, plus evidence added to the existing #47 (server-side P2 renderer).
+
+The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 does not need (FORMA-GAP-03/04) and Unbound-owned work (UNB-GAP-W-01) were not filed.
 
 ## 6. Requirement records
 
@@ -116,6 +177,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** Grant status MUST be shown as five ordered dimensions (Recommendation, Eligibility, Approval, Funding, Payment), each with its own label and as-of time, using Forma steps for the sequence and status-lozenge for each dimension. A single headline status MUST be derived deterministically: the first dimension that is not final, except that any Unknown or Blocked dimension becomes the headline.
 - **Traces to:** REQ-X-011, RR-REQ-X-002-r1, RR-REQ-X-004-r1, UNB-RCN-FIN-008
 - **Forma components:** `steps`, `status-lozenge`, `timeline`, `freshness`
+- **Capability gaps:** FORMA-GAP-09
 - **Acceptance criteria:**
   - **AC-1** Given Eligibility = Eligible, Approval = Approved, Funding = FundingPlanned, Payment = not started; when the headline is computed; then headline is 'Funding in progress' (attention).
   - **AC-2** Given Payment = Unknown while Funding = Funded; when the headline is computed; then headline is 'Payment outcome unknown' (unknown).
@@ -138,7 +200,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** Every action of authority class A2 or higher MUST present, before submission, a confirmation dialog that states what will change, whether it is reversible, who acts next and the expected time to the next state. The confirm control MUST name the action (for example 'Submit grant recommendation'), not 'OK'.
 - **Traces to:** RR-REQ-X-051-r1, AIN-006, UNB-RCN-PLT-005
 - **Forma components:** `dialog`, `key-value-list`, `callout`, `button`
-- **Capability gaps:** FORMA-GAP-01
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-14
 - **Acceptance criteria:**
   - **AC-1** Given a donor submits a $5,000 grant; when they press Submit; then a dialog lists amount, charity, fund, 'Your sponsor approves this grant; you can withdraw until approval', and the button reads 'Submit grant recommendation'.
 
@@ -181,6 +243,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** AI assistance MUST appear only on surfaces with a published assistance contract, opened from an 'Explain' or 'Help me' control into a Forma flyout containing conversation output. Every AI output MUST be labelled 'AI-generated, not a decision' with its sources, and MUST NOT contain controls that submit consequential actions.
 - **Traces to:** RR-REQ-X-051-r1, RR-UNB-AI-STD-003-r1, UNB-RCN-PLT-004
 - **Forma components:** `flyout`, `conversation`, `composer`, `evidence-relationship`, `callout`
+- **Capability gaps:** FORMA-GAP-16, FORMA-GAP-17
 - **Acceptance criteria:**
   - **AC-1** Given a donor asks why a grant is on hold; when the assistant answers; then the answer cites the hold reason record and freshness, is labelled as AI-generated, and offers no Approve or Release control.
 
@@ -204,6 +267,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Traces to:** RCD-003, REQ-X-030
 - **Forma components:** `site-footer`, `app-identity`, `navigation-shell`
 - **Folio elements:** `ef-print-footer`
+- **Capability gaps:** FORMA-GAP-06
 - **Acceptance criteria:**
   - **AC-1** Given sponsor brand 'Harbor Giving' operated by legal sponsor 'Example Charitable Foundation, EIN 00-0000000'; when any donor page renders; then the footer shows the legal sponsor name, EIN and control statement.
 
@@ -219,6 +283,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Traces to:** REQ-X-025, RCD-008
 - **Forma components:** `identifier`
 - **Folio elements:** `ef-print-header`
+- **Capability gaps:** FORMA-GAP-07
 - **Acceptance criteria:**
   - **AC-1** Given grant 2026-004817; when the grant screen, remittance advice and statement render; then all three show 2026-004817.
 
@@ -226,6 +291,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** Amounts MUST display with currency, two decimals and tabular numerals, never rounded below cents. Negative values MUST carry a text label as well as a sign. Percentage grants MUST show the percentage, its base, the fixing point and, once fixed, the fixed currency amount.
 - **Traces to:** RR-UNB-GFUND-013-r1
 - **Forma components:** `measure`, `key-value-list`
+- **Capability gaps:** FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given a 10% grant of fund value fixed at approval; when the grant renders after approval; then it shows '10% of fund value at approval → $12,345.67 (fixed 24 Nov 2026)'.
 
@@ -244,7 +310,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Loading; Empty (no contributions yet); Normal; Capacity not current; Fund suspended (death or hold)
 - **Actions:** Recommend a grant (navigate); Add money (navigate); Open attention item
 - **Responsive:** phone-complete: metric cards stack; actions in mobile-action-bar
-- **Capability gaps:** FORMA-GAP-01
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08, FORMA-GAP-13
 - **Acceptance criteria:**
   - **AC-1** Given a fund in Suspended state after a verified death; when a successor opens it before activation; then the page shows 'This fund is suspended pending succession' (blocked) and offers no grant action.
   - **AC-2** Given a donor with 2 rule-created attention items; when they open the giving home; then both items appear first, each with one named action.
@@ -257,6 +323,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Idle; Searching; Results; No results; Search unavailable (fault-inline)
 - **Actions:** Search; Filter; Select charity; Request a charity we don't list
 - **Responsive:** phone-complete: data-grid recomposes into labelled records at 30rem
+- **Capability gaps:** FORMA-GAP-06, FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given two 'Hope Foundation' results; when the donor views results on a phone; then each row shows EIN and city/state so they are distinguishable.
   - **AC-2** Given a charity on hold; when it appears in results; then it shows 'On hold' with no reason text from another sponsor and cannot be selected.
@@ -269,7 +336,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Draft (saved locally via Limen IndexedDB pack); Validation errors; Submitting; Submitted; Outcome unknown; Rejected by policy (with reason)
 - **Actions:** Next/Back; Save draft; Submit grant recommendation (A1 by donor; creates RecommendationSubmitted); Withdraw (until approval)
 - **Responsive:** phone-complete
-- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-02
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-02, FORMA-GAP-06, FORMA-GAP-08, FORMA-GAP-09, FORMA-GAP-11, FORMA-GAP-14
 - **Acceptance criteria:**
   - **AC-1** Given an amount above Available to grant; when the donor continues from step 2; then an inline error states the available amount and the step does not advance.
   - **AC-2** Given a sponsor whose pledge policy is Prohibited; when the donor reaches step 3; then a required question 'Does this grant fulfil a pledge?' appears; answering Yes blocks submission with an explanation.
@@ -283,6 +350,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Each grant state, including Payment outcome unknown, Returned, Voided check, Blocked (sanctions)
 - **Actions:** Withdraw recommendation; Request cancellation; Download confirmation
 - **Responsive:** phone-complete
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-09, FORMA-GAP-14
 - **Acceptance criteria:**
   - **AC-1** Given a grant whose check was voided after 180 days and the amount re-credited; when the donor views it; then the timeline shows Issued → Outstanding → Voided → Re-credited, with dates and amounts.
   - **AC-2** Given a grant Blocked by a confirmed sanctions match; when the donor views it; then it shows 'This grant cannot be paid' (blocked) without disclosing screening details.
@@ -295,7 +363,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Declared; Partially received; Received; Accepted; Valued; Acknowledged; Final; Returned (ACH); Rejected
 - **Actions:** Declare contribution (A1); Link bank account (via rail partner); Download acknowledgment
 - **Responsive:** phone-complete
-- **Capability gaps:** FORMA-GAP-02
+- **Capability gaps:** FORMA-GAP-02, FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08, FORMA-GAP-09
 - **Acceptance criteria:**
   - **AC-1** Given 1,000 shares declared and 600 received; when the donor opens the contribution; then it shows 'Partially received: 600 of 1,000 shares' and no acknowledgment.
   - **AC-2** Given an ACH contribution inside the return window; when the donor views Available to grant; then the amount appears under Pending with the date it becomes available.
@@ -308,6 +376,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Invited; Active; Revoked; Suspended (verified death); Successor designated; Successor active
 - **Actions:** Invite participant; Change scope; Revoke access (A2, immediate); Designate successors
 - **Responsive:** phone-complete
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-12, FORMA-GAP-14
 - **Acceptance criteria:**
   - **AC-1** Given successor allocations of 60% and 30%; when the donor saves; then validation blocks saving and states the 10% remainder.
 
@@ -318,6 +387,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Forma components:** `data-grid`, `collection-toolbar`, `select`, `identifier`, `status-lozenge`, `empty-state`, `pagination`
 - **Actions:** Open (HTML); Download PDF; Verify document
 - **Responsive:** phone-complete
+- **Capability gaps:** FORMA-GAP-06
 - **Acceptance criteria:**
   - **AC-1** Given an acknowledgment corrected once; when the donor lists documents; then the original shows 'Superseded by <ref>' and both remain downloadable.
 
@@ -329,6 +399,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Open; Assigned; Waiting on external party; Resolved (auto-closed); Breaching SLA
 - **Actions:** Open case; Assign to me; Reassign (lead only)
 - **Responsive:** phone-review-and-approve
+- **Capability gaps:** FORMA-GAP-06, FORMA-GAP-08, FORMA-GAP-15
 - **Acceptance criteria:**
   - **AC-1** Given an eligibility hold resolved by a fresh IRS observation; when the observation arrives; then the work item closes automatically with reason 'Exit condition met'.
 
@@ -340,7 +411,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Open; Awaiting evidence; Decided; Escalated
 - **Actions:** Request evidence (A1); Record decision: false positive / true match (A4); Approve grant (A4 or A3 per RCD-005); Escalate
 - **Responsive:** desktop-first (phone-review-and-approve for approve and decline only)
-- **Capability gaps:** FORMA-GAP-01
+- **Capability gaps:** FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11, FORMA-GAP-13, FORMA-GAP-15, FORMA-GAP-16, FORMA-GAP-17
 - **Acceptance criteria:**
   - **AC-1** Given a reviewer who prepared the case; when they open it; then Record decision is disabled with the text 'You prepared this case; another reviewer must decide'.
   - **AC-2** Given a potential sanctions match; when the AI summary recommends release; then no release control appears in the AI panel; the human decision dialog requires a written rationale.
@@ -353,7 +424,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **States:** Draft; In review; Approved (scheduled); Active; Superseded
 - **Actions:** Save draft; Submit for approval; Approve and schedule (A4); Reject
 - **Responsive:** desktop-first
-- **Capability gaps:** FORMA-GAP-02
+- **Capability gaps:** FORMA-GAP-02, FORMA-GAP-01, FORMA-GAP-06, FORMA-GAP-11
 - **Acceptance criteria:**
   - **AC-1** Given an author; when they open their own draft in review; then Approve is unavailable with the reason shown.
 
@@ -363,7 +434,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Actors:** Sponsor executive, Operations lead
 - **Forma components:** `dashboard-grid`, `metric-card`, `metric-value-change`, `data-grid`, `status-lozenge`, `freshness`
 - **Responsive:** phone-review-and-approve
-- **Capability gaps:** FORMA-GAP-05
+- **Capability gaps:** FORMA-GAP-05, FORMA-GAP-06, FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given reconciliation evidence for one account is 2 days stale; when the overview renders; then that account shows 'Not current' and no green total is shown.
 
@@ -373,6 +444,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Actors:** Charity finance user
 - **Forma components:** `data-grid`, `status-lozenge`, `identifier`, `key-value-list`, `form`, `callout`, `timeline`
 - **Responsive:** phone-complete
+- **Capability gaps:** FORMA-GAP-06, FORMA-GAP-07, FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given an anonymous grant; when the charity views it; then the donor field reads 'Anonymous donor via <sponsor>'.
   - **AC-2** Given a destination change request; when submitted; then it shows 'Pending independent verification' and payments continue to the previous verified destination.
@@ -383,6 +455,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Actors:** Donor, Advisor
 - **Forma components:** `switch`, `form`, `form-row`, `callout`
 - **Responsive:** phone-complete
+- **Capability gaps:** FORMA-GAP-06, FORMA-GAP-11
 - **Acceptance criteria:**
   - **AC-1** Given the acknowledgment notice class; when the user views preferences; then its switch is shown on and disabled, with the text 'Required: tax acknowledgment'.
 
@@ -438,7 +511,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** Partner hosts MAY embed a read-only grant-status card in an iframe served from the sponsor's Unbound origin, authorized by a short-lived, sponsor-scoped token issued server-to-server. It shows headline status, amount and charity, and offers no consequential actions in release 1 (DAF checkout deferred, CAP-03).
 - **Traces to:** INT-015, REQ-X-063, RCD-011, RCD-013
 - **Forma components:** `surface`, `status-lozenge`, `key-value-list`, `identifier`
-- **Capability gaps:** UNB-GAP-W-01
+- **Capability gaps:** UNB-GAP-W-01, FORMA-GAP-08
 - **Acceptance criteria:**
   - **AC-1** Given an expired token; when the widget loads; then it shows 'Sign in again on your provider's site' and no grant data.
 
