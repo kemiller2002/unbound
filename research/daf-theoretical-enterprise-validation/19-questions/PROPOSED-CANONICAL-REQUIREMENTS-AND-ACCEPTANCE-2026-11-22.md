@@ -608,3 +608,15 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ### Reconciliation checkpoint
 
 All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a cross-component ownership and collision register in `ONE-SYSTEM-CROSS-COMPONENT-RECONCILIATION-ALL-20-DAF-LANDSCAPE-GAPS-2026-11-23.md`. This is high-level design coverage, not exhaustive research-source traceability, verified competitor parity or production readiness.
+
+## REQ-X-078: End-to-end workflow completeness and authoritative transition ownership (2026-11-23)
+
+**Proposed:** Maintain explicit state-machine contracts for the 18 DAF enterprise workflows WF-01..WF-18 spanning sponsor activation, donor/fund onboarding, cash and complex gifts, custody, charity vetting, grants, recurring schedules, payments, checkout, recipient bank changes, fees, close, regulatory filing, cross-border grants, cases, migration and succession. Every transition must have one authoritative component, legal actor/authority, sponsor policy and evidence versions, typed command, financial effects, provider Unknown and compensation behavior, user-facing status, audit, and synthetic fixture. A feature requirement without complete transition coverage is not a workflow pass. Preserve REQ-X-057 one-system invariant.
+
+**Acceptance (not executed):** `END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md`. Current baseline 18 mapped, 18 gaps flagged, 0 executed or certified.
+
+## REQ-X-079: Cross-workflow financial, authority and irreversibility invariants (2026-11-23)
+
+**Proposed:** Enforce INV-01..INV-18 across contribution acceptance, grantable capacity, atomic reservation, payment finality, provider Unknown, sponsor policy changes, sponsor identity, recipient bank changes, sponsor financial close, reporting, migration fencing, fee conflicts, tax receipts, donor anonymity, recurrence, and AI authority. External providers cannot participate in an imaginary atomic database transaction; use durable idempotency, reconciliation and compensation.
+
+**Acceptance (not executed):** `CROSS-WORKFLOW-FINANCIAL-AUTHORITY-AND-IRREVERSIBILITY-INVARIANTS-2026-11-23.md`. Require synthetic before/after balance and authority snapshots, failure injection, concurrency and replay checks, independent legal/accounting review as applicable.
