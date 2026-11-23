@@ -484,3 +484,15 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Detect known risks through versioned deterministic checks, optionally use bounded AI for explanation/investigation/proposals, and route findings into existing Exception Management and Work Queue components. Cover charity reverification, grant routing, sponsor policy, recurring activity, accounting, payments, retention, integrations and UI/report quality. Require deduplication, risk tiers, evidence, ownership, SLA, false-positive review, expiry-bound suppression and independent resolution verification. Do not create a competing alert/case engine or permit AI independent money/compliance authority.
 
 **Acceptance (not executed):** ADV-867..ADV-890 and `PROACTIVE-AI-ASSISTANCE-DETERMINISTIC-DETECTION-AND-PREVENTIVE-OPERATIONS-2026-11-23.md`.
+
+## REQ-X-054: Contextual AI assistance UX, configuration previews and approval journeys (2026-11-23)
+
+**Proposed:** Integrate AI help into every eligible field, configuration panel and workflow without requiring a separate chatbot. Provide source-grounded explanations, valid-value guidance, typed proposed changes, deterministic validation, impact preview, human review, independent approval and execution-time reauthorization. Preserve sponsor scope, case ownership, financial/compliance holds, mobile accessibility and honest Draft/Approved/Applied/Unknown status. No AI-only bypass of domain commands.
+
+**Acceptance (not executed):** ADV-843..ADV-866 and `CONTEXTUAL-AI-ASSISTANT-UX-CONFIGURATION-AND-APPROVAL-JOURNEYS-2026-11-23.md`.
+
+## REQ-X-055: Proactive configuration health, prevention and safe remediation (2026-11-23)
+
+**Proposed:** Use deterministic event-driven checks and bounded AI explanation/investigation to identify configuration contradictions, upcoming charity 180-day reverification, staffing gaps, provider uncertainty, finance/report mismatches and document/communication risks. Findings must be evidenced, classified, deduplicated, sponsor-scoped, assigned to an accountable owner and linked to smallest safe remediation. Existing domain controls retain holds and approvals. Prevent alert fatigue, prohibit silent policy changes and measure actual prevented harm rather than warning counts.
+
+**Acceptance (not executed):** ADV-867..ADV-890 and `PROACTIVE-AI-CONFIGURATION-HEALTH-AND-PREVENTION-2026-11-23.md`.
