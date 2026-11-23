@@ -1,0 +1,2783 @@
+{
+  "checked_at": "2026-11-23T23:15:58.059Z",
+  "viewports": [
+    {
+      "id": "phone",
+      "width": 390,
+      "height": 844,
+      "reference": true
+    },
+    {
+      "id": "reflow320",
+      "width": 320,
+      "height": 800
+    },
+    {
+      "id": "zoom200",
+      "width": 640,
+      "height": 450
+    },
+    {
+      "id": "tablet",
+      "width": 768,
+      "height": 1024
+    },
+    {
+      "id": "desktop",
+      "width": 1280,
+      "height": 900,
+      "reference": true
+    }
+  ],
+  "axe_tags": [
+    "wcag2a",
+    "wcag2aa",
+    "wcag21a",
+    "wcag21aa",
+    "wcag22aa"
+  ],
+  "pages": [
+    {
+      "file": "screens/S-001-giving-home/failed-payment.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "failed-payment",
+      "title": "Failed payment: grant payment returned by charity's bank",
+      "persona": "Donor",
+      "scenarios": [
+        "failed-payment",
+        "attention-required"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 3 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review options",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 3 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review options",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 3 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review options",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 3 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review options",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 3 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review options",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/integration-unavailable.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "integration-unavailable",
+      "title": "Investment pricing unavailable (integration down)",
+      "persona": "Donor",
+      "scenarios": [
+        "integration-unavailable"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/loading.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "loading",
+      "title": "Loading: skeleton matches the final layout",
+      "persona": "Donor",
+      "scenarios": [
+        "loading"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/new-fund.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "new-fund",
+      "title": "New fund: no contributions yet (onboarding)",
+      "persona": "Donor, fund opened today",
+      "scenarios": [
+        "no-contributions",
+        "no-grants"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Add money",
+            "Find a charity",
+            "Contact donor services",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Add money",
+            "Find a charity",
+            "Contact donor services",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Add money",
+            "Find a charity",
+            "Contact donor services",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Add money",
+            "Find a charity",
+            "Contact donor services",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Add money",
+            "Find a charity",
+            "Contact donor services",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/no-grants.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "no-grants",
+      "title": "Money available, no grants yet",
+      "persona": "Donor, first contribution settled",
+      "scenarios": [
+        "no-grants"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "How we calculate this",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "How we calculate this",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "How we calculate this",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "How we calculate this",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "How we calculate this",
+            "Recommend a grant",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/normal.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "normal",
+      "title": "Normal: pending grants and two attention items",
+      "persona": "Donor (primary advisor)",
+      "scenarios": [
+        "normal",
+        "pending-grants",
+        "attention-required"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/read-only.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "read-only",
+      "title": "Read-only: financial advisor with view access",
+      "persona": "Financial advisor (view only)",
+      "scenarios": [
+        "read-only"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Download statement",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Download statement",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Download statement",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Download statement",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications",
+            "Account menu for Jordan Patel",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Download statement",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/restricted.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "restricted",
+      "title": "Restricted: grant recommendations paused by sponsor review",
+      "persona": "Donor",
+      "scenarios": [
+        "restricted-fund"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Contact donor services",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Contact donor services",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Contact donor services",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Contact donor services",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Contact donor services",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/stale-balance.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "stale-balance",
+      "title": "Available to grant cannot be confirmed (stale)",
+      "persona": "Donor",
+      "scenarios": [
+        "stale-balances"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/succession.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "succession",
+      "title": "Succession pending: successor's first view",
+      "persona": "Successor advisor before activation",
+      "scenarios": [
+        "succession-pending",
+        "suspended-fund"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Review and accept",
+            "Decline or ask a question",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Review and accept",
+            "Decline or ask a question",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Review and accept",
+            "Decline or ask a question",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Review and accept",
+            "Decline or ask a question",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Account menu for Maya Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Review and accept",
+            "Decline or ask a question",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/suspended.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "suspended",
+      "title": "Fund suspended by sponsor",
+      "persona": "Donor",
+      "scenarios": [
+        "suspended-fund"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Complete certification",
+            "Contact donor services",
+            "How we calculate this",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Complete certification",
+            "Contact donor services",
+            "How we calculate this",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Complete certification",
+            "Contact donor services",
+            "How we calculate this",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Complete certification",
+            "Contact donor services",
+            "How we calculate this",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Unbound Giving",
+            "Help",
+            "Notifications, 1 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Complete certification",
+            "Contact donor services",
+            "How we calculate this",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    },
+    {
+      "file": "screens/S-001-giving-home/white-label.html",
+      "screen": "S-001",
+      "requirement": "UNB-UI-S-001",
+      "state": "white-label",
+      "title": "White-labelled sponsor (Harbor Giving brand manifest)",
+      "persona": "Donor (primary advisor)",
+      "scenarios": [
+        "white-label",
+        "normal"
+      ],
+      "kind": "app",
+      "results": [
+        {
+          "viewport": "phone",
+          "width": 390,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 390,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Harbor Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "reflow320",
+          "width": 320,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 320,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Harbor Giving",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "zoom200",
+          "width": 640,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 640,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Harbor Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "tablet",
+          "width": 768,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 768,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Harbor Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Menu",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        },
+        {
+          "viewport": "desktop",
+          "width": 1280,
+          "failures": [],
+          "axe": [],
+          "base": {
+            "overflowX": false,
+            "scrollWidth": 1280,
+            "wrappedMoney": [],
+            "smallTargets": [],
+            "h1Count": 1,
+            "skippedHeadingLevels": 0,
+            "duplicateNavLabels": false,
+            "mainCount": 1
+          },
+          "focusOrder": [
+            "Skip to main content",
+            "Harbor Giving",
+            "Help",
+            "Notifications, 2 unread",
+            "Account menu for Elin Lindqvist",
+            "Home",
+            "Grants",
+            "Add money",
+            "Documents",
+            "People",
+            "Lindqvist Family Fund. Switch fund",
+            "Add money",
+            "Recommend a grant",
+            "Review and confirm",
+            "Review options",
+            "How we calculate this",
+            "Riverside Food Bank",
+            "City Arts Council",
+            "Northgate Literacy Project",
+            "All grants",
+            "All activity and statements",
+            "Program terms",
+            "Privacy",
+            "Accessibility"
+          ],
+          "spacing": {
+            "clipped": [],
+            "overflowX": false,
+            "wrappedMoney": []
+          }
+        }
+      ],
+      "pass": true
+    }
+  ],
+  "passing": 12
+}

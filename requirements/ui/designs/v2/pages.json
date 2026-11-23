@@ -1,0 +1,152 @@
+[
+  {
+    "file": "screens/S-001-giving-home/normal.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "normal",
+    "title": "Normal: pending grants and two attention items",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "normal",
+      "pending-grants",
+      "attention-required"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/white-label.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "white-label",
+    "title": "White-labelled sponsor (Harbor Giving brand manifest)",
+    "persona": "Donor (primary advisor)",
+    "scenarios": [
+      "white-label",
+      "normal"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/loading.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "loading",
+    "title": "Loading: skeleton matches the final layout",
+    "persona": "Donor",
+    "scenarios": [
+      "loading"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/new-fund.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "new-fund",
+    "title": "New fund: no contributions yet (onboarding)",
+    "persona": "Donor, fund opened today",
+    "scenarios": [
+      "no-contributions",
+      "no-grants"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/no-grants.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "no-grants",
+    "title": "Money available, no grants yet",
+    "persona": "Donor, first contribution settled",
+    "scenarios": [
+      "no-grants"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/stale-balance.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "stale-balance",
+    "title": "Available to grant cannot be confirmed (stale)",
+    "persona": "Donor",
+    "scenarios": [
+      "stale-balances"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/integration-unavailable.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "integration-unavailable",
+    "title": "Investment pricing unavailable (integration down)",
+    "persona": "Donor",
+    "scenarios": [
+      "integration-unavailable"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/restricted.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "restricted",
+    "title": "Restricted: grant recommendations paused by sponsor review",
+    "persona": "Donor",
+    "scenarios": [
+      "restricted-fund"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/suspended.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "suspended",
+    "title": "Fund suspended by sponsor",
+    "persona": "Donor",
+    "scenarios": [
+      "suspended-fund"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/succession.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "succession",
+    "title": "Succession pending: successor's first view",
+    "persona": "Successor advisor before activation",
+    "scenarios": [
+      "succession-pending",
+      "suspended-fund"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/read-only.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "read-only",
+    "title": "Read-only: financial advisor with view access",
+    "persona": "Financial advisor (view only)",
+    "scenarios": [
+      "read-only"
+    ],
+    "kind": "app"
+  },
+  {
+    "file": "screens/S-001-giving-home/failed-payment.html",
+    "screen": "S-001",
+    "requirement": "UNB-UI-S-001",
+    "state": "failed-payment",
+    "title": "Failed payment: grant payment returned by charity's bank",
+    "persona": "Donor",
+    "scenarios": [
+      "failed-payment",
+      "attention-required"
+    ],
+    "kind": "app"
+  }
+]

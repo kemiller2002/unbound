@@ -24,3 +24,4 @@ the Forma version in a global runtime registry). Dialogs and flyouts open with n
 
 `brands/example-harbor.css` is Forma's compiled example Brand Manifest; the screens use it
 as the stand-in for the fictional sponsor brand "Harbor Giving" (`data-forma-brand="example-harbor"`).
+icons-registry.json: kemiller2002/forma icons/registry.json @ d7c499e (80 icons, 24px grid, 1.8 stroke). Rendered with Forma's .forma-icon markup.

@@ -1,0 +1,459 @@
+/*
+ * Unbound application layer: DESIGN PROTOTYPE, not production UI.
+ *
+ * Purpose: make the proposed design requirements (report 18, UNB-UI-DS/N/F/R/A-*)
+ * concrete enough to screenshot, measure and test. Every block below is a
+ * PROPOSED reusable component. Its owner is Forma (brand-neutral) unless marked
+ * Unbound. Each block names the component-gap id (data/ui-component-gaps.csv)
+ * that asks for it, so nothing here claims to be a shipped Forma feature.
+ *
+ * Rules (same discipline as the Echelon theme's app layer, inverted for white labels):
+ *   - brand-agnostic: no brand selector. Every colour derives from Forma semantic
+ *     tokens (--forma-color-*), so a sponsor brand compiled by Forma's
+ *     BrandCompiler restyles the whole layer (UNB-UI-DS-012);
+ *   - Forma's namespace is used, never defined; local properties are --unb-*;
+ *   - layout uses only Forma's verified spacing (--forma-space-1..8),
+ *     radius and target-size tokens; the 3 breakpoints are the proposed
+ *     UNB-UI-R-001 values (Forma has no breakpoint tokens: FORMA-GAP-19);
+ *   - no infinite animation without a reduced-motion stop; forced-colours
+ *     rules use system colours only.
+ *
+ * Load order: forma all.css -> brand css -> echelon fonts (default brand only) -> this file.
+ */
+@layer unbound.proto {
+  /* ---- Derived tokens (UNB-UI-DS-001..006) ------------------------------ */
+  :root,
+  [data-forma-brand] {
+    --unb-canvas: var(--forma-color-surface-primary);
+    --unb-raised: color-mix(in srgb, var(--forma-color-surface-primary) 35%, #fff);
+    --unb-sunken: color-mix(in srgb, var(--forma-color-surface-primary) 60%, var(--forma-color-surface-secondary));
+    --unb-rule: color-mix(in srgb, var(--forma-color-border-subtle) 70%, var(--forma-color-border-functional));
+    --unb-rule-soft: var(--forma-color-border-subtle);
+    --unb-chrome: var(--forma-color-surface-inverse);
+    --unb-on-chrome: var(--forma-color-text-inverse);
+    --unb-accent: var(--forma-color-accent-primary);
+    --unb-accent-wash: color-mix(in srgb, var(--forma-color-accent-primary) 9%, var(--unb-raised));
+    --unb-ok: var(--forma-color-status-success);
+    --unb-warn: var(--forma-color-status-warning);
+    --unb-danger: var(--forma-color-status-danger);
+    --unb-info: var(--forma-color-status-info);
+    --unb-radius-control: var(--forma-primitive-radius-small, 4px);
+    --unb-radius-container: var(--forma-primitive-radius-medium, 8px);
+    --unb-elev-1: 0 1px 2px rgb(0 0 0 / 0.05), 0 4px 14px -8px rgb(0 0 0 / 0.18);
+    --unb-target: var(--forma-primitive-size-target-min, 2.75rem);
+    /* Application type scale (UNB-UI-DS-002). Forma's h1/h2 sizes are
+       marketing display sizes with 14ch/18ch measures; an app needs a fixed,
+       compact scale (FORMA-GAP-18). */
+    --unb-type-display: clamp(2rem, 1.6rem + 1.6vw, 2.75rem);
+    --unb-type-page: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+    --unb-type-section: 1.125rem;
+    --unb-type-body: 1rem;
+    --unb-type-small: 0.875rem;
+    --unb-type-micro: 0.8125rem;
+    --unb-weight-label: 600;
+    --unb-nav-width: 15.5rem;
+    --unb-content-max: 72rem;
+  }
+  [data-forma-theme="dark"] {
+    --unb-raised: color-mix(in srgb, var(--forma-color-surface-primary) 70%, var(--forma-color-surface-secondary));
+    --unb-sunken: color-mix(in srgb, var(--forma-color-surface-primary) 80%, #000);
+    --unb-elev-1: none;
+  }
+
+  /* ---- Base ------------------------------------------------------------ */
+  body.unb-app {
+    margin: 0;
+    background: var(--unb-canvas);
+    color: var(--forma-color-text-primary);
+    font-family: var(--forma-type-family-body);
+    font-size: var(--unb-type-body);
+    line-height: 1.5;
+  }
+  .unb-app :is(h1, h2, h3, h4) {
+    max-inline-size: none;
+    color: var(--forma-color-text-heading);
+    font-family: var(--forma-type-family-body);
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+    margin: 0;
+  }
+  .unb-app h1 { font-size: var(--unb-type-page); font-weight: 650; }
+  .unb-app h2 { font-size: var(--unb-type-section); font-weight: 650; }
+  .unb-app h3 { font-size: 1rem; font-weight: 650; }
+  .unb-app p { margin: 0; max-inline-size: 68ch; }
+  .unb-app :focus-visible {
+    outline: 3px solid var(--forma-color-focus-ring);
+    outline-offset: 2px;
+    box-shadow: 0 0 0 2px var(--forma-color-focus-gap);
+  }
+  .unb-muted { color: var(--forma-color-text-secondary); }
+  .unb-small { font-size: var(--unb-type-small); }
+
+  /* ---- Money and numbers (UNB-UI-F-001..006) ---------------------------- */
+  /* A money value is one unbreakable token with tabular figures; the
+     container, never the number, gives way (FORMA-GAP-08). */
+  .unb-money {
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums lining-nums;
+    font-feature-settings: "tnum" 1, "lnum" 1;
+  }
+  .unb-money__cents { font-size: 0.62em; vertical-align: 0.42em; margin-inline-start: 0.04em; }
+  .unb-money[data-sign="negative"] { color: var(--forma-color-text-primary); }
+  .unb-num { font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+  /* ---- Application frame (UNB-UI-N-001..004; FORMA-GAP-06) -------------- */
+  .unb-skip {
+    position: absolute; inset-inline-start: var(--forma-space-4); inset-block-start: -10rem;
+    z-index: 10; padding: var(--forma-space-3) var(--forma-space-4);
+    background: var(--unb-raised); color: var(--forma-color-text-primary);
+    border: 2px solid var(--forma-color-focus-ring); border-radius: var(--unb-radius-control);
+  }
+  .unb-skip { transition: none; }
+  .unb-skip:focus { inset-block-start: var(--forma-space-2); }
+  /* Focus not obscured (WCAG 2.4.11): keep focused items clear of the fixed phone tab bar. */
+  html:has(.unb-tabbar) { scroll-padding-block: 1rem 5rem; }
+  @media (min-width: 64rem) { html:has(.unb-tabbar) { scroll-padding-block: 1rem; } }
+
+  .unb-appbar {
+    display: flex; align-items: center; gap: var(--forma-space-3);
+    min-block-size: 3.5rem; padding: 0 clamp(var(--forma-space-3), 3vw, var(--forma-space-7));
+    background: var(--unb-chrome); color: var(--unb-on-chrome);
+    border-block-end: 3px solid var(--unb-accent);
+  }
+  .unb-appbar a, .unb-appbar button { color: inherit; }
+  .unb-appbar__brand {
+    display: inline-flex; align-items: center; gap: var(--forma-space-2);
+    font-weight: 700; font-size: 1.0625rem; text-decoration: none; min-block-size: var(--unb-target);
+    white-space: nowrap;
+  }
+  .unb-appbar__mark {
+    inline-size: 1.75rem; block-size: 1.75rem; border-radius: var(--unb-radius-control);
+    display: grid; place-items: center;
+    background: var(--unb-on-chrome); color: var(--unb-chrome);
+  }
+  .unb-appbar__mark svg { inline-size: 1.1rem; block-size: 1.1rem; }
+  .unb-appbar__context {
+    display: none; padding-inline-start: var(--forma-space-3);
+    border-inline-start: 1px solid color-mix(in srgb, var(--unb-on-chrome) 40%, transparent);
+    font-size: var(--unb-type-small); opacity: 0.92; white-space: nowrap;
+  }
+  .unb-appbar__end { margin-inline-start: auto; display: flex; align-items: center; gap: var(--forma-space-1); }
+  .unb-iconbtn {
+    position: relative; display: inline-grid; place-items: center;
+    inline-size: var(--unb-target); block-size: var(--unb-target);
+    border: 0; border-radius: var(--unb-radius-control); background: transparent; color: inherit; cursor: pointer; padding: 0; min-inline-size: var(--unb-target);
+  }
+  .unb-iconbtn:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .unb-iconbtn svg { inline-size: 1.35rem; block-size: 1.35rem; }
+  .unb-iconbtn__dot {
+    position: absolute; inset-block-start: 0.55rem; inset-inline-end: 0.55rem;
+    min-inline-size: 1.05rem; block-size: 1.05rem; padding: 0 0.2rem; border-radius: 999px;
+    background: var(--unb-on-chrome); color: var(--unb-chrome);
+    font-size: 0.6875rem; font-weight: 700; line-height: 1.05rem; text-align: center;
+  }
+  .unb-user {
+    display: none; align-items: center; gap: var(--forma-space-2);
+    padding: 0 var(--forma-space-2); min-block-size: var(--unb-target);
+    border: 0; background: transparent; font: inherit; font-size: var(--unb-type-small); cursor: pointer;
+    border-radius: var(--unb-radius-control);
+  }
+  .unb-user:hover { background: color-mix(in srgb, currentColor 12%, transparent); }
+  .unb-avatar {
+    inline-size: 2rem; block-size: 2rem; border-radius: 50%; display: grid; place-items: center;
+    background: color-mix(in srgb, var(--unb-on-chrome) 18%, transparent);
+    border: 1px solid color-mix(in srgb, var(--unb-on-chrome) 45%, transparent);
+    font-weight: 700; font-size: 0.75rem;
+  }
+
+  .unb-frame { display: grid; grid-template-columns: minmax(0, 1fr); min-block-size: calc(100vh - 3.5rem); }
+  .unb-sidenav { display: none; }
+  .unb-main { min-inline-size: 0; padding: var(--forma-space-5) var(--forma-space-4) 6.5rem; }
+  .unb-main__inner { max-inline-size: var(--unb-content-max); margin-inline: auto; display: grid; gap: var(--forma-space-6); }
+
+  .unb-sidenav__list { list-style: none; margin: 0; padding: 0; display: grid; gap: 2px; }
+  .unb-sidenav a, .unb-tabbar a {
+    display: flex; align-items: center; gap: var(--forma-space-3);
+    min-block-size: var(--unb-target); padding: 0 var(--forma-space-3);
+    border-radius: var(--unb-radius-control);
+    color: var(--forma-color-text-on-secondary-surface); text-decoration: none; font-weight: 550;
+  }
+  .unb-sidenav a:hover { background: color-mix(in srgb, var(--forma-color-text-primary) 6%, transparent); }
+  .unb-sidenav a[aria-current="page"] {
+    background: var(--unb-raised); color: var(--forma-color-text-heading); font-weight: 700;
+    box-shadow: inset 3px 0 0 var(--unb-accent), var(--unb-elev-1);
+  }
+  .unb-sidenav svg, .unb-tabbar svg { inline-size: 1.25rem; block-size: 1.25rem; flex: none; }
+  .unb-sidenav__group { margin-block-start: var(--forma-space-5); padding: 0 var(--forma-space-3) var(--forma-space-1); font-size: var(--unb-type-micro); font-weight: 700; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-sidenav__count { margin-inline-start: auto; font-size: var(--unb-type-micro); font-weight: 700; }
+
+  /* Phone bottom navigation (UNB-UI-N-003). Five destinations max; labels always visible. */
+  .unb-tabbar {
+    position: fixed; inset-inline: 0; inset-block-end: 0; z-index: 5;
+    display: grid; grid-template-columns: repeat(var(--unb-tabs, 4), minmax(0, 1fr));
+    background: var(--unb-raised); border-block-start: 1px solid var(--unb-rule);
+    padding-block-end: env(safe-area-inset-bottom);
+  }
+  .unb-tabbar[data-tabs="2"] { --unb-tabs: 2; }
+  .unb-tabbar[data-tabs="4"] { --unb-tabs: 4; }
+  .unb-legal { display: grid; gap: var(--forma-space-2); padding-block-start: var(--forma-space-5); border-block-start: 1px solid var(--unb-rule-soft); }
+  .unb-legal a { color: inherit; }
+  .unb-tabbar a {
+    flex-direction: column; justify-content: center; gap: 2px; padding: var(--forma-space-1) 0;
+    min-block-size: 3.5rem; font-size: 0.75rem; font-weight: 600; border-radius: 0; text-align: center;
+  }
+  .unb-tabbar a[aria-current="page"] { color: var(--forma-color-text-heading); box-shadow: inset 0 3px 0 var(--unb-accent); font-weight: 800; }
+
+  /* ---- Page header (UNB-UI-N-005) ---------------------------------------- */
+  .unb-pagehead { display: grid; gap: var(--forma-space-4); }
+  .unb-pagehead__context { display: flex; flex-wrap: wrap; gap: var(--forma-space-2) var(--forma-space-3); align-items: center; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-pagehead__row { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: var(--forma-space-4); }
+  /* Actions sit under the title on phones (full width, not sticky: a sticky bar on
+     top of the bottom navigation took 13% of an 844px screen). */
+  .unb-pagehead__actions { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: var(--forma-space-3); inline-size: 100%; }
+  .unb-fundswitch {
+    display: inline-flex; align-items: center; gap: var(--forma-space-2);
+    min-block-size: var(--unb-target); padding: 0 var(--forma-space-2) 0 0; margin-block: calc(var(--forma-space-2) * -1);
+    border: 0; background: none; font: inherit; color: var(--forma-color-text-heading); cursor: pointer;
+  }
+  .unb-fundswitch svg { inline-size: 1.1rem; block-size: 1.1rem; }
+
+  /* ---- Buttons: emphasis on top of Forma's button (FORMA-GAP-01) -------- */
+  .unb-app .forma-button { min-block-size: var(--unb-target); white-space: nowrap; }
+  .unb-app .forma-button {
+    display: inline-flex; align-items: center; justify-content: center; gap: var(--forma-space-2);
+    padding: 0 var(--forma-space-4); border-radius: var(--unb-radius-control);
+    border: 1px solid var(--forma-color-border-functional); background: var(--unb-raised);
+    color: var(--forma-color-text-heading); font-weight: 650; text-decoration: none; line-height: 1.2;
+  }
+  .unb-app .forma-button:hover { background: var(--unb-sunken); }
+  /* Primary emphasis: Forma 1.0.2 styles data-forma-variant="primary" only inside
+     the marketing .forma-site frame (FORMA-GAP-01, forma#186). */
+  .unb-app .forma-button[data-forma-variant="primary"] {
+    background: var(--unb-accent); border-color: var(--unb-accent); color: var(--forma-color-text-inverse); font-weight: 700;
+  }
+  .unb-app .forma-button[data-forma-variant="primary"]:hover { background: color-mix(in srgb, var(--unb-accent) 85%, #000); }
+  :where(.unb-app svg.forma-icon__svg) { inline-size: 1.25rem; block-size: 1.25rem; flex: none; }
+  .unb-user svg.forma-icon__svg { inline-size: 1rem; block-size: 1rem; }
+  .unb-user > span:not(.unb-avatar) { white-space: nowrap; }
+  .unb-user__role { font-weight: 400; }
+  /* Below 24rem (320 px reflow) Help moves into the menu; the bar keeps brand, notifications and menu. */
+  @media (max-width: 23.99rem) { .unb-hide-narrow { display: none; } .unb-appbar { gap: var(--forma-space-2); } }
+  .unb-btn-quiet {
+    display: inline-flex; align-items: center; gap: var(--forma-space-2);
+    min-block-size: var(--unb-target); padding: 0 var(--forma-space-1);
+    border: 0; background: none; font: inherit; font-weight: 650; color: var(--forma-color-text-heading);
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em; cursor: pointer;
+  }
+  .unb-btn-quiet:hover { text-decoration-thickness: 2px; }
+  .unb-btn-quiet svg { inline-size: 1rem; block-size: 1rem; }
+  .unb-btn-full { inline-size: 100%; justify-content: center; }
+
+  /* ---- Panel (UNB-UI-DS-007; FORMA-GAP-20) -------------------------------- */
+  .unb-panel {
+    min-inline-size: 0; background: var(--unb-raised);
+    border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-container);
+    box-shadow: var(--unb-elev-1);
+  }
+  .unb-panel__head {
+    display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--forma-space-2) var(--forma-space-4);
+    padding: var(--forma-space-4) var(--forma-space-5) 0;
+  }
+  .unb-panel__body { padding: var(--forma-space-4) var(--forma-space-5) var(--forma-space-5); display: grid; gap: var(--forma-space-4); }
+  .unb-panel__foot { padding: var(--forma-space-3) var(--forma-space-5); border-block-start: 1px solid var(--unb-rule-soft); display: flex; flex-wrap: wrap; gap: var(--forma-space-3); align-items: center; justify-content: space-between; }
+  .unb-panel[data-tone="attention"] { border-inline-start: 4px solid var(--unb-warn); }
+
+  /* ---- Balance hero (UNB-UI-F-002; Unbound) ------------------------------ */
+  .unb-balance { display: grid; gap: var(--forma-space-5); }
+  .unb-balance__label { display: flex; align-items: center; gap: var(--forma-space-2); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-balance__value {
+    font-family: var(--forma-type-family-display); font-weight: 500;
+    font-size: var(--unb-type-display); line-height: 1.05; letter-spacing: -0.02em;
+    color: var(--forma-color-text-heading);
+  }
+  .unb-balance__meta { display: flex; flex-wrap: wrap; gap: var(--forma-space-1) var(--forma-space-4); font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-balance__meta > * { display: inline-flex; align-items: center; gap: var(--forma-space-1); }
+  .unb-balance__meta svg { inline-size: 1rem; block-size: 1rem; }
+
+  /* Allocation bar: proportions of fund value, text is the source of truth
+     (UNB-UI-F-007; Forma allocation is an input control, not a display: FORMA-GAP-12). */
+  .unb-alloc { display: grid; gap: var(--forma-space-3); }
+  .unb-alloc__bar { display: flex; block-size: 0.75rem; border-radius: 999px; overflow: hidden; background: var(--unb-sunken); gap: 2px; }
+  .unb-alloc__seg { block-size: 100%; }
+  .unb-alloc__seg[data-part="available"] { background: var(--unb-accent); }
+  .unb-alloc__seg[data-part="committed"] { background: repeating-linear-gradient(135deg, var(--forma-color-text-secondary) 0 3px, transparent 3px 6px); }
+  .unb-alloc__seg[data-part="settling"] { background: repeating-linear-gradient(90deg, var(--forma-color-text-secondary) 0 2px, transparent 2px 5px); }
+  .unb-alloc__legend { list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-2); }
+  .unb-alloc__legend li { display: grid; grid-template-columns: 0.875rem minmax(0, 1fr) auto; gap: var(--forma-space-3); align-items: baseline; }
+  .unb-alloc__key { inline-size: 0.875rem; block-size: 0.875rem; border-radius: 3px; align-self: start; margin-block-start: 0.32em; border: 1px solid var(--forma-color-border-functional); }
+  .unb-alloc__key[data-part="available"] { background: var(--unb-accent); border-color: var(--unb-accent); }
+  .unb-alloc__key[data-part="committed"] { background: repeating-linear-gradient(135deg, var(--forma-color-text-secondary) 0 2px, transparent 2px 4px); }
+  .unb-alloc__key[data-part="settling"] { background: repeating-linear-gradient(90deg, var(--forma-color-text-secondary) 0 1.5px, transparent 1.5px 3.5px); }
+  .unb-alloc__key[data-part="total"] { visibility: hidden; }
+  .unb-alloc__legend li[data-part="total"] { padding-block-start: var(--forma-space-2); border-block-start: 1px solid var(--unb-rule-soft); font-weight: 650; }
+  .unb-alloc__legend .unb-money { text-align: end; }
+  .unb-alloc__legend li > span:not(.unb-money, .unb-alloc__key) { overflow-wrap: break-word; min-inline-size: 0; }
+  .unb-pagehead__actions .forma-button { white-space: normal; text-align: center; padding-block: var(--forma-space-2); }
+  .unb-alloc__legend small { display: block; color: var(--forma-color-text-secondary); font-size: var(--unb-type-micro); }
+
+  /* ---- Status chip (UNB-UI-DS-008; FORMA-GAP-21) ---------------------------
+     Sentence case, body font, glyph + words; never colour alone. */
+  .unb-chip {
+    display: inline-flex; align-items: center; gap: 0.3rem; max-inline-size: 100%;
+    padding: 0.125rem 0.5rem 0.125rem 0.375rem; border-radius: 999px;
+    border: 1px solid currentColor; background: var(--unb-raised);
+    font-size: var(--unb-type-micro); font-weight: 650; line-height: 1.35; white-space: nowrap;
+  }
+  .unb-chip svg { inline-size: 0.9rem; block-size: 0.9rem; flex: none; }
+  .unb-chip[data-state="ok"] { color: var(--unb-ok); }
+  .unb-chip[data-state="attention"] { color: var(--unb-warn); }
+  .unb-chip[data-state="blocked"] { color: var(--unb-danger); }
+  .unb-chip[data-state="info"], .unb-chip[data-state="unknown"] { color: var(--unb-info); }
+  .unb-chip[data-state="neutral"] { color: var(--forma-color-text-on-secondary-surface); }
+
+  /* ---- Task list: things that need the user (UNB-UI-DS-009; FORMA-GAP-22) */
+  .unb-tasks { list-style: none; margin: 0; padding: 0; display: grid; }
+  .unb-task {
+    display: grid; grid-template-columns: 2.25rem minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3);
+    padding: var(--forma-space-4) 0; border-block-start: 1px solid var(--unb-rule-soft);
+  }
+  .unb-task:first-child { border-block-start: 0; padding-block-start: 0; }
+  .unb-task:last-child { padding-block-end: 0; }
+  .unb-task__icon { grid-row: span 3; inline-size: 2.25rem; block-size: 2.25rem; border-radius: 50%; display: grid; place-items: center; border: 1.5px solid currentColor; }
+  .unb-task__icon svg { inline-size: 1.15rem; block-size: 1.15rem; }
+  .unb-task[data-state="blocked"] .unb-task__icon { color: var(--unb-danger); }
+  .unb-task[data-state="attention"] .unb-task__icon { color: var(--unb-warn); }
+  .unb-task[data-state="info"] .unb-task__icon { color: var(--unb-info); }
+  .unb-task__icon--neutral { color: var(--forma-color-text-on-secondary-surface); border-color: var(--unb-rule); }
+  .unb-grant-row { row-gap: var(--forma-space-2); }
+  .unb-grant-row .unb-task__title a { color: inherit; text-underline-offset: 0.2em; display: inline-block; padding-block: 0.125rem; }
+  .unb-empty { display: grid; gap: var(--forma-space-2); justify-items: start; padding: var(--forma-space-3) 0; }
+  .unb-task__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-task__text { color: var(--forma-color-text-secondary); font-size: var(--unb-type-small); }
+  .unb-task__action { display: flex; flex-wrap: wrap; gap: var(--forma-space-3); align-items: center; margin-block-start: var(--forma-space-2); }
+
+  /* ---- Ledger list: amounts right, tabular (UNB-UI-F-004; dense-ledger-like) */
+  .unb-ledger { inline-size: 100%; border-collapse: collapse; font-size: var(--unb-type-small); }
+  .unb-ledger caption { text-align: start; }
+  .unb-ledger th { text-align: start; font-weight: 650; font-size: var(--unb-type-micro); color: var(--forma-color-text-on-secondary-surface); padding: 0 var(--forma-space-3) var(--forma-space-2) 0; border-block-end: 1px solid var(--unb-rule); }
+  .unb-ledger td { padding: var(--forma-space-3) var(--forma-space-3) var(--forma-space-3) 0; border-block-end: 1px solid var(--unb-rule-soft); vertical-align: top; }
+  .unb-ledger tr:last-child td { border-block-end: 0; }
+  .unb-ledger :is(th, td):last-child { padding-inline-end: 0; }
+  .unb-ledger [data-col="amount"] { text-align: end; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .unb-ledger [data-col="date"] { white-space: nowrap; color: var(--forma-color-text-secondary); }
+  .unb-ledger__primary { font-weight: 650; color: var(--forma-color-text-heading); font-size: var(--unb-type-body); }
+  .unb-ledger__primary a { color: inherit; }
+  .unb-ledger__secondary { color: var(--forma-color-text-secondary); }
+  /* Phone: rows become two-line records, amount stays on the first line. */
+  .unb-panel__body { container-type: inline-size; }
+  @container (max-width: 34rem) {
+    .unb-ledger thead { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); }
+    .unb-ledger tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--forma-space-3); padding: var(--forma-space-3) 0; border-block-end: 1px solid var(--unb-rule-soft); }
+    .unb-ledger tr:last-child { border-block-end: 0; }
+    .unb-ledger td { display: block; padding: 0; border: 0; }
+    .unb-ledger [data-col="what"] { grid-column: 1; }
+    .unb-ledger [data-col="amount"] { grid-column: 2; grid-row: 1; }
+    .unb-ledger [data-col="status"] { grid-column: 1; grid-row: 2; }
+    .unb-ledger [data-col="date"] { grid-column: 2; grid-row: 2; text-align: end; }
+  }
+
+  /* ---- Notice / banner (UNB-UI-DS-010; maps to Forma callout/fault-banner) */
+  .unb-notice {
+    display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3);
+    padding: var(--forma-space-4) var(--forma-space-5); border-radius: var(--unb-radius-container);
+    border: 1px solid var(--unb-rule); border-inline-start-width: 5px; background: var(--unb-raised);
+  }
+  .unb-notice > svg { inline-size: 1.4rem; block-size: 1.4rem; grid-row: span 3; margin-block-start: 1px; }
+  .unb-notice[data-state="blocked"] { border-inline-start-color: var(--unb-danger); }
+  .unb-notice[data-state="blocked"] > svg { color: var(--unb-danger); }
+  .unb-notice[data-state="attention"] { border-inline-start-color: var(--unb-warn); }
+  .unb-notice[data-state="attention"] > svg { color: var(--unb-warn); }
+  .unb-notice[data-state="info"] { border-inline-start-color: var(--unb-info); }
+  .unb-notice[data-state="info"] > svg { color: var(--unb-info); }
+  .unb-notice__title { font-weight: 700; color: var(--forma-color-text-heading); font-size: 1rem; }
+  .unb-notice__body { display: grid; gap: var(--forma-space-2); font-size: var(--unb-type-small); }
+  .unb-notice__actions { display: flex; flex-wrap: wrap; gap: var(--forma-space-3); margin-block-start: var(--forma-space-2); }
+
+  /* ---- Progress steps for one record (UNB-UI-DS-011; Forma steps/timeline) */
+  .unb-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--forma-space-1); }
+  .unb-steps li { flex: 1; display: grid; gap: 4px; font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+  .unb-steps li::before { content: ""; block-size: 4px; border-radius: 2px; background: var(--unb-rule-soft); }
+  .unb-steps li[data-step="done"]::before { background: var(--forma-color-text-on-secondary-surface); }
+  .unb-steps li[data-step="current"]::before { background: var(--unb-accent); }
+  .unb-steps li[data-step="current"] { color: var(--forma-color-text-heading); font-weight: 700; }
+  .unb-steps li[data-step="failed"]::before { background: var(--unb-danger); }
+  .unb-steps li[data-step="failed"] { color: var(--unb-danger); font-weight: 700; }
+
+  /* ---- Layout grids (UNB-UI-R-002) ----------------------------------------- */
+  /* Home grid: source order = priority order on phone (attention, balance,
+     grants, activity); named areas place them on wider screens (UNB-UI-R-003). */
+  .unb-grid-home { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .unb-grid-home > [data-area] { min-inline-size: 0; display: grid; gap: var(--forma-space-5); }
+  .unb-stack { display: grid; gap: var(--forma-space-5); align-content: start; min-inline-size: 0; }
+  .unb-cluster { display: flex; flex-wrap: wrap; gap: var(--forma-space-2) var(--forma-space-3); align-items: center; }
+  .unb-split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: var(--forma-space-2) var(--forma-space-4); }
+  .unb-dl { display: grid; gap: var(--forma-space-3); margin: 0; }
+  .unb-dl > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--forma-space-3); align-items: baseline; }
+  .unb-dl dt { color: var(--forma-color-text-secondary); font-size: var(--unb-type-small); }
+  .unb-dl dd { margin: 0; text-align: end; font-weight: 600; }
+
+  /* ---- Onboarding checklist (UNB-UI-DS-013; Forma readiness-checklist) ---- */
+  .unb-checklist { list-style: none; margin: 0; padding: 0; counter-reset: unb-step; display: grid; }
+  .unb-checklist li { display: grid; grid-template-columns: 2rem minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3); padding: var(--forma-space-4) 0; border-block-start: 1px solid var(--unb-rule-soft); counter-increment: unb-step; }
+  .unb-checklist li:first-child { border-block-start: 0; padding-block-start: 0; }
+  .unb-checklist li::before {
+    content: counter(unb-step); grid-row: span 3; inline-size: 2rem; block-size: 2rem; border-radius: 50%;
+    display: grid; place-items: center; font-weight: 700; font-size: var(--unb-type-small);
+    border: 1.5px solid var(--forma-color-border-functional);
+  }
+  .unb-checklist li[data-step="done"]::before { content: "✓"; background: var(--forma-color-text-on-secondary-surface); color: var(--unb-raised); border-color: transparent; }
+  .unb-checklist li[data-step="current"]::before { background: var(--unb-accent); border-color: var(--unb-accent); color: var(--forma-color-text-inverse); }
+  .unb-checklist__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-checklist li[data-step="done"] .unb-checklist__title { color: var(--forma-color-text-secondary); font-weight: 550; }
+
+  /* ---- Skeleton that matches final geometry (UNB-UI-DS-014; Forma skeleton) */
+  .unb-skel { display: block; border-radius: var(--unb-radius-control); background: var(--unb-sunken); }
+  .unb-skel[data-shape="value"] { block-size: 2.75rem; inline-size: min(16rem, 70%); }
+  .unb-skel[data-shape="line"] { block-size: 0.875rem; inline-size: 100%; }
+  .unb-skel[data-shape="line-short"] { block-size: 0.875rem; inline-size: 45%; }
+  .unb-skel[data-shape="bar"] { block-size: 0.75rem; inline-size: 100%; border-radius: 999px; }
+  .unb-skel[data-shape="row"] { block-size: 2.75rem; inline-size: 100%; }
+  @media (prefers-reduced-motion: no-preference) {
+    .unb-skel { animation: unb-pulse 1.6s ease-in-out infinite; }
+  }
+  @keyframes unb-pulse { 50% { opacity: 0.55; } }
+
+  /* ---- Embedded widget frame (UNB-UI-W-001; UNB-GAP-W-01) ------------------ */
+  body.unb-widget { margin: 0; background: transparent; font-family: var(--forma-type-family-body); color: var(--forma-color-text-primary); }
+  .unb-widget__card { display: grid; gap: var(--forma-space-4); padding: var(--forma-space-4); background: var(--unb-raised); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-container); }
+  .unb-widget__by { font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+
+  /* ---- Breakpoints (UNB-UI-R-001): phone < 48rem <= tablet < 64rem <= desktop */
+  @media (min-width: 48rem) {
+    .unb-main { padding: var(--forma-space-6) var(--forma-space-6) var(--forma-space-8); }
+    .unb-appbar__context { display: inline; }
+    .unb-pagehead__actions { display: flex; inline-size: auto; }
+    .unb-grid-home { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); grid-template-areas: "balance attention" "balance side"; grid-template-rows: auto 1fr; }
+    .unb-grid-home:not(:has(> [data-area="attention"])) { grid-template-areas: "balance side"; grid-template-rows: auto; }
+    .unb-grid-home > [data-area="attention"] { grid-area: attention; }
+    .unb-grid-home > [data-area="balance"] { grid-area: balance; }
+    .unb-grid-home > [data-area="side"] { grid-area: side; }
+    .unb-grid-home > [data-span="full"] { grid-column: 1 / -1; }
+  }
+  @media (min-width: 64rem) {
+    .unb-frame { grid-template-columns: var(--unb-nav-width) minmax(0, 1fr); }
+    .unb-sidenav { display: block; padding: var(--forma-space-5) var(--forma-space-3); border-inline-end: 1px solid var(--unb-rule-soft); background: color-mix(in srgb, var(--unb-canvas) 70%, var(--forma-color-surface-secondary)); }
+    .unb-user { display: inline-flex; }
+    .unb-tabbar, .unb-only-compact { display: none; }
+    .unb-main { padding-block-end: var(--forma-space-8); }
+    .unb-main { padding: var(--forma-space-7) var(--forma-space-7) var(--forma-space-8); }
+  }
+
+  /* ---- Forced colours ---------------------------------------------------- */
+  @media (forced-colors: active) {
+    .unb-appbar { border-block-end-color: CanvasText; }
+    .unb-alloc__seg, .unb-alloc__key { forced-color-adjust: none; background: CanvasText; border-color: CanvasText; }
+    .unb-alloc__seg[data-part="available"] { background: Highlight; }
+    .unb-chip, .unb-notice, .unb-panel { border-color: CanvasText; }
+    .unb-sidenav a[aria-current="page"], .unb-tabbar a[aria-current="page"] { outline: 2px solid CanvasText; }
+  }
+}
