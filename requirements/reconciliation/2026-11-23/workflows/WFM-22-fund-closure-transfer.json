@@ -1,0 +1,627 @@
+{
+  "workflow_id": "WFM-22",
+  "name": "Fund closure, residual disposition and outbound transfer to another sponsor",
+  "release": "R1",
+  "outcome": "A fund closes only when no reservation is open, every payment attempt is terminal or moved to an outstanding-instrument liability, final fees are posted, the residual has left through the grant lifecycle (to charities or as a DAF_TRANSFER_OUT grant to an eligible sponsoring organization) and a destination for trailing receipts is recorded",
+  "aggregate": "FundClosure",
+  "sources": [
+    "UNB-RCN-ENT-006",
+    "UNB-RCN-ENT-007",
+    "RR-UNB-WF-014-r1",
+    "ADM-025",
+    "OD-11",
+    "RCD-022",
+    "RCD-018",
+    "RCD-028",
+    "06-state-models/state-models.md#6 (FUND-1, FUND-3)"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-004",
+    "UNB-UI-S-007"
+  ],
+  "states": [
+    {
+      "id": "ClosureRequested",
+      "kind": "initial",
+      "user_label": "Closure requested",
+      "lozenge": "attention",
+      "description": "Typed trigger recorded: donor request, zero balance, dormancy disposition, succession split, full outbound transfer or sponsor exit."
+    },
+    {
+      "id": "ClosureObligationsResolving",
+      "kind": "intermediate",
+      "user_label": "Settling open items",
+      "lozenge": "attention",
+      "description": "New recommendations, recurring templates and standing contributions stopped; waiting for reservations, payment attempts, provisional contributions and open cases to finish."
+    },
+    {
+      "id": "ClosureBlocked",
+      "kind": "intermediate",
+      "user_label": "Closure blocked",
+      "lozenge": "blocked",
+      "description": "An item cannot finish on its own: payment attempt Unknown, outstanding check, legal/sanctions hold, contested authority."
+    },
+    {
+      "id": "ClosureObligationsResolved",
+      "kind": "intermediate",
+      "user_label": "Open items settled",
+      "lozenge": "attention",
+      "description": "All closure preconditions on in-flight items met."
+    },
+    {
+      "id": "ClosureFinalFeesPosted",
+      "kind": "intermediate",
+      "user_label": "Final fees posted",
+      "lozenge": "attention",
+      "description": "Fees accrued through the fixed cut-off date and settled; residual equals authoritative capacity."
+    },
+    {
+      "id": "ClosureResidualDispositionPending",
+      "kind": "intermediate",
+      "user_label": "Choose where the balance goes",
+      "lozenge": "attention",
+      "description": "Waiting for the advisory-privilege holder's residual recommendation (charities or another sponsor) or the program default."
+    },
+    {
+      "id": "ClosureTransferOutReview",
+      "kind": "intermediate",
+      "user_label": "Checking receiving sponsor",
+      "lozenge": "attention",
+      "description": "Receiving organization's status as an eligible sponsoring organization is checked before the transfer grant is created."
+    },
+    {
+      "id": "ClosureResidualGrantsInProgress",
+      "kind": "intermediate",
+      "user_label": "Residual grants in progress",
+      "lozenge": "attention",
+      "description": "Residual grants (including DAF_TRANSFER_OUT) are in the grant and payment workflows."
+    },
+    {
+      "id": "ClosureResidualDisposed",
+      "kind": "intermediate",
+      "user_label": "Balance distributed",
+      "lozenge": "attention",
+      "description": "Every residual grant's payment is Final per rail; capacity is zero."
+    },
+    {
+      "id": "ClosureClosed",
+      "kind": "intermediate",
+      "user_label": "Closed",
+      "lozenge": "ok",
+      "description": "Fund closed; trailing receipts route to the recorded destination."
+    },
+    {
+      "id": "ClosureArchived",
+      "kind": "terminal",
+      "user_label": "Archived",
+      "lozenge": "neutral",
+      "description": "Trailing window ended; records retained under their retention classes."
+    },
+    {
+      "id": "ClosureWithdrawn",
+      "kind": "terminal",
+      "user_label": "Closure cancelled",
+      "lozenge": "neutral",
+      "description": "Donor-requested closure withdrawn before the residual was committed; fund continues (ended templates stay ended)."
+    },
+    {
+      "id": "ClosureLateEventCase",
+      "kind": "correction",
+      "user_label": "Late item after archive",
+      "lozenge": "neutral",
+      "description": "Linked child for a receipt, return, NAV restatement or tax allocation arriving after archive; the fund is not reopened."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-22-T01",
+      "from": "ClosureRequested",
+      "to": "ClosureObligationsResolving",
+      "trigger": "event",
+      "name": "AcceptClosureTrigger",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A3",
+      "guards": [
+        "closure-trigger-typed",
+        "requester-authorized-for-trigger"
+      ],
+      "effects": [
+        "block-new-recommendations",
+        "end-recurring-templates",
+        "stop-standing-contributions",
+        "notify-participants"
+      ],
+      "idempotency_key": "(fundId, closureTrigger, triggerRef)",
+      "failure": [
+        {
+          "condition": "RequesterNotAuthorized",
+          "to_state": "ClosureWithdrawn"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "ADM-025"
+      ],
+      "scenario_ids": [],
+      "notes": "Contributions arriving while ClosurePending follow sponsor policy (TVS-514): accepted and swept into the residual, or routed to the trailing destination."
+    },
+    {
+      "id": "WFM-22-T02",
+      "from": "ClosureObligationsResolving",
+      "to": "ClosureObligationsResolved",
+      "trigger": "event",
+      "name": "ObligationsResolved",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A3",
+      "guards": [
+        "zero-open-reservations",
+        "attempts-terminal-or-outstanding-liability",
+        "no-provisional-contributions",
+        "no-blocking-case"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPaymentAttempt",
+          "to_state": "ClosureBlocked"
+        },
+        {
+          "condition": "OutstandingCheck",
+          "to_state": "ClosureBlocked"
+        },
+        {
+          "condition": "LegalOrSanctionsHold",
+          "to_state": "ClosureBlocked"
+        },
+        {
+          "condition": "ContestedAuthority",
+          "to_state": "ClosureBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "RCD-019",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "TVS-096",
+        "SIM-018",
+        "TVS-527",
+        "DKS-ENT-012"
+      ]
+    },
+    {
+      "id": "WFM-22-T03",
+      "from": "ClosureBlocked",
+      "to": "ClosureObligationsResolving",
+      "trigger": "event",
+      "name": "BlockerCleared",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A3",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [
+        "TVS-096"
+      ]
+    },
+    {
+      "id": "WFM-22-T04",
+      "from": "ClosureBlocked",
+      "to": "ClosureObligationsResolving",
+      "trigger": "command",
+      "name": "TransferOutstandingCheckToLiability",
+      "actor_type": "human",
+      "actor_role": "Sponsor finance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "check-status-outstanding"
+      ],
+      "effects": [
+        "ledger",
+        "outstanding-instrument-liability"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "RCD-028",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-012",
+        "TVS-540"
+      ],
+      "ui_surface": "NEW:Fund closure workspace",
+      "notes": "Void after 180 days is re-credited to the fund under RCD-028; once the fund is closed a later void credit routes to the trailing destination."
+    },
+    {
+      "id": "WFM-22-T05",
+      "from": "ClosureObligationsResolved",
+      "to": "ClosureFinalFeesPosted",
+      "trigger": "event",
+      "name": "PostFinalFees",
+      "actor_type": "deterministic",
+      "actor_role": "Fee engine",
+      "authority": "A3",
+      "guards": [
+        "fee-cutoff-fixed-before-residual",
+        "no-fee-on-fee"
+      ],
+      "effects": [
+        "ledger",
+        "fee-settlement"
+      ],
+      "idempotency_key": "(fundId, closureId, feeCutoff)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-018",
+        "ADM-028",
+        "UNB-RCN-ENT-006"
+      ],
+      "scenario_ids": [
+        "TVS-263"
+      ]
+    },
+    {
+      "id": "WFM-22-T06",
+      "from": "ClosureFinalFeesPosted",
+      "to": "ClosureResidualDispositionPending",
+      "trigger": "event",
+      "name": "RequestResidualRecommendation",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-advisors"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": [],
+      "notes": "Dormancy and succession charitable-default triggers arrive with the disposition already approved and skip directly to residual grants."
+    },
+    {
+      "id": "WFM-22-T07",
+      "from": "ClosureResidualDispositionPending",
+      "to": "ClosureResidualGrantsInProgress",
+      "trigger": "command",
+      "name": "RecommendResidualGrants",
+      "actor_type": "human",
+      "actor_role": "Advisory-privilege holder",
+      "authority": "A1",
+      "guards": [
+        "affirmation-evidence-current",
+        "amount-equals-residual"
+      ],
+      "effects": [
+        "create-grant-recommendations"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "UNB-LEG-002",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [
+        "TVS-530"
+      ],
+      "ui_surface": "UNB-UI-S-003"
+    },
+    {
+      "id": "WFM-22-T08",
+      "from": "ClosureResidualDispositionPending",
+      "to": "ClosureTransferOutReview",
+      "trigger": "command",
+      "name": "RecommendOutboundTransfer",
+      "actor_type": "human",
+      "actor_role": "Advisory-privilege holder",
+      "authority": "A1",
+      "guards": [
+        "affirmation-evidence-current",
+        "history-package-consent-recorded",
+        "restrictions-carried-as-nonbinding-text"
+      ],
+      "effects": [
+        "record-transfer-recommendation"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-014-r1",
+        "UNB-RCN-ENT-007",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Outbound transfer request",
+      "notes": "Cash is the default; in-kind only where both custodians accept and policy allows."
+    },
+    {
+      "id": "WFM-22-T09",
+      "from": "ClosureTransferOutReview",
+      "to": "ClosureResidualGrantsInProgress",
+      "trigger": "event",
+      "name": "CreateTransferOutGrant",
+      "actor_type": "deterministic",
+      "actor_role": "Charity eligibility service",
+      "authority": "A3",
+      "guards": [
+        "receiving-org-is-eligible-sponsoring-organization",
+        "irs-status-observation-fresh",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "external-call",
+        "create-grant-recommendation-DAF_TRANSFER_OUT"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownStatusObservation",
+          "to_state": "ClosureTransferOutReview"
+        },
+        {
+          "condition": "ReceivingOrgIneligible",
+          "to_state": "ClosureResidualDispositionPending"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-WF-014-r1",
+        "UNB-RCN-ENT-007",
+        "RR-REQ-X-007-r1",
+        "RCD-014"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-014"
+      ],
+      "notes": "Sponsor discretion to approve or decline is exercised in the grant lifecycle (approval, reservation, payment)."
+    },
+    {
+      "id": "WFM-22-T10",
+      "from": "ClosureResidualDispositionPending",
+      "to": "ClosureResidualGrantsInProgress",
+      "trigger": "command",
+      "name": "ApproveDefaultResidualDisposition",
+      "actor_type": "human",
+      "actor_role": "Sponsor charitable-default approver (board-delegated)",
+      "authority": "A4",
+      "guards": [
+        "recommendation-window-elapsed",
+        "program-terms-version-pinned",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "create-grant-recommendations-charitable-default",
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "UNB-SUCC-011",
+        "RCD-022"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charitable default disposition"
+    },
+    {
+      "id": "WFM-22-T11",
+      "from": "ClosureResidualGrantsInProgress",
+      "to": "ClosureResidualDisposed",
+      "trigger": "event",
+      "name": "ResidualGrantsFinal",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A3",
+      "guards": [
+        "all-residual-attempts-final-per-rail",
+        "capacity-zero"
+      ],
+      "effects": [
+        "send-transfer-history-package-if-consented"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "RR-UNB-WF-014-r1",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "TVS-366",
+        "TVS-367"
+      ]
+    },
+    {
+      "id": "WFM-22-T12",
+      "from": "ClosureResidualGrantsInProgress",
+      "to": "ClosureResidualDispositionPending",
+      "trigger": "event",
+      "name": "ResidualGrantDeclinedOrReturned",
+      "actor_type": "deterministic",
+      "actor_role": "Grant and payment workflows",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "returned-funds-credit-originating-fund"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-014-r1",
+        "RCD-019",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-015",
+        "TVS-513"
+      ]
+    },
+    {
+      "id": "WFM-22-T13",
+      "from": "ClosureResidualDisposed",
+      "to": "ClosureClosed",
+      "trigger": "event",
+      "name": "CloseFund",
+      "actor_type": "deterministic",
+      "actor_role": "Fund lifecycle policy",
+      "authority": "A3",
+      "guards": [
+        "zero-open-reservations",
+        "attempts-terminal-or-outstanding-liability",
+        "trailing-receipt-destination-recorded",
+        "reconciliation-matched",
+        "final-statement-issued"
+      ],
+      "effects": [
+        "lineage-routing-table",
+        "close-fund",
+        "notify-participants"
+      ],
+      "idempotency_key": "(fundId, closureId)",
+      "failure": [
+        {
+          "condition": "LateReturnBeforeClose",
+          "to_state": "ClosureResidualDispositionPending"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "OD-11",
+        "RCD-020"
+      ],
+      "scenario_ids": [
+        "TVS-366"
+      ]
+    },
+    {
+      "id": "WFM-22-T14",
+      "from": "ClosureClosed",
+      "to": "ClosureClosed",
+      "trigger": "event",
+      "name": "RouteTrailingReceipt",
+      "actor_type": "deterministic",
+      "actor_role": "Ledger / lineage routing",
+      "authority": "A3",
+      "guards": [
+        "trailing-receipt-destination-recorded"
+      ],
+      "effects": [
+        "ledger",
+        "route-to-trailing-destination"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "OD-11"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-013",
+        "TVS-095",
+        "TVS-340"
+      ]
+    },
+    {
+      "id": "WFM-22-T15",
+      "from": [
+        "ClosureRequested",
+        "ClosureObligationsResolving",
+        "ClosureBlocked",
+        "ClosureObligationsResolved",
+        "ClosureFinalFeesPosted",
+        "ClosureResidualDispositionPending"
+      ],
+      "to": "ClosureWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawClosureRequest",
+      "actor_type": "human",
+      "actor_role": "Advisory-privilege holder",
+      "authority": "A1",
+      "guards": [
+        "trigger-is-donor-request"
+      ],
+      "effects": [
+        "unblock-new-recommendations"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "ADM-025"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fund closure request"
+    },
+    {
+      "id": "WFM-22-T16",
+      "from": "ClosureClosed",
+      "to": "ClosureArchived",
+      "trigger": "timer",
+      "name": "ArchiveFund",
+      "actor_type": "timer",
+      "actor_role": "Retention scheduler",
+      "authority": "A3",
+      "guards": [
+        "trailing-window-elapsed",
+        "retention-classes-assigned"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "RR-REQ-X-036-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-22-T17",
+      "from": "ClosureArchived",
+      "to": "ClosureLateEventCase",
+      "trigger": "event",
+      "name": "LateEventAfterArchive",
+      "actor_type": "deterministic",
+      "actor_role": "Ledger / lineage routing",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "route-to-trailing-destination"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-006",
+        "OD-11"
+      ],
+      "scenario_ids": [
+        "TVS-329",
+        "TVS-340"
+      ]
+    }
+  ],
+  "invariants": [
+    "Closed requires zero open reservations, every attempt terminal or transferred to an outstanding-instrument liability, and a recorded trailing-receipt destination (UNB-RCN-ENT-006)",
+    "Value leaves the fund only through the grant lifecycle or a governed sponsor-to-sponsor transfer grant; never as a refund to a donor (UNB-RCN-FIN-013)",
+    "An outbound transfer is a sponsor distribution with purpose DAF_TRANSFER_OUT that the sponsor may decline (RR-UNB-WF-014-r1)",
+    "The fee cut-off is fixed before the residual is computed, so the residual sweep is not circular (TVS-263)",
+    "A closed or archived fund is never reopened; late events become linked children routed by the lineage table"
+  ]
+}

@@ -1,0 +1,776 @@
+{
+  "workflow_id": "WFM-20",
+  "name": "Death or incapacity notice, rights suspension and succession",
+  "release": "R1",
+  "outcome": "On any notice the subject's derived rights are held; on verified evidence they are suspended atomically (including delegated agents); successors gain rights only after identity proofing and an A4 sponsor activation with a balanced allocation; if no successor exists the program's charitable default applies",
+  "aggregate": "SuccessionCase",
+  "sources": [
+    "RR-UNB-SUCC-008-r1",
+    "UNB-RCN-ENT-004",
+    "RCD-022",
+    "RR-REQ-X-008-r1",
+    "RR-UNB-SUCC-004-r1",
+    "UNB-SUCC-007",
+    "UNB-SUCC-011",
+    "OD-03",
+    "06-state-models/state-models.md#7 (AUTH-I3, AUTH-I5)",
+    "TX-25",
+    "E2E-WF-18"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-006",
+    "UNB-UI-S-001",
+    "UNB-UI-S-004"
+  ],
+  "states": [
+    {
+      "id": "SuccessionNoticeReceived",
+      "kind": "initial",
+      "user_label": "Notice received",
+      "lozenge": "attention",
+      "description": "A death or incapacity notice about a subject party was received from any channel, authenticated or not."
+    },
+    {
+      "id": "SuccessionProtectiveHold",
+      "kind": "intermediate",
+      "user_label": "Protective hold",
+      "lozenge": "blocked",
+      "description": "New recommendations, recurring-instance releases and contact/payee changes for rights derived from the subject are blocked; subject notified on verified channel."
+    },
+    {
+      "id": "SuccessionVerifying",
+      "kind": "intermediate",
+      "user_label": "Verifying notice",
+      "lozenge": "attention",
+      "description": "Evidence (death certificate, court order, physician statement per policy) requested and under review."
+    },
+    {
+      "id": "SuccessionDerivedRightsSuspended",
+      "kind": "intermediate",
+      "user_label": "Rights suspended",
+      "lozenge": "blocked",
+      "description": "Every session, credential binding, delegated agent principal and privilege derived from the subject is suspended in one transaction."
+    },
+    {
+      "id": "SuccessionPlanResolving",
+      "kind": "intermediate",
+      "user_label": "Determining successors",
+      "lozenge": "attention",
+      "description": "Pending-item policy applied; succession plan read; designated, contingent or substitute successors identified."
+    },
+    {
+      "id": "SuccessorIdentityProofing",
+      "kind": "intermediate",
+      "user_label": "Verifying successors",
+      "lozenge": "attention",
+      "description": "Successor-designates accept and pass identity proofing and sanctions screening (RCD-023)."
+    },
+    {
+      "id": "SuccessorVerificationUnknown",
+      "kind": "intermediate",
+      "user_label": "Successor check unknown",
+      "lozenge": "unknown",
+      "description": "Provider returned no definite result for a successor."
+    },
+    {
+      "id": "SuccessorVerificationHeld",
+      "kind": "intermediate",
+      "user_label": "Successor check held",
+      "lozenge": "blocked",
+      "description": "Potential sanctions match, identity failure or ineligibility (minor, incapacitated) needs a human disposition."
+    },
+    {
+      "id": "SuccessionContested",
+      "kind": "intermediate",
+      "user_label": "Contested",
+      "lozenge": "blocked",
+      "description": "Conflicting claims or documents; all consequential succession actions held pending sponsor/legal resolution."
+    },
+    {
+      "id": "SuccessionAllocationProposed",
+      "kind": "intermediate",
+      "user_label": "Allocation proposed",
+      "lozenge": "attention",
+      "description": "Deterministic allocation preview computed at the sponsor-designated valuation point, net of reservations, accrued fees and approved-unpaid grants."
+    },
+    {
+      "id": "SuccessionSplitHeld",
+      "kind": "intermediate",
+      "user_label": "Split held",
+      "lozenge": "blocked",
+      "description": "A constraint (minimum, restriction, illiquidity, open commitment) cannot be met; no journal posted."
+    },
+    {
+      "id": "SuccessionCharitableDefaultPending",
+      "kind": "intermediate",
+      "user_label": "Charitable default pending",
+      "lozenge": "attention",
+      "description": "No eligible successor; program terms name a charitable default awaiting A4 sponsor approval."
+    },
+    {
+      "id": "SuccessionActivated",
+      "kind": "terminal",
+      "user_label": "Succession active",
+      "lozenge": "ok",
+      "description": "Successor rights granted and allocation journal posted atomically; successor accounts created where the plan requires."
+    },
+    {
+      "id": "SuccessionCharitableDefaultApproved",
+      "kind": "terminal",
+      "user_label": "Charitable default approved",
+      "lozenge": "ok",
+      "description": "Sponsor approved the charitable default; distributions proceed as grants through the standard grant lifecycle, then the fund closes (WFM-22)."
+    },
+    {
+      "id": "SuccessionNotRequired",
+      "kind": "terminal",
+      "user_label": "No succession needed",
+      "lozenge": "neutral",
+      "description": "Independent co-advisors continue under the plan; only the subject's own rights ended."
+    },
+    {
+      "id": "SuccessionRightsReinstated",
+      "kind": "terminal",
+      "user_label": "Rights reinstated",
+      "lozenge": "ok",
+      "description": "Notice proven false or incapacity ended; RightsReinstated appended, original hold kept in history."
+    },
+    {
+      "id": "SuccessionCorrection",
+      "kind": "correction",
+      "user_label": "Succession corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction (e.g. later valid amendment, forged evidence); paid grants are never reversed automatically; any change is a new sponsor decision."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-20-T01",
+      "from": "SuccessionNoticeReceived",
+      "to": "SuccessionProtectiveHold",
+      "trigger": "event",
+      "name": "PlaceProtectiveHold",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "protective-hold-subject-derived-rights",
+        "hold-recurring-instance-releases",
+        "block-contact-and-payee-changes",
+        "notify-subject-verified-channel",
+        "audit"
+      ],
+      "idempotency_key": "(subjectPartyId, noticeId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-SUCC-006",
+        "ADM-022"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001",
+        "TVS-522",
+        "TVS-534",
+        "TVS-640",
+        "TVS-602"
+      ],
+      "notes": "AUTH-I5: an unauthenticated notice is a flag, not a fact. Approved grants continue; only the subject's new requests are held. Standing contribution debits from the subject's account are paused (TVS-334, TVS-522) - see requirement gap in report."
+    },
+    {
+      "id": "WFM-20-T02",
+      "from": "SuccessionProtectiveHold",
+      "to": "SuccessionVerifying",
+      "trigger": "event",
+      "name": "RequestVerificationEvidence",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "open-work-item",
+        "request-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-20-T03",
+      "from": "SuccessionVerifying",
+      "to": "SuccessionVerifying",
+      "trigger": "timer",
+      "name": "EscalateOverdueVerification",
+      "actor_type": "timer",
+      "actor_role": "Work item SLA timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "ADM-033"
+      ],
+      "scenario_ids": [],
+      "notes": "FLAG-1: the hold never expires by time alone."
+    },
+    {
+      "id": "WFM-20-T04",
+      "from": "SuccessionVerifying",
+      "to": "SuccessionDerivedRightsSuspended",
+      "trigger": "command",
+      "name": "VerifyDeathOrIncapacity",
+      "actor_type": "human",
+      "actor_role": "Sponsor succession reviewer",
+      "authority": "A4",
+      "guards": [
+        "evidence-verified",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "suspend-derived-rights-atomically",
+        "invalidate-sessions-tokens-widgets",
+        "suspend-delegated-agent-principals",
+        "end-child-grants",
+        "audit"
+      ],
+      "idempotency_key": "(subjectPartyId, verificationId)",
+      "failure": [
+        {
+          "condition": "EvidenceInsufficient",
+          "to_state": "SuccessionVerifying"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-RCN-ENT-004",
+        "UNB-SUCC-006",
+        "GOV-AUTH-009"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-002",
+        "DKS-XD-001",
+        "TVS-434",
+        "ADV-022"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Suspension commits in the same transaction as the verification record; a delegated agent's request 1s later is denied (DKS-ENT-002)."
+    },
+    {
+      "id": "WFM-20-T05",
+      "from": "SuccessionVerifying",
+      "to": "SuccessionRightsReinstated",
+      "trigger": "command",
+      "name": "ClearUnsubstantiatedNotice",
+      "actor_type": "human",
+      "actor_role": "Sponsor succession reviewer",
+      "authority": "A4",
+      "guards": [
+        "subject-confirmed-via-verified-channel-or-evidence-refuted",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "release-protective-hold",
+        "append-RightsReinstated",
+        "held-instances-follow-template-policy"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-SUCC-006"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001",
+        "TVS-546",
+        "TVS-640"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-20-T06",
+      "from": "SuccessionDerivedRightsSuspended",
+      "to": "SuccessionRightsReinstated",
+      "trigger": "command",
+      "name": "ReinstateAfterIncapacityEnds",
+      "actor_type": "human",
+      "actor_role": "Sponsor succession reviewer",
+      "authority": "A4",
+      "guards": [
+        "capacity-restoration-evidence",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "append-RightsReinstated",
+        "reissue-credentials-via-verified-channel"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-SUCC-006"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Incapacity only. Requirement gap: no requirement defines reinstatement after incapacity ends."
+    },
+    {
+      "id": "WFM-20-T07",
+      "from": "SuccessionDerivedRightsSuspended",
+      "to": "SuccessionPlanResolving",
+      "trigger": "event",
+      "name": "ApplyPendingItemPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Grant and scheduler policy (death_pending_grant_policy)",
+      "authority": "A3",
+      "guards": [
+        "policy-version-pinned"
+      ],
+      "effects": [
+        "approved-unpaid-grants-proceed-unless-policy",
+        "unapproved-recommendations-lapse-or-hold-per-policy",
+        "suspend-recurring-templates",
+        "co-advisor-rights-unchanged"
+      ],
+      "idempotency_key": "(successionCaseId, policyVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-008-r1",
+        "RCD-022",
+        "REQ-X-008",
+        "OD-03"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-003",
+        "DKS-ENT-004",
+        "DKS-ENT-005",
+        "TVS-267",
+        "UNB-XSC-004"
+      ],
+      "notes": "OD-03 decided by RCD-022: default 'complete'. RR-REQ-X-008-r1 still says hold_for_review until OD-03 is decided, and DKS-ENT-003 expects HeldForReview with an unset policy - both need updating (see report). Approved grants still re-check eligibility at release (RR-REQ-X-008-r1 AC-2)."
+    },
+    {
+      "id": "WFM-20-T08",
+      "from": "SuccessionPlanResolving",
+      "to": "SuccessionNotRequired",
+      "trigger": "event",
+      "name": "ContinueWithIndependentAdvisors",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A3",
+      "guards": [
+        "remaining-rights-not-derived-from-subject",
+        "plan-says-continue"
+      ],
+      "effects": [
+        "close-case"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-PART-001",
+        "UNB-SUCC-001"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-005"
+      ]
+    },
+    {
+      "id": "WFM-20-T09",
+      "from": "SuccessionPlanResolving",
+      "to": "SuccessorIdentityProofing",
+      "trigger": "event",
+      "name": "InviteSuccessorDesignates",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A3",
+      "guards": [
+        "plan-version-pinned"
+      ],
+      "effects": [
+        "notify-successors",
+        "request-identity-proofing",
+        "request-sanctions-screening"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-001",
+        "UNB-SUCC-005",
+        "RCD-023"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-20-T10",
+      "from": "SuccessionPlanResolving",
+      "to": "SuccessionCharitableDefaultPending",
+      "trigger": "event",
+      "name": "NoEligibleSuccessor",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "propose-charitable-default",
+        "open-work-item"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-011",
+        "UNB-SUCC-007",
+        "RCD-022"
+      ],
+      "scenario_ids": [
+        "TVS-320"
+      ]
+    },
+    {
+      "id": "WFM-20-T11",
+      "from": "SuccessorIdentityProofing",
+      "to": "SuccessionAllocationProposed",
+      "trigger": "event",
+      "name": "SuccessorsVerifiedComputeAllocation",
+      "actor_type": "external",
+      "actor_role": "Identity proofing provider, sanctions screening and allocation engine",
+      "authority": "A3",
+      "guards": [
+        "assurance-level-met",
+        "sanctions-clear",
+        "valuation-point-fixed"
+      ],
+      "effects": [
+        "external-call",
+        "compute-allocation-preview"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProviderResult",
+          "to_state": "SuccessorVerificationUnknown"
+        },
+        {
+          "condition": "PotentialMatchOrIdentityFailure",
+          "to_state": "SuccessorVerificationHeld"
+        },
+        {
+          "condition": "AllocationConstraintUnmet",
+          "to_state": "SuccessionSplitHeld"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-023",
+        "RCD-015",
+        "RR-UNB-SUCC-004-r1",
+        "UNB-SUCC-013"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-006",
+        "DKS-ENT-007"
+      ],
+      "notes": "Preview is labelled a non-binding simulation (RCF-ENT-036)."
+    },
+    {
+      "id": "WFM-20-T12",
+      "from": "SuccessorVerificationUnknown",
+      "to": "SuccessorIdentityProofing",
+      "trigger": "command",
+      "name": "RequerySuccessorChecks",
+      "actor_type": "deterministic",
+      "actor_role": "Identity regime orchestrator",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersistsBeyondSla",
+          "to_state": "SuccessorVerificationUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-20-T13",
+      "from": "SuccessorVerificationHeld",
+      "to": "SuccessorIdentityProofing",
+      "trigger": "command",
+      "name": "DispositionSuccessorHold",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-SUCC-007"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-20-T14",
+      "from": "SuccessorVerificationHeld",
+      "to": "SuccessionPlanResolving",
+      "trigger": "command",
+      "name": "DisqualifySuccessor",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "ofac-report-case-if-true-match",
+        "route-to-contingent-successor"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-007",
+        "UNB-SUCC-005",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-20-T15",
+      "from": [
+        "SuccessionPlanResolving",
+        "SuccessorIdentityProofing",
+        "SuccessorVerificationHeld",
+        "SuccessionAllocationProposed",
+        "SuccessionSplitHeld",
+        "SuccessionCharitableDefaultPending"
+      ],
+      "to": "SuccessionContested",
+      "trigger": "event",
+      "name": "RecordContestedClaim",
+      "actor_type": "deterministic",
+      "actor_role": "Succession policy",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "hold-consequential-actions",
+        "open-work-item",
+        "preserve-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-007",
+        "ADM-023",
+        "UNB-RCN-ENT-008"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-008",
+        "SIM-005",
+        "TVS-316"
+      ]
+    },
+    {
+      "id": "WFM-20-T16",
+      "from": "SuccessionContested",
+      "to": "SuccessionPlanResolving",
+      "trigger": "command",
+      "name": "ResolveContest",
+      "actor_type": "human",
+      "actor_role": "Sponsor general counsel",
+      "authority": "A4",
+      "guards": [
+        "legal-determination-evidence",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "plan-version-determined"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-007",
+        "ADM-023",
+        "UNB-LEG-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-008"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-20-T17",
+      "from": "SuccessionSplitHeld",
+      "to": "SuccessionAllocationProposed",
+      "trigger": "command",
+      "name": "DecideSplitConstraint",
+      "actor_type": "human",
+      "actor_role": "Sponsor succession reviewer",
+      "authority": "A4",
+      "guards": [
+        "within-program-rules",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "recompute-allocation"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-004-r1",
+        "UNB-SUCC-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-007"
+      ],
+      "ui_surface": "NEW:Succession allocation review"
+    },
+    {
+      "id": "WFM-20-T18",
+      "from": "SuccessionAllocationProposed",
+      "to": "SuccessionActivated",
+      "trigger": "command",
+      "name": "ActivateSuccession",
+      "actor_type": "human",
+      "actor_role": "Sponsor succession approver",
+      "authority": "A4",
+      "guards": [
+        "successors-verified",
+        "sanctions-clear",
+        "no-open-contest",
+        "allocation-balanced",
+        "capacity-in-transaction",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "grant-successor-rights",
+        "create-successor-funds",
+        "ledger",
+        "carry-restrictions",
+        "audit"
+      ],
+      "idempotency_key": "(successionCaseId, allocationVersion)",
+      "failure": [
+        {
+          "condition": "CapacityChangedSincePreview",
+          "to_state": "SuccessionAllocationProposed"
+        },
+        {
+          "condition": "ContestReceived",
+          "to_state": "SuccessionContested"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-UNB-SUCC-004-r1",
+        "UNB-SUCC-002",
+        "UNB-SUCC-003",
+        "UNB-SUCC-009",
+        "UNB-RCN-FIN-009"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-006",
+        "TVS-057",
+        "TVS-058",
+        "TVS-441"
+      ],
+      "ui_surface": "NEW:Succession allocation review",
+      "notes": "Atomic: rights and the single balanced allocation journal commit together; internal allocation only within the same legal sponsor (RCF-ENT-018) - other destinations go through WFM-22 outbound transfer. Break-glass cannot activate succession (TVS-441)."
+    },
+    {
+      "id": "WFM-20-T19",
+      "from": "SuccessionCharitableDefaultPending",
+      "to": "SuccessionCharitableDefaultApproved",
+      "trigger": "command",
+      "name": "ApproveCharitableDefault",
+      "actor_type": "human",
+      "actor_role": "Sponsor charitable-default approver (board-delegated)",
+      "authority": "A4",
+      "guards": [
+        "program-terms-version-pinned",
+        "successor-outreach-complete",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "create-grant-recommendations-charitable-default",
+        "closure-trigger-succession",
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-011",
+        "RCD-022",
+        "RR-UNB-WF-015-r1"
+      ],
+      "scenario_ids": [
+        "TVS-320"
+      ],
+      "ui_surface": "NEW:Charitable default disposition",
+      "notes": "Distributions run through the normal grant lifecycle, which performs eligibility, sanctions and approval; an ineligible default charity is held there and the sponsor chooses an alternative."
+    },
+    {
+      "id": "WFM-20-T20",
+      "from": [
+        "SuccessionActivated",
+        "SuccessionCharitableDefaultApproved"
+      ],
+      "to": "SuccessionCorrection",
+      "trigger": "command",
+      "name": "RecordSuccessionCorrection",
+      "actor_type": "human",
+      "actor_role": "Sponsor general counsel",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "linked-correction-record",
+        "flag-actions-for-review"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-SUCC-012",
+        "UNB-SUCC-007"
+      ],
+      "scenario_ids": [
+        "TVS-379",
+        "TVS-316"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "A notice alone never activates successor rights or moves assets (UNB-SUCC-006)",
+    "DerivedRightsSuspended and SuccessionActivated are each atomic in the authoritative store and recorded separately (RR-UNB-SUCC-008-r1)",
+    "Rights of participants that do not derive from the subject stay in force",
+    "OD-03 decided (RCD-022): sponsor-approved unpaid grants proceed unless sponsor death_pending_grant_policy says otherwise; each still re-checks eligibility at release",
+    "Successor credits sum exactly to the origin debit in one balanced allocation journal (RR-UNB-SUCC-004-r1)",
+    "A contested claim holds all consequential succession actions until sponsor/legal resolution"
+  ]
+}

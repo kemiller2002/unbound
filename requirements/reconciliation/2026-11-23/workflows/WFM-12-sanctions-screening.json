@@ -1,0 +1,527 @@
+{
+  "workflow_id": "WFM-12",
+  "name": "Sanctions screening, disposition and blocking",
+  "release": "R1",
+  "outcome": "Every in-scope subject is screened at each trigger; potential matches hold dependent releases until a human dispositions them; confirmed matches block property and are reported to OFAC on time",
+  "aggregate": "ScreeningSubject (one per party or recipient subject in the ScreeningScope matrix)",
+  "sources": [
+    "UNB-RCN-GRT-007",
+    "UNB-RCN-GRT-006",
+    "UNB-RCN-REG-003",
+    "RR-UNB-EXT-004-r1",
+    "RCD-015",
+    "RCD-007",
+    "RR-REQ-X-036-r1",
+    "RR-REQ-X-020-r1",
+    "RCF-GRT-013",
+    "RCF-GRT-014",
+    "RCF-REG-006"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-008",
+    "UNB-UI-S-011",
+    "UNB-UI-S-004"
+  ],
+  "states": [
+    {
+      "id": "ScreeningRequested",
+      "kind": "initial",
+      "user_label": "Screening",
+      "lozenge": "neutral",
+      "description": "Screen requested at a ScreeningScope trigger: onboarding, grant approval, payment release or a list update. Subjects: donors, advisors, successors, recipient entity, payee account holder, recipient officers where data exists."
+    },
+    {
+      "id": "ScreeningProviderUnknown",
+      "kind": "intermediate",
+      "user_label": "Screening status unknown",
+      "lozenge": "unknown",
+      "description": "Screening provider timed out or was unavailable. Dependent approvals and releases fail closed."
+    },
+    {
+      "id": "ScreeningClear",
+      "kind": "intermediate",
+      "user_label": "Clear",
+      "lozenge": "ok",
+      "description": "No match on the current list versions; good-guy suppressions recorded with evidence."
+    },
+    {
+      "id": "ScreeningPotentialMatch",
+      "kind": "intermediate",
+      "user_label": "Potential match – on hold",
+      "lozenge": "attention",
+      "description": "Match rule fired. Name similarity alone is not adverse. Dependent releases are held via the hold registry."
+    },
+    {
+      "id": "ScreeningEscalated",
+      "kind": "intermediate",
+      "user_label": "Escalated to compliance officer",
+      "lozenge": "attention",
+      "description": "Analyst could not dispose; escalated to the sanctions compliance officer."
+    },
+    {
+      "id": "ScreeningOfacReportDue",
+      "kind": "intermediate",
+      "user_label": "Blocked – OFAC report due",
+      "lozenge": "blocked",
+      "description": "Confirmed true match involving property in the sponsor's possession; property blocked; blocked-property report due within 10 business days."
+    },
+    {
+      "id": "ScreeningOfacReported",
+      "kind": "intermediate",
+      "user_label": "Blocked – reported",
+      "lozenge": "blocked",
+      "description": "Initial report filed; annual report tracked; property stays blocked until licence or delisting."
+    },
+    {
+      "id": "ScreeningRejectedNoProperty",
+      "kind": "terminal",
+      "user_label": "Confirmed match – refused",
+      "lozenge": "blocked",
+      "description": "Confirmed true match with no property in the sponsor's possession (e.g. onboarding refused). Records retained 10 years."
+    },
+    {
+      "id": "ScreeningSubjectClosed",
+      "kind": "terminal",
+      "user_label": "No longer screened",
+      "lozenge": "neutral",
+      "description": "Relationship ended with no open items; records retained per the OFAC retention class (10 years)."
+    },
+    {
+      "id": "ScreeningCorrection",
+      "kind": "correction",
+      "user_label": "Determination corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction child for a mistaken determination; original decision record unchanged."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-12-T01",
+      "from": "ScreeningRequested",
+      "to": "ScreeningClear",
+      "trigger": "command",
+      "name": "ScreenSubject",
+      "actor_type": "deterministic",
+      "actor_role": "Screening service (ScreeningScope matrix, versioned lists)",
+      "authority": "A3",
+      "guards": [
+        "screening-scope-version-pinned",
+        "list-version-current"
+      ],
+      "effects": [
+        "external-call",
+        "record-screening-result"
+      ],
+      "idempotency_key": "(subjectId, trigger, listVersion)",
+      "failure": [
+        {
+          "condition": "TimeoutOrProviderUnavailable",
+          "to_state": "ScreeningProviderUnknown"
+        },
+        {
+          "condition": "PotentialMatch",
+          "to_state": "ScreeningPotentialMatch"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-007",
+        "RR-UNB-EXT-004-r1",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009",
+        "DKS-REG-003"
+      ]
+    },
+    {
+      "id": "WFM-12-T02",
+      "from": "ScreeningProviderUnknown",
+      "to": "ScreeningRequested",
+      "trigger": "timer",
+      "name": "RetryScreening",
+      "actor_type": "timer",
+      "actor_role": "Screening scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate-aging-tier",
+        "hold-dependent-releases"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-EXT-004-r1",
+        "UNB-RULE-009"
+      ],
+      "scenario_ids": [],
+      "notes": "Outage is not a match and not a clear: dependents stay held."
+    },
+    {
+      "id": "WFM-12-T03",
+      "from": "ScreeningClear",
+      "to": "ScreeningRequested",
+      "trigger": "event",
+      "name": "RescreenOnTriggerOrListUpdate",
+      "actor_type": "deterministic",
+      "actor_role": "Screening service",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "queue-rescreen"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-007",
+        "RR-UNB-EXT-004-r1",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009"
+      ],
+      "notes": "Fires at approval, at release and on every list update for subjects linked to unreleased payment chains or Outstanding checks."
+    },
+    {
+      "id": "WFM-12-T04",
+      "from": "ScreeningPotentialMatch",
+      "to": "ScreeningPotentialMatch",
+      "trigger": "event",
+      "name": "HoldDependentReleases",
+      "actor_type": "deterministic",
+      "actor_role": "Hold registry",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "publish-sanctions-hold",
+        "increment-hold-publication-version",
+        "create-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-EXT-004-r1",
+        "RR-REQ-X-020-r1",
+        "UNB-RCN-PLT-003"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009",
+        "DKS-GRT-025"
+      ]
+    },
+    {
+      "id": "WFM-12-T05",
+      "from": "ScreeningPotentialMatch",
+      "to": "ScreeningPotentialMatch",
+      "trigger": "timer",
+      "name": "DispositionSlaAging",
+      "actor_type": "timer",
+      "actor_role": "Screening scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate-aging-tier"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "UNB-RCN-GRT-007"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: no requirement sets the disposition SLA."
+    },
+    {
+      "id": "WFM-12-T06",
+      "from": [
+        "ScreeningPotentialMatch",
+        "ScreeningEscalated"
+      ],
+      "to": "ScreeningClear",
+      "trigger": "command",
+      "name": "DisposeFalsePositive",
+      "actor_type": "human",
+      "actor_role": "Sanctions analyst",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "distinguishing-identifiers-recorded"
+      ],
+      "effects": [
+        "release-sanctions-hold",
+        "increment-hold-publication-version",
+        "record-good-guy-suppression",
+        "retain-10-years"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-GRT-007",
+        "RR-UNB-EXT-004-r1",
+        "RR-REQ-X-036-r1",
+        "RR-UNB-AI-STD-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009"
+      ],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    },
+    {
+      "id": "WFM-12-T07",
+      "from": "ScreeningPotentialMatch",
+      "to": "ScreeningEscalated",
+      "trigger": "command",
+      "name": "EscalateMatch",
+      "actor_type": "human",
+      "actor_role": "Sanctions analyst",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "assign-compliance-officer"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-GRT-007"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    },
+    {
+      "id": "WFM-12-T08",
+      "from": [
+        "ScreeningPotentialMatch",
+        "ScreeningEscalated"
+      ],
+      "to": "ScreeningOfacReportDue",
+      "trigger": "command",
+      "name": "ConfirmTrueMatchBlockProperty",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "property-in-sponsor-possession"
+      ],
+      "effects": [
+        "blocked-property-classification",
+        "block-dependent-grants-and-payments",
+        "set-ofac-report-due-10-business-days",
+        "notify-sponsor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003",
+        "UNB-RCN-GRT-006",
+        "RCD-015",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003",
+        "DKS-GRT-021"
+      ],
+      "ui_surface": "NEW:Sanctions match decision panel",
+      "notes": "Drives WFM-08 GrantBlocked, WFM-10 AchBlocked and WFM-11 CheckBlocked."
+    },
+    {
+      "id": "WFM-12-T09",
+      "from": [
+        "ScreeningPotentialMatch",
+        "ScreeningEscalated"
+      ],
+      "to": "ScreeningRejectedNoProperty",
+      "trigger": "command",
+      "name": "ConfirmTrueMatchNoProperty",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "refuse-relationship-or-grant",
+        "retain-10-years"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-GRT-007",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel",
+      "notes": "Gap: OFAC rejected-transaction reporting is not covered by UNB-RCN-REG-003 (blocked property only)."
+    },
+    {
+      "id": "WFM-12-T10",
+      "from": "ScreeningOfacReportDue",
+      "to": "ScreeningOfacReportDue",
+      "trigger": "timer",
+      "name": "ReportDeadlineEscalation",
+      "actor_type": "timer",
+      "actor_role": "Compliance calendar",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate-aging-tier",
+        "notify-compliance-owner"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-12-T11",
+      "from": "ScreeningOfacReportDue",
+      "to": "ScreeningOfacReported",
+      "trigger": "command",
+      "name": "RecordOfacReportFiled",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A3",
+      "guards": [
+        "report-evidence-attached"
+      ],
+      "effects": [
+        "record-report-evidence",
+        "schedule-annual-report",
+        "retain-10-years"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003",
+        "UNB-RCN-GRT-006"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "NEW:OFAC blocked property report"
+    },
+    {
+      "id": "WFM-12-T12",
+      "from": "ScreeningOfacReported",
+      "to": "ScreeningOfacReported",
+      "trigger": "timer",
+      "name": "AnnualBlockedPropertyReportDue",
+      "actor_type": "timer",
+      "actor_role": "Compliance calendar",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "create-annual-report-task"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": [
+        "DKS-REG-005"
+      ]
+    },
+    {
+      "id": "WFM-12-T13",
+      "from": "ScreeningOfacReported",
+      "to": "ScreeningOfacReported",
+      "trigger": "command",
+      "name": "ReleaseSpecificPropertyUnderLicense",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "license-evidence-covers-transaction"
+      ],
+      "effects": [
+        "release-blocked-property-item",
+        "record-report-evidence"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "UNB-RCN-REG-003",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel",
+      "notes": "Subject stays a confirmed match; only the licensed property moves."
+    },
+    {
+      "id": "WFM-12-T14",
+      "from": "ScreeningOfacReported",
+      "to": "ScreeningRequested",
+      "trigger": "command",
+      "name": "RecordDelisting",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "delisting-evidence"
+      ],
+      "effects": [
+        "release-blocked-classification",
+        "release-sanctions-hold",
+        "increment-hold-publication-version",
+        "queue-rescreen"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    },
+    {
+      "id": "WFM-12-T15",
+      "from": "ScreeningClear",
+      "to": "ScreeningSubjectClosed",
+      "trigger": "event",
+      "name": "CloseSubject",
+      "actor_type": "deterministic",
+      "actor_role": "Party lifecycle",
+      "authority": "A2",
+      "guards": [
+        "no-open-items"
+      ],
+      "effects": [
+        "retain-10-years"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-12-T16",
+      "from": "ScreeningRejectedNoProperty",
+      "to": "ScreeningCorrection",
+      "trigger": "command",
+      "name": "CorrectDetermination",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "correction-evidence-attached"
+      ],
+      "effects": [
+        "create-linked-correction",
+        "queue-rescreen"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    }
+  ],
+  "invariants": [
+    "An unresolved potential match always holds release; only a human dispositions a potential match",
+    "No AI output and no non-compliance role can confirm a match, dispose a match as false positive or release blocked property",
+    "A list update rescreens every unreleased payment chain and every Outstanding check before its next transition",
+    "Blocked property never moves, retries, reissues or restores capacity without licence or delisting evidence and independent compliance authority",
+    "Every screening decision and report is retained for at least 10 years (RCD-007)"
+  ]
+}

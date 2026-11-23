@@ -1,0 +1,638 @@
+{
+  "workflow_id": "WFM-16",
+  "name": "Reconciliation, month-end close and fund statements",
+  "release": "R1",
+  "outcome": "Each period closes on independently reconciled and attested evidence, is certified by someone other than the preparer, and every eligible fund receives an accurate as-issued statement",
+  "aggregate": "ClosePeriod",
+  "sources": [
+    "REQ-X-040",
+    "RR-UNB-ACC-018-r1",
+    "RCD-020",
+    "REQ-X-032",
+    "UNB-UI-D-002",
+    "TX-21"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011",
+    "UNB-UI-S-007",
+    "UNB-UI-S-008"
+  ],
+  "states": [
+    {
+      "id": "ClosePeriodOpen",
+      "kind": "initial",
+      "user_label": "Open",
+      "lozenge": "neutral",
+      "description": "Accounting period open; continuous reconciliation running."
+    },
+    {
+      "id": "CloseReconciling",
+      "kind": "intermediate",
+      "user_label": "Reconciling",
+      "lozenge": "attention",
+      "description": "Cutoff passed; period-end reconciliation of GL, fund subledger, custody, bank, NAV, fees, contributions, grants and payments."
+    },
+    {
+      "id": "CloseEvidenceMissing",
+      "kind": "intermediate",
+      "user_label": "Evidence missing",
+      "lozenge": "unknown",
+      "description": "A required source is missing or stale; reconciliation result Unknown (never Pass)."
+    },
+    {
+      "id": "CloseBreaksOpen",
+      "kind": "intermediate",
+      "user_label": "Breaks open",
+      "lozenge": "blocked",
+      "description": "Material or aged unexplained differences block certification for the affected scope."
+    },
+    {
+      "id": "CloseReconciled",
+      "kind": "intermediate",
+      "user_label": "Reconciled",
+      "lozenge": "attention",
+      "description": "All classes Pass or affected scope isolated and excluded."
+    },
+    {
+      "id": "CloseAwaitingAttestation",
+      "kind": "intermediate",
+      "user_label": "Awaiting sampled attestation",
+      "lozenge": "attention",
+      "description": "At least 5% of the month's automated passes sampled for independent attestation."
+    },
+    {
+      "id": "CloseSnapshotFrozen",
+      "kind": "intermediate",
+      "user_label": "Snapshot frozen",
+      "lozenge": "attention",
+      "description": "Immutable period snapshot (as-of and known-at) frozen and hashed."
+    },
+    {
+      "id": "CloseCertified",
+      "kind": "intermediate",
+      "user_label": "Certified",
+      "lozenge": "ok",
+      "description": "Close certified by a controller who did not prepare it."
+    },
+    {
+      "id": "CloseStatementsGenerating",
+      "kind": "intermediate",
+      "user_label": "Statements generating",
+      "lozenge": "attention",
+      "description": "Fund statements rendered from the locked snapshot."
+    },
+    {
+      "id": "CloseStatementsPartial",
+      "kind": "intermediate",
+      "user_label": "Statements partly published",
+      "lozenge": "attention",
+      "description": "Statements withheld for funds in a blocked scope or after a batch failure."
+    },
+    {
+      "id": "CloseStatementsPublished",
+      "kind": "terminal",
+      "user_label": "Statements published",
+      "lozenge": "ok",
+      "description": "All eligible fund statements published; period locked."
+    },
+    {
+      "id": "ClosePeriodRestated",
+      "kind": "correction",
+      "user_label": "Period restated",
+      "lozenge": "attention",
+      "description": "Linked correction: closed period restated with version increment under restatement authority."
+    },
+    {
+      "id": "CloseStatementCorrected",
+      "kind": "correction",
+      "user_label": "Corrected statement issued",
+      "lozenge": "neutral",
+      "description": "Corrected statements issued with supersede links; originals preserved."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-16-T01",
+      "from": "ClosePeriodOpen",
+      "to": "ClosePeriodOpen",
+      "trigger": "event",
+      "name": "RunContinuousReconciliation",
+      "actor_type": "deterministic",
+      "actor_role": "Reconciliation engine",
+      "authority": "A3",
+      "guards": [
+        "sources-independent"
+      ],
+      "effects": [
+        "recon-evidence",
+        "work-item"
+      ],
+      "idempotency_key": "(scope, reconClass, sourceHighWaterMark)",
+      "failure": [
+        {
+          "condition": "DifferenceAboveRoundingTolerance",
+          "to_state": "ClosePeriodOpen"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "RR-UNB-ACC-018-r1",
+        "RCD-020",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-020",
+        "ADV-595",
+        "ADV-055"
+      ],
+      "notes": "Routine matched items auto-pass with evidence; differences within RoundingTolerance auto-clear; anything else opens a break case."
+    },
+    {
+      "id": "WFM-16-T02",
+      "from": "ClosePeriodOpen",
+      "to": "ClosePeriodOpen",
+      "trigger": "timer",
+      "name": "EscalateAgedBreak",
+      "actor_type": "timer",
+      "actor_role": "Break aging monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item",
+        "notify"
+      ],
+      "idempotency_key": "(breakId, agingTier)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-018-r1",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-014"
+      ],
+      "notes": "Immaterial unexplained differences escalate at AgingLimit regardless of amount."
+    },
+    {
+      "id": "WFM-16-T03",
+      "from": "ClosePeriodOpen",
+      "to": "CloseReconciling",
+      "trigger": "timer",
+      "name": "PeriodCutoff",
+      "actor_type": "timer",
+      "actor_role": "Sponsor close calendar",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-cutoff"
+      ],
+      "idempotency_key": "(sponsorId, period)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-040",
+        "UNB-ACC-017"
+      ],
+      "scenario_ids": [
+        "ADV-269"
+      ]
+    },
+    {
+      "id": "WFM-16-T04",
+      "from": "CloseReconciling",
+      "to": "CloseReconciled",
+      "trigger": "event",
+      "name": "CompletePeriodReconciliation",
+      "actor_type": "deterministic",
+      "actor_role": "Reconciliation engine",
+      "authority": "A3",
+      "guards": [
+        "all-classes-pass"
+      ],
+      "effects": [
+        "recon-evidence"
+      ],
+      "idempotency_key": "(sponsorId, period, reconRunVersion)",
+      "failure": [
+        {
+          "condition": "TimeoutSourceMissing",
+          "to_state": "CloseEvidenceMissing"
+        },
+        {
+          "condition": "MaterialOrAgedBreak",
+          "to_state": "CloseBreaksOpen"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "RR-UNB-ACC-018-r1",
+        "RCD-020",
+        "UNB-ACC-018",
+        "UNB-RCN-FIN-007"
+      ],
+      "scenario_ids": [
+        "ADV-435",
+        "ADV-437",
+        "ADV-438",
+        "ADV-439",
+        "ADV-448",
+        "SIM-016",
+        "ADV-427"
+      ]
+    },
+    {
+      "id": "WFM-16-T05",
+      "from": "CloseEvidenceMissing",
+      "to": "CloseReconciling",
+      "trigger": "event",
+      "name": "SourceArrives",
+      "actor_type": "external",
+      "actor_role": "Custodian / bank / rail statement feed",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "recon-evidence"
+      ],
+      "idempotency_key": "(source, statementDate)",
+      "failure": [
+        {
+          "condition": "TimeoutStillMissing",
+          "to_state": "CloseEvidenceMissing"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "UNB-NAV-053"
+      ],
+      "scenario_ids": [
+        "ADV-435",
+        "ADV-476"
+      ],
+      "notes": "A missing feed is never auto-cleared at the deadline (ADV-476)."
+    },
+    {
+      "id": "WFM-16-T06",
+      "from": "CloseBreaksOpen",
+      "to": "CloseReconciling",
+      "trigger": "command",
+      "name": "ResolveBreak",
+      "actor_type": "human",
+      "actor_role": "Reconciler independent of payment release",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "adjusting-entry-approved"
+      ],
+      "effects": [
+        "ledger",
+        "recon-evidence"
+      ],
+      "idempotency_key": "(breakId, resolutionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-018-r1",
+        "REQ-X-010",
+        "UNB-ACC-003",
+        "UNB-ACC-022"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-014",
+        "TVS-030",
+        "ADV-264"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-16-T07",
+      "from": "CloseBreaksOpen",
+      "to": "CloseReconciled",
+      "trigger": "event",
+      "name": "IsolateAffectedScope",
+      "actor_type": "deterministic",
+      "actor_role": "Close policy (affected-scope blocking)",
+      "authority": "A3",
+      "guards": [
+        "break-isolable-to-funds",
+        "sponsor-level-not-masked"
+      ],
+      "effects": [
+        "record-scope-exclusion"
+      ],
+      "idempotency_key": "(sponsorId, period, scopeVersion)",
+      "failure": [
+        {
+          "condition": "SponsorLevelBreak",
+          "to_state": "CloseBreaksOpen"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-018-r1",
+        "RCD-020"
+      ],
+      "scenario_ids": [
+        "ADV-445",
+        "ADV-469"
+      ],
+      "notes": "Funds with an unexplained cash break are excluded from certification and statement publication; others proceed."
+    },
+    {
+      "id": "WFM-16-T08",
+      "from": "CloseReconciled",
+      "to": "CloseAwaitingAttestation",
+      "trigger": "event",
+      "name": "SelectAttestationSample",
+      "actor_type": "deterministic",
+      "actor_role": "Attestation sampler (>=5% of monthly auto-passes, random, reproducible seed)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(sponsorId, period, sampleSeed)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-020",
+        "REQ-X-010"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-015"
+      ],
+      "notes": "DECISION NEEDED: RCD-020 does not say whether the sampled attestation gates certification; modelled as gating."
+    },
+    {
+      "id": "WFM-16-T09",
+      "from": "CloseAwaitingAttestation",
+      "to": "CloseSnapshotFrozen",
+      "trigger": "command",
+      "name": "AttestSample",
+      "actor_type": "human",
+      "actor_role": "Independent finance reviewer (outside the payment chain, not the preparer)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "attestation-record",
+        "freeze-snapshot"
+      ],
+      "idempotency_key": "(sponsorId, period, sampleSeed)",
+      "failure": [
+        {
+          "condition": "SampleDefectFound",
+          "to_state": "CloseBreaksOpen"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-020",
+        "REQ-X-010",
+        "GOV-AUTH-014"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-015",
+        "ADV-448"
+      ],
+      "ui_surface": "NEW:Reconciliation attestation review",
+      "notes": "On acceptance the deterministic close freezes the snapshot (as-of, known-at, hash) in the same transaction."
+    },
+    {
+      "id": "WFM-16-T10",
+      "from": "CloseSnapshotFrozen",
+      "to": "CloseReconciling",
+      "trigger": "event",
+      "name": "LateEventBeforeCertification",
+      "actor_type": "deterministic",
+      "actor_role": "Close engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "snapshot-version-increment"
+      ],
+      "idempotency_key": "(sponsorId, period, snapshotVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-040",
+        "UNB-ACC-017"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-023",
+        "TVS-242"
+      ]
+    },
+    {
+      "id": "WFM-16-T11",
+      "from": "CloseSnapshotFrozen",
+      "to": "CloseCertified",
+      "trigger": "command",
+      "name": "CertifyClose",
+      "actor_type": "human",
+      "actor_role": "Controller (not the preparer of the close)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "no-material-break-in-certified-scope",
+        "delegation-current"
+      ],
+      "effects": [
+        "period-lock",
+        "certification-record"
+      ],
+      "idempotency_key": "(sponsorId, period, snapshotVersion)",
+      "failure": [
+        {
+          "condition": "CertifierRejects",
+          "to_state": "CloseReconciling"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "UNB-ACC-022",
+        "REQ-X-010",
+        "RR-UNB-ACC-018-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-015",
+        "ADV-447",
+        "ADV-449"
+      ],
+      "ui_surface": "NEW:Month-end close certification"
+    },
+    {
+      "id": "WFM-16-T12",
+      "from": "CloseCertified",
+      "to": "CloseStatementsGenerating",
+      "trigger": "event",
+      "name": "GenerateStatements",
+      "actor_type": "deterministic",
+      "actor_role": "Statement generator (one per eligible fund, from locked snapshot)",
+      "authority": "A3",
+      "guards": [
+        "template-version-pinned",
+        "eligible-funds-enumerated"
+      ],
+      "effects": [
+        "document-render-request"
+      ],
+      "idempotency_key": "(fundId, period, snapshotVersion, templateVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-040",
+        "REQ-X-032",
+        "UNB-UI-D-002",
+        "RCD-009"
+      ],
+      "scenario_ids": [
+        "ADV-465",
+        "ADV-451",
+        "ADV-257"
+      ]
+    },
+    {
+      "id": "WFM-16-T13",
+      "from": "CloseStatementsGenerating",
+      "to": "CloseStatementsPublished",
+      "trigger": "event",
+      "name": "PublishStatements",
+      "actor_type": "deterministic",
+      "actor_role": "Statement publication under sponsor delegation",
+      "authority": "A3",
+      "guards": [
+        "fund-not-in-blocked-scope",
+        "statement-reconciles-to-snapshot",
+        "accessibility-check-passed",
+        "registry-hash-recorded"
+      ],
+      "effects": [
+        "document-issue",
+        "notify"
+      ],
+      "idempotency_key": "(fundId, period, snapshotVersion)",
+      "failure": [
+        {
+          "condition": "ScopeWithheldOrBatchPartial",
+          "to_state": "CloseStatementsPartial"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "RCD-020",
+        "REQ-X-034",
+        "UNB-UI-D-002"
+      ],
+      "scenario_ids": [
+        "ADV-446",
+        "ADV-470",
+        "ADV-270",
+        "ADV-409",
+        "ADV-410",
+        "ADV-266"
+      ],
+      "notes": "Approval for publication = certification + sponsor delegation (REQ-X-040); REQ-X-032 'distinct approval' is satisfied by CertifyClose."
+    },
+    {
+      "id": "WFM-16-T14",
+      "from": "CloseStatementsPartial",
+      "to": "CloseStatementsPublished",
+      "trigger": "event",
+      "name": "PublishWithheldStatements",
+      "actor_type": "deterministic",
+      "actor_role": "Statement publication under sponsor delegation",
+      "authority": "A3",
+      "guards": [
+        "fund-not-in-blocked-scope",
+        "statement-reconciles-to-snapshot"
+      ],
+      "effects": [
+        "document-issue",
+        "notify"
+      ],
+      "idempotency_key": "(fundId, period, snapshotVersion)",
+      "failure": [
+        {
+          "condition": "ScopeStillBlocked",
+          "to_state": "CloseStatementsPartial"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-040",
+        "RCD-020"
+      ],
+      "scenario_ids": [
+        "ADV-271"
+      ],
+      "notes": "Fires when a withheld fund's break is resolved (via a current-period adjustment) or a failed render succeeds on retry."
+    },
+    {
+      "id": "WFM-16-T15",
+      "from": "CloseStatementsPublished",
+      "to": "ClosePeriodRestated",
+      "trigger": "command",
+      "name": "ApproveClosedPeriodRestatement",
+      "actor_type": "human",
+      "actor_role": "Controller with second approver (restatement authority)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "second-approver",
+        "materiality-exceeded"
+      ],
+      "effects": [
+        "snapshot-version-increment",
+        "ledger"
+      ],
+      "idempotency_key": "(sponsorId, period, restatementId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-043",
+        "UNB-ACC-017",
+        "REQ-X-040"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-023",
+        "ADV-450",
+        "TVS-340"
+      ],
+      "ui_surface": "NEW:Month-end close certification",
+      "notes": "Immaterial late events post in the current period with original effective date and appear on the next statement (no restatement)."
+    },
+    {
+      "id": "WFM-16-T16",
+      "from": [
+        "CloseStatementsPublished",
+        "ClosePeriodRestated"
+      ],
+      "to": "CloseStatementCorrected",
+      "trigger": "command",
+      "name": "IssueCorrectedStatements",
+      "actor_type": "human",
+      "actor_role": "Controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "correction-reason-recorded"
+      ],
+      "effects": [
+        "document-supersede",
+        "notify"
+      ],
+      "idempotency_key": "(fundId, period, correctionVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-040",
+        "REQ-X-034",
+        "UNB-NAV-010",
+        "UNB-UI-S-007"
+      ],
+      "scenario_ids": [
+        "ADV-254",
+        "ADV-461",
+        "ADV-125"
+      ],
+      "ui_surface": "NEW:Month-end close certification"
+    }
+  ],
+  "invariants": [
+    "Unknown reconciliation evidence is never treated as Pass.",
+    "An unexplained cash break blocks statement publication for the affected funds only; it never masks a sponsor-level mismatch.",
+    "The close certifier is not the preparer; the attestor is outside the payment chain.",
+    "Published statements and closed snapshots are never modified; corrections are linked versions.",
+    "Loosening any break threshold needs a second approver (RR-UNB-ACC-018-r1)."
+  ]
+}

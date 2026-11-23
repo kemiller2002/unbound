@@ -1,0 +1,828 @@
+{
+  "workflow_id": "WFM-02",
+  "name": "Fund application, sponsor acceptance and participant onboarding",
+  "release": "R1",
+  "outcome": "A fund opens only after the applicant accepts the agreement (with the exclusive-legal-control acknowledgment), passes the identity and sanctions checks that the regime register makes applicable, and the sponsor accepts; additional participants gain a role only after invitation acceptance and their own applicable checks",
+  "aggregate": "Fund; ParticipantRelationship",
+  "sources": [
+    "RR-UNB-PART-007-r1",
+    "UNB-RCN-ENT-010",
+    "UNB-RCN-ENT-014",
+    "RCD-023",
+    "RCD-015",
+    "ADM-002",
+    "ADM-003",
+    "E2E-WF-02 (19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:51)",
+    "06-state-models/state-models.md#6"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-006"
+  ],
+  "states": [
+    {
+      "id": "FundApplicationDraft",
+      "kind": "initial",
+      "user_label": "Application draft",
+      "lozenge": "attention",
+      "description": "Applicant is completing progressive intake (intent, fund name, participants, successor intent)."
+    },
+    {
+      "id": "FundApplicationSubmitted",
+      "kind": "intermediate",
+      "user_label": "Application submitted",
+      "lozenge": "attention",
+      "description": "Agreement version accepted with the exclusive-legal-control acknowledgment; regime register evaluated for the applicant's role and channel."
+    },
+    {
+      "id": "FundApplicantIdentityProofing",
+      "kind": "intermediate",
+      "user_label": "Verifying identity",
+      "lozenge": "attention",
+      "description": "Identity proofing at the sponsor-configured assurance level (advisory-privilege holder) and sanctions screening are running."
+    },
+    {
+      "id": "FundApplicantCheckUnknown",
+      "kind": "intermediate",
+      "user_label": "Check result unknown",
+      "lozenge": "unknown",
+      "description": "Identity or sanctions provider returned no definite result; the application waits and is not activated (RR-UNB-PART-007-r1 AC-2)."
+    },
+    {
+      "id": "FundApplicantPotentialMatch",
+      "kind": "intermediate",
+      "user_label": "Under compliance review",
+      "lozenge": "blocked",
+      "description": "Potential sanctions match or identity conflict held for human disposition."
+    },
+    {
+      "id": "FundApplicationInSponsorReview",
+      "kind": "intermediate",
+      "user_label": "In sponsor review",
+      "lozenge": "attention",
+      "description": "Checks passed; sponsor acceptance pending (ADM-003 separates drafted account and sponsor acceptance)."
+    },
+    {
+      "id": "FundOpen",
+      "kind": "intermediate",
+      "user_label": "Open",
+      "lozenge": "ok",
+      "description": "Sponsor accepted; fund exists with the applicant as advisory-privilege holder. Further participants may be invited."
+    },
+    {
+      "id": "FundApplicationRejected",
+      "kind": "terminal",
+      "user_label": "Not accepted",
+      "lozenge": "blocked",
+      "description": "Sponsor declined the application or identity proofing failed."
+    },
+    {
+      "id": "FundApplicationWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Applicant withdrew or the draft expired."
+    },
+    {
+      "id": "FundApplicantBlocked",
+      "kind": "terminal",
+      "user_label": "Blocked",
+      "lozenge": "blocked",
+      "description": "Confirmed sanctions true match; any property received is blocked and OFAC reporting started (UNB-RCN-REG-003)."
+    },
+    {
+      "id": "FundRejectionFundsCase",
+      "kind": "correction",
+      "user_label": "Unaccepted funds return",
+      "lozenge": "neutral",
+      "description": "Linked child when money arrived for an application that was then rejected: property never accepted is returned only under the counsel-approved exception cited on the command (UNB-RCN-FIN-013)."
+    },
+    {
+      "id": "ParticipantInvited",
+      "kind": "intermediate",
+      "user_label": "Invited",
+      "lozenge": "attention",
+      "description": "Invitation issued for a role from the single role catalogue (scope, effective dates, expiry)."
+    },
+    {
+      "id": "ParticipantIdentityProofing",
+      "kind": "intermediate",
+      "user_label": "Verifying participant",
+      "lozenge": "attention",
+      "description": "Invitee accepted; checks the regime register requires for the role (identity proofing for advisory-privilege holders, successors and legal representatives; sanctions for all)."
+    },
+    {
+      "id": "ParticipantCheckUnknown",
+      "kind": "intermediate",
+      "user_label": "Participant check unknown",
+      "lozenge": "unknown",
+      "description": "Provider returned no definite result; the role stays pending."
+    },
+    {
+      "id": "ParticipantPotentialMatch",
+      "kind": "intermediate",
+      "user_label": "Participant under review",
+      "lozenge": "blocked",
+      "description": "Potential sanctions match or identity conflict held for human disposition."
+    },
+    {
+      "id": "ParticipantRoleActive",
+      "kind": "terminal",
+      "user_label": "Role active",
+      "lozenge": "ok",
+      "description": "Participant holds the role within its scope; history appended."
+    },
+    {
+      "id": "ParticipantInvitationDeclined",
+      "kind": "terminal",
+      "user_label": "Declined",
+      "lozenge": "neutral",
+      "description": "Invitee declined; recorded, no access granted."
+    },
+    {
+      "id": "ParticipantInvitationExpired",
+      "kind": "terminal",
+      "user_label": "Invitation expired",
+      "lozenge": "neutral",
+      "description": "Invitation not accepted within its validity; token invalid."
+    },
+    {
+      "id": "ParticipantInvitationRevoked",
+      "kind": "terminal",
+      "user_label": "Invitation withdrawn",
+      "lozenge": "neutral",
+      "description": "Inviter or sponsor withdrew the invitation, or the inviter lost authority, before acceptance."
+    },
+    {
+      "id": "ParticipantNotVerified",
+      "kind": "terminal",
+      "user_label": "Not verified",
+      "lozenge": "blocked",
+      "description": "Identity proofing failed or a sanctions match was confirmed; no role granted."
+    },
+    {
+      "id": "ParticipantRoleCorrection",
+      "kind": "correction",
+      "user_label": "Role corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction when a role is later found to rest on invalid evidence (e.g. forged signature, TVS-313); actions taken under it are flagged for review, not auto-reversed."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-02-T01",
+      "from": "FundApplicationDraft",
+      "to": "FundApplicationSubmitted",
+      "trigger": "command",
+      "name": "SubmitFundApplication",
+      "actor_type": "human",
+      "actor_role": "Applicant (donor, prospective advisory-privilege holder)",
+      "authority": "A1",
+      "guards": [
+        "agreement-version-current",
+        "exclusive-legal-control-acknowledged",
+        "affirmative-action-not-prechecked",
+        "regime-register-evaluated"
+      ],
+      "effects": [
+        "record-agreement-acceptance",
+        "record-acknowledgment-evidence"
+      ],
+      "idempotency_key": "(applicationId, agreementVersion)",
+      "failure": [
+        {
+          "condition": "AgreementVersionSuperseded",
+          "to_state": "FundApplicationDraft"
+        }
+      ],
+      "requirement_ids": [
+        "ADM-002",
+        "ADM-014",
+        "UNB-RCN-ARC-002",
+        "UNB-UI-G-007",
+        "UNB-SUCC-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fund application",
+      "notes": "The exclusive-legal-control acknowledgment sentence is protected legal text and cannot be altered by sponsor terminology."
+    },
+    {
+      "id": "WFM-02-T02",
+      "from": [
+        "FundApplicationDraft",
+        "FundApplicationSubmitted",
+        "FundApplicantCheckUnknown",
+        "FundApplicationInSponsorReview"
+      ],
+      "to": "FundApplicationWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawFundApplication",
+      "actor_type": "human",
+      "actor_role": "Applicant (donor, prospective advisory-privilege holder)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-002",
+        "UNB-PART-007"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fund application"
+    },
+    {
+      "id": "WFM-02-T03",
+      "from": "FundApplicationDraft",
+      "to": "FundApplicationWithdrawn",
+      "trigger": "timer",
+      "name": "ExpireDraftApplication",
+      "actor_type": "timer",
+      "actor_role": "Intake expiry timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-002"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-02-T04",
+      "from": "FundApplicationSubmitted",
+      "to": "FundApplicantIdentityProofing",
+      "trigger": "event",
+      "name": "StartApplicantChecks",
+      "actor_type": "deterministic",
+      "actor_role": "Identity regime orchestrator",
+      "authority": "A2",
+      "guards": [
+        "regime-register-evaluated"
+      ],
+      "effects": [
+        "request-identity-proofing",
+        "request-sanctions-screening"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1",
+        "UNB-RCN-ENT-014",
+        "RCD-023"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-017",
+        "DKS-XD-003"
+      ],
+      "notes": "CIP/AML (regime c) runs only when counsel records applicability; otherwise no CIP-style data is requested."
+    },
+    {
+      "id": "WFM-02-T05",
+      "from": "FundApplicantIdentityProofing",
+      "to": "FundApplicationInSponsorReview",
+      "trigger": "event",
+      "name": "ApplicantChecksPassed",
+      "actor_type": "external",
+      "actor_role": "Identity proofing provider and sanctions screening service",
+      "authority": "A3",
+      "guards": [
+        "assurance-level-met",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "external-call",
+        "record-check-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProviderResult",
+          "to_state": "FundApplicantCheckUnknown"
+        },
+        {
+          "condition": "PotentialMatchOrIdentityConflict",
+          "to_state": "FundApplicantPotentialMatch"
+        },
+        {
+          "condition": "IdentityProofingFailed",
+          "to_state": "FundApplicationRejected"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1",
+        "RCD-023",
+        "RCD-015",
+        "UNB-RCN-GRT-007"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-016",
+        "SIM-004"
+      ]
+    },
+    {
+      "id": "WFM-02-T06",
+      "from": "FundApplicantCheckUnknown",
+      "to": "FundApplicantIdentityProofing",
+      "trigger": "command",
+      "name": "RequeryApplicantChecks",
+      "actor_type": "deterministic",
+      "actor_role": "Identity regime orchestrator",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersistsBeyondSla",
+          "to_state": "FundApplicantCheckUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-02-T07",
+      "from": "FundApplicantPotentialMatch",
+      "to": "FundApplicationInSponsorReview",
+      "trigger": "command",
+      "name": "DispositionFalsePositive",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider",
+        "evidence-snapshot-current"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-LEG-004",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "SIM-004"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-02-T08",
+      "from": "FundApplicantPotentialMatch",
+      "to": "FundApplicantBlocked",
+      "trigger": "command",
+      "name": "ConfirmSanctionsTrueMatch",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "block-property",
+        "ofac-report-case",
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-REG-003",
+        "UNB-RCN-GRT-006"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-02-T09",
+      "from": "FundApplicantPotentialMatch",
+      "to": "FundApplicationRejected",
+      "trigger": "command",
+      "name": "RejectForIdentityConflict",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "notify-applicant"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1",
+        "ADM-009"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-02-T10",
+      "from": "FundApplicationInSponsorReview",
+      "to": "FundOpen",
+      "trigger": "command",
+      "name": "AcceptFund",
+      "actor_type": "human",
+      "actor_role": "Sponsor account acceptance officer",
+      "authority": "A4",
+      "guards": [
+        "checks-current",
+        "sponsor-active",
+        "agreement-version-current",
+        "fund-type-classified"
+      ],
+      "effects": [
+        "create-fund",
+        "activate-applicant-role",
+        "audit"
+      ],
+      "idempotency_key": "(applicationId)",
+      "failure": [
+        {
+          "condition": "ChecksStale",
+          "to_state": "FundApplicantIdentityProofing"
+        },
+        {
+          "condition": "ApplicantDiedBeforeAcceptance",
+          "to_state": "FundApplicationRejected"
+        }
+      ],
+      "requirement_ids": [
+        "ADM-003",
+        "UNB-LEG-002",
+        "REQ-X-064",
+        "RCD-023"
+      ],
+      "scenario_ids": [
+        "TVS-315",
+        "TVS-312"
+      ],
+      "ui_surface": "NEW:Fund application review",
+      "notes": "Could become a deterministic A3 acceptance under sponsor policy once delegated; release 1 keeps a human acceptance. A contribution that arrived before acceptance is held unaccepted and is not grantable (TVS-311, TVS-312)."
+    },
+    {
+      "id": "WFM-02-T11",
+      "from": "FundApplicationInSponsorReview",
+      "to": "FundApplicationRejected",
+      "trigger": "command",
+      "name": "DeclineFund",
+      "actor_type": "human",
+      "actor_role": "Sponsor account acceptance officer",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record",
+        "notify-applicant"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-003",
+        "UNB-LEG-002"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fund application review"
+    },
+    {
+      "id": "WFM-02-T12",
+      "from": "FundApplicationRejected",
+      "to": "FundRejectionFundsCase",
+      "trigger": "event",
+      "name": "OpenUnacceptedFundsCase",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution service",
+      "authority": "A3",
+      "guards": [
+        "counsel-exception-cited"
+      ],
+      "effects": [
+        "linked-correction-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-013",
+        "RR-UNB-PART-007-r1"
+      ],
+      "scenario_ids": [
+        "TVS-311",
+        "DKS-ENT-016"
+      ]
+    },
+    {
+      "id": "WFM-02-T13",
+      "from": "FundOpen",
+      "to": "ParticipantInvited",
+      "trigger": "command",
+      "name": "InviteParticipant",
+      "actor_type": "human",
+      "actor_role": "Advisory-privilege holder with invite right, or sponsor staff",
+      "authority": "A2",
+      "guards": [
+        "inviter-holds-delegable-right",
+        "role-in-catalogue",
+        "scope-within-inviter-scope",
+        "fund-not-under-protective-hold"
+      ],
+      "effects": [
+        "issue-invitation-token",
+        "notify-invitee"
+      ],
+      "idempotency_key": "(fundId, inviteeContact, role, scopeHash)",
+      "failure": [
+        {
+          "condition": "ScopeExceedsInviter",
+          "to_state": "FundOpen"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-PART-007",
+        "RR-UNB-PART-003-r1",
+        "UNB-RCN-ENT-010",
+        "ADM-021",
+        "UNB-UI-S-006"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-006"
+    },
+    {
+      "id": "WFM-02-T14",
+      "from": "ParticipantInvited",
+      "to": "ParticipantIdentityProofing",
+      "trigger": "command",
+      "name": "AcceptInvitation",
+      "actor_type": "human",
+      "actor_role": "Invitee",
+      "authority": "A1",
+      "guards": [
+        "invitation-token-valid",
+        "role-terms-acknowledged",
+        "inviter-authority-current"
+      ],
+      "effects": [
+        "record-acceptance"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TokenExpiredOrRevoked",
+          "to_state": "ParticipantInvitationExpired"
+        },
+        {
+          "condition": "InviterAuthorityEnded",
+          "to_state": "ParticipantInvitationRevoked"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-PART-007",
+        "RR-UNB-PART-007-r1",
+        "ADM-014"
+      ],
+      "scenario_ids": [
+        "SIM-006"
+      ],
+      "ui_surface": "NEW:Invitation acceptance"
+    },
+    {
+      "id": "WFM-02-T15",
+      "from": "ParticipantInvited",
+      "to": "ParticipantInvitationDeclined",
+      "trigger": "command",
+      "name": "DeclineInvitation",
+      "actor_type": "human",
+      "actor_role": "Invitee",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-PART-007"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Invitation acceptance"
+    },
+    {
+      "id": "WFM-02-T16",
+      "from": "ParticipantInvited",
+      "to": "ParticipantInvitationExpired",
+      "trigger": "timer",
+      "name": "ExpireInvitation",
+      "actor_type": "timer",
+      "actor_role": "Invitation expiry timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "invalidate-token"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-PART-007",
+        "RR-UNB-PART-003-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-02-T17",
+      "from": "ParticipantInvited",
+      "to": "ParticipantInvitationRevoked",
+      "trigger": "command",
+      "name": "WithdrawInvitation",
+      "actor_type": "human",
+      "actor_role": "Inviter or sponsor staff",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "invalidate-token"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-PART-007",
+        "ADM-021"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-006"
+    },
+    {
+      "id": "WFM-02-T18",
+      "from": "ParticipantIdentityProofing",
+      "to": "ParticipantRoleActive",
+      "trigger": "event",
+      "name": "ParticipantChecksPassedActivateRole",
+      "actor_type": "external",
+      "actor_role": "Identity proofing provider and sanctions screening service",
+      "authority": "A3",
+      "guards": [
+        "regime-register-evaluated",
+        "assurance-level-met-if-required",
+        "sanctions-clear",
+        "inviter-authority-current",
+        "representative-evidence-verified-if-representative"
+      ],
+      "effects": [
+        "external-call",
+        "activate-role",
+        "authority-version-increment"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProviderResult",
+          "to_state": "ParticipantCheckUnknown"
+        },
+        {
+          "condition": "PotentialMatchOrIdentityConflict",
+          "to_state": "ParticipantPotentialMatch"
+        },
+        {
+          "condition": "IdentityProofingFailed",
+          "to_state": "ParticipantNotVerified"
+        },
+        {
+          "condition": "InviterAuthorityEnded",
+          "to_state": "ParticipantInvitationRevoked"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1",
+        "UNB-RCN-ENT-014",
+        "RCD-023",
+        "RR-UNB-PART-003-r1",
+        "UNB-PART-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-017",
+        "DKS-XD-003",
+        "TVS-056"
+      ],
+      "notes": "Legal-representative roles (UNB-RCN-ENT-010) are granted through WFM-19, which verifies the instrument before this step."
+    },
+    {
+      "id": "WFM-02-T19",
+      "from": "ParticipantCheckUnknown",
+      "to": "ParticipantIdentityProofing",
+      "trigger": "command",
+      "name": "RequeryParticipantChecks",
+      "actor_type": "deterministic",
+      "actor_role": "Identity regime orchestrator",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersistsBeyondSla",
+          "to_state": "ParticipantCheckUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-02-T20",
+      "from": "ParticipantPotentialMatch",
+      "to": "ParticipantRoleActive",
+      "trigger": "command",
+      "name": "DispositionParticipantFalsePositive",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider",
+        "evidence-snapshot-current"
+      ],
+      "effects": [
+        "activate-role",
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-LEG-004"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-02-T21",
+      "from": "ParticipantPotentialMatch",
+      "to": "ParticipantNotVerified",
+      "trigger": "command",
+      "name": "ConfirmParticipantMatchOrConflict",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "ofac-report-case-if-true-match"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-02-T22",
+      "from": "ParticipantRoleActive",
+      "to": "ParticipantRoleCorrection",
+      "trigger": "command",
+      "name": "RecordRoleEvidenceDefect",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "flag-actions-for-review",
+        "revoke-role-via-WFM-19"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-PART-004",
+        "UNB-SUCC-012",
+        "GOV-AUTH-012"
+      ],
+      "scenario_ids": [
+        "TVS-313"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "Opening a fund never creates grantable capacity; capacity comes only from Final contributions (RCD-019)",
+    "No check is labelled 'KYC' or 'legally required' without a linked applicability record (RR-UNB-PART-007-r1)",
+    "Identity proofing is required for advisory-privilege holders and successors; sanctions screening for every party (RCD-023)",
+    "A potential sanctions match never auto-clears; a confirmed match leads to Blocked and OFAC reporting (RCD-015)",
+    "A participant's role confers only its declared commands; adding a participant does not expose other participants' personal data (UNB-PART-006)",
+    "Declined, expired and revoked invitations keep their history; nothing is deleted (UNB-PART-007)"
+  ]
+}

@@ -1,0 +1,736 @@
+{
+  "workflow_id": "WFM-18",
+  "name": "Document issuance, delivery and retention",
+  "release": "R1",
+  "outcome": "Every formally issued document is rendered once from its snapshot, registered with verifiable hashes, delivered with evidence, corrected only by supersession, and retained until an approved, hold-checked disposition",
+  "aggregate": "IssuedDocument",
+  "sources": [
+    "REQ-X-034",
+    "RR-REQ-X-036-r1",
+    "RCD-007",
+    "RCD-009",
+    "REQ-X-038"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-007",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "DocumentRequested",
+      "kind": "initial",
+      "user_label": "Requested",
+      "lozenge": "neutral",
+      "description": "An issuing module requested a document (acknowledgment, statement, grant confirmation, remittance, notice) with a source snapshot."
+    },
+    {
+      "id": "DocumentRendered",
+      "kind": "intermediate",
+      "user_label": "Rendered",
+      "lozenge": "attention",
+      "description": "PDF (headless Chromium from Folio markup) and accessible HTML rendered from one snapshot; validations passed."
+    },
+    {
+      "id": "DocumentIssuanceBlocked",
+      "kind": "intermediate",
+      "user_label": "Issuance blocked",
+      "lozenge": "blocked",
+      "description": "Mandatory element missing, template unpublished, accessibility or truncation check failed, or no retention class."
+    },
+    {
+      "id": "DocumentIssuanceUnknown",
+      "kind": "intermediate",
+      "user_label": "Issuance unknown",
+      "lozenge": "unknown",
+      "description": "Object store and registry write disagree (bytes without row, or row without bytes)."
+    },
+    {
+      "id": "DocumentIssued",
+      "kind": "intermediate",
+      "user_label": "Issued",
+      "lozenge": "ok",
+      "description": "Registry row with PDF hash, snapshot hash and retention class; visible in the document center."
+    },
+    {
+      "id": "DocumentDeliverySent",
+      "kind": "intermediate",
+      "user_label": "Sent",
+      "lozenge": "attention",
+      "description": "Handed to the email or print provider; provider acceptance is not delivery."
+    },
+    {
+      "id": "DocumentDeliveryUnknown",
+      "kind": "intermediate",
+      "user_label": "Delivery unknown",
+      "lozenge": "unknown",
+      "description": "Provider outcome not determinable; no blind resend."
+    },
+    {
+      "id": "DocumentDeliveryFailed",
+      "kind": "intermediate",
+      "user_label": "Delivery failed",
+      "lozenge": "blocked",
+      "description": "Bounce or returned mail."
+    },
+    {
+      "id": "DocumentInRetention",
+      "kind": "intermediate",
+      "user_label": "In retention",
+      "lozenge": "neutral",
+      "description": "Issued and delivered (or portal-only); retained under its effective retention."
+    },
+    {
+      "id": "DocumentSupersededInRetention",
+      "kind": "intermediate",
+      "user_label": "Superseded, retained",
+      "lozenge": "neutral",
+      "description": "Replaced by a linked corrected or void document; original preserved and retained."
+    },
+    {
+      "id": "DocumentOnLegalHold",
+      "kind": "intermediate",
+      "user_label": "Legal hold",
+      "lozenge": "blocked",
+      "description": "A legal hold covers this document; disposition impossible."
+    },
+    {
+      "id": "DocumentEligibleForReview",
+      "kind": "intermediate",
+      "user_label": "Eligible for disposition review",
+      "lozenge": "attention",
+      "description": "Effective retention expired; awaiting a class-level disposition batch."
+    },
+    {
+      "id": "DocumentDispositionApproved",
+      "kind": "intermediate",
+      "user_label": "Disposition approved",
+      "lozenge": "attention",
+      "description": "Included in an approved class-level batch; awaiting fenced execution."
+    },
+    {
+      "id": "DocumentDispositionUnknown",
+      "kind": "intermediate",
+      "user_label": "Disposition outcome unknown",
+      "lozenge": "unknown",
+      "description": "Storage delete outcome not determinable."
+    },
+    {
+      "id": "DocumentDisposed",
+      "kind": "terminal",
+      "user_label": "Disposed",
+      "lozenge": "neutral",
+      "description": "Bytes destroyed; registry tombstone with hash, class, batch and approvers kept."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-18-T01",
+      "from": "DocumentRequested",
+      "to": "DocumentRendered",
+      "trigger": "command",
+      "name": "RenderFromSnapshot",
+      "actor_type": "deterministic",
+      "actor_role": "Document service (Folio markup, headless Chromium PDF + accessible HTML)",
+      "authority": "A3",
+      "guards": [
+        "template-version-published",
+        "mandatory-clauses-present",
+        "accessibility-check-passed",
+        "no-truncation"
+      ],
+      "effects": [
+        "render"
+      ],
+      "idempotency_key": "(docType, subjectId, snapshotHash, templateVersion)",
+      "failure": [
+        {
+          "condition": "ValidationFailed",
+          "to_state": "DocumentIssuanceBlocked"
+        },
+        {
+          "condition": "TimeoutRenderer",
+          "to_state": "DocumentRequested"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "RCD-009",
+        "UNB-RCN-PLT-010",
+        "RR-REQ-X-029-r1",
+        "UNB-RCN-FIN-001"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003",
+        "DKS-PLT-013",
+        "ADV-453",
+        "ADV-454",
+        "ADV-452"
+      ]
+    },
+    {
+      "id": "WFM-18-T02",
+      "from": "DocumentIssuanceBlocked",
+      "to": "DocumentRequested",
+      "trigger": "command",
+      "name": "ResolveIssuanceBlock",
+      "actor_type": "human",
+      "actor_role": "Sponsor communications administrator (template) or document operations",
+      "authority": "A3",
+      "guards": [
+        "template-reviewed-and-published"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(documentRequestId, resolutionId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-034",
+        "RCD-009",
+        "RR-REQ-X-029-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003",
+        "DKS-PLT-013"
+      ],
+      "ui_surface": "UNB-UI-S-010",
+      "notes": "Template fixes go through draft/review/publish with an approver other than the author (S-010)."
+    },
+    {
+      "id": "WFM-18-T03",
+      "from": "DocumentRendered",
+      "to": "DocumentIssued",
+      "trigger": "event",
+      "name": "RegisterArtifact",
+      "actor_type": "deterministic",
+      "actor_role": "Document artifact registry",
+      "authority": "A3",
+      "guards": [
+        "retention-class-assigned"
+      ],
+      "effects": [
+        "registry-hash",
+        "assign-retention-class",
+        "external-call"
+      ],
+      "idempotency_key": "(docType, subjectId, snapshotHash, version)",
+      "failure": [
+        {
+          "condition": "UnknownStorageOutcome",
+          "to_state": "DocumentIssuanceUnknown"
+        },
+        {
+          "condition": "NoRetentionClass",
+          "to_state": "DocumentIssuanceBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "RCD-009",
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038",
+        "UNB-RCN-PLT-010"
+      ],
+      "scenario_ids": [
+        "ADV-455",
+        "ADV-456",
+        "ADV-457",
+        "ADV-377"
+      ],
+      "notes": "PDF hash and source-snapshot hash recorded independently of the renderer; exactly one retention class assigned at creation."
+    },
+    {
+      "id": "WFM-18-T04",
+      "from": "DocumentIssuanceUnknown",
+      "to": "DocumentIssued",
+      "trigger": "event",
+      "name": "ReconcileIssuance",
+      "actor_type": "deterministic",
+      "actor_role": "Document artifact registry (recovery)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "registry-hash"
+      ],
+      "idempotency_key": "(docType, subjectId, snapshotHash, version)",
+      "failure": [
+        {
+          "condition": "UnknownStillInconsistent",
+          "to_state": "DocumentIssuanceUnknown"
+        },
+        {
+          "condition": "ObjectMissing",
+          "to_state": "DocumentRendered"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "RCD-009"
+      ],
+      "scenario_ids": [
+        "ADV-455",
+        "ADV-456"
+      ]
+    },
+    {
+      "id": "WFM-18-T05",
+      "from": "DocumentIssued",
+      "to": "DocumentDeliverySent",
+      "trigger": "command",
+      "name": "DispatchDelivery",
+      "actor_type": "deterministic",
+      "actor_role": "Notification service (email or print provider)",
+      "authority": "A3",
+      "guards": [
+        "recipient-authority-current",
+        "recipient-in-sponsor-scope"
+      ],
+      "effects": [
+        "external-call",
+        "notify"
+      ],
+      "idempotency_key": "(documentId, recipientId, channel)",
+      "failure": [
+        {
+          "condition": "UnknownProviderOutcome",
+          "to_state": "DocumentDeliveryUnknown"
+        },
+        {
+          "condition": "RecipientAuthorityRevoked",
+          "to_state": "DocumentInRetention"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "UNB-RCN-PLT-002",
+        "REQ-X-040"
+      ],
+      "scenario_ids": [
+        "ADV-459",
+        "ADV-255",
+        "ADV-256",
+        "ADV-458"
+      ]
+    },
+    {
+      "id": "WFM-18-T06",
+      "from": "DocumentIssued",
+      "to": "DocumentInRetention",
+      "trigger": "event",
+      "name": "PublishPortalOnly",
+      "actor_type": "deterministic",
+      "actor_role": "Document service (delivery policy: portal only)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(documentId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-034",
+        "UNB-UI-S-007"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-18-T07",
+      "from": "DocumentDeliverySent",
+      "to": "DocumentInRetention",
+      "trigger": "event",
+      "name": "ConfirmDelivery",
+      "actor_type": "external",
+      "actor_role": "Email / print provider",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "delivery-receipt"
+      ],
+      "idempotency_key": "(provider, providerEventId)",
+      "failure": [
+        {
+          "condition": "TimeoutNoDeliveryEvidence",
+          "to_state": "DocumentDeliveryUnknown"
+        },
+        {
+          "condition": "BounceOrReturnedMail",
+          "to_state": "DocumentDeliveryFailed"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "REQ-X-032"
+      ],
+      "scenario_ids": [
+        "ADV-460",
+        "ADV-261"
+      ]
+    },
+    {
+      "id": "WFM-18-T08",
+      "from": "DocumentDeliveryUnknown",
+      "to": "DocumentInRetention",
+      "trigger": "event",
+      "name": "ResolveDeliveryUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Notification service (provider status query)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "delivery-receipt"
+      ],
+      "idempotency_key": "(documentId, recipientId, channel)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "DocumentDeliveryUnknown"
+        },
+        {
+          "condition": "ProvenNotDelivered",
+          "to_state": "DocumentDeliveryFailed"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [
+        "ADV-460",
+        "ADV-890"
+      ]
+    },
+    {
+      "id": "WFM-18-T09",
+      "from": "DocumentDeliveryFailed",
+      "to": "DocumentDeliverySent",
+      "trigger": "command",
+      "name": "ResendViaAlternateChannel",
+      "actor_type": "human",
+      "actor_role": "Donor services specialist",
+      "authority": "A2",
+      "guards": [
+        "recipient-authority-current",
+        "alternate-channel-verified"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(documentId, recipientId, alternateChannel)",
+      "failure": [
+        {
+          "condition": "UnknownProviderOutcome",
+          "to_state": "DocumentDeliveryUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-034",
+        "UNB-RCN-PLT-002",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "ADV-261"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Mandatory-legal documents (acknowledgments) cannot be closed as undelivered without a recorded attempt on another verified channel."
+    },
+    {
+      "id": "WFM-18-T10",
+      "from": "DocumentDeliveryFailed",
+      "to": "DocumentInRetention",
+      "trigger": "command",
+      "name": "AcceptPortalAvailability",
+      "actor_type": "human",
+      "actor_role": "Donor services specialist",
+      "authority": "A2",
+      "guards": [
+        "document-class-not-mandatory-delivery"
+      ],
+      "effects": [
+        "record-decision"
+      ],
+      "idempotency_key": "(documentId, recipientId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-034",
+        "UNB-RCN-PLT-002"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-18-T11",
+      "from": "DocumentInRetention",
+      "to": "DocumentSupersededInRetention",
+      "trigger": "event",
+      "name": "SupersedeWithCorrection",
+      "actor_type": "deterministic",
+      "actor_role": "Document artifact registry",
+      "authority": "A3",
+      "guards": [
+        "correction-authorized-upstream",
+        "successor-document-issued"
+      ],
+      "effects": [
+        "supersede-link",
+        "notify"
+      ],
+      "idempotency_key": "(documentId, successorDocumentId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-034",
+        "UNB-NAV-010",
+        "UNB-UI-S-007"
+      ],
+      "scenario_ids": [
+        "ADV-461",
+        "ADV-254",
+        "DKS-FIN-002"
+      ],
+      "notes": "Used for corrected statements, corrected or void acknowledgments (returned contributions). The original is never modified or deleted."
+    },
+    {
+      "id": "WFM-18-T12",
+      "from": [
+        "DocumentInRetention",
+        "DocumentSupersededInRetention"
+      ],
+      "to": "DocumentEligibleForReview",
+      "trigger": "timer",
+      "name": "RetentionExpires",
+      "actor_type": "timer",
+      "actor_role": "Retention policy engine",
+      "authority": "A3",
+      "guards": [
+        "effective-retention-elapsed",
+        "no-active-hold",
+        "no-unknown-safety-fact"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(documentId, retentionPolicyVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038"
+      ],
+      "scenario_ids": [
+        "ADV-379",
+        "ADV-381",
+        "ADV-391",
+        "DKS-REG-005"
+      ],
+      "notes": "Effective retention = max(all classes, 7-year platform floor, OFAC 10 years where applicable, holds). Expiry creates review, never deletion."
+    },
+    {
+      "id": "WFM-18-T13",
+      "from": [
+        "DocumentInRetention",
+        "DocumentSupersededInRetention",
+        "DocumentEligibleForReview",
+        "DocumentDispositionApproved"
+      ],
+      "to": "DocumentOnLegalHold",
+      "trigger": "command",
+      "name": "PlaceLegalHold",
+      "actor_type": "human",
+      "actor_role": "Legal counsel",
+      "authority": "A4",
+      "guards": [
+        "hold-scope-recorded"
+      ],
+      "effects": [
+        "legal-hold"
+      ],
+      "idempotency_key": "(holdId, documentId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038",
+        "REQ-X-036"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-015",
+        "ADV-384",
+        "ADV-386",
+        "ADV-463"
+      ],
+      "ui_surface": "NEW:Legal hold management",
+      "notes": "Hold scope also covers future corrections and linked evidence."
+    },
+    {
+      "id": "WFM-18-T14",
+      "from": "DocumentOnLegalHold",
+      "to": "DocumentInRetention",
+      "trigger": "command",
+      "name": "ReleaseLegalHold",
+      "actor_type": "human",
+      "actor_role": "Legal counsel other than the hold requester",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "legal-hold-release"
+      ],
+      "idempotency_key": "(holdId, documentId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038"
+      ],
+      "scenario_ids": [
+        "ADV-388"
+      ],
+      "ui_surface": "NEW:Legal hold management",
+      "notes": "Expiry is recomputed; an already-expired record re-enters review through RetentionExpires."
+    },
+    {
+      "id": "WFM-18-T15",
+      "from": "DocumentEligibleForReview",
+      "to": "DocumentDispositionApproved",
+      "trigger": "command",
+      "name": "ApproveDispositionBatch",
+      "actor_type": "human",
+      "actor_role": "Records manager with second approver (class-level batch)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "second-approver",
+        "sampled-verification-done"
+      ],
+      "effects": [
+        "disposition-approval"
+      ],
+      "idempotency_key": "(batchId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038",
+        "RCD-007"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-015",
+        "DKS-PLT-016",
+        "ADV-403"
+      ],
+      "ui_surface": "NEW:Retention disposition batch approval"
+    },
+    {
+      "id": "WFM-18-T16",
+      "from": "DocumentEligibleForReview",
+      "to": "DocumentInRetention",
+      "trigger": "event",
+      "name": "ExtendForDependency",
+      "actor_type": "deterministic",
+      "actor_role": "Retention policy engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "retention-extended"
+      ],
+      "idempotency_key": "(documentId, dependencyId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038"
+      ],
+      "scenario_ids": [
+        "ADV-392",
+        "ADV-404"
+      ]
+    },
+    {
+      "id": "WFM-18-T17",
+      "from": "DocumentDispositionApproved",
+      "to": "DocumentDisposed",
+      "trigger": "command",
+      "name": "ExecuteDisposition",
+      "actor_type": "deterministic",
+      "actor_role": "Retention policy engine (fenced storage action)",
+      "authority": "A3",
+      "guards": [
+        "policy-version-unchanged",
+        "no-active-hold",
+        "no-dependency",
+        "batch-approval-current"
+      ],
+      "effects": [
+        "external-call",
+        "tombstone"
+      ],
+      "idempotency_key": "(batchId, documentId)",
+      "failure": [
+        {
+          "condition": "UnknownDeleteOutcome",
+          "to_state": "DocumentDispositionUnknown"
+        },
+        {
+          "condition": "HoldOrDependencyFound",
+          "to_state": "DocumentInRetention"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038"
+      ],
+      "scenario_ids": [
+        "ADV-385",
+        "ADV-397",
+        "ADV-405",
+        "ADV-400"
+      ]
+    },
+    {
+      "id": "WFM-18-T18",
+      "from": "DocumentDispositionUnknown",
+      "to": "DocumentDisposed",
+      "trigger": "event",
+      "name": "VerifyDisposition",
+      "actor_type": "deterministic",
+      "actor_role": "Retention policy engine (storage verification)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "tombstone"
+      ],
+      "idempotency_key": "(batchId, documentId)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "DocumentDispositionUnknown"
+        },
+        {
+          "condition": "BytesStillPresent",
+          "to_state": "DocumentDispositionApproved"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-036-r1",
+        "RCD-007",
+        "REQ-X-038"
+      ],
+      "scenario_ids": [
+        "ADV-398",
+        "ADV-399"
+      ]
+    }
+  ],
+  "invariants": [
+    "One (docType, subject, snapshotHash, version) produces at most one issued document.",
+    "Issued bytes are never modified; corrections supersede with links (UNB-UI-S-007 'Superseded by').",
+    "Every document has exactly one retention class at creation; effective retention is the maximum of all applicable periods and holds.",
+    "No deletion without an approved class-level batch and an immediate re-check of policy, hold and dependency versions; no automatic deletion.",
+    "Provider acceptance is never shown as delivery."
+  ]
+}

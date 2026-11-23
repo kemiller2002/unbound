@@ -1,0 +1,1319 @@
+{
+  "workflow_id": "WFM-08",
+  "name": "Grant approval, reservation and funding (sponsor side)",
+  "release": "R1",
+  "outcome": "A lawful, sponsor-authorized grant reserved atomically against authoritative capacity and funded exactly once before any payment",
+  "aggregate": "Grant",
+  "sources": [
+    "RR-REQ-X-002-r1",
+    "UNB-RCN-FIN-008",
+    "UNB-RCN-FIN-009",
+    "RR-UNB-CUST-015-r1",
+    "RR-UNB-GRANT-011-r1",
+    "RR-UNB-GRANT-012-r1",
+    "UNB-RCN-GRT-002",
+    "UNB-RCN-REG-002",
+    "RCD-005",
+    "RCD-014",
+    "RCD-017",
+    "RCD-022",
+    "RR-REQ-X-008-r1",
+    "UNB-RCN-GRT-015",
+    "TX-11",
+    "TX-12",
+    "06-state-models/state-models.md §2 GR-1..GR-12, §4 RES-1",
+    "CROSS-WORKFLOW-FINANCIAL-AUTHORITY-AND-IRREVERSIBILITY-INVARIANTS-2026-11-23.md"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-004",
+    "UNB-UI-S-008",
+    "UNB-UI-S-011",
+    "UNB-UI-S-012",
+    "UNB-UI-W-001"
+  ],
+  "states": [
+    {
+      "id": "GrantUnderReview",
+      "kind": "initial",
+      "user_label": "In review",
+      "lozenge": "neutral",
+      "description": "Created from a submitted recommendation. Deterministic Tier 1 evaluates RecipientClass, BenefitAndPurposeGate, related-party block, supporting-org certification, deep-review currency, IRS-status observation, sanctions and routing."
+    },
+    {
+      "id": "GrantHeldForReview",
+      "kind": "intermediate",
+      "user_label": "On hold – review",
+      "lozenge": "attention",
+      "description": "Gate outcome Hold (benefit or purpose, missing supporting-org certification, deep review expired, status Unknown, potential sanctions match, counsel review). A WorkItem names the exit condition."
+    },
+    {
+      "id": "GrantRelatedPartyHold",
+      "kind": "intermediate",
+      "user_label": "Blocked – related party",
+      "lozenge": "blocked",
+      "description": "Payee, destination owner or declared beneficiary matches the fund's related-party registry. Nonwaivable; only independent compliance on counsel's determination releases."
+    },
+    {
+      "id": "GrantApproveRecommended",
+      "kind": "intermediate",
+      "user_label": "Approval recommended",
+      "lozenge": "attention",
+      "description": "RCD-005 current path: the deterministic tier's outcome is ApproveRecommended; a human approves in one-click batches (A4)."
+    },
+    {
+      "id": "GrantAwaitingHumanApproval",
+      "kind": "intermediate",
+      "user_label": "Awaiting approval",
+      "lozenge": "attention",
+      "description": "Routing matrix (role, amount, risk, relationship, exception) requires an individual human decision, with dual control where policy requires."
+    },
+    {
+      "id": "GrantCapacityShort",
+      "kind": "intermediate",
+      "user_label": "Waiting for funds",
+      "lozenge": "attention",
+      "description": "Approval failed because authoritative capacity was insufficient in the approval transaction. Not approved; nothing reserved."
+    },
+    {
+      "id": "GrantReserved",
+      "kind": "intermediate",
+      "user_label": "Approved",
+      "lozenge": "neutral",
+      "description": "Approved and reserved in one serialisable transaction against every constrained ancestor; amount fixed (percentage grants fix here)."
+    },
+    {
+      "id": "GrantFundingPlanned",
+      "kind": "intermediate",
+      "user_label": "Funding planned",
+      "lozenge": "neutral",
+      "description": "Funding source chosen: pool cash buffer first; liquidation if the buffer cannot cover. Equivalent to RR-REQ-X-002-r1 ApprovedPendingLiquidity when liquidation is needed. No external commitment."
+    },
+    {
+      "id": "GrantLiquidationPending",
+      "kind": "intermediate",
+      "user_label": "Selling investments",
+      "lozenge": "neutral",
+      "description": "Redemption or sale submitted to the custodian/pool; awaiting settlement."
+    },
+    {
+      "id": "GrantFundingShortfall",
+      "kind": "intermediate",
+      "user_label": "Funding shortfall",
+      "lozenge": "attention",
+      "description": "A source could not deliver (redemption gate, NAV drop beyond haircut). Sponsor shortfall rule applies; never draws on other grants' reservations."
+    },
+    {
+      "id": "GrantFunded",
+      "kind": "intermediate",
+      "user_label": "Funded – ready to pay",
+      "lozenge": "neutral",
+      "description": "Settled, unencumbered cash equal to the fixed amount is allocated in the paying account (or an approved liquidity advance)."
+    },
+    {
+      "id": "GrantCancellationRequested",
+      "kind": "intermediate",
+      "user_label": "Cancellation requested",
+      "lozenge": "attention",
+      "description": "Requester asked to cancel after approval; payment release is paused until the sponsor decides (GR-9)."
+    },
+    {
+      "id": "GrantDeathReviewHold",
+      "kind": "intermediate",
+      "user_label": "On hold – authority review",
+      "lozenge": "attention",
+      "description": "Approved unpaid grant after verified death of the recommender where the sponsor's death_pending_grant_policy is hold_for_review."
+    },
+    {
+      "id": "GrantPaymentInProgress",
+      "kind": "intermediate",
+      "user_label": "Payment in progress",
+      "lozenge": "neutral",
+      "description": "A payment chain (WFM-10 ACH or WFM-11 check) is live. Grant state is derived from attempts; finality is a fact, not a guess."
+    },
+    {
+      "id": "GrantReturnedPendingDecision",
+      "kind": "intermediate",
+      "user_label": "Payment returned",
+      "lozenge": "attention",
+      "description": "Payment returned, recalled, voided-and-recredited or not received; funds re-credited to the originating fund by a linked compensating entry; sponsor decides re-pay or cancel."
+    },
+    {
+      "id": "GrantBlocked",
+      "kind": "intermediate",
+      "user_label": "Blocked",
+      "lozenge": "blocked",
+      "description": "Confirmed sanctions true match on property in the sponsor's possession (WFM-12). No movement, retry, reissue or capacity restoration."
+    },
+    {
+      "id": "GrantPaid",
+      "kind": "terminal",
+      "user_label": "Paid",
+      "lozenge": "ok",
+      "description": "Cumulative settled equals the grant amount and Final(rail) holds; reservation consumed."
+    },
+    {
+      "id": "GrantDeclined",
+      "kind": "terminal",
+      "user_label": "Declined",
+      "lozenge": "neutral",
+      "description": "Sponsor declined (rule or human) with an explanation; reconsideration via UNB-RCN-ENT-016."
+    },
+    {
+      "id": "GrantWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Recommendation withdrawn or superseded before decision (same operation)."
+    },
+    {
+      "id": "GrantCanceled",
+      "kind": "terminal",
+      "user_label": "Canceled",
+      "lozenge": "neutral",
+      "description": "Canceled after approval (sponsor decision, recipient decline, shortfall); reservation released with reason."
+    },
+    {
+      "id": "GrantPaymentCorrection",
+      "kind": "correction",
+      "user_label": "Corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction child after Paid (late return, misdirected payment recovery, post-payment adverse finding). Parent unchanged."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-08-T01",
+      "from": "GrantUnderReview",
+      "to": "GrantApproveRecommended",
+      "trigger": "event",
+      "name": "EvaluateDeterministicPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor policy engine (Tier 1, version-pinned)",
+      "authority": "A2",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "benefit-gate-pass",
+        "related-party-clear",
+        "recipient-class-permitted",
+        "supporting-org-certified",
+        "deep-review-current",
+        "policy-version-pinned"
+      ],
+      "effects": [
+        "record-approve-recommended",
+        "eligibility-snapshot-per-sponsor"
+      ],
+      "idempotency_key": "(grantId, policyVersion)",
+      "failure": [
+        {
+          "condition": "GateHold",
+          "to_state": "GrantHeldForReview"
+        },
+        {
+          "condition": "RelatedPartyMatch",
+          "to_state": "GrantRelatedPartyHold"
+        },
+        {
+          "condition": "GateReject",
+          "to_state": "GrantDeclined"
+        },
+        {
+          "condition": "NonRoutineRouting",
+          "to_state": "GrantAwaitingHumanApproval"
+        },
+        {
+          "condition": "PotentialSanctionsMatch",
+          "to_state": "GrantHeldForReview"
+        },
+        {
+          "condition": "IrsStatusStaleOrUnknown",
+          "to_state": "GrantHeldForReview"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-005",
+        "RR-UNB-GRANT-011-r1",
+        "RR-UNB-GRANT-012-r1",
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-001",
+        "UNB-RCN-GRT-002",
+        "UNB-RCN-REG-002",
+        "REQ-X-017"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-017",
+        "DKS-GRT-007",
+        "DKS-REG-002",
+        "DKS-REG-001",
+        "DKS-GRT-005"
+      ],
+      "notes": "Current human path (RCD-005): outcome is ApproveRecommended, no approval effect. A routine grant creates no WorkItem; it appears only in the batch approval list."
+    },
+    {
+      "id": "WFM-08-T02",
+      "from": "GrantApproveRecommended",
+      "to": "GrantReserved",
+      "trigger": "command",
+      "name": "BatchApproveAndReserve",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants approver (board-authorized, independent of originator)",
+      "authority": "A4",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "segregation-of-duties",
+        "capacity-in-transaction",
+        "policy-version-unchanged",
+        "benefit-gate-pass",
+        "related-party-clear",
+        "recipient-class-permitted"
+      ],
+      "effects": [
+        "grant-approval",
+        "reserve-capacity",
+        "ledger",
+        "fix-amount",
+        "eligibility-snapshot-per-sponsor"
+      ],
+      "idempotency_key": "(grantId, policyVersion, batchId)",
+      "failure": [
+        {
+          "condition": "PolicyVersionChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "EligibilityOrSanctionsChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "InsufficientCapacity",
+          "to_state": "GrantCapacityShort"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-005",
+        "RR-REQ-X-002-r1",
+        "UNB-RCN-FIN-009",
+        "RR-UNB-GFUND-021-r1",
+        "RR-UNB-GFUND-013-r1",
+        "RR-AIN-003-r1",
+        "RR-UNB-GRANT-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-014",
+        "DKS-XD-005",
+        "DKS-XD-013",
+        "DKS-FIN-009",
+        "DKS-FIN-017",
+        "DKS-GRT-016"
+      ],
+      "ui_surface": "NEW:Grant batch approval",
+      "notes": "Each grant in the batch commits its own approval+reservation transaction; a batch is not all-or-nothing. Concurrent percentage grants serialise at the reservation boundary."
+    },
+    {
+      "id": "WFM-08-T03",
+      "from": "GrantUnderReview",
+      "to": "GrantReserved",
+      "trigger": "event",
+      "name": "DelegatedPolicyApproveAndReserve",
+      "actor_type": "deterministic",
+      "actor_role": "Board-delegated sponsor policy (after RCD-005 delegation approval)",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "segregation-of-duties",
+        "capacity-in-transaction",
+        "policy-version-unchanged",
+        "benefit-gate-pass",
+        "related-party-clear",
+        "recipient-class-permitted",
+        "delegation-approved-for-sponsor"
+      ],
+      "effects": [
+        "grant-approval",
+        "reserve-capacity",
+        "ledger",
+        "fix-amount",
+        "eligibility-snapshot-per-sponsor"
+      ],
+      "idempotency_key": "(grantId, policyVersion)",
+      "failure": [
+        {
+          "condition": "PolicyVersionChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "EligibilityOrSanctionsChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "InsufficientCapacity",
+          "to_state": "GrantCapacityShort"
+        },
+        {
+          "condition": "GateHold",
+          "to_state": "GrantHeldForReview"
+        },
+        {
+          "condition": "RelatedPartyMatch",
+          "to_state": "GrantRelatedPartyHold"
+        },
+        {
+          "condition": "GateReject",
+          "to_state": "GrantDeclined"
+        },
+        {
+          "condition": "NonRoutineRouting",
+          "to_state": "GrantAwaitingHumanApproval"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-005",
+        "RR-REQ-X-002-r1",
+        "UNB-RCN-FIN-009",
+        "RR-UNB-GFUND-021-r1",
+        "RR-UNB-GFUND-013-r1",
+        "RR-AIN-003-r1",
+        "RR-UNB-GRANT-012-r1",
+        "OD-01"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-017",
+        "DKS-GRT-014",
+        "DKS-XD-013"
+      ],
+      "notes": "DELEGATED PATH, disabled until counsel and the sponsor board approve delegation (RCD-005). Same rule outcome becomes the A3 approval by an authority-flag change only; segregation-of-duties is satisfied because the rule is not the originator."
+    },
+    {
+      "id": "WFM-08-T04",
+      "from": "GrantAwaitingHumanApproval",
+      "to": "GrantReserved",
+      "trigger": "command",
+      "name": "ApproveAndReserve",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants approver per routing matrix (dual control where policy requires)",
+      "authority": "A4",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "segregation-of-duties",
+        "capacity-in-transaction",
+        "policy-version-unchanged",
+        "benefit-gate-pass",
+        "related-party-clear",
+        "recipient-class-permitted",
+        "dual-control-if-required"
+      ],
+      "effects": [
+        "grant-approval",
+        "reserve-capacity",
+        "ledger",
+        "fix-amount",
+        "eligibility-snapshot-per-sponsor"
+      ],
+      "idempotency_key": "(grantId, policyVersion, approverId)",
+      "failure": [
+        {
+          "condition": "PolicyVersionChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "EligibilityOrSanctionsChanged",
+          "to_state": "GrantUnderReview"
+        },
+        {
+          "condition": "InsufficientCapacity",
+          "to_state": "GrantCapacityShort"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-005",
+        "RR-REQ-X-002-r1",
+        "UNB-RCN-FIN-009",
+        "RR-UNB-GFUND-021-r1",
+        "RR-UNB-GFUND-013-r1",
+        "RR-AIN-003-r1",
+        "RR-UNB-GRANT-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-014",
+        "DKS-PLT-008"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-08-T05",
+      "from": "GrantHeldForReview",
+      "to": "GrantUnderReview",
+      "trigger": "command",
+      "name": "ResolveHoldWithEvidence",
+      "actor_type": "human",
+      "actor_role": "Grants or compliance reviewer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "evidence-attached"
+      ],
+      "effects": [
+        "rerun-rules",
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "RR-UNB-GRANT-011-r1",
+        "UNB-RCN-REG-002"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Human supplies or accepts evidence; the rules re-run. A human never bypasses a gate here."
+    },
+    {
+      "id": "WFM-08-T06",
+      "from": "GrantHeldForReview",
+      "to": "GrantUnderReview",
+      "trigger": "event",
+      "name": "HoldExitConditionMet",
+      "actor_type": "deterministic",
+      "actor_role": "WorkItem exit rule",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "rerun-rules",
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-019"
+      ],
+      "notes": "E.g. certification received, IRS observation refreshed, sanctions potential match dispositioned false positive."
+    },
+    {
+      "id": "WFM-08-T07",
+      "from": [
+        "GrantHeldForReview",
+        "GrantAwaitingHumanApproval",
+        "GrantApproveRecommended",
+        "GrantCapacityShort"
+      ],
+      "to": "GrantDeclined",
+      "trigger": "command",
+      "name": "DeclineGrant",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants approver",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "notify-with-explanation",
+        "release-soft-claim"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-RCN-ENT-016",
+        "UNB-GRANT-001"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-08-T08",
+      "from": "GrantHeldForReview",
+      "to": "GrantDeclined",
+      "trigger": "event",
+      "name": "SanctionsTrueMatchBeforeApproval",
+      "actor_type": "deterministic",
+      "actor_role": "Sanctions case (WFM-12)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-sponsor",
+        "release-soft-claim"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009"
+      ],
+      "notes": "Needs decision: whether a pre-approval true match on a recipient creates blocked property or a rejected-transaction report (see report)."
+    },
+    {
+      "id": "WFM-08-T09",
+      "from": "GrantRelatedPartyHold",
+      "to": "GrantUnderReview",
+      "trigger": "command",
+      "name": "ReleaseRelatedPartyHold",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer (on counsel determination)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "counsel-determination-recorded"
+      ],
+      "effects": [
+        "release-hold",
+        "rerun-rules"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-002",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-007"
+      ],
+      "ui_surface": "NEW:Related-party hold decision"
+    },
+    {
+      "id": "WFM-08-T10",
+      "from": "GrantRelatedPartyHold",
+      "to": "GrantDeclined",
+      "trigger": "command",
+      "name": "DeclineRelatedPartyGrant",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "notify-with-explanation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-002"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-007"
+      ],
+      "ui_surface": "NEW:Related-party hold decision"
+    },
+    {
+      "id": "WFM-08-T11",
+      "from": [
+        "GrantUnderReview",
+        "GrantHeldForReview",
+        "GrantApproveRecommended",
+        "GrantAwaitingHumanApproval",
+        "GrantCapacityShort",
+        "GrantRelatedPartyHold"
+      ],
+      "to": "GrantWithdrawn",
+      "trigger": "event",
+      "name": "RecommendationWithdrawn",
+      "actor_type": "deterministic",
+      "actor_role": "Recommendation aggregate (WFM-07)",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "release-soft-claim"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-GRANT-001"
+      ],
+      "scenario_ids": [],
+      "notes": "Same operation as WFM-07 withdrawal; serialised with approval on grant revision (REC-5)."
+    },
+    {
+      "id": "WFM-08-T12",
+      "from": "GrantCapacityShort",
+      "to": "GrantUnderReview",
+      "trigger": "event",
+      "name": "CapacityIncreased",
+      "actor_type": "deterministic",
+      "actor_role": "Capacity monitor",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "rerun-rules"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-002-r1",
+        "UNB-RCN-FIN-009"
+      ],
+      "scenario_ids": [],
+      "notes": "E.g. contribution reaches Final. Re-approval reruns every gate; no queue position is promised (GR-10 single ordering key)."
+    },
+    {
+      "id": "WFM-08-T13",
+      "from": "GrantCapacityShort",
+      "to": "GrantDeclined",
+      "trigger": "timer",
+      "name": "CapacityWaitExpired",
+      "actor_type": "timer",
+      "actor_role": "Grant scheduler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-with-explanation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-002-r1",
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: no requirement defines the capacity-wait window or its default."
+    },
+    {
+      "id": "WFM-08-T14",
+      "from": "GrantReserved",
+      "to": "GrantFundingPlanned",
+      "trigger": "event",
+      "name": "PlanFunding",
+      "actor_type": "deterministic",
+      "actor_role": "Funding planner",
+      "authority": "A3",
+      "guards": [
+        "no-pending-cancellation"
+      ],
+      "effects": [
+        "funding-plan"
+      ],
+      "idempotency_key": "(grantId, reservationVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-008",
+        "RCD-017",
+        "RR-UNB-CUST-015-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Cash buffer first (sponsor-set, default 2% of pool value)."
+    },
+    {
+      "id": "WFM-08-T15",
+      "from": "GrantFundingPlanned",
+      "to": "GrantFunded",
+      "trigger": "event",
+      "name": "FundFromCashBuffer",
+      "actor_type": "deterministic",
+      "actor_role": "Funding planner / ledger writer",
+      "authority": "A3",
+      "guards": [
+        "settled-unencumbered-cash-available",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "ledger",
+        "allocate-cash-to-paying-account"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-CUST-015-r1",
+        "UNB-RCN-FIN-008",
+        "RCD-017"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-010"
+      ]
+    },
+    {
+      "id": "WFM-08-T16",
+      "from": "GrantFundingPlanned",
+      "to": "GrantLiquidationPending",
+      "trigger": "command",
+      "name": "SubmitLiquidation",
+      "actor_type": "deterministic",
+      "actor_role": "Funding planner",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "trade-or-redemption-order"
+      ],
+      "idempotency_key": "(grantId, fundingPlanVersion)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownOrderStatus",
+          "to_state": "GrantLiquidationPending"
+        },
+        {
+          "condition": "RedemptionGated",
+          "to_state": "GrantFundingShortfall"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-002-r1",
+        "RR-UNB-CUST-015-r1",
+        "UNB-GRANT-019"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-011"
+      ],
+      "notes": "Unknown order status is resolved by custodian reconciliation, never by resubmitting."
+    },
+    {
+      "id": "WFM-08-T17",
+      "from": "GrantLiquidationPending",
+      "to": "GrantFunded",
+      "trigger": "event",
+      "name": "LiquidationSettled",
+      "actor_type": "external",
+      "actor_role": "Custodian / pool administrator",
+      "authority": "A3",
+      "guards": [
+        "settlement-evidence-verified"
+      ],
+      "effects": [
+        "ledger",
+        "allocate-cash-to-paying-account",
+        "release-haircut-residue"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoSettlementEvidence"
+        },
+        {
+          "condition": "ProceedsShort",
+          "to_state": "GrantFundingShortfall"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-CUST-015-r1",
+        "UNB-GRANT-019",
+        "UNB-RCN-FIN-008"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-015"
+      ]
+    },
+    {
+      "id": "WFM-08-T18",
+      "from": [
+        "GrantFundingPlanned",
+        "GrantLiquidationPending"
+      ],
+      "to": "GrantFunded",
+      "trigger": "command",
+      "name": "ApproveLiquidityAdvance",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury approver",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "advance-within-approved-limit",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "ledger",
+        "interfund-receivable",
+        "allocate-cash-to-paying-account"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-CUST-015-r1",
+        "UNB-RCN-FIN-008"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Liquidity advance approval"
+    },
+    {
+      "id": "WFM-08-T19",
+      "from": "GrantFundingShortfall",
+      "to": "GrantFundingPlanned",
+      "trigger": "event",
+      "name": "ApplyShortfallRule",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor shortfall rule",
+      "authority": "A3",
+      "guards": [
+        "capacity-in-transaction",
+        "no-draw-on-other-reservations"
+      ],
+      "effects": [
+        "reserve-capacity",
+        "funding-plan"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-002-r1",
+        "UNB-GRANT-020"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-015"
+      ],
+      "notes": "Rule values: reduce, top up from a waterfall, or hold. Gap: the CFO decision on the default rule is not recorded in decisions.csv."
+    },
+    {
+      "id": "WFM-08-T20",
+      "from": "GrantFundingShortfall",
+      "to": "GrantCanceled",
+      "trigger": "command",
+      "name": "CancelForShortfall",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants approver",
+      "authority": "A3",
+      "guards": [
+        "no-live-payment-attempt"
+      ],
+      "effects": [
+        "release-capacity",
+        "ledger",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-002-r1",
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-08-T21",
+      "from": "GrantFunded",
+      "to": "GrantPaymentInProgress",
+      "trigger": "event",
+      "name": "CreatePaymentInstruction",
+      "actor_type": "deterministic",
+      "actor_role": "Payment release service",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "no-pending-cancellation",
+        "no-death-review-hold"
+      ],
+      "effects": [
+        "create-payment-chain"
+      ],
+      "idempotency_key": "(grantId, installmentNo, chainNo)",
+      "failure": [
+        {
+          "condition": "ReleaseGateFails",
+          "to_state": "GrantFunded"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-CUST-015-r1",
+        "UNB-RCN-FIN-008",
+        "RR-REQ-X-007-r1",
+        "RR-REQ-X-020-r1",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-010",
+        "DKS-PLT-002"
+      ],
+      "notes": "Creates the WFM-10 or WFM-11 chain; dispatch gates are re-checked there immediately before external submission."
+    },
+    {
+      "id": "WFM-08-T22",
+      "from": "GrantPaymentInProgress",
+      "to": "GrantPaid",
+      "trigger": "event",
+      "name": "PaymentFinal",
+      "actor_type": "deterministic",
+      "actor_role": "Payment aggregate",
+      "authority": "A3",
+      "guards": [
+        "cumulative-settled-equals-amount",
+        "final-rail-holds",
+        "no-unknown-in-chain"
+      ],
+      "effects": [
+        "consume-reservation",
+        "ledger",
+        "issue-grant-confirmation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-011",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-08-T23",
+      "from": "GrantPaymentInProgress",
+      "to": "GrantReturnedPendingDecision",
+      "trigger": "event",
+      "name": "PaymentReturnedOrRecredited",
+      "actor_type": "deterministic",
+      "actor_role": "Payment aggregate",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger",
+        "recredit-originating-fund",
+        "restore-capacity-after-reconciliation",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015",
+        "RCD-019",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ],
+      "notes": "ACH return or recall (WFM-10), check void re-credited (WFM-11). Never creates an acknowledgment."
+    },
+    {
+      "id": "WFM-08-T24",
+      "from": "GrantPaymentInProgress",
+      "to": "GrantFunded",
+      "trigger": "event",
+      "name": "AttemptEndedWithoutSettlement",
+      "actor_type": "deterministic",
+      "actor_role": "Payment aggregate",
+      "authority": "A3",
+      "guards": [
+        "no-unknown-in-chain"
+      ],
+      "effects": [
+        "keep-reservation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-008"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-018"
+      ],
+      "notes": "Rejected before execution, or NotReceived declared under the Unknown protocol; funds never left so the reservation stays."
+    },
+    {
+      "id": "WFM-08-T25",
+      "from": "GrantReturnedPendingDecision",
+      "to": "GrantFundingPlanned",
+      "trigger": "command",
+      "name": "RepayAfterReturn",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants operations",
+      "authority": "A3",
+      "guards": [
+        "capacity-in-transaction",
+        "eligibility-current",
+        "sanctions-clear",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "reserve-capacity",
+        "ledger"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015",
+        "RCD-028",
+        "RR-REQ-X-002-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Restores the prior commitment (GR-11), subject to fund holds and a verified destination."
+    },
+    {
+      "id": "WFM-08-T26",
+      "from": "GrantReturnedPendingDecision",
+      "to": "GrantCanceled",
+      "trigger": "command",
+      "name": "CancelAfterReturn",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants operations",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-donor",
+        "notify-charity"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015",
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-08-T27",
+      "from": [
+        "GrantReserved",
+        "GrantFundingPlanned",
+        "GrantLiquidationPending",
+        "GrantFunded",
+        "GrantFundingShortfall"
+      ],
+      "to": "GrantCancellationRequested",
+      "trigger": "command",
+      "name": "RequestCancellation",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current"
+      ],
+      "effects": [
+        "pause-release",
+        "notify-sponsor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-GRANT-001"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-004",
+      "notes": "After approval the requester can only ask; the sponsor decides. Once a payment is live this becomes a stop/recall request in WFM-10/WFM-11."
+    },
+    {
+      "id": "WFM-08-T28",
+      "from": [
+        "GrantCancellationRequested",
+        "GrantReserved",
+        "GrantFundingPlanned",
+        "GrantLiquidationPending",
+        "GrantFunded",
+        "GrantDeathReviewHold"
+      ],
+      "to": "GrantCanceled",
+      "trigger": "command",
+      "name": "CancelGrant",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [
+        "no-live-payment-attempt",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "release-capacity",
+        "ledger",
+        "abandon-pre-submission-attempts",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-REQ-X-008-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Rejected while any attempt is Submitted, Unknown, Accepted or StopRequested (GR-3). Liquidation proceeds already in flight settle to the fund as cash."
+    },
+    {
+      "id": "WFM-08-T29",
+      "from": "GrantCancellationRequested",
+      "to": "GrantReserved",
+      "trigger": "command",
+      "name": "RefuseCancellation",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-with-reason",
+        "resume-funding"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Funding resumes idempotently: if cash was already allocated, PlanFunding finds it and passes straight to Funded."
+    },
+    {
+      "id": "WFM-08-T30",
+      "from": [
+        "GrantReserved",
+        "GrantFundingPlanned",
+        "GrantLiquidationPending",
+        "GrantFunded"
+      ],
+      "to": "GrantCanceled",
+      "trigger": "command",
+      "name": "RecipientDeclinesGrant",
+      "actor_type": "human",
+      "actor_role": "Charity officer",
+      "authority": "A2",
+      "guards": [
+        "no-live-payment-attempt"
+      ],
+      "effects": [
+        "release-capacity",
+        "ledger",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-027"
+      ],
+      "ui_surface": "UNB-UI-S-012"
+    },
+    {
+      "id": "WFM-08-T31",
+      "from": [
+        "GrantReserved",
+        "GrantFundingPlanned",
+        "GrantFunded"
+      ],
+      "to": "GrantDeathReviewHold",
+      "trigger": "event",
+      "name": "DeathVerifiedHoldForReview",
+      "actor_type": "deterministic",
+      "actor_role": "death_pending_grant_policy",
+      "authority": "A3",
+      "guards": [
+        "death-verified",
+        "policy-value-hold_for_review"
+      ],
+      "effects": [
+        "pause-release",
+        "notify-sponsor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-008-r1",
+        "RCD-022",
+        "RR-UNB-SUCC-008-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-003"
+      ],
+      "notes": "RCD-022 decided OD-03: approved unpaid grants proceed by default; this transition fires only where the sponsor policy says hold_for_review."
+    },
+    {
+      "id": "WFM-08-T32",
+      "from": "GrantDeathReviewHold",
+      "to": "GrantReserved",
+      "trigger": "command",
+      "name": "CompleteAfterDeathReview",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "resume-funding"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-008-r1",
+        "RCD-022"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-08-T33",
+      "from": [
+        "GrantReserved",
+        "GrantFundingPlanned",
+        "GrantLiquidationPending",
+        "GrantFunded",
+        "GrantPaymentInProgress",
+        "GrantCancellationRequested"
+      ],
+      "to": "GrantBlocked",
+      "trigger": "event",
+      "name": "SanctionsTrueMatchConfirmed",
+      "actor_type": "deterministic",
+      "actor_role": "Sanctions case (WFM-12)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "blocked-property-classification",
+        "ledger",
+        "stop-capacity-restoration",
+        "notify-sponsor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "UNB-RCN-REG-003",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ]
+    },
+    {
+      "id": "WFM-08-T34",
+      "from": "GrantBlocked",
+      "to": "GrantReserved",
+      "trigger": "command",
+      "name": "ReleaseUnderLicenseOrDelisting",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "license-or-delisting-evidence"
+      ],
+      "effects": [
+        "release-blocked-classification",
+        "ledger",
+        "resume-funding"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "NEW:Sanctions match decision panel",
+      "notes": "Release re-enters funding and all release gates; AI and non-compliance roles cannot release."
+    },
+    {
+      "id": "WFM-08-T35",
+      "from": "GrantPaid",
+      "to": "GrantPaymentCorrection",
+      "trigger": "event",
+      "name": "PostFinalAdjustment",
+      "actor_type": "deterministic",
+      "actor_role": "Payment aggregate / ledger",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "create-linked-correction",
+        "ledger",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015",
+        "UNB-GRANT-028",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Late return, misdirected-payment recovery or post-payment review; never edits the Paid parent."
+    }
+  ],
+  "invariants": [
+    "Approval and reservation commit in one authoritative transaction; display projections never authorize (UNB-RCN-FIN-009)",
+    "No grant reaches payment release unless Funded or covered by an approved, limit-checked liquidity advance recorded as an interfund receivable",
+    "A shortfall never draws on capacity reserved for other grants",
+    "An A4 approval is made by a human who did not originate, prepare or materially modify the grant; AI never approves",
+    "A grant's amount is fixed exactly once and never re-fixed by later valuation corrections",
+    "Returned grant funds go back to the originating fund and never generate a contribution acknowledgment",
+    "Grant is never Paid while any payment in its chain is Unknown, RecallRequested or Blocked"
+  ]
+}

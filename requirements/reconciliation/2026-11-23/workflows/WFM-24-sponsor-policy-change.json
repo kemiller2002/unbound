@@ -1,0 +1,551 @@
+{
+  "workflow_id": "WFM-24",
+  "name": "Sponsor policy version lifecycle",
+  "release": "R1",
+  "outcome": "A sponsor policy version becomes active only after validation against platform hard controls, an impact preview against open items and approval by an authorized approver who is not its author, at a scheduled non-retroactive effective time",
+  "aggregate": "PolicyVersion",
+  "sources": [
+    "REQ-X-045",
+    "ADM-027",
+    "UNB-LEG-005",
+    "RCD-005",
+    "UNB-TEN-010",
+    "19-questions/SPONSOR-CONFIGURATION-POLICY-LIFECYCLE-AND-ISOLATION-2026-11-23.md:14"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "PolicyDraft",
+      "kind": "initial",
+      "user_label": "Draft",
+      "lozenge": "attention",
+      "description": "Sponsor administrator drafts a new version of a policy (eligibility, fees, limits, permissions, dormancy, death_pending_grant_policy, routing, templates)."
+    },
+    {
+      "id": "PolicyValidationFailed",
+      "kind": "intermediate",
+      "user_label": "Validation failed",
+      "lozenge": "blocked",
+      "description": "Schema, hard-control, protected-term or composition-conflict check failed."
+    },
+    {
+      "id": "PolicyValidated",
+      "kind": "intermediate",
+      "user_label": "Validated",
+      "lozenge": "attention",
+      "description": "Declarative configuration validated; no conflict with platform controls."
+    },
+    {
+      "id": "PolicyImpactPreviewed",
+      "kind": "intermediate",
+      "user_label": "Impact previewed",
+      "lozenge": "attention",
+      "description": "Diff against the active version and impact on open grants, recurring schedules, holds, fees, statements and closures computed."
+    },
+    {
+      "id": "PolicyInReview",
+      "kind": "intermediate",
+      "user_label": "Awaiting approval",
+      "lozenge": "attention",
+      "description": "Submitted to an authorized approver."
+    },
+    {
+      "id": "PolicyPlatformSafetyReview",
+      "kind": "intermediate",
+      "user_label": "Platform safety review",
+      "lozenge": "attention",
+      "description": "Change touches a platform-safety-classified parameter; platform risk confirms no hard control is weakened."
+    },
+    {
+      "id": "PolicyScheduled",
+      "kind": "intermediate",
+      "user_label": "Scheduled",
+      "lozenge": "attention",
+      "description": "Approved with a future effective time."
+    },
+    {
+      "id": "PolicyActive",
+      "kind": "intermediate",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "In force; new transactions pin this version."
+    },
+    {
+      "id": "PolicySuspended",
+      "kind": "intermediate",
+      "user_label": "Suspended",
+      "lozenge": "blocked",
+      "description": "Depends on a board delegation that expired or was rescinded; dependent outcomes revert to human approval."
+    },
+    {
+      "id": "PolicySuperseded",
+      "kind": "terminal",
+      "user_label": "Superseded",
+      "lozenge": "neutral",
+      "description": "Replaced by a newer active version."
+    },
+    {
+      "id": "PolicyRejected",
+      "kind": "terminal",
+      "user_label": "Rejected",
+      "lozenge": "blocked",
+      "description": "Approver or platform safety review rejected the version."
+    },
+    {
+      "id": "PolicyWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Author abandoned the draft or the approver cancelled a scheduled version."
+    },
+    {
+      "id": "PolicyRemediationCase",
+      "kind": "correction",
+      "user_label": "Remediation",
+      "lozenge": "neutral",
+      "description": "Linked remediation when a defect is found in a superseded version; decisions taken under it are reviewed, never silently rewritten."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-24-T01",
+      "from": "PolicyDraft",
+      "to": "PolicyValidated",
+      "trigger": "command",
+      "name": "ValidatePolicyDraft",
+      "actor_type": "deterministic",
+      "actor_role": "Policy validator",
+      "authority": "A3",
+      "guards": [
+        "schema-valid",
+        "no-platform-hard-control-override",
+        "protected-terms-intact",
+        "typed-composition-no-unresolved-conflict",
+        "effective-date-not-retroactive"
+      ],
+      "effects": [
+        "validation-report"
+      ],
+      "idempotency_key": "(policyKey, draftHash)",
+      "failure": [
+        {
+          "condition": "HardControlOverride",
+          "to_state": "PolicyValidationFailed"
+        },
+        {
+          "condition": "CompositionConflict",
+          "to_state": "PolicyValidationFailed"
+        },
+        {
+          "condition": "SchemaInvalid",
+          "to_state": "PolicyValidationFailed"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-045",
+        "ADM-027",
+        "UNB-RCN-PLT-007",
+        "UNB-TEN-010"
+      ],
+      "scenario_ids": [
+        "ADV-032",
+        "ADV-040",
+        "ADV-585",
+        "ADV-586",
+        "ADV-744"
+      ]
+    },
+    {
+      "id": "WFM-24-T02",
+      "from": "PolicyValidationFailed",
+      "to": "PolicyDraft",
+      "trigger": "command",
+      "name": "RevisePolicyDraft",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy author (administrator)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "UNB-UI-S-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-24-T03",
+      "from": [
+        "PolicyDraft",
+        "PolicyValidationFailed"
+      ],
+      "to": "PolicyWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawPolicyDraft",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy author (administrator)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-24-T04",
+      "from": "PolicyValidated",
+      "to": "PolicyImpactPreviewed",
+      "trigger": "command",
+      "name": "RunImpactPreview",
+      "actor_type": "deterministic",
+      "actor_role": "Policy simulator",
+      "authority": "A2",
+      "guards": [
+        "base-version-recorded"
+      ],
+      "effects": [
+        "impact-report",
+        "grandfathering-classification"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "UNB-UI-S-010"
+      ],
+      "scenario_ids": [
+        "DKS-XD-013"
+      ],
+      "notes": "E.g. 'affects 214 open recurring schedules' (UNB-UI-S-010)."
+    },
+    {
+      "id": "WFM-24-T05",
+      "from": "PolicyImpactPreviewed",
+      "to": "PolicyInReview",
+      "trigger": "command",
+      "name": "SubmitPolicyForApproval",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy author (administrator)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "UNB-UI-S-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-24-T06",
+      "from": "PolicyInReview",
+      "to": "PolicyPlatformSafetyReview",
+      "trigger": "event",
+      "name": "RouteToPlatformSafetyReview",
+      "actor_type": "deterministic",
+      "actor_role": "Policy validator",
+      "authority": "A2",
+      "guards": [
+        "parameter-is-platform-safety-classified"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-24-T07",
+      "from": "PolicyPlatformSafetyReview",
+      "to": "PolicyInReview",
+      "trigger": "command",
+      "name": "RecordPlatformSafetyClearance",
+      "actor_type": "human",
+      "actor_role": "Platform risk officer",
+      "authority": "A4",
+      "guards": [
+        "reviewer-not-author"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "GOV-AUTH-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Platform policy safety review",
+      "notes": "Clearance confirms no hard control is weakened; it does not approve the sponsor's policy and confers no sponsor authority (ADV-581)."
+    },
+    {
+      "id": "WFM-24-T08",
+      "from": "PolicyPlatformSafetyReview",
+      "to": "PolicyRejected",
+      "trigger": "command",
+      "name": "RejectOnPlatformSafety",
+      "actor_type": "human",
+      "actor_role": "Platform risk officer",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Platform policy safety review"
+    },
+    {
+      "id": "WFM-24-T09",
+      "from": "PolicyInReview",
+      "to": "PolicyScheduled",
+      "trigger": "command",
+      "name": "ApprovePolicyVersion",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy approver (board-delegated where the parameter is board-reserved)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "approver-not-author",
+        "approver-holds-policy-authority",
+        "preview-current",
+        "platform-safety-cleared-if-required",
+        "board-delegation-evidence-if-delegation-policy"
+      ],
+      "effects": [
+        "decision-record",
+        "schedule-activation"
+      ],
+      "idempotency_key": "(policyKey, versionHash)",
+      "failure": [
+        {
+          "condition": "BaseVersionChangedSincePreview",
+          "to_state": "PolicyValidated"
+        },
+        {
+          "condition": "ApproverIsAuthor",
+          "to_state": "PolicyInReview"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-045",
+        "ADM-027",
+        "UNB-LEG-005",
+        "GOV-AUTH-004",
+        "UNB-UI-S-010"
+      ],
+      "scenario_ids": [
+        "ADV-034",
+        "ADV-087",
+        "TVS-609",
+        "TVS-623"
+      ],
+      "ui_surface": "UNB-UI-S-010",
+      "notes": "RCD-005: a version that turns ApproveRecommended into an A3 approval requires recorded counsel and board approval of the delegation (WFM-01 board delegation register)."
+    },
+    {
+      "id": "WFM-24-T10",
+      "from": "PolicyInReview",
+      "to": "PolicyRejected",
+      "trigger": "command",
+      "name": "RejectPolicyVersion",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy approver",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "UNB-UI-S-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-24-T11",
+      "from": "PolicyScheduled",
+      "to": "PolicyWithdrawn",
+      "trigger": "command",
+      "name": "CancelScheduledVersion",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy approver",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "ADM-027"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-24-T12",
+      "from": "PolicyScheduled",
+      "to": "PolicyActive",
+      "trigger": "timer",
+      "name": "ActivateAtEffectiveTime",
+      "actor_type": "timer",
+      "actor_role": "Policy scheduler",
+      "authority": "A3",
+      "guards": [
+        "approval-current",
+        "no-conflicting-active-version"
+      ],
+      "effects": [
+        "activate-version",
+        "supersede-prior-version",
+        "revalidate-in-flight-at-boundaries"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "ConflictingVersionActivated",
+          "to_state": "PolicyInReview"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-045",
+        "ADM-027",
+        "REQ-X-019"
+      ],
+      "scenario_ids": [
+        "DKS-XD-013",
+        "ADV-047",
+        "ADV-015"
+      ],
+      "notes": "In-flight items re-check at their irreversible boundary (INV-05); approvals racing activation serialize on the policy version (DKS-XD-013)."
+    },
+    {
+      "id": "WFM-24-T13",
+      "from": [
+        "PolicyActive",
+        "PolicySuspended"
+      ],
+      "to": "PolicySuperseded",
+      "trigger": "event",
+      "name": "SupersededByNewerVersion",
+      "actor_type": "deterministic",
+      "actor_role": "Policy scheduler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "ADM-027"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-24-T14",
+      "from": "PolicyActive",
+      "to": "PolicySuspended",
+      "trigger": "event",
+      "name": "DependentDelegationLapsed",
+      "actor_type": "deterministic",
+      "actor_role": "Authority matrix",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "revert-routine-approval-to-human",
+        "notify-sponsor-admin"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-005",
+        "UNB-RCN-PLT-005",
+        "GOV-AUTH-015"
+      ],
+      "scenario_ids": [
+        "TVS-078",
+        "TVS-638"
+      ]
+    },
+    {
+      "id": "WFM-24-T15",
+      "from": "PolicySuspended",
+      "to": "PolicyActive",
+      "trigger": "command",
+      "name": "ReinstateAfterDelegationRenewed",
+      "actor_type": "human",
+      "actor_role": "Sponsor corporate secretary",
+      "authority": "A4",
+      "guards": [
+        "board-delegation-current",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-005",
+        "REQ-X-064"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Board delegation register"
+    },
+    {
+      "id": "WFM-24-T16",
+      "from": "PolicySuperseded",
+      "to": "PolicyRemediationCase",
+      "trigger": "command",
+      "name": "OpenPolicyRemediation",
+      "actor_type": "human",
+      "actor_role": "Sponsor policy approver",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "list-decisions-pinned-to-version"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-LEG-005",
+        "REQ-X-045"
+      ],
+      "scenario_ids": [
+        "ADV-590",
+        "ADV-587"
+      ],
+      "ui_surface": "UNB-UI-S-010"
+    }
+  ],
+  "invariants": [
+    "A sponsor policy can never relax platform hard controls, protective holds, sanctions or destination proof (ADV-032, ADV-040, ADV-585)",
+    "Approver is never the author (segregation of duties)",
+    "Transactions and issued documents pin the policy version they used; activation never rewrites as-issued decisions (ADV-590)",
+    "Exactly one version is active per policy key and effective time",
+    "A version that depends on a board delegation is suspended when the delegation lapses; routine approvals revert to human (RCD-005)"
+  ]
+}

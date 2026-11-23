@@ -1,0 +1,791 @@
+{
+  "workflow_id": "WFM-11",
+  "name": "Check grant payment with positive pay",
+  "release": "R1",
+  "outcome": "Each check is issued once under positive pay, and every uncashed, stale, lost, voided or escheatable check ends in a recorded disposition",
+  "aggregate": "PaymentAttempt (check rail)",
+  "sources": [
+    "UNB-RCN-GRT-005",
+    "RCD-028",
+    "RR-REQ-X-083-r1",
+    "RR-UNB-PAY-006-r1",
+    "UNB-RCN-GRT-015",
+    "UNB-RCN-GRT-007",
+    "UNB-RCN-ENT-005",
+    "CTL-044",
+    "TX-13",
+    "TX-16",
+    "06-state-models/state-models.md §3 PA-4",
+    "RCF-GRT-012",
+    "RCF-GRT-020"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-004",
+    "UNB-UI-S-008",
+    "UNB-UI-S-012"
+  ],
+  "states": [
+    {
+      "id": "CheckPaymentPrepared",
+      "kind": "initial",
+      "user_label": "Preparing check",
+      "lozenge": "neutral",
+      "description": "Check instruction created from a Funded grant with verified mailing destination pinned."
+    },
+    {
+      "id": "CheckReleaseBlocked",
+      "kind": "intermediate",
+      "user_label": "Release blocked",
+      "lozenge": "blocked",
+      "description": "A release gate failed (hold watermark, eligibility, sanctions, destination). Not printed."
+    },
+    {
+      "id": "CheckIssued",
+      "kind": "intermediate",
+      "user_label": "Check issued",
+      "lozenge": "neutral",
+      "description": "Printed; positive-pay issue file submitted. Reservation consumed into an outstanding-check liability (PA-4)."
+    },
+    {
+      "id": "CheckIssueUnknown",
+      "kind": "intermediate",
+      "user_label": "Issue status unknown",
+      "lozenge": "unknown",
+      "description": "Positive-pay issue file acknowledgement missing or ambiguous."
+    },
+    {
+      "id": "CheckOutstanding",
+      "kind": "intermediate",
+      "user_label": "Mailed – not yet cashed",
+      "lozenge": "neutral",
+      "description": "Positive pay acknowledged; check mailed and unpresented."
+    },
+    {
+      "id": "CheckAgedOutreach",
+      "kind": "intermediate",
+      "user_label": "Not yet cashed – contacting charity",
+      "lozenge": "attention",
+      "description": "Configured day threshold passed (Controller-owned); outreach to the charity on verified channels."
+    },
+    {
+      "id": "CheckStaleDated",
+      "kind": "intermediate",
+      "user_label": "Stale-dated",
+      "lozenge": "attention",
+      "description": "Stale threshold reached (default 180 days, RCD-028); void is due."
+    },
+    {
+      "id": "CheckVoidRequested",
+      "kind": "intermediate",
+      "user_label": "Void requested",
+      "lozenge": "unknown",
+      "description": "Positive-pay void file submitted; bank confirmation pending."
+    },
+    {
+      "id": "CheckVoidConfirmed",
+      "kind": "intermediate",
+      "user_label": "Voided",
+      "lozenge": "neutral",
+      "description": "Bank acknowledged the positive-pay void. Disposition (re-credit, reissue or unclaimed-property) pending."
+    },
+    {
+      "id": "CheckEscheatReview",
+      "kind": "intermediate",
+      "user_label": "Unclaimed property review",
+      "lozenge": "attention",
+      "description": "Jurisdiction dormancy rule applies or counsel position is pending; funds may not be silently returned to the fund."
+    },
+    {
+      "id": "CheckUnclaimedPropertyReportable",
+      "kind": "intermediate",
+      "user_label": "Reportable as unclaimed property",
+      "lozenge": "attention",
+      "description": "Counsel-approved rule says the check is reportable; report and remittance due."
+    },
+    {
+      "id": "CheckBlocked",
+      "kind": "intermediate",
+      "user_label": "Blocked",
+      "lozenge": "blocked",
+      "description": "List-update rescreen confirmed a true match on an outstanding check; stop placed; BlockedProperty."
+    },
+    {
+      "id": "CheckCleared",
+      "kind": "terminal",
+      "user_label": "Cashed",
+      "lozenge": "ok",
+      "description": "Presented and paid under positive pay; outstanding liability cleared."
+    },
+    {
+      "id": "CheckRecredited",
+      "kind": "terminal",
+      "user_label": "Voided – returned to fund",
+      "lozenge": "neutral",
+      "description": "Re-credited to the originating fund by a linked compensating entry after a recorded disposition; charity and donor notified."
+    },
+    {
+      "id": "CheckReissued",
+      "kind": "terminal",
+      "user_label": "Replaced",
+      "lozenge": "neutral",
+      "description": "Linked replacement chain created (check or ACH) after VoidConfirmed and fresh eligibility and destination checks."
+    },
+    {
+      "id": "CheckEscheated",
+      "kind": "terminal",
+      "user_label": "Sent to state as unclaimed property",
+      "lozenge": "neutral",
+      "description": "Unclaimed-property report and remittance evidence recorded."
+    },
+    {
+      "id": "CheckAbandoned",
+      "kind": "terminal",
+      "user_label": "Canceled before issue",
+      "lozenge": "neutral",
+      "description": "Grant canceled before printing."
+    },
+    {
+      "id": "CheckPaymentCorrection",
+      "kind": "correction",
+      "user_label": "Under correction",
+      "lozenge": "attention",
+      "description": "Linked correction child: a voided, replaced or escheated check was paid anyway, or a cleared item was returned (forged endorsement)."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-11-T01",
+      "from": "CheckPaymentPrepared",
+      "to": "CheckIssued",
+      "trigger": "command",
+      "name": "IssueCheck",
+      "actor_type": "deterministic",
+      "actor_role": "Payment release policy and check print service",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "hold-recheck-immediately-before-submit",
+        "related-party-clear",
+        "pledge-references-stripped"
+      ],
+      "effects": [
+        "external-money-out",
+        "external-call",
+        "positive-pay-issue-file",
+        "ledger-outstanding-check-liability",
+        "consume-reservation"
+      ],
+      "idempotency_key": "(paymentId, checkNumber)",
+      "failure": [
+        {
+          "condition": "ReleaseGateFails",
+          "to_state": "CheckReleaseBlocked"
+        },
+        {
+          "condition": "TimeoutPositivePayIssueAck",
+          "to_state": "CheckIssueUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028",
+        "RR-REQ-X-020-r1",
+        "RR-REQ-X-005-r1",
+        "RR-REQ-X-007-r1",
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-009"
+      ],
+      "scenario_ids": [
+        "DKS-XD-007",
+        "DKS-PLT-002",
+        "DKS-GRT-008"
+      ]
+    },
+    {
+      "id": "WFM-11-T02",
+      "from": "CheckReleaseBlocked",
+      "to": "CheckPaymentPrepared",
+      "trigger": "event",
+      "name": "ReleaseGatesCleared",
+      "actor_type": "deterministic",
+      "actor_role": "WorkItem exit rule",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-020-r1",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-11-T03",
+      "from": [
+        "CheckPaymentPrepared",
+        "CheckReleaseBlocked"
+      ],
+      "to": "CheckAbandoned",
+      "trigger": "event",
+      "name": "AbandonBeforeIssue",
+      "actor_type": "deterministic",
+      "actor_role": "Grant aggregate (WFM-08)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "release-chain"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-11-T04",
+      "from": "CheckIssued",
+      "to": "CheckOutstanding",
+      "trigger": "event",
+      "name": "PositivePayAcknowledged",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank (positive pay)",
+      "authority": "A3",
+      "guards": [
+        "issue-file-ack-matches"
+      ],
+      "effects": [
+        "record-mailing"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoIssueAck",
+          "to_state": "CheckIssueUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-028",
+        "UNB-RCN-GRT-005",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-11-T05",
+      "from": "CheckIssueUnknown",
+      "to": "CheckOutstanding",
+      "trigger": "command",
+      "name": "ResolveIssueStatus",
+      "actor_type": "deterministic",
+      "actor_role": "Positive-pay reconciliation",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "record-provider-evidence"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutStillUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-GRT-008",
+        "UNB-RCN-GRT-005"
+      ],
+      "scenario_ids": [],
+      "notes": "Check numbers with unknown issue status are never reprinted under a new number until resolved."
+    },
+    {
+      "id": "WFM-11-T06",
+      "from": [
+        "CheckIssueUnknown",
+        "CheckOutstanding",
+        "CheckAgedOutreach"
+      ],
+      "to": "CheckVoidRequested",
+      "trigger": "command",
+      "name": "RequestVoidLostOrUnmailed",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury operations",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "external-call",
+        "positive-pay-void-file"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutVoidFileAck"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "UNB-RCN-GRT-008",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Check void and reissue",
+      "notes": "Charity reports a lost check, or an unmailed check with unknown issue status must be cancelled."
+    },
+    {
+      "id": "WFM-11-T07",
+      "from": [
+        "CheckOutstanding",
+        "CheckAgedOutreach",
+        "CheckStaleDated"
+      ],
+      "to": "CheckCleared",
+      "trigger": "event",
+      "name": "CheckPresentedAndPaid",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank (clearing / positive pay)",
+      "authority": "A3",
+      "guards": [
+        "positive-pay-match",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "ledger-clear-outstanding-liability"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutClearingFileMissing"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-005"
+      ],
+      "scenario_ids": [],
+      "notes": "A stale-dated check presented before void raises a positive-pay exception decided by treasury (see positive pay exception transition)."
+    },
+    {
+      "id": "WFM-11-T08",
+      "from": "CheckOutstanding",
+      "to": "CheckAgedOutreach",
+      "trigger": "timer",
+      "name": "AgeToOutreach",
+      "actor_type": "timer",
+      "actor_role": "Check aging scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-charity",
+        "create-outreach-task"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "CTL-044"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-11-T09",
+      "from": "CheckAgedOutreach",
+      "to": "CheckStaleDated",
+      "trigger": "timer",
+      "name": "AgeToStaleDated",
+      "actor_type": "timer",
+      "actor_role": "Check aging scheduler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-charity",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ]
+    },
+    {
+      "id": "WFM-11-T10",
+      "from": [
+        "CheckStaleDated",
+        "CheckOutstanding",
+        "CheckAgedOutreach"
+      ],
+      "to": "CheckVoidRequested",
+      "trigger": "event",
+      "name": "AutoVoid",
+      "actor_type": "deterministic",
+      "actor_role": "Check lifecycle rule",
+      "authority": "A3",
+      "guards": [
+        "stale-threshold-reached-or-adverse-event-or-cancellation-granted"
+      ],
+      "effects": [
+        "external-call",
+        "positive-pay-void-file"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutVoidFileAck"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028",
+        "UNB-RCN-GRT-016"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022",
+        "DKS-GRT-003"
+      ],
+      "notes": "Stale void after 180 days (RCD-028); also adverse common-status/authority event on an outstanding check (GRT-016)."
+    },
+    {
+      "id": "WFM-11-T11",
+      "from": "CheckStaleDated",
+      "to": "CheckCleared",
+      "trigger": "command",
+      "name": "PayStalePresentment",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury operations",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "sanctions-clear",
+        "eligibility-current"
+      ],
+      "effects": [
+        "ledger-clear-outstanding-liability"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Positive pay exception decision",
+      "notes": "Bank-portal exception decision; default is Return then reissue."
+    },
+    {
+      "id": "WFM-11-T12",
+      "from": "CheckVoidRequested",
+      "to": "CheckVoidConfirmed",
+      "trigger": "event",
+      "name": "VoidAcknowledged",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank (positive pay)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger-reclassify-voided-liability"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoVoidAck"
+        },
+        {
+          "condition": "AlreadyCleared",
+          "to_state": "CheckCleared"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ]
+    },
+    {
+      "id": "WFM-11-T13",
+      "from": "CheckVoidConfirmed",
+      "to": "CheckVoidConfirmed",
+      "trigger": "command",
+      "name": "ReturnPresentedVoidedCheck",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury operations",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-exception-decision"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-023"
+      ],
+      "ui_surface": "NEW:Positive pay exception decision"
+    },
+    {
+      "id": "WFM-11-T14",
+      "from": "CheckVoidConfirmed",
+      "to": "CheckRecredited",
+      "trigger": "event",
+      "name": "RecreditAfterVoid",
+      "actor_type": "deterministic",
+      "actor_role": "Check disposition rule",
+      "authority": "A3",
+      "guards": [
+        "counsel-disposition-recorded-not-reportable",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "ledger-compensating-recredit",
+        "restore-capacity-after-reconciliation",
+        "notify-charity",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-028",
+        "UNB-RCN-GRT-005",
+        "UNB-RCN-GRT-015"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ]
+    },
+    {
+      "id": "WFM-11-T15",
+      "from": "CheckVoidConfirmed",
+      "to": "CheckEscheatReview",
+      "trigger": "event",
+      "name": "EscheatApplicabilityCheck",
+      "actor_type": "deterministic",
+      "actor_role": "Check disposition rule",
+      "authority": "A3",
+      "guards": [
+        "jurisdiction-rule-applies-or-counsel-pending"
+      ],
+      "effects": [
+        "create-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-11-T16",
+      "from": "CheckEscheatReview",
+      "to": "CheckRecredited",
+      "trigger": "command",
+      "name": "RecordAlternativeDisposition",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A3",
+      "guards": [
+        "counsel-memo-attached",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "ledger-compensating-recredit",
+        "restore-capacity-after-reconciliation",
+        "notify-charity",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Unclaimed property disposition"
+    },
+    {
+      "id": "WFM-11-T17",
+      "from": "CheckEscheatReview",
+      "to": "CheckUnclaimedPropertyReportable",
+      "trigger": "command",
+      "name": "DetermineReportable",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A3",
+      "guards": [
+        "counsel-memo-attached"
+      ],
+      "effects": [
+        "schedule-report"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "CTL-044"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Unclaimed property disposition"
+    },
+    {
+      "id": "WFM-11-T18",
+      "from": "CheckUnclaimedPropertyReportable",
+      "to": "CheckEscheated",
+      "trigger": "command",
+      "name": "RecordReportAndRemittance",
+      "actor_type": "human",
+      "actor_role": "Controller",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "report-and-remittance-evidence"
+      ],
+      "effects": [
+        "ledger-escheat-remittance"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "CTL-044",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Unclaimed property disposition"
+    },
+    {
+      "id": "WFM-11-T19",
+      "from": [
+        "CheckVoidConfirmed",
+        "CheckEscheatReview"
+      ],
+      "to": "CheckReissued",
+      "trigger": "command",
+      "name": "ReissuePayment",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants operations",
+      "authority": "A3",
+      "guards": [
+        "void-confirmed",
+        "eligibility-current",
+        "sanctions-clear",
+        "destination-verified",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "create-linked-replacement-chain"
+      ],
+      "idempotency_key": "(originalPaymentId, replacementNo)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RCD-028",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-022"
+      ],
+      "ui_surface": "NEW:Check void and reissue",
+      "notes": "The replacement is a new WFM-10 or WFM-11 chain that re-runs every release gate; the outstanding liability converts into the new chain's funding."
+    },
+    {
+      "id": "WFM-11-T20",
+      "from": [
+        "CheckIssued",
+        "CheckOutstanding",
+        "CheckAgedOutreach",
+        "CheckStaleDated"
+      ],
+      "to": "CheckBlocked",
+      "trigger": "event",
+      "name": "TrueMatchOnOutstandingCheck",
+      "actor_type": "deterministic",
+      "actor_role": "Sanctions case (WFM-12)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "positive-pay-void-file",
+        "blocked-property-classification"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutStopAck"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-007",
+        "UNB-RCN-GRT-006",
+        "RR-UNB-EXT-004-r1",
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009"
+      ]
+    },
+    {
+      "id": "WFM-11-T21",
+      "from": "CheckBlocked",
+      "to": "CheckVoidConfirmed",
+      "trigger": "command",
+      "name": "ReleaseBlockedCheckUnderLicense",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "license-or-delisting-evidence",
+        "void-confirmed"
+      ],
+      "effects": [
+        "release-blocked-classification"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    },
+    {
+      "id": "WFM-11-T22",
+      "from": [
+        "CheckRecredited",
+        "CheckReissued",
+        "CheckEscheated",
+        "CheckCleared"
+      ],
+      "to": "CheckPaymentCorrection",
+      "trigger": "event",
+      "name": "ContradictingBankEvidence",
+      "actor_type": "deterministic",
+      "actor_role": "Payment evidence reconciler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "create-linked-correction",
+        "open-double-payment-case"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-005",
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-015"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-023"
+      ]
+    }
+  ],
+  "invariants": [
+    "Reissue requires VoidConfirmed, verified recipient eligibility and destination, and a linked replacement chain",
+    "A voided check's funds are never silently released to the fund: the escheat disposition is recorded first",
+    "Every Outstanding check is rescreened on every sanctions list update before its next transition",
+    "Each state has a defined grant, reservation and ledger effect; the outstanding-check liability is cleared exactly once",
+    "Aging thresholds are configuration owned by the Controller, never hard-coded"
+  ]
+}

@@ -1,0 +1,849 @@
+{
+  "workflow_id": "WFM-10",
+  "name": "ACH grant payment via partner rail",
+  "release": "R1",
+  "outcome": "Each funded grant installment is paid at most once to its pinned, verified destination, and every uncertain, returned, recalled or blocked outcome is resolved with evidence",
+  "aggregate": "PaymentAttempt (headline projection of the six RR-REQ-X-083-r1 dimensions plus WorkCase)",
+  "sources": [
+    "RR-REQ-X-083-r1",
+    "RR-REQ-X-004-r1",
+    "RR-REQ-X-005-r1",
+    "RR-REQ-X-020-r1",
+    "UNB-RCN-GRT-006",
+    "UNB-RCN-GRT-008",
+    "UNB-RCN-GRT-015",
+    "UNB-RCN-GRT-016",
+    "UNB-RCN-GRT-017",
+    "RCD-028",
+    "RCD-012",
+    "TX-12",
+    "TX-13",
+    "TX-14",
+    "TX-15",
+    "TX-16",
+    "PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md",
+    "06-state-models/state-models.md §3 PA-1..PA-9"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-004",
+    "UNB-UI-S-008",
+    "UNB-UI-S-011",
+    "UNB-UI-S-012",
+    "UNB-UI-W-001"
+  ],
+  "states": [
+    {
+      "id": "AchPaymentPrepared",
+      "kind": "initial",
+      "user_label": "Preparing payment",
+      "lozenge": "neutral",
+      "description": "Instruction created from a Funded grant with destination version, reservation version and policy version pinned."
+    },
+    {
+      "id": "AchReleaseBlocked",
+      "kind": "intermediate",
+      "user_label": "Release blocked",
+      "lozenge": "blocked",
+      "description": "A release gate failed: hold watermark behind or registry unreachable, eligibility observation stale, potential sanctions match, destination evidence below the rail minimum or destination correction pending. Never dispatched from here."
+    },
+    {
+      "id": "AchReleaseAuthorized",
+      "kind": "intermediate",
+      "user_label": "Release authorized",
+      "lozenge": "neutral",
+      "description": "AuthorizePayment committed; the observed HoldPublicationVersion and per-sponsor eligibility snapshot are recorded on the release."
+    },
+    {
+      "id": "AchSubmitted",
+      "kind": "intermediate",
+      "user_label": "Sent to bank partner",
+      "lozenge": "neutral",
+      "description": "Dispatch=SentWithRequestId through the outbox with the provider idempotency key. Not paid."
+    },
+    {
+      "id": "AchPaymentUnknown",
+      "kind": "intermediate",
+      "user_label": "Status unknown",
+      "lozenge": "unknown",
+      "description": "Dispatch or provider outcome Unknown (timeout, ambiguous response). New dispatch, reissue and settlement posting are blocked for the chain; resolved only through the UnknownResolutionProtocol."
+    },
+    {
+      "id": "AchAccepted",
+      "kind": "intermediate",
+      "user_label": "Accepted by bank partner",
+      "lozenge": "neutral",
+      "description": "ProviderKnowledge=Acknowledged/InProcessing. Acknowledged never means settled."
+    },
+    {
+      "id": "AchRecallRequested",
+      "kind": "intermediate",
+      "user_label": "Recall requested",
+      "lozenge": "unknown",
+      "description": "Adverse common-status, sanctions or authority event after dispatch and before settlement; stop/recall requested and its outcome is externally uncertain."
+    },
+    {
+      "id": "AchSettled",
+      "kind": "intermediate",
+      "user_label": "Payment sent",
+      "lozenge": "ok",
+      "description": "Settlement confirmed with rail proof and posted by the single ledger writer; the rail's return window is still open."
+    },
+    {
+      "id": "AchBlocked",
+      "kind": "intermediate",
+      "user_label": "Blocked",
+      "lozenge": "blocked",
+      "description": "Sponsor-side confirmed true match or an intermediary/provider blocking notice. BlockedProperty in the ledger; no retry, reissue or capacity restoration."
+    },
+    {
+      "id": "AchFinal",
+      "kind": "terminal",
+      "user_label": "Paid",
+      "lozenge": "ok",
+      "description": "Return window elapsed and ledger, bank and provider reconciled."
+    },
+    {
+      "id": "AchReturned",
+      "kind": "terminal",
+      "user_label": "Returned",
+      "lozenge": "attention",
+      "description": "ACH return (R-code) or funds returned under licence; re-credited to the originating fund by a linked compensating entry (grant decides re-pay)."
+    },
+    {
+      "id": "AchRecalled",
+      "kind": "terminal",
+      "user_label": "Recalled",
+      "lozenge": "neutral",
+      "description": "Recall confirmed; funds re-credited to the originating fund."
+    },
+    {
+      "id": "AchNotPaid",
+      "kind": "terminal",
+      "user_label": "Not paid",
+      "lozenge": "neutral",
+      "description": "Rejected before execution or failed before settlement; funds never left. Grant keeps its reservation."
+    },
+    {
+      "id": "AchNotReceived",
+      "kind": "terminal",
+      "user_label": "Not received – replacement created",
+      "lozenge": "neutral",
+      "description": "NotReceived declared under the protocol's evidence combination with independent approval; a linked reissue chain was created."
+    },
+    {
+      "id": "AchAbandoned",
+      "kind": "terminal",
+      "user_label": "Canceled before sending",
+      "lozenge": "neutral",
+      "description": "Grant canceled or chain abandoned before dispatch (GR-3)."
+    },
+    {
+      "id": "AchPaymentCorrection",
+      "kind": "correction",
+      "user_label": "Under correction",
+      "lozenge": "attention",
+      "description": "Linked correction child: settlement evidence contradicting a terminal outcome (double-payment case, PA-6) or a late return after Final."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-10-T01",
+      "from": "AchPaymentPrepared",
+      "to": "AchReleaseAuthorized",
+      "trigger": "command",
+      "name": "AuthorizeRelease",
+      "actor_type": "deterministic",
+      "actor_role": "Payment release policy (automated release)",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "related-party-clear",
+        "benefit-gate-pass",
+        "destination-evidence-meets-rail-minimum",
+        "pinned-destination-version-matches"
+      ],
+      "effects": [
+        "record-hold-publication-version",
+        "eligibility-snapshot-per-sponsor",
+        "payment-instruction"
+      ],
+      "idempotency_key": "(grantId, installmentNo, chainNo)",
+      "failure": [
+        {
+          "condition": "HoldWatermarkBehindOrRegistryUnreachable",
+          "to_state": "AchReleaseBlocked"
+        },
+        {
+          "condition": "EligibilityObservationStale",
+          "to_state": "AchReleaseBlocked"
+        },
+        {
+          "condition": "PotentialSanctionsMatch",
+          "to_state": "AchReleaseBlocked"
+        },
+        {
+          "condition": "DestinationEvidenceBelowMinimum",
+          "to_state": "AchReleaseBlocked"
+        },
+        {
+          "condition": "DestinationCorrectionPending",
+          "to_state": "AchReleaseBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-020-r1",
+        "RR-REQ-X-007-r1",
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017",
+        "RR-UNB-CUST-015-r1",
+        "UNB-RCN-PLT-003",
+        "RR-UNB-GRANT-011-r1",
+        "UNB-RCN-GRT-001"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-001",
+        "DKS-PLT-002",
+        "DKS-XD-007",
+        "DKS-XD-011",
+        "DKS-GRT-025",
+        "DKS-REG-001"
+      ]
+    },
+    {
+      "id": "WFM-10-T02",
+      "from": "AchReleaseBlocked",
+      "to": "AchPaymentPrepared",
+      "trigger": "event",
+      "name": "ReleaseGatesCleared",
+      "actor_type": "deterministic",
+      "actor_role": "WorkItem exit rule",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-020-r1",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-002"
+      ],
+      "notes": "Watermark caught up, hold released, observation refreshed, potential match dispositioned, or destination verified; release re-runs every gate."
+    },
+    {
+      "id": "WFM-10-T03",
+      "from": "AchReleaseBlocked",
+      "to": "AchReleaseAuthorized",
+      "trigger": "command",
+      "name": "ManualReleaseApproval",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury release approver (independent of preparer)",
+      "authority": "A4",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "segregation-of-duties",
+        "only-blocker-is-automation-ineligible-destination-evidence"
+      ],
+      "effects": [
+        "record-hold-publication-version",
+        "eligibility-snapshot-per-sponsor",
+        "payment-instruction"
+      ],
+      "idempotency_key": "(grantId, installmentNo, chainNo)",
+      "failure": [
+        {
+          "condition": "AnyHoldOrSanctionsOrStaleEligibility",
+          "to_state": "AchReleaseBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017",
+        "UNB-PAY-003",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Payment release approval",
+      "notes": "Only for a destination whose evidence makes it ineligible for automated release (RR-REQ-X-005-r1). A human can never override a hold, sanctions or stale-eligibility block."
+    },
+    {
+      "id": "WFM-10-T04",
+      "from": [
+        "AchPaymentPrepared",
+        "AchReleaseBlocked",
+        "AchReleaseAuthorized"
+      ],
+      "to": "AchAbandoned",
+      "trigger": "event",
+      "name": "AbandonBeforeDispatch",
+      "actor_type": "deterministic",
+      "actor_role": "Grant aggregate (WFM-08)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "release-chain",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Grant canceled or sponsor decision after prolonged block; nothing left the sponsor."
+    },
+    {
+      "id": "WFM-10-T05",
+      "from": "AchReleaseAuthorized",
+      "to": "AchSubmitted",
+      "trigger": "command",
+      "name": "DispatchToPartnerRail",
+      "actor_type": "deterministic",
+      "actor_role": "Payment dispatcher (outbox)",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "hold-recheck-immediately-before-submit",
+        "no-unknown-in-chain",
+        "pledge-references-stripped"
+      ],
+      "effects": [
+        "external-money-out",
+        "external-call",
+        "ledger-clearing-posted"
+      ],
+      "idempotency_key": "(paymentId, attemptNo) as provider idempotency key",
+      "failure": [
+        {
+          "condition": "TimeoutOrAmbiguousResponse",
+          "to_state": "AchPaymentUnknown"
+        },
+        {
+          "condition": "RejectedBeforeExecution",
+          "to_state": "AchNotPaid"
+        },
+        {
+          "condition": "HoldDetectedAtDispatch",
+          "to_state": "AchReleaseBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "RR-REQ-X-083-r1",
+        "RR-REQ-X-020-r1",
+        "UNB-PAY-004",
+        "RCD-028",
+        "UNB-RCN-GRT-009"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-017",
+        "DKS-GRT-025",
+        "DKS-GRT-008"
+      ]
+    },
+    {
+      "id": "WFM-10-T06",
+      "from": "AchSubmitted",
+      "to": "AchAccepted",
+      "trigger": "event",
+      "name": "RecordProviderAcknowledgement",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated",
+        "dedup-provider-event-and-semantic-key"
+      ],
+      "effects": [
+        "record-provider-evidence"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoAcknowledgement",
+          "to_state": "AchPaymentUnknown"
+        },
+        {
+          "condition": "UnauthenticatedCallback"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-PAY-004"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-019",
+        "DKS-GRT-020"
+      ]
+    },
+    {
+      "id": "WFM-10-T07",
+      "from": [
+        "AchSubmitted",
+        "AchAccepted"
+      ],
+      "to": "AchNotPaid",
+      "trigger": "event",
+      "name": "RecordProviderRejectionOrFailure",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated",
+        "dedup-provider-event-and-semantic-key"
+      ],
+      "effects": [
+        "record-provider-evidence",
+        "reverse-clearing"
+      ],
+      "failure": [
+        {
+          "condition": "UnknownWhetherExecuted",
+          "to_state": "AchPaymentUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-10-T08",
+      "from": "AchPaymentUnknown",
+      "to": "AchAccepted",
+      "trigger": "command",
+      "name": "ResolveUnknownByStatusQuery",
+      "actor_type": "deterministic",
+      "actor_role": "UnknownResolutionProtocol (provider status query)",
+      "authority": "A3",
+      "guards": [
+        "query-by-idempotency-key"
+      ],
+      "effects": [
+        "external-call",
+        "record-provider-evidence"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutStatusQuery",
+          "to_state": "AchPaymentUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-008",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-017"
+      ]
+    },
+    {
+      "id": "WFM-10-T09",
+      "from": "AchPaymentUnknown",
+      "to": "AchPaymentUnknown",
+      "trigger": "timer",
+      "name": "EscalateUnknownAgingTier",
+      "actor_type": "timer",
+      "actor_role": "UnknownResolutionProtocol scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate-aging-tier",
+        "create-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-GRT-008"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-012"
+      ],
+      "notes": "Aging tiers are configured per rail by Treasury and the provider contract owner."
+    },
+    {
+      "id": "WFM-10-T10",
+      "from": "AchPaymentUnknown",
+      "to": "AchNotReceived",
+      "trigger": "command",
+      "name": "DeclareNotReceived",
+      "actor_type": "human",
+      "actor_role": "Treasury approver independent of the dispatcher",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "settlement-window-elapsed",
+        "provider-attests-no-execution",
+        "no-statement-debit",
+        "recipient-confirms-non-receipt"
+      ],
+      "effects": [
+        "reverse-clearing",
+        "ledger",
+        "create-linked-reissue-chain"
+      ],
+      "idempotency_key": "(paymentId, resolutionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-GRT-008",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-018"
+      ],
+      "ui_surface": "NEW:Unknown payment resolution",
+      "notes": "If the evidence combination cannot be obtained the item stays Unknown and escalates; there is no other exit (gap: PA-2 ResolvedByDecision is not adopted by any requirement)."
+    },
+    {
+      "id": "WFM-10-T11",
+      "from": [
+        "AchSubmitted",
+        "AchAccepted",
+        "AchPaymentUnknown"
+      ],
+      "to": "AchSettled",
+      "trigger": "event",
+      "name": "ConfirmSettlement",
+      "actor_type": "deterministic",
+      "actor_role": "Single ledger writer with rail proof",
+      "authority": "A3",
+      "guards": [
+        "rail-proof-verified",
+        "callback-authenticated",
+        "bank-statement-debit-matched"
+      ],
+      "effects": [
+        "ledger-settled-posted",
+        "consume-reservation"
+      ],
+      "idempotency_key": "(paymentId, settlementEvidenceId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "RR-UNB-PAY-006-r1",
+        "UNB-RCN-GRT-008"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-017",
+        "DKS-GRT-019"
+      ],
+      "notes": "Benign ordering (Executed before Acknowledged) resolved deterministically."
+    },
+    {
+      "id": "WFM-10-T12",
+      "from": "AchSettled",
+      "to": "AchSettled",
+      "trigger": "event",
+      "name": "RecordNotificationOfChange",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail (RDFI NOC)",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated"
+      ],
+      "effects": [
+        "open-destination-change",
+        "hold-new-releases-to-destination-version"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNocDetailsIncomplete"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-024"
+      ],
+      "notes": "NOC never edits the destination; it opens WFM-13 as RDFI-originated evidence. This payment is unaffected."
+    },
+    {
+      "id": "WFM-10-T13",
+      "from": "AchSettled",
+      "to": "AchFinal",
+      "trigger": "timer",
+      "name": "FinalizeAfterReturnWindow",
+      "actor_type": "timer",
+      "actor_role": "Reconciliation scheduler",
+      "authority": "A3",
+      "guards": [
+        "return-window-elapsed",
+        "reconciled"
+      ],
+      "effects": [
+        "mark-final"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-10-T14",
+      "from": "AchSettled",
+      "to": "AchReturned",
+      "trigger": "event",
+      "name": "RecordAchReturn",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated",
+        "linked-to-original-settlement"
+      ],
+      "effects": [
+        "ledger-compensating-recredit",
+        "restore-capacity-after-reconciliation",
+        "notify-donor",
+        "revoke-destination-if-account-closed"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutReturnEvidenceIncomplete"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-015",
+        "RR-UNB-PAY-006-r1",
+        "RCD-028"
+      ],
+      "scenario_ids": [],
+      "notes": "Partial returns post amount-specific entries. R02/R03/R04 also revoke the destination version (WFM-13)."
+    },
+    {
+      "id": "WFM-10-T15",
+      "from": [
+        "AchSubmitted",
+        "AchAccepted",
+        "AchPaymentUnknown"
+      ],
+      "to": "AchRecallRequested",
+      "trigger": "event",
+      "name": "RequestRecallOnAdverseEvent",
+      "actor_type": "deterministic",
+      "actor_role": "Adverse-event propagation rule",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "open-linked-case",
+        "notify-sponsor"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutRecallRequestOutcome"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-016",
+        "RR-REQ-X-020-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-003",
+        "DKS-XD-009"
+      ],
+      "notes": "Grant must not be marked complete until the recall outcome is reconciled."
+    },
+    {
+      "id": "WFM-10-T16",
+      "from": "AchRecallRequested",
+      "to": "AchRecalled",
+      "trigger": "event",
+      "name": "RecallConfirmed",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated"
+      ],
+      "effects": [
+        "ledger-compensating-recredit",
+        "restore-capacity-after-reconciliation",
+        "notify-donor"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoRecallResponse"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-016",
+        "UNB-RCN-GRT-015"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-10-T17",
+      "from": "AchRecallRequested",
+      "to": "AchSettled",
+      "trigger": "event",
+      "name": "RecallFailedSettled",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail",
+      "authority": "A3",
+      "guards": [
+        "callback-authenticated",
+        "rail-proof-verified"
+      ],
+      "effects": [
+        "ledger-settled-posted",
+        "open-post-payment-review"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNoRecallResponse"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-016"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-10-T18",
+      "from": [
+        "AchPaymentPrepared",
+        "AchReleaseBlocked",
+        "AchReleaseAuthorized",
+        "AchSubmitted",
+        "AchAccepted",
+        "AchPaymentUnknown",
+        "AchRecallRequested",
+        "AchSettled"
+      ],
+      "to": "AchBlocked",
+      "trigger": "event",
+      "name": "BlockPayment",
+      "actor_type": "deterministic",
+      "actor_role": "Sanctions case (WFM-12) or provider blocking notice",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "blocked-property-classification",
+        "stop-retry-reissue-capacity-restoration",
+        "open-sanctions-case"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "UNB-RCN-REG-003",
+        "RR-REQ-X-083-r1"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003",
+        "DKS-GRT-021"
+      ]
+    },
+    {
+      "id": "WFM-10-T19",
+      "from": "AchBlocked",
+      "to": "AchPaymentPrepared",
+      "trigger": "command",
+      "name": "ReleaseBlockedUnderLicense",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "license-or-delisting-evidence",
+        "not-yet-dispatched"
+      ],
+      "effects": [
+        "release-blocked-classification"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "NEW:Sanctions match decision panel",
+      "notes": "Re-enters every release gate."
+    },
+    {
+      "id": "WFM-10-T20",
+      "from": "AchBlocked",
+      "to": "AchReturned",
+      "trigger": "command",
+      "name": "RecordBlockedFundsReturnedUnderLicense",
+      "actor_type": "human",
+      "actor_role": "Independent compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "license-or-delisting-evidence"
+      ],
+      "effects": [
+        "release-blocked-classification",
+        "ledger-compensating-recredit"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-006",
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sanctions match decision panel"
+    },
+    {
+      "id": "WFM-10-T21",
+      "from": [
+        "AchFinal",
+        "AchNotReceived",
+        "AchReturned",
+        "AchRecalled",
+        "AchNotPaid"
+      ],
+      "to": "AchPaymentCorrection",
+      "trigger": "event",
+      "name": "ContradictingEvidence",
+      "actor_type": "deterministic",
+      "actor_role": "Payment evidence reconciler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "create-linked-correction",
+        "block-further-attempts-on-grant",
+        "open-double-payment-case"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-083-r1",
+        "UNB-RCN-GRT-015",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "PA-6: settlement evidence after NotReceived/NotPaid, or a late return after Final."
+    }
+  ],
+  "invariants": [
+    "One grant installment maps to one active payment chain; Σ amounts of live attempts ≤ grant amount (PA-1)",
+    "The destination version pinned at authorization is the one dispatched; later destination changes never reroute an authorized payment",
+    "No dispatch unless the hold registry version is verified inside the release transaction and re-checked immediately before submission; registry outage fails closed (RCD-012)",
+    "Unknown never maps to failure and never permits blind retry, reissue or settlement posting",
+    "Callbacks are authenticated and deduplicated on (provider, providerEventId) and on the semantic key before any evidence is recorded",
+    "A Blocked payment never retries, reissues or restores capacity without licence or delisting evidence and independent compliance authority",
+    "Pledge identifiers never appear in ACH addenda or remittance under NoticeConditions"
+  ]
+}
