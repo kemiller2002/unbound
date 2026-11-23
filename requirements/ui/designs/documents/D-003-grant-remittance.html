@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UNB-UI-D-003 prototype: charity remittance advice for several grants plus donor grant confirmation, composed only from Folio 0.4.2 primitives.">
+  <title>Grant remittance advice 2026-550207</title>
+  <link rel="stylesheet" href="../vendor/folio-0.4.2/src/styles/print.css">
+  <script type="module" src="../vendor/folio-0.4.2/src/components/register.js"></script>
+</head>
+<body>
+<ef-print-document data-document-kind="grant-remittance" data-requirement="UNB-UI-D-003">
+  <ef-print-header repeat="page">
+    <span slot="left">Harbor Giving</span>
+    <span slot="center">Grant remittance advice</span>
+    <span slot="right">Reference 2026-550207</span>
+  </ef-print-header>
+  <main class="ef-dense">
+    <ef-print-section>
+      <div class="ef-identity">
+        <p><strong>Harbor Giving</strong><br>Example Charitable Foundation</p>
+        <address>
+          <span>1200 Example Avenue, Suite 400</span>
+          <span>Springfield, IL 62701</span>
+          <span>EIN 00-0000000</span>
+        </address>
+      </div>
+      <p>19 Aug 2026</p>
+      <address>
+        <span>Lakeshore Food Pantry</span><br>
+        <span>Attn: Finance Office</span><br>
+        <span>310 Harbor Street</span><br>
+        <span>Milwaukee, WI 53202</span>
+      </address>
+      <h1>Grant remittance advice</h1>
+      <dl class="ef-meta-list">
+        <div><dt>Payee</dt><dd>Lakeshore Food Pantry (EIN 36-1000001)</dd></div>
+        <div><dt>Remittance reference</dt><dd>2026-550207</dd></div>
+        <div><dt>Payment method</dt><dd>ACH credit to account ending 4471</dd></div>
+        <div><dt>Payment date</dt><dd>19 Aug 2026 (America/Chicago; 2026-08-19T14:00:00Z UTC)</dd></div>
+        <div><dt>Total paid</dt><dd>$14,250.75</dd></div>
+      </dl>
+      <p>Example Charitable Foundation (EIN 00-0000000) is the donor of each grant below. The grants were recommended by advisors of donor advised funds sponsored by Example Charitable Foundation. Recognition is shown as each advisor chose.</p>
+      <ef-print-table>
+        <table>
+          <caption>Grants included in this payment</caption>
+          <thead><tr><th scope="col">Grant reference</th><th scope="col">Recognition</th><th scope="col">Purpose</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">2026-004817</th><td>The Rivera Family</td><td>Emergency relief</td><td data-align="number">$2,500.00</td></tr>
+            <tr><th scope="row">2026-004822</th><td>Anonymous</td><td>General operating support</td><td data-align="number">$10,000.00</td></tr>
+            <tr><th scope="row">2026-004829</th><td>In memory of Karin Lindqvist</td><td>Youth programs</td><td data-align="number">$1,250.75</td></tr>
+            <tr><th scope="row">2026-004831</th><td>Mei Chen and Luis Alvarez</td><td>Food distribution, winter 2026</td><td data-align="number">$500.00</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total paid</th><td></td><td></td><td data-align="number">$14,250.75</td></tr></tfoot>
+        </table>
+      </ef-print-table>
+      <ef-print-note role="note"><p>Please acknowledge these grants to Example Charitable Foundation as the donor. No goods or services may be provided to any advisor in exchange for these grants.</p></ef-print-note>
+    </ef-print-section>
+    <ef-print-section break-before="page">
+      <div class="ef-identity">
+        <p><strong>Harbor Giving</strong><br>Example Charitable Foundation</p>
+        <address>
+          <span>1200 Example Avenue, Suite 400</span>
+          <span>Springfield, IL 62701</span>
+          <span>EIN 00-0000000</span>
+        </address>
+      </div>
+      <h2>Grant confirmation for the advisor</h2>
+      <dl class="ef-meta-list">
+        <div><dt>Advisor</dt><dd>Elena Rivera, The Rivera Family Fund (fund 100482)</dd></div>
+        <div><dt>Grant reference</dt><dd>2026-004817</dd></div>
+        <div><dt>Document reference</dt><dd>2026-880167</dd></div>
+        <div><dt>Legal donor</dt><dd>Example Charitable Foundation (EIN 00-0000000)</dd></div>
+        <div><dt>Recipient</dt><dd>Lakeshore Food Pantry (EIN 36-1000001)</dd></div>
+        <div><dt>Amount</dt><dd>$2,500.00</dd></div>
+        <div><dt>Payment method</dt><dd>ACH credit</dd></div>
+        <div><dt>Payment date</dt><dd>19 Aug 2026 (America/Chicago; 2026-08-19T14:00:00Z UTC)</dd></div>
+        <div><dt>Purpose</dt><dd>Emergency relief</dd></div>
+        <div><dt>Recognition</dt><dd>The Rivera Family (as you chose)</dd></div>
+      </dl>
+      <p>Example Charitable Foundation made this grant on your recommendation. The grant is not a contribution by you and is not tax-deductible to you.</p>
+    </ef-print-section>
+  </main>
+  <ef-print-footer repeat="page">
+    <span slot="left">Reference 2026-550207</span>
+    <span slot="center">Verify at https://verify.harborgiving.example/d/2026-550207 &middot; code 2RNX-6VJH-Q8LS</span>
+    <span slot="right"><ef-print-page-number format="page-of-pages">Page numbers: renderer-supplied (P1/P2)</ef-print-page-number></span>
+    <p>Harbor Giving is a donor advised fund program of Example Charitable Foundation (EIN 00-0000000), the legal sponsor. Example Charitable Foundation holds exclusive legal control over all contributed assets.</p>
+  </ef-print-footer>
+</ef-print-document>
+</body>
+</html>

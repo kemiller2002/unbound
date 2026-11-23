@@ -1,0 +1,783 @@
+{
+  "generated_by": "requirements/ui/designs/tools/verify-documents.mjs",
+  "folio": {
+    "source": "kemiller2002/folio",
+    "commit": "56a18e1",
+    "version": "0.4.2",
+    "vendored_at": "requirements/ui/designs/vendor/folio-0.4.2"
+  },
+  "renderer": {
+    "engine": "Chromium via Playwright (preinstalled)",
+    "browser": "157.0.8103.78",
+    "pdf_options": {
+      "format": "Letter",
+      "printBackground": true,
+      "preferCSSPageSize": true
+    }
+  },
+  "axe_core": "4.10.2",
+  "documents": [
+    {
+      "document": "documents/D-001-acknowledgment-cash.html",
+      "pdf": "rendered/D-001-acknowledgment-cash.pdf",
+      "screenshot": "rendered/D-001-acknowledgment-cash.png",
+      "requirement_ids": [
+        "UNB-UI-D-001",
+        "UNB-UI-G-007",
+        "UNB-UI-G-014",
+        "UNB-UI-G-016",
+        "UNB-UI-G-017",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-callout",
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-dense",
+        "ef-identity"
+      ],
+      "pages": 1,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 282,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": true,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": true,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "legal_sponsor_disclosure_present": true,
+        "legal_sponsor_disclosure_on_every_page": true,
+        "protected_exclusive_control_sentence_verbatim": true,
+        "goods_or_services_statement_verbatim": true,
+        "sponsor_legal_name_and_ein": true,
+        "donor_name": true,
+        "date_of_gift_absolute": true,
+        "cash_amount_25000_00": true,
+        "contribution_reference": true,
+        "single_page_letter": true
+      },
+      "checks_passed": 22,
+      "checks_total": 24,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "dc4ce9f849a37dd52537580d860f10a4adfbfb39864498038c81743f7bfcc41b",
+        "dc4ce9f849a37dd52537580d860f10a4adfbfb39864498038c81743f7bfcc41b"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "a6737966f7393d6c1dbb9cfcd7f93d5c9bb4220fd4abeb3f1b14f495e21f8842"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 1
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 8,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-01",
+        "FOLIO-GAP-02",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-07",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-001-acknowledgment-securities.html",
+      "pdf": "rendered/D-001-acknowledgment-securities.pdf",
+      "screenshot": "rendered/D-001-acknowledgment-securities.png",
+      "requirement_ids": [
+        "UNB-UI-D-001",
+        "UNB-UI-G-007",
+        "UNB-UI-G-014",
+        "UNB-UI-G-016",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-callout",
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-dense",
+        "ef-identity"
+      ],
+      "pages": 1,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 228,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": true,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": true,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "legal_sponsor_disclosure_present": true,
+        "legal_sponsor_disclosure_on_every_page": true,
+        "protected_exclusive_control_sentence_verbatim": true,
+        "goods_or_services_statement_verbatim": true,
+        "sponsor_legal_name_and_ein": true,
+        "donor_name": true,
+        "date_of_gift_absolute": true,
+        "property_description_600_shares": true,
+        "property_description_has_no_dollar_value": true,
+        "document_has_no_currency_amount_anywhere": true,
+        "single_page_letter": true
+      },
+      "checks_passed": 23,
+      "checks_total": 25,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "96c41d24e5c8465a18fd2ff6baae510ba3e6ef45355e8f930195a8e1b618db1a",
+        "96c41d24e5c8465a18fd2ff6baae510ba3e6ef45355e8f930195a8e1b618db1a"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "dce727b9d731fe9e09df7d28ce2e5a2cf00bc4b0d9945503dfece75e6ed63ed1"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 1
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 8,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-01",
+        "FOLIO-GAP-02",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-07",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-002-fund-statement.html",
+      "pdf": "rendered/D-002-fund-statement.pdf",
+      "screenshot": "rendered/D-002-fund-statement.png",
+      "requirement_ids": [
+        "UNB-UI-D-002",
+        "UNB-UI-G-007",
+        "UNB-UI-G-014",
+        "UNB-UI-G-016",
+        "UNB-UI-G-017",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-callout",
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-keep",
+        "ef-print-metric",
+        "ef-print-note",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table",
+        "ef-print-title-page",
+        "ef-print-toc"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-category-grid",
+        "ef-dense",
+        "ef-identity",
+        "ef-meta-list"
+      ],
+      "pages": 8,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 283,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": false,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": false,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "legal_sponsor_disclosure_present": true,
+        "legal_sponsor_disclosure_on_every_page": false,
+        "grant_rows_at_least_70": true,
+        "all_grant_rows_in_pdf": true,
+        "grants_table_spans_pages": true,
+        "grants_header_repeated_on_every_grants_page": true,
+        "period_summary_kept_on_one_page": true,
+        "negative_investment_change_has_text_label": true,
+        "grants_total_row_printed_once": false,
+        "pending_grants_present": true,
+        "fee_basis_present": true,
+        "protected_exclusive_control_sentence_verbatim": true,
+        "g016_grant_2026_004817_present": true,
+        "toc_present": true
+      },
+      "checks_passed": 22,
+      "checks_total": 28,
+      "diagnostics": {
+        "grant_rows": 72,
+        "pages_with_grant_rows": [
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "grants_total_row_hits_per_page": [
+          0,
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ]
+      },
+      "raw_pdf_sha256": [
+        "e2a3c0894a2724e7c6ff33fb71f8ac65a8cfbf3094a58dc1c7b913673b157e1b",
+        "e2a3c0894a2724e7c6ff33fb71f8ac65a8cfbf3094a58dc1c7b913673b157e1b"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "61949717de02a47c710fb3031abd35a61adc44a8eda3275df3792caa15c2f5c8",
+        "f494b4a807dae05289f3374d0c55506fa9867ea9e632f1dd8f7c4bb2420acbd5",
+        "0b2065bb4d2191ffc886eaa5b9f6598284544c5fc6885d7e576fc3b88cd7dd7d",
+        "52d151376461aa0676d60ab09a7f47e185d0df08e1819d4fd9a82278ae74a4fd",
+        "a5215b355d1f52fb451e350de8e04c9260b9f9abbaf405d0e4e2101d918a58dd",
+        "25f856e8f4cf031dbbb0ed30dbea59daa2e7924742d617fcfc8fbc13c7d070e7",
+        "9cfdebd8d748d2141bf368a5ca4d6e7091c0812682de84a49c9e14d329f57866",
+        "fea595df590cf9239d94b71064ae33c8912ca3b00c69592e90afcf370261adaa"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 8
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 23,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-02",
+        "FOLIO-GAP-03",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-08",
+        "FOLIO-GAP-09",
+        "FOLIO-GAP-10",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-003-grant-remittance.html",
+      "pdf": "rendered/D-003-grant-remittance.pdf",
+      "screenshot": "rendered/D-003-grant-remittance.png",
+      "requirement_ids": [
+        "UNB-UI-D-003",
+        "UNB-UI-G-014",
+        "UNB-UI-G-016",
+        "UNB-UI-G-017",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-note",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-dense",
+        "ef-identity",
+        "ef-meta-list"
+      ],
+      "pages": 2,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 278,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": true,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": false,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "legal_sponsor_disclosure_present": true,
+        "legal_sponsor_disclosure_on_every_page": false,
+        "no_pledge_text_in_pdf_text": true,
+        "no_pledge_text_in_pdf_metadata_or_bytes": true,
+        "no_pledge_text_in_html_source": true,
+        "several_grants_listed": true,
+        "sponsor_stated_as_legal_donor": true,
+        "payment_method_and_date": true,
+        "purpose_and_recognition": true,
+        "donor_confirmation_present": true,
+        "g016_grant_2026_004817_present": true,
+        "remittance_total_matches": true
+      },
+      "checks_passed": 22,
+      "checks_total": 26,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "21b646b7e9a466f6827552d6c3f820737f86127a5bc99505a20fd6967f77753d",
+        "21b646b7e9a466f6827552d6c3f820737f86127a5bc99505a20fd6967f77753d"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "bd6baf26652c15490de406432c65fb109de0ef3e3706e11b232b1d67848be36c",
+        "62fe00ebd2330f71f0f292af56b4e075d55936cfb1a172e8c7d87703eec49d02"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 2
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 13,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-01",
+        "FOLIO-GAP-02",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-07",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-004-daf-reporting-package.html",
+      "pdf": "rendered/D-004-daf-reporting-package.pdf",
+      "screenshot": "rendered/D-004-daf-reporting-package.png",
+      "requirement_ids": [
+        "UNB-UI-D-004",
+        "UNB-UI-G-016",
+        "UNB-UI-G-017",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-integrity",
+        "ef-print-keep",
+        "ef-print-metric",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table",
+        "ef-print-title-page"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-category-grid",
+        "ef-dense",
+        "ef-identity",
+        "ef-meta-list"
+      ],
+      "pages": 3,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 273,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": true,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": false,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "legal_sponsor_disclosure_present": true,
+        "legal_sponsor_disclosure_on_every_page": false,
+        "dafs_count_present": true,
+        "aggregate_contributions_present": true,
+        "aggregate_grants_present": true,
+        "aggregate_value_present": true,
+        "reconciliation_to_ledger_table": true,
+        "classification_register_version": true,
+        "preparer_and_signer_fields": true,
+        "source_snapshot_hash_present": true,
+        "summary_metrics_and_integrity_kept_together": true
+      },
+      "checks_passed": 21,
+      "checks_total": 25,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "cd86eb69d73ac9cab4253d26cde83bbf137db30b66ce2f0bfdc5b81c50097007",
+        "557dc0c5d2ffe0ba928410faa06ce03d5cac7bf804f00a09afa16172f43cccf6"
+      ],
+      "raw_pdf_hash_stable": false,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [
+        "CreationDate (Mon Nov 23 22:01:32 2026 UTC vs Mon Nov 23 22:01:33 2026 UTC)",
+        "ModDate (Mon Nov 23 22:01:32 2026 UTC vs Mon Nov 23 22:01:33 2026 UTC)"
+      ],
+      "page_text_sha256": [
+        "b9a6f74b401fa1c709d67d93945dd72ab829371929947192b091fdd70050df51",
+        "c697f5aa5d530a7a1f9ad3499ab26be1bba2393d41d4860189ae48faf696682d",
+        "d2286cba9c94e123fbc62b86df250b9e577cbbaaa796205e280daea28fdb19a1"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 3
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 21,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-02",
+        "FOLIO-GAP-03",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-09",
+        "FOLIO-GAP-11",
+        "FOLIO-GAP-12"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-005-case-decision-record.html",
+      "pdf": "rendered/D-005-case-decision-record.pdf",
+      "screenshot": "rendered/D-005-case-decision-record.png",
+      "requirement_ids": [
+        "UNB-UI-D-005",
+        "UNB-UI-G-016",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-callout",
+        "ef-print-document",
+        "ef-print-finding",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-note",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-dense",
+        "ef-meta-list"
+      ],
+      "pages": 2,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 249,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": true,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": false,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "case_reference": true,
+        "rule_that_raised_it": true,
+        "evidence_with_source_and_freshness": true,
+        "decision_and_rationale": true,
+        "preparer_and_decider_are_different_people": true,
+        "ofac_report_due_date": true,
+        "timestamps_absolute_with_utc": true
+      },
+      "checks_passed": 18,
+      "checks_total": 21,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "486b0b9857acdf144b344f5acb045205d45e819366a193a44075dc64c0cc6644",
+        "486b0b9857acdf144b344f5acb045205d45e819366a193a44075dc64c0cc6644"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "8b576fdc527ff6a39b5c965a5e6f527a9d6001ac00b5c878520d797578847f16",
+        "e88601bc719abda1a8651377345bd5ea2c0262bcf84e515b56d8957e794402a4"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 2
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 13,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    },
+    {
+      "document": "documents/D-006-audit-evidence-package.html",
+      "pdf": "rendered/D-006-audit-evidence-package.pdf",
+      "screenshot": "rendered/D-006-audit-evidence-package.png",
+      "requirement_ids": [
+        "UNB-UI-D-006",
+        "UNB-UI-G-016",
+        "UNB-UI-G-018"
+      ],
+      "folio_elements_used": [
+        "ef-print-document",
+        "ef-print-footer",
+        "ef-print-header",
+        "ef-print-integrity",
+        "ef-print-page-number",
+        "ef-print-section",
+        "ef-print-table",
+        "ef-print-title-page",
+        "ef-print-toc"
+      ],
+      "folio_recipe_classes_used": [
+        "ef-dense",
+        "ef-identity",
+        "ef-meta-list"
+      ],
+      "pages": 6,
+      "page_size": "612 x 792 pts (letter)",
+      "render_ms_first_run": 277,
+      "checks": {
+        "custom_elements_defined": true,
+        "no_console_errors": true,
+        "html_has_no_authored_css": true,
+        "html_uses_only_folio_custom_elements": true,
+        "pdf_page_size_letter": true,
+        "reference_on_page_1": true,
+        "reference_on_every_page": false,
+        "page_numbering_n_of_N_on_every_page": false,
+        "verification_code_present": true,
+        "verification_url_extractable_intact": false,
+        "verification_code_on_every_page": false,
+        "money_format_all_amounts_two_decimals": true,
+        "headings_kept_with_following_table": true,
+        "no_relative_dates": true,
+        "every_evidence_row_shows_sha256": true,
+        "toc_lists_each_control_section": true,
+        "toc_shows_target_page_numbers": false,
+        "control_list_present": true,
+        "exceptions_with_resolution": true,
+        "evidence_header_on_every_evidence_page": true,
+        "period_bounded": true
+      },
+      "checks_passed": 16,
+      "checks_total": 21,
+      "diagnostics": {},
+      "raw_pdf_sha256": [
+        "5fdd07ff8c023284c80b225abb0cb312afb8b09ac5af447122b03a38961af77a",
+        "5fdd07ff8c023284c80b225abb0cb312afb8b09ac5af447122b03a38961af77a"
+      ],
+      "raw_pdf_hash_stable": true,
+      "raw_pdf_hash_stable_after_stripping_dates_and_id": true,
+      "raw_pdf_difference_explained_by": [],
+      "page_text_sha256": [
+        "e72770ed0aac3256f5427f893b6689a6c707bed0a2e94e277fef0b7b6002ee32",
+        "6e69a5f96db494732241835ff804dc86951fd66b64c804fc4443feaec9e6933e",
+        "c2d307e021b1383568fccaf3a19d7b548604a36e711ddc0a3c6548b127da0848",
+        "0dd643bc5b7657f23e47af315494ace0386699c7e23e740071898cd907c703d1",
+        "54ad749286c38751ae09e974bc49de5ada702d19bc98f72e50bb3d5095c910b6",
+        "87df714c3756d25f8eeb581961f020539dda865cfca637d10454cd1437639541"
+      ],
+      "text_hash_stable": true,
+      "tagged_pdf": false,
+      "tagged_pdf_with_chromium_tagged_option": true,
+      "pdf_producer": "Skia/PDF m157",
+      "p1_margin_box_probe": {
+        "note": "Injected @page margin-box CSS (not part of the document). Shows engine capability Folio does not package.",
+        "page_numbering_n_of_N_on_every_page": true,
+        "reference_on_every_page": true,
+        "pages": 6
+      },
+      "axe": {
+        "tags": [
+          "wcag2a",
+          "wcag2aa",
+          "wcag21a",
+          "wcag21aa",
+          "wcag22aa"
+        ],
+        "viewport_width": 1280,
+        "violations": [],
+        "passes": 24,
+        "incomplete": []
+      },
+      "axe_violations": [],
+      "gaps": [
+        "FOLIO-GAP-03",
+        "FOLIO-GAP-04",
+        "FOLIO-GAP-05",
+        "FOLIO-GAP-06",
+        "FOLIO-GAP-09",
+        "FOLIO-GAP-10",
+        "FOLIO-GAP-11"
+      ],
+      "browser": "157.0.8103.78"
+    }
+  ]
+}

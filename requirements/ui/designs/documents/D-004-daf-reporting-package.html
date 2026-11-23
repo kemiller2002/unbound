@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UNB-UI-D-004 prototype: annual DAF reporting package supporting Form 990 Schedule D Part I, composed only from Folio 0.4.2 primitives.">
+  <title>DAF reporting package 2026-770025</title>
+  <link rel="stylesheet" href="../vendor/folio-0.4.2/src/styles/print.css">
+  <script type="module" src="../vendor/folio-0.4.2/src/components/register.js"></script>
+</head>
+<body>
+<ef-print-document data-document-kind="daf-reporting-package" data-requirement="UNB-UI-D-004">
+  <ef-print-title-page>
+      <div class="ef-identity">
+        <p><strong>Harbor Giving</strong><br>Example Charitable Foundation</p>
+        <address>
+          <span>1200 Example Avenue, Suite 400</span>
+          <span>Springfield, IL 62701</span>
+          <span>EIN 00-0000000</span>
+        </address>
+      </div>
+    <h1>Annual DAF reporting package</h1>
+    <p>Support for Form 990, Schedule D, Part I, column (a)</p>
+    <dl class="ef-meta-list">
+        <div><dt>Legal sponsor</dt><dd>Example Charitable Foundation (EIN 00-0000000)</dd></div>
+        <div><dt>Tax year</dt><dd>2025 (1 Jan 2025 to 31 Dec 2025)</dd></div>
+        <div><dt>Package reference</dt><dd>2026-770025</dd></div>
+        <div><dt>Tax year locked</dt><dd>14 Feb 2026 (America/Chicago)</dd></div>
+      </dl>
+  </ef-print-title-page>
+  <ef-print-header repeat="page">
+    <span slot="left">Example Charitable Foundation</span>
+    <span slot="center">Annual DAF reporting package, tax year 2025</span>
+    <span slot="right">Reference 2026-770025</span>
+  </ef-print-header>
+  <main class="ef-dense">
+    <ef-print-section>
+      <h2>Year-end figures</h2>
+      <ef-print-keep>
+        <ul class="ef-category-grid">
+          <li><ef-print-metric emphasis="strong">
+            <span data-label>Donor advised funds at year end</span>
+            <strong data-value>1,284</strong>
+            <span data-detail>Line 1(a)</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Aggregate contributions</span>
+            <strong data-value>$48,210,773.18</strong>
+            <span data-detail>Line 2(a)</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Aggregate grants</span>
+            <strong data-value>$39,874,012.55</strong>
+            <span data-detail>Line 3(a)</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Aggregate value at year end</span>
+            <strong data-value>$412,907,551.06</strong>
+            <span data-detail>Line 4(a)</span>
+          </ef-print-metric></li>
+        </ul>
+      </ef-print-keep>
+      <ef-print-integrity status="complete" role="group" aria-labelledby="pkg-integrity">
+        <h3 id="pkg-integrity">Source and reconciliation status</h3>
+        <dl>
+          <div><dt>Reconciliation</dt><dd>4 of 4 lines agree to ledger</dd></div>
+          <div><dt>Classification register</dt><dd>v2025.4 (approved 20 Jan 2026)</dd></div>
+          <div><dt>Ledger close</dt><dd>TY2025 close 2026-0042</dd></div>
+          <div><dt>Source snapshot SHA-256</dt><dd><code>7b090f5dbe25ad44cb6977ab3b2da8d1d88e3a625b99e8ec1f4dfdae993f5aa8</code></dd></div>
+        </dl>
+        <p data-limitations><strong>Scope.</strong> Figures cover funds sponsored by Example Charitable Foundation only. Funds administered for other sponsors are reported in their own packages.</p>
+      </ef-print-integrity>
+    </ef-print-section>
+    <ef-print-section>
+      <h2>Reconciliation to the ledger</h2>
+      <ef-print-table>
+        <table>
+          <caption>Schedule D Part I column (a) reconciliation</caption>
+          <thead><tr><th scope="col">Line</th><th scope="col">Measure</th><th scope="col" data-align="number">Package</th><th scope="col" data-align="number">Ledger</th><th scope="col" data-align="number">Difference</th><th scope="col">Ledger source</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Line 1(a)</th><td>Number of donor advised funds at year end</td><td data-align="number">1,284</td><td data-align="number">1,284</td><td data-align="number">0</td><td>Fund register snapshot, classification register v2025.4</td></tr>
+            <tr><th scope="row">Line 2(a)</th><td>Aggregate value of contributions to</td><td data-align="number">$48,210,773.18</td><td data-align="number">$48,210,773.18</td><td data-align="number">$0.00</td><td>GL 4100 Contributions, TY2025 close</td></tr>
+            <tr><th scope="row">Line 3(a)</th><td>Aggregate grants from</td><td data-align="number">$39,874,012.55</td><td data-align="number">$39,874,012.55</td><td data-align="number">$0.00</td><td>GL 5100 Grants paid, TY2025 close</td></tr>
+            <tr><th scope="row">Line 4(a)</th><td>Aggregate value at end of year</td><td data-align="number">$412,907,551.06</td><td data-align="number">$412,907,551.06</td><td data-align="number">$0.00</td><td>GL 1200 Investments + 1010 Cash, 31 Dec 2025</td></tr>
+          </tbody>
+        </table>
+      </ef-print-table>
+      <ef-print-table>
+        <table>
+          <caption>Fund classification at year end (classification register v2025.4)</caption>
+          <thead><tr><th scope="col">Classification</th><th scope="col" data-align="number">Funds</th><th scope="col">Treatment</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Donor advised fund</th><td data-align="number">1,284</td><td>Included in Part I column (a)</td></tr>
+            <tr><th scope="row">Field-of-interest fund</th><td data-align="number">37</td><td>Excluded (column (b), other funds)</td></tr>
+            <tr><th scope="row">Designated fund</th><td data-align="number">12</td><td>Excluded (column (b), other funds)</td></tr>
+            <tr><th scope="row">Closed during year, zero balance at year end</th><td data-align="number">41</td><td>Excluded from year-end count; activity included in lines 2(a) and 3(a)</td></tr>
+          </tbody>
+        </table>
+      </ef-print-table>
+    </ef-print-section>
+    <ef-print-section>
+      <h2>Preparation and sign-off</h2>
+      <ef-print-keep>
+        <dl class="ef-meta-list">
+        <div><dt>Prepared by</dt><dd>Priya Natarajan, Senior Accountant</dd></div>
+        <div><dt>Prepared on</dt><dd>16 Feb 2026 (2026-02-16T21:14:03Z UTC)</dd></div>
+        <div><dt>Reviewed and signed by</dt><dd>Samuel Adeyemi, Chief Financial Officer</dd></div>
+        <div><dt>Signature</dt><dd>Signed electronically, signature record 2026-SIG-00318</dd></div>
+        <div><dt>Signed on</dt><dd>18 Feb 2026 (2026-02-18T16:02:47Z UTC)</dd></div>
+      </dl>
+      </ef-print-keep>
+    </ef-print-section>
+  </main>
+  <ef-print-footer repeat="page">
+    <span slot="left">Reference 2026-770025</span>
+    <span slot="center">Verify at https://verify.harborgiving.example/d/2026-770025 &middot; code 6PLC-WM4E-7TZB</span>
+    <span slot="right"><ef-print-page-number format="page-of-pages">Page numbers: renderer-supplied (P1/P2)</ef-print-page-number></span>
+    <p>Harbor Giving is a donor advised fund program of Example Charitable Foundation (EIN 00-0000000), the legal sponsor. Example Charitable Foundation holds exclusive legal control over all contributed assets.</p>
+  </ef-print-footer>
+</ef-print-document>
+</body>
+</html>
