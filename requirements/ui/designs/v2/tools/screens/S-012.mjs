@@ -59,7 +59,7 @@ ${panel({
   label: "Grant summary",
   body: `<div class="unb-cluster">${chip("ok", "Paid")}<span class="unb-small unb-muted">Paid ${time("2026-11-30", "Nov 30, 2026")} to ACH ••••7710</span></div>
 <p class="unb-x-amount">${money(2500, { hero: true })}</p>
-${steps([["Approved", "done"], ["Paid", "done"], ["Acknowledged", "current"]])}`,
+${steps([["Approved", "done"], ["Paid", "done"], ["Your acknowledgment", "current"]])}`,
 })}
 ${panel({
   id: "ack",

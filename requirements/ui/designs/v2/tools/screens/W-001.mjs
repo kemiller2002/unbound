@@ -16,7 +16,7 @@ const GRANT = {
   amount: 5000,
   status: chip("ok", "Approved"),
   next: `Payment scheduled for ${time("2026-12-03", "Dec 3, 2026")}`,
-  steps: [["Submitted", "done"], ["Approved", "done"], ["Paid", "current"]],
+  steps: [["Submitted", "done"], ["Approved", "done"], ["To be paid", "current"]],
   updated: time("2026-12-01T16:58:00-06:00", "Dec 1, 2026, 4:58 PM CT"),
 };
 
@@ -71,7 +71,7 @@ a{color:var(--h-accent)}
 h1{margin:0;font-size:clamp(1.6rem,1.3rem + 1vw,2.2rem);font-weight:400}
 h2{margin:0 0 8px;font-size:1.15rem;font-family:system-ui,sans-serif}
 .h-lead{margin:0;color:var(--h-muted);font-family:system-ui,sans-serif;max-width:60ch}
-.h-grid{display:grid;gap:24px;grid-template-columns:minmax(0,1fr)}
+.h-grid{display:grid;gap:24px;align-items:start;grid-template-columns:minmax(0,1fr)}
 @media (min-width:1060px){.h-grid{grid-template-columns:minmax(0,634px) 394px;justify-content:space-between}}
 .h-slot{background:#fff;border:1px solid var(--h-line);border-radius:2px;padding:16px;min-width:0}
 .h-slot p{margin:0 0 12px;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--h-muted)}
