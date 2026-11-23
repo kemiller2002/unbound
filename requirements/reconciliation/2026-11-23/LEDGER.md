@@ -37,10 +37,11 @@ python3 -I tools/reqaudit/validate.py .
 |---|---|
 | c4df75e | Baseline inventory, extraction tooling, quality signals |
 | 24ce2eb | Competitive coverage, regulatory register, architecture dependencies |
-| (next) | Validator, graph generator, README, REG/ARC records |
+| 618f034 | Validator, graph generator, README, REG/ARC records |
 | b40ea9b | Four domain audits merged; findings, conflicts, refinements, gaps, scenarios, decisions |
 | c2f91a2 | Reports 02–04, 07–12, 14; renderer; integration fixes |
-| (this) | Report 15, ledger, baseline-number refresh, final validation |
+| d46382f | Report 15, ledger, baseline-number refresh, final validation |
+| (this) | Narrative surrogates attributed to the baseline revision; ledger hashes |
 
 ## 4. Validation results (last run)
 

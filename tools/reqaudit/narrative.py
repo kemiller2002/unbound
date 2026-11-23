@@ -23,6 +23,7 @@ ID = re.compile(r"\b[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-[A-Z]?\d{1,4}\b")
 NORMATIVE = re.compile(r"\b(SHALL|MUST|must|shall|never|Never|required|mandatory|prohibited|SHOULD|may not|cannot)\b")
 SCOPE = ("requirements", "architecture")
 SKIP = ("requirements/reconciliation/",)
+BASELINE = "777a70d"
 
 
 def normalize(text: str) -> str:
@@ -41,7 +42,9 @@ def candidates(root: Path, rel: str) -> Iterator[Tuple[int, str]]:
 
 def main(argv) -> int:
     root, out = Path(argv[1]), Path(argv[2])
-    rev = subprocess.run(["git", "-C", str(root), "rev-parse", "--short", "HEAD"], capture_output=True, text=True).stdout.strip()
+    rev = BASELINE  # statements are attributed to the audited baseline revision
+    if subprocess.run(["git", "-C", str(root), "diff", "--quiet", BASELINE, "HEAD", "--", *SCOPE, f":!{SKIP[0]}"]).returncode != 0:
+        print("warning: originals differ from the baseline revision; surrogates describe the working tree", file=sys.stderr)
     files = sorted(str(p.relative_to(root)) for d in SCOPE for p in (root / d).rglob("*.md")
                    if not str(p.relative_to(root)).startswith(SKIP))
     rows = tuple((surrogate(rel, text), rel, n, rev, normalize(text)) for rel in files for n, text in candidates(root, rel))
