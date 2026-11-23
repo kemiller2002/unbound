@@ -25,6 +25,8 @@
 | 13 | Architecture dependency analysis | [13-ARCHITECTURE-DEPENDENCY-ANALYSIS.md](13-ARCHITECTURE-DEPENDENCY-ANALYSIS.md) | — |
 | 14 | Open decisions and unresolved questions | [14-OPEN-DECISIONS.md](14-OPEN-DECISIONS.md) | `data/decisions.csv` |
 | 15 | Final reconciliation and readiness assessment | [15-READINESS-ASSESSMENT.md](15-READINESS-ASSESSMENT.md) | `data/validation-report.json` |
+| 16 | UI requirements and concrete designs (Forma/Folio fit) | [16-UI-REQUIREMENTS-AND-DESIGNS.md](16-UI-REQUIREMENTS-AND-DESIGNS.md) | `data/ui-requirements.jsonl`, `ui-component-gaps.csv`, `forma-catalog.csv`, `folio-elements.csv`; prototypes in `requirements/ui/designs/` |
+| — | Adoption, decisions and renames | domain files (marked sections), [14](14-OPEN-DECISIONS.md) | `data/adoption.csv`, `decisions.csv`, `counsel-positions.csv`, `renamed-ids.csv` |
 | — | Checkpoint ledger (resume here) | [LEDGER.md](LEDGER.md) | — |
 
 ## Identifier schemes (new; none overlap a baseline family)
@@ -37,6 +39,8 @@
 | `RCC-<DOMAIN>-<nnn>` | Conflict |
 | `RCD-<nnn>` | Open decision requiring human authority |
 | `DKS-<DOMAIN>-<nnn>` | Dokimos-ready acceptance scenario |
+| `UNB-UI-<G\|S\|D\|W>-<nnn>` | UI requirement: global rule, screen, document, widget |
+| `FORMA-GAP-nn`, `FOLIO-GAP-nn`, `UNB-GAP-W-nn` | Component capability gap (recorded; not raised in other repositories) |
 | `NARR-<8 hex>` | Content-addressed surrogate for a normative statement that has no identifier |
 
 Withdrawn identifiers are listed with their replacement in `data/withdrawn-ids.csv` and must never be reused (gate G1).

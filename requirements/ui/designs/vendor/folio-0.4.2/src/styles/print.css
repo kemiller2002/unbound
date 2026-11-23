@@ -1,0 +1,1366 @@
+@layer ef-print-foundation, ef-print-components, ef-print-recipes;
+
+@layer ef-print-foundation {
+  :root {
+    --ef-print-page-size: Letter;
+    --ef-print-page-margin: 0.7in;
+    --ef-print-font-family: Arial, Helvetica, sans-serif;
+    --ef-print-font-size: 10.5pt;
+    --ef-print-line-height: 1.45;
+    --ef-print-text: #161616;
+    --ef-print-muted: #5d6470;
+    --ef-print-rule: #9a9a9a;
+    --ef-print-accent: #253f56;
+    --ef-print-surface: #f5f7f8;
+    --ef-print-code-surface: #f2f3f4;
+    --ef-print-space: 0.18in;
+    --ef-print-header-gap: 0.16in;
+    --ef-print-footer-gap: 0.16in;
+    --ef-print-art-inset: 0;
+    --ef-print-art-opacity: 1;
+    --ef-print-art-image: none;
+    --ef-print-art-fit: cover;
+    --ef-print-art-position: center;
+    --ef-print-callout-accent: var(--ef-print-accent);
+    --ef-print-callout-surface: var(--ef-print-surface);
+    --ef-print-note-accent: var(--ef-print-rule);
+    --ef-print-metric-surface: transparent;
+    --ef-print-metric-rule: var(--ef-print-rule);
+    --ef-print-metric-value-size: 1.65em;
+    --ef-print-integrity-surface: var(--ef-print-surface);
+    --ef-print-integrity-accent: var(--ef-print-accent);
+    --ef-print-finding-rule: var(--ef-print-rule);
+    --ef-print-code-font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  }
+
+  @page {
+    size: var(--ef-print-page-size);
+    margin: var(--ef-print-page-margin);
+  }
+
+  html {
+    color: var(--ef-print-text);
+    font-family: var(--ef-print-font-family);
+    font-size: var(--ef-print-font-size);
+    line-height: var(--ef-print-line-height);
+    /*
+     * GH-54 / ULI-L12: an unbreakable word or URL must wrap inside its own box.
+     * Without this, one long token in a paragraph, column, side rail, callout,
+     * finding label or TOC entry widens the print layout and Chromium shrinks
+     * every page to fit (or, in right-to-left documents, clips the start edge).
+     * break-word only applies when a token cannot otherwise fit its line, so
+     * ordinary wrapping and min-content sizing are unchanged.
+     */
+    overflow-wrap: var(--ef-print-overflow-wrap, break-word);
+  }
+
+  body {
+    margin: 0;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  svg {
+    max-width: 100%;
+  }
+}
+
+@layer ef-print-components {
+  ef-print-document,
+  ef-print-title-page,
+  ef-print-section,
+  ef-print-back-page,
+  ef-print-header,
+  ef-print-footer,
+  ef-print-columns,
+  ef-print-sidebar,
+  ef-print-layer,
+  ef-print-break,
+  ef-print-keep,
+  ef-print-metric,
+  ef-print-integrity,
+  ef-print-finding,
+  ef-print-callout,
+  ef-print-figure,
+  ef-print-table,
+  ef-print-code,
+  ef-print-toc,
+  ef-print-note {
+    display: block;
+  }
+
+  ef-print-page-number {
+    display: inline;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  ef-print-title-page,
+  ef-print-section,
+  ef-print-back-page {
+    position: relative;
+    isolation: isolate;
+  }
+
+  ef-print-title-page > :not(ef-print-layer),
+  ef-print-section > :not(ef-print-layer),
+  ef-print-back-page > :not(ef-print-layer) {
+    position: relative;
+    z-index: 1;
+  }
+
+  ef-print-title-page {
+    break-after: page;
+  }
+
+  ef-print-section[break-before="page"] {
+    break-before: page;
+  }
+
+  ef-print-section[break-after="page"] {
+    break-after: page;
+  }
+
+  ef-print-break[page] {
+    break-after: page;
+  }
+
+  ef-print-break[column] {
+    break-after: column;
+  }
+
+  ef-print-keep {
+    break-inside: avoid;
+  }
+
+  ef-print-header,
+  ef-print-footer {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--ef-print-header-gap);
+    align-items: baseline;
+    color: var(--ef-print-muted);
+    font-size: 0.86em;
+  }
+
+  ef-print-footer {
+    gap: var(--ef-print-footer-gap);
+  }
+
+  /*
+   * GH-54 / ULI-L12: slots name physical page positions. Place each slot in its
+   * own track so a left/right pair without a center item keeps "right" at the
+   * right edge (auto-placement put it in the middle track), and keep the
+   * physical positions in right-to-left documents (grid tracks otherwise run
+   * from the right, which swapped "left" and "right"). Dense flow keeps slots
+   * on the first row whatever their source order; :where() keeps specificity
+   * low so the narrow-screen inspection layout below still stacks them.
+   */
+  ef-print-header,
+  ef-print-footer {
+    grid-auto-flow: row dense;
+  }
+
+  ef-print-header > [slot="left"],
+  ef-print-footer > [slot="left"] {
+    grid-column: 1;
+    text-align: left;
+  }
+
+  ef-print-header > [slot="center"],
+  ef-print-footer > [slot="center"] {
+    grid-column: 2;
+    text-align: center;
+  }
+
+  ef-print-header > [slot="right"],
+  ef-print-footer > [slot="right"] {
+    grid-column: 3;
+    text-align: right;
+  }
+
+  ef-print-header:where(:dir(rtl)) > [slot="left"],
+  ef-print-footer:where(:dir(rtl)) > [slot="left"] {
+    grid-column: 3;
+  }
+
+  ef-print-header:where(:dir(rtl)) > [slot="right"],
+  ef-print-footer:where(:dir(rtl)) > [slot="right"] {
+    grid-column: 1;
+  }
+
+  /*
+   * A page-number marker keeps short counters together, but authored fallback
+   * text inside a bounded header/footer track may wrap rather than overflow
+   * the page edge (GH-54 / ULI-L12).
+   */
+  ef-print-header ef-print-page-number,
+  ef-print-footer ef-print-page-number {
+    white-space: normal;
+  }
+
+  ef-print-header > :not([slot]),
+  ef-print-footer > :not([slot]) {
+    grid-column: 1 / -1;
+  }
+
+  /*
+   * Header/footer elements are in-flow P0 primitives. A repeat="page" attribute
+   * expresses running-content intent for renderer profiles that support it; core
+   * CSS deliberately does not fake repeated page-margin content.
+   */
+  ef-print-header[repeat="page"],
+  ef-print-footer[repeat="page"] {
+    --ef-print-running-intent: page;
+  }
+
+  /*
+   * Page-number is an explicit renderer-capability marker. Authored fallback
+   * text remains visible in P0; P1/P2/P3 adapters may replace/map it to a real
+   * page counter without estimating pages from DOM height.
+   */
+  ef-print-page-number[format="page"] {
+    --ef-print-page-number-format: page;
+  }
+
+  ef-print-page-number[format="page-of-pages"] {
+    --ef-print-page-number-format: page-of-pages;
+  }
+
+  ef-print-columns {
+    column-count: var(--ef-print-column-count, 2);
+    column-gap: var(--ef-print-column-gap, 0.28in);
+    column-rule: var(--ef-print-column-rule, none);
+  }
+
+  ef-print-sidebar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--ef-print-sidebar-width, 1.65in);
+    gap: var(--ef-print-sidebar-gap, 0.24in);
+  }
+
+  ef-print-sidebar[position="left"] {
+    grid-template-columns: var(--ef-print-sidebar-width, 1.65in) minmax(0, 1fr);
+  }
+
+  ef-print-layer {
+    position: absolute;
+    inset: var(--ef-print-art-inset);
+    z-index: 0;
+    opacity: var(--ef-print-art-opacity);
+    background-image: var(--ef-print-art-image);
+    background-size: var(--ef-print-art-fit);
+    background-position: var(--ef-print-art-position);
+    background-repeat: var(--ef-print-art-repeat, no-repeat);
+    pointer-events: none;
+  }
+
+  ef-print-layer[mode="watermark"] {
+    display: grid;
+    place-items: center;
+    color: var(--ef-print-art-color, var(--ef-print-muted));
+    font-size: var(--ef-print-art-font-size, 30pt);
+    font-weight: var(--ef-print-art-font-weight, 700);
+    letter-spacing: var(--ef-print-art-letter-spacing, 0.08em);
+    text-transform: var(--ef-print-art-text-transform, uppercase);
+  }
+
+
+  ef-print-metric {
+    display: grid;
+    gap: 0.035in;
+    min-inline-size: 0;
+    padding: var(--ef-print-metric-padding, 0.13in 0.15in);
+    border: 1px solid var(--ef-print-metric-rule);
+    border-radius: var(--ef-print-metric-radius, 0.045in);
+    background: var(--ef-print-metric-surface);
+    break-inside: avoid;
+  }
+
+  ef-print-metric[emphasis="strong"] {
+    border-block-start: var(--ef-print-metric-accent-width, 0.035in) solid var(--ef-print-accent);
+  }
+
+  ef-print-metric [data-label] {
+    color: var(--ef-print-muted);
+    font-size: var(--ef-print-metric-label-size, 0.76em);
+    font-weight: 700;
+    letter-spacing: 0.055em;
+    line-height: 1.25;
+    text-transform: uppercase;
+  }
+
+  ef-print-metric [data-value] {
+    font-size: var(--ef-print-metric-value-size);
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+    line-height: 1.05;
+    overflow-wrap: anywhere;
+  }
+
+  ef-print-metric [data-detail] {
+    color: var(--ef-print-muted);
+    font-size: var(--ef-print-metric-detail-size, 0.86em);
+    line-height: 1.3;
+  }
+
+  ef-print-integrity {
+    display: block;
+    margin-block: var(--ef-print-space);
+    padding: var(--ef-print-integrity-padding, 0.16in 0.18in);
+    border-block-start: var(--ef-print-integrity-accent-width, 0.035in) solid var(--ef-print-integrity-accent);
+    border-block-end: 1px solid var(--ef-print-rule);
+    background: var(--ef-print-integrity-surface);
+    break-inside: avoid;
+  }
+
+  ef-print-integrity > :first-child {
+    margin-block-start: 0;
+  }
+
+  ef-print-integrity > dl {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(1.45in, 100%), 1fr));
+    gap: var(--ef-print-integrity-gap, 0.12in);
+    margin: var(--ef-print-integrity-list-margin, 0.11in 0 0);
+  }
+
+  ef-print-integrity > dl > div {
+    min-inline-size: 0;
+    break-inside: avoid;
+  }
+
+  ef-print-integrity dt {
+    color: var(--ef-print-muted);
+    font-size: 0.76em;
+    font-weight: 700;
+    letter-spacing: 0.045em;
+    text-transform: uppercase;
+  }
+
+  ef-print-integrity dd {
+    margin: 0.025in 0 0;
+    font-variant-numeric: tabular-nums;
+    font-weight: 700;
+  }
+
+  ef-print-integrity [data-limitations] {
+    margin-block: 0.12in 0;
+    padding-block-start: 0.1in;
+    border-block-start: 1px solid var(--ef-print-rule);
+    color: var(--ef-print-muted);
+    font-size: 0.88em;
+  }
+
+  ef-print-integrity[status="partial"] {
+    border-block-start-style: dashed;
+  }
+
+  ef-print-integrity[status="insufficient"],
+  ef-print-integrity[status="not-comparable"] {
+    border-block-start-style: double;
+  }
+
+  ef-print-finding {
+    display: block;
+    margin-block: var(--ef-print-space);
+    padding-inline-start: var(--ef-print-finding-padding, 0.16in);
+    border-inline-start: var(--ef-print-finding-rule-width, 2px) solid var(--ef-print-finding-rule);
+  }
+
+  ef-print-finding[compact] {
+    break-inside: avoid;
+  }
+
+  ef-print-finding > :first-child {
+    margin-block-start: 0;
+  }
+
+  ef-print-finding > dl {
+    display: grid;
+    grid-template-columns: var(--ef-print-finding-label-width, 1.08in) minmax(0, 1fr);
+    gap: var(--ef-print-finding-row-gap, 0.075in) var(--ef-print-finding-column-gap, 0.14in);
+    margin: 0;
+  }
+
+  ef-print-finding > dl > div {
+    display: contents;
+  }
+
+  ef-print-finding dt {
+    color: var(--ef-print-muted);
+    font-size: 0.8em;
+    font-weight: 700;
+    letter-spacing: 0.035em;
+    text-transform: uppercase;
+  }
+
+  ef-print-finding dd {
+    min-inline-size: 0;
+    margin: 0;
+  }
+
+  ef-print-callout {
+    margin-block: var(--ef-print-space);
+    padding: var(--ef-print-callout-padding, 0.14in 0.18in);
+    border-inline-start: var(--ef-print-callout-rule-width, 0.04in) solid var(--ef-print-callout-accent);
+    background: var(--ef-print-callout-surface);
+    break-inside: avoid;
+  }
+
+  ef-print-callout[variant="plain"] {
+    background: transparent;
+  }
+
+  ef-print-figure {
+    margin-block: var(--ef-print-space);
+    break-inside: avoid;
+  }
+
+  ef-print-figure > figure {
+    margin: 0;
+  }
+
+  ef-print-figure figcaption {
+    margin-block-start: 0.08in;
+    color: var(--ef-print-muted);
+    font-size: 0.86em;
+    line-height: 1.35;
+  }
+
+  ef-print-table {
+    max-inline-size: 100%;
+    margin-block: var(--ef-print-space);
+  }
+
+  ef-print-table > table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+  }
+
+  ef-print-table caption {
+    margin-block-end: 0.08in;
+    text-align: start;
+    font-weight: 700;
+  }
+
+  ef-print-table thead {
+    display: table-header-group;
+  }
+
+  ef-print-table tfoot {
+    display: table-footer-group;
+  }
+
+  ef-print-table tr {
+    break-inside: avoid;
+  }
+
+  ef-print-table th,
+  ef-print-table td {
+    padding: var(--ef-print-table-cell-padding, 0.055in 0.07in);
+    border-bottom: 1px solid var(--ef-print-rule);
+    text-align: start;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+  }
+
+  ef-print-table th {
+    font-weight: 700;
+    /*
+     * GH-54 / ULI-L12: header labels break between words, never inside one.
+     * Data cells keep overflow-wrap: anywhere so a long URL cannot widen the
+     * table past the page; headers keep their words as the column minimum.
+     */
+    overflow-wrap: break-word;
+  }
+
+  ef-print-table [data-align="number"] {
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* A numeric value is one unit of meaning: never split it across lines. */
+  ef-print-table td[data-align="number"] {
+    overflow-wrap: normal;
+    white-space: nowrap;
+  }
+
+  ef-print-code {
+    margin-block: var(--ef-print-space);
+  }
+
+  ef-print-code pre {
+    margin: 0;
+    padding: var(--ef-print-code-padding, 0.14in);
+    border: 1px solid var(--ef-print-rule);
+    background: var(--ef-print-code-surface);
+    font-family: var(--ef-print-code-font-family);
+    font-size: var(--ef-print-code-font-size, 0.88em);
+    line-height: var(--ef-print-code-line-height, 1.45);
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+    tab-size: var(--ef-print-code-tab-size, 2);
+  }
+
+  ef-print-code code {
+    font: inherit;
+  }
+
+  ef-print-toc {
+    margin-block: var(--ef-print-space);
+  }
+
+  ef-print-toc ol,
+  ef-print-toc ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  ef-print-toc li {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 0.12in;
+    align-items: end;
+    padding-block: 0.035in;
+    border-bottom: 1px dotted var(--ef-print-rule);
+    break-inside: avoid;
+  }
+
+  ef-print-toc a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ef-print-toc [data-page] {
+    grid-column: 2;
+    grid-row: 1;
+    min-inline-size: 2ch;
+    text-align: end;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Optional secondary line beneath a TOC title: authors, article type, section. */
+  ef-print-toc li > [data-detail] {
+    grid-column: 1;
+    color: var(--ef-print-muted);
+    font-size: 0.88em;
+  }
+
+  ef-print-note {
+    margin-block: var(--ef-print-space);
+    padding-inline-start: var(--ef-print-note-padding, 0.12in);
+    border-inline-start: 2px solid var(--ef-print-note-accent);
+    color: var(--ef-print-muted);
+    font-size: var(--ef-print-note-font-size, 0.9em);
+    break-inside: avoid;
+  }
+
+  /*
+   * Screen-only responsive inspection behavior.
+   * Folio's print contract remains unchanged because these rules never match print media.
+   */
+  @media screen and (max-width: 48rem) {
+    ef-print-columns {
+      column-count: 1;
+    }
+
+    ef-print-integrity > dl,
+    ef-print-finding > dl {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    ef-print-finding > dl > div {
+      display: block;
+    }
+
+    ef-print-finding dt {
+      margin-block-end: 0.025in;
+    }
+
+    ef-print-finding dd + dt,
+    ef-print-finding > dl > div + div {
+      margin-block-start: 0.09in;
+    }
+
+    ef-print-sidebar {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    ef-print-sidebar > * {
+      min-inline-size: 0;
+      max-inline-size: 100%;
+    }
+
+    ef-print-header,
+    ef-print-footer {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    ef-print-header > *,
+    ef-print-footer > *,
+    ef-print-header > [slot],
+    ef-print-footer > [slot] {
+      grid-column: 1;
+      text-align: left;
+    }
+
+    ef-print-table {
+      overflow-x: auto;
+      overscroll-behavior-inline: contain;
+    }
+
+    ef-print-table > table {
+      min-inline-size: var(--ef-print-table-screen-min-width, 34rem);
+    }
+
+    ef-print-code {
+      max-inline-size: 100%;
+    }
+  }
+}
+
+
+/*
+ * Professional-profile recipes (DF-PRINT-2026-0004, FOLIO-RES-007).
+ *
+ * Recipes are documented class contracts applied to ordinary semantic HTML.
+ * They carry reusable layout intent for dense professional documents such as
+ * resumes, CVs, speaker sheets, staff biographies, credentials sheets, project
+ * histories, and publication lists. They carry no domain meaning: the consuming
+ * application owns content, selection, ordering, and formatting.
+ *
+ * The layer sits after ef-print-components so unlayered consumer CSS always wins.
+ */
+@layer ef-print-recipes {
+  :root {
+    --ef-print-identity-align: center;
+    --ef-print-identity-gap: 1em;
+    --ef-print-identity-contact-gap: 0.25em;
+    --ef-print-row-gap: 0.75em;
+    --ef-print-row-end-min: auto;
+    --ef-print-entry-gap: 1em;
+    --ef-print-lead-list-indent: 1.25em;
+    --ef-print-lead-list-marker: square;
+    --ef-print-lead-list-item-gap: 0;
+    --ef-print-lead-weight: 700;
+    --ef-print-inline-list-separator: ",";
+    --ef-print-labeled-gap: 0.25em;
+    --ef-print-category-min: 12.5em;
+    --ef-print-category-max: 1fr;
+    --ef-print-category-gap: 0.625em;
+    --ef-print-category-item-gap: 0.25em;
+    --ef-print-dense-heading-space: 0.83em;
+    --ef-print-dense-block-space: 0.5em;
+  }
+
+  /* Identity/contact composition: dominant name region plus stacked contact region. */
+  .ef-identity {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--ef-print-identity-gap);
+    align-items: center;
+  }
+
+  .ef-identity > :first-child {
+    min-inline-size: 0;
+    margin: 0;
+    text-align: var(--ef-print-identity-align);
+  }
+
+  .ef-identity > :not(:first-child) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ef-print-identity-contact-gap);
+    min-inline-size: 0;
+    margin: 0;
+    padding: 0;
+    font-style: normal;
+    list-style: none;
+    overflow-wrap: anywhere;
+  }
+
+  .ef-identity[data-contact="inline"] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .ef-identity[data-contact="inline"] > :not(:first-child) {
+    flex-flow: row wrap;
+    justify-content: var(--ef-print-identity-align);
+    column-gap: 1em;
+  }
+
+  /*
+   * Aligned metadata row: primary regions grow and wrap on the start side; the
+   * [data-row-end] region (dates, years, amounts) stays on one line at the end of
+   * the first row. No fixed coordinates, no measurement.
+   */
+  .ef-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(var(--ef-print-row-end-min), auto);
+    column-gap: var(--ef-print-row-gap);
+    align-items: baseline;
+  }
+
+  .ef-row > * {
+    grid-column: 1;
+    min-inline-size: 0;
+    margin: 0;
+  }
+
+  .ef-row > [data-row-end] {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: end;
+    white-space: nowrap;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Repeated logical entry: its header stays with the first line of entry content. */
+  .ef-entry {
+    margin-block: 0 var(--ef-print-entry-gap);
+  }
+
+  .ef-entry > :first-child:not(:last-child) {
+    break-after: avoid;
+  }
+
+  .ef-entry[data-keep] {
+    break-inside: avoid;
+  }
+
+  /* Compact accomplishment list: native list, emphasized lead phrase, tight rhythm. */
+  .ef-lead-list {
+    margin: 0;
+    padding-inline-start: var(--ef-print-lead-list-indent);
+    list-style-type: var(--ef-print-lead-list-marker);
+  }
+
+  .ef-lead-list > li {
+    margin-block: 0 var(--ef-print-lead-list-item-gap);
+    break-inside: avoid;
+  }
+
+  .ef-lead-list > li > :is(strong, b):first-child {
+    font-weight: var(--ef-print-lead-weight);
+  }
+
+  .ef-lead-list[data-marker="none"] {
+    padding-inline-start: 0;
+    list-style: none;
+  }
+
+  /*
+   * Compact inline collection: list semantics stay in the source; the separator
+   * is presentation between items. Generated spaces collapse with authored
+   * whitespace, so templates may emit either.
+   */
+  .ef-inline-list {
+    display: inline;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ef-inline-list > li {
+    display: inline;
+  }
+
+  .ef-inline-list > li:not(:last-child)::after {
+    content: var(--ef-print-inline-list-separator) " ";
+  }
+
+  /* Inline label/value composition, e.g. <dl class="ef-labeled"><dt>Focus areas:</dt><dd>…</dd></dl>. */
+  .ef-labeled {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--ef-print-labeled-gap);
+    margin: 0;
+  }
+
+  .ef-labeled > :first-child {
+    margin: 0;
+    font-weight: 700;
+  }
+
+  .ef-labeled > :not(:first-child) {
+    flex: 1 1 0;
+    min-inline-size: min(12em, 100%);
+    margin: 0;
+  }
+
+  /* Categorized dense grid: variable groups, each kept together where it fits. */
+  .ef-category-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(var(--ef-print-category-min), 100%), var(--ef-print-category-max)));
+    gap: var(--ef-print-category-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .ef-category-grid > * {
+    min-inline-size: 0;
+    overflow-wrap: break-word;
+    break-inside: avoid;
+  }
+
+  .ef-category-grid > * > :first-child {
+    margin: 0;
+    break-after: avoid;
+  }
+
+  .ef-category-grid > * > :is(ul, ol) {
+    display: flex;
+    flex-direction: column;
+    gap: var(--ef-print-category-item-gap);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* Dense professional rhythm: compact block spacing and heading keep-with-next intent. */
+  .ef-dense :is(h1, h2, h3, h4, h5, h6) {
+    break-after: avoid;
+  }
+
+  .ef-dense :is(h2, h3, h4, h5, h6) {
+    margin-block: var(--ef-print-dense-heading-space) 0;
+  }
+
+  .ef-dense :is(p, ul, ol, dl) {
+    margin-block: 0 var(--ef-print-dense-block-space);
+  }
+
+  .ef-dense :is(li, dd) > :is(ul, ol) {
+    margin-block-end: 0;
+  }
+
+  /* Screen-only reflow. Print media keeps the authored rows, grid, and header. */
+  @media screen and (max-width: 48rem) {
+    .ef-identity {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media screen and (max-width: 30rem) {
+    .ef-category-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ef-row {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ef-row > [data-row-end] {
+      grid-column: 1;
+      grid-row: auto;
+      text-align: start;
+      white-space: normal;
+    }
+  }
+}
+
+/*
+ * Publication recipes (DF-PRINT-2026-0005, FOLIO-JRN-250..253).
+ *
+ * Generic long-form publication contracts applied to native semantic HTML:
+ * scholarly articles and journal issues, and equally proceedings, book
+ * chapters, technical reports, manuals, and white papers. Folio styles
+ * consumer-authored labels and numbers; it never generates scholarly numbering,
+ * resolves citations, or typesets mathematics. The renderer owns pages.
+ */
+@layer ef-print-recipes {
+  :root {
+    --ef-print-longform-align: justify;
+    --ef-print-longform-hyphens: auto;
+    --ef-print-longform-indent: 1.2em;
+    --ef-print-longform-paragraph-space: 0;
+    --ef-print-longform-heading-space: 1.1em;
+    --ef-print-longform-lines: 2;
+    --ef-print-article-title-size: 1.9em;
+    --ef-print-article-h2-size: 1.12em;
+    --ef-print-article-h3-size: 1em;
+    --ef-print-article-kicker-color: var(--ef-print-accent);
+    --ef-print-front-font-size: 0.88em;
+    --ef-print-authors-separator: ",";
+    --ef-print-meta-font-size: 0.84em;
+    --ef-print-meta-gap: 0.8em;
+    --ef-print-abstract-rule: var(--ef-print-accent);
+    --ef-print-abstract-surface: transparent;
+    --ef-print-abstract-padding: 0.1in 0;
+    --ef-print-run-in-suffix: ".";
+    --ef-print-caption-font-size: 0.86em;
+    --ef-print-caption-color: var(--ef-print-text);
+    --ef-print-equation-number-width: 3.2em;
+    --ef-print-reference-font-size: 0.86em;
+    --ef-print-reference-indent: 1.6em;
+    --ef-print-reference-marker-width: 2.2em;
+    --ef-print-reference-gap: 0.28em;
+    --ef-print-endnotes-font-size: 0.84em;
+    --ef-print-declarations-font-size: 0.86em;
+  }
+
+  /* Long-form reading rhythm: justified, hyphenated, indented paragraphs. */
+  .ef-longform {
+    hyphens: var(--ef-print-longform-hyphens);
+    orphans: var(--ef-print-longform-lines);
+    widows: var(--ef-print-longform-lines);
+  }
+
+  .ef-longform :where(p) {
+    margin-block: 0 var(--ef-print-longform-paragraph-space);
+    text-align: var(--ef-print-longform-align);
+  }
+
+  .ef-longform :where(section, article, ef-print-columns, ef-print-section) > :where(p + p) {
+    text-indent: var(--ef-print-longform-indent);
+  }
+
+  .ef-longform :where(h1, h2, h3, h4, h5, h6) {
+    break-after: avoid;
+    break-inside: avoid;
+    hyphens: manual;
+    text-align: start;
+  }
+
+  .ef-longform :where(h2, h3, h4, h5, h6) {
+    margin-block: var(--ef-print-longform-heading-space) 0.35em;
+    line-height: 1.25;
+  }
+
+  .ef-longform p[data-lead]::first-line {
+    font-variant-caps: small-caps;
+    letter-spacing: 0.02em;
+  }
+
+  .ef-longform p[data-dropcap]::first-letter {
+    float: inline-start;
+    margin-block-start: 0.04em;
+    margin-inline-end: 0.08em;
+    font-size: 3.1em;
+    font-weight: 700;
+    line-height: 0.82;
+  }
+
+  /*
+   * Article/chapter unit inside a document or issue. data-start requests a new
+   * page; "recto" is enhanced intent that portable renderers treat as a page break.
+   */
+  .ef-article {
+    display: block;
+  }
+
+  .ef-article[data-start="page"],
+  .ef-article[data-start="recto"] {
+    break-before: page;
+  }
+
+  .ef-article[data-start="recto"] {
+    break-before: recto;
+  }
+
+  .ef-article h2 {
+    font-size: var(--ef-print-article-h2-size);
+  }
+
+  .ef-article h3 {
+    font-size: var(--ef-print-article-h3-size);
+    font-style: italic;
+  }
+
+  /* Opening front matter: kicker, title, subtitle, contributors, metadata. */
+  .ef-article-header {
+    margin-block: 0 var(--ef-print-space);
+    column-span: all;
+    break-after: avoid;
+  }
+
+  .ef-article-header [data-kicker] {
+    margin: 0 0 0.45em;
+    color: var(--ef-print-article-kicker-color);
+    font-size: 0.78em;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .ef-article-header h1 {
+    margin: 0 0 0.3em;
+    font-size: var(--ef-print-article-title-size);
+    line-height: 1.15;
+    hyphens: manual;
+    overflow-wrap: break-word;
+    text-wrap: balance;
+    break-after: avoid;
+  }
+
+  .ef-article-header [data-subtitle] {
+    margin: 0 0 0.6em;
+    color: var(--ef-print-muted);
+    font-size: 1.12em;
+    line-height: 1.3;
+  }
+
+  /* Contributor list; affiliation markers link to affiliation IDs (FOLIO-JRN-021). */
+  .ef-authors {
+    margin: 0.4em 0 0.25em;
+    padding: 0;
+    list-style: none;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+
+  .ef-authors > li {
+    display: inline;
+  }
+
+  .ef-authors > li:not(:last-child)::after {
+    content: var(--ef-print-authors-separator) " ";
+    font-weight: 400;
+  }
+
+  .ef-authors :is(sup, [data-orcid], [data-corresponding]) {
+    font-weight: 400;
+  }
+
+  .ef-authors sup a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .ef-authors [data-orcid] {
+    margin-inline-start: 0.2em;
+    font-size: 0.78em;
+    white-space: nowrap;
+  }
+
+  .ef-affiliations {
+    margin: 0.2em 0 0.4em;
+    padding: 0;
+    list-style: none;
+    color: var(--ef-print-muted);
+    font-size: var(--ef-print-front-font-size);
+    line-height: 1.35;
+  }
+
+  .ef-affiliations > li {
+    padding-inline-start: 1em;
+    text-indent: -1em;
+  }
+
+  .ef-affiliations > li > sup:first-child {
+    display: inline-block;
+    min-inline-size: 1em;
+    text-indent: 0;
+  }
+
+  /* Generic label/value metadata list (FOLIO-JRN-022/023, EPC-OBJMETA-007). */
+  .ef-meta-list {
+    display: grid;
+    grid-template-columns: max-content minmax(0, 1fr);
+    gap: 0.12em var(--ef-print-meta-gap);
+    margin: 0.5em 0;
+    font-size: var(--ef-print-meta-font-size);
+    line-height: 1.35;
+  }
+
+  .ef-meta-list > div {
+    display: contents;
+  }
+
+  .ef-meta-list dt {
+    color: var(--ef-print-muted);
+    font-weight: 700;
+  }
+
+  .ef-meta-list dd {
+    min-inline-size: 0;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .ef-meta-list[data-layout="inline"] {
+    display: block;
+  }
+
+  .ef-meta-list[data-layout="inline"] > div {
+    display: inline;
+    margin-inline-end: var(--ef-print-meta-gap);
+  }
+
+  .ef-meta-list[data-layout="inline"] :is(dt, dd) {
+    display: inline;
+  }
+
+  .ef-meta-list[data-layout="inline"] dt::after {
+    content: " ";
+  }
+
+  /* Abstract; data-variant="structured" runs labeled parts in (FOLIO-JRN-024). */
+  .ef-abstract {
+    margin-block: var(--ef-print-space);
+    padding: var(--ef-print-abstract-padding);
+    border-block-start: 2px solid var(--ef-print-abstract-rule);
+    border-block-end: 1px solid var(--ef-print-rule);
+    background: var(--ef-print-abstract-surface);
+  }
+
+  .ef-abstract > :is(h2, h3):first-child {
+    margin: 0 0 0.35em;
+    color: var(--ef-print-abstract-rule);
+    font-size: 0.8em;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    break-after: avoid;
+  }
+
+  .ef-abstract p {
+    margin-block: 0 0.4em;
+    text-indent: 0;
+  }
+
+  .ef-abstract > section {
+    margin-block: 0 0.35em;
+  }
+
+  /* Run-in labeled parts shared by structured abstracts and declaration groups. */
+  :is(.ef-abstract[data-variant="structured"], .ef-declarations) > section > :is(h3, h4):first-child {
+    display: inline;
+    margin: 0;
+    font-size: 1em;
+    font-style: normal;
+    font-weight: 700;
+  }
+
+  :is(.ef-abstract[data-variant="structured"], .ef-declarations) > section > :is(h3, h4):first-child::after {
+    content: var(--ef-print-run-in-suffix) " ";
+  }
+
+  :is(.ef-abstract[data-variant="structured"], .ef-declarations) > section > :is(h3, h4):first-child + p {
+    display: inline;
+  }
+
+  /* Caption with authored label, notes, and source (FOLIO-JRN-060, -259). */
+  .ef-caption {
+    color: var(--ef-print-caption-color);
+    font-size: var(--ef-print-caption-font-size);
+    font-weight: 400;
+    line-height: 1.35;
+    text-align: start;
+    text-indent: 0;
+    hyphens: manual;
+  }
+
+  .ef-caption [data-label] {
+    font-weight: 700;
+  }
+
+  .ef-caption :is([data-note], [data-source]) {
+    display: block;
+    margin-block-start: 0.25em;
+    color: var(--ef-print-muted);
+    font-size: 0.94em;
+  }
+
+  /* Display equation: consumer math centered, authored number at the end. */
+  .ef-equation {
+    display: grid;
+    grid-template-columns: var(--ef-print-equation-number-width) minmax(0, 1fr) var(--ef-print-equation-number-width);
+    align-items: center;
+    margin: 0.6em 0;
+    text-indent: 0;
+    break-inside: avoid;
+  }
+
+  .ef-equation > :not(figcaption) {
+    grid-column: 2;
+    justify-self: center;
+    min-inline-size: 0;
+    max-inline-size: 100%;
+    margin: 0;
+  }
+
+  .ef-equation > figcaption {
+    grid-column: 3;
+    grid-row: 1;
+    justify-self: end;
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .ef-equation[data-align="start"] {
+    grid-template-columns: 0 minmax(0, 1fr) var(--ef-print-equation-number-width);
+  }
+
+  .ef-equation[data-align="start"] > :not(figcaption) {
+    justify-self: start;
+  }
+
+  /* Full-width material inside multicolumn flow (FOLIO-JRN-041, -061). */
+  .ef-column-span {
+    column-span: all;
+  }
+
+  /* Bibliography: hanging indent by default, authored markers with data-style="numeric". */
+  .ef-reference-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--ef-print-reference-font-size);
+    line-height: 1.35;
+    text-align: start;
+    text-indent: 0;
+    hyphens: manual;
+  }
+
+  .ef-reference-list > li {
+    margin-block: 0 var(--ef-print-reference-gap);
+    padding-inline-start: var(--ef-print-reference-indent);
+    text-indent: calc(-1 * var(--ef-print-reference-indent));
+    overflow-wrap: break-word;
+    break-inside: avoid;
+  }
+
+  .ef-reference-list a {
+    overflow-wrap: anywhere;
+  }
+
+  .ef-reference-list[data-style="numeric"] > li {
+    padding-inline-start: var(--ef-print-reference-marker-width);
+    text-indent: 0;
+  }
+
+  .ef-reference-list[data-style="numeric"] > li > [data-marker]:first-child {
+    display: inline-block;
+    inline-size: var(--ef-print-reference-marker-width);
+    margin-inline-start: calc(-1 * var(--ef-print-reference-marker-width));
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Endnotes: native ordered list with optional backlinks to the reference point. */
+  .ef-endnotes {
+    margin: 0;
+    padding-inline-start: 1.6em;
+    font-size: var(--ef-print-endnotes-font-size);
+    line-height: 1.35;
+    text-align: start;
+  }
+
+  .ef-endnotes > li {
+    margin-block: 0 0.25em;
+    break-inside: avoid;
+  }
+
+  .ef-endnotes p {
+    display: inline;
+    text-indent: 0;
+  }
+
+  .ef-endnotes [data-backlink] {
+    margin-inline-start: 0.3em;
+    text-decoration: none;
+  }
+
+  /* Back-matter statement group: funding, interests, contributions, data. */
+  .ef-declarations {
+    margin-block: var(--ef-print-space);
+    font-size: var(--ef-print-declarations-font-size);
+    line-height: 1.35;
+  }
+
+  .ef-declarations > section {
+    margin-block: 0 0.45em;
+    break-inside: avoid;
+  }
+
+  .ef-declarations p {
+    margin-block: 0 0.3em;
+    text-align: start;
+    text-indent: 0;
+  }
+
+  @media screen {
+    .ef-equation > :not(figcaption) {
+      overflow-x: auto;
+    }
+  }
+
+  /* Screen-only reflow. Print keeps the authored grid, justification, and equation layout. */
+  @media screen and (max-width: 30rem) {
+    .ef-longform :where(p) {
+      text-align: start;
+    }
+
+    .ef-meta-list:not([data-layout="inline"]) {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .ef-meta-list:not([data-layout="inline"]) dd + dt {
+      margin-block-start: 0.3em;
+    }
+
+    .ef-equation,
+    .ef-equation[data-align="start"] {
+      grid-template-columns: minmax(0, 1fr) auto;
+      column-gap: 0.5em;
+    }
+
+    .ef-equation > :not(figcaption) {
+      grid-column: 1;
+    }
+
+    .ef-equation > figcaption {
+      grid-column: 2;
+    }
+  }
+}
+
+@media print {
+  [data-screen-only] {
+    display: none !important;
+  }
+
+  ef-print-header,
+  ef-print-footer {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  ef-print-table {
+    overflow: visible;
+  }
+}
+
+/* Static icons compiled by Forma; Folio never redefines their SVG geometry. */
+@layer ef-print-components {
+  .ef-print-icon {
+    display: inline-flex;
+    inline-size: var(--ef-print-icon-size, 1em);
+    block-size: var(--ef-print-icon-size, 1em);
+    align-items: center;
+    justify-content: center;
+    vertical-align: -0.16em;
+    color: currentColor;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+  .ef-print-icon > svg {
+    inline-size: 100%;
+    block-size: 100%;
+    max-inline-size: 100%;
+    display: block;
+  }
+  @media print {
+    .ef-print-icon, .ef-print-icon > svg { color: inherit; print-color-adjust: economy; }
+  }
+  @media (forced-colors: active) {
+    .ef-print-icon { color: CanvasText; }
+  }
+}

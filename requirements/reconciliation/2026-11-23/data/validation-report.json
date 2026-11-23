@@ -5,9 +5,10 @@
     "findings": 175,
     "conflicts": 39,
     "scenarios": 124,
-    "decisions": 31
+    "decisions": 31,
+    "ui": 38
   },
-  "trace_edges": 2176,
+  "trace_edges": 2300,
   "errors": 0,
   "warnings": 30,
   "errors_by_gate": {}

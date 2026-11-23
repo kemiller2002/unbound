@@ -42,7 +42,8 @@ def load(data: Path):
     cv = lambda p: tuple(csv.DictReader((data / p).open(encoding="utf-8")))
     return dict(F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 E=cv("trace-edges.csv"), Q=cv("requirements-quality.csv"), R=jl("refinements.jsonl"),
-                G=jl("gap-requirements.jsonl"), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
+                G=jl("gap-requirements.jsonl"), U=jl("ui-requirements.jsonl") if (data / "ui-requirements.jsonl").exists() else (),
+                UG=cv("ui-component-gaps.csv") if (data / "ui-component-gaps.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
 
 
 def g_findings_matrix(d) -> str:
@@ -176,7 +177,35 @@ def g_validation(d) -> str:
     return table(("Record set / result", "Count"), rows)
 
 
+def g_ui_index(d) -> str:
+    return table(("ID", "Kind", "Title", "Forma components", "Folio elements", "Capability gaps", "ACs"),
+                 ((u["id"], u["kind"], u["title"], cell(", ".join(u["forma_components"]), 160), cell(", ".join(u["folio_elements"]), 120),
+                   ", ".join(u["capability_gaps"]) or "—", len(u["acceptance_criteria"])) for u in d["U"]))
+
+
+def g_ui_records(d) -> str:
+    def one(u) -> str:
+        acs = "\n".join(f"  - **{a['id']}** Given {a['given']}; when {a['when']}; then {a['then']}." for a in u["acceptance_criteria"])
+        rows = [f"### {u['id']} — {u['title']} ({u['kind']})", f"- **Requirement:** {u['statement']}",
+                f"- **Traces to:** {', '.join(u['traces'])}"]
+        rows += [f"- **Actors:** {', '.join(u['actors'])}"] if u["actors"] else []
+        rows += [f"- **Forma components:** {', '.join(f'`{c}`' for c in u['forma_components'])}"] if u["forma_components"] else []
+        rows += [f"- **Folio elements:** {', '.join(f'`{c}`' for c in u['folio_elements'])}"] if u["folio_elements"] else []
+        rows += [f"- **States:** {'; '.join(u['states'])}"] if u["states"] else []
+        rows += [f"- **Actions:** {'; '.join(u['actions'])}"] if u["actions"] else []
+        rows += [f"- **Responsive:** {u['responsive']}"] if u["responsive"] else []
+        rows += [f"- **Capability gaps:** {', '.join(u['capability_gaps'])}"] if u["capability_gaps"] else []
+        return "\n".join(rows + ["- **Acceptance criteria:**", acs, ""])
+    return "\n".join(one(u) for u in d["U"])
+
+
+def g_ui_gaps(d) -> str:
+    return table(("Gap", "Component", "Owner", "Priority (owner's catalog)", "Need", "Release-1 workaround", "Acceptance"),
+                 ((g["gap_id"], g["component"], g["owner"], g["forma_priority"], cell(g["need"], 200), cell(g["workaround_r1"], 220), cell(g["acceptance"], 200)) for g in d["UG"]))
+
+
 GENERATORS: Dict[str, Callable] = {
+    "ui-index": g_ui_index, "ui-records": g_ui_records, "ui-gaps": g_ui_gaps,
     "findings-matrix": g_findings_matrix, "findings-dimension": g_findings_dimension,
     "findings-severe": g_findings_severe, "findings-other": g_findings_other,
     "conflicts": g_conflicts, "gaps": g_gaps, "gap-counts": g_gap_counts,
