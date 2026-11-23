@@ -91,7 +91,7 @@ The integrating session's own token use is not reported by the harness and is no
   - Location: `requirements/ui/designs/v2/`.
   - Rebuild and verify: `SCREENS=S-001,S-003,S-004,S-008,S-011,S-012,W-001 node tools/build.mjs`, then `node tools/verify.mjs`. A partial build keeps the other screens' entries in `pages.json`.
   - Result: 42 of 42 pages pass at five viewports.
-- **Data authoring scripts.** These live in the session scratchpad, so copy them before it is cleared. Run them in this order; each is idempotent:
+- **Data authoring scripts.** Copied to `tools/reqaudit/authoring/`, with their scratchpad inputs in `specs/`. Run them in this order; each is idempotent:
   1. `ui_quality.py`: UI quality requirements, revisions with content-addressed tags, RCD-050..053.
   2. `merge_specs.py`: panel and view specs; gaps FORMA-GAP-24..26 and UNB-GAP-W-02.
   3. `ui_trace.py`: defects, state matrix, coverage, UIR records, DKS-UI scenarios.
