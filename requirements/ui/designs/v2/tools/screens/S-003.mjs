@@ -117,7 +117,7 @@ const moreOptions = ({ open = false } = {}) => `<details class="forma-disclosure
 <div class="forma-disclosure__content">
 ${choices({ name: "basis", legend: "How do you want to set the amount?", items: [["fixed", "A fixed dollar amount", "", !open], ["percent", "A percentage of fund value", "The dollar amount is fixed on the date you choose below.", open]] })}
 ${open ? `${textField({ id: "pct", label: "Percentage of fund value", desc: "For example 5 for 5%.", value: "5", attrs: ' inputmode="decimal"' })}
-${select({ id: "fix", label: "Fix the dollar amount", options: [["approval", `When ${SPONSOR} approves it`, true], ["payment", "On the payment date"]] })}
+${select({ id: "fix", label: "Fix the dollar amount", options: [["approval", "When the grant is approved", true], ["payment", "On the payment date"]] })}
 <p class="unb-x-derived" id="pct-est">At today's fund value of ${money(120000)} (market close ${time("2026-11-30", "Nov 30, 2026")}), 5% would be <strong>${money(6000)}</strong>. The exact amount is fixed at approval and must not be more than your Available to grant.</p>` : ""}
 ${choices({ name: "repeat", legend: "How often?", items: [["once", "One time", "", true], ["quarterly", "Every 3 months", "Each payment is checked against Available to grant first.", false], ["yearly", "Once a year", "", false]] })}
 </div></details>`;

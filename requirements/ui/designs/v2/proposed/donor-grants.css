@@ -44,11 +44,14 @@
     background: var(--unb-canvas);
   }
   .unb-app .unb-x-picked[data-state="blocked"] { border-inline-start: 4px solid var(--unb-danger); }
-  .unb-app .unb-x-picked { grid-template-columns: 2.25rem minmax(0, 1fr) auto; }
-  .unb-app .unb-x-picked > .unb-task__icon { grid-row: span 3; }
+  .unb-app .unb-x-picked > .unb-task__icon { grid-row: span 4; }
   .unb-app .unb-x-picked > :not(.unb-task__icon) { grid-column: 2; }
-  .unb-app .unb-x-picked > .unb-task__action { grid-column: 3; grid-row: 1 / span 3; align-self: center; margin: 0; }
-  .unb-app .unb-x-picked[data-state="blocked"] > .unb-task__action { grid-column: 2 / -1; grid-row: auto; margin-block-start: var(--forma-space-2); }
+  .unb-app .unb-x-picked > .unb-task__action { margin-block-start: var(--forma-space-1); }
+  @container (min-width: 30rem) {
+    .unb-app .unb-x-picked:not([data-state="blocked"]) { grid-template-columns: 2.25rem minmax(0, 1fr) auto; }
+    .unb-app .unb-x-picked:not([data-state="blocked"]) > .unb-task__icon { grid-row: span 3; }
+    .unb-app .unb-x-picked:not([data-state="blocked"]) > .unb-task__action { grid-column: 3; grid-row: 1 / span 3; align-self: center; margin: 0; }
+  }
 
   /* ---- Proposed: Form stack (one column, sections divided by rules) -------
      Forma's form/field own the controls; this owns rhythm and measure. */
