@@ -254,3 +254,9 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** A sponsor configuration that bypasses independently verified payment destination is rejected; an adverse charity signal arriving after approval holds payment; two feeds under one provider are not counted as independent corroboration; missing evidence triggers trusted retrieval without AI when available; a policy-complete grant succeeds with AI offline. See `POLICY-PRECEDENCE-EVIDENCE-TRUST-AND-CRITICAL-WORKFLOWS-2026-11-23.md` and ADV-053 through ADV-068.
 
 **Open:** legal classification, sponsor board approval, provider proof, exact typed schemas, source migration and test execution.
+
+## REQ-X-019: Typed critical decision contracts and concurrent-state safety (2026-11-23)
+
+**Proposed:** Every critical charity, grant, payment and DR decision uses a versioned typed envelope, explicit Known/Absent/Unknown/Disputed/Stale evidence states, independently governed authority and auditable transition outcome. Grant approval and reservation are atomic; payment execution is independently reconciled; safety holds, authority changes and charity changes must be rechecked at the relevant authoritative commit/release boundary. No local exactly-once guarantee is misrepresented as external provider exactly-once execution. Quorum and protective intake operate with distinct acknowledgment semantics.
+
+**Acceptance (not executed):** Test the 16 invariants and 12 concurrency schedules in `TYPED-DECISION-CONTRACTS-STATE-TRANSITIONS-AND-CONCURRENCY-2026-11-23.md`, including simultaneous reservations, charity adverse-event race, payment Unknown after crash, revoked recurring mandate, stale failback and emergency hold racing replay. Each transition has a falsifiable oracle and provenance trace. No test or legal/provider validation is claimed completed.
