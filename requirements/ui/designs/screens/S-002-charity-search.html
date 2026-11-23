@@ -1,0 +1,278 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-002 Charity search and selection | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-002. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-002</p>
+        <h1>Charity search and selection</h1>
+        <p class="forma-lead">Find a charity by name, alias or EIN, see its platform eligibility with an as-of date, and bind its canonical identity.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s002-1">State 1: Results: two charities with the same name and one on hold</a></li><li><a href="#s002-2">State 2: Searching</a></li><li><a href="#s002-3">State 3: No results</a></li><li><a href="#s002-4">State 4: Search unavailable</a></li><li><a href="#s002-5">State 5: Request a charity we don't list</a></li></ul></nav>
+    <section class="forma-section" id="s002-1" aria-labelledby="s002-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 5 · Donor on a phone</p>
+      <h2 id="s002-1-title">Results: two charities with the same name and one on hold</h2>
+      <p>Demonstrates: UNB-UI-S-002 AC-1 (EIN and city/state per record), AC-2 ('On hold', no reason text, not selectable)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant: choose a charity</li></ol></nav></forma-scope-trail><forma-collection-toolbar class="forma-component-tag"><section class="forma-collection-toolbar" aria-label="Charity search controls">
+  <form class="forma-search forma-collection-toolbar__search" role="search">
+    <label class="forma-search__label" for="s002-1-q">Search by charity name, alias or EIN</label>
+    <div class="forma-search__control">
+      <input id="s002-1-q" name="q" type="search" autocomplete="off" value="Hope Foundation">
+      <button type="button" class="forma-search__clear">Clear</button>
+    </div>
+  </form>
+  <div class="forma-collection-toolbar__controls">
+    <details class="forma-collection-toolbar__filters">
+      <summary>Filters <span class="forma-status-lozenge">1 active</span></summary>
+      <div class="forma-collection-toolbar__filter-panel">
+        <label>State <select name="state"><option>Any state</option><option selected>Illinois</option><option>Oregon</option></select></label>
+        <label>Cause <select name="cause"><option selected>Any cause</option><option>Education</option><option>Human services</option></select></label>
+      </div>
+    </details>
+    <label class="forma-collection-toolbar__sort">Sort
+      <select name="sort"><option>Best match</option><option>Legal name</option></select>
+    </label>
+  </div>
+  <p class="forma-collection-toolbar__count" role="status">4 charities</p>
+</section></forma-collection-toolbar><forma-active-filter-summary class="forma-component-tag"><section class="forma-active-filter-summary" aria-labelledby="s002-1-af">
+  <div class="forma-active-filter-summary__heading">
+    <h3 id="s002-1-af">Active filters</h3>
+    <button type="button">Clear all</button>
+  </div>
+  <ul class="forma-active-filter-summary__items">
+    <li><span>Search: Hope Foundation</span><button type="button" aria-label="Remove Search: Hope Foundation filter">Remove</button></li>
+  </ul>
+</section></forma-active-filter-summary><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Charity search results">
+  <table>
+    <caption class="forma-visually-hidden">Charity search results</caption>
+    <thead><tr><th scope="col"><button type="button">Legal name</button></th><th scope="col"><button type="button">EIN</button></th><th scope="col"><button type="button">City and state</button></th><th scope="col"><button type="button">Platform eligibility</button></th><th scope="col"><span class="forma-visually-hidden">Actions</span></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Legal name">Hope Foundation</td><td data-label="EIN"><span class="forma-identifier">00-0000101</span></td><td data-label="City and state">Springfield, IL</td><td data-label="Platform eligibility"><span class="forma-status-lozenge" data-state="ok">Eligible</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Actions"><button type="button" aria-label="Select Hope Foundation, EIN 00-0000101, Springfield, IL">Select</button></td></tr>
+      <tr><td data-label="Legal name">Hope Foundation</td><td data-label="EIN"><span class="forma-identifier">00-0000102</span></td><td data-label="City and state">Portland, OR</td><td data-label="Platform eligibility"><span class="forma-status-lozenge" data-state="ok">Eligible</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Actions"><button type="button" aria-label="Select Hope Foundation, EIN 00-0000102, Portland, OR">Select</button></td></tr>
+      <tr><td data-label="Legal name">Hope Foundation of Northgate</td><td data-label="EIN"><span class="forma-identifier">00-0000104</span></td><td data-label="City and state">Northgate, IL</td><td data-label="Platform eligibility"><span class="forma-status-lozenge" data-state="blocked">On hold</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-27">27 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Actions"><p>Cannot be selected while on hold</p></td></tr>
+      <tr><td data-label="Legal name">Riverside Food Bank (also known as Riverside Pantry)</td><td data-label="EIN"><span class="forma-identifier">00-0000103</span></td><td data-label="City and state">Springfield, IL</td><td data-label="Platform eligibility"><span class="forma-status-lozenge" data-state="ok">Eligible</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Actions"><button type="button" aria-label="Select Riverside Food Bank, EIN 00-0000103">Select</button></td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid><forma-pagination class="forma-component-tag"><nav class="forma-pagination" aria-label="Search result pages">
+  <a class="forma-pagination__control" href="?page=1" rel="prev">Previous</a>
+  <ol class="forma-pagination__pages"><li><a href="?page=1" aria-current="page">1</a></li></ol>
+  <a class="forma-pagination__control" href="?page=1" rel="next">Next</a>
+  <span class="forma-pagination__summary">Page 1 of 1</span>
+</nav></forma-pagination><p>Can't find it? <a href="#s002-5">Ask us to add a charity</a>.</p>
+</section>
+<section class="forma-section" id="s002-2" aria-labelledby="s002-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 5 · Donor</p>
+      <h2 id="s002-2-title">Searching</h2>
+      <p>Demonstrates: Searching state with busy semantics (UNB-UI-G-013)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant: choose a charity</li></ol></nav></forma-scope-trail><forma-collection-toolbar class="forma-component-tag"><section class="forma-collection-toolbar" aria-label="Charity search controls">
+  <form class="forma-search forma-collection-toolbar__search" role="search">
+    <label class="forma-search__label" for="s002-2-q">Search by charity name, alias or EIN</label>
+    <div class="forma-search__control">
+      <input id="s002-2-q" name="q" type="search" autocomplete="off" value="Hope">
+      <button type="button" class="forma-search__clear">Clear</button>
+    </div>
+  </form>
+  <div class="forma-collection-toolbar__controls">
+    <details class="forma-collection-toolbar__filters">
+      <summary>Filters <span class="forma-status-lozenge">1 active</span></summary>
+      <div class="forma-collection-toolbar__filter-panel">
+        <label>State <select name="state"><option>Any state</option><option selected>Illinois</option><option>Oregon</option></select></label>
+        <label>Cause <select name="cause"><option selected>Any cause</option><option>Education</option><option>Human services</option></select></label>
+      </div>
+    </details>
+    <label class="forma-collection-toolbar__sort">Sort
+      <select name="sort"><option>Best match</option><option>Legal name</option></select>
+    </label>
+  </div>
+  <p class="forma-collection-toolbar__count" role="status">Searching</p>
+</section></forma-collection-toolbar><forma-skeleton class="forma-component-tag"><section class="forma-skeleton" aria-busy="true" aria-label="Searching charities">
+  <span class="forma-visually-hidden">Searching charities</span>
+  <div class="forma-skeleton__line forma-skeleton__line--title"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line"></div>
+  <div class="forma-skeleton__line forma-skeleton__line--short"></div>
+</section></forma-skeleton>
+</section>
+<section class="forma-section" id="s002-3" aria-labelledby="s002-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 5 · Donor</p>
+      <h2 id="s002-3-title">No results</h2>
+      <p>Demonstrates: Empty result with the next sensible action (UNB-UI-G-013)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant: choose a charity</li></ol></nav></forma-scope-trail><forma-collection-toolbar class="forma-component-tag"><section class="forma-collection-toolbar" aria-label="Charity search controls">
+  <form class="forma-search forma-collection-toolbar__search" role="search">
+    <label class="forma-search__label" for="s002-3-q">Search by charity name, alias or EIN</label>
+    <div class="forma-search__control">
+      <input id="s002-3-q" name="q" type="search" autocomplete="off" value="Hopewel Trust">
+      <button type="button" class="forma-search__clear">Clear</button>
+    </div>
+  </form>
+  <div class="forma-collection-toolbar__controls">
+    <details class="forma-collection-toolbar__filters">
+      <summary>Filters <span class="forma-status-lozenge">1 active</span></summary>
+      <div class="forma-collection-toolbar__filter-panel">
+        <label>State <select name="state"><option>Any state</option><option selected>Illinois</option><option>Oregon</option></select></label>
+        <label>Cause <select name="cause"><option selected>Any cause</option><option>Education</option><option>Human services</option></select></label>
+      </div>
+    </details>
+    <label class="forma-collection-toolbar__sort">Sort
+      <select name="sort"><option>Best match</option><option>Legal name</option></select>
+    </label>
+  </div>
+  <p class="forma-collection-toolbar__count" role="status">0 charities</p>
+</section></forma-collection-toolbar><forma-empty-state class="forma-component-tag"><section class="forma-empty-state" aria-labelledby="s002-3-empty">
+  <div class="forma-empty-state__symbol" aria-hidden="true">□</div>
+  <h3 id="s002-3-empty">No charities match “Hopewel Trust”</h3>
+  <p>Check the spelling, search by EIN, or ask us to add the charity. New charities are verified before you can recommend a grant.</p>
+  <a class="forma-button" href="#s002-5">Request a charity we don't list</a>
+</section></forma-empty-state>
+</section>
+<section class="forma-section" id="s002-4" aria-labelledby="s002-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 5 · Donor</p>
+      <h2 id="s002-4-title">Search unavailable</h2>
+      <p>Demonstrates: UNB-UI-G-012 fault presentation with a support reference</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant: choose a charity</li></ol></nav></forma-scope-trail><forma-collection-toolbar class="forma-component-tag"><section class="forma-collection-toolbar" aria-label="Charity search controls">
+  <form class="forma-search forma-collection-toolbar__search" role="search">
+    <label class="forma-search__label" for="s002-4-q">Search by charity name, alias or EIN</label>
+    <div class="forma-search__control">
+      <input id="s002-4-q" name="q" type="search" autocomplete="off" value="Hope Foundation">
+      <button type="button" class="forma-search__clear">Clear</button>
+    </div>
+  </form>
+  <div class="forma-collection-toolbar__controls">
+    <details class="forma-collection-toolbar__filters">
+      <summary>Filters <span class="forma-status-lozenge">1 active</span></summary>
+      <div class="forma-collection-toolbar__filter-panel">
+        <label>State <select name="state"><option>Any state</option><option selected>Illinois</option><option>Oregon</option></select></label>
+        <label>Cause <select name="cause"><option selected>Any cause</option><option>Education</option><option>Human services</option></select></label>
+      </div>
+    </details>
+    <label class="forma-collection-toolbar__sort">Sort
+      <select name="sort"><option>Best match</option><option>Legal name</option></select>
+    </label>
+  </div>
+  <p class="forma-collection-toolbar__count" role="status">Search unavailable</p>
+</section></forma-collection-toolbar><forma-fault-inline class="forma-component-tag"><div class="forma-fault forma-fault--inline" id="s002-4-fault" data-forma-intent="inline" data-forma-severity="error" aria-labelledby="s002-4-fault-title">
+  <div class="forma-fault__marker" aria-hidden="true">!</div>
+  <div class="forma-fault__body">
+    <p class="forma-fault__severity">Error</p>
+    <p class="forma-fault__title" id="s002-4-fault-title"><strong>Charity search is unavailable right now.</strong></p>
+    <p class="forma-fault__message">Your draft grant is kept. Try again in a few minutes, or quote the reference if you contact support.</p>
+    <p class="forma-fault-reference">Reference <code>AG-7Q3KD</code></p>
+  </div>
+  <div class="forma-recovery-actions" role="group" aria-label="Recovery actions"><button type="button" data-forma-aegis-capability="CanRetry">Try search again</button></div>
+</div></forma-fault-inline>
+</section>
+<section class="forma-section" id="s002-5" aria-labelledby="s002-5-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 5 of 5 · Donor</p>
+      <h2 id="s002-5-title">Request a charity we don't list</h2>
+      <p>Demonstrates: Identity-resolution request form opened from “Can't find it?”</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant: choose a charity</li></ol></nav></forma-scope-trail><forma-form class="forma-component-tag"><form class="forma-form" id="s002-5-form" method="get" action="#s002-5-done" aria-labelledby="s002-5-form-title">
+<h3 id="s002-5-form-title">Ask us to add a charity</h3>
+<p>We verify the charity's identity and IRS status before it appears in search. This usually takes 3 business days.</p>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s002-5-name">Charity legal name (required)</label>
+  
+  <input id="s002-5-name" name="s002-5-name" type="text" value="Hopewell Community Trust" required autocomplete="organization">
+  
+</div>
+<div class="forma-field">
+  <label class="forma-field__label" for="s002-5-ein">EIN, if you know it</label>
+  <span class="forma-field__description" id="s002-5-ein-description">Nine digits, for example 00-0000000.</span>
+  <input id="s002-5-ein" name="s002-5-ein" type="text" aria-describedby="s002-5-ein-description" inputmode="numeric">
+  
+</div>
+</div>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s002-5-city">City (required)</label>
+  
+  <input id="s002-5-city" name="s002-5-city" type="text" value="Decatur" required>
+  
+</div>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">State (required)</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s002-5-state" name="s002-5-state">
+      <option value="">Choose a state</option><option value="IL" selected>Illinois</option><option value="OR">Oregon</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<div class="forma-field">
+  <label class="forma-field__label" for="s002-5-web">Website</label>
+  
+  <input id="s002-5-web" name="s002-5-web" type="url" autocomplete="url">
+  
+</div>
+</div>
+<div class="forma-actions"><button type="submit">Send request</button><button type="reset">Clear form</button></div>
+<p class="forma-form__outcome" id="s002-5-done" role="status" aria-label="Request status">Request sent. Reference REQ-2026-00071. We will email you when the charity is verified.</p>
+</form></forma-form>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

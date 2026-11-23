@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-005 Add money and contribution status | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-005, UNB-UI-G-004. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html" aria-current="page">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html" aria-current="page">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-005 · UNB-UI-G-004</p>
+        <h1>Add money and contribution status</h1>
+        <p class="forma-lead">Declare a contribution by cash or securities, then follow it through Declared, Received, Accepted, Valued, Acknowledged and Final.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s005-1">State 1: Bank transfer (ACH) from a linked account</a></li><li><a href="#s005-2">State 2: Securities: DTC instructions and intent</a></li><li><a href="#s005-3">State 3: Wire, check and complex assets</a></li><li><a href="#s005-4">State 4: Securities partially received</a></li><li><a href="#s005-5">State 5: ACH inside its return window</a></li><li><a href="#s005-6">State 6: ACH returned</a></li></ul></nav>
+    <section class="forma-section" id="s005-1" aria-labelledby="s005-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 6 · Donor</p>
+      <h2 id="s005-1-title">Bank transfer (ACH) from a linked account</h2>
+      <p>Demonstrates: Contribution intent form for ACH; link bank account hand-off dialog</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Add money</li></ol></nav></forma-scope-trail><forma-choice-group class="forma-component-tag"><fieldset class="forma-choice-group">
+  <legend class="forma-choice-group__legend">How do you want to add money?</legend>
+  <label class="forma-choice">
+    <input type="radio" name="s005-1-method" value="ach" checked>
+    <span class="forma-choice__content"><strong>Bank transfer (ACH) from a linked account</strong><span>Available to grant after the 5-business-day return window.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-1-method" value="wire">
+    <span class="forma-choice__content"><strong>Wire transfer</strong><span>Instructions for your bank. Usually received the same day.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-1-method" value="check">
+    <span class="forma-choice__content"><strong>Check</strong><span>Mail a check payable to Example Charitable Foundation.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-1-method" value="securities">
+    <span class="forma-choice__content"><strong>Publicly traded securities</strong><span>Transfer shares from your broker by DTC.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-1-method" value="complex">
+    <span class="forma-choice__content"><strong>Complex assets</strong><span>Private stock, real estate and other assets through our partner intermediary.</span></span>
+  </label>
+</fieldset></forma-choice-group><forma-form class="forma-component-tag"><form class="forma-form" id="s005-1-f" aria-labelledby="s005-1-ft">
+<h3 id="s005-1-ft">Bank transfer details</h3>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">From account</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s005-1-acct" name="s005-1-acct">
+      <option value="4821" selected>Lakeshore Credit Union checking ••••4821 (verified)</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<div class="forma-field">
+  <label class="forma-field__label" for="s005-1-amt">Amount in US dollars (required)</label>
+  
+  <input id="s005-1-amt" name="s005-1-amt" type="text" value="5,000.00" inputmode="decimal" required>
+  
+</div>
+</div>
+<div class="forma-actions"><button type="submit">Declare contribution</button><forma-dialog class="forma-component-tag"><button type="button" commandfor="s005-1-link" command="show-modal">Link a bank account…</button>
+<dialog class="forma-dialog" id="s005-1-link" data-forma-motion-weight="heavy" aria-labelledby="s005-1-link-title" aria-describedby="s005-1-link-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s005-1-link-title">Continue to Lakeshore Rails to link your bank?</h2>
+      <p id="s005-1-link-description">You will sign in to your bank on Lakeshore Rails, our payment partner. Harbor Giving never sees your bank password.</p>
+      <dl class="forma-key-value-list"><div><dt>What changes</dt><dd>A verified account is added to your fund for ACH contributions</dd></div><div><dt>Who acts next</dt><dd>You, on the partner's site; you return here when done</dd></div></dl>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Stay here</button><button type="submit" value="go">Continue to Lakeshore Rails</button></div>
+  </form>
+</dialog></forma-dialog></div>
+</form></forma-form>
+</section>
+<section class="forma-section" id="s005-2" aria-labelledby="s005-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 6 · Donor</p>
+      <h2 id="s005-2-title">Securities: DTC instructions and intent</h2>
+      <p>Demonstrates: Transfer instructions with custodian DTC details and an intent form (security, quantity, broker)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Add money</li></ol></nav></forma-scope-trail><forma-choice-group class="forma-component-tag"><fieldset class="forma-choice-group">
+  <legend class="forma-choice-group__legend">How do you want to add money?</legend>
+  <label class="forma-choice">
+    <input type="radio" name="s005-2-method" value="ach">
+    <span class="forma-choice__content"><strong>Bank transfer (ACH) from a linked account</strong><span>Available to grant after the 5-business-day return window.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-2-method" value="wire">
+    <span class="forma-choice__content"><strong>Wire transfer</strong><span>Instructions for your bank. Usually received the same day.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-2-method" value="check">
+    <span class="forma-choice__content"><strong>Check</strong><span>Mail a check payable to Example Charitable Foundation.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-2-method" value="securities" checked>
+    <span class="forma-choice__content"><strong>Publicly traded securities</strong><span>Transfer shares from your broker by DTC.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s005-2-method" value="complex">
+    <span class="forma-choice__content"><strong>Complex assets</strong><span>Private stock, real estate and other assets through our partner intermediary.</span></span>
+  </label>
+</fieldset></forma-choice-group>
+<section class="forma-stack" aria-labelledby="s005-2-dtc"><h3 id="s005-2-dtc">Give these instructions to your broker</h3><dl class="forma-key-value-list"><div><dt>Receiving custodian</dt><dd>Example Custody Bank, N.A.</dd></div><div><dt>DTC participant number</dt><dd><span class="forma-cluster"><span class="forma-identifier">0000</span> <button type="button" aria-label="Copy DTC participant number 0000">Copy</button></span></dd></div><div><dt>Account name</dt><dd>Example Charitable Foundation</dd></div><div><dt>Account number</dt><dd><span class="forma-cluster"><span class="forma-identifier">00000000</span> <button type="button" aria-label="Copy account number 00000000">Copy</button></span></dd></div><div><dt>Reference for this fund</dt><dd><span class="forma-cluster"><span class="forma-identifier">F-2026-000418</span> <button type="button" aria-label="Copy fund reference F-2026-000418">Copy</button></span></dd></div></dl></section>
+<forma-form class="forma-component-tag"><form class="forma-form" id="s005-2-f" aria-labelledby="s005-2-ft">
+<h3 id="s005-2-ft">Tell us what is coming</h3>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s005-2-sec">Security name or ticker (required)</label>
+  
+  <input id="s005-2-sec" name="s005-2-sec" type="text" value="XYZ Corp. common stock (XYZ)" required>
+  
+</div>
+<forma-numeric-stepper class="forma-component-tag"><label class="forma-numeric-stepper"><span class="forma-numeric-stepper__label">Number of shares (required)</span><input type="number" name="s005-2-qty" min="1" step="1" inputmode="numeric" required value="1000"><span class="forma-field__description">Whole shares only.</span></label></forma-numeric-stepper>
+<div class="forma-field">
+  <label class="forma-field__label" for="s005-2-broker">Your broker (required)</label>
+  
+  <input id="s005-2-broker" name="s005-2-broker" type="text" value="Lakeside Brokerage" required>
+  
+</div>
+</div>
+<div class="forma-actions"><button type="submit">Declare contribution</button></div>
+</form></forma-form>
+</section>
+<section class="forma-section" id="s005-3" aria-labelledby="s005-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 6 · Donor</p>
+      <h2 id="s005-3-title">Wire, check and complex assets</h2>
+      <p>Demonstrates: Wire and check instructions; complex assets show the partner intermediary hand-off only</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Add money</li></ol></nav></forma-scope-trail>
+<section class="forma-stack" aria-labelledby="s005-3-w"><h3 id="s005-3-w">Wire instructions</h3><dl class="forma-key-value-list"><div><dt>Bank</dt><dd>Example Custody Bank, N.A.</dd></div><div><dt>Routing number</dt><dd><span class="forma-cluster"><span class="forma-identifier">000000000</span> <button type="button" aria-label="Copy routing number 000000000">Copy</button></span></dd></div><div><dt>Account</dt><dd><span class="forma-cluster"><span class="forma-identifier">00000001</span> <button type="button" aria-label="Copy account number 00000001">Copy</button></span></dd></div><div><dt>Memo</dt><dd><span class="forma-cluster"><span class="forma-identifier">F-2026-000418 Lindqvist</span> <button type="button" aria-label="Copy memo F-2026-000418 Lindqvist">Copy</button></span></dd></div></dl></section>
+<section class="forma-stack" aria-labelledby="s005-3-c"><h3 id="s005-3-c">Check instructions</h3><dl class="forma-key-value-list"><div><dt>Payable to</dt><dd>Example Charitable Foundation</dd></div><div><dt>Memo line</dt><dd><span class="forma-identifier">F-2026-000418</span></dd></div><div><dt>Mail to</dt><dd>Example Charitable Foundation, PO Box 0000, Springfield, IL 00000</dd></div></dl></section>
+<forma-callout class="forma-component-tag"><aside class="forma-callout" data-forma-callout="note" aria-labelledby="s005-3-cx"><p class="forma-callout__label" id="s005-3-cx">Complex assets</p><p>Private company stock, real estate and other complex assets are handled by our partner, Example Asset Intermediary. They review the asset and contact you. <a href="#partner">Start with Example Asset Intermediary</a></p></aside></forma-callout>
+</section>
+<section class="forma-section" id="s005-4" aria-labelledby="s005-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 6 · Donor</p>
+      <h2 id="s005-4-title">Securities partially received</h2>
+      <p>Demonstrates: UNB-UI-S-005 AC-1 ('Partially received: 600 of 1,000 shares', no acknowledgment); lot-by-lot receipt</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Contribution C-2026-000391</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#contributions">Contributions</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Contribution</span><h3>C-2026-000391</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">Partially received: 600 of 1,000 shares</span>
+    </div>
+    <p>1,000 shares of XYZ Corp. common stock declared 20 Nov 2026<br>Reference <span class="forma-cluster"><span class="forma-identifier">C-2026-000391</span> <button type="button" aria-label="Copy contribution reference C-2026-000391">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    
+  </div>
+</header></forma-record-header>
+<forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Contribution progress" id="s005-4-lc">
+  <li><div class="forma-stack"><p><strong>Declared</strong></p><span class="forma-status-lozenge" data-state="ok">Declared</span><p>20 Nov 2026: 1,000 shares</p></div></li>
+  <li><div class="forma-stack"><p><strong>Received</strong></p><span class="forma-status-lozenge" data-state="attention">Partially received: 600 of 1,000</span><p>Lot 1 received 25 Nov 2026</p></div></li>
+  <li><div class="forma-stack"><p><strong>Accepted</strong></p><span class="forma-status-lozenge">Not started</span><p>After all lots are received</p></div></li>
+  <li><div class="forma-stack"><p><strong>Valued</strong></p><span class="forma-status-lozenge">Not started</span><p>Mean of high and low on the receipt date</p></div></li>
+  <li><div class="forma-stack"><p><strong>Acknowledged</strong></p><span class="forma-status-lozenge">Not issued</span><p>Issued once received and accepted</p></div></li>
+  <li><div class="forma-stack"><p><strong>Final</strong></p><span class="forma-status-lozenge">Not started</span><p>Available to grant after sale</p></div></li>
+</ol></forma-steps>
+<forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Lots received">
+  <table>
+    <caption class="forma-visually-hidden">Lots received</caption>
+    <thead><tr><th scope="col"><button type="button">Lot</button></th><th scope="col"><button type="button">Shares</button></th><th scope="col"><button type="button">Received</button></th><th scope="col"><button type="button">Status</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Lot">1</td><td data-label="Shares"><span class="forma-identifier">600</span></td><td data-label="Received">25 Nov 2026</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Received</span></td></tr>
+      <tr><td data-label="Lot">2</td><td data-label="Shares"><span class="forma-identifier">400</span></td><td data-label="Received">Not yet received</td><td data-label="Status"><span class="forma-status-lozenge" data-state="attention">Waiting on your broker</span></td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+<dl class="forma-key-value-list"><div><dt>Acknowledgment</dt><dd>Not issued. We issue it after all shares are received; it will describe the shares and state no value.</dd></div></dl>
+</section>
+<section class="forma-section" id="s005-5" aria-labelledby="s005-5-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 5 of 6 · Donor</p>
+      <h2 id="s005-5-title">ACH inside its return window</h2>
+      <p>Demonstrates: UNB-UI-S-005 AC-2 (amount under Pending with the date it becomes available), UNB-UI-G-004</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Contribution C-2026-000377</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#contributions">Contributions</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Contribution</span><h3>C-2026-000377</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">Received: in return window</span>
+    </div>
+    <p>$5,000.00 by ACH from Lakeshore Credit Union ••••4821<br>Reference <span class="forma-cluster"><span class="forma-identifier">C-2026-000377</span> <button type="button" aria-label="Copy contribution reference C-2026-000377">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    
+  </div>
+</header></forma-record-header>
+<dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span> (does not include this contribution)</dd></div><div><dt>Pending</dt><dd><span class="forma-identifier">$5,000.00</span>: ACH contribution received 24 Nov 2026, available to grant on <time datetime="2026-12-08">8 Dec 2026</time></dd></div><div><dt>Gift date</dt><dd><time datetime="2026-11-24">24 Nov 2026</time> (CT)</dd></div></dl>
+<forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Contribution progress" id="s005-5-lc">
+  <li><div class="forma-stack"><p><strong>Declared</strong></p><span class="forma-status-lozenge" data-state="ok">Declared</span><p>24 Nov 2026</p></div></li>
+  <li><div class="forma-stack"><p><strong>Received</strong></p><span class="forma-status-lozenge" data-state="ok">Received</span><p>24 Nov 2026</p></div></li>
+  <li><div class="forma-stack"><p><strong>Accepted</strong></p><span class="forma-status-lozenge" data-state="attention">In return window</span><p>Until 8 Dec 2026</p></div></li>
+  <li><div class="forma-stack"><p><strong>Valued</strong></p><span class="forma-status-lozenge" data-state="ok">Valued</span><p>Cash: $5,000.00</p></div></li>
+  <li><div class="forma-stack"><p><strong>Acknowledged</strong></p><span class="forma-status-lozenge" data-state="ok">Acknowledged</span><p>25 Nov 2026</p></div></li>
+  <li><div class="forma-stack"><p><strong>Final</strong></p><span class="forma-status-lozenge">Not started</span><p>8 Dec 2026</p></div></li>
+</ol></forma-steps>
+</section>
+<section class="forma-section" id="s005-6" aria-labelledby="s005-6-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 6 of 6 · Donor</p>
+      <h2 id="s005-6-title">ACH returned</h2>
+      <p>Demonstrates: Returned (ACH) state with reason; Rejected uses the same pattern</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Contribution C-2026-000355</li></ol></nav></forma-scope-trail><forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s005-6-ret">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Returned (ACH)</span>
+    <h3 id="s005-6-ret">Your bank returned this contribution</h3>
+    <p>Lakeshore Credit Union returned the $2,000.00 ACH contribution on 21 Nov 2026 (insufficient funds). It was removed from Pending and no acknowledgment was issued.</p>
+  </div>
+  <div class="forma-operation-status__actions"><button type="button">Try another way to add money</button></div>
+</section></forma-operation-status>
+<forma-timeline class="forma-component-tag"><ol class="forma-timeline" aria-label="Contribution C-2026-000355 history">
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-21T09:00:00-06:00">21 Nov 2026</time><span class="forma-status-lozenge" data-state="blocked">Returned</span></div>
+      <h4>Returned by the bank: insufficient funds</h4>
+      
+      
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-17T09:00:00-06:00">17 Nov 2026</time><span class="forma-status-lozenge" data-state="attention">Received</span></div>
+      <h4>$2,000.00 received by ACH</h4>
+      
+      
+    </div>
+  </li>
+</ol></forma-timeline>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

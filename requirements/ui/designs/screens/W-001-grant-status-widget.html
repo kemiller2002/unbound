@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>W-001 Grant status widget | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-W-001: read-only grant status card for partner iframes. Synthetic data.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<main class="forma-site__main" id="main-content">
+  <header class="forma-section-heading"><div class="forma-section-heading__text">
+    <p class="forma-eyebrow">Design prototype · UNB-UI-W-001</p>
+    <h1>Embedded grant status widget</h1>
+    <p class="forma-lead">Read-only card served from the sponsor's origin inside a partner iframe. No consequential actions in release 1.</p>
+  </div></header>
+  <section class="forma-section" id="w001-1" aria-labelledby="w001-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 3 · Partner host, valid token</p>
+      <h2 id="w001-1-title">Normal: funding in progress</h2>
+      <p>Demonstrates: Headline status, amount and charity; no actions</p>
+    </div>
+  </header>
+  <forma-surface class="forma-component-tag"><section class="forma-surface" aria-labelledby="w001-1-card">
+  <h3 id="w001-1-card">Grant to Riverside Food Bank</h3>
+  <span class="forma-status-lozenge" data-state="attention">Funding in progress</span><dl class="forma-key-value-list"><div><dt>Amount</dt><dd><span class="forma-identifier">$5,000.00</span></dd></div><div><dt>Charity</dt><dd>Riverside Food Bank, Springfield, IL</dd></div><div><dt>Grant reference</dt><dd><span class="forma-identifier">2026-004817</span></dd></div><div><dt>Status as of</dt><dd>1 Dec 2026, 4:58 PM CT</dd></div></dl>
+  <p><small>Grant made by Example Charitable Foundation (EIN 00-0000000), which holds exclusive legal control over donor-advised fund assets. Read only.</small></p>
+</section></forma-surface>
+</section>
+<section class="forma-section" id="w001-2" aria-labelledby="w001-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 3 · Partner host, valid token</p>
+      <h2 id="w001-2-title">Payment outcome unknown</h2>
+      <p>Demonstrates: UNB-UI-G-001 AC-1 in the widget (never 'Paid' while unknown)</p>
+    </div>
+  </header>
+  <forma-surface class="forma-component-tag"><section class="forma-surface" aria-labelledby="w001-2-card">
+  <h3 id="w001-2-card">Grant to Riverside Food Bank</h3>
+  <span class="forma-status-lozenge" data-state="unknown">Payment outcome unknown</span><dl class="forma-key-value-list"><div><dt>Amount</dt><dd><span class="forma-identifier">$5,000.00</span></dd></div><div><dt>Charity</dt><dd>Riverside Food Bank, Springfield, IL</dd></div><div><dt>Grant reference</dt><dd><span class="forma-identifier">2026-004817</span></dd></div><div><dt>Status as of</dt><dd>1 Dec 2026, 4:58 PM CT</dd></div></dl>
+  <p><small>Grant made by Example Charitable Foundation (EIN 00-0000000), which holds exclusive legal control over donor-advised fund assets. Read only.</small></p>
+</section></forma-surface>
+</section>
+<section class="forma-section" id="w001-3" aria-labelledby="w001-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 3 · Partner host, expired token</p>
+      <h2 id="w001-3-title">Expired token</h2>
+      <p>Demonstrates: UNB-UI-W-001 AC-1 ('Sign in again on your provider's site' and no grant data)</p>
+    </div>
+  </header>
+  <forma-surface class="forma-component-tag"><section class="forma-surface" aria-labelledby="w001-3-card">
+  <h3 id="w001-3-card">Grant status unavailable</h3>
+  <span class="forma-status-lozenge" data-state="blocked">Session expired</span><p>Sign in again on your provider's site.</p>
+  <p><small>Grant made by Example Charitable Foundation (EIN 00-0000000), which holds exclusive legal control over donor-advised fund assets. Read only.</small></p>
+</section></forma-surface>
+</section>
+</main>
+</body>
+</html>

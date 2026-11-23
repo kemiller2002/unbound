@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-008 Staff exception inbox | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-008. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+</head>
+<body class="forma-site">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving · Sponsor operations</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-008-exception-inbox.html" aria-current="page">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html">Sponsor policy</a><a href="S-011-sponsor-overview.html">Overview</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-008-exception-inbox.html" aria-current="page">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html">Sponsor policy</a><a href="S-011-sponsor-overview.html">Overview</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-008</p>
+        <h1>Staff exception inbox</h1>
+        <p class="forma-lead">One inbox of rule-created work items sorted by SLA risk. Routine work never appears; items close when their exit condition becomes true.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s008-1">State 1: Open items sorted by SLA risk</a></li><li><a href="#s008-2">State 2: Item closed automatically</a></li><li><a href="#s008-3">State 3: Inbox empty</a></li></ul></nav>
+    <section class="forma-section" id="s008-1" aria-labelledby="s008-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 3 · Sponsor operations</p>
+      <h2 id="s008-1-title">Open items sorted by SLA risk</h2>
+      <p>Demonstrates: Rule, subject, age against SLA, owner and next action per row; summary row with straight-through rate and open items by age</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor operations</a></li><li aria-current="page">Exception inbox</li></ol></nav></forma-scope-trail><forma-dashboard-grid class="forma-component-tag"><section class="forma-dashboard-grid" aria-label="Inbox summary">
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Straight-through rate, last 7 days</div>
+  <div class="forma-metric-card__value">94.2%</div>
+  <div class="forma-metric-card__context"><p>1,812 of 1,923 grants needed no human touch.</p></div>
+  
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Open items by age</div>
+  <div class="forma-metric-card__value">19</div>
+  <div class="forma-metric-card__context"><dl class="forma-key-value-list"><div><dt>Under 1 day</dt><dd>12</dd></div><div><dt>1 to 3 days</dt><dd>5</dd></div><div><dt>Over 3 days</dt><dd>2, both breaching SLA</dd></div></dl></div>
+  
+</article></forma-metric-card>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Breaching SLA</div>
+  <div class="forma-metric-card__value">2</div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="blocked">Breaching SLA</span></div>
+  
+</article></forma-metric-card>
+</section></forma-dashboard-grid><forma-workspace-shell class="forma-component-tag"><div class="forma-workspace-shell">
+  <header class="forma-workspace-shell__landmark"><h3>Harbor Giving exceptions</h3><p role="status">Updated 1 Dec 2026, 4:55 PM CT</p></header>
+  <nav class="forma-workspace-shell__navigation" aria-label="Saved views"><a href="#s008-1" aria-current="page">All open</a><a href="#s008-1-mine">Assigned to me</a><a href="#s008-1-closed">Recently closed</a></nav>
+  <section class="forma-workspace-shell__primary" aria-label="Exception list"><forma-collection-toolbar class="forma-component-tag"><section class="forma-collection-toolbar" aria-label="Inbox controls">
+  <form class="forma-search forma-collection-toolbar__search" role="search"><label class="forma-search__label" for="s008-1-q">Search subject or reference</label><input id="s008-1-q" type="search"></form>
+  <div class="forma-collection-toolbar__controls">
+    <details class="forma-collection-toolbar__filters">
+      <summary>Filters <span class="forma-status-lozenge">1 active</span></summary>
+      <div class="forma-collection-toolbar__filter-panel">
+        <label>Rule family <select name="s008-1-family"><option>Any rule family</option><option>Eligibility</option><option>Sanctions screening</option><option>Payments</option></select></label>
+        <label>Sponsor program <select name="s008-1-sponsor"><option>Harbor Giving</option></select></label>
+        <label>Owner <select name="s008-1-owner"><option>Anyone</option><option selected>Unassigned</option><option>Me</option></select></label>
+      </div>
+    </details>
+    <label class="forma-collection-toolbar__sort">Sort <select name="s008-1-sort"><option>SLA risk, highest first</option><option>Age, oldest first</option></select></label>
+  </div>
+  <p class="forma-collection-toolbar__count" role="status">5 open items</p>
+</section></forma-collection-toolbar><forma-active-filter-summary class="forma-component-tag"><section class="forma-active-filter-summary" aria-labelledby="s008-1-af"><div class="forma-active-filter-summary__heading"><h3 id="s008-1-af">Active filters</h3><button type="button">Clear all</button></div>
+<ul class="forma-active-filter-summary__items"><li><span>Sponsor program: Harbor Giving</span><button type="button" aria-label="Remove Sponsor program: Harbor Giving filter">Remove</button></li></ul></section></forma-active-filter-summary><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Open exceptions sorted by SLA risk">
+  <table>
+    <caption class="forma-visually-hidden">Open exceptions sorted by SLA risk</caption>
+    <thead><tr><th scope="col" aria-sort="descending"><button type="button">SLA risk</button></th><th scope="col"><button type="button">Rule</button></th><th scope="col"><button type="button">Subject</button></th><th scope="col"><button type="button">Age against SLA</button></th><th scope="col"><button type="button">Owner</button></th><th scope="col"><span class="forma-visually-hidden">Next action</span></th></tr></thead>
+    <tbody>
+      <tr><td data-label="SLA risk"><span class="forma-status-lozenge" data-state="blocked">Breaching SLA</span></td><td data-label="Rule">SAN-02 Potential sanctions match</td><td data-label="Subject">Grant <span class="forma-identifier">2026-004102</span></td><td data-label="Age against SLA">4 d 2 h of 3 d</td><td data-label="Owner">Unassigned</td><td data-label="Next action"><button type="button" aria-label="Open case CASE-2026-000231">Open case</button></td></tr>
+      <tr><td data-label="SLA risk"><span class="forma-status-lozenge" data-state="blocked">Breaching SLA</span></td><td data-label="Rule">PAY-07 Payment outcome unknown</td><td data-label="Subject">Grant <span class="forma-identifier">2026-004817</span></td><td data-label="Age against SLA">3 d 6 h of 3 d</td><td data-label="Owner">Dana Ruiz</td><td data-label="Next action"><button type="button" aria-label="Open case CASE-2026-000228">Open case</button></td></tr>
+      <tr><td data-label="SLA risk"><span class="forma-status-lozenge" data-state="attention">Due today</span></td><td data-label="Rule">ELG-03 Charity eligibility not confirmed</td><td data-label="Subject">Grant <span class="forma-identifier">2026-004811</span></td><td data-label="Age against SLA">1 d 20 h of 2 d</td><td data-label="Owner">Unassigned</td><td data-label="Next action"><button type="button" aria-label="Assign case CASE-2026-000240 to me">Assign to me</button></td></tr>
+      <tr><td data-label="SLA risk"><span class="forma-status-lozenge" data-state="attention">Waiting on external party</span></td><td data-label="Rule">CON-04 Securities partially received</td><td data-label="Subject">Contribution <span class="forma-identifier">C-2026-000391</span></td><td data-label="Age against SLA">6 d of 10 d</td><td data-label="Owner">Lee Tran</td><td data-label="Next action"><button type="button" aria-label="Open case CASE-2026-000219">Open case</button></td></tr>
+      <tr><td data-label="SLA risk"><span class="forma-status-lozenge">Within SLA</span></td><td data-label="Rule">DST-01 Charity destination change</td><td data-label="Subject">Charity <span class="forma-identifier">00-0000103</span></td><td data-label="Age against SLA">4 h of 5 d</td><td data-label="Owner">Unassigned</td><td data-label="Next action"><button type="button" aria-label="Assign case CASE-2026-000245 to me">Assign to me</button></td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid><forma-pagination class="forma-component-tag"><nav class="forma-pagination" aria-label="Inbox pages"><a class="forma-pagination__control" href="?page=1" rel="prev">Previous</a><ol class="forma-pagination__pages"><li><a href="?page=1" aria-current="page">1</a></li></ol><a class="forma-pagination__control" href="?page=1" rel="next">Next</a><span class="forma-pagination__summary">Page 1 of 1</span></nav></forma-pagination></section>
+  <aside class="forma-workspace-shell__inspector" aria-label="Selected exception"><h4>SAN-02 Potential sanctions match</h4><dl class="forma-key-value-list"><div><dt>Created by rule</dt><dd>SAN-02 v4, 27 Nov 2026</dd></div><div><dt>Exit condition</dt><dd>A reviewer other than the preparer records a decision</dd></div><div><dt>SLA</dt><dd>3 business days</dd></div></dl></aside>
+</div></forma-workspace-shell>
+</section>
+<section class="forma-section" id="s008-2" aria-labelledby="s008-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 3 · Sponsor operations</p>
+      <h2 id="s008-2-title">Item closed automatically</h2>
+      <p>Demonstrates: UNB-UI-S-008 AC-1 (work item closes with reason 'Exit condition met')</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor operations</a></li><li aria-current="page">Exception inbox</li></ol></nav></forma-scope-trail><forma-feed-item class="forma-component-tag"><article class="forma-feed-item" aria-labelledby="s008-2-closed">
+  <div class="forma-feed-item__primary">
+    <p class="forma-feed-item__source">ELG-03 Charity eligibility not confirmed · Grant 2026-004811</p>
+    <h4 id="s008-2-closed">Closed automatically: Exit condition met</h4>
+  </div>
+  <div class="forma-feed-item__meta"><span class="forma-status-lozenge" data-state="ok">Resolved (auto-closed)</span><time datetime="2026-12-01T16:40:00-06:00">1 Dec 2026, 4:40 PM CT</time></div>
+  <p class="forma-feed-item__summary">A new IRS observation dated 1 Dec 2026 confirmed Northgate Literacy Project as a public charity. The hold was released; no one acted on this item.</p>
+  
+</article></forma-feed-item>
+</section>
+<section class="forma-section" id="s008-3" aria-labelledby="s008-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 3 · Sponsor operations</p>
+      <h2 id="s008-3-title">Inbox empty</h2>
+      <p>Demonstrates: Empty state (UNB-UI-G-013)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor operations</a></li><li aria-current="page">Exception inbox</li></ol></nav></forma-scope-trail><forma-empty-state class="forma-component-tag"><section class="forma-empty-state" aria-labelledby="s008-3-e">
+  <div class="forma-empty-state__symbol" aria-hidden="true">□</div>
+  <h3 id="s008-3-e">No open exceptions</h3>
+  <p>Every item created by a rule is resolved. Checked 1 Dec 2026, 4:55 PM CT.</p>
+  <a class="forma-button" href="#s008-2">View recently closed items</a>
+</section></forma-empty-state>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

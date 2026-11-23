@@ -69,7 +69,7 @@ const aiFlyout = (p) =>
       <div><p class="forma-component-kicker">Assistant</p><h2 id="${p}-ai-title">Case summary</h2></div>
       <button class="forma-flyout__close" type="button" commandfor="${p}-ai" command="close" aria-label="Close case summary">Close</button>
     </header>
-    <div class="forma-flyout__body">
+    <div class="forma-flyout__body" role="region" tabindex="0" aria-label="Case summary content">
       ${callout(`${p}-ai-label`, "caution", "AI-generated, not a decision", "<p>This summary cannot approve, release or decide anything. A reviewer must decide using the evidence.</p>")}
       ${tag("conversation", `<section class="forma-conversation" aria-labelledby="${p}-conv"><header class="forma-conversation__header"><span class="forma-component-kicker">AI-generated, not a decision</span><h3 id="${p}-conv">Summary of CASE-2026-000231</h3></header>
       <ol class="forma-conversation__turns">

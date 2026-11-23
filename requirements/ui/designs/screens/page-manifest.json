@@ -99,5 +99,769 @@
       "FORMA-GAP-08",
       "FORMA-GAP-10"
     ]
+  },
+  {
+    "page": "S-002-charity-search.html",
+    "requirement_ids": [
+      "UNB-UI-S-002"
+    ],
+    "states": [
+      {
+        "id": "s002-1",
+        "title": "Results: two charities with the same name and one on hold",
+        "persona": "Donor on a phone",
+        "demonstrates": "UNB-UI-S-002 AC-1 (EIN and city/state per record), AC-2 ('On hold', no reason text, not selectable)"
+      },
+      {
+        "id": "s002-2",
+        "title": "Searching",
+        "persona": "Donor",
+        "demonstrates": "Searching state with busy semantics (UNB-UI-G-013)"
+      },
+      {
+        "id": "s002-3",
+        "title": "No results",
+        "persona": "Donor",
+        "demonstrates": "Empty result with the next sensible action (UNB-UI-G-013)"
+      },
+      {
+        "id": "s002-4",
+        "title": "Search unavailable",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-012 fault presentation with a support reference"
+      },
+      {
+        "id": "s002-5",
+        "title": "Request a charity we don't list",
+        "persona": "Donor",
+        "demonstrates": "Identity-resolution request form opened from “Can't find it?”"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-002",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Each record prints Legal name, EIN and City and state via data-grid data-label projection at 320 px (rendered/S-002-charity-search-320.png)."
+      },
+      {
+        "requirement_id": "UNB-UI-S-002",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Markup shows 'On hold' (blocked) with no reason text and no Select control. Withholding another sponsor's reason and enforcing non-selection server-side are application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-S-002",
+        "acceptance_id": "statement",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Search, filtering, sort and binding the canonical identity on Select are Limen/application behaviour; the data-grid sort buttons are hidden on phones so sort is offered in collection-toolbar."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-06",
+      "FORMA-GAP-08"
+    ]
+  },
+  {
+    "page": "S-003-grant-recommendation.html",
+    "requirement_ids": [
+      "UNB-UI-S-003",
+      "UNB-UI-G-005",
+      "UNB-UI-G-006",
+      "UNB-UI-G-012"
+    ],
+    "states": [
+      {
+        "id": "s003-1",
+        "title": "Step 1: charity selected",
+        "persona": "Donor",
+        "demonstrates": "Step 1 binds the charity chosen in S-002"
+      },
+      {
+        "id": "s003-2",
+        "title": "Step 2: amount (normal)",
+        "persona": "Donor on a phone",
+        "demonstrates": "Fixed amount or percentage with base and fixing point; optional recurring schedule (UNB-UI-G-017)"
+      },
+      {
+        "id": "s003-3",
+        "title": "Step 2: amount above Available to grant",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-003 AC-1; UNB-UI-G-012 summary linked to the field, entered value kept"
+      },
+      {
+        "id": "s003-4",
+        "title": "Step 3: purpose, recognition and a pledge answered Yes",
+        "persona": "Donor, sponsor pledge policy Prohibited",
+        "demonstrates": "UNB-UI-S-003 AC-2 (required pledge question; Yes blocks submission with an explanation); sponsor affirmations verbatim"
+      },
+      {
+        "id": "s003-5",
+        "title": "Step 4: review and confirmation dialog",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-005 AC-1 (dialog lists amount, charity, fund, reversibility, who acts next; confirm reads 'Submit grant recommendation')"
+      },
+      {
+        "id": "s003-6",
+        "title": "Submitting",
+        "persona": "Donor",
+        "demonstrates": "Pending submission: busy confirm button, fieldset disabled (no double submission)"
+      },
+      {
+        "id": "s003-7",
+        "title": "Submitted: five-dimension status",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-002 (five ordered dimensions, each with label and as-of time; derived headline)"
+      },
+      {
+        "id": "s003-8",
+        "title": "Outcome unknown after a timeout",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-003 AC-3 and UNB-UI-G-006 AC-1 (unknown, Check status by idempotency key, no retry, no success or failure shown)"
+      },
+      {
+        "id": "s003-9",
+        "title": "Rejected by policy",
+        "persona": "Donor",
+        "demonstrates": "Policy rejection with reason (UNB-UI-G-001 blocked)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-003",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 3 shows the inline error stating $100,000.00 and a linked validation-summary with the value kept. Not advancing the step and moving focus to the summary are application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-S-003",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 4 shows the required pledge question, the Yes answer, the explanation and a disabled Continue. Showing the question per sponsor policy and blocking server-side are application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-S-003",
+        "acceptance_id": "AC-3",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 8 shows the unknown operation-status with Check status and the request reference. Idempotent lookup and not creating a duplicate are server behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-005",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Dialog s003-5-confirm lists amount, charity, fund, reversibility ('you can withdraw until approval'), who acts next, expected time; confirm button reads 'Submit grant recommendation'. Rendered open in rendered/S-003-grant-recommendation-s003-5-confirm-*.png."
+      },
+      {
+        "requirement_id": "UNB-UI-G-006",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Text and Check status action are in markup; the query by idempotency key is application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-012",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Summary + inline message + aria-invalid + kept value shown for one field. Focus movement on Continue is application behaviour. Field invalid styling exists in the 1.0.2 build ([aria-invalid], :user-invalid), which appears to close FORMA-GAP-02; contrast proof still owed."
+      },
+      {
+        "requirement_id": "UNB-UI-G-002",
+        "acceptance_id": "AC-1/AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Five dimensions rendered with steps + lozenge + as-of. Headline derivation is application logic; see S-004 for both AC examples."
+      },
+      {
+        "requirement_id": "UNB-UI-G-009",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Every step renders at 320 px with no page-level horizontal scroll (verification.json)."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-02",
+      "FORMA-GAP-06",
+      "FORMA-GAP-09"
+    ]
+  },
+  {
+    "page": "S-004-grant-detail.html",
+    "requirement_ids": [
+      "UNB-UI-S-004",
+      "UNB-UI-G-002",
+      "UNB-UI-G-016",
+      "UNB-UI-G-017",
+      "UNB-UI-G-018"
+    ],
+    "states": [
+      {
+        "id": "s004-1",
+        "title": "Approved, funding in progress",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-002 AC-1 (headline 'Funding in progress'), G-017 AC-1 percentage display, G-016 reference with copy, Request cancellation dialog"
+      },
+      {
+        "id": "s004-2",
+        "title": "Awaiting approval (withdraw allowed)",
+        "persona": "Donor",
+        "demonstrates": "Actions allowed in the current state only: Withdraw before approval, with G-005 dialog"
+      },
+      {
+        "id": "s004-3",
+        "title": "Payment outcome unknown",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-G-002 AC-2 and UNB-UI-G-001 AC-1 (headline 'Payment outcome unknown'; 'Paid' shown nowhere)"
+      },
+      {
+        "id": "s004-4",
+        "title": "Check voided after 180 days and re-credited",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-004 AC-1 (timeline Issued → Outstanding → Voided → Re-credited with dates and amounts)"
+      },
+      {
+        "id": "s004-5",
+        "title": "Returned by the charity's bank",
+        "persona": "Donor",
+        "demonstrates": "Returned payment state with reason and next step"
+      },
+      {
+        "id": "s004-6",
+        "title": "Blocked by a confirmed sanctions match",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-004 AC-2 ('This grant cannot be paid', blocked, no screening details)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-004",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "State 4 timeline lists Issued, Outstanding, Voided, Re-credited with dates and $1,000.00 amounts (newest first)."
+      },
+      {
+        "requirement_id": "UNB-UI-S-004",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 6 shows 'This grant cannot be paid' (blocked) with no screening details. Ensuring no screening data reaches the client is server behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-002",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 1 headline 'Funding in progress' (attention). The deterministic derivation is application logic; Forma has no multi-dimension status primitive (FORMA-GAP-09)."
+      },
+      {
+        "requirement_id": "UNB-UI-G-002",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 3 headline 'Payment outcome unknown' (unknown) while Funding = Funded."
+      },
+      {
+        "requirement_id": "UNB-UI-G-001",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "State 3: 'Payment outcome unknown' data-state=unknown; the word Paid does not appear in that state."
+      },
+      {
+        "requirement_id": "UNB-UI-G-016",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Reference 2026-004817 in forma-identifier with a Copy button; copying is application behaviour (Forma 'copyable field' is planned P1). Documents are Folio scope."
+      },
+      {
+        "requirement_id": "UNB-UI-G-017",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Text '10% of fund value at approval → $12,345.67 (fixed 24 Nov 2026)'."
+      },
+      {
+        "requirement_id": "UNB-UI-G-018",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Legal dates shown as absolute dates in CT with UTC in details; time-zone conversion is application behaviour."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-07",
+      "FORMA-GAP-09"
+    ]
+  },
+  {
+    "page": "S-005-add-money.html",
+    "requirement_ids": [
+      "UNB-UI-S-005",
+      "UNB-UI-G-004"
+    ],
+    "states": [
+      {
+        "id": "s005-1",
+        "title": "Bank transfer (ACH) from a linked account",
+        "persona": "Donor",
+        "demonstrates": "Contribution intent form for ACH; link bank account hand-off dialog"
+      },
+      {
+        "id": "s005-2",
+        "title": "Securities: DTC instructions and intent",
+        "persona": "Donor",
+        "demonstrates": "Transfer instructions with custodian DTC details and an intent form (security, quantity, broker)"
+      },
+      {
+        "id": "s005-3",
+        "title": "Wire, check and complex assets",
+        "persona": "Donor",
+        "demonstrates": "Wire and check instructions; complex assets show the partner intermediary hand-off only"
+      },
+      {
+        "id": "s005-4",
+        "title": "Securities partially received",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-005 AC-1 ('Partially received: 600 of 1,000 shares', no acknowledgment); lot-by-lot receipt"
+      },
+      {
+        "id": "s005-5",
+        "title": "ACH inside its return window",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-005 AC-2 (amount under Pending with the date it becomes available), UNB-UI-G-004"
+      },
+      {
+        "id": "s005-6",
+        "title": "ACH returned",
+        "persona": "Donor",
+        "demonstrates": "Returned (ACH) state with reason; Rejected uses the same pattern"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-005",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "State 4: record-header lozenge 'Partially received: 600 of 1,000 shares'; Acknowledged dimension 'Not issued'."
+      },
+      {
+        "requirement_id": "UNB-UI-S-005",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": true,
+        "note": "State 5: Pending row shows $5,000.00 and 'available to grant on 8 Dec 2026'; Available to grant excludes it."
+      },
+      {
+        "requirement_id": "UNB-UI-S-005",
+        "acceptance_id": "statement",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Distinct lifecycle states composed from steps + lozenge (same gap as G-002). Rail-partner linking is an external hand-off."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-07",
+      "FORMA-GAP-08",
+      "FORMA-GAP-09",
+      "FORMA-GAP-10"
+    ]
+  },
+  {
+    "page": "S-006-participants-successors.html",
+    "requirement_ids": [
+      "UNB-UI-S-006",
+      "UNB-UI-G-005"
+    ],
+    "states": [
+      {
+        "id": "s006-1",
+        "title": "Participants and revoke confirmation",
+        "persona": "Primary donor",
+        "demonstrates": "Role, scope, effective dates and status per participant; invite; revoke (A2, immediate) with G-005 dialog"
+      },
+      {
+        "id": "s006-2",
+        "title": "Successors: allocations do not total 100%",
+        "persona": "Primary donor",
+        "demonstrates": "UNB-UI-S-006 AC-1 (validation blocks saving and states the 10% remainder)"
+      },
+      {
+        "id": "s006-3",
+        "title": "Successors designated, with the text equivalent",
+        "persona": "Primary donor",
+        "demonstrates": "Successor plan shown as text, not only a diagram"
+      },
+      {
+        "id": "s006-4",
+        "title": "Fund suspended: successor activation",
+        "persona": "Sponsor staff",
+        "demonstrates": "Suspended (verified death), Successor designated, Successor active statuses"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-006",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 2: allocation total data-forma-state=invalid, message 'Allocations total 90%. Assign the remaining 10% before saving.' and summary. Computing the total live and blocking save are Limen/application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-005",
+        "acceptance_id": "revoke",
+        "satisfied_by_markup": true,
+        "note": "Revoke dialog states what changes, irreversibility, who acts next; confirm names the action. No destructive visual variant (FORMA-GAP-01)."
+      },
+      {
+        "requirement_id": "UNB-UI-S-006",
+        "acceptance_id": "statement (text equivalent)",
+        "satisfied_by_markup": true,
+        "note": "State 3 'Successor plan in words' ordered list. Forma has no read-only allocation summary; composed from plain list (FORMA-GAP-12)."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-12"
+    ]
+  },
+  {
+    "page": "S-007-document-center.html",
+    "requirement_ids": [
+      "UNB-UI-S-007",
+      "UNB-UI-G-016"
+    ],
+    "states": [
+      {
+        "id": "s007-1",
+        "title": "Documents including a corrected acknowledgment",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-007 AC-1 (original shows 'Superseded by <ref>' and both stay downloadable)"
+      },
+      {
+        "id": "s007-2",
+        "title": "Verify a document",
+        "persona": "Donor or third party",
+        "demonstrates": "Verify document action: reference and verification code resolve in the document registry"
+      },
+      {
+        "id": "s007-3",
+        "title": "No documents for the chosen year",
+        "persona": "Donor",
+        "demonstrates": "Empty state with the next sensible action (UNB-UI-G-013)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-007",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Original row shows 'Superseded' and 'Superseded by DOC-2026-019002'; both rows keep Open and Download PDF."
+      },
+      {
+        "requirement_id": "UNB-UI-S-007",
+        "acceptance_id": "statement (filters)",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Type and year filters are native selects in collection-toolbar; filtering is application behaviour."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-06"
+    ]
+  },
+  {
+    "page": "S-008-exception-inbox.html",
+    "requirement_ids": [
+      "UNB-UI-S-008"
+    ],
+    "states": [
+      {
+        "id": "s008-1",
+        "title": "Open items sorted by SLA risk",
+        "persona": "Sponsor operations",
+        "demonstrates": "Rule, subject, age against SLA, owner and next action per row; summary row with straight-through rate and open items by age"
+      },
+      {
+        "id": "s008-2",
+        "title": "Item closed automatically",
+        "persona": "Sponsor operations",
+        "demonstrates": "UNB-UI-S-008 AC-1 (work item closes with reason 'Exit condition met')"
+      },
+      {
+        "id": "s008-3",
+        "title": "Inbox empty",
+        "persona": "Sponsor operations",
+        "demonstrates": "Empty state (UNB-UI-G-013)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-008",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 2 shows the closed item with 'Resolved (auto-closed)' and 'Exit condition met'. Closing on the IRS observation is rule-engine behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-S-008",
+        "acceptance_id": "statement (sort by SLA risk)",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "aria-sort=descending on SLA risk and a sort select for phones; sorting itself is Limen/application."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-06",
+      "FORMA-GAP-08"
+    ]
+  },
+  {
+    "page": "S-009-case-workspace.html",
+    "requirement_ids": [
+      "UNB-UI-S-009",
+      "UNB-UI-G-011"
+    ],
+    "states": [
+      {
+        "id": "s009-1",
+        "title": "Reviewer who did not prepare the case",
+        "persona": "Compliance reviewer (Priya Nair)",
+        "demonstrates": "UNB-UI-S-009 AC-2 (no release control in the AI flyout; decision dialog requires written rationale), UNB-UI-G-011 AC-1"
+      },
+      {
+        "id": "s009-2",
+        "title": "Preparer opens their own case",
+        "persona": "Compliance reviewer who prepared it (Dana Ruiz)",
+        "demonstrates": "UNB-UI-S-009 AC-1 (Record decision disabled with 'You prepared this case; another reviewer must decide')"
+      },
+      {
+        "id": "s009-3",
+        "title": "Decided: decision record",
+        "persona": "Compliance reviewer",
+        "demonstrates": "Decision record with decider and preparer as different people"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-009",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 2: native disabled Record decision button described by the text 'You prepared this case; another reviewer must decide'. Segregation of duties must be enforced server-side."
+      },
+      {
+        "requirement_id": "UNB-UI-S-009",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": true,
+        "note": "AI flyout (s009-1-ai) contains conversation and handoff-summary with no Approve/Release controls (the canonical handoff-summary action cluster was deliberately omitted). Decision dialog has a required rationale textarea (required minlength); enforcement is application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-G-011",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Flyout opened from 'Explain this case', labelled 'AI-generated, not a decision', cites sources with freshness, offers no consequential control."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-11"
+    ]
+  },
+  {
+    "page": "S-010-policy-configuration.html",
+    "requirement_ids": [
+      "UNB-UI-S-010"
+    ],
+    "states": [
+      {
+        "id": "s010-1",
+        "title": "Draft with live validation",
+        "persona": "Sponsor administrator (author: Lee Tran)",
+        "demonstrates": "Validation from assistance contracts as the user edits (UNB-UI-G-012)"
+      },
+      {
+        "id": "s010-2",
+        "title": "In review: the author views their own draft",
+        "persona": "Sponsor administrator who authored it",
+        "demonstrates": "UNB-UI-S-010 AC-1 (Approve unavailable with the reason shown); diff and impact preview"
+      },
+      {
+        "id": "s010-3",
+        "title": "In review: a different approver",
+        "persona": "Sponsor approver (Morgan Ellis)",
+        "demonstrates": "Approve and schedule (A4) with effective date and consequences; Reject"
+      },
+      {
+        "id": "s010-4",
+        "title": "Version history",
+        "persona": "Sponsor administrator",
+        "demonstrates": "Approved (scheduled), Active and Superseded states"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-010",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 2: Approve and schedule is a native disabled button described by 'You wrote this draft, so another approver must approve it.' Author/approver separation must be enforced server-side."
+      },
+      {
+        "requirement_id": "UNB-UI-S-010",
+        "acceptance_id": "statement (diff + impact)",
+        "satisfied_by_markup": true,
+        "note": "diff-viewer against version 7 and readiness-checklist impact preview 'Affects 214 open recurring schedules'. Forma has no dedicated impact-preview primitive; readiness-checklist items used with incomplete state (semantic stretch, see FORMA-GAP-11 note)."
+      },
+      {
+        "requirement_id": "UNB-UI-S-010",
+        "acceptance_id": "statement (validation as user edits)",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Inline validation-message inside rule-builder shown; running assistance-contract validation on edit is application behaviour."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-01",
+      "FORMA-GAP-06",
+      "FORMA-GAP-11"
+    ]
+  },
+  {
+    "page": "S-011-sponsor-overview.html",
+    "requirement_ids": [
+      "UNB-UI-S-011",
+      "UNB-UI-G-003"
+    ],
+    "states": [
+      {
+        "id": "s011-1",
+        "title": "Overview with one stale reconciliation",
+        "persona": "Operations lead",
+        "demonstrates": "UNB-UI-S-011 AC-1 (stale account shows 'Not current'; no green total)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-011",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "Custody account shows 'Not current' (unknown) with as-of; the all-accounts total reads 'Not determinable'; no ok total. Freshness computation is application behaviour."
+      },
+      {
+        "requirement_id": "UNB-UI-S-011",
+        "acceptance_id": "statement (no charts)",
+        "satisfied_by_markup": true,
+        "note": "Tables and metric cards only; FORMA-GAP-05 recorded."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-05",
+      "FORMA-GAP-06",
+      "FORMA-GAP-08"
+    ]
+  },
+  {
+    "page": "S-012-charity-view.html",
+    "requirement_ids": [
+      "UNB-UI-S-012"
+    ],
+    "states": [
+      {
+        "id": "s012-1",
+        "title": "Grants received, including an anonymous grant",
+        "persona": "Charity finance user",
+        "demonstrates": "UNB-UI-S-012 AC-1 (donor field reads 'Anonymous donor via Example Charitable Foundation'); remittance detail"
+      },
+      {
+        "id": "s012-2",
+        "title": "Payment destination change pending verification",
+        "persona": "Charity finance user",
+        "demonstrates": "UNB-UI-S-012 AC-2 ('Pending independent verification'; payments continue to the previous verified destination); no self-service activation"
+      },
+      {
+        "id": "s012-3",
+        "title": "Request a destination change",
+        "persona": "Charity finance user",
+        "demonstrates": "DestinationEvidence request form (submission starts verification, never activation)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-012",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Grant 2026-004702 'From' cell and remittance Recognition read 'Anonymous donor via Example Charitable Foundation'."
+      },
+      {
+        "requirement_id": "UNB-UI-S-012",
+        "acceptance_id": "AC-2",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "New destination 'Pending independent verification' and note that payments continue to ••••7710. Payment routing is server behaviour."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-06",
+      "FORMA-GAP-07",
+      "FORMA-GAP-08"
+    ]
+  },
+  {
+    "page": "S-013-notification-preferences.html",
+    "requirement_ids": [
+      "UNB-UI-S-013"
+    ],
+    "states": [
+      {
+        "id": "s013-1",
+        "title": "Preferences with required classes locked on",
+        "persona": "Donor",
+        "demonstrates": "UNB-UI-S-013 AC-1 (acknowledgment switch on and disabled with 'Required: tax acknowledgment')"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-S-013",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": true,
+        "note": "Acknowledgment switches are checked and disabled, each described by 'Required: tax acknowledgment'. Disabled switch styling is opacity 0.62 on text; reason is in the description text (FORMA-GAP-11)."
+      }
+    ],
+    "gaps": [
+      "FORMA-GAP-06",
+      "FORMA-GAP-11"
+    ]
+  },
+  {
+    "page": "W-001-grant-status-widget.html",
+    "requirement_ids": [
+      "UNB-UI-W-001"
+    ],
+    "states": [
+      {
+        "id": "w001-1",
+        "title": "Normal: funding in progress",
+        "persona": "Partner host, valid token",
+        "demonstrates": "Headline status, amount and charity; no actions"
+      },
+      {
+        "id": "w001-2",
+        "title": "Payment outcome unknown",
+        "persona": "Partner host, valid token",
+        "demonstrates": "UNB-UI-G-001 AC-1 in the widget (never 'Paid' while unknown)"
+      },
+      {
+        "id": "w001-3",
+        "title": "Expired token",
+        "persona": "Partner host, expired token",
+        "demonstrates": "UNB-UI-W-001 AC-1 ('Sign in again on your provider's site' and no grant data)"
+      }
+    ],
+    "requirement_coverage": [
+      {
+        "requirement_id": "UNB-UI-W-001",
+        "acceptance_id": "AC-1",
+        "satisfied_by_markup": "needs-application-behaviour",
+        "note": "State 3 shows 'Sign in again on your provider's site' and no grant data. Token validation, CSP frame-ancestors and TTL are server behaviour (UNB-GAP-W-01)."
+      },
+      {
+        "requirement_id": "UNB-UI-W-001",
+        "acceptance_id": "statement (no actions)",
+        "satisfied_by_markup": true,
+        "note": "No interactive controls in any widget state."
+      }
+    ],
+    "gaps": [
+      "UNB-GAP-W-01",
+      "FORMA-GAP-08"
+    ]
   }
 ]

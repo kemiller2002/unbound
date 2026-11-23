@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-012 Charity view | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-012. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving · Charity portal</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-012-charity-view.html" aria-current="page">Grants received</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-012-charity-view.html" aria-current="page">Grants received</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-012</p>
+        <h1>Charity view</h1>
+        <p class="forma-lead">Grants addressed to your organization, with Example Charitable Foundation as the legal donor, remittance details, payment status and verified payment destinations.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s012-1">State 1: Grants received, including an anonymous grant</a></li><li><a href="#s012-2">State 2: Payment destination change pending verification</a></li><li><a href="#s012-3">State 3: Request a destination change</a></li></ul></nav>
+    <section class="forma-section" id="s012-1" aria-labelledby="s012-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 3 · Charity finance user</p>
+      <h2 id="s012-1-title">Grants received, including an anonymous grant</h2>
+      <p>Demonstrates: UNB-UI-S-012 AC-1 (donor field reads 'Anonymous donor via Example Charitable Foundation'); remittance detail</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Charity portal</a></li><li aria-current="page">Riverside Food Bank (EIN 00-0000103)</li></ol></nav></forma-scope-trail><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Grants addressed to Riverside Food Bank">
+  <table>
+    <caption class="forma-visually-hidden">Grants addressed to Riverside Food Bank</caption>
+    <thead><tr><th scope="col"><button type="button">Grant</button></th><th scope="col"><button type="button">From</button></th><th scope="col"><button type="button">Amount</button></th><th scope="col"><button type="button">Payment status</button></th><th scope="col"><button type="button">Paid</button></th><th scope="col"><span class="forma-visually-hidden">Actions</span></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Grant"><span class="forma-identifier">2026-004790</span></td><td data-label="From">Example Charitable Foundation, recommended by Avery Lindqvist</td><td data-label="Amount"><span class="forma-identifier">$2,500.00</span></td><td data-label="Payment status"><span class="forma-status-lozenge" data-state="ok">Paid</span></td><td data-label="Paid">30 Nov 2026</td><td data-label="Actions"><button type="button" aria-label="View remittance for grant 2026-004790">View remittance</button></td></tr>
+      <tr><td data-label="Grant"><span class="forma-identifier">2026-004702</span></td><td data-label="From">Anonymous donor via Example Charitable Foundation</td><td data-label="Amount"><span class="forma-identifier">$10,000.00</span></td><td data-label="Payment status"><span class="forma-status-lozenge" data-state="ok">Paid</span></td><td data-label="Paid">20 Nov 2026</td><td data-label="Actions"><button type="button" aria-label="View remittance for grant 2026-004702">View remittance</button></td></tr>
+      <tr><td data-label="Grant"><span class="forma-identifier">2026-004817</span></td><td data-label="From">Example Charitable Foundation, recommended by Avery Lindqvist</td><td data-label="Amount"><span class="forma-identifier">$12,345.67</span></td><td data-label="Payment status"><span class="forma-status-lozenge" data-state="attention">Payment scheduled</span></td><td data-label="Paid">Not yet paid</td><td data-label="Actions"><button type="button" aria-label="View grant 2026-004817">View</button></td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+<section class="forma-stack" aria-labelledby="s012-1-rem"><h3 id="s012-1-rem">Remittance for grant 2026-004702</h3><dl class="forma-key-value-list"><div><dt>Legal donor</dt><dd>Example Charitable Foundation, EIN 00-0000000</dd></div><div><dt>Recognition</dt><dd>Anonymous donor via Example Charitable Foundation</dd></div><div><dt>Grant reference</dt><dd><span class="forma-cluster"><span class="forma-identifier">2026-004702</span> <button type="button" aria-label="Copy grant reference 2026-004702">Copy</button></span></dd></div><div><dt>Amount</dt><dd><span class="forma-critical-value">$10,000.00</span></dd></div><div><dt>Payment</dt><dd>ACH to account ••••7710, sent 20 Nov 2026 (CT)</dd></div><div><dt>Purpose</dt><dd>General operating support</dd></div></dl></section>
+</section>
+<section class="forma-section" id="s012-2" aria-labelledby="s012-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 3 · Charity finance user</p>
+      <h2 id="s012-2-title">Payment destination change pending verification</h2>
+      <p>Demonstrates: UNB-UI-S-012 AC-2 ('Pending independent verification'; payments continue to the previous verified destination); no self-service activation</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Charity portal</a></li><li aria-current="page">Riverside Food Bank (EIN 00-0000103)</li></ol></nav></forma-scope-trail>
+<section class="forma-stack" aria-labelledby="s012-2-dest"><h3 id="s012-2-dest">Payment destinations</h3><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Payment destinations">
+  <table>
+    <caption class="forma-visually-hidden">Payment destinations</caption>
+    <thead><tr><th scope="col"><button type="button">Destination</button></th><th scope="col"><button type="button">Status</button></th><th scope="col"><button type="button">Since</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Destination">ACH to Prairie Community Bank ••••7710</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Verified: receiving payments</span></td><td data-label="Since">3 Mar 2024</td></tr>
+      <tr><td data-label="Destination">ACH to Lakeshore Credit Union ••••2298</td><td data-label="Status"><span class="forma-status-lozenge" data-state="attention">Pending independent verification</span></td><td data-label="Since">Requested 30 Nov 2026</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+<forma-callout class="forma-component-tag"><aside class="forma-callout" data-forma-callout="note" aria-labelledby="s012-2-note"><p class="forma-callout__label" id="s012-2-note">Payments are not redirected yet</p><p>Until Example Charitable Foundation verifies the new account independently (by calling the number on your IRS record), all payments continue to Prairie Community Bank ••••7710. You cannot activate a destination yourself.</p></aside></forma-callout>
+<forma-timeline class="forma-component-tag"><ol class="forma-timeline" aria-label="Destination change DST-2026-00412">
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-30T14:20:00-06:00">30 Nov 2026, 2:20 PM CT</time><span class="forma-status-lozenge" data-state="attention">Pending independent verification</span></div>
+      <h4>Change requested by Jamie Cole</h4>
+      <p>Bank letter uploaded. Callback scheduled.</p>
+      
+    </div>
+  </li>
+</ol></forma-timeline></section>
+</section>
+<section class="forma-section" id="s012-3" aria-labelledby="s012-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 3 · Charity finance user</p>
+      <h2 id="s012-3-title">Request a destination change</h2>
+      <p>Demonstrates: DestinationEvidence request form (submission starts verification, never activation)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Charity portal</a></li><li aria-current="page">Riverside Food Bank (EIN 00-0000103)</li></ol></nav></forma-scope-trail><forma-form class="forma-component-tag"><form class="forma-form" id="s012-3-f" aria-labelledby="s012-3-ft"><h3 id="s012-3-ft">Request a new payment destination</h3>
+<p>We verify every change independently before any payment uses it.</p>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s012-3-bank">Bank name (required)</label>
+  
+  <input id="s012-3-bank" name="s012-3-bank" type="text" required>
+  
+</div>
+<div class="forma-field">
+  <label class="forma-field__label" for="s012-3-routing">Routing number (required)</label>
+  
+  <input id="s012-3-routing" name="s012-3-routing" type="text" inputmode="numeric" required>
+  
+</div>
+<div class="forma-field">
+  <label class="forma-field__label" for="s012-3-acct">Account number (required)</label>
+  
+  <input id="s012-3-acct" name="s012-3-acct" type="text" inputmode="numeric" required autocomplete="off">
+  
+</div>
+</div>
+<forma-file-upload class="forma-component-tag"><div class="forma-field"><label class="forma-field__label" for="s012-3-letter">Bank letter or voided check (required)</label><span class="forma-field__description" id="s012-3-letter-description">PDF or image, up to 10 MB.</span><input id="s012-3-letter" name="s012-3-letter" type="file" accept="application/pdf,image/*" required aria-describedby="s012-3-letter-description"></div></forma-file-upload>
+<div class="forma-actions"><button type="submit">Submit for verification</button></div>
+</form></forma-form>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>
