@@ -200,8 +200,8 @@ def g_ui_records(d) -> str:
 
 
 def g_ui_gaps(d) -> str:
-    return table(("Gap", "Component", "Owner", "Priority (owner's catalog)", "Need", "Release-1 workaround", "Acceptance"),
-                 ((g["gap_id"], g["component"], g["owner"], g["forma_priority"], cell(g["need"], 200), cell(g["workaround_r1"], 220), cell(g["acceptance"], 200)) for g in d["UG"]))
+    return table(("Gap", "Component", "Owner", "Filed as", "Need", "Release-1 workaround", "Acceptance"),
+                 ((g["gap_id"], g["component"], g["owner"], g.get("filed_as", ""), cell(g["need"], 200), cell(g["workaround_r1"], 220), cell(g["acceptance"], 200)) for g in d["UG"]))
 
 
 GENERATORS: Dict[str, Callable] = {

@@ -61,31 +61,40 @@ What this does **not** prove: application behaviour that Forma leaves to the app
 | UNB-UI-S-011 | screen | Sponsor overview | dashboard-grid, metric-card, metric-value-change, data-grid, status-lozenge, freshness |  | FORMA-GAP-05 | 1 |
 | UNB-UI-S-012 | screen | Charity view | data-grid, status-lozenge, identifier, key-value-list, form, callout, timeline |  | — | 2 |
 | UNB-UI-S-013 | screen | Notification preferences | switch, form, form-row, callout |  | — | 1 |
-| UNB-UI-D-001 | document | Contribution acknowledgment |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note, ef-print-page-num… | FOLIO-GAP-01, FOLIO-GAP-02 | 1 |
-| UNB-UI-D-002 | document | Fund statement |  | ef-print-document, ef-print-title-page, ef-print-header, ef-print-footer, ef-print-page-number, ef-print-section, ef-pr… | FOLIO-GAP-03 | 1 |
-| UNB-UI-D-003 | document | Grant confirmation and remittance advice |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note | FOLIO-GAP-01 | 1 |
-| UNB-UI-D-004 | document | Annual DAF reporting package (Schedule D Part I support) |  | ef-print-document, ef-print-title-page, ef-print-section, ef-print-metric, ef-print-table, ef-print-integrity, ef-print… | — | 1 |
-| UNB-UI-D-005 | document | Case decision record |  | ef-print-document, ef-print-header, ef-print-section, ef-print-table, ef-print-finding, ef-print-callout, ef-print-foot… | — | 1 |
-| UNB-UI-D-006 | document | Audit evidence package |  | ef-print-document, ef-print-title-page, ef-print-toc, ef-print-section, ef-print-table, ef-print-integrity, ef-print-pa… | — | 1 |
+| UNB-UI-D-001 | document | Contribution acknowledgment |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note, ef-print-page-num… | FOLIO-GAP-01, FOLIO-GAP-02, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07 | 1 |
+| UNB-UI-D-002 | document | Fund statement |  | ef-print-document, ef-print-title-page, ef-print-header, ef-print-footer, ef-print-page-number, ef-print-section, ef-pr… | FOLIO-GAP-03, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-08, FOLIO-GAP-09, FOLIO-GAP-11 | 1 |
+| UNB-UI-D-003 | document | Grant confirmation and remittance advice |  | ef-print-document, ef-print-header, ef-print-footer, ef-print-section, ef-print-table, ef-print-note | FOLIO-GAP-01, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07 | 1 |
+| UNB-UI-D-004 | document | Annual DAF reporting package (Schedule D Part I support) |  | ef-print-document, ef-print-title-page, ef-print-section, ef-print-metric, ef-print-table, ef-print-integrity, ef-print… | FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-12 | 1 |
+| UNB-UI-D-005 | document | Case decision record |  | ef-print-document, ef-print-header, ef-print-section, ef-print-table, ef-print-finding, ef-print-callout, ef-print-foot… | FOLIO-GAP-04, FOLIO-GAP-06, FOLIO-GAP-11, FOLIO-GAP-12 | 1 |
+| UNB-UI-D-006 | document | Audit evidence package |  | ef-print-document, ef-print-title-page, ef-print-toc, ef-print-section, ef-print-table, ef-print-integrity, ef-print-pa… | FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-10 | 1 |
 | UNB-UI-W-001 | widget | Embedded grant status widget (partner host) | surface, status-lozenge, key-value-list, identifier |  | UNB-GAP-W-01 | 1 |
 <!-- END GENERATED: ui-index -->
 
 ## 4. Capability gaps (Forma, Folio and Unbound-owned)
 
-These are recorded here only; no Forma or Folio repository was changed. Each gap has a release-1 workaround that keeps designs buildable, and an acceptance criterion the owning component can adopt.
+Gaps were filed as issues in the Forma and Folio repositories on owner instruction (2026-11-23); see the "Filed as" column. No Forma or Folio code was changed. Each gap has a release-1 workaround that keeps designs buildable, and an acceptance criterion the owning component can adopt.
 
 <!-- BEGIN GENERATED: ui-gaps -->
-| Gap | Component | Owner | Priority (owner's catalog) | Need | Release-1 workaround | Acceptance |
+| Gap | Component | Owner | Filed as | Need | Release-1 workaround | Acceptance |
 |---|---|---|---|---|---|---|
-| FORMA-GAP-01 | Button variants (primary, destructive) and async action button | Forma | P0 (catalog/planned.json) | Distinguish the one primary action per view and destructive actions (Revoke, Void) in application UI; show in-progress state on submit without double submission. | Use native button with text labels; confirm destructive actions via dialog (G-005); disable the button and show operation-status while pending. Acceptable for design; not for production visual hierarchy. | data-forma-variant=primary\|destructive styles exist in components.css outside the marketing scope; an aria-busy button state is styled and announced; axe passes. |
-| FORMA-GAP-02 | Field invalid, disabled and read-only styling | Forma | P0 (catalog/planned.json) | Forms must show invalid fields and read-only policy values distinctly (G-012). | validation-message text plus aria-invalid; the visual distinction relies on adjacent message text only. | :disabled, :read-only, [aria-invalid=true] and :user-invalid styles exist in foundations.css with 3:1 non-text contrast; a browser test proves each. |
-| FORMA-GAP-03 | Data table styling for plain table | Forma | P0 | Not required by release-1 designs: data-grid and dense-ledger cover all tables. | Use data-grid or dense-ledger. | n/a for release 1 |
-| FORMA-GAP-04 | Bulk action bar | Forma | P1 | Not required by release 1: the exception inbox has no bulk actions by design (each decision is individual). One-click batch approval (RCD-005) is a single dialog listing items. | dialog + data-grid | n/a for release 1 |
-| FORMA-GAP-05 | Visualization primitives and chart accessibility contract | Forma | P1/P2 | Trend views for sponsor overview and investment performance (post release 1). | Tables and metric-value-change only (S-011). | A chart primitive with a mandatory text-table equivalent and axe-tested contrast. |
-| FOLIO-GAP-01 | Letter primitives (letterhead, address block, signature block) | Folio | — | Acknowledgments and remittances are letters. | Compose from ef-print-header and ef-print-section with semantic address and paragraph markup (proven in design prototype D-001). | Documented recipe or primitives with print-position rules for window envelopes (address block at a fixed position). |
-| FOLIO-GAP-02 | Verification code and document identity block | Unbound (document registry) + Folio presentation | — | Each issued document shows its reference and a verification code or URL that resolves in the document registry (REQ-X-034). | Text verification code inside ef-print-footer; QR code generation is Unbound-owned (SVG). | Footer shows the reference and the verification URL; the registry resolves the hash. |
-| FOLIO-GAP-03 | Deterministic server-side PDF rendering (P2) and batch generation | Unbound (render service), Folio (tier P2 contract) | planned (Folio §15 P2) | Monthly statements for every fund, re-renderable byte-for-byte or with a stable content hash. | Headless Chromium print-to-PDF from the Folio HTML; determinism measured on the page-content hash, because PDF metadata dates vary (see report 17). | Re-rendering the same snapshot yields an identical normalized content hash; throughput is measured. |
-| UNB-GAP-W-01 | Widget host, frame protocol and scoped tokens | Unbound (security-owned; Limen effects) | — | Read-only embedded status (W-001). | Plain iframe with server-issued short-lived token; no postMessage commands in release 1. | CSP frame-ancestors restricted to registered partner origins; token TTL ≤ 10 minutes; no PII beyond the card. |
+| FORMA-GAP-01 | Button variants (primary, destructive) and async action button | Forma | kemiller2002/forma#186 | Distinguish the one primary action per view and destructive actions (Revoke, Void) in application UI; show in-progress state on submit without double submission. | Use native button with text labels; confirm destructive actions via dialog (G-005); disable the button and show operation-status while pending. Acceptable for design; not for production visual hierarchy. | data-forma-variant=primary\|destructive styles exist in components.css outside the marketing scope; an aria-busy button state is styled and announced; axe passes. |
+| FORMA-GAP-02 | Field invalid, disabled and read-only styling | Forma | kemiller2002/forma#187 | Forms must show invalid fields and read-only policy values distinctly (G-012). | validation-message text plus aria-invalid; the visual distinction relies on adjacent message text only. | :disabled, :read-only, [aria-invalid=true] and :user-invalid styles exist in foundations.css with 3:1 non-text contrast; a browser test proves each. |
+| FORMA-GAP-03 | Data table styling for plain table | Forma | not filed: not needed for release 1 | Not required by release-1 designs: data-grid and dense-ledger cover all tables. | Use data-grid or dense-ledger. | n/a for release 1 |
+| FORMA-GAP-04 | Bulk action bar | Forma | not filed: not needed for release 1 | Not required by release 1: the exception inbox has no bulk actions by design (each decision is individual). One-click batch approval (RCD-005) is a single dialog listing items. | dialog + data-grid | n/a for release 1 |
+| FORMA-GAP-05 | Visualization primitives and chart accessibility contract | Forma | kemiller2002/forma#188 | Trend views for sponsor overview and investment performance (post release 1). | Tables and metric-value-change only (S-011). | A chart primitive with a mandatory text-table equivalent and axe-tested contrast. |
+| FOLIO-GAP-01 | Letter primitives (letterhead, address block, signature block) | Folio | kemiller2002/folio#62 | Acknowledgments and remittances are letters. | Compose from ef-print-header and ef-print-section with semantic address and paragraph markup (proven in design prototype D-001). | Documented recipe or primitives with print-position rules for window envelopes (address block at a fixed position). |
+| FOLIO-GAP-02 | Verification code and document identity block | Unbound (document registry) + Folio presentation | kemiller2002/folio#67 | Each issued document shows its reference and a verification code or URL that resolves in the document registry (REQ-X-034). | Text verification code inside ef-print-footer; QR code generation is Unbound-owned (SVG). | Footer shows the reference and the verification URL; the registry resolves the hash. |
+| FOLIO-GAP-03 | Deterministic server-side PDF rendering (P2) and batch generation | Unbound (render service), Folio (tier P2 contract) | kemiller2002/folio#47 (existing; evidence comment added) | Monthly statements for every fund, re-renderable byte-for-byte or with a stable content hash. | Headless Chromium print-to-PDF from the Folio HTML (~0.25 s per document). Measured: per-page text hash stable 7/7; raw bytes identical 7/7 once /CreationDate and /ModDate are stripped, so the render service MUST set fi… | Re-rendering the same snapshot yields an identical normalized content hash; throughput is measured. |
+| UNB-GAP-W-01 | Widget host, frame protocol and scoped tokens | Unbound (security-owned; Limen effects) | Unbound-owned: not filed externally | Read-only embedded status (W-001). | Plain iframe with server-issued short-lived token; no postMessage commands in release 1. | CSP frame-ancestors restricted to registered partner origins; token TTL ≤ 10 minutes; no PII beyond the card. |
+| FOLIO-GAP-04 | ef-print-page-number / P1-P2 page counters | Folio | kemiller2002/folio#59 | 'Page n of N' on every page (D-002, all multi-page documents). | Unbound render service injects the @page margin-box counter rule at render time (measured: passes 7/7 documents). Remove when Folio ships the rule. | With no consumer CSS, ef-print-footer[repeat=page] containing ef-print-page-number[format=page-of-pages] yields 'Page n of N' on every body page in P1/P2 Chromium; P0 strict mode fails export instead… |
+| FOLIO-GAP-05 | Running header/footer (repeat=page) and per-section running content | Folio | kemiller2002/folio#60 | Reference (G-016), legal-sponsor disclosure (G-014) and verification code on every page; correct identity per document unit. | Render-time @page margin boxes for reference and page number (measured 7/7); disclosure repeated in a final section; one document per PDF (no multi-unit PDFs) in release 1. | Running slots print on every page of their profile, never fragment, reserve margin space, and can be set per section; pdftotext shows reference and disclosure on every page of a 70-row statement. |
+| FOLIO-GAP-06 | Unbroken identifier / reference text treatment | Folio | kemiller2002/folio#61 | References, EINs, URLs and hashes must print and extract intact. | Shorten verification URL to a short code plus registry host; put hashes in their own full-width row; accept wrapping of hashes in release 1. | A primitive keeps identifiers of 32 characters or fewer and dates unbroken; pdftotext output of each identifier equals the source string. |
+| FOLIO-GAP-07 | Letter address block at fixed window-envelope position | Folio | kemiller2002/folio#62 | Mailed acknowledgments and remittances (D-001, D-003). | Release 1 delivers acknowledgments electronically (E-SIGN consent, counsel Q10); mailed letters use a fixed-height letterhead so the address lands in the window, verified per brand. | An address primitive places its box at a configurable fixed page position (e.g. #10 window 0.875in/2.0in, 4.0x1.125in); pdftotext -bbox confirms for any letterhead length. |
+| FOLIO-GAP-08 | Multi-page table totals printed once | Folio | kemiller2002/folio#63 | Statement grand totals must not repeat on every page (D-002). | Move totals out of tfoot into a following summary block (ef-print-keep). | ef-print-table[footer=final] prints tfoot only on the last fragment; carried-forward subtotal pattern documented and tested. |
+| FOLIO-GAP-09 | Heading keep-with-next by default | Folio | kemiller2002/folio#64 | No orphaned headings above page breaks. | Use the .ef-dense recipe on all Unbound documents (measured: no orphan). | Component layer applies break-after: avoid to h1-h6 before blocks and tables; fixture shows no heading in the last 10% of a page. |
+| FOLIO-GAP-10 | ef-print-toc target page numbers | Folio | kemiller2002/folio#65 | Tables of contents with page numbers (D-002, D-006). | Two-pass render in the Unbound render service fills data-page from the first-pass PDF; or omit page numbers in release 1. | P2 export fills [data-page] from a first-pass layout; numbers match the PDF. |
+| FOLIO-GAP-11 | Tagged PDF in the P2 export contract | Folio + Unbound render service | kemiller2002/folio#66 | Distributed PDFs should be tagged; RCD-009 makes the HTML twin the accessible rendition. | Render with Chromium tagged:true and outline:true (measured: Tagged: yes); HTML twin remains the conformance rendition. | P2 pins tagged:true; structure validated by a PDF/UA checker (veraPDF or PAC) with documented limits. |
+| FOLIO-GAP-12 | Signature / approval block recipe | Folio | kemiller2002/folio#62 | Preparer/signer (D-004) and decider (D-005) blocks. | ef-meta-list inside ef-print-keep. | Recipe with name, role, date and signature evidence, kept together, semantic dl, three documented examples. |
 <!-- END GENERATED: ui-gaps -->
 
 ## 5. Fit evidence from the prototypes
@@ -381,7 +390,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The acknowledgment MUST contain: sponsor letterhead and legal name and EIN; donor name; contribution reference; date of gift; cash amount, or a description of noncash property with no value; the goods-or-services statement; the exclusive-legal-control sentence verbatim; and the document reference with verification code. It is produced as an accessible HTML rendition and a PDF from one snapshot (RCD-009).
 - **Traces to:** RR-UNB-ACC-006-r1, UNB-RCN-FIN-001, RCD-019
 - **Folio elements:** `ef-print-document`, `ef-print-header`, `ef-print-footer`, `ef-print-section`, `ef-print-table`, `ef-print-note`, `ef-print-page-number`
-- **Capability gaps:** FOLIO-GAP-01, FOLIO-GAP-02
+- **Capability gaps:** FOLIO-GAP-01, FOLIO-GAP-02, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07
 - **Acceptance criteria:**
   - **AC-1** Given a securities contribution of 600 shares of XYZ; when the acknowledgment renders; then it describes '600 shares of XYZ Corp. common stock' and states no value.
 
@@ -389,7 +398,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The statement MUST contain: a period summary (opening value, contributions, grants paid, fees, investment change, closing value; available to grant at period end); contributions, grants and fees tables that repeat column headers across pages; pending grants; the fee basis; disclosures and the legal-sponsor statement; page x of y. Generated from the locked period snapshot.
 - **Traces to:** REQ-X-032, RCD-009, RCD-018, RCD-020
 - **Folio elements:** `ef-print-document`, `ef-print-title-page`, `ef-print-header`, `ef-print-footer`, `ef-print-page-number`, `ef-print-section`, `ef-print-metric`, `ef-print-table`, `ef-print-keep`, `ef-print-note`, `ef-print-toc`
-- **Capability gaps:** FOLIO-GAP-03
+- **Capability gaps:** FOLIO-GAP-03, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-08, FOLIO-GAP-09, FOLIO-GAP-11
 - **Acceptance criteria:**
   - **AC-1** Given a statement with 70 grant rows; when rendered to PDF; then the grants table spans pages with its header row repeated, and every page shows 'Page n of N'.
 
@@ -397,7 +406,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The donor confirmation and the charity remittance MUST state the sponsor as the legal donor, the grant reference, amount, payment method and date, the purpose, and recognition per the donor's choice. Remittance MUST contain no pledge reference (UNB-RCN-GRT-011). One remittance may list several grants paid together.
 - **Traces to:** UNB-RCN-GRT-011, RCD-016
 - **Folio elements:** `ef-print-document`, `ef-print-header`, `ef-print-footer`, `ef-print-section`, `ef-print-table`, `ef-print-note`
-- **Capability gaps:** FOLIO-GAP-01
+- **Capability gaps:** FOLIO-GAP-01, FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-06, FOLIO-GAP-07
 - **Acceptance criteria:**
   - **AC-1** Given a grant whose donor recorded a pledge ID internally; when the remittance renders; then no pledge reference appears anywhere in the document or its metadata.
 
@@ -405,6 +414,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The package MUST contain, per legal sponsor and tax year: the number of DAFs, aggregate value at year end, aggregate contributions and aggregate grants, each with a reconciliation to the ledger, the classification register version and preparer and signer fields.
 - **Traces to:** UNB-RCN-ENT-012, RR-REQ-X-060-r1, RCD-024
 - **Folio elements:** `ef-print-document`, `ef-print-title-page`, `ef-print-section`, `ef-print-metric`, `ef-print-table`, `ef-print-integrity`, `ef-print-note`
+- **Capability gaps:** FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-12
 - **Acceptance criteria:**
   - **AC-1** Given a locked tax year; when the package renders twice; then both renditions carry identical figures and the same source snapshot hash.
 
@@ -412,6 +422,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The decision record MUST capture the case reference, rule that raised it, evidence list with sources and freshness, decision, rationale, decider and preparer identities, and timestamps, for audit evidence packages.
 - **Traces to:** RR-AIN-003-r1, UNB-RCN-REG-003
 - **Folio elements:** `ef-print-document`, `ef-print-header`, `ef-print-section`, `ef-print-table`, `ef-print-finding`, `ef-print-callout`, `ef-print-footer`
+- **Capability gaps:** FOLIO-GAP-04, FOLIO-GAP-06, FOLIO-GAP-11, FOLIO-GAP-12
 - **Acceptance criteria:**
   - **AC-1** Given a confirmed sanctions match; when the decision record renders; then it lists preparer and decider as different people and includes the OFAC report due date.
 
@@ -419,6 +430,7 @@ FIT-EVIDENCE-PLACEHOLDER
 - **Requirement:** The audit evidence package MUST be a period-bounded export for an auditor: a control list, evidence items with hashes, exceptions and their resolution, and a table of contents.
 - **Traces to:** SOC2-009, RCD-031
 - **Folio elements:** `ef-print-document`, `ef-print-title-page`, `ef-print-toc`, `ef-print-section`, `ef-print-table`, `ef-print-integrity`, `ef-print-page-number`
+- **Capability gaps:** FOLIO-GAP-04, FOLIO-GAP-05, FOLIO-GAP-10
 - **Acceptance criteria:**
   - **AC-1** Given an evidence package for Q4; when rendered; then every evidence row shows its SHA-256 and the table of contents lists each control section.
 
