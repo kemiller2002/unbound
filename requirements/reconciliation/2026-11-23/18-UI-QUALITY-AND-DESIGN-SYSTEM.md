@@ -208,6 +208,16 @@ These records were `proposed`, so they are revised in place. The replaced text i
 | `UNB-UI-G-010` | Donor, advisor and charity screens identify scope by brand plus fund title and switcher; staff keep the scope-trail | UXD-016, UXD-017 |
 | `UNB-UI-G-016` | References shown on detail views and documents, not in donor summary lists | UXD-014, UNB-UX-007 |
 | `UNB-UI-S-001` | Attention items come directly after the balance; at 390×844 the figure and the attention heading are both in the first viewport; regions restated | UXD-008 (measured), UXD-009 |
+| `UNB-UI-S-003` | One page with progressive disclosure, then one review step (was a four-step wizard plus a dialog); the review step meets G-005; a milestone track after submission | UXD-023, UXD-024, UXD-043 |
+| `UNB-UI-G-005` | Confirmation means the review step for flows and a dialog for record actions (withdraw, cancel) | UXD-024 |
+| `UNB-UI-G-002` | Five dimensions appear in staff views; donor, advisor and charity views show a four-milestone track with dates derived from them | UXD-018, UXD-019 |
+| `UNB-UI-G-018` | UTC appears in documents and staff details only | UXD-014 |
+| `UNB-UI-G-006` | Donor wording is "We can't confirm your recommendation was received"; the idempotency key is never shown to donors | UXD-014 |
+| `UNB-UI-S-004` | Progress per G-002; a returned payment offers wait or redirect, each with its consequence and the default date | failed-payment scenario |
+| `UNB-UI-S-011` | One accessible trend chart is allowed under DS-018 (it previously said "charts deferred"); no reconciled total while any account is stale | owner addendum: charts and reporting |
+| `UNB-UI-G-017` | Chart value labels may be abbreviated when exact amounts are in the data table | S-011 chart |
+| `UNB-UI-W-001` | Brand and legal sentence inside the frame; readable at 320–600 px frames; height reported to the registered host origin only; expiry clears data | UXD-061 |
+| `UNB-UI-S-008` | Sponsor filter only for multi-sponsor operators; a proposer sees "Waiting for approval" and no approve action | v2 work queue |
 
 ## 6. v2 designs: screen inventory and state matrix
 
@@ -228,7 +238,7 @@ These records were `proposed`, so they are revised in place. The replaced text i
 | read-only | S-001:read-only, S-004:advisor-view, S-008:proposed-by-me | 3 |
 | failed-payment | S-001:failed-payment, S-004:payment-returned, S-012:bank-reverify | 3 |
 | reconciliation-exception | S-008:reconciliation-break | 1 |
-| mobile | S-001:failed-payment, S-001:integration-unavailable, S-001:loading, S-001:new-fund, S-001:no-grants, S-001:normal, S-001:read-only, S-001:restricted, S-001:stale-balance, S-001:succession, S-001:suspended, S-001:white-l… | 41 |
+| mobile | S-001:failed-payment, S-001:integration-unavailable, S-001:loading, S-001:new-fund, S-001:no-grants, S-001:normal, S-001:read-only, S-001:restricted, S-001:stale-balance, S-001:succession, S-001:suspended, S-001:white-l… | 42 |
 | embedded-widget | W-001:expired, W-001:host-page, W-001:widget-harbor, W-001:widget | 4 |
 | white-label | S-001:white-label, S-003:white-label, W-001:host-page, W-001:widget-harbor | 4 |
 <!-- END GENERATED: uiq-coverage -->
@@ -250,7 +260,7 @@ These records were `proposed`, so they are revised in place. The replaced text i
 | S-001 | white-label | White-labelled sponsor (Harbor Giving brand manifest) | Donor (primary advisor) | mobile, normal, white-label | pass |
 | S-003 | choose-charity | Choose a charity: search results with eligibility in plain words | Donor (primary advisor) | mobile, normal | pass |
 | S-003 | details | Amount and details: one column, progressive disclosure | Donor (primary advisor) | mobile, normal | pass |
-| S-003 | more-options | More options open: percentage of fund value and repeat (phone reference) | Donor on a phone | mobile | fail |
+| S-003 | more-options | More options open: percentage of fund value and repeat (phone reference) | Donor on a phone | mobile | pass |
 | S-003 | outcome-unknown | Outcome unknown after submit timeout (G-006) | Donor (primary advisor) | integration-unavailable, mobile | pass |
 | S-003 | restricted | Restricted: recommending paused, draft still possible | Donor (primary advisor) | mobile, restricted-fund | pass |
 | S-003 | review | Review and submit: the single G-005 confirmation | Donor (primary advisor) | mobile | pass |
@@ -296,7 +306,59 @@ The S-003, S-004, S-008, S-011, S-012 and W-001 redesigns are described in §6.2
 
 ### 6.2 Other redesigned screens
 
-<!-- screen notes are filled from the redesign passes -->
+All states below pass the full gate at five viewports (42 of 42 pages). Each was also reviewed by eye at 390 and 1280 px.
+
+**S-003 Grant recommendation (9 states).**
+- **Layout:** no wizard. One page reveals the details once a charity is chosen. Percentage and repeat grants sit in a collapsed "More options" section.
+- **Single confirmation:** one review page answers the four G-005 questions, and its button is "Submit grant recommendation".
+- **Charity results:** eligibility is explained per result in plain words ("Not eligible", "On hold", each with why).
+- **Validation:** the error summary links to each field and keeps entered values. A held charity offers "Choose another charity" or "keep as draft".
+- **Unknown outcome:** "Check status", which never resubmits, plus how the outcome will be resolved.
+- **Restricted fund:** "Save draft" becomes the primary action and submitting is explained as paused.
+- **Removed:** the scope trail, internal request references, the second confirmation and the five-dimension grid.
+
+**S-004 Grant detail (7 states).**
+- **Order:** record header (charity, amount, status, reference once with copy), then a progress track with dates and the one available action, then history. Details and documents sit in a side column.
+- **Withdraw:** a native modal dialog that names the action, offered only while the grant is still withdrawable.
+- **After approval:** "Withdraw" is shown as unavailable with its reason, and "Request cancellation" explains that payment may already be under way.
+- **Returned payment:** a choice between wait and redirect, each with its consequence and the default on Dec 16, 2026.
+- **Advisor view:** no actions, and it says why.
+
+**S-008 Work queue (5 states).**
+- **Queue:** four summary figures, filter buttons with counts per type, and one sortable table with right-aligned amounts. On phones each row becomes a card and sorting moves to a select.
+- **Selected item:** opens as its own page ("Item 2 of 9"). For the reconciliation break it reads in this order: what happened in plain words; bank vs ledger side by side with the difference; matching candidates ranked strong or weak with evidence; the resolutions with who may choose each; propose then approve by two named people; and what is blocked while the break is open (November close, statements for 412 funds, new grants to the affected charity).
+- **Preparer's view:** after proposing, the preparer sees "Waiting for approval" and has no approve control.
+- **Empty and loading:** "Nothing needs you" with the last-checked time, and a skeleton loading state.
+
+**S-011 Sponsor overview (2 states).**
+- Totals, an accessible 12-month grants-paid chart (SVG with a title, axis labels, value labels, a text summary and a data table), holds, reconciliation and freshness. There is no composite score.
+- **Bank feed down:** says what is stale and what still works, and shows no reconciled total while an account is stale.
+
+**S-012 Charity view (3 states).**
+- A records list replaces the data grid, and the acknowledgment is the single to-do.
+- An anonymous donor is shown with the sponsor's recognition wording.
+- After a returned payment, a three-step bank re-verification explainer includes account-number re-entry.
+
+**W-001 Embedded widget (4 states).**
+- A read-only card with the sponsor brand bar, status chip, amount, milestones, source fund, last update and the legal-sponsor sentence inside the frame.
+- Shown on a fictional partner host (a different brand) in 600 and 360 px slots. axe was run inside each iframe at five host widths, with no violations.
+- On token expiry the card clears its data and shows a safe message. A Harbor-branded variant is included.
+
+**Patterns proposed for the shared layer.** The redesign passes created screen-local components that should move into `unbound-app.css`, and later into Forma:
+- copyable reference (`identifier` lacks copy: FORMA-GAP-07);
+- compact metrics row;
+- container-responsive toolbar and filters (FORMA-GAP-15);
+- queue table with a phone card layout;
+- bank-vs-ledger comparison with a difference row;
+- decision options with consequence text and a status per option;
+- propose and approve duties (two named people);
+- milestone track with dates and a failed state (FORMA-GAP-09);
+- event timeline;
+- currency input with a prefix;
+- unavailable action with reason (FORMA-GAP-11);
+- choice cards whose hidden radio fills the card (2.5.8).
+
+Roadmap wave 2 includes this consolidation.
 
 ## 7. Forma component gap analysis
 
@@ -406,6 +468,7 @@ Every UIR record reaches at least one inbound original. Defects with no v2 desig
 |---|---|---|---|
 | 0 (owner) | Approve RCD-050..053 (default brand, Forma ownership of the application layer, date format, phone navigation); file FORMA-GAP-18..26; add the primary-button finding to forma#186 | Decisions | Owner sign-off; issues filed |
 | 1 (done in this pass) | Design system layer; Giving home in 12 states; S-003, S-004, S-008, S-011, S-012 and W-001 in v2; verification harness | 47 of 63 v1 defects; all 17 required scenarios | Every v2 state passes `verify.mjs` at 5 viewports |
+| 2a | Consolidate the redesign passes' screen-local components (`v2/proposed/*.css`) into the shared layer; one helper per pattern | Duplication between screens | No pattern defined twice |
 | 2 | Redesign S-002 charity search, S-005 add money, S-006 people and successors, S-007 documents, S-009 case workspace (with the 18 typed panels of S-014/P-*) | UXD-026, 027, 029, 030, 033, 044, 045, 046, 049, 052, 053, 056 | Same gate; critique items closed |
 | 3 | S-010 policy configuration, S-013 notification preferences; workspace views S-015..S-061 for finance and treasury (compact density) | UXD-034, 036, 054 | Same gate in compact density |
 | 4 | Pixel-diff CI step; forced-colours emulation; manual screen-reader review (NVDA, VoiceOver, TalkBack); moderated usability tests on phones (INT-020) with task success, time and errors | DKS-UI-018, DKS-UI-019, UNB-UX-006 | Recorded results; defects triaged |

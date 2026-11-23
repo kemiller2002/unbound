@@ -293,7 +293,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-2** Given a grant in state EligibilityHold; when the giving home renders it; then the label reads 'On hold: charity eligibility' with data-state=blocked and a text reason.
 
 ### UNB-UI-G-002 — Five-dimension grant progress (global)
-- **Requirement:** Grant status MUST be shown as five ordered dimensions (Recommendation, Eligibility, Approval, Funding, Payment), each with its own label and as-of time, using Forma steps for the sequence and status-lozenge for each dimension. A single headline status MUST be derived deterministically: the first dimension that is not final, except that any Unknown or Blocked dimension becomes the headline.
+- **Requirement:** In staff views, grant status MUST be shown as five ordered dimensions; donor, advisor and charity views show a four-milestone track (Submitted, Approved, Paid, Acknowledged) with dates, derived from the same dimensions, (Recommendation, Eligibility, Approval, Funding, Payment), each with its own label and as-of time, using Forma steps for the sequence and status-lozenge for each dimension. A single headline status MUST be derived deterministically: the first dimension that is not final, except that any Unknown or Blocked dimension becomes the headline.
 - **Traces to:** REQ-X-011, RR-REQ-X-002-r1, RR-REQ-X-004-r1, UNB-RCN-FIN-008
 - **Forma components:** `steps`, `status-lozenge`, `timeline`, `freshness`
 - **Capability gaps:** FORMA-GAP-09
@@ -316,15 +316,15 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given market value $120,000, reserved grants $15,000, unsettled ACH contribution $5,000; when the giving home renders; then Available to grant shows $100,000 with a 'How this is calculated' disclosure listing the three components.
 
 ### UNB-UI-G-005 — Consequential action confirmation (global)
-- **Requirement:** Every action of authority class A2 or higher MUST present, before submission, a confirmation dialog that states what will change, whether it is reversible, who acts next and the expected time to the next state. The confirm control MUST name the action (for example 'Submit grant recommendation'), not 'OK'.
+- **Requirement:** Every action of authority class A2 or higher MUST present, before submission, a confirmation that states what will change, whether it is reversible, who acts next and the expected time to the next state. The confirm control MUST name the action (for example 'Submit grant recommendation'), not 'OK'.
 - **Traces to:** RR-REQ-X-051-r1, AIN-006, UNB-RCN-PLT-005
 - **Forma components:** `dialog`, `key-value-list`, `callout`, `button`
 - **Capability gaps:** FORMA-GAP-01, FORMA-GAP-14
 - **Acceptance criteria:**
-  - **AC-1** Given a donor submits a $5,000 grant; when they press Submit; then a dialog lists amount, charity, fund, 'Your sponsor approves this grant; you can withdraw until approval', and the button reads 'Submit grant recommendation'.
+  - **AC-1** Given a donor submits a $5,000 grant; when they press Submit; then the confirmation (the review step, or a dialog for record actions) lists amount, charity, fund, 'Your sponsor approves this grant; you can withdraw until approval', and the button reads 'Submit grant recommendation'.
 
 ### UNB-UI-G-006 — Unknown command outcome handling (global)
-- **Requirement:** When a command returns no definite outcome (Limen OutcomeUnknown, timeout or 5xx after submission), the screen MUST show a Forma operation-status in the unknown state with a 'Check status' action that queries by idempotency key. It MUST NOT automatically retry and MUST NOT show success or failure.
+- **Requirement:** When a command returns no definite outcome (Limen OutcomeUnknown, timeout or 5xx after submission), the screen MUST show a Forma operation-status in the unknown state with a 'Check status' action that queries by idempotency key; donor wording is 'We can't confirm your recommendation was received' and the key is never shown to donors (support sees it). It MUST NOT automatically retry and MUST NOT show success or failure.
 - **Traces to:** RR-REQ-X-004-r1, UNB-RCN-GRT-008
 - **Forma components:** `operation-status`, `status-lozenge`, `recovery-actions`
 - **Acceptance criteria:**
@@ -407,7 +407,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given grant 2026-004817; when the grant screen, remittance advice and statement render; then all three show 2026-004817.
 
 ### UNB-UI-G-017 — Money and percentage display (global)
-- **Requirement:** Amounts MUST display with currency, two decimals and tabular numerals, never rounded below cents. Negative values MUST carry a text label as well as a sign. Percentage grants MUST show the percentage, its base, the fixing point and, once fixed, the fixed currency amount.
+- **Requirement:** Amounts MUST display with currency, two decimals and tabular numerals, never rounded below cents, except chart value labels, which MAY be abbreviated ($512.3k) when the exact amounts are in the chart's data table. Negative values MUST carry a text label as well as a sign. Percentage grants MUST show the percentage, its base, the fixing point and, once fixed, the fixed currency amount.
 - **Traces to:** RR-UNB-GFUND-013-r1
 - **Forma components:** `measure`, `key-value-list`
 - **Capability gaps:** FORMA-GAP-08
@@ -415,7 +415,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given a 10% grant of fund value fixed at approval; when the grant renders after approval; then it shows '10% of fund value at approval → $12,345.67 (fixed 24 Nov 2026)'.
 
 ### UNB-UI-G-018 — Dates and time zones (global)
-- **Requirement:** Dates of legal significance (gift date, grant approval, payment date) MUST show as absolute dates in the sponsor's time zone, with UTC in details. Relative time ('2 hours ago') MAY be used only for activity feeds.
+- **Requirement:** Dates of legal significance (gift date, grant approval, payment date) MUST show as absolute dates in the sponsor's time zone, with UTC in documents and staff details (not in donor UI). Relative time ('2 hours ago') MAY be used only for activity feeds.
 - **Traces to:** UNB-RCN-FIN-012, REQ-X-003
 - **Forma components:** `timeline`, `facts`
 - **Acceptance criteria:**
@@ -448,7 +448,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-2** Given a charity on hold; when it appears in results; then it shows 'On hold' with no reason text from another sponsor and cannot be selected.
 
 ### UNB-UI-S-003 — Grant recommendation flow (screen)
-- **Requirement:** A four-step wizard: 1 Charity (S-002); 2 Amount (fixed amount, or percentage with base and fixing point; recurring schedule optional); 3 Purpose and acknowledgements (purpose text; recognition: name, anonymous or custom; the sponsor's required affirmations as individual checkboxes stating the benefit rules verbatim; the pledge question per sponsor policy); 4 Review and submit (G-005 dialog). It MUST validate against sponsor policy at each step, show 'Available to grant' throughout, and after submission show the five-dimension status (G-002).
+- **Requirement:** One page with progressive disclosure, then one review step: Charity (search within the page; S-002 for the full directory); Amount (fixed amount, or percentage with base and fixing point; recurring schedule optional); 3 Purpose and acknowledgements (purpose text; recognition: name, anonymous or custom; the sponsor's required affirmations as individual checkboxes stating the benefit rules verbatim; the pledge question per sponsor policy); Review and submit (the review step itself meets G-005; no second dialog). It MUST validate against sponsor policy at each step, show 'Available to grant' beside the amount, and after submission show the donor milestone track with expected dates (G-002).
 - **Traces to:** UNB-GRANT-002, RR-UNB-GRANT-011-r1, UNB-RCN-GRT-009, UNB-RCN-GRT-010, UNB-RCN-GRT-004, RR-UNB-GFUND-013-r1, REQ-X-011
 - **Actors:** Donor, Advisor (scoped)
 - **Forma components:** `wizard`, `steps`, `form`, `form-row`, `text-field`, `textarea`, `choice-group`, `checkbox`, `select`, `date-time-field`, `callout`, `validation-summary`, `validation-message`, `dialog`, `key-value-list`, `operation-status`, `mobile-action-bar`
@@ -457,12 +457,12 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
 - **Responsive:** phone-complete
 - **Capability gaps:** FORMA-GAP-01, FORMA-GAP-02, FORMA-GAP-06, FORMA-GAP-08, FORMA-GAP-09, FORMA-GAP-11, FORMA-GAP-14
 - **Acceptance criteria:**
-  - **AC-1** Given an amount above Available to grant; when the donor continues from step 2; then an inline error states the available amount and the step does not advance.
+  - **AC-1** Given an amount above Available to grant; when the donor continues from step 2; then an inline error states the available amount and the recommendation cannot be reviewed or submitted until it is corrected, and entered values are kept.
   - **AC-2** Given a sponsor whose pledge policy is Prohibited; when the donor reaches step 3; then a required question 'Does this grant fulfil a pledge?' appears; answering Yes blocks submission with an explanation.
   - **AC-3** Given submission times out; when the response is unknown; then G-006 applies and no duplicate recommendation is created.
 
 ### UNB-UI-S-004 — Grant detail (screen)
-- **Requirement:** Grant detail MUST show: record-header with numeric reference and headline status; five-dimension progress; charity identity and eligibility snapshot (as-of date); amount (G-017); purpose and recognition; timeline of all events; documents (grant confirmation, remittance); actions allowed in the current state only (Withdraw before approval; Request cancellation after approval, which explains that payment may already be in progress).
+- **Requirement:** Grant detail MUST show: record-header with numeric reference and headline status; progress per G-002 (donor milestone track with dates; five dimensions in staff views); charity identity and eligibility snapshot (as-of date); amount (G-017); purpose and recognition; timeline of all events; documents (grant confirmation, remittance); for a returned payment, the donor's choice to wait for corrected bank details or redirect, each with its consequence and the default applied on a stated date; actions allowed in the current state only (Withdraw before approval; Request cancellation after approval, which explains that payment may already be in progress).
 - **Traces to:** REQ-X-011, RR-REQ-X-004-r1, TVR-GR-004
 - **Actors:** Donor, Advisor, Sponsor staff (read)
 - **Forma components:** `record-header`, `identifier`, `steps`, `status-lozenge`, `facts`, `key-value-list`, `timeline`, `freshness`, `operation-status`, `dialog`, `provenance-trail`
@@ -511,7 +511,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given an acknowledgment corrected once; when the donor lists documents; then the original shows 'Superseded by <ref>' and both remain downloadable.
 
 ### UNB-UI-S-008 — Staff exception inbox (screen)
-- **Requirement:** A single inbox of rule-created work items (RR-REQ-X-048-r1). Each row shows creating rule, subject, age against SLA, owner and next action, sorted by SLA risk. Filters: rule family, sponsor, owner. Routine work never appears. Items close automatically when their exit condition becomes true. A summary row shows straight-through rate and open items by age (UNB-RCN-PLT-006).
+- **Requirement:** A single inbox of rule-created work items (RR-REQ-X-048-r1). Each row shows creating rule, subject, age against SLA, owner and next action, sorted by SLA risk. Filters: rule family and owner, plus sponsor only for operators who serve more than one sponsor. An item the viewer proposed shows 'Waiting for approval' and no approve action (segregation of duties). Routine work never appears. Items close automatically when their exit condition becomes true. A summary row shows straight-through rate and open items by age (UNB-RCN-PLT-006).
 - **Traces to:** RR-REQ-X-048-r1, UNB-RCN-PLT-006, RCD-026
 - **Actors:** Sponsor operations, Compliance, Finance
 - **Forma components:** `workspace-shell`, `work-queue`, `data-grid`, `collection-toolbar`, `active-filter-summary`, `status-lozenge`, `metric-card`, `empty-state`, `pagination`
@@ -548,7 +548,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given an author; when they open their own draft in review; then Approve is unavailable with the reason shown.
 
 ### UNB-UI-S-011 — Sponsor overview (screen)
-- **Requirement:** A role-composed overview of outcomes at risk, without a composite health score: holds by reason and age; straight-through rate by workflow; reconciliation status by account; evidence freshness; statement publication status. Release 1 uses tables and metric cards only (charts deferred, FORMA-GAP-05).
+- **Requirement:** A role-composed overview of outcomes at risk, without a composite health score: holds by reason and age; straight-through rate by workflow; reconciliation status by account; evidence freshness; statement publication status. Release 1 MAY use one trend chart per view only if it meets UNB-UI-DS-018 (title, labelled axes, value labels, text summary, keyboard-reachable data table); otherwise tables and metric cards (FORMA-GAP-05). No total is shown as reconciled while any account is stale.
 - **Traces to:** REQ-X-043, UX-S01, RCD-026, UNB-RCN-PLT-006
 - **Actors:** Sponsor executive, Operations lead
 - **Forma components:** `dashboard-grid`, `metric-card`, `metric-value-change`, `data-grid`, `status-lozenge`, `freshness`
@@ -629,7 +629,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given an evidence package for Q4; when rendered; then every evidence row shows its SHA-256 and the table of contents lists each control section.
 
 ### UNB-UI-W-001 — Embedded grant status widget (partner host) (widget)
-- **Requirement:** Partner hosts MAY embed a read-only grant-status card in an iframe served from the sponsor's Unbound origin, authorized by a short-lived, sponsor-scoped token issued server-to-server. It shows headline status, amount and charity, and offers no consequential actions in release 1 (DAF checkout deferred, CAP-03).
+- **Requirement:** Partner hosts MAY embed a read-only grant-status card in an iframe served from the sponsor's Unbound origin, authorized by a short-lived, sponsor-scoped token issued server-to-server. It shows headline status, amount and charity, and offers no consequential actions in release 1 (DAF checkout deferred, CAP-03). The card carries the sponsor brand and the legal-sponsor sentence inside the frame, stays readable at 320-600 px frame widths, reports its content height to the host by a postMessage limited to the registered host origin (UNB-GAP-W-01), and on token expiry clears all grant data and shows a safe message.
 - **Traces to:** INT-015, REQ-X-063, RCD-011, RCD-013
 - **Forma components:** `surface`, `status-lozenge`, `key-value-list`, `identifier`
 - **Capability gaps:** UNB-GAP-W-01, FORMA-GAP-08

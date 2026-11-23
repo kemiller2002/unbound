@@ -79,3 +79,28 @@ The integrating session's own token use is not reported by the harness and is no
 - The Forma CSS was compiled from source with .NET 10 (`npm run tokens:build`, then `brands:build`, `color:build`, `runtime:build` and `assets:build`). It is vendored at `vendor/forma-1.0.2/`.
 - Issues filed: Forma #186–#198 (#186 and #187 corrected after the fit check), Folio #59–#67, and a comment on folio#47.
 - Sub-agent telemetry: Forma screens 326,621 tokens; Folio documents 207,099 tokens.
+
+## 8. Third pass: UI quality addendum (report 18)
+
+- **Design system baseline.**
+  - Forma 1.0.2 tokens verified.
+  - Charcoal and Bronze come from `kemiller2002/echelon-design-system` theme 1.1.0 (read-only clone, not modified).
+  - The `unbound-default` brand was compiled with Forma's BrandCompiler.
+  - Vendored assets: `requirements/ui/designs/vendor/unbound-brands/`, plus the OFL fonts in `vendor/echelon-theme-1.1.0/`.
+- **v2 prototypes.**
+  - Location: `requirements/ui/designs/v2/`.
+  - Rebuild and verify: `SCREENS=S-001,S-003,S-004,S-008,S-011,S-012,W-001 node tools/build.mjs`, then `node tools/verify.mjs`. A partial build keeps the other screens' entries in `pages.json`.
+  - Result: 42 of 42 pages pass at five viewports.
+- **Data authoring scripts.** These live in the session scratchpad, so copy them before it is cleared. Run them in this order; each is idempotent:
+  1. `ui_quality.py`: UI quality requirements, revisions with content-addressed tags, RCD-050..053.
+  2. `merge_specs.py`: panel and view specs; gaps FORMA-GAP-24..26 and UNB-GAP-W-02.
+  3. `ui_trace.py`: defects, state matrix, coverage, UIR records, DKS-UI scenarios.
+
+  Do **not** re-run the old `ui_build.py` alone: it rewrites `ui-requirements.jsonl` from the first-pass records only.
+- **Audit.** 63 v1 defects (`data/ui-defects.csv`); 47 are resolved in v2 or prevented by the gate, and 16 are open on screens not yet redesigned (roadmap waves 2–3).
+- **Not filed.** FORMA-GAP-18..26 are not filed in Forma yet; that waits on the owner's instruction. The primary-button finding is to be added to forma#186.
+- **Workflow-model issues found while specifying views** (not yet fixed in `workflows/`):
+  - WFM-14 has no deterministic "publish in-tolerance NAV by policy" transition and no sampled-review step; the note on WFM-14-T11 is stale against RCD-035.
+  - WFM-12 has no human transition for recording an OFAC rejected-transaction report (UNB-RCN-WF-024).
+  - WFM-22 and WFM-02 start in their initial state with no human initiation transition.
+- **Telemetry.** Sub-agent tokens: v1 audit 286,758; donor redesign 233,915; ops, charity and widget redesign 219,829; view specs 231,939.
