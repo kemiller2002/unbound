@@ -246,3 +246,11 @@ All 183 questions now have at least one proposed canonical-requirement linkage a
 ## 2026-11-23 enterprise decision inventory
 
 The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENTORY-2026-11-23.md`, covering 62 decision types across nine domains. It applies REQ-X-017 to each process with rules-first behavior, conditional AI evidence work, independently authorized human exceptions, hard stops and acceptance invariants. This is initial inventory coverage, not exhaustive proof or executed tests. Cross-check against `ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md` and original registers before source migration.
+
+## REQ-X-018: Policy precedence, evidence trust and critical workflow safety (2026-11-23)
+
+**Proposed:** Separate authority precedence from factual evidence trust. Nonwaivable legal requirements and platform safety controls prevail over common charity vetting, sponsor-specific rules, donor mandates and operational/AI optimizations; sponsors may impose stricter valid grant restrictions, not weaken common mandatory controls. Evidence is evaluated by fact-specific provenance, directness, independence, jurisdiction and freshness, with explicit Unknown/Disputed/Stale outcomes. Before AI, run bounded deterministic evidence enrichment. No AI/human escalation overrides a hard prohibition. All 16 safety gates and the charity, grant, payment and DR workflow transitions require execution-time rechecks and auditable versions.
+
+**Acceptance (not executed):** A sponsor configuration that bypasses independently verified payment destination is rejected; an adverse charity signal arriving after approval holds payment; two feeds under one provider are not counted as independent corroboration; missing evidence triggers trusted retrieval without AI when available; a policy-complete grant succeeds with AI offline. See `POLICY-PRECEDENCE-EVIDENCE-TRUST-AND-CRITICAL-WORKFLOWS-2026-11-23.md` and ADV-053 through ADV-068.
+
+**Open:** legal classification, sponsor board approval, provider proof, exact typed schemas, source migration and test execution.
