@@ -278,7 +278,7 @@
   .unb-widget .unb-x-wcard__name { white-space: nowrap; }
   .unb-widget .unb-x-wcard__brand span:last-child { margin-inline-start: auto; font-weight: 500; font-size: var(--unb-type-micro); white-space: nowrap; }
   /* Inside a short host iframe the card fills the frame so the disclosure sits at the bottom edge. */
-  @media (max-height: 34rem) { .unb-widget .unb-x-wcard { min-block-size: calc(100vh - 2 * var(--forma-space-2)); box-sizing: border-box; grid-template-rows: auto 1fr auto; } }
+  @media (max-height: 36rem) { .unb-widget .unb-x-wcard { min-block-size: calc(100vh - 2 * var(--forma-space-2)); box-sizing: border-box; grid-template-rows: auto 1fr auto; } }
   .unb-widget .unb-x-wcard__body { display: grid; gap: var(--forma-space-3); padding: 0 var(--forma-space-4); }
   .unb-widget h1 { margin: 0; font-size: var(--unb-type-section); line-height: 1.3; font-weight: 650; color: var(--forma-color-text-heading); max-inline-size: none; font-family: var(--forma-type-family-body); letter-spacing: 0; }
   .unb-widget p { margin: 0; }
