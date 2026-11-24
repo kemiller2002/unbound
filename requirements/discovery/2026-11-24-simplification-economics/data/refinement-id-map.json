@@ -38,6 +38,11 @@
     "RR-REQ-X-007-r2": "RR-REQ-X-007-r3",
     "RR-UNB-ECO-003-r1": "RR-UNB-ECO-003-r1"
   },
+  "econ": {
+    "RR-UNB-ECO-002-r1": "RR-UNB-ECO-002-r1",
+    "RR-UNB-ECO-005-r1": "RR-UNB-ECO-005-r1",
+    "RR-UNB-ECO-001-r2": "RR-UNB-ECO-001-r2"
+  },
   "cx": {
     "RR-AIN-007-r1": "RR-AIN-007-r1",
     "RR-ADM-042-r2": "RR-ADM-042-r2",
