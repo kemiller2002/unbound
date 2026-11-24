@@ -14,8 +14,8 @@ AMENDMENTS = {
         "replace": [("The release-1 default (networked partner rail or sponsor-originated verified ACH) is owner decision OD-M-03; until decided, a program SHALL declare its rail explicitly.",
                      "The release-1 default (OD-M-03) SHALL be a networked payment-partner rail where the sponsor has an executed partner agreement, and otherwise sponsor-originated ACH to a verified destination.")],
         "acceptance_add": ["Given a sponsor without an executed partner agreement, when a program is created, then its rail defaults to sponsor-originated ACH to a verified destination."]},
-    "CNV-ECO-004": {"finding": "OD-M-04, OD-M-05 (owner decisions)",
-        "append": "The owner approved this segment choice (OD-M-05). The decision on Unbound- or partner-supplied staffed services (SPR-ADV-009) SHALL be reopened if fewer than five sponsors with under 10,000 funds have signed within 12 months of general availability (OD-M-04; the threshold of five is a business-policy default the owner confirms at the annual review).",
+    "CNV-ECO-004": {"finding": "OD-M-04, OD-M-05, OD-M-08 (owner decisions)",
+        "append": "The owner approved this segment choice (OD-M-05). The decision on Unbound- or partner-supplied staffed services (SPR-ADV-009) SHALL be reopened if fewer than five sponsors with under 10,000 funds have signed within 12 months of general availability (OD-M-04; the threshold of five is a business-policy default the owner confirms at the annual review). Superseded by OD-M-08: Unbound SHALL plan two offers on one small core against the same incumbent — software licensed to sponsors and administrators (iPhi-class) and an Unbound-operated administration team (Ren-class outsourced administration); the staffed offer SHALL keep SPD-ADV-001 (Unbound staff prepare and process; each sponsor's own appointed people make reserved decisions); capabilities beyond incumbent parity SHALL be limited to those that create the control, evidence and cost advantages in report 05 section 5.",
         "acceptance_add": ["Given 12 months after general availability with four signed sponsors under 10,000 funds, when the review runs, then a staffed-services decision record is opened."]},
     "CNV-LEG-001": {"finding": "OD-M-07 (owner decision)",
         "replace": [("implementing sponsor-selected models executed by the sponsor's custodian and factual, non-evaluative reporting are permitted.",
@@ -30,5 +30,8 @@ AMENDMENTS = {
     "CNV-FIN-001": {"finding": "OD-M-07 (owner decision)",
         "replace": [("Each investment pool SHALL carry a sponsor-approved liquidity buffer", "Each fund's investments at the external manager SHALL be backed by a sponsor-approved liquidity buffer (a cash allocation at the custodian)")],
         "append": "The buffer's stress model SHALL include the manager's settlement times for liquidating investments to fund grants."},
+    "CNV-LEG-002": {"finding": "OD-P-LEG, OD-M-08 (owner decisions)",
+        "append": "Release 1 SHALL ship sponsor-branded deployments only, in which charity listings are visible to advisory-privileged users on the sponsor's own branded portal; white-label consumer marketplaces, embedded checkout, Unbound-branded donor apps and charity-side donation buttons SHALL be disabled until the registrations above are recorded (OD-P-LEG).",
+        "acceptance_add": ["Given a release-1 deployment, when embedded checkout is enabled, then activation is refused unless California and Hawaii registrations are recorded."]},
 }
 
