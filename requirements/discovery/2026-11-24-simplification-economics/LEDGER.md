@@ -45,7 +45,7 @@ The product owner made two decisions:
 - **SPD-ADV-001:** no team may decide for more than one sponsor; each sponsor decides with its own people.
 - **SPD-ADV-004:** Unbound is a software platform only for now, with hooks for staffed services later.
 
-An intermediate version priced an operator-dedicated decision team. It was superseded the same day by SPD-ADV-004, and git history keeps it (commit 6f7bc7b). The integrating session made these changes:
+An intermediate version priced an operator-dedicated decision team (commit 6f7bc7b). SPD-ADV-004 deferred that option, and at the owner's request its economics are kept in report 24 section 6 as a future option. The integrating session made these changes:
 
 | Change | Detail |
 |---|---|

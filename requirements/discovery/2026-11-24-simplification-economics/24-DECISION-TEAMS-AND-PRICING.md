@@ -154,16 +154,68 @@ Cost-recovery floors **[D]** use expected values and no margin. They are Unbound
 - **Enabling a new component type needs only configuration and a recorded owner decision.** It never changes an existing contract.
 - **Fees never affect grant handling.** They are not inputs to eligibility, sanctions, approval, grant priority or payment timing.
 
-## 6. Hooks for later (not built as features now)
+## 6. Future option: Unbound supplies the decision team (economics kept for reference)
+
+This option is not offered at release 1 (SPR-ADV-009). It is kept so the owner can price it if SPD-ADV-004 is reopened.
+
+**How it would work.** Unbound employs a decision team that works for one sponsor only and is appointed by that sponsor's board. The team is sized like a sponsor's own: the larger of the reserved workload and 2.5 FTE [A]. Unbound adds 10% management overhead [A] (range 5–20%) for appointment paperwork, supervision and conflict attestation. The appointment form still needs counsel (SPD-ORG-002). The executed model computes this as mode `future_operator_dedicated`.
+
+### 6.1 Cost per account with Unbound-supplied teams
+
+Values are P10/P50/P90 for the total, then P50 split by who pays, in USD per account-year [D]. Service and operations staff remain with the customer.
+
+| Model | Accounts | Total | Unbound decision teams | Unbound software | Customer's own |
+|---|---:|---|---:|---:|---:|
+| OM3 | 100,000 | 168/214/306 | 84 | 73 | 57 |
+| OM3 | 1,000,000 | 106/147/223 | 81 | 19 | 48 |
+| OM3 | 5,000,000 | 101/148/230 | 84 | 14 | 48 |
+| OM4 | 1,000,000 | 30/39/67 | 14 | 13 | 12 |
+| OM4 | 5,000,000 | 23/32/55 | 13 | 7 | 11 |
+| OM5 | 5,000,000 | 14/16/20 | 5 | 4 | 7 |
+
+Compared with sponsor-staffed teams (section 4.1), the enterprise total is about the same: OM3@1M is $147 against $138–142. The difference is mainly who pays. Targets are reached at about the same scales as the per-sponsor routes:
+- $100 by OM4 at 300k and OM5 at 100k;
+- $50 by OM4 at 1M;
+- $25 only by OM5 at 1M;
+- never by OM3.
+
+### 6.2 What a dedicated team would cost one sponsor
+
+| Sponsor accounts | Team FTE | Cost per sponsor per year | Per account |
+|---:|---:|---:|---:|
+| 500 | 2.5 | $453,750 | $907.50 |
+| 1,000 | 2.5 | $453,750 | $453.75 |
+| 2,500 | 2.5 | $453,750 | $181.50 |
+| 5,000 | 2.5 | $453,750 | $90.75 |
+| 10,000 | 2.5 | $453,750 | $45.38 |
+| 25,000 | 4.5 | $816,750 | $32.67 |
+| 100,000 | 17.5 | $3,176,250 | $31.76 |
+
+This uses OM3 workload. The 2.5 FTE minimum binds below about 14,500 accounts.
+
+### 6.3 How it would be priced
+
+The fee would be a third component type, already provided for in UNB-SMP-ECN-004. It would sit alongside the licence fee (A) and the tenant fee (B).
+
+| Component | Charged | Cost-recovery floor [D] |
+|---|---|---:|
+| C1. Dedicated decision team | Per sponsor, priced on team FTE | $453,750 per sponsor per year at the 2.5 FTE minimum, before margin |
+
+The rules that would apply:
+- **C1 is never spread across other sponsors.** A sponsor that staffs its own team pays nothing for C1.
+- **Switching to or from an Unbound-supplied team is gated on coverage.** The incoming team's authority entries must be active, and AuthorityCoverage (UNB-SMP-ORG-002) must pass for 20 consecutive business days. Until then the outgoing team keeps deciding and keeps being charged.
+- **Small sponsors could not afford it at market DAF fees.** At 1,000 accounts the team alone is about $454 per account. The option fits sponsors above about 10,000–25,000 accounts that do not want to employ deciders.
+
+## 7. Hooks for later (not built as features now)
 
 | Hook | Where | What enabling it would take |
 |---|---|---|
 | Organization type on every principal (Sponsor, Administrator, Vendor) | UNB-SMP-ORG-003 | Already required at release 1 |
 | StaffingModel values OperatorDedicated and AffiliatedSponsor | UNB-SMP-ORG-003 | Release flag plus a recorded owner decision; no schema change |
 | Typed fee components | UNB-SMP-ECN-004 | Configuration plus a recorded owner decision; new contracts only |
-| Model mode `future_operator_dedicated` | `model/decision_teams.py` | Already computed for reference |
+| Model mode `future_operator_dedicated` | `model/decision_teams.py` | Already computed; economics in section 6 |
 
-## 7. Limitations
+## 8. Limitations
 
 - **The workload model is not sponsor-specific.** Per-sponsor teams use the platform-wide average workload per account. Pooling losses from splitting queues are applied only through the minimum and rounding, not through per-team queueing.
 - **The minimum for a team that only decides is not set.** It decides which customer route is cheaper (section 4.2).

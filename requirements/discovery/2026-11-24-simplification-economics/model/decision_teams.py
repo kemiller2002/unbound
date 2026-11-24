@@ -190,7 +190,11 @@ def sponsor_size_table(cfg, om_key, dt):
                 "sponsor_direct_per_account": direct * loaded / size,
                 "via_administrator_decision_fte": decide, "via_administrator_decision_usd": decide * loaded,
                 "via_administrator_decision_per_account": decide * loaded / size,
-                "existing_staff_time_used_usd": res_fte * size * loaded}
+                "existing_staff_time_used_usd": res_fte * size * loaded,
+                # future option (SPR-ADV-009): Unbound supplies a decision team dedicated to this sponsor
+                "future_operator_dedicated_fte": decide,
+                "future_operator_dedicated_usd": decide * v["loaded_cost_per_fte"] * (1 + dt["dedicated_mgmt_overhead"]),
+                "future_operator_dedicated_per_account": decide * v["loaded_cost_per_fte"] * (1 + dt["dedicated_mgmt_overhead"]) / size}
     return {"om": om_key, "all_work_fte_per_1000_accounts": all_fte * 1000,
             "reserved_fte_per_1000_accounts": res_fte * 1000,
             "floor_binds_below_accounts_direct": dt["team_floor_fte"] / all_fte if all_fte else None,
@@ -207,7 +211,10 @@ def license_floors(cfg, om_key, accounts, dt):
     vendor = [l for l in lines if l["bearer"] == "vendor" and opex(l)]
     per_tenant = [l for l in vendor if l["level"] == "sponsor"]
     per_account = [l for l in vendor if l["level"] != "sponsor"]
+    future = restructure(run, om, accounts, dt, "future_operator_dedicated")[0]
+    dedicated = [l for l in future if l["bearer"] == "operator"]
     return {"om": om_key, "accounts": accounts, "sponsors": n,
+            "future_C1_dedicated_team_fee_per_sponsor_floor": sum(l["usd"] for l in dedicated) / n,
             "A_licence_fee_per_account_floor": sum(l["usd"] for l in per_account) / ay,
             "B_tenant_fee_per_sponsor_floor": sum(l["usd"] for l in per_tenant) / n,
             "vendor_cost_total_usd": sum(l["usd"] for l in vendor),

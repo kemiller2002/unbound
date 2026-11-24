@@ -4,6 +4,7 @@
    "A_licence_fee_per_account_floor": 59.264424000000005,
    "B_tenant_fee_per_sponsor_floor": 52000.0,
    "accounts": 100000,
+   "future_C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
    "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
    "om": "OM3",
    "sponsors": 20,
@@ -13,6 +14,7 @@
    "A_licence_fee_per_account_floor": 10.964424,
    "B_tenant_fee_per_sponsor_floor": 52000.0,
    "accounts": 1000000,
+   "future_C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
    "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
    "om": "OM3",
    "sponsors": 200,
@@ -22,6 +24,7 @@
    "A_licence_fee_per_account_floor": 9.9562,
    "B_tenant_fee_per_sponsor_floor": 52000.0,
    "accounts": 1000000,
+   "future_C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
    "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
    "om": "OM4",
    "sponsors": 50,
@@ -31,6 +34,7 @@
    "A_licence_fee_per_account_floor": 2.9481691001300803,
    "B_tenant_fee_per_sponsor_floor": 77000.0,
    "accounts": 5000000,
+   "future_C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
    "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
    "om": "OM5",
    "sponsors": 50,
@@ -1484,6 +1488,9 @@
    "rows": [
     {
      "existing_staff_time_used_usd": 14263.9664578125,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 907.5000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 825.0,
@@ -1494,6 +1501,9 @@
     },
     {
      "existing_staff_time_used_usd": 28527.932915625,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 453.75000000000006,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 1000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 412.5,
@@ -1504,6 +1514,9 @@
     },
     {
      "existing_staff_time_used_usd": 71319.8322890625,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 181.50000000000003,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 2500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 165.0,
@@ -1514,6 +1527,9 @@
     },
     {
      "existing_staff_time_used_usd": 142639.664578125,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 90.75000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 5000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 82.5,
@@ -1524,6 +1540,9 @@
     },
     {
      "existing_staff_time_used_usd": 285279.32915625,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 45.37500000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 10000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 41.25,
@@ -1534,6 +1553,9 @@
     },
     {
      "existing_staff_time_used_usd": 713198.322890625,
+     "future_operator_dedicated_fte": 4.5,
+     "future_operator_dedicated_per_account": 32.67,
+     "future_operator_dedicated_usd": 816750.0000000001,
      "sponsor_accounts": 25000,
      "sponsor_direct_fte": 6.0,
      "sponsor_direct_per_account": 39.6,
@@ -1544,6 +1566,9 @@
     },
     {
      "existing_staff_time_used_usd": 2852793.2915625,
+     "future_operator_dedicated_fte": 17.5,
+     "future_operator_dedicated_per_account": 31.762500000000006,
+     "future_operator_dedicated_usd": 3176250.0000000005,
      "sponsor_accounts": 100000,
      "sponsor_direct_fte": 23.5,
      "sponsor_direct_per_account": 38.775,
@@ -1563,6 +1588,9 @@
    "rows": [
     {
      "existing_staff_time_used_usd": 889.8978515625003,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 907.5000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 825.0,
@@ -1573,6 +1601,9 @@
     },
     {
      "existing_staff_time_used_usd": 1779.7957031250005,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 453.75000000000006,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 1000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 412.5,
@@ -1583,6 +1614,9 @@
     },
     {
      "existing_staff_time_used_usd": 4449.489257812501,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 181.50000000000003,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 2500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 165.0,
@@ -1593,6 +1627,9 @@
     },
     {
      "existing_staff_time_used_usd": 8898.978515625002,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 90.75000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 5000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 82.5,
@@ -1603,6 +1640,9 @@
     },
     {
      "existing_staff_time_used_usd": 17797.957031250004,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 45.37500000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 10000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 41.25,
@@ -1613,6 +1653,9 @@
     },
     {
      "existing_staff_time_used_usd": 44494.892578125015,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 18.150000000000002,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 25000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 16.5,
@@ -1623,6 +1666,9 @@
     },
     {
      "existing_staff_time_used_usd": 177979.57031250006,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 4.5375000000000005,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 100000,
      "sponsor_direct_fte": 3.0,
      "sponsor_direct_per_account": 4.95,
@@ -1642,6 +1688,9 @@
    "rows": [
     {
      "existing_staff_time_used_usd": 593.2652343749999,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 907.5000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 825.0,
@@ -1652,6 +1701,9 @@
     },
     {
      "existing_staff_time_used_usd": 1186.5304687499997,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 453.75000000000006,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 1000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 412.5,
@@ -1662,6 +1714,9 @@
     },
     {
      "existing_staff_time_used_usd": 2966.326171874999,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 181.50000000000003,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 2500,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 165.0,
@@ -1672,6 +1727,9 @@
     },
     {
      "existing_staff_time_used_usd": 5932.652343749998,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 90.75000000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 5000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 82.5,
@@ -1682,6 +1740,9 @@
     },
     {
      "existing_staff_time_used_usd": 11865.304687499996,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 45.37500000000001,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 10000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 41.25,
@@ -1692,6 +1753,9 @@
     },
     {
      "existing_staff_time_used_usd": 29663.26171874999,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 18.150000000000002,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 25000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 16.5,
@@ -1702,6 +1766,9 @@
     },
     {
      "existing_staff_time_used_usd": 118653.04687499996,
+     "future_operator_dedicated_fte": 2.5,
+     "future_operator_dedicated_per_account": 4.5375000000000005,
+     "future_operator_dedicated_usd": 453750.00000000006,
      "sponsor_accounts": 100000,
      "sponsor_direct_fte": 2.5,
      "sponsor_direct_per_account": 4.125,
