@@ -1,0 +1,53 @@
+{
+  "revA": {
+    "RR-UNB-NAV-008-r1": "RR-UNB-NAV-008-r1",
+    "RR-UNB-NAV-005-r1": "RR-UNB-NAV-005-r1",
+    "RR-UNB-ACC-022-r1": "RR-UNB-ACC-022-r1",
+    "RR-UNB-GFUND-011-r1": "RR-UNB-GFUND-011-r1",
+    "RR-UNB-GFUND-012-r1": "RR-UNB-GFUND-012-r1",
+    "RR-UNB-ACC-017-r1": "RR-UNB-ACC-017-r1",
+    "RR-UNB-ACC-004-r1": "RR-UNB-ACC-004-r1",
+    "RR-UNB-ACC-014-r2": "RR-UNB-ACC-014-r2",
+    "RR-UNB-ACC-008-r1": "RR-UNB-ACC-008-r1"
+  },
+  "revB": {
+    "RR-UNB-GRT-003-r1": "RR-UNB-GRT-003-r1",
+    "RR-UNB-EXT-028-r1": "RR-UNB-EXT-028-r1",
+    "RR-UNB-CHAR-013-r1": "RR-UNB-CHAR-013-r1",
+    "RR-REQ-X-007-r2": "RR-REQ-X-007-r2",
+    "RR-UNB-EXT-004-r2": "RR-UNB-EXT-004-r2"
+  },
+  "revC": {
+    "RR-SOC2-024-r1": "RR-SOC2-024-r1",
+    "RR-SOC2-007-r2": "RR-SOC2-007-r2",
+    "RR-OPS-004-r1": "RR-OPS-004-r1",
+    "RR-UNB-AI-STD-002-r1": "RR-UNB-AI-STD-002-r1",
+    "RR-AIN-027-r1": "RR-AIN-027-r1",
+    "RR-TVR-OPS-002-r1": "RR-TVR-OPS-002-r1",
+    "RR-MON-002-r1": "RR-MON-002-r1",
+    "RR-UNB-GOV-002-r1": "RR-UNB-GOV-002-r1",
+    "RR-UNB-VAL-001-r1": "RR-UNB-VAL-001-r1"
+  },
+  "revD": {
+    "RR-ADM-002-r1": "RR-ADM-002-r1",
+    "RR-ADM-003-r1": "RR-ADM-003-r1",
+    "RR-REQ-X-032-r1": "RR-REQ-X-032-r1"
+  },
+  "ops": {
+    "RR-REQ-X-048-r3": "RR-REQ-X-048-r3",
+    "RR-REQ-X-007-r2": "RR-REQ-X-007-r3",
+    "RR-UNB-ECO-003-r1": "RR-UNB-ECO-003-r1"
+  },
+  "cx": {
+    "RR-AIN-007-r1": "RR-AIN-007-r1",
+    "RR-ADM-042-r2": "RR-ADM-042-r2",
+    "RR-ADM-027-r1": "RR-ADM-027-r1",
+    "RR-ADM-048-r1": "RR-ADM-048-r1",
+    "RR-REQ-X-051-r2": "RR-REQ-X-051-r2",
+    "RR-REQ-X-043-r1": "RR-REQ-X-043-r1"
+  },
+  "eval": {
+    "RR-UNB-GRANT-030-r1": "RR-UNB-GRANT-030-r1",
+    "RR-UNB-RULE-019-r1": "RR-UNB-RULE-019-r1"
+  }
+}

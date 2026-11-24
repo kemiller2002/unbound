@@ -19,6 +19,10 @@ Gates (in addition to G1-G9, D2, D3, D5, D7, D8, D9 reused):
       their referenced IDs resolve; transfer candidates are independent of Unbound
   S6  identifiers cited in the mission Markdown reports resolve
 
+The review universe also includes the 14 distinct second definition sites listed as 'reviewed-separately' in
+data/second-site-accounting.csv. Identifiers defined outside the requirement corpus (Echelon component gap IDs) resolve
+through data/external-ids.csv, each with the file that defines it.
+
 Usage: python3 -I -B tools/reqaudit/validate_simplification.py <repo-root> [mission-dir]
 """
 from __future__ import annotations
@@ -59,14 +63,15 @@ def ids_of(data: Path) -> FrozenSet[str]:
     return jl | cv
 
 
-def universe(root: Path, recon: Path, disc: Path) -> FrozenSet[str]:
+def universe(root: Path, recon: Path, disc: Path, data_dir: Path) -> FrozenSet[str]:
     inv = v.load_csv(recon / "inventory.csv")
     base = frozenset(r["identifier"] for r in inv if r["kind"] == "requirement" and not r["identifier"].endswith("-Q"))
     recs = (frozenset(r["refinement_id"] for r in v.load_jsonl(recon / "refinements.jsonl"))
             | frozenset(g["id"] for g in v.load_jsonl(recon / "gap-requirements.jsonl"))
             | frozenset(r["refinement_id"] for r in v.load_jsonl(disc / "refinements.jsonl"))
             | frozenset(g["id"] for g in v.load_jsonl(disc / "gap-requirements.jsonl")))
-    return base | recs
+    second = frozenset(r["register_id"] for r in v.load_csv(data_dir / "second-site-accounting.csv") if r["action"] == "reviewed-separately")
+    return base | recs | second
 
 
 def g_scheme(new: FrozenSet[str], baseline: FrozenSet[str], prior: FrozenSet[str]) -> Tuple[Issue, ...]:
@@ -122,7 +127,8 @@ def main(argv) -> int:
             | frozenset(r["capability_id"] for r in v.load_csv(recon / "competitive-rollup.csv"))
             | frozenset(r["obligation_id"] for r in v.load_csv(recon / "regulatory-obligations.csv"))
             | frozenset(r["identifier"] for r in v.load_csv(recon / "withdrawn-ids.csv")))
-    known_undefined = frozenset(r["identifier"] for r in v.load_csv(recon / "undefined-references.csv"))
+    known_undefined = (frozenset(r["identifier"] for r in v.load_csv(recon / "undefined-references.csv"))
+                       | frozenset(r["identifier"] for r in v.load_csv(data / "external-ids.csv")))
     L, C = (lambda n: v.load_jsonl(data / n)), (lambda n: v.load_csv(data / n))
     refs_, gaps, reg = L("refinements.jsonl"), L("gap-requirements.jsonl"), L("register.jsonl")
     finds, confs, scens, decs = C("findings.csv"), C("conflicts.csv"), C("scenarios.csv"), C("decisions.csv")
@@ -154,7 +160,7 @@ def main(argv) -> int:
         *v.g_edges(edges, ok),
         *vd.g_fields("D2", gaps, "id", vd.SECTION11), *vd.g_enum("D3", gaps, "id", "priority", vd.PRIORITY),
         *vd.g_fields("D5", rejected, "id", ("idea", "argue_for", "argue_against", "reason_rejected")),
-        *g_register(reg, universe(root, recon, disc)),
+        *g_register(reg, universe(root, recon, disc, data)),
         *vd.g_refs_list("S2", reg, "id", ("dependencies", "consolidate_with"), ok),
         *g_metrics(metrics),
         *vd.g_fields("S5", work, "id", ("function", "activity", "trigger", "why_exists", "if_not_performed", "automation")),
