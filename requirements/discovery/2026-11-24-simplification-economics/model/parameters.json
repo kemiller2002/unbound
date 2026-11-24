@@ -1,0 +1,1829 @@
+{
+ "meta": {
+  "model": "ECN theoretical DAF enterprise simulation v1",
+  "date": "2026-11-24",
+  "seed": 20261124,
+  "mc_runs_normal": 300,
+  "mc_runs_scenarios": 100,
+  "labels": "S = sourced (cite), A = assumption, D = derived by stated arithmetic. Triangular(low, value, high) sampling for parameters with mc=true. Theoretical model inputs only; no parameter is a measured operating value.",
+  "src_keys": {
+   "EM": "unbound:research/daf-theoretical-enterprise-validation/15-economics/economic-model.md",
+   "FSM": "daf-landscape@6b3083a:research/ai-native-daf-enterprise/09-financial-models/financial-and-staffing-models.md",
+   "PREG": "daf-landscape@054c1b8:research/ai-native-daf-enterprise/09-financial-models/outputs/parameter-register.csv",
+   "OE": "unbound:requirements/discovery/2026-11-23-cross-industry/11-OPERATING-ECONOMICS.md",
+   "SVC": "unbound:requirements/discovery/2026-11-23-cross-industry/industry/svc.md",
+   "BNK": "unbound:requirements/discovery/2026-11-23-cross-industry/industry/bnk.md",
+   "GRT": "unbound:requirements/discovery/2026-11-23-cross-industry/industry/grt.md",
+   "INV": "unbound:requirements/discovery/2026-11-23-cross-industry/industry/inv.md",
+   "SCS": "daf-landscape@054c1b8:research/mission-2026-11-14/sponsor-cost-structure-and-sensitivities.md",
+   "CHE": "daf-landscape@054c1b8:research/challenger-economics-daffy-chariot-charityvest-2026-11-12.md",
+   "DED": "daf-landscape@054c1b8:research/daf-economics-and-distribution-2026-11-11.md",
+   "DIR": "daf-landscape@054c1b8:research/DAF-INDUSTRY-REPORT-2026-11.md",
+   "RCF": "daf-landscape@054c1b8:data/rcf-ren-audited-admin-payments-2020-2024.csv",
+   "BENCH": "unbound:requirements/discovery/2026-11-23-cross-industry/18-ARCHITECTURE-BENCHMARK.md"
+  }
+ },
+ "scales": [
+  1000,
+  10000,
+  100000,
+  1000000,
+  5000000
+ ],
+ "targets": [
+  258,
+  100,
+  50,
+  25,
+  10
+ ],
+ "params": {
+  "loaded_cost_per_fte": {
+   "value": 165000,
+   "low": 124507,
+   "high": 250000,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/FTE-yr",
+   "source": "PREG row 'loaded cost per FTE, AI-native' (assumed); low = Vanguard Charitable FY2024 staff cost/employee [S] EM:33; high EM:33 [A]"
+  },
+  "productive_hours": {
+   "value": 1600,
+   "low": 1400,
+   "high": 1600,
+   "mc": true,
+   "label": "A",
+   "unit": "h/FTE-yr",
+   "source": "EM:32"
+  },
+  "working_days": {
+   "value": 250,
+   "low": 250,
+   "high": 250,
+   "mc": false,
+   "label": "A",
+   "unit": "days",
+   "source": "EM:60"
+  },
+  "staffing_headroom": {
+   "value": 1.15,
+   "low": 1.0,
+   "high": 1.3,
+   "mc": false,
+   "label": "A",
+   "unit": "x",
+   "source": "assumption: base staffing above annual-average minutes (EM:75 shows 100% utilisation makes backlog permanent)"
+  },
+  "december_k": {
+   "value": 3,
+   "low": 2,
+   "high": 5,
+   "mc": true,
+   "label": "A",
+   "unit": "x daily arrivals",
+   "source": "EM:60-68; TVA-004 (unproven)"
+  },
+  "december_days": {
+   "value": 25,
+   "low": 25,
+   "high": 25,
+   "mc": false,
+   "label": "A",
+   "unit": "days",
+   "source": "EM:60"
+  },
+  "exception_rate": {
+   "value": 0.08,
+   "low": 0.028,
+   "high": 0.17,
+   "mc": true,
+   "label": "A",
+   "unit": "share of grants",
+   "source": "EM:30 (2.8% per-grant [S] low; 7-8.5% proxy [S]; 17% stress [A]); TVA-002"
+  },
+  "minutes_per_exception": {
+   "value": 45,
+   "low": 30,
+   "high": 135,
+   "mc": true,
+   "label": "A",
+   "unit": "min",
+   "source": "EM:31; TVA-003; 90 min unaided EV-106 per EM:51"
+  },
+  "determination_reuse": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "mc": false,
+   "label": "A",
+   "unit": "share of exceptions avoided by reusing recipient-level determinations",
+   "source": "FSM:91 (not modelled in baseline); EM:84 lever 'halve e'"
+  },
+  "grants_mult": {
+   "value": 1.0,
+   "low": 0.85,
+   "high": 1.6,
+   "mc": true,
+   "label": "A",
+   "unit": "x segment grant rates",
+   "source": "range chosen to span FY2024 observed 6.2 (RCF) to ~11.7 grants/account; 13.0 Fidelity [S] FSM:18"
+  },
+  "complex_share_mult": {
+   "value": 1.0,
+   "low": 0.5,
+   "high": 2.5,
+   "mc": true,
+   "label": "A",
+   "unit": "x segment complex-asset shares",
+   "source": "PREG complex share 2% [A]"
+  },
+  "complex_hours": {
+   "value": 12,
+   "low": 6,
+   "high": 30,
+   "mc": true,
+   "label": "A",
+   "unit": "h/complex gift",
+   "source": "PREG 'specialist hours per complex asset gift' (assumed; sensitivity 6-30)"
+  },
+  "contacts_mult": {
+   "value": 1.0,
+   "low": 0.5,
+   "high": 2.0,
+   "mc": true,
+   "label": "A",
+   "unit": "x segment contact rates",
+   "source": "SVC:162 (0.3 human contacts/account/yr is an assumption); GAP-006 unmeasured per FSM:13"
+  },
+  "contact_minutes": {
+   "value": 20,
+   "low": 10,
+   "high": 30,
+   "mc": true,
+   "label": "A",
+   "unit": "min/contact",
+   "source": "PREG 'minutes per human contact'"
+  },
+  "recon_break_rate": {
+   "value": 0.01,
+   "low": 0.002,
+   "high": 0.03,
+   "mc": true,
+   "label": "A",
+   "unit": "breaks/transaction",
+   "source": "EM:126; PREG (GAP-005 unmeasured)"
+  },
+  "break_minutes": {
+   "value": 20,
+   "low": 10,
+   "high": 40,
+   "mc": false,
+   "label": "A",
+   "unit": "min",
+   "source": "PREG"
+  },
+  "ach_return_rate": {
+   "value": 0.005,
+   "low": 0.002,
+   "high": 0.02,
+   "mc": true,
+   "label": "A",
+   "unit": "returns/ACH debit",
+   "source": "assumption; TVA-008 unproven; BNK:121 gives $2-5 + 10-20 min per return (illustrative)"
+  },
+  "return_minutes": {
+   "value": 15,
+   "low": 10,
+   "high": 20,
+   "mc": false,
+   "label": "A",
+   "unit": "min",
+   "source": "BNK:121 (illustrative)"
+  },
+  "new_account_share": {
+   "value": 0.15,
+   "low": 0.15,
+   "high": 0.15,
+   "mc": false,
+   "label": "D",
+   "unit": "share/yr",
+   "source": "D: FSM cost line customer acquisition $6.0m at 100k accounts / $400 CAC = 15,000 new accounts (FSM:85 and PREG)"
+  },
+  "cac": {
+   "value": 400,
+   "low": 150,
+   "high": 1000,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/new account",
+   "source": "PREG 'customer acquisition cost per new account' (advisor channel; no public DAF CAC)"
+  },
+  "ai_cost_per_dossier": {
+   "value": 0.9,
+   "low": 0.45,
+   "high": 4.0,
+   "mc": true,
+   "label": "S",
+   "unit": "USD",
+   "source": "PREG ('sourced': ~$0.45 heavy review EV-106 x2); high = EM:96 1%-of-cost threshold [D]"
+  },
+  "ai_interactions_per_account": {
+   "value": 4,
+   "low": 4,
+   "high": 4,
+   "mc": false,
+   "label": "A",
+   "unit": "/acct-yr",
+   "source": "PREG"
+  },
+  "ai_cost_per_interaction": {
+   "value": 0.05,
+   "low": 0.02,
+   "high": 0.5,
+   "mc": true,
+   "label": "A",
+   "unit": "USD",
+   "source": "PREG; SVC:164"
+  },
+  "ai_cost_per_grant_screen": {
+   "value": 0.02,
+   "low": 0.005,
+   "high": 0.31,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/grant",
+   "source": "assumption; EM:98 says benefit-risk agent runs on all grants, 1%-of-cost threshold $0.31/run [D]"
+  },
+  "infra_base": {
+   "value": 250000,
+   "low": 150000,
+   "high": 600000,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/yr",
+   "source": "PREG 'infrastructure, base per year'"
+  },
+  "infra_per_account": {
+   "value": 3.0,
+   "low": 0.5,
+   "high": 6.0,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/acct-yr",
+   "source": "PREG; BENCH:31-39 measured 2,127-3,944 tx/s on 4 vCPU [M] vs ~200 tx/s needed at Fidelity-scale burst, so compute capacity is not the binding cost"
+  },
+  "custody_bps": {
+   "value": 0.5,
+   "low": 0.0,
+   "high": 5.0,
+   "mc": true,
+   "label": "A",
+   "unit": "bps AUM (fund-borne)",
+   "source": "PREG 0.5 bps [A]; INV:144 0-5 bps (illustrative)"
+  },
+  "pool_expense_bps": {
+   "value": 26.3,
+   "low": 13.9,
+   "high": 27.4,
+   "mc": false,
+   "label": "S",
+   "unit": "bps AUM (fund-borne)",
+   "source": "INV:139; DIR:730 (Fidelity FY2025 26.3 bps; 27.4 FY2024; 13.9 per invested dollar)"
+  },
+  "ach_grant_cost": {
+   "value": 0.3,
+   "low": 0.1,
+   "high": 0.5,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/grant",
+   "source": "BNK:120 (illustrative); PREG"
+  },
+  "check_grant_cost": {
+   "value": 4.0,
+   "low": 2.0,
+   "high": 8.0,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/check grant all-in",
+   "source": "PREG; BNK:123 $2-8 (illustrative); OE:131 $6 example"
+  },
+  "wire_cost": {
+   "value": 25,
+   "low": 15,
+   "high": 35,
+   "mc": false,
+   "label": "A",
+   "unit": "USD",
+   "source": "BNK:122 (illustrative)"
+  },
+  "lockbox_check_cost": {
+   "value": 0.65,
+   "low": 0.65,
+   "high": 0.65,
+   "mc": false,
+   "label": "S",
+   "unit": "USD/check",
+   "source": "BNK:124 (Sunwest $0.65/check)"
+  },
+  "ach_debit_cost": {
+   "value": 0.3,
+   "low": 0.1,
+   "high": 0.5,
+   "mc": false,
+   "label": "A",
+   "unit": "USD",
+   "source": "BNK:121 (illustrative)"
+  },
+  "payroll_item_cost": {
+   "value": 0.02,
+   "low": 0.0,
+   "high": 0.1,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/payroll deduction item (batched employer file)",
+   "source": "assumption"
+  },
+  "dtc_receipt_cost": {
+   "value": 10,
+   "low": 0,
+   "high": 25,
+   "mc": false,
+   "label": "A",
+   "unit": "USD",
+   "source": "BNK DTC row $0-25 (illustrative)"
+  },
+  "card_fee_pct": {
+   "value": 0.022,
+   "low": 0.0048,
+   "high": 0.035,
+   "mc": false,
+   "label": "S",
+   "unit": "share of gift (donor/fund-borne)",
+   "source": "BNK:125 PayPal CGF 1.58%, BGF 0.48% [S]; 2-3.5% illustrative"
+  },
+  "insurance_base": {
+   "value": 150000,
+   "low": 100000,
+   "high": 400000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/yr, x(1+log10(A/1000))",
+   "source": "PREG; FSM cost-lines scaling [D]"
+  },
+  "audit_base": {
+   "value": 120000,
+   "low": 120000,
+   "high": 120000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/yr",
+   "source": "PREG"
+  },
+  "audit_bps": {
+   "value": 0.02,
+   "low": 0.02,
+   "high": 0.02,
+   "mc": false,
+   "label": "A",
+   "unit": "bps AUM",
+   "source": "PREG"
+  },
+  "legal_base": {
+   "value": 200000,
+   "low": 200000,
+   "high": 200000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/yr, x(1+log10(A/1000))",
+   "source": "PREG; FSM cost-lines [D]"
+  },
+  "data_base": {
+   "value": 100000,
+   "low": 100000,
+   "high": 100000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/yr",
+   "source": "PREG"
+  },
+  "identity_per_new": {
+   "value": 3.0,
+   "low": 3.0,
+   "high": 3.0,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/new account",
+   "source": "PREG"
+  },
+  "routine_eligibility_per_grant": {
+   "value": 0.14,
+   "low": 0.14,
+   "high": 0.14,
+   "mc": false,
+   "label": "S",
+   "unit": "USD/grant",
+   "source": "GRT:206 ($139k pool per 1M grants)"
+  },
+  "recurring_obligations_per_account": {
+   "value": 6.0,
+   "low": 2.0,
+   "high": 15.0,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/acct-yr (statements, attestations, letters)",
+   "source": "assumption; UNB-XIN-ADV-001 AC-2 example ($9.40 vs $6.00 budget) is illustrative"
+  },
+  "complex_vendor_fee": {
+   "value": 350,
+   "low": 150,
+   "high": 1500,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/complex gift (fund-borne when outsourced)",
+   "source": "assumption; INV:147 illiquid valuation $2k-25k per appraisal (illustrative) applies to illiquids only"
+  },
+  "accounts_per_sponsor": {
+   "value": 5000,
+   "low": 1000,
+   "high": 25000,
+   "mc": true,
+   "label": "A",
+   "unit": "accounts",
+   "source": "assumption; FSM:158 Model C needs clients >= ~20k accounts"
+  },
+  "sponsor_platform_cost": {
+   "value": 25000,
+   "low": 10000,
+   "high": 75000,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/sponsor-yr (platform-borne: config, policy pack upkeep, sponsor reporting, relationship)",
+   "source": "assumption"
+  },
+  "sponsor_onboarding_cost": {
+   "value": 60000,
+   "low": 20000,
+   "high": 250000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD one-off per sponsor, amortised 5 yrs",
+   "source": "assumption"
+  },
+  "sponsor_entity_cost": {
+   "value": 60000,
+   "low": 25000,
+   "high": 200000,
+   "mc": true,
+   "label": "A",
+   "unit": "USD/sponsor-yr (sponsor's own board, audit, 990, D&O: sponsor operating budget)",
+   "source": "assumption; INV:148 SOC 1 'low six figures' is platform-level (illustrative)"
+  },
+  "accounts_per_advisor": {
+   "value": 15,
+   "low": 5,
+   "high": 40,
+   "mc": false,
+   "label": "A",
+   "unit": "accounts/advisor",
+   "source": "assumption"
+  },
+  "advisor_relationship_cost": {
+   "value": 150,
+   "low": 50,
+   "high": 500,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/advisor-yr (entitlements, fee feed, authority recertification)",
+   "source": "assumption"
+  },
+  "advisor_onboarding_cost": {
+   "value": 400,
+   "low": 100,
+   "high": 2000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/advisor one-off",
+   "source": "assumption"
+  },
+  "build_capex": {
+   "value": 5000000,
+   "low": 3000000,
+   "high": 15000000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD one-off",
+   "source": "assumption; FSM:150-154 peak capital $2.5-35.8m by path [S model output]"
+  },
+  "avg_grant_scale": {
+   "value": 1.0,
+   "low": 0.9,
+   "high": 1.2,
+   "mc": true,
+   "label": "A",
+   "unit": "x segment grant sizes",
+   "source": "segment grant sizes calibrated near EM:104 $4.5-6k average [S per baseline]"
+  },
+  "contractor_premium": {
+   "value": 1.3,
+   "low": 1.3,
+   "high": 1.3,
+   "mc": false,
+   "label": "A",
+   "unit": "x loaded cost",
+   "source": "assumption"
+  },
+  "contractor_lead_days": {
+   "value": 10,
+   "low": 5,
+   "high": 20,
+   "mc": false,
+   "label": "A",
+   "unit": "working days",
+   "source": "assumption; EM:87 supply of legally competent reviewers unmeasured"
+  },
+  "contractor_max_frac": {
+   "value": 0.5,
+   "low": 0.5,
+   "high": 0.5,
+   "mc": false,
+   "label": "A",
+   "unit": "x base FTE",
+   "source": "assumption"
+  },
+  "seasonal_frac": {
+   "value": 0.0,
+   "low": 0.0,
+   "high": 0.0,
+   "mc": false,
+   "label": "A",
+   "unit": "x base FTE added in December",
+   "source": "policy parameter set per operating model"
+  },
+  "sla_exceptions_days": {
+   "value": 5,
+   "low": 5,
+   "high": 5,
+   "mc": false,
+   "label": "A",
+   "unit": "business days",
+   "source": "assumption; EM:76 staffing to SLA"
+  },
+  "sla_complex_days": {
+   "value": 10,
+   "low": 10,
+   "high": 10,
+   "mc": false,
+   "label": "A",
+   "unit": "business days",
+   "source": "assumption"
+  },
+  "sla_service_days": {
+   "value": 1,
+   "low": 1,
+   "high": 1,
+   "mc": false,
+   "label": "A",
+   "unit": "business days",
+   "source": "assumption"
+  },
+  "sla_ops_days": {
+   "value": 2,
+   "low": 2,
+   "high": 2,
+   "mc": false,
+   "label": "A",
+   "unit": "business days",
+   "source": "assumption"
+  },
+  "fraud_attempts_per_1000": {
+   "value": 2.0,
+   "low": 0.5,
+   "high": 6.0,
+   "mc": true,
+   "label": "A",
+   "unit": "attempts/1000 acct-yr",
+   "source": "assumption; loss magnitudes BNK:128 (Givinga $316,184; BEC $500,845; ACH redirection $565,787)"
+  },
+  "fraud_avg_attempt": {
+   "value": 20000,
+   "low": 5000,
+   "high": 100000,
+   "mc": false,
+   "label": "A",
+   "unit": "USD",
+   "source": "assumption"
+  },
+  "fraud_detection": {
+   "value": 0.97,
+   "low": 0.9,
+   "high": 0.995,
+   "mc": true,
+   "label": "A",
+   "unit": "share caught pre-payment",
+   "source": "assumption; TVA-009 unproven"
+  },
+  "provisional_credit_exposure": {
+   "value": 0.05,
+   "low": 0.0,
+   "high": 0.2,
+   "mc": false,
+   "label": "A",
+   "unit": "share of returned contribution value already granted",
+   "source": "assumption; TVA-007/TVA-008"
+  },
+  "taxable_share": {
+   "value": 0.1,
+   "low": 0.02,
+   "high": 0.3,
+   "mc": false,
+   "label": "A",
+   "unit": "share of erroneous grants that are taxable distributions",
+   "source": "assumption; EM:109"
+  },
+  "excise_rate": {
+   "value": 0.2,
+   "low": 0.2,
+   "high": 0.2,
+   "mc": false,
+   "label": "S",
+   "unit": "share",
+   "source": "EM:109 (IRC 4966 20% on sponsor; REG-001)"
+  },
+  "post_payment_recovery": {
+   "value": 0.6,
+   "low": 0.3,
+   "high": 0.9,
+   "mc": false,
+   "label": "A",
+   "unit": "share recovered",
+   "source": "assumption; TVR-ECON-003 says measure"
+  },
+  "cyber_cost_per_record": {
+   "value": 50,
+   "low": 10,
+   "high": 200,
+   "mc": false,
+   "label": "A",
+   "unit": "USD/affected account",
+   "source": "unverified - general knowledge; assumption"
+  },
+  "december_seasonal_premium": {
+   "value": 1.3,
+   "low": 1.3,
+   "high": 1.3,
+   "mc": false,
+   "label": "A",
+   "unit": "x loaded cost",
+   "source": "assumption"
+  },
+  "check_share_mult": {
+   "value": 1.0,
+   "low": 1.0,
+   "high": 1.0,
+   "mc": false,
+   "label": "A",
+   "unit": "x segment check shares for grants",
+   "source": "policy lever: ACH default for grantees (BNK:130 steering lever; Seattle Foundation ACH mandatory 2026-06-30)"
+  },
+  "payroll_batch_size": {
+   "value": 50,
+   "low": 20,
+   "high": 500,
+   "mc": false,
+   "label": "A",
+   "unit": "payroll items per employer remittance batch (reconciled per batch)",
+   "source": "assumption"
+  }
+ },
+ "segments": {
+  "inactive": {
+   "label": "A",
+   "balance": 3000,
+   "grants": 0.3,
+   "avg_grant": 300,
+   "contribs": 0.1,
+   "avg_contrib": 1000,
+   "contacts": 0.05,
+   "contact_min_mult": 1.0,
+   "exc_mult": 1.0,
+   "check_share": 0.2,
+   "complex_share": 0.0,
+   "mix": {
+    "ach": 0.5,
+    "card": 0.2,
+    "check": 0.3
+   },
+   "advisor": false,
+   "note": "22% share basis: DIR:763 (DAFRC 2024: 22% of accounts inactive 2020-22) [S]; activity values [A]"
+  },
+  "small_recurring": {
+   "label": "A",
+   "balance": 5000,
+   "grants": 4,
+   "avg_grant": 300,
+   "contribs": 12,
+   "avg_contrib": 100,
+   "contacts": 0.2,
+   "contact_min_mult": 1.0,
+   "exc_mult": 0.5,
+   "check_share": 0.1,
+   "complex_share": 0.0,
+   "mix": {
+    "ach": 0.7,
+    "card": 0.3
+   },
+   "advisor": false,
+   "note": "median DAF gift $300 DIR:773 [S]; rest [A]"
+  },
+  "typical": {
+   "label": "A",
+   "balance": 60000,
+   "grants": 8,
+   "avg_grant": 3000,
+   "contribs": 2,
+   "avg_contrib": 12000,
+   "contacts": 0.3,
+   "contact_min_mult": 1.0,
+   "exc_mult": 1.0,
+   "check_share": 0.1,
+   "complex_share": 0.02,
+   "mix": {
+    "ach": 0.4,
+    "card": 0.05,
+    "check": 0.25,
+    "wire": 0.1,
+    "dtc": 0.2
+   },
+   "advisor": false,
+   "note": "grants 8 and contacts 0.3 as FSM:18/PREG [A]"
+  },
+  "highly_active": {
+   "label": "A",
+   "balance": 150000,
+   "grants": 40,
+   "avg_grant": 2000,
+   "contribs": 4,
+   "avg_contrib": 10000,
+   "contacts": 0.8,
+   "contact_min_mult": 1.0,
+   "exc_mult": 0.8,
+   "check_share": 0.05,
+   "complex_share": 0.02,
+   "mix": {
+    "ach": 0.4,
+    "card": 0.1,
+    "check": 0.2,
+    "wire": 0.1,
+    "dtc": 0.2
+   },
+   "advisor": false,
+   "note": "[A]"
+  },
+  "hnw": {
+   "label": "A",
+   "balance": 1500000,
+   "grants": 20,
+   "avg_grant": 15000,
+   "contribs": 3,
+   "avg_contrib": 150000,
+   "contacts": 1.5,
+   "contact_min_mult": 1.5,
+   "exc_mult": 1.5,
+   "check_share": 0.15,
+   "complex_share": 0.15,
+   "mix": {
+    "ach": 0.1,
+    "check": 0.1,
+    "wire": 0.3,
+    "dtc": 0.5
+   },
+   "advisor": false,
+   "note": "[A]"
+  },
+  "institutional": {
+   "label": "A",
+   "balance": 10000000,
+   "grants": 60,
+   "avg_grant": 50000,
+   "contribs": 6,
+   "avg_contrib": 500000,
+   "contacts": 4.0,
+   "contact_min_mult": 2.0,
+   "exc_mult": 2.5,
+   "check_share": 0.1,
+   "complex_share": 0.2,
+   "mix": {
+    "wire": 0.6,
+    "dtc": 0.4
+   },
+   "advisor": false,
+   "note": "[A]"
+  },
+  "advisor_managed": {
+   "label": "A",
+   "balance": 300000,
+   "grants": 8,
+   "avg_grant": 5000,
+   "contribs": 2,
+   "avg_contrib": 60000,
+   "contacts": 0.4,
+   "contact_min_mult": 1.0,
+   "exc_mult": 1.2,
+   "check_share": 0.1,
+   "complex_share": 0.05,
+   "mix": {
+    "ach": 0.2,
+    "check": 0.1,
+    "wire": 0.2,
+    "dtc": 0.5
+   },
+   "advisor": true,
+   "note": "[A]; balance near Fidelity avg $323k (D from FSM:27)"
+  },
+  "workplace": {
+   "label": "A",
+   "balance": 1500,
+   "grants": 3,
+   "avg_grant": 150,
+   "contribs": 26,
+   "avg_contrib": 40,
+   "contacts": 0.1,
+   "contact_min_mult": 1.0,
+   "exc_mult": 0.3,
+   "check_share": 0.02,
+   "complex_share": 0.0,
+   "mix": {
+    "payroll": 1.0
+   },
+   "advisor": false,
+   "note": "[A] biweekly payroll deduction"
+  },
+  "baseline09": {
+   "label": "S/A",
+   "balance": 300000,
+   "grants": 8,
+   "avg_grant": 5000,
+   "contribs": 2,
+   "avg_contrib": 25000,
+   "contacts": 0.3,
+   "contact_min_mult": 1.0,
+   "exc_mult": 1.0,
+   "check_share": 0.1,
+   "complex_share": 0.02,
+   "mix": {
+    "uncosted": 1.0
+   },
+   "advisor": false,
+   "note": "replica of FSM uniform account: $300k avg balance, 8 grants, 2 contributions, 2% complex, 90% electronic (PREG)"
+  }
+ },
+ "mixes": {
+  "market": {
+   "inactive": 0.22,
+   "small_recurring": 0.23,
+   "typical": 0.25,
+   "highly_active": 0.05,
+   "hnw": 0.04,
+   "institutional": 0.005,
+   "advisor_managed": 0.105,
+   "workplace": 0.1
+  },
+  "baseline09": {
+   "baseline09": 1.0
+  },
+  "digital_minimal": {
+   "inactive": 0.15,
+   "small_recurring": 0.4,
+   "workplace": 0.45
+  }
+ },
+ "operating_models": {
+  "OM0_REPLICA": {
+   "name": "Replica of daf-landscape 09 baseline (uniform $300k account)",
+   "mix": "baseline09",
+   "platform": false,
+   "cac_bearer": "sponsor",
+   "overrides": {
+    "staffing_headroom": {
+     "set": 1.0
+    },
+    "ach_return_rate": {
+     "set": 0.0
+    },
+    "recurring_obligations_per_account": {
+     "set": 0.0
+    },
+    "ai_cost_per_grant_screen": {
+     "set": 0.0
+    },
+    "routine_eligibility_per_grant": {
+     "set": 0.0
+    }
+   },
+   "contractors": false,
+   "outsource_complex": false
+  },
+  "OM1": {
+   "name": "AI-native self-operated sponsor, baseline levers",
+   "mix": "market",
+   "platform": false,
+   "cac_bearer": "sponsor",
+   "overrides": {},
+   "contractors": true,
+   "outsource_complex": false
+  },
+  "OM2": {
+   "name": "Lean AI-native self-operated sponsor (elimination levers)",
+   "mix": "market",
+   "platform": false,
+   "cac_bearer": "sponsor",
+   "overrides": {
+    "determination_reuse": {
+     "set": 0.5
+    },
+    "minutes_per_exception": {
+     "mult": 0.667
+    },
+    "contacts_mult": {
+     "mult": 0.6
+    },
+    "recon_break_rate": {
+     "mult": 0.3
+    },
+    "complex_hours": {
+     "set": 2.0
+    },
+    "seasonal_frac": {
+     "set": 0.5
+    },
+    "recurring_obligations_per_account": {
+     "mult": 0.5
+    },
+    "check_share_mult": {
+     "set": 0.2
+    }
+   },
+   "contractors": true,
+   "outsource_complex": true
+  },
+  "OM3": {
+   "name": "Shared multi-sponsor platform with OM2 levers (Model C-like); CAC borne by sponsors' distribution",
+   "mix": "market",
+   "platform": true,
+   "cac_bearer": "sponsor_distribution",
+   "overrides": {
+    "determination_reuse": {
+     "set": 0.5
+    },
+    "minutes_per_exception": {
+     "mult": 0.667
+    },
+    "contacts_mult": {
+     "mult": 0.6
+    },
+    "recon_break_rate": {
+     "mult": 0.3
+    },
+    "complex_hours": {
+     "set": 2.0
+    },
+    "seasonal_frac": {
+     "set": 0.5
+    },
+    "recurring_obligations_per_account": {
+     "mult": 0.5
+    },
+    "check_share_mult": {
+     "set": 0.2
+    }
+   },
+   "contractors": true,
+   "outsource_complex": true
+  },
+  "OM4": {
+   "name": "DigitalMinimal servicing class on shared platform (workplace / small-balance book)",
+   "mix": "digital_minimal",
+   "platform": true,
+   "cac_bearer": "employer",
+   "overrides": {
+    "determination_reuse": {
+     "set": 0.7
+    },
+    "minutes_per_exception": {
+     "mult": 0.667
+    },
+    "contacts_mult": {
+     "mult": 0.3
+    },
+    "recon_break_rate": {
+     "mult": 0.3
+    },
+    "complex_hours": {
+     "set": 2.0
+    },
+    "seasonal_frac": {
+     "set": 0.5
+    },
+    "recurring_obligations_per_account": {
+     "set": 0.5
+    },
+    "check_share_mult": {
+     "set": 0.1
+    },
+    "ai_interactions_per_account": {
+     "set": 2
+    },
+    "accounts_per_sponsor": {
+     "mult": 4.0
+    }
+   },
+   "contractors": true,
+   "outsource_complex": true
+  },
+  "OM5": {
+   "name": "DigitalMinimal at engineered floor (what must be true for ~$10)",
+   "mix": "digital_minimal",
+   "platform": true,
+   "cac_bearer": "employer",
+   "overrides": {
+    "determination_reuse": {
+     "set": 0.8
+    },
+    "minutes_per_exception": {
+     "mult": 0.667
+    },
+    "contacts_mult": {
+     "mult": 0.15
+    },
+    "recon_break_rate": {
+     "mult": 0.1
+    },
+    "complex_hours": {
+     "set": 2.0
+    },
+    "seasonal_frac": {
+     "set": 0.5
+    },
+    "recurring_obligations_per_account": {
+     "set": 0.25
+    },
+    "check_share_mult": {
+     "set": 0.0
+    },
+    "ai_interactions_per_account": {
+     "set": 1
+    },
+    "accounts_per_sponsor": {
+     "set": 100000
+    },
+    "infra_per_account": {
+     "mult": 0.25
+    },
+    "sponsor_platform_cost": {
+     "set": 50000
+    },
+    "sponsor_entity_cost": {
+     "set": 150000
+    },
+    "ach_return_rate": {
+     "mult": 0.5
+    }
+   },
+   "contractors": true,
+   "outsource_complex": true
+  }
+ },
+ "scenarios": {
+  "normal": {
+   "window": [
+    225,
+    250
+   ],
+   "effects": [],
+   "exposure": []
+  },
+  "december_peak": {
+   "window": [
+    225,
+    250
+   ],
+   "effects": [
+    {
+     "type": "december_k",
+     "value": 5
+    }
+   ],
+   "exposure": []
+  },
+  "market_downturn": {
+   "window": [
+    150,
+    250
+   ],
+   "effects": [
+    {
+     "type": "aum_mult",
+     "value": 0.7
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 150,
+     "end": 250,
+     "value": 1.3
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "exceptions",
+     "start": 150,
+     "end": 250,
+     "value": 1.1
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "overcommit",
+     "share": 0.02,
+     "drawdown": 0.3
+    }
+   ]
+  },
+  "sudden_growth": {
+   "window": [
+    100,
+    160
+   ],
+   "effects": [
+    {
+     "type": "accounts_step",
+     "day": 100,
+     "frac": 0.5
+    },
+    {
+     "type": "one_off_new",
+     "queue": "service",
+     "start": 100,
+     "end": 160,
+     "per_account": 0.5
+    }
+   ],
+   "exposure": []
+  },
+  "major_sponsor_onboarding": {
+   "window": [
+    120,
+    150
+   ],
+   "effects": [
+    {
+     "type": "accounts_step",
+     "day": 120,
+     "frac": 0.25
+    },
+    {
+     "type": "one_off_new",
+     "queue": "ops",
+     "start": 120,
+     "end": 150,
+     "per_account": 0.1
+    },
+    {
+     "type": "one_off_new",
+     "queue": "service",
+     "start": 120,
+     "end": 150,
+     "per_account": 0.3
+    },
+    {
+     "type": "extra_cost",
+     "usd": 150000,
+     "label": "sponsor onboarding project"
+    }
+   ],
+   "exposure": []
+  },
+  "charity_revocation_wave": {
+   "window": [
+    60,
+    80
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "exceptions",
+     "start": 60,
+     "end": 80,
+     "value": 1.5
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 60,
+     "end": 80,
+     "value": 1.2
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "revocation",
+     "revoked_share": 0.005,
+     "pipeline_days": 5,
+     "registry_coverage": 0.995,
+     "lag_days": 1
+    }
+   ]
+  },
+  "payment_failures": {
+   "window": [
+    100,
+    110
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "ops",
+     "start": 100,
+     "end": 110,
+     "value": 6.0
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 100,
+     "end": 110,
+     "value": 1.5
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "payment_failure",
+     "days": 10,
+     "fail_share": 0.05,
+     "duplicate_risk": 0.001
+    }
+   ]
+  },
+  "contribution_reversals": {
+   "window": [
+    30,
+    60
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "ops",
+     "start": 30,
+     "end": 60,
+     "value": 3.0
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 30,
+     "end": 60,
+     "value": 1.2
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "contribution_reversal",
+     "return_mult": 6.0,
+     "days": 30
+    }
+   ]
+  },
+  "fraud_attempts": {
+   "window": [
+    150,
+    170
+   ],
+   "effects": [
+    {
+     "type": "one_off",
+     "queue": "exceptions",
+     "start": 150,
+     "end": 170,
+     "per_account": 0.005
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "fraud",
+     "mult": 20.0,
+     "days": 20
+    }
+   ]
+  },
+  "complex_asset_surge": {
+   "window": [
+    200,
+    250
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "complex",
+     "start": 200,
+     "end": 250,
+     "value": 3.0
+    }
+   ],
+   "exposure": []
+  },
+  "staff_absence": {
+   "window": [
+    225,
+    240
+   ],
+   "effects": [
+    {
+     "type": "capacity_mult",
+     "queue": "all",
+     "start": 225,
+     "end": 240,
+     "value": 0.75
+    }
+   ],
+   "exposure": []
+  },
+  "vendor_outage": {
+   "window": [
+    230,
+    233
+   ],
+   "effects": [
+    {
+     "type": "one_off",
+     "queue": "ops",
+     "start": 233,
+     "end": 238,
+     "per_account": 0.02
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 230,
+     "end": 240,
+     "value": 2.0
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "payment_failure",
+     "days": 3,
+     "fail_share": 1.0,
+     "duplicate_risk": 0.001
+    }
+   ]
+  },
+  "ai_outage": {
+   "window": [
+    228,
+    233
+   ],
+   "effects": [
+    {
+     "type": "handle_mult",
+     "queue": "exceptions",
+     "start": 228,
+     "end": 233,
+     "value": 2.0
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 228,
+     "end": 233,
+     "value": 3.0
+    }
+   ],
+   "exposure": []
+  },
+  "incorrect_ai_outputs": {
+   "window": [
+    100,
+    130
+   ],
+   "effects": [
+    {
+     "type": "one_off_from_grants",
+     "queue": "exceptions",
+     "start": 110,
+     "end": 130,
+     "f": 0.01,
+     "approved_days": 5
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "ai_error",
+     "f": 0.01,
+     "detect_days": [
+      2,
+      5,
+      15
+     ]
+    }
+   ]
+  },
+  "bank_reconciliation_discrepancies": {
+   "window": [
+    60,
+    80
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "ops",
+     "start": 60,
+     "end": 80,
+     "value": 10.0
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "recon",
+     "days": 20,
+     "mult": 10.0
+    }
+   ]
+  },
+  "regulatory_change": {
+   "window": [
+    180,
+    230
+   ],
+   "effects": [
+    {
+     "type": "arrival_mult",
+     "queue": "exceptions",
+     "start": 180,
+     "end": 250,
+     "value": 1.2
+    },
+    {
+     "type": "one_off",
+     "queue": "service",
+     "start": 180,
+     "end": 230,
+     "per_account": 0.05
+    },
+    {
+     "type": "one_off",
+     "queue": "exceptions",
+     "start": 180,
+     "end": 230,
+     "per_account": 0.01
+    },
+    {
+     "type": "extra_cost",
+     "usd": 150000,
+     "label": "counsel and policy change"
+    }
+   ],
+   "exposure": []
+  },
+  "cyber_incident": {
+   "window": [
+    140,
+    162
+   ],
+   "effects": [
+    {
+     "type": "one_off",
+     "queue": "ops",
+     "start": 142,
+     "end": 147,
+     "per_account": 0.01
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 142,
+     "end": 162,
+     "value": 4.0
+    },
+    {
+     "type": "extra_cost",
+     "usd": 500000,
+     "label": "forensics and response"
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "cyber",
+     "affected_share": 0.1
+    }
+   ]
+  },
+  "data_corruption": {
+   "window": [
+    170,
+    175
+   ],
+   "effects": [
+    {
+     "type": "one_off",
+     "queue": "ops",
+     "start": 170,
+     "end": 180,
+     "per_account": 0.05
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "exceptions",
+     "start": 170,
+     "end": 180,
+     "value": 1.2
+    },
+    {
+     "type": "extra_cost",
+     "usd": 100000,
+     "label": "restore and replay"
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "data_corruption",
+     "days": 5,
+     "share": 0.02
+    }
+   ]
+  },
+  "sponsor_termination": {
+   "window": [
+    150,
+    180
+   ],
+   "effects": [
+    {
+     "type": "accounts_step",
+     "day": 150,
+     "frac": -0.3
+    },
+    {
+     "type": "one_off_departing",
+     "queue": "ops",
+     "start": 150,
+     "end": 180,
+     "per_account": 0.05
+    },
+    {
+     "type": "one_off_departing",
+     "queue": "service",
+     "start": 150,
+     "end": 180,
+     "per_account": 0.2
+    }
+   ],
+   "exposure": []
+  },
+  "major_migration": {
+   "window": [
+    60,
+    120
+   ],
+   "effects": [
+    {
+     "type": "accounts_step",
+     "day": 60,
+     "frac": 1.0
+    },
+    {
+     "type": "one_off_new",
+     "queue": "ops",
+     "start": 60,
+     "end": 120,
+     "per_account": 0.15
+    },
+    {
+     "type": "one_off_new",
+     "queue": "service",
+     "start": 60,
+     "end": 120,
+     "per_account": 0.5
+    },
+    {
+     "type": "one_off_new",
+     "queue": "exceptions",
+     "start": 60,
+     "end": 120,
+     "per_account": 0.02
+    },
+    {
+     "type": "extra_cost",
+     "usd": 400000,
+     "label": "migration programme"
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "data_corruption",
+     "days": 3,
+     "share": 0.01
+    }
+   ]
+  },
+  "simultaneous_failures": {
+   "window": [
+    225,
+    250
+   ],
+   "effects": [
+    {
+     "type": "december_k",
+     "value": 4
+    },
+    {
+     "type": "capacity_mult",
+     "queue": "all",
+     "start": 225,
+     "end": 240,
+     "value": 0.75
+    },
+    {
+     "type": "one_off",
+     "queue": "ops",
+     "start": 233,
+     "end": 238,
+     "per_account": 0.02
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "service",
+     "start": 228,
+     "end": 240,
+     "value": 3.0
+    },
+    {
+     "type": "handle_mult",
+     "queue": "exceptions",
+     "start": 228,
+     "end": 233,
+     "value": 2.0
+    },
+    {
+     "type": "arrival_mult",
+     "queue": "ops",
+     "start": 225,
+     "end": 245,
+     "value": 5.0
+    }
+   ],
+   "exposure": [
+    {
+     "kind": "payment_failure",
+     "days": 3,
+     "fail_share": 1.0,
+     "duplicate_risk": 0.001
+    },
+    {
+     "kind": "recon",
+     "days": 20,
+     "mult": 5.0
+    }
+   ]
+  }
+ },
+ "revenue_models": {
+  "asset_tiered_min100": {
+   "label": "S",
+   "tiers_bps": [
+    [
+     500000,
+     60
+    ],
+    [
+     500000,
+     30
+    ],
+    [
+     1500000,
+     20
+    ],
+    [
+     2500000,
+     15
+    ],
+    [
+     1000000000000000.0,
+     15
+    ]
+   ],
+   "minimum": 100,
+   "source": "DED:66 Fidelity Charitable 60/30/20/15 bps, $100 minimum"
+  },
+  "asset_tiered_min250": {
+   "label": "S",
+   "tiers_bps": [
+    [
+     500000,
+     60
+    ],
+    [
+     500000,
+     30
+    ],
+    [
+     1500000,
+     20
+    ],
+    [
+     2500000,
+     15
+    ],
+    [
+     1000000000000000.0,
+     15
+    ]
+   ],
+   "minimum": 250,
+   "source": "DED:65 RCF donor-directed, $250 minimum"
+  },
+  "asset_flat_no_min": {
+   "label": "A",
+   "flat_bps": 60,
+   "minimum": 0,
+   "source": "assumption (0.60% used in daf-landscape@054c1b8 findings:25)"
+  },
+  "subscription": {
+   "label": "S/A",
+   "per_segment_annual": {
+    "inactive": 0,
+    "small_recurring": 36,
+    "typical": 60,
+    "highly_active": 240,
+    "hnw": 480,
+    "institutional": 480,
+    "advisor_managed": 240,
+    "workplace": 36
+   },
+   "source": "CHE:9 Daffy $3/$5/$20/$40 per month tiers [S]; mapping to segments [A]"
+  },
+  "transaction": {
+   "label": "A",
+   "per_grant": 2.0,
+   "contrib_pct": 0.01,
+   "contrib_cap": 100,
+   "source": "assumption"
+  },
+  "employer_sponsored": {
+   "label": "A",
+   "employer_per_workplace_account": 12,
+   "else": "asset_tiered_min100",
+   "source": "assumption"
+  },
+  "advisor_sponsored": {
+   "label": "S/A",
+   "advisor_tiers_bps": [
+    [
+     500000,
+     65
+    ],
+    [
+     500000,
+     35
+    ],
+    [
+     1500000,
+     25
+    ],
+    [
+     2500000,
+     20
+    ],
+    [
+     1000000000000000.0,
+     20
+    ]
+   ],
+   "platform_share": 0.5,
+   "else": "asset_tiered_min100",
+   "source": "DED:64 RCF advisor-managed 65/35/25/20 bps, $250 min [S]; 50% fee share [A] FSM:156"
+  },
+  "institutional_licensing": {
+   "label": "S/A",
+   "per_account": 200,
+   "range": [
+    150,
+    300
+   ],
+   "source": "FSM:140 Model C needs >=$200-300/account [S model output]; RCF->Ren $744.48 per year-end DAF FY2024, explicitly NOT ARPU [S] RCF:6"
+  },
+  "hybrid": {
+   "label": "A",
+   "base": 25,
+   "flat_bps": 30,
+   "minimum": 0,
+   "source": "assumption"
+  },
+  "transparent_cross_subsidy": {
+   "label": "A",
+   "flat_bps": 60,
+   "threshold": 25000,
+   "below_threshold_fee": 0,
+   "source": "assumption"
+  }
+ }
+}
