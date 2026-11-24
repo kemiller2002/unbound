@@ -1,21 +1,22 @@
 #!/usr/bin/env python3
-"""SPD-ADV-001 decision applied: one decision team per sponsor (never shared).
+"""Owner decisions SPD-ADV-001 and SPD-ADV-004 applied to the executed model.
 
-Owner decision (2026-11-24, product owner): no single team may exercise
-legally reserved (A3+) authority for more than one sponsor. Every sponsor has
-its own decision team. A sponsor may staff that team itself ("self-staffed");
-otherwise the operator supplies a team dedicated to that sponsor alone
-("operator-dedicated"). Pricing must reflect which option the sponsor picks.
+SPD-ADV-001 (2026-11-24): no team may exercise legally reserved (A3+) authority
+for more than one sponsor; every sponsor has its own decision team.
+SPD-ADV-004 (2026-11-24): Unbound is a software platform only. Unbound builds
+and runs the software; the organizations that use it (a sponsor directly, or a
+third-party administrator acting for several sponsors) employ every person who
+does human work. Operator-supplied staff are a future option kept as a hook.
 
-This script re-runs the executed model (model.py, unchanged) and restructures
-only the cost lines that the decision affects. It is pure: each function maps
-inputs to outputs; nothing is mutated after construction.
+This script re-runs the executed model (model.py, unchanged) and re-assigns
+cost lines by who bears them. It is pure: functions map inputs to outputs and
+nothing is mutated after construction.
 
 Run:  python3 -I -B decision_teams.py [parameters.json] [output_dir]
 Writes decision-teams-results.json and decision-teams-results.csv.
 
 THEORETICAL MODEL: every output follows from labelled assumptions. The new
-assumptions are in DT_PARAMS below and are all [A].
+assumptions are in DT_PARAMS and VENDOR_LINES below and are all [A].
 """
 import csv
 import json
@@ -28,25 +29,37 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import model as M  # noqa: E402  (the unchanged executed model)
 
-# Queues whose decisions are legally reserved to the sponsor (A3+): exception
-# grants and complex-gift acceptance. Service and ops work is not reserved and
-# stays pooled. Conservative [A]: the whole queue is treated as reserved.
+# Queues whose decisions are reserved to the sponsor (A3+): exception grants and
+# complex-gift acceptance. Conservative [A]: the whole queue is treated as reserved.
 RESERVED = ("exceptions", "complex")
+STAFFED = ("exceptions", "complex", "service", "ops")
 
 DT_PARAMS = {
     "team_floor_fte": {"value": 2.5, "low": 2.0, "high": 3.5, "label": "A",
-                       "source": "two-person approval for A3+ decisions plus absence cover; same floor as adversarial variant V1 (SPF-ADV-001)"},
+                       "source": "five named authority holders x 0.5 minimum time share (report 10, S1 floor); covers two-person approval and absence"},
     "team_granularity_fte": {"value": 0.5, "label": "A",
-                             "source": "a team is hired in half-FTE steps (part-time staff may serve one sponsor only)"},
+                             "source": "staff hired in half-FTE steps; a part-time person serves one sponsor only"},
     "dedicated_mgmt_overhead": {"value": 0.10, "low": 0.05, "high": 0.20, "label": "A",
-                                "source": "operator supervision, appointment paperwork and conflict attestation per dedicated team"},
-    "self_staffed_loaded_cost_mult": {"value": 1.0, "low": 0.8, "high": 1.3, "label": "A",
-                                      "source": "sponsor's own loaded cost per FTE relative to the operator's"},
-    "self_staffed_support_cost": {"value": 15000, "low": 5000, "high": 30000, "label": "A",
-                                  "source": "operator-borne per self-staffed sponsor: authority-register set-up, training, attestation evidence, audit support (USD/yr)"},
+                                "source": "future option only: operator supervision and appointment paperwork per dedicated team"},
+    "customer_loaded_cost_mult": {"value": 1.0, "low": 0.8, "high": 1.3, "label": "A",
+                                  "source": "customer's loaded cost per FTE relative to model.py loaded_cost_per_fte"},
+    "tenant_authority_setup_cost": {"value": 15000, "low": 5000, "high": 30000, "label": "A",
+                                    "source": "vendor-borne per sponsor tenant: authority-register set-up, training material, attestation evidence, audit support (USD/yr)"},
 }
-MODES = ("pooled_v1_baseline", "operator_dedicated", "self_staffed")
-OMS = ("OM1", "OM2", "OM3", "OM4", "OM5")
+
+# Lines Unbound bears as the software vendor [A]. Everything else that is
+# operating cost falls on the customer (sponsor or administrator).
+VENDOR_LINES = frozenset({
+    "staff:leadership", "staff:engineering", "staff:agent_ownership", "staff:security",
+    "staff:philanthropic_intelligence", "ai_inference", "infrastructure_base", "infrastructure_per_account",
+    "data_providers", "eligibility_screening", "identity_new_accounts", "insurance",
+    "sponsor_level:platform_service", "tenant:authority_setup",
+})
+
+# Active modes for release 1, plus the reference and the future hook.
+MODES = ("pooled_v1_baseline", "sponsor_direct", "via_administrator", "future_operator_dedicated")
+ACTIVE = ("sponsor_direct", "via_administrator")
+OMS = ("OM3", "OM4", "OM5")
 SPONSOR_SIZES = (500, 1000, 2500, 5000, 10000, 25000, 100000)
 
 
@@ -64,45 +77,56 @@ def round_up(x, step):
     return math.ceil(x / step - 1e-9) * step
 
 
-def reserved_workload_fte(v, vol):
-    """Unrounded FTE of reserved decision work for the whole book."""
+def workload_fte(v, vol, queues):
+    """Unrounded FTE of human work in the given queues for the whole book."""
     handle = M.handle_minutes(v, vol)
-    return sum(vol[q] * handle[q] / 60.0 / v["productive_hours"] * v["staffing_headroom"] for q in RESERVED)
+    arrivals = M.queue_annual_arrivals(vol)
+    return sum(arrivals[q] * handle[q] / 60.0 / v["productive_hours"] * v["staffing_headroom"] for q in queues)
 
 
-def team_fte(workload_fte, dt):
-    return max(dt["team_floor_fte"], round_up(workload_fte, dt["team_granularity_fte"]))
+def team_fte(fte, dt):
+    return max(dt["team_floor_fte"], round_up(fte, dt["team_granularity_fte"]))
 
 
 def sponsors_of(om, accounts, v):
     return max(1, math.ceil(accounts / v["accounts_per_sponsor"])) if om["platform"] else 1
 
 
-def decision_team_lines(om, accounts, v, vol, dt, mode):
-    """Cost lines for per-sponsor decision teams under one mode."""
+def bearer_of(line_name):
+    return "vendor" if line_name in VENDOR_LINES else "customer"
+
+
+def rebear(lines):
+    return tuple(dict(l, bearer=bearer_of(l["line"])) if l["bearer"] in ("platform_operator", "sponsor") else l
+                 for l in lines)
+
+
+def staff_lines(om, accounts, v, vol, dt, mode):
+    """Per-sponsor staffing lines that replace model.py's pooled queue staff."""
     n = sponsors_of(om, accounts, v)
-    per_team = team_fte(reserved_workload_fte(v, vol) / n, dt)
-    loaded = v["loaded_cost_per_fte"]
-    if mode == "operator_dedicated" or not om["platform"]:
-        bearer = "platform_operator" if om["platform"] else "sponsor"
-        staff = n * per_team * loaded
-        overhead = staff * dt["dedicated_mgmt_overhead"] if om["platform"] else 0.0
-        return ([M.line("decision_team:staff", staff, "step_fixed", bearer, "sponsor"),
-                 M.line("decision_team:management", overhead, "fixed", bearer, "sponsor")], n, per_team)
-    staff = n * per_team * loaded * dt["self_staffed_loaded_cost_mult"]
-    support = n * dt["self_staffed_support_cost"]
-    return ([M.line("decision_team:staff", staff, "step_fixed", "sponsor", "sponsor"),
-             M.line("decision_team:operator_support", support, "fixed", "platform_operator", "sponsor")], n, per_team)
+    loaded = v["loaded_cost_per_fte"] * dt["customer_loaded_cost_mult"]
+    setup = M.line("tenant:authority_setup", n * dt["tenant_authority_setup_cost"], "fixed", "vendor", "sponsor")
+    if mode == "sponsor_direct":
+        # each sponsor employs everyone: decisions, service and operations, one combined floor
+        per = team_fte(workload_fte(v, vol, STAFFED) / n, dt)
+        return (M.line("sponsor_staff:all_queues", n * per * loaded, "step_fixed", "customer", "sponsor"), setup), n, per, STAFFED
+    per = team_fte(workload_fte(v, vol, RESERVED) / n, dt)
+    if mode == "via_administrator":
+        # an administrator pools service and operations; decisions stay with each sponsor's own team
+        return (M.line("sponsor_staff:decision_team", n * per * loaded, "step_fixed", "customer", "sponsor"), setup), n, per, RESERVED
+    staff = n * per * v["loaded_cost_per_fte"]
+    return ((M.line("operator_staff:decision_team", staff, "step_fixed", "operator", "sponsor"),
+             M.line("operator_staff:management", staff * dt["dedicated_mgmt_overhead"], "fixed", "operator", "sponsor")),
+            n, per, RESERVED)
 
 
 def restructure(run, om, accounts, dt, mode):
-    """Replace the pooled reserved-queue staff lines with per-sponsor teams."""
     if mode == "pooled_v1_baseline":
-        return run["lines"], sponsors_of(om, accounts, run["values"]), None
-    pooled = {"staff:queue:" + q for q in RESERVED}
-    kept = tuple(l for l in run["lines"] if l["line"] not in pooled)
-    added, n, per_team = decision_team_lines(om, accounts, run["values"], run["volumes"], dt, mode)
-    return kept + tuple(added), n, per_team
+        return tuple(run["lines"]), sponsors_of(om, accounts, run["values"]), None
+    added, n, per, replaced = staff_lines(om, accounts, run["values"], run["volumes"], dt, mode)
+    dropped = {"staff:queue:" + q for q in replaced}
+    kept = tuple(l for l in run["lines"] if l["line"] not in dropped)
+    return rebear(kept) + added, n, per
 
 
 def opex(l):
@@ -111,15 +135,13 @@ def opex(l):
 
 
 def bearer_split(lines, acct_years):
-    def total(pred):
-        return sum(l["usd"] for l in lines if pred(l))
-    enterprise = total(lambda l: l["bearer"] in ("sponsor", "platform_operator") and opex(l))
+    def per_acct(pred):
+        return sum(l["usd"] for l in lines if opex(l) and pred(l)) / acct_years
     return {
-        "cost_per_account": enterprise / acct_years,
-        "operator_per_account": total(lambda l: l["bearer"] == "platform_operator" and opex(l)) / acct_years,
-        "sponsor_per_account": total(lambda l: l["bearer"] == "sponsor" and opex(l)) / acct_years,
-        "decision_team_per_account": total(lambda l: l["line"].startswith("decision_team:")) / acct_years,
-        "pooled_reserved_staff_per_account": total(lambda l: l["line"] in ("staff:queue:exceptions", "staff:queue:complex")) / acct_years,
+        "cost_per_account": per_acct(lambda l: l["bearer"] in ("sponsor", "platform_operator", "vendor", "customer", "operator")),
+        "vendor_per_account": per_acct(lambda l: l["bearer"] == "vendor"),
+        "customer_per_account": per_acct(lambda l: l["bearer"] == "customer"),
+        "operator_staff_per_account": per_acct(lambda l: l["bearer"] == "operator"),
     }
 
 
@@ -130,8 +152,8 @@ def evaluate(cfg, om_key, accounts, rng, dt_rng, noise=True):
     ay = run["metrics"]["accounts_year_avg"]
 
     def one(mode):
-        lines, n, per_team = restructure(run, om, accounts, dt, mode)
-        return dict(bearer_split(lines, ay), sponsors=n, team_fte_per_sponsor=per_team)
+        lines, n, per = restructure(run, om, accounts, dt, mode)
+        return dict(bearer_split(lines, ay), sponsors=n, staff_fte_per_sponsor=per)
     out = {mode: one(mode) for mode in MODES}
     # reproduction check: the pooled view must equal model.py's own figure
     assert abs(out["pooled_v1_baseline"]["cost_per_account"] - run["metrics"]["cost_per_account"]) < 1e-6
@@ -151,54 +173,45 @@ def summarise(runs, mode, metric):
 
 
 def sponsor_size_table(cfg, om_key, dt):
-    """Deterministic: decision-team cost for ONE sponsor of a given size, by mode.
+    """Deterministic: what ONE sponsor of a given size spends on its own people, by route.
 
-    Reserved workload per account is taken from the expected-value run of the
-    operating model at 1M accounts (rates per account are scale-free in model.py).
+    Workload per account comes from the expected-value run at 1M accounts
+    (per-account rates are scale-free in model.py).
     """
     run = M.run_once(cfg, om_key, 1000000, "normal", random.Random(0), noise=False)
-    v, vol = run["values"], run["volumes"]
-    per_acct_fte = reserved_workload_fte(v, vol) / run["metrics"]["accounts_year_avg"]
-    loaded = v["loaded_cost_per_fte"]
+    v, vol, ay = run["values"], run["volumes"], run["metrics"]["accounts_year_avg"]
+    all_fte, res_fte = workload_fte(v, vol, STAFFED) / ay, workload_fte(v, vol, RESERVED) / ay
+    loaded = v["loaded_cost_per_fte"] * dt["customer_loaded_cost_mult"]
 
     def row(size):
-        fte = team_fte(per_acct_fte * size, dt)
-        dedicated = fte * loaded * (1 + dt["dedicated_mgmt_overhead"])
-        own = fte * loaded * dt["self_staffed_loaded_cost_mult"]
-        return {"sponsor_accounts": size, "team_fte": fte, "floor_binds": fte <= dt["team_floor_fte"] + 1e-9,
-                "operator_dedicated_usd_per_sponsor": dedicated,
-                "operator_dedicated_usd_per_account": dedicated / size,
-                "self_staffed_sponsor_staff_usd": own,
-                "self_staffed_operator_support_usd": dt["self_staffed_support_cost"],
-                "self_staffed_operator_support_per_account": dt["self_staffed_support_cost"] / size,
-                # lower bound: a sponsor that already employs two authorised principals pays only the time used
-                "self_staffed_existing_staff_marginal_usd": per_acct_fte * size * loaded * dt["self_staffed_loaded_cost_mult"]}
-    return {"om": om_key, "reserved_fte_per_1000_accounts": per_acct_fte * 1000,
-            "workload_fills_floor_at_accounts": dt["team_floor_fte"] / per_acct_fte if per_acct_fte else None,
+        direct, decide = team_fte(all_fte * size, dt), team_fte(res_fte * size, dt)
+        return {"sponsor_accounts": size,
+                "sponsor_direct_fte": direct, "sponsor_direct_usd": direct * loaded,
+                "sponsor_direct_per_account": direct * loaded / size,
+                "via_administrator_decision_fte": decide, "via_administrator_decision_usd": decide * loaded,
+                "via_administrator_decision_per_account": decide * loaded / size,
+                "existing_staff_time_used_usd": res_fte * size * loaded}
+    return {"om": om_key, "all_work_fte_per_1000_accounts": all_fte * 1000,
+            "reserved_fte_per_1000_accounts": res_fte * 1000,
+            "floor_binds_below_accounts_direct": dt["team_floor_fte"] / all_fte if all_fte else None,
+            "floor_binds_below_accounts_decisions": dt["team_floor_fte"] / res_fte if res_fte else None,
             "rows": [row(s) for s in SPONSOR_SIZES]}
 
 
-def price_structure(cfg, om_key, accounts, dt):
-    """Cost-recovery floors (not prices) for the two-part tariff, deterministic."""
+def license_floors(cfg, om_key, accounts, dt):
+    """Cost-recovery floors (not prices) for Unbound's software licence, deterministic."""
     run = M.run_once(cfg, om_key, accounts, "normal", random.Random(0), noise=False)
     om = cfg["operating_models"][om_key]
     ay = run["metrics"]["accounts_year_avg"]
-    pooled = {"staff:queue:" + q for q in RESERVED}
-    shared = [l for l in run["lines"] if l["line"] not in pooled and l["bearer"] == "platform_operator"
-              and opex(l) and l["level"] != "sponsor"]
-    per_sponsor_platform = [l for l in run["lines"] if l["line"] == "sponsor_level:platform_service"]
-    n = sponsors_of(om, accounts, run["values"])
-    ded, _, fte = decision_team_lines(om, accounts, run["values"], run["volumes"], dt, "operator_dedicated")
-    own, _, _ = decision_team_lines(om, accounts, run["values"], run["volumes"], dt, "self_staffed")
-    return {
-        "om": om_key, "accounts": accounts, "sponsors": n, "team_fte_per_sponsor": fte,
-        "A_platform_fee_per_account_floor": sum(l["usd"] for l in shared) / ay,
-        "B_sponsor_service_fee_per_sponsor_floor": sum(l["usd"] for l in per_sponsor_platform) / n,
-        "C1_dedicated_team_fee_per_sponsor_floor": sum(l["usd"] for l in ded) / n,
-        "C2_self_staffed_support_fee_per_sponsor_floor": sum(l["usd"] for l in own if l["bearer"] == "platform_operator") / n,
-        "self_staffed_sponsor_own_staff_cost_per_sponsor": sum(l["usd"] for l in own if l["bearer"] == "sponsor") / n,
-        "note": "Floors recover modelled operator cost only; margin, acquisition and fund-borne costs excluded.",
-    }
+    lines, n, _ = restructure(run, om, accounts, dt, "sponsor_direct")
+    vendor = [l for l in lines if l["bearer"] == "vendor" and opex(l)]
+    per_tenant = [l for l in vendor if l["level"] == "sponsor"]
+    per_account = [l for l in vendor if l["level"] != "sponsor"]
+    return {"om": om_key, "accounts": accounts, "sponsors": n,
+            "A_licence_fee_per_account_floor": sum(l["usd"] for l in per_account) / ay,
+            "B_tenant_fee_per_sponsor_floor": sum(l["usd"] for l in per_tenant) / n,
+            "vendor_cost_total_usd": sum(l["usd"] for l in vendor),
+            "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded."}
 
 
 def main(argv):
@@ -206,13 +219,13 @@ def main(argv):
     outdir = argv[2] if len(argv) > 2 else HERE
     cfg = M.load(pfile)
     n_runs = cfg["meta"]["mc_runs_normal"]
-    metrics = ("cost_per_account", "operator_per_account", "sponsor_per_account", "decision_team_per_account")
+    metrics = ("cost_per_account", "vendor_per_account", "customer_per_account", "operator_staff_per_account")
     mc_out = {}
     for om in OMS:
         for a in cfg["scales"]:
             runs = mc(cfg, om, a, n_runs)
-            mc_out[f"{om}|{a}"] = {mode: {m: summarise(runs, mode, m) for m in metrics} for mode in MODES}
-            mc_out[f"{om}|{a}"]["sponsors_p50"] = summarise(runs, "operator_dedicated", "sponsors")["p50"]
+            mc_out[f"{om}|{a}"] = dict({mode: {m: summarise(runs, mode, m) for m in metrics} for mode in MODES},
+                                       sponsors_p50=summarise(runs, "sponsor_direct", "sponsors")["p50"])
     dt = dt_expected()
     grid = [1000, 3000, 10000, 30000, 100000, 300000, 1000000, 2000000, 5000000, 10000000]
 
@@ -222,15 +235,17 @@ def main(argv):
     targets = {str(t): {om: {mode: next((a for a in grid if det(om, a, mode) <= t), None) for mode in MODES}
                         for om in OMS} for t in cfg["targets"]}
     results = {
-        "meta": {"decision": "SPD-ADV-001 decided-provisional 2026-11-24 by product owner: one decision team per sponsor, never shared; sponsor may self-staff",
+        "meta": {"decisions": {"SPD-ADV-001": "one decision team per sponsor, never shared",
+                               "SPD-ADV-004": "Unbound is a software platform only; customers employ all staff; operator services are a future hook"},
                  "command": "python3 -I -B decision_teams.py", "seed": cfg["meta"]["seed"], "mc_runs": n_runs,
-                 "base_model": "model.py (unchanged)", "dt_params": DT_PARAMS, "reserved_queues": list(RESERVED),
+                 "base_model": "model.py (unchanged)", "dt_params": DT_PARAMS, "vendor_lines": sorted(VENDOR_LINES),
+                 "reserved_queues": list(RESERVED), "active_modes": list(ACTIVE),
                  "disclaimer": "THEORETICAL MODEL OUTPUTS from labelled assumptions; not observations."},
         "normal_mc": mc_out,
         "targets_min_scale_deterministic": targets,
-        "sponsor_size": [sponsor_size_table(cfg, om, dt) for om in ("OM3", "OM4", "OM5")],
-        "price_floors": [price_structure(cfg, om, a, dt) for om, a in
-                         (("OM3", 100000), ("OM3", 1000000), ("OM4", 1000000), ("OM5", 5000000))],
+        "sponsor_size": [sponsor_size_table(cfg, om, dt) for om in OMS],
+        "licence_floors": [license_floors(cfg, om, a, dt) for om, a in
+                           (("OM3", 100000), ("OM3", 1000000), ("OM4", 1000000), ("OM5", 5000000))],
     }
     with open(os.path.join(outdir, "decision-teams-results.json"), "w") as fh:
         json.dump(results, fh, indent=1, sort_keys=True, default=float)
@@ -244,7 +259,7 @@ def main(argv):
                     w.writerow([om, a, mode, m, round(q["p10"], 6), round(q["p50"], 6), round(q["p90"], 6)])
     for k, modes in mc_out.items():
         print(k, " | ".join(f"{mode} P50 {modes[mode]['cost_per_account']['p50']:.2f}" for mode in MODES),
-              f"| sponsors {modes['sponsors_p50']:.0f}")
+              f"| vendor P50 {modes['sponsor_direct']['vendor_per_account']['p50']:.2f} | sponsors {modes['sponsors_p50']:.0f}")
     print("targets", json.dumps(targets))
     return 0
 

@@ -1496,6 +1496,7 @@ UNB-SMP-ORG-003,depends_on,UNB-XIN-CLM-008,gap-requirements.jsonl
 UNB-SMP-ORG-003,depends_on,UNB-SMP-ORG-002,gap-requirements.jsonl
 UNB-SMP-ORG-003,depends_on,UNB-SMP-ECN-004,gap-requirements.jsonl
 UNB-SMP-ORG-003,depends_on,SPD-ADV-001,gap-requirements.jsonl
+UNB-SMP-ORG-003,depends_on,SPD-ADV-004,gap-requirements.jsonl
 UNB-SMP-ORG-003,depends_on,SPD-ORG-002,gap-requirements.jsonl
 UNB-SMP-ORG-003,tested_by,SPS-ORG-008,scenarios.csv
 UNB-SMP-ORG-003,tested_by,SPS-ORG-009,scenarios.csv
@@ -1503,15 +1504,16 @@ UNB-SMP-ECN-004,derived_from,SPF-ECN-015,gap-requirements.jsonl
 UNB-SMP-ECN-004,depends_on,UNB-XIN-ECO-012,gap-requirements.jsonl
 UNB-SMP-ECN-004,depends_on,UNB-XIN-SAS-009,gap-requirements.jsonl
 UNB-SMP-ECN-004,depends_on,UNB-SMP-ORG-003,gap-requirements.jsonl
-UNB-SMP-ECN-004,depends_on,UNB-SMP-ORG-002,gap-requirements.jsonl
 UNB-SMP-ECN-004,depends_on,UNB-SMP-ECN-003,gap-requirements.jsonl
 UNB-SMP-ECN-004,depends_on,SPD-ECN-003,gap-requirements.jsonl
-UNB-SMP-ECN-004,depends_on,SPD-ADV-001,gap-requirements.jsonl
+UNB-SMP-ECN-004,depends_on,SPD-ADV-004,gap-requirements.jsonl
 UNB-SMP-ECN-004,tested_by,SPS-ECN-007,scenarios.csv
-UNB-SMP-ECN-004,tested_by,SPS-ORG-009,scenarios.csv
 UNB-SMP-ORG-003,decided_by,SPD-ADV-001,decisions.csv
+UNB-SMP-ORG-003,decided_by,SPD-ADV-004,decisions.csv
 UNB-SMP-ECN-004,decided_by,SPD-ECN-003,decisions.csv
+UNB-SMP-ECN-004,decided_by,SPD-ADV-004,decisions.csv
 SPF-ECN-015,affects,SPD-ADV-001,findings.csv
+SPF-ECN-015,affects,SPD-ADV-004,findings.csv
 SPF-ECN-015,affects,SPD-ECN-003,findings.csv
 SPF-ECN-015,affects,SPD-ECN-001,findings.csv
 SPF-ECN-015,affects,SPD-CMP-001,findings.csv

@@ -39,17 +39,21 @@ python3 -I -B tools/reqaudit/validate_simplification.py .
 
 The scripts for these changes live in the session scratch area and are **not** in the repository. The merged `data/` is the canonical record, and every change is visible in it through `*_as_proposed`, `adversarial_revision` and `adversarial_disposition`.
 
-## Owner decision after the mission (2026-11-24)
+## Owner decisions after the mission (2026-11-24)
 
-The product owner decided SPD-ADV-001: no team may decide for more than one sponsor; each sponsor has its own decision team, either self-staffed or operator-dedicated; and pricing reflects that choice. The integrating session then made these changes:
+The product owner made two decisions:
+- **SPD-ADV-001:** no team may decide for more than one sponsor; each sponsor decides with its own people.
+- **SPD-ADV-004:** Unbound is a software platform only for now, with hooks for staffed services later.
+
+An intermediate version priced an operator-dedicated decision team. It was superseded the same day by SPD-ADV-004, and git history keeps it (commit 6f7bc7b). The integrating session made these changes:
 
 | Change | Detail |
 |---|---|
-| Model | Added `model/decision_teams.py`. It imports `model.py` unchanged and asserts that it reproduces `model.py`'s pooled figure in every run. It was run twice with byte-identical output. |
-| Model outputs | `decision-teams-results.json`, `decision-teams-results.csv`, `decision-teams-run.log`; hashes added to `hashes.txt` |
-| Decisions | SPD-ADV-001 and SPD-ECN-003 set to `decided-provisional`. SPD-ECN-001's recommendation now points to report 24. |
-| New records | UNB-SMP-ORG-003, UNB-SMP-ECN-004, SPF-ECN-015, SPS-ORG-008, SPS-ORG-009, SPS-ECN-007, SPR-ADV-008, and 29 trace edges |
-| Reports | Report 24 written by hand. Reports 18, 19, 20 and 22 regenerated. Report 20's heading now distinguishes owner decisions from open ones. Report 23 updated. |
+| Model | `model/decision_teams.py` imports `model.py` unchanged, asserts that it reproduces `model.py`'s pooled figure in every run, and reassigns cost lines to the vendor (Unbound) or the customer. It was run twice with byte-identical output. |
+| Model outputs | `decision-teams-results.json`, `decision-teams-results.csv`, `decision-teams-run.log`; hashes in `hashes.txt` |
+| Decisions | SPD-ADV-001, SPD-ECN-003 and the new SPD-ADV-004 are `decided-provisional`. SPD-ECN-001's recommendation points to report 24. |
+| New records | UNB-SMP-ORG-003, UNB-SMP-ECN-004, SPF-ECN-015, SPS-ORG-008, SPS-ORG-009, SPS-ECN-007, SPR-ADV-008, SPR-ADV-009, and the trace edges for them |
+| Reports | Report 24 written by hand. Reports 18, 19, 20 and 22 regenerated. Report 20 distinguishes owner decisions from open ones. Report 23 updated. |
 | Correction | Report 23 question 7 cited SPD-ADV-001 for the small-balance channel; it now cites XID-ADV-002 only. |
 
 ## Validation (last run)

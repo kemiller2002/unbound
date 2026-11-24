@@ -1,42 +1,87 @@
 {
+ "licence_floors": [
+  {
+   "A_licence_fee_per_account_floor": 59.264424000000005,
+   "B_tenant_fee_per_sponsor_floor": 52000.0,
+   "accounts": 100000,
+   "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
+   "om": "OM3",
+   "sponsors": 20,
+   "vendor_cost_total_usd": 6966442.4
+  },
+  {
+   "A_licence_fee_per_account_floor": 10.964424,
+   "B_tenant_fee_per_sponsor_floor": 52000.0,
+   "accounts": 1000000,
+   "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
+   "om": "OM3",
+   "sponsors": 200,
+   "vendor_cost_total_usd": 21364424.0
+  },
+  {
+   "A_licence_fee_per_account_floor": 9.9562,
+   "B_tenant_fee_per_sponsor_floor": 52000.0,
+   "accounts": 1000000,
+   "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
+   "om": "OM4",
+   "sponsors": 50,
+   "vendor_cost_total_usd": 12556200.0
+  },
+  {
+   "A_licence_fee_per_account_floor": 2.9481691001300803,
+   "B_tenant_fee_per_sponsor_floor": 77000.0,
+   "accounts": 5000000,
+   "note": "Floors recover modelled vendor cost only; margin, sales and customer acquisition excluded.",
+   "om": "OM5",
+   "sponsors": 50,
+   "vendor_cost_total_usd": 18590845.500650402
+  }
+ ],
  "meta": {
+  "active_modes": [
+   "sponsor_direct",
+   "via_administrator"
+  ],
   "base_model": "model.py (unchanged)",
   "command": "python3 -I -B decision_teams.py",
-  "decision": "SPD-ADV-001 decided-provisional 2026-11-24 by product owner: one decision team per sponsor, never shared; sponsor may self-staff",
+  "decisions": {
+   "SPD-ADV-001": "one decision team per sponsor, never shared",
+   "SPD-ADV-004": "Unbound is a software platform only; customers employ all staff; operator services are a future hook"
+  },
   "disclaimer": "THEORETICAL MODEL OUTPUTS from labelled assumptions; not observations.",
   "dt_params": {
+   "customer_loaded_cost_mult": {
+    "high": 1.3,
+    "label": "A",
+    "low": 0.8,
+    "source": "customer's loaded cost per FTE relative to model.py loaded_cost_per_fte",
+    "value": 1.0
+   },
    "dedicated_mgmt_overhead": {
     "high": 0.2,
     "label": "A",
     "low": 0.05,
-    "source": "operator supervision, appointment paperwork and conflict attestation per dedicated team",
+    "source": "future option only: operator supervision and appointment paperwork per dedicated team",
     "value": 0.1
-   },
-   "self_staffed_loaded_cost_mult": {
-    "high": 1.3,
-    "label": "A",
-    "low": 0.8,
-    "source": "sponsor's own loaded cost per FTE relative to the operator's",
-    "value": 1.0
-   },
-   "self_staffed_support_cost": {
-    "high": 30000,
-    "label": "A",
-    "low": 5000,
-    "source": "operator-borne per self-staffed sponsor: authority-register set-up, training, attestation evidence, audit support (USD/yr)",
-    "value": 15000
    },
    "team_floor_fte": {
     "high": 3.5,
     "label": "A",
     "low": 2.0,
-    "source": "two-person approval for A3+ decisions plus absence cover; same floor as adversarial variant V1 (SPF-ADV-001)",
+    "source": "five named authority holders x 0.5 minimum time share (report 10, S1 floor); covers two-person approval and absence",
     "value": 2.5
    },
    "team_granularity_fte": {
     "label": "A",
-    "source": "a team is hired in half-FTE steps (part-time staff may serve one sponsor only)",
+    "source": "staff hired in half-FTE steps; a part-time person serves one sponsor only",
     "value": 0.5
+   },
+   "tenant_authority_setup_cost": {
+    "high": 30000,
+    "label": "A",
+    "low": 5000,
+    "source": "vendor-borne per sponsor tenant: authority-register set-up, training material, attestation evidence, audit support (USD/yr)",
+    "value": 15000
    }
   },
   "mc_runs": 300,
@@ -44,720 +89,46 @@
    "exceptions",
    "complex"
   ],
-  "seed": 20261124
+  "seed": 20261124,
+  "vendor_lines": [
+   "ai_inference",
+   "data_providers",
+   "eligibility_screening",
+   "identity_new_accounts",
+   "infrastructure_base",
+   "infrastructure_per_account",
+   "insurance",
+   "sponsor_level:platform_service",
+   "staff:agent_ownership",
+   "staff:engineering",
+   "staff:leadership",
+   "staff:philanthropic_intelligence",
+   "staff:security",
+   "tenant:authority_setup"
+  ]
  },
  "normal_mc": {
-  "OM1|1000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 4131.822977781416,
-     "p50": 4811.635491517842,
-     "p90": 5698.690373351231
-    },
-    "decision_team_per_account": {
-     "p10": 381.54138685932503,
-     "p50": 475.5755284891243,
-     "p90": 633.2968326989892
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 4131.822977781416,
-     "p50": 4811.635491517842,
-     "p90": 5698.690373351231
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 4086.173059929162,
-     "p50": 4761.650104667971,
-     "p90": 5577.908576247084
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 4086.173059929162,
-     "p50": 4761.650104667971,
-     "p90": 5577.908576247084
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 4131.822977781416,
-     "p50": 4811.635491517842,
-     "p90": 5698.690373351231
-    },
-    "decision_team_per_account": {
-     "p10": 381.54138685932503,
-     "p50": 475.5755284891243,
-     "p90": 633.2968326989892
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 4131.822977781416,
-     "p50": 4811.635491517842,
-     "p90": 5698.690373351231
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM1|10000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 699.0846001053153,
-     "p50": 858.0277381821805,
-     "p90": 1084.202508294049
-    },
-    "decision_team_per_account": {
-     "p10": 152.29633859757243,
-     "p50": 268.6536469544861,
-     "p90": 406.23017541034415
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 699.0846001053153,
-     "p50": 858.0277381821805,
-     "p90": 1084.202508294049
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 709.266321012126,
-     "p50": 869.3524690084455,
-     "p90": 1096.1755608101012
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 709.266321012126,
-     "p50": 869.3524690084455,
-     "p90": 1096.1755608101012
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 699.0846001053153,
-     "p50": 858.0277381821805,
-     "p90": 1084.202508294049
-    },
-    "decision_team_per_account": {
-     "p10": 152.29633859757243,
-     "p50": 268.6536469544861,
-     "p90": 406.23017541034415
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 699.0846001053153,
-     "p50": 858.0277381821805,
-     "p90": 1084.202508294049
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM1|100000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 288.6946463130948,
-     "p50": 387.03663598747727,
-     "p90": 568.277199154132
-    },
-    "decision_team_per_account": {
-     "p10": 152.99702952402305,
-     "p50": 247.2444763659293,
-     "p90": 410.525371979085
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 288.6946463130948,
-     "p50": 387.03663598747727,
-     "p90": 568.277199154132
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 289.1113440723213,
-     "p50": 388.22088713360813,
-     "p90": 569.8517185944497
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 289.1113440723213,
-     "p50": 388.22088713360813,
-     "p90": 569.8517185944497
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 288.6946463130948,
-     "p50": 387.03663598747727,
-     "p90": 568.277199154132
-    },
-    "decision_team_per_account": {
-     "p10": 152.99702952402305,
-     "p50": 247.2444763659293,
-     "p90": 410.525371979085
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 288.6946463130948,
-     "p50": 387.03663598747727,
-     "p90": 568.277199154132
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM1|1000000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 219.9493641860988,
-     "p50": 328.0943428829117,
-     "p90": 495.2175871158431
-    },
-    "decision_team_per_account": {
-     "p10": 146.4101960092241,
-     "p50": 247.00703816304258,
-     "p90": 405.09046700374927
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 219.9493641860988,
-     "p50": 328.0943428829117,
-     "p90": 495.2175871158431
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 220.0105719049013,
-     "p50": 328.2734318698184,
-     "p90": 495.22802207589257
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 220.0105719049013,
-     "p50": 328.2734318698184,
-     "p90": 495.22802207589257
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 219.9493641860988,
-     "p50": 328.0943428829117,
-     "p90": 495.2175871158431
-    },
-    "decision_team_per_account": {
-     "p10": 146.4101960092241,
-     "p50": 247.00703816304258,
-     "p90": 405.09046700374927
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 219.9493641860988,
-     "p50": 328.0943428829117,
-     "p90": 495.2175871158431
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM1|5000000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 217.86554015926077,
-     "p50": 319.18899337346306,
-     "p90": 504.95909984869326
-    },
-    "decision_team_per_account": {
-     "p10": 147.73343936927404,
-     "p50": 248.82600734101965,
-     "p90": 412.8908650876721
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 217.86554015926077,
-     "p50": 319.18899337346306,
-     "p90": 504.95909984869326
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 217.88451718380927,
-     "p50": 319.2165179647423,
-     "p90": 504.96098871445156
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 217.88451718380927,
-     "p50": 319.2165179647423,
-     "p90": 504.96098871445156
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 217.86554015926077,
-     "p50": 319.18899337346306,
-     "p90": 504.95909984869326
-    },
-    "decision_team_per_account": {
-     "p10": 147.73343936927404,
-     "p50": 248.82600734101965,
-     "p90": 412.8908650876721
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 217.86554015926077,
-     "p50": 319.18899337346306,
-     "p90": 504.95909984869326
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM2|1000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 4095.954053919824,
-     "p50": 4775.331217891826,
-     "p90": 5699.386251353782
-    },
-    "decision_team_per_account": {
-     "p10": 374.1333352141927,
-     "p50": 469.8700630016075,
-     "p90": 590.4961625036934
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 4095.954053919824,
-     "p50": 4775.331217891826,
-     "p90": 5699.386251353782
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 3977.491470571507,
-     "p50": 4672.269670654905,
-     "p90": 5561.407720942997
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 3977.491470571507,
-     "p50": 4672.269670654905,
-     "p90": 5561.407720942997
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 4095.954053919824,
-     "p50": 4775.331217891826,
-     "p90": 5699.386251353782
-    },
-    "decision_team_per_account": {
-     "p10": 374.1333352141927,
-     "p50": 469.8700630016075,
-     "p90": 590.4961625036934
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 4095.954053919824,
-     "p50": 4775.331217891826,
-     "p90": 5699.386251353782
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM2|10000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 564.1528383468025,
-     "p50": 642.1035465592149,
-     "p90": 755.9244694102582
-    },
-    "decision_team_per_account": {
-     "p10": 43.51442228945074,
-     "p50": 59.884823489186836,
-     "p90": 90.78435024670367
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 564.1528383468025,
-     "p50": 642.1035465592149,
-     "p90": 755.9244694102582
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 567.6871670877282,
-     "p50": 651.9866743201051,
-     "p90": 772.1745978346914
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 567.6871670877282,
-     "p50": 651.9866743201051,
-     "p90": 772.1745978346914
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 564.1528383468025,
-     "p50": 642.1035465592149,
-     "p90": 755.9244694102582
-    },
-    "decision_team_per_account": {
-     "p10": 43.51442228945074,
-     "p50": 59.884823489186836,
-     "p90": 90.78435024670367
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 564.1528383468025,
-     "p50": 642.1035465592149,
-     "p90": 755.9244694102582
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM2|100000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 141.3867054197822,
-     "p50": 178.860085180517,
-     "p90": 223.0598327148918
-    },
-    "decision_team_per_account": {
-     "p10": 32.40732264056796,
-     "p50": 55.143898795902466,
-     "p90": 87.54391481061045
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 141.3867054197822,
-     "p50": 178.860085180517,
-     "p90": 223.0598327148918
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 142.46372476312783,
-     "p50": 179.60833322294695,
-     "p90": 224.4771183117307
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 142.46372476312783,
-     "p50": 179.60833322294695,
-     "p90": 224.4771183117307
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 141.3867054197822,
-     "p50": 178.860085180517,
-     "p90": 223.0598327148918
-    },
-    "decision_team_per_account": {
-     "p10": 32.40732264056796,
-     "p50": 55.143898795902466,
-     "p90": 87.54391481061045
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 141.3867054197822,
-     "p50": 178.860085180517,
-     "p90": 223.0598327148918
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM2|1000000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 86.90529265673733,
-     "p50": 113.7873913209567,
-     "p90": 157.59030543723426
-    },
-    "decision_team_per_account": {
-     "p10": 34.13815558111863,
-     "p50": 53.40137890969541,
-     "p90": 91.13991255132942
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 86.90529265673733,
-     "p50": 113.7873913209567,
-     "p90": 157.59030543723426
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 87.09555377988833,
-     "p50": 113.9265467648128,
-     "p90": 157.88423675634795
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 87.09555377988833,
-     "p50": 113.9265467648128,
-     "p90": 157.88423675634795
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 86.90529265673733,
-     "p50": 113.7873913209567,
-     "p90": 157.59030543723426
-    },
-    "decision_team_per_account": {
-     "p10": 34.13815558111863,
-     "p50": 53.40137890969541,
-     "p90": 91.13991255132942
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 86.90529265673733,
-     "p50": 113.7873913209567,
-     "p90": 157.59030543723426
-    }
-   },
-   "sponsors_p50": 1.0
-  },
-  "OM2|5000000": {
-   "operator_dedicated": {
-    "cost_per_account": {
-     "p10": 82.73466265022239,
-     "p50": 109.48191704882919,
-     "p90": 150.3093267908981
-    },
-    "decision_team_per_account": {
-     "p10": 32.74625192412233,
-     "p50": 54.958982888997994,
-     "p90": 88.55756202793192
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 82.73466265022239,
-     "p50": 109.48191704882919,
-     "p90": 150.3093267908981
-    }
-   },
-   "pooled_v1_baseline": {
-    "cost_per_account": {
-     "p10": 82.76975334066636,
-     "p50": 109.50803204550036,
-     "p90": 150.36580566440568
-    },
-    "decision_team_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 82.76975334066636,
-     "p50": 109.50803204550036,
-     "p90": 150.36580566440568
-    }
-   },
-   "self_staffed": {
-    "cost_per_account": {
-     "p10": 82.73466265022239,
-     "p50": 109.48191704882919,
-     "p90": 150.3093267908981
-    },
-    "decision_team_per_account": {
-     "p10": 32.74625192412233,
-     "p50": 54.958982888997994,
-     "p90": 88.55756202793192
-    },
-    "operator_per_account": {
-     "p10": 0.0,
-     "p50": 0.0,
-     "p90": 0.0
-    },
-    "sponsor_per_account": {
-     "p10": 82.73466265022239,
-     "p50": 109.48191704882919,
-     "p90": 150.3093267908981
-    }
-   },
-   "sponsors_p50": 1.0
-  },
   "OM3|1000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 4220.426704973795,
      "p50": 4900.255530839017,
      "p90": 5704.775612853511
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 895.543453554471,
+     "p50": 1005.1040541745859,
+     "p90": 1137.2331618478884
+    },
+    "operator_staff_per_account": {
      "p10": 420.188626633983,
      "p50": 526.9595363919262,
      "p90": 670.0173646604386
     },
-    "operator_per_account": {
-     "p10": 4125.8249247053855,
-     "p50": 4806.599733607936,
-     "p90": 5597.9411736348275
-    },
-    "sponsor_per_account": {
-     "p10": 49.973695583044325,
-     "p50": 90.77986297567958,
-     "p90": 153.39921823651022
+    "vendor_per_account": {
+     "p10": 2873.195821128284,
+     "p50": 3350.6602078357064,
+     "p90": 3922.56134899943
     }
    },
    "pooled_v1_baseline": {
@@ -766,67 +137,89 @@
      "p50": 4739.148214953042,
      "p90": 5515.19695847069
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 3983.023366029523,
-     "p50": 4636.576493034647,
-     "p90": 5392.779970900589
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 49.973695583044325,
-     "p50": 90.77986297567958,
-     "p90": 153.39921823651022
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 3761.183832670719,
+     "p50": 4331.125778808256,
+     "p90": 5014.009757011767
+    },
+    "customer_per_account": {
+     "p10": 828.3719096543197,
+     "p50": 959.6677958787516,
+     "p90": 1116.1828846042347
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 2887.3185230383174,
+     "p50": 3366.465559715845,
+     "p90": 3942.7889997816615
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 4196.200121705564,
      "p50": 4879.856533547669,
      "p90": 5668.597743704482
     },
-    "decision_team_per_account": {
-     "p10": 396.78857986912186,
-     "p50": 505.9363289111825,
-     "p90": 645.677051378267
+    "customer_per_account": {
+     "p10": 1299.923439860698,
+     "p50": 1494.8763946754098,
+     "p90": 1754.5920598268488
     },
-    "operator_per_account": {
-     "p10": 3700.765503950187,
-     "p50": 4290.2046593598225,
-     "p90": 4972.197979648579
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 460.5186889032624,
-     "p50": 590.2086166277368,
-     "p90": 746.0418041380548
+    "vendor_per_account": {
+     "p10": 2887.3185230383174,
+     "p50": 3366.465559715845,
+     "p90": 3942.7889997816615
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM3|10000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 592.9781131743031,
      "p50": 703.9963152129546,
      "p90": 837.8594905566407
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 130.48872067507645,
+     "p50": 145.85735148958693,
+     "p90": 167.8191749328418
+    },
+    "operator_staff_per_account": {
      "p10": 56.53549606479929,
      "p50": 98.03883078325603,
      "p90": 180.0433202925642
     },
-    "operator_per_account": {
-     "p10": 580.4854664559463,
-     "p50": 689.9734277866113,
-     "p90": 822.6498879640335
-    },
-    "sponsor_per_account": {
-     "p10": 6.129824312740761,
-     "p50": 12.966400398580252,
-     "p90": 31.06119989010671
+    "vendor_per_account": {
+     "p10": 385.54790769657535,
+     "p50": 452.49310851306836,
+     "p90": 528.800112104147
     }
    },
    "pooled_v1_baseline": {
@@ -835,67 +228,89 @@
      "p50": 671.347079084099,
      "p90": 783.9699107038446
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 567.1404053900542,
-     "p50": 657.6582477566376,
-     "p90": 765.0627095349087
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 6.129824312740761,
-     "p50": 12.966400398580252,
-     "p90": 31.06119989010671
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 546.9581736842624,
+     "p50": 649.3691117250848,
+     "p90": 776.4918246773427
+    },
+    "customer_per_account": {
+     "p10": 141.78997138037698,
+     "p50": 189.1361462831405,
+     "p90": 273.50889220338007
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 387.96527678736146,
+     "p50": 454.85036067771534,
+     "p90": 531.7152393789612
+    }
+   },
+   "sponsors_p50": 2.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 591.2951635886088,
      "p50": 702.4099061563745,
      "p90": 839.385412160891
     },
-    "decision_team_per_account": {
-     "p10": 52.35600023517979,
-     "p50": 92.83049444071133,
-     "p90": 169.16027872619733
+    "customer_per_account": {
+     "p10": 187.7726566046122,
+     "p50": 238.40011702481806,
+     "p90": 331.54799398520254
     },
-    "operator_per_account": {
-     "p10": 507.05048031435086,
-     "p50": 586.6602134845409,
-     "p90": 675.5606582781485
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 59.628996941444285,
-     "p50": 103.36884889942513,
-     "p90": 194.85667223463773
+    "vendor_per_account": {
+     "p10": 387.96527678736146,
+     "p50": 454.85036067771534,
+     "p90": 531.7152393789612
     }
-   },
-   "sponsors_p50": 2.0
+   }
   },
   "OM3|100000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 168.30849677642027,
      "p50": 213.67378380913289,
      "p90": 305.7423585962285
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 46.60862875166023,
+     "p50": 56.93088093622055,
+     "p90": 77.88870605882619
+    },
+    "operator_staff_per_account": {
      "p10": 51.20981543822102,
      "p50": 84.23081848448358,
      "p90": 150.9170067190518
     },
-    "operator_per_account": {
-     "p10": 158.68583785552826,
-     "p50": 203.90250022042906,
-     "p90": 285.8950071045994
-    },
-    "sponsor_per_account": {
-     "p10": 4.510611913564861,
-     "p50": 10.220547733980625,
-     "p90": 27.897580959692036
+    "vendor_per_account": {
+     "p10": 62.02195173243608,
+     "p50": 72.86931936517882,
+     "p90": 86.95365237438189
     }
    },
    "pooled_v1_baseline": {
@@ -904,67 +319,89 @@
      "p50": 191.68024511649668,
      "p90": 243.0446955309815
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 144.91944527916763,
-     "p50": 179.03707716463876,
-     "p90": 227.10866587843051
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 4.510611913564861,
-     "p50": 10.220547733980625,
-     "p90": 27.897580959692036
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 159.0829467357889,
+     "p50": 204.06669029955162,
+     "p90": 290.30108885576766
+    },
+    "customer_per_account": {
+     "p10": 92.60935062345763,
+     "p50": 128.86699259885162,
+     "p90": 206.90339475611947
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 63.643898840557284,
+     "p50": 74.97142368878522,
+     "p90": 89.55052274442974
+    }
+   },
+   "sponsors_p50": 12.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 161.78180214388573,
      "p50": 210.7063105044992,
      "p90": 305.16747668181114
     },
-    "decision_team_per_account": {
-     "p10": 47.26759252307045,
-     "p50": 81.52130380792053,
-     "p90": 145.96416863256815
+    "customer_per_account": {
+     "p10": 96.97246619898333,
+     "p50": 135.0502489302998,
+     "p90": 212.20487226890688
     },
-    "operator_per_account": {
-     "p10": 105.3577810750805,
-     "p50": 120.80250976307283,
-     "p90": 142.9385924418492
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 55.05255196182441,
-     "p50": 88.80194945310919,
-     "p90": 164.23526261425803
+    "vendor_per_account": {
+     "p10": 63.643898840557284,
+     "p50": 74.97142368878522,
+     "p90": 89.55052274442974
     }
-   },
-   "sponsors_p50": 12.0
+   }
   },
   "OM3|1000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 106.48695808508892,
      "p50": 146.9077178304168,
      "p90": 222.69545385739423
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 38.54713834346328,
+     "p50": 48.173367811950456,
+     "p90": 62.94479955563318
+    },
+    "operator_staff_per_account": {
      "p10": 50.92666304814154,
      "p50": 80.75981802343213,
      "p90": 138.6159905267158
     },
-    "operator_per_account": {
-     "p10": 99.60441415402526,
-     "p50": 136.55667844979695,
-     "p90": 203.45084963767022
-    },
-    "sponsor_per_account": {
-     "p10": 3.9490705718981314,
-     "p50": 10.363161721779575,
-     "p90": 23.983694432463764
+    "vendor_per_account": {
+     "p10": 15.570051766816155,
+     "p50": 19.083081067129257,
+     "p90": 26.915314091166525
     }
    },
    "pooled_v1_baseline": {
@@ -973,67 +410,89 @@
      "p50": 124.61115157566391,
      "p90": 167.75285863474267
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 85.72401194432537,
-     "p50": 112.09898976248886,
-     "p90": 149.99113200611552
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 3.9490705718981314,
-     "p50": 10.363161721779575,
-     "p90": 23.983694432463764
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 98.6655475023539,
+     "p50": 138.15427544342012,
+     "p90": 219.35252335366368
+    },
+    "customer_per_account": {
+     "p10": 81.7304615608942,
+     "p50": 118.04603597651868,
+     "p90": 187.06631598791475
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 16.64732187079855,
+     "p50": 20.988665479948487,
+     "p90": 31.908995339637812
+    }
+   },
+   "sponsors_p50": 112.5,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 100.41547301021787,
      "p50": 142.25757155340227,
      "p90": 223.7694291806999
     },
-    "decision_team_per_account": {
-     "p10": 44.77107759644924,
-     "p50": 75.92172777248763,
-     "p90": 139.92588184205226
+    "customer_per_account": {
+     "p10": 83.65673481878959,
+     "p50": 121.89502727481096,
+     "p90": 193.94703205598955
     },
-    "operator_per_account": {
-     "p10": 50.150779482481695,
-     "p50": 58.13370391941824,
-     "p90": 72.38176645040491
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 49.051147917173914,
-     "p50": 84.43101229877189,
-     "p90": 153.10930988597116
+    "vendor_per_account": {
+     "p10": 16.64732187079855,
+     "p50": 20.988665479948487,
+     "p90": 31.908995339637812
     }
-   },
-   "sponsors_p50": 112.5
+   }
   },
   "OM3|5000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 100.75865328946732,
      "p50": 147.56401639886695,
      "p90": 230.28499179167696
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 36.80597081323734,
+     "p50": 48.04545178836332,
+     "p90": 66.53944324793643
+    },
+    "operator_staff_per_account": {
      "p10": 49.15218925011854,
      "p50": 84.3759663478658,
      "p90": 154.16142980156468
     },
-    "operator_per_account": {
-     "p10": 94.63673499654625,
-     "p50": 134.55754459637774,
-     "p90": 209.57542919736707
-    },
-    "sponsor_per_account": {
-     "p10": 3.9424606850819908,
-     "p50": 10.873219961570799,
-     "p90": 26.739586659678253
+    "vendor_per_account": {
+     "p10": 10.765431213128815,
+     "p50": 14.289127378628027,
+     "p90": 21.618861906468215
     }
    },
    "pooled_v1_baseline": {
@@ -1042,67 +501,89 @@
      "p50": 120.8506066295094,
      "p90": 168.74668105181811
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 81.49200476488629,
-     "p50": 105.6421995737155,
-     "p90": 150.7568010765495
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 3.9424606850819908,
-     "p50": 10.873219961570799,
-     "p90": 26.739586659678253
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 95.87844047497919,
+     "p50": 137.42989526523303,
+     "p90": 208.5596139564706
+    },
+    "customer_per_account": {
+     "p10": 83.18344771945853,
+     "p50": 120.22698997077111,
+     "p90": 186.18799854765922
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 11.908830285705186,
+     "p50": 16.18224807014809,
+     "p90": 26.717094472816118
+    }
+   },
+   "sponsors_p50": 608.5,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 96.72811973043079,
      "p50": 142.90995719201533,
      "p90": 219.00795837974715
     },
-    "decision_team_per_account": {
-     "p10": 45.768120671763015,
-     "p50": 80.99720650665779,
-     "p90": 142.52996941722031
+    "customer_per_account": {
+     "p10": 83.9758720628683,
+     "p50": 125.5855765670266,
+     "p90": 198.2099987165575
     },
-    "operator_per_account": {
-     "p10": 43.46171164935966,
-     "p50": 53.36010966302537,
-     "p90": 66.26400936728002
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 51.13429317720665,
-     "p50": 88.44596173199426,
-     "p90": 159.5362183979195
+    "vendor_per_account": {
+     "p10": 11.908830285705186,
+     "p50": 16.18224807014809,
+     "p90": 26.717094472816118
     }
-   },
-   "sponsors_p50": 608.5
+   }
   },
   "OM4|1000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 4127.066927033151,
      "p50": 4826.487165878132,
      "p90": 5609.840358449948
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 871.666987070145,
+     "p50": 990.0644328536026,
+     "p90": 1105.965119842329
+    },
+    "operator_staff_per_account": {
      "p10": 407.05326422404653,
      "p50": 522.1127352273702,
      "p90": 670.9814197305124
     },
-    "operator_per_account": {
-     "p10": 4040.8324958015455,
-     "p50": 4721.838229416435,
-     "p90": 5534.229868435038
-    },
-    "sponsor_per_account": {
-     "p10": 49.65507911920513,
-     "p50": 88.485500177936,
-     "p90": 147.77904507535948
+    "vendor_per_account": {
+     "p10": 2828.6356508562285,
+     "p50": 3299.0305289793077,
+     "p90": 3874.927864381263
     }
    },
    "pooled_v1_baseline": {
@@ -1111,67 +592,89 @@
      "p50": 4638.232778523263,
      "p90": 5407.481911448339
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 3925.894317979531,
-     "p50": 4531.620064239512,
-     "p90": 5320.786960654348
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 49.65507911920513,
-     "p50": 88.485500177936,
-     "p90": 147.77904507535948
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 3654.108427155159,
+     "p50": 4272.293478617962,
+     "p90": 4925.558145439474
+    },
+    "customer_per_account": {
+     "p10": 810.5940286532386,
+     "p50": 933.1551343937608,
+     "p90": 1078.075577924461
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 2843.905697617378,
+     "p50": 3312.5159729915213,
+     "p90": 3891.925528565451
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 4097.687487946925,
      "p50": 4791.514771965798,
      "p90": 5578.781461852204
     },
-    "decision_team_per_account": {
-     "p10": 382.7448768422513,
-     "p50": 495.0413803313315,
-     "p90": 650.1790091834653
+    "customer_per_account": {
+     "p10": 1250.460522268121,
+     "p50": 1474.000055293252,
+     "p90": 1702.3828108307912
     },
-    "operator_per_account": {
-     "p10": 3652.4587134830954,
-     "p50": 4192.539405612159,
-     "p90": 4908.51674273223
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 455.88061773528085,
-     "p50": 576.779253621494,
-     "p90": 718.2594395694543
+    "vendor_per_account": {
+     "p10": 2843.905697617378,
+     "p50": 3312.5159729915213,
+     "p90": 3891.925528565451
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM4|10000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 529.693522534474,
      "p50": 601.0401163545644,
      "p90": 723.7183178464968
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 109.5504532033725,
+     "p50": 120.10321189813476,
+     "p90": 134.75853718572304
+    },
+    "operator_staff_per_account": {
      "p10": 41.16284019186552,
      "p50": 51.89674990896226,
      "p90": 68.28677998574558
     },
-    "operator_per_account": {
-     "p10": 520.7936085683281,
-     "p50": 588.7343598965285,
-     "p90": 714.8291838342848
-    },
-    "sponsor_per_account": {
-     "p10": 4.759176442902991,
-     "p50": 9.079248231872382,
-     "p90": 15.105182393668182
+    "vendor_per_account": {
+     "p10": 375.9407665575901,
+     "p50": 426.8192101977461,
+     "p90": 524.5151849093834
     }
    },
    "pooled_v1_baseline": {
@@ -1180,67 +683,89 @@
      "p50": 581.7844378196373,
      "p90": 700.4742601662421
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 507.11840495187255,
-     "p50": 570.828351483213,
-     "p90": 692.8294546354205
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 4.759176442902991,
-     "p50": 9.079248231872382,
-     "p90": 15.105182393668182
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 483.83832025236467,
+     "p50": 548.4540771204606,
+     "p90": 655.740458097666
+    },
+    "customer_per_account": {
+     "p10": 104.13598462101861,
+     "p50": 116.41694938993375,
+     "p90": 133.25297906368075
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 378.0790545238559,
+     "p50": 429.02104749279624,
+     "p90": 527.1262065976126
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 528.0164851734926,
      "p50": 600.6363256644536,
      "p90": 722.2998834840126
     },
-    "decision_team_per_account": {
-     "p10": 39.279786985786366,
-     "p50": 50.036710584104625,
-     "p90": 65.63140520565362
+    "customer_per_account": {
+     "p10": 149.16173135443134,
+     "p50": 168.74318227626017,
+     "p90": 197.2157464490259
     },
-    "operator_per_account": {
-     "p10": 479.91855775889604,
-     "p50": 538.3956155800099,
-     "p90": 652.309879012251
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 45.83101093059134,
-     "p50": 58.24498435061581,
-     "p90": 74.22088404597052
+    "vendor_per_account": {
+     "p10": 378.0790545238559,
+     "p50": 429.02104749279624,
+     "p90": 527.1262065976126
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM4|100000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 85.90826656900943,
      "p50": 105.61018707710966,
      "p90": 130.5336830890402
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 18.093555273134225,
+     "p50": 21.0105915783547,
+     "p90": 25.672305578258356
+    },
+    "operator_staff_per_account": {
      "p10": 9.419486822281232,
      "p50": 16.506556877289356,
      "p90": 35.43928363868711
     },
-    "operator_per_account": {
-     "p10": 83.5383707501337,
-     "p50": 102.15187711736033,
-     "p90": 125.5713071628516
-    },
-    "sponsor_per_account": {
-     "p10": 1.2559242797606496,
-     "p50": 2.7547736565345424,
-     "p90": 7.074102467451373
+    "vendor_per_account": {
+     "p10": 56.593115852238675,
+     "p50": 66.22004478152928,
+     "p90": 76.34303261382462
     }
    },
    "pooled_v1_baseline": {
@@ -1249,67 +774,89 @@
      "p50": 94.59178659684534,
      "p90": 108.14606602368889
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 78.21004249798962,
-     "p50": 90.72362278840492,
-     "p90": 104.86092705538346
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 1.2559242797606496,
-     "p50": 2.7547736565345424,
-     "p90": 7.074102467451373
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 80.80244616820737,
+     "p50": 98.46419810877475,
+     "p90": 122.91953721477729
+    },
+    "customer_per_account": {
+     "p10": 21.75783311045686,
+     "p50": 29.43821284894475,
+     "p90": 51.20029996910513
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 56.99439621674357,
+     "p50": 66.77610244003272,
+     "p90": 77.12707538381466
+    }
+   },
+   "sponsors_p50": 3.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 85.7621032980632,
      "p50": 104.27673414158679,
      "p90": 128.7554328774107
     },
-    "decision_team_per_account": {
-     "p10": 8.723797542738227,
-     "p50": 15.294117251630949,
-     "p90": 33.39475177116777
+    "customer_per_account": {
+     "p10": 27.235542528624855,
+     "p50": 35.903251453776946,
+     "p90": 58.3313722983502
     },
-    "operator_per_account": {
-     "p10": 73.17866730130926,
-     "p50": 84.68382791042642,
-     "p90": 96.66617189507215
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 10.183054230427526,
-     "p50": 17.690117352119252,
-     "p90": 40.11518451931026
+    "vendor_per_account": {
+     "p10": 56.99439621674357,
+     "p50": 66.77610244003272,
+     "p90": 77.12707538381466
     }
-   },
-   "sponsors_p50": 3.0
+   }
   },
   "OM4|1000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 29.875986710614058,
      "p50": 38.61977305160666,
      "p90": 67.12097766834744
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 9.398307410505193,
+     "p50": 11.92402914592919,
+     "p90": 16.457769257964575
+    },
+    "operator_staff_per_account": {
      "p10": 7.399230128380064,
      "p50": 13.572029463272052,
      "p90": 37.253127279040875
     },
-    "operator_per_account": {
-     "p10": 27.99029658698074,
-     "p50": 36.24363333460357,
-     "p90": 60.48267479072103
-    },
-    "sponsor_per_account": {
-     "p10": 0.9275562503403014,
-     "p50": 2.4455323376949254,
-     "p90": 6.901838902616439
+    "vendor_per_account": {
+     "p10": 10.70155477154646,
+     "p50": 13.034554351309978,
+     "p90": 15.701463824300262
     }
    },
    "pooled_v1_baseline": {
@@ -1318,67 +865,89 @@
      "p50": 29.430261666548343,
      "p90": 37.05440678874856
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 21.98165430257739,
-     "p50": 26.536716733457062,
-     "p90": 31.80971465122133
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 0.9275562503403014,
-     "p50": 2.4455323376949254,
-     "p90": 6.901838902616439
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 26.534329969341492,
+     "p50": 33.82323873848229,
+     "p90": 60.3185605687567
+    },
+    "customer_per_account": {
+     "p10": 14.494895057577432,
+     "p50": 20.590668771004744,
+     "p90": 44.50883596126505
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 11.101804165509108,
+     "p50": 13.484347858475207,
+     "p90": 16.602955680606787
+    }
+   },
+   "sponsors_p50": 25.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 29.41002191037475,
      "p50": 37.70999232768233,
      "p90": 65.3060058754977
     },
-    "decision_team_per_account": {
-     "p10": 6.89010237304101,
-     "p50": 12.667827703559762,
-     "p90": 34.98036662626628
+    "customer_per_account": {
+     "p10": 17.164805863408805,
+     "p50": 24.748542147821407,
+     "p90": 49.65615673072847
     },
-    "operator_per_account": {
-     "p10": 19.52630439733328,
-     "p50": 22.784930214233043,
-     "p90": 27.30041714157405
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 8.049222668234977,
-     "p50": 14.715699989851126,
-     "p90": 39.650889258523684
+    "vendor_per_account": {
+     "p10": 11.101804165509108,
+     "p50": 13.484347858475207,
+     "p90": 16.602955680606787
     }
-   },
-   "sponsors_p50": 25.0
+   }
   },
   "OM4|5000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 23.32753981257817,
      "p50": 32.10189328354121,
      "p90": 54.70073231554311
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 8.360000756634324,
+     "p50": 11.035450281930208,
+     "p90": 15.02306728875351
+    },
+    "operator_staff_per_account": {
      "p10": 7.352378833741519,
      "p50": 13.310391605673003,
      "p90": 31.097898808366242
     },
-    "operator_per_account": {
-     "p10": 21.65178746058029,
-     "p50": 29.61124012781265,
-     "p90": 48.698866145287525
-    },
-    "sponsor_per_account": {
-     "p10": 0.998993121817533,
-     "p50": 2.3008977899848135,
-     "p90": 5.812080246235809
+    "vendor_per_account": {
+     "p10": 6.022379900891034,
+     "p50": 7.489101435340084,
+     "p90": 10.176291475697234
     }
    },
    "pooled_v1_baseline": {
@@ -1387,67 +956,89 @@
      "p50": 23.004165095523305,
      "p90": 29.43063011169808
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 15.98735414767395,
-     "p50": 20.209867463314723,
-     "p90": 25.426171490585176
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 0.998993121817533,
-     "p50": 2.3008977899848135,
-     "p90": 5.812080246235809
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 20.31934474505193,
+     "p50": 27.49868621809376,
+     "p90": 47.77567804773315
+    },
+    "customer_per_account": {
+     "p10": 13.550842875239388,
+     "p50": 19.646737273020705,
+     "p90": 37.55266710648178
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 6.3114696552100975,
+     "p50": 7.885610988362409,
+     "p90": 10.898111229747808
+    }
+   },
+   "sponsors_p50": 123.5,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 23.12927632238994,
      "p50": 31.720338940861403,
      "p90": 53.569905414187836
     },
-    "decision_team_per_account": {
-     "p10": 6.7156798115964875,
-     "p50": 12.843454255057171,
-     "p90": 30.039311732847942
+    "customer_per_account": {
+     "p10": 16.01483463931879,
+     "p50": 23.7177348581049,
+     "p90": 42.56961175004138
     },
-    "operator_per_account": {
-     "p10": 13.71434983854404,
-     "p50": 16.589135734275203,
-     "p90": 20.035278959451986
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 7.760206060807435,
-     "p50": 14.752494852603665,
-     "p90": 33.921879082218254
+    "vendor_per_account": {
+     "p10": 6.3114696552100975,
+     "p50": 7.885610988362409,
+     "p90": 10.898111229747808
     }
-   },
-   "sponsors_p50": 123.5
+   }
   },
   "OM5|1000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 4226.740424151985,
      "p50": 4844.699492771223,
      "p90": 5755.388919192477
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 940.659494907937,
+     "p50": 1034.431096959163,
+     "p90": 1167.5989829569066
+    },
+    "operator_staff_per_account": {
      "p10": 407.06580737721725,
      "p50": 516.8065822033013,
      "p90": 672.1762879631244
     },
-    "operator_per_account": {
-     "p10": 4076.7404241519853,
-     "p50": 4694.699492771223,
-     "p90": 5605.388919192477
-    },
-    "sponsor_per_account": {
-     "p10": 150.0,
-     "p50": 150.0,
-     "p90": 150.0
+    "vendor_per_account": {
+     "p10": 2834.3897143145878,
+     "p50": 3287.244854674294,
+     "p90": 3926.923120511003
     }
    },
    "pooled_v1_baseline": {
@@ -1456,67 +1047,89 @@
      "p50": 4670.393834920771,
      "p90": 5508.19120804427
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 3928.817813741257,
-     "p50": 4520.393834920771,
-     "p90": 5358.19120804427
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 150.0,
-     "p50": 150.0,
-     "p90": 150.0
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 3765.537986945775,
+     "p50": 4301.5230635848675,
+     "p90": 5062.431855354919
+    },
+    "customer_per_account": {
+     "p10": 867.2673347988608,
+     "p50": 990.0671211519114,
+     "p90": 1143.883921904126
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 2847.7490689820856,
+     "p50": 3300.2096437056443,
+     "p90": 3941.423427782757
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 4219.470690845129,
      "p50": 4825.295787311353,
      "p90": 5713.4544383116545
     },
-    "decision_team_per_account": {
-     "p10": 380.0168954067637,
-     "p50": 499.4391985290737,
-     "p90": 646.1314845334775
+    "customer_per_account": {
+     "p10": 1329.9522587183199,
+     "p50": 1518.1690824589855,
+     "p90": 1773.7450189766812
     },
-    "operator_per_account": {
-     "p10": 3646.728065420213,
-     "p50": 4184.504824454269,
-     "p90": 4941.804572379477
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 515.6690634566231,
-     "p50": 630.8543275561722,
-     "p90": 779.1228496106797
+    "vendor_per_account": {
+     "p10": 2847.7490689820856,
+     "p50": 3300.2096437056443,
+     "p90": 3941.423427782757
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM5|10000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 545.121505755762,
      "p50": 625.3273718642945,
      "p90": 728.3875954967366
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 117.6454438230668,
+     "p50": 127.09900642912973,
+     "p90": 139.0440229054219
+    },
+    "operator_staff_per_account": {
      "p10": 42.60046789594243,
      "p50": 53.36032555322038,
      "p90": 68.09734576551833
     },
-    "operator_per_account": {
-     "p10": 530.121505755762,
-     "p50": 610.3273718642945,
-     "p90": 713.3875954967366
-    },
-    "sponsor_per_account": {
-     "p10": 15.0,
-     "p50": 15.0,
-     "p90": 15.0
+    "vendor_per_account": {
+     "p10": 380.38384764570384,
+     "p50": 443.0772889618776,
+     "p90": 517.7578608019635
     }
    },
    "pooled_v1_baseline": {
@@ -1525,67 +1138,89 @@
      "p50": 606.1058372914715,
      "p90": 701.7707511368318
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 513.1708564130224,
-     "p50": 591.1058372914715,
-     "p90": 686.7707511368318
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 15.0,
-     "p50": 15.0,
-     "p90": 15.0
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 498.04835217457867,
+     "p50": 569.4014028335507,
+     "p90": 658.5314452056291
+    },
+    "customer_per_account": {
+     "p10": 111.04295814420988,
+     "p50": 121.97627893056381,
+     "p90": 137.474966443999
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 381.8286515424607,
+     "p50": 444.6625422468548,
+     "p90": 519.0579105858874
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 543.5159077288386,
      "p50": 622.8296601072783,
      "p90": 724.2512095772778
     },
-    "decision_team_per_account": {
-     "p10": 40.13504957543637,
-     "p50": 50.864068818104414,
-     "p90": 65.45602781995981
+    "customer_per_account": {
+     "p10": 158.00075858039642,
+     "p50": 176.7104116321678,
+     "p90": 199.57418965749966
     },
-    "operator_per_account": {
-     "p10": 483.9321927438704,
-     "p50": 556.6688348639562,
-     "p90": 644.2590404093056
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 53.63746983175597,
-     "p50": 63.848342386015226,
-     "p90": 78.9027129321309
+    "vendor_per_account": {
+     "p10": 381.8286515424607,
+     "p50": 444.6625422468548,
+     "p90": 519.0579105858874
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM5|100000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 73.32399232406141,
      "p50": 84.51900831624346,
      "p90": 98.23503473340556
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 15.938729952247105,
+     "p50": 17.16870353148503,
+     "p90": 18.648948632047734
+    },
+    "operator_staff_per_account": {
      "p10": 4.087761392497084,
      "p50": 5.392172817226102,
      "p90": 7.102856490713165
     },
-    "operator_per_account": {
-     "p10": 71.82399232406141,
-     "p50": 83.01900831624346,
-     "p90": 96.73503473340556
-    },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 53.08256264565064,
+     "p50": 61.69839978266914,
+     "p90": 72.90672737997129
     }
    },
    "pooled_v1_baseline": {
@@ -1594,67 +1229,89 @@
      "p50": 84.33191933432686,
      "p90": 98.18385357843307
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 71.86215769784188,
-     "p50": 82.83191933432684,
-     "p90": 96.68385357843307
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 69.31719137428091,
+     "p50": 79.39411891771778,
+     "p90": 92.46868982462605
+    },
+    "customer_per_account": {
+     "p10": 15.568707149071965,
+     "p50": 17.335836151084738,
+     "p90": 20.529057584258684
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 53.21056382927588,
+     "p50": 61.833704560417,
+     "p90": 73.12403556166858
+    }
+   },
+   "sponsors_p50": 1.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 73.18560910713302,
      "p50": 84.02077521869526,
      "p90": 98.45631590678892
     },
-    "decision_team_per_account": {
-     "p10": 3.774088257278909,
-     "p50": 5.096298825429999,
-     "p90": 6.767499765236742
+    "customer_per_account": {
+     "p10": 19.75151736541764,
+     "p50": 22.114423770228964,
+     "p90": 25.248572264088175
     },
-    "operator_per_account": {
-     "p10": 67.87567480459784,
-     "p50": 77.37994734728221,
-     "p90": 90.28272230827483
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 5.087636286806293,
-     "p50": 6.43843538600038,
-     "p90": 8.09945059494638
+    "vendor_per_account": {
+     "p10": 53.21056382927588,
+     "p50": 61.833704560417,
+     "p90": 73.12403556166858
     }
-   },
-   "sponsors_p50": 1.0
+   }
   },
   "OM5|1000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 19.741461198355903,
      "p50": 22.571619536428464,
      "p90": 26.011035983561364
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 6.648527627662128,
+     "p50": 7.662937942883735,
+     "p90": 8.923130444663549
+    },
+    "operator_staff_per_account": {
      "p10": 4.2135593730982634,
      "p50": 5.5140238798230605,
      "p90": 7.184363638294794
     },
-    "operator_per_account": {
-     "p10": 18.241461198355903,
-     "p50": 21.071619536428464,
-     "p90": 24.511035983561364
-    },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 8.336859618268493,
+     "p50": 9.429569977550052,
+     "p90": 10.712655488698532
     }
    },
    "pooled_v1_baseline": {
@@ -1663,67 +1320,89 @@
      "p50": 19.919486263358163,
      "p90": 23.89856110060796
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 15.6021895318263,
-     "p50": 18.419486263358163,
-     "p90": 22.39856110060796
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
+    "cost_per_account": {
+     "p10": 18.016130398835504,
+     "p50": 20.552408034056736,
+     "p90": 24.1657058134546
+    },
+    "customer_per_account": {
+     "p10": 9.238390295812469,
+     "p50": 10.966789567531425,
+     "p90": 13.779165922575997
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 8.502251682235569,
+     "p50": 9.588984594997509,
+     "p90": 10.868238442362737
+    }
+   },
+   "sponsors_p50": 10.0,
+   "via_administrator": {
     "cost_per_account": {
      "p10": 19.423047742493818,
      "p50": 22.326509981170215,
      "p90": 25.73771631409726
     },
-    "decision_team_per_account": {
-     "p10": 3.839258535813723,
-     "p50": 5.193655420077253,
-     "p90": 6.828487000896352
+    "customer_per_account": {
+     "p10": 10.681834413884449,
+     "p50": 12.766419698562782,
+     "p90": 15.171285192132213
     },
-    "operator_per_account": {
-     "p10": 13.838736847077142,
-     "p50": 15.75892997888954,
-     "p90": 18.03514360135202
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 5.1912552634835825,
-     "p50": 6.5035644297822435,
-     "p90": 8.176258024680275
+    "vendor_per_account": {
+     "p10": 8.502251682235569,
+     "p50": 9.588984594997509,
+     "p90": 10.868238442362737
     }
-   },
-   "sponsors_p50": 10.0
+   }
   },
   "OM5|5000000": {
-   "operator_dedicated": {
+   "future_operator_dedicated": {
     "cost_per_account": {
      "p10": 14.136806102166215,
      "p50": 16.49877663299447,
      "p90": 19.52064102001426
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
+     "p10": 5.813543590028551,
+     "p50": 6.732445939772939,
+     "p90": 8.065772570392985
+    },
+    "operator_staff_per_account": {
      "p10": 4.0972281341728785,
      "p50": 5.449785688497785,
      "p90": 7.143624825977502
     },
-    "operator_per_account": {
-     "p10": 12.636806102166213,
-     "p50": 14.998776632994469,
-     "p90": 18.02064102001426
-    },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 3.7030435527624253,
+     "p50": 4.216321604383928,
+     "p90": 4.838841385113912
     }
    },
    "pooled_v1_baseline": {
@@ -1732,485 +1411,407 @@
      "p50": 13.74502079470983,
      "p90": 17.411337104969345
     },
-    "decision_team_per_account": {
+    "customer_per_account": {
      "p10": 0.0,
      "p50": 0.0,
      "p90": 0.0
     },
-    "operator_per_account": {
-     "p10": 10.022319977149417,
-     "p50": 12.24502079470983,
-     "p90": 15.911337104969345
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 1.5,
-     "p50": 1.5,
-     "p90": 1.5
+    "vendor_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     }
    },
-   "self_staffed": {
+   "sponsor_direct": {
     "cost_per_account": {
-     "p10": 13.955976331069605,
+     "p10": 12.642320003300762,
+     "p50": 14.876813901339899,
+     "p90": 18.02259861301739
+    },
+    "customer_per_account": {
+     "p10": 8.392470027535317,
+     "p50": 10.431187407513859,
+     "p90": 13.413950987265025
+    },
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
+    },
+    "vendor_per_account": {
+     "p10": 3.8402581164216336,
+     "p50": 4.3825622424318,
+     "p90": 5.017990336286254
+    }
+   },
+   "sponsors_p50": 50.0,
+   "via_administrator": {
+    "cost_per_account": {
+     "p10": 13.955976331069602,
      "p50": 16.34978096730984,
      "p90": 19.325233469952227
     },
-    "decision_team_per_account": {
-     "p10": 3.8164634998096525,
-     "p50": 5.185666637922543,
-     "p90": 6.840103125830787
+    "customer_per_account": {
+     "p10": 9.93166801488544,
+     "p50": 11.914236968189769,
+     "p90": 14.45982129214767
     },
-    "operator_per_account": {
-     "p10": 8.287619513875223,
-     "p50": 9.678277614267685,
-     "p90": 11.359646894006904
+    "operator_staff_per_account": {
+     "p10": 0.0,
+     "p50": 0.0,
+     "p90": 0.0
     },
-    "sponsor_per_account": {
-     "p10": 5.154079363527033,
-     "p50": 6.542274185872931,
-     "p90": 8.17889911342024
+    "vendor_per_account": {
+     "p10": 3.8402581164216336,
+     "p50": 4.3825622424318,
+     "p90": 5.017990336286254
     }
-   },
-   "sponsors_p50": 50.0
+   }
   }
  },
- "price_floors": [
-  {
-   "A_platform_fee_per_account_floor": 97.8988045,
-   "B_sponsor_service_fee_per_sponsor_floor": 37000.0,
-   "C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
-   "C2_self_staffed_support_fee_per_sponsor_floor": 15000.0,
-   "accounts": 100000,
-   "note": "Floors recover modelled operator cost only; margin, acquisition and fund-borne costs excluded.",
-   "om": "OM3",
-   "self_staffed_sponsor_own_staff_cost_per_sponsor": 412500.0,
-   "sponsors": 20,
-   "team_fte_per_sponsor": 2.5
-  },
-  {
-   "A_platform_fee_per_account_floor": 40.2651495,
-   "B_sponsor_service_fee_per_sponsor_floor": 37000.0,
-   "C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
-   "C2_self_staffed_support_fee_per_sponsor_floor": 15000.0,
-   "accounts": 1000000,
-   "note": "Floors recover modelled operator cost only; margin, acquisition and fund-borne costs excluded.",
-   "om": "OM3",
-   "self_staffed_sponsor_own_staff_cost_per_sponsor": 412500.0,
-   "sponsors": 200,
-   "team_fte_per_sponsor": 2.5
-  },
-  {
-   "A_platform_fee_per_account_floor": 17.111449,
-   "B_sponsor_service_fee_per_sponsor_floor": 37000.0,
-   "C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
-   "C2_self_staffed_support_fee_per_sponsor_floor": 15000.0,
-   "accounts": 1000000,
-   "note": "Floors recover modelled operator cost only; margin, acquisition and fund-borne costs excluded.",
-   "om": "OM4",
-   "self_staffed_sponsor_own_staff_cost_per_sponsor": 412500.0,
-   "sponsors": 50,
-   "team_fte_per_sponsor": 2.5
-  },
-  {
-   "A_platform_fee_per_account_floor": 7.137756700303521,
-   "B_sponsor_service_fee_per_sponsor_floor": 62000.0,
-   "C1_dedicated_team_fee_per_sponsor_floor": 453750.0,
-   "C2_self_staffed_support_fee_per_sponsor_floor": 15000.0,
-   "accounts": 5000000,
-   "note": "Floors recover modelled operator cost only; margin, acquisition and fund-borne costs excluded.",
-   "om": "OM5",
-   "self_staffed_sponsor_own_staff_cost_per_sponsor": 412500.0,
-   "sponsors": 50,
-   "team_fte_per_sponsor": 2.5
-  }
- ],
  "sponsor_size": [
   {
+   "all_work_fte_per_1000_accounts": 0.23381377015625002,
+   "floor_binds_below_accounts_decisions": 14459.512409119208,
+   "floor_binds_below_accounts_direct": 10692.270170098762,
    "om": "OM3",
    "reserved_fte_per_1000_accounts": 0.17289656312499999,
    "rows": [
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 907.5000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 14263.9664578125,
-     "self_staffed_operator_support_per_account": 30.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 14263.9664578125,
      "sponsor_accounts": 500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 825.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 825.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 453.75000000000006,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 28527.932915625,
-     "self_staffed_operator_support_per_account": 15.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 28527.932915625,
      "sponsor_accounts": 1000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 412.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 412.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 181.50000000000003,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 71319.8322890625,
-     "self_staffed_operator_support_per_account": 6.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 71319.8322890625,
      "sponsor_accounts": 2500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 165.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 165.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 90.75000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 142639.664578125,
-     "self_staffed_operator_support_per_account": 3.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 142639.664578125,
      "sponsor_accounts": 5000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 82.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 82.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 45.37500000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 285279.32915625,
-     "self_staffed_operator_support_per_account": 1.5,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 285279.32915625,
      "sponsor_accounts": 10000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 41.25,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 41.25,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": false,
-     "operator_dedicated_usd_per_account": 32.67,
-     "operator_dedicated_usd_per_sponsor": 816750.0000000001,
-     "self_staffed_existing_staff_marginal_usd": 713198.322890625,
-     "self_staffed_operator_support_per_account": 0.6,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 742500.0,
+     "existing_staff_time_used_usd": 713198.322890625,
      "sponsor_accounts": 25000,
-     "team_fte": 4.5
+     "sponsor_direct_fte": 6.0,
+     "sponsor_direct_per_account": 39.6,
+     "sponsor_direct_usd": 990000.0,
+     "via_administrator_decision_fte": 4.5,
+     "via_administrator_decision_per_account": 29.7,
+     "via_administrator_decision_usd": 742500.0
     },
     {
-     "floor_binds": false,
-     "operator_dedicated_usd_per_account": 31.762500000000006,
-     "operator_dedicated_usd_per_sponsor": 3176250.0000000005,
-     "self_staffed_existing_staff_marginal_usd": 2852793.2915625,
-     "self_staffed_operator_support_per_account": 0.15,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 2887500.0,
+     "existing_staff_time_used_usd": 2852793.2915625,
      "sponsor_accounts": 100000,
-     "team_fte": 17.5
+     "sponsor_direct_fte": 23.5,
+     "sponsor_direct_per_account": 38.775,
+     "sponsor_direct_usd": 3877500.0,
+     "via_administrator_decision_fte": 17.5,
+     "via_administrator_decision_per_account": 28.875,
+     "via_administrator_decision_usd": 2887500.0
     }
-   ],
-   "workload_fills_floor_at_accounts": 14459.512409119208
+   ]
   },
   {
+   "all_work_fte_per_1000_accounts": 0.02911719140625,
+   "floor_binds_below_accounts_decisions": 231768.1738840724,
+   "floor_binds_below_accounts_direct": 85859.92945265234,
    "om": "OM4",
    "reserved_fte_per_1000_accounts": 0.010786640625000003,
    "rows": [
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 907.5000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 889.8978515625003,
-     "self_staffed_operator_support_per_account": 30.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 889.8978515625003,
      "sponsor_accounts": 500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 825.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 825.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 453.75000000000006,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 1779.7957031250005,
-     "self_staffed_operator_support_per_account": 15.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 1779.7957031250005,
      "sponsor_accounts": 1000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 412.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 412.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 181.50000000000003,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 4449.489257812501,
-     "self_staffed_operator_support_per_account": 6.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 4449.489257812501,
      "sponsor_accounts": 2500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 165.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 165.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 90.75000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 8898.978515625002,
-     "self_staffed_operator_support_per_account": 3.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 8898.978515625002,
      "sponsor_accounts": 5000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 82.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 82.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 45.37500000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 17797.957031250004,
-     "self_staffed_operator_support_per_account": 1.5,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 17797.957031250004,
      "sponsor_accounts": 10000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 41.25,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 41.25,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 18.150000000000002,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 44494.892578125015,
-     "self_staffed_operator_support_per_account": 0.6,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 44494.892578125015,
      "sponsor_accounts": 25000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 16.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 16.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 4.5375000000000005,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 177979.57031250006,
-     "self_staffed_operator_support_per_account": 0.15,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 177979.57031250006,
      "sponsor_accounts": 100000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 3.0,
+     "sponsor_direct_per_account": 4.95,
+     "sponsor_direct_usd": 495000.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 4.125,
+     "via_administrator_decision_usd": 412500.0
     }
-   ],
-   "workload_fills_floor_at_accounts": 231768.1738840724
+   ]
   },
   {
+   "all_work_fte_per_1000_accounts": 0.015392764973958332,
+   "floor_binds_below_accounts_decisions": 347652.2608261088,
+   "floor_binds_below_accounts_direct": 162413.9655370254,
    "om": "OM5",
    "reserved_fte_per_1000_accounts": 0.007191093749999998,
    "rows": [
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 907.5000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 593.2652343749999,
-     "self_staffed_operator_support_per_account": 30.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 593.2652343749999,
      "sponsor_accounts": 500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 825.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 825.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 453.75000000000006,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 1186.5304687499997,
-     "self_staffed_operator_support_per_account": 15.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 1186.5304687499997,
      "sponsor_accounts": 1000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 412.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 412.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 181.50000000000003,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 2966.326171874999,
-     "self_staffed_operator_support_per_account": 6.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 2966.326171874999,
      "sponsor_accounts": 2500,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 165.0,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 165.0,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 90.75000000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 5932.652343749998,
-     "self_staffed_operator_support_per_account": 3.0,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 5932.652343749998,
      "sponsor_accounts": 5000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 82.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 82.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 45.37500000000001,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 11865.304687499996,
-     "self_staffed_operator_support_per_account": 1.5,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 11865.304687499996,
      "sponsor_accounts": 10000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 41.25,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 41.25,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 18.150000000000002,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 29663.26171874999,
-     "self_staffed_operator_support_per_account": 0.6,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 29663.26171874999,
      "sponsor_accounts": 25000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 16.5,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 16.5,
+     "via_administrator_decision_usd": 412500.0
     },
     {
-     "floor_binds": true,
-     "operator_dedicated_usd_per_account": 4.5375000000000005,
-     "operator_dedicated_usd_per_sponsor": 453750.00000000006,
-     "self_staffed_existing_staff_marginal_usd": 118653.04687499996,
-     "self_staffed_operator_support_per_account": 0.15,
-     "self_staffed_operator_support_usd": 15000,
-     "self_staffed_sponsor_staff_usd": 412500.0,
+     "existing_staff_time_used_usd": 118653.04687499996,
      "sponsor_accounts": 100000,
-     "team_fte": 2.5
+     "sponsor_direct_fte": 2.5,
+     "sponsor_direct_per_account": 4.125,
+     "sponsor_direct_usd": 412500.0,
+     "via_administrator_decision_fte": 2.5,
+     "via_administrator_decision_per_account": 4.125,
+     "via_administrator_decision_usd": 412500.0
     }
-   ],
-   "workload_fills_floor_at_accounts": 347652.2608261088
+   ]
   }
  ],
  "targets_min_scale_deterministic": {
   "10": {
-   "OM1": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
-   "OM2": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
    "OM3": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": null,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM4": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": null,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM5": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": 10000000,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    }
   },
   "100": {
-   "OM1": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
-   "OM2": {
-    "operator_dedicated": 300000,
-    "pooled_v1_baseline": 300000,
-    "self_staffed": 300000
-   },
    "OM3": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": 1000000,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM4": {
-    "operator_dedicated": 300000,
+    "future_operator_dedicated": 300000,
     "pooled_v1_baseline": 100000,
-    "self_staffed": 100000
+    "sponsor_direct": 100000,
+    "via_administrator": 100000
    },
    "OM5": {
-    "operator_dedicated": 100000,
+    "future_operator_dedicated": 100000,
     "pooled_v1_baseline": 100000,
-    "self_staffed": 100000
+    "sponsor_direct": 100000,
+    "via_administrator": 100000
    }
   },
   "25": {
-   "OM1": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
-   "OM2": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
    "OM3": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": null,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM4": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": 1000000,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM5": {
-    "operator_dedicated": 1000000,
+    "future_operator_dedicated": 1000000,
     "pooled_v1_baseline": 1000000,
-    "self_staffed": 1000000
+    "sponsor_direct": 1000000,
+    "via_administrator": 1000000
    }
   },
   "258": {
-   "OM1": {
-    "operator_dedicated": 100000,
-    "pooled_v1_baseline": 100000,
-    "self_staffed": 100000
-   },
-   "OM2": {
-    "operator_dedicated": 30000,
-    "pooled_v1_baseline": 30000,
-    "self_staffed": 30000
-   },
    "OM3": {
-    "operator_dedicated": 100000,
+    "future_operator_dedicated": 100000,
     "pooled_v1_baseline": 100000,
-    "self_staffed": 100000
+    "sponsor_direct": 100000,
+    "via_administrator": 100000
    },
    "OM4": {
-    "operator_dedicated": 30000,
+    "future_operator_dedicated": 30000,
     "pooled_v1_baseline": 30000,
-    "self_staffed": 30000
+    "sponsor_direct": 30000,
+    "via_administrator": 30000
    },
    "OM5": {
-    "operator_dedicated": 30000,
+    "future_operator_dedicated": 30000,
     "pooled_v1_baseline": 30000,
-    "self_staffed": 30000
+    "sponsor_direct": 30000,
+    "via_administrator": 30000
    }
   },
   "50": {
-   "OM1": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
-   "OM2": {
-    "operator_dedicated": null,
-    "pooled_v1_baseline": null,
-    "self_staffed": null
-   },
    "OM3": {
-    "operator_dedicated": null,
+    "future_operator_dedicated": null,
     "pooled_v1_baseline": null,
-    "self_staffed": null
+    "sponsor_direct": null,
+    "via_administrator": null
    },
    "OM4": {
-    "operator_dedicated": 1000000,
+    "future_operator_dedicated": 1000000,
     "pooled_v1_baseline": 300000,
-    "self_staffed": 1000000
+    "sponsor_direct": 1000000,
+    "via_administrator": 1000000
    },
    "OM5": {
-    "operator_dedicated": 300000,
+    "future_operator_dedicated": 300000,
     "pooled_v1_baseline": 300000,
-    "self_staffed": 300000
+    "sponsor_direct": 300000,
+    "via_administrator": 300000
    }
   }
  }
