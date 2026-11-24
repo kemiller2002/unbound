@@ -44,7 +44,7 @@ python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must st
 
 ## 3. Integrator fixups applied to research-pass output
 
-All fixups are scripted and re-runnable. Merge order: fixups, then merge, then graph, then validate.
+The integrator applied these fixups with session scripts in the order fixups, merge, graph, validate. Those scripts and the raw per-pass output lived in the session scratch area and are **not** in the repository. The merged files in `data/` are the canonical record, and every change below can be seen in them, for example through `priority_as_proposed` and `adversarial_disposition`.
 
 | Fixup | Reason |
 |---|---|
