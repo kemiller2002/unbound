@@ -1,0 +1,648 @@
+{
+  "workflow_id": "WFM-17",
+  "name": "Annual DAF reporting (Schedule D Part I support)",
+  "release": "R1",
+  "outcome": "Each legal sponsor receives a reproducible, ledger-reconciled DAF annual package, prepared, reviewed and signed by distinct people, with filing and acceptance evidenced",
+  "aggregate": "AnnualDafReport",
+  "sources": [
+    "RR-REQ-X-060-r1",
+    "UNB-RCN-ENT-011",
+    "UNB-RCN-ENT-012",
+    "UNB-UI-D-004",
+    "RCD-024",
+    "TX-22"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "AnnualReportNotStarted",
+      "kind": "initial",
+      "user_label": "Not started",
+      "lozenge": "neutral",
+      "description": "Tax year not yet ended for this legal sponsor."
+    },
+    {
+      "id": "AnnualReportRegisterCheck",
+      "kind": "intermediate",
+      "user_label": "Checking classification register",
+      "lozenge": "attention",
+      "description": "Verifying a counsel-approved account-type classification register version covers every product used in the year."
+    },
+    {
+      "id": "AnnualReportRegisterBlocked",
+      "kind": "intermediate",
+      "user_label": "Blocked: classification register",
+      "lozenge": "blocked",
+      "description": "Register missing, unapproved or incomplete for a product type used in the year."
+    },
+    {
+      "id": "AnnualReportAwaitingLock",
+      "kind": "intermediate",
+      "user_label": "Awaiting locked year",
+      "lozenge": "attention",
+      "description": "Waiting until every period in the tax year is certified and locked."
+    },
+    {
+      "id": "AnnualReportPackageBuilt",
+      "kind": "intermediate",
+      "user_label": "Package built",
+      "lozenge": "attention",
+      "description": "Package built from the locked ledger with as-of and known-at; synthetic and canary items excluded."
+    },
+    {
+      "id": "AnnualReportBreak",
+      "kind": "intermediate",
+      "user_label": "Does not reconcile",
+      "lozenge": "blocked",
+      "description": "Package totals do not reconcile to the ledger."
+    },
+    {
+      "id": "AnnualReportReconciled",
+      "kind": "intermediate",
+      "user_label": "Reconciled to ledger",
+      "lozenge": "attention",
+      "description": "Every aggregate reconciles to the ledger."
+    },
+    {
+      "id": "AnnualReportPrepared",
+      "kind": "intermediate",
+      "user_label": "Prepared",
+      "lozenge": "attention",
+      "description": "Preparer has mapped the package to form lines with the CPA data dictionary."
+    },
+    {
+      "id": "AnnualReportReviewed",
+      "kind": "intermediate",
+      "user_label": "Reviewed",
+      "lozenge": "attention",
+      "description": "Reviewed by a person other than the preparer."
+    },
+    {
+      "id": "AnnualReportSigned",
+      "kind": "intermediate",
+      "user_label": "Signed",
+      "lozenge": "attention",
+      "description": "Signed by an authorized officer who is not the preparer."
+    },
+    {
+      "id": "AnnualReportFiled",
+      "kind": "intermediate",
+      "user_label": "Filed, awaiting acceptance",
+      "lozenge": "attention",
+      "description": "Submission evidence recorded; filed by the sponsor's filer (Unbound has no filing authority)."
+    },
+    {
+      "id": "AnnualReportRejected",
+      "kind": "intermediate",
+      "user_label": "Rejected by IRS",
+      "lozenge": "blocked",
+      "description": "Filing rejected; correction required."
+    },
+    {
+      "id": "AnnualReportAccepted",
+      "kind": "terminal",
+      "user_label": "Accepted",
+      "lozenge": "ok",
+      "description": "Acceptance evidence recorded."
+    },
+    {
+      "id": "AnnualReportNotApplicable",
+      "kind": "terminal",
+      "user_label": "Not applicable",
+      "lozenge": "neutral",
+      "description": "Counsel recorded that no DAF reporting obligation applies for this sponsor and year."
+    },
+    {
+      "id": "AnnualReportAmending",
+      "kind": "correction",
+      "user_label": "Amendment in progress",
+      "lozenge": "attention",
+      "description": "Linked correction after acceptance (restatement or error found)."
+    },
+    {
+      "id": "AnnualReportAmended",
+      "kind": "correction",
+      "user_label": "Amended return filed",
+      "lozenge": "ok",
+      "description": "Amended return filed and accepted; original package preserved."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-17-T01",
+      "from": "AnnualReportNotStarted",
+      "to": "AnnualReportRegisterCheck",
+      "trigger": "timer",
+      "name": "StartAnnualReporting",
+      "actor_type": "timer",
+      "actor_role": "Tax calendar (sponsor fiscal year end)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-obligation"
+      ],
+      "idempotency_key": "(sponsorId, taxYear)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-17-T02",
+      "from": "AnnualReportRegisterCheck",
+      "to": "AnnualReportAwaitingLock",
+      "trigger": "event",
+      "name": "CheckClassificationRegister",
+      "actor_type": "deterministic",
+      "actor_role": "Annual reporting service",
+      "authority": "A3",
+      "guards": [
+        "register-counsel-approved",
+        "all-products-classified"
+      ],
+      "effects": [
+        "record-register-version"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, registerVersion)",
+      "failure": [
+        {
+          "condition": "RegisterMissingOrIncomplete",
+          "to_state": "AnnualReportRegisterBlocked"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-011",
+        "RCD-024",
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": [
+        "DKS-XD-002"
+      ]
+    },
+    {
+      "id": "WFM-17-T03",
+      "from": "AnnualReportRegisterBlocked",
+      "to": "AnnualReportRegisterCheck",
+      "trigger": "command",
+      "name": "ApproveClassificationRegister",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "record-register-version"
+      ],
+      "idempotency_key": "(sponsorId, registerVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-011",
+        "RCD-024"
+      ],
+      "scenario_ids": [
+        "DKS-XD-002"
+      ],
+      "ui_surface": "NEW:Account-type classification register"
+    },
+    {
+      "id": "WFM-17-T04",
+      "from": "AnnualReportRegisterCheck",
+      "to": "AnnualReportNotApplicable",
+      "trigger": "command",
+      "name": "RecordNotApplicable",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A4",
+      "guards": [
+        "applicability-evidence"
+      ],
+      "effects": [
+        "record-obligation"
+      ],
+      "idempotency_key": "(sponsorId, taxYear)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-ACC-021"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T05",
+      "from": "AnnualReportAwaitingLock",
+      "to": "AnnualReportAwaitingLock",
+      "trigger": "timer",
+      "name": "EscalateFilingDeadline",
+      "actor_type": "timer",
+      "actor_role": "Tax deadline monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item",
+        "notify"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, escalationTier)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-021",
+        "RR-REQ-X-060-r1"
+      ],
+      "scenario_ids": [
+        "TVS-102"
+      ],
+      "notes": "GAP: no requirement states the deadline/extension tracking for the annual return."
+    },
+    {
+      "id": "WFM-17-T06",
+      "from": "AnnualReportAwaitingLock",
+      "to": "AnnualReportPackageBuilt",
+      "trigger": "event",
+      "name": "BuildPackage",
+      "actor_type": "deterministic",
+      "actor_role": "Annual reporting service",
+      "authority": "A3",
+      "guards": [
+        "all-periods-certified-locked",
+        "synthetic-and-canary-excluded"
+      ],
+      "effects": [
+        "package-snapshot"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, ledgerSnapshotHash)",
+      "failure": [
+        {
+          "condition": "TimeoutPeriodsNotLocked",
+          "to_state": "AnnualReportAwaitingLock"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-UI-D-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-021",
+        "TVS-307"
+      ]
+    },
+    {
+      "id": "WFM-17-T07",
+      "from": "AnnualReportPackageBuilt",
+      "to": "AnnualReportReconciled",
+      "trigger": "event",
+      "name": "ReconcilePackageToLedger",
+      "actor_type": "deterministic",
+      "actor_role": "Annual reporting service",
+      "authority": "A3",
+      "guards": [
+        "counts-and-aggregates-reconcile"
+      ],
+      "effects": [
+        "recon-evidence"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, packageVersion)",
+      "failure": [
+        {
+          "condition": "ReconciliationDifference",
+          "to_state": "AnnualReportBreak"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-UI-D-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-021",
+        "SIM-020"
+      ]
+    },
+    {
+      "id": "WFM-17-T08",
+      "from": "AnnualReportBreak",
+      "to": "AnnualReportAwaitingLock",
+      "trigger": "command",
+      "name": "ResolvePackageBreak",
+      "actor_type": "human",
+      "actor_role": "Controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, breakId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-NAV-043"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Ledger errors are corrected via a WFM-16 restatement; mapping errors via a data-dictionary change; the package is rebuilt."
+    },
+    {
+      "id": "WFM-17-T09",
+      "from": "AnnualReportReconciled",
+      "to": "AnnualReportPrepared",
+      "trigger": "command",
+      "name": "PreparePackage",
+      "actor_type": "human",
+      "actor_role": "Tax preparer (sponsor staff or CPA)",
+      "authority": "A3",
+      "guards": [
+        "data-dictionary-cpa-approved"
+      ],
+      "effects": [
+        "record-preparer"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, packageVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-UI-D-004"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T10",
+      "from": "AnnualReportPrepared",
+      "to": "AnnualReportReviewed",
+      "trigger": "command",
+      "name": "ReviewPackage",
+      "actor_type": "human",
+      "actor_role": "Qualified reviewer (CPA or tax director), not the preparer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "record-review"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, packageVersion)",
+      "failure": [
+        {
+          "condition": "ReturnedToPreparer",
+          "to_state": "AnnualReportReconciled"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-ACC-022"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T11",
+      "from": "AnnualReportReviewed",
+      "to": "AnnualReportSigned",
+      "trigger": "command",
+      "name": "SignReturn",
+      "actor_type": "human",
+      "actor_role": "Authorized officer of the legal sponsor, not the preparer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "signer-authority-current"
+      ],
+      "effects": [
+        "record-signature"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, packageVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-ACC-021",
+        "UNB-UI-D-004"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-008"
+      ],
+      "ui_surface": "NEW:Annual DAF reporting workspace",
+      "notes": "No AI signing or filing authority."
+    },
+    {
+      "id": "WFM-17-T12",
+      "from": "AnnualReportSigned",
+      "to": "AnnualReportFiled",
+      "trigger": "command",
+      "name": "RecordFiling",
+      "actor_type": "human",
+      "actor_role": "Sponsor tax staff",
+      "authority": "A3",
+      "guards": [
+        "submission-evidence-attached"
+      ],
+      "effects": [
+        "record-filing"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, submissionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-ACC-021"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T13",
+      "from": [
+        "AnnualReportPackageBuilt",
+        "AnnualReportReconciled",
+        "AnnualReportPrepared",
+        "AnnualReportReviewed",
+        "AnnualReportSigned"
+      ],
+      "to": "AnnualReportAwaitingLock",
+      "trigger": "event",
+      "name": "InvalidateOnRestatement",
+      "actor_type": "deterministic",
+      "actor_role": "Annual reporting service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "package-invalidated"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, restatementId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-NAV-043"
+      ],
+      "scenario_ids": [
+        "TVS-350",
+        "TVS-352"
+      ]
+    },
+    {
+      "id": "WFM-17-T14",
+      "from": "AnnualReportFiled",
+      "to": "AnnualReportAccepted",
+      "trigger": "command",
+      "name": "RecordAcceptance",
+      "actor_type": "human",
+      "actor_role": "Sponsor tax staff",
+      "authority": "A3",
+      "guards": [
+        "acceptance-evidence-attached"
+      ],
+      "effects": [
+        "record-acceptance"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, submissionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T15",
+      "from": "AnnualReportFiled",
+      "to": "AnnualReportRejected",
+      "trigger": "command",
+      "name": "RecordRejection",
+      "actor_type": "human",
+      "actor_role": "Sponsor tax staff",
+      "authority": "A3",
+      "guards": [
+        "rejection-evidence-attached"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, submissionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T16",
+      "from": "AnnualReportFiled",
+      "to": "AnnualReportFiled",
+      "trigger": "timer",
+      "name": "AcceptanceOverdue",
+      "actor_type": "timer",
+      "actor_role": "Tax deadline monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, agingTier)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-17-T17",
+      "from": "AnnualReportRejected",
+      "to": "AnnualReportReconciled",
+      "trigger": "command",
+      "name": "ReopenForCorrection",
+      "actor_type": "human",
+      "actor_role": "Tax preparer",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-preparer"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, rejectionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace",
+      "notes": "Re-enters preparation, review and signature with separation of duties."
+    },
+    {
+      "id": "WFM-17-T18",
+      "from": "AnnualReportAccepted",
+      "to": "AnnualReportAmending",
+      "trigger": "command",
+      "name": "OpenAmendment",
+      "actor_type": "human",
+      "actor_role": "Tax director",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "amendment-reason-recorded"
+      ],
+      "effects": [
+        "package-snapshot"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, amendmentId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012",
+        "UNB-NAV-043"
+      ],
+      "scenario_ids": [
+        "TVS-350",
+        "TVS-352"
+      ],
+      "ui_surface": "NEW:Annual DAF reporting workspace"
+    },
+    {
+      "id": "WFM-17-T19",
+      "from": "AnnualReportAmending",
+      "to": "AnnualReportAmended",
+      "trigger": "command",
+      "name": "RecordAmendedFilingAccepted",
+      "actor_type": "human",
+      "actor_role": "Sponsor tax staff (after separate prepare/review/sign by distinct people)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "acceptance-evidence-attached"
+      ],
+      "effects": [
+        "record-filing"
+      ],
+      "idempotency_key": "(sponsorId, taxYear, amendmentId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-060-r1",
+        "UNB-RCN-ENT-012"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Annual DAF reporting workspace",
+      "notes": "GAP: amendment is summarized as one step; its prepare/review/sign sub-states are not separately specified."
+    }
+  ],
+  "invariants": [
+    "Which accounts count as DAFs comes only from a counsel-approved classification register version recorded on the package.",
+    "The package is built only from certified, locked periods and excludes synthetic and canary items.",
+    "Preparer, reviewer and signer are three distinct principals; no AI principal signs or files.",
+    "Filing never mutates the ledger; a later restatement invalidates an unfiled package and forces an amendment after filing."
+  ]
+}

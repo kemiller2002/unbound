@@ -123,3 +123,26 @@ ACC-ADR-012: Tax/reporting support and external accountant/auditor sign-off.
 6. Qualified accounting review, then API/Forma/Folio/Strata implementation mapping.
 
 Traceability: UNB-ACC-001..036; UNB-DATA-001..012; UNB-TEN-001..020; UNB-SUCC-001..014; UNB-PLAT-001..009. No application code or tests were executed for this document.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-FIN-013 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-021 · **Parent:** REQ-X-023 · **Decisions:** RCD-011, RCD-019
+- **Requirement:** After sponsor acceptance, value MUST leave a DAF only through the grant lifecycle to an eligible grantee or a governed sponsor-to-sponsor transfer; any 'refund' to a donor or other natural person MUST be rejected unless a counsel-approved exception (e.g., return of property never accepted, or payroll over-withholding before acceptance) applies and is cited on the command.
+- **Validation still required:** RCD-019: CPA on completed-gift rule table
+- **Acceptance criteria:**
+  - AC-1: Given an accepted contribution; when a refund to the donor is requested; then the command is rejected and a counsel case opens.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-013); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-014 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-FIN-026 · **Parent:** REQ-X-084 · **Decisions:** —
+- **Requirement:** The journal fixture set MUST include line-level entity, currency, fund and restriction columns, MUST be validated by an executable balance check per entity x currency x balancing segment, and MUST cover fund-to-fund transfer, interfund fee with elimination, unit subscription and redemption, FX, returned contribution, noncash gift with fees, and correction of a correction.
+- **Acceptance criteria:**
+  - AC-1: Given the RCF-FIN-010 transfer fixture; when the checker runs; then it reports the per-fund imbalance.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-014); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

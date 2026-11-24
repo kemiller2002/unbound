@@ -1,0 +1,410 @@
+{
+  "workflow_id": "WFM-21",
+  "name": "Fund dormancy, outreach and charitable default",
+  "release": "R1",
+  "outcome": "An inactive fund is reached through every verified channel and its successors for the policy outreach period before any A4-approved charitable default; any qualifying activity resets the clock",
+  "aggregate": "FundDormancy",
+  "sources": [
+    "UNB-RCN-ENT-005",
+    "RR-UNB-WF-015-r1",
+    "RCD-022",
+    "ADM-024",
+    "UNB-SUCC-011"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "DormancyActive",
+      "kind": "initial",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "Fund has qualifying activity inside the policy window; inactivity clock running from the last qualifying event."
+    },
+    {
+      "id": "DormancyQuiet",
+      "kind": "intermediate",
+      "user_label": "Quiet",
+      "lozenge": "neutral",
+      "description": "Optional sponsor-set early threshold reached; informational nudges only."
+    },
+    {
+      "id": "DormancyInactive",
+      "kind": "intermediate",
+      "user_label": "Inactive - contacting you",
+      "lozenge": "attention",
+      "description": "36 months (default) without qualifying activity; outreach on every verified channel and to successor-designates."
+    },
+    {
+      "id": "DormancyUnresponsive",
+      "kind": "intermediate",
+      "user_label": "Unresponsive",
+      "lozenge": "attention",
+      "description": "Outreach period (default 12 months) elapsed with the minimum attempts and no response."
+    },
+    {
+      "id": "DormancyContinuedHolding",
+      "kind": "intermediate",
+      "user_label": "Held without disposition",
+      "lozenge": "neutral",
+      "description": "Sponsor policy disposition is continued holding; fund remains with no distribution."
+    },
+    {
+      "id": "DormancyDispositionPending",
+      "kind": "intermediate",
+      "user_label": "Disposition pending",
+      "lozenge": "attention",
+      "description": "Charitable default per program terms proposed; awaiting A4 sponsor approval."
+    },
+    {
+      "id": "DormancyDispositionHeld",
+      "kind": "intermediate",
+      "user_label": "Disposition held",
+      "lozenge": "blocked",
+      "description": "Disposition rejected or evidence incomplete; outreach resumes."
+    },
+    {
+      "id": "DormancyDisposed",
+      "kind": "terminal",
+      "user_label": "Charitable default applied",
+      "lozenge": "ok",
+      "description": "Sponsor approved; distribution grants handed to the grant lifecycle; closure trigger raised for WFM-22."
+    },
+    {
+      "id": "DormancyPostDispositionClaim",
+      "kind": "correction",
+      "user_label": "Post-disposition claim",
+      "lozenge": "neutral",
+      "description": "Linked record of a donor or successor reappearing after disposition; distributed assets are not returned (UNB-RCN-FIN-013)."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-21-T01",
+      "from": "DormancyActive",
+      "to": "DormancyQuiet",
+      "trigger": "timer",
+      "name": "QuietThresholdReached",
+      "actor_type": "timer",
+      "actor_role": "Dormancy monitor",
+      "authority": "A2",
+      "guards": [
+        "dormancy-policy-version-pinned",
+        "quiet-threshold-configured"
+      ],
+      "effects": [
+        "notify-advisors"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-21-T02",
+      "from": [
+        "DormancyActive",
+        "DormancyQuiet"
+      ],
+      "to": "DormancyInactive",
+      "trigger": "timer",
+      "name": "InactivityThresholdReached",
+      "actor_type": "timer",
+      "actor_role": "Dormancy monitor",
+      "authority": "A3",
+      "guards": [
+        "dormancy-policy-version-pinned",
+        "no-qualifying-activity-36-months"
+      ],
+      "effects": [
+        "start-outreach-plan",
+        "notify-advisors-and-successors"
+      ],
+      "idempotency_key": "(fundId, policyVersion, lastActivityAt)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "RCD-022"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-21-T03",
+      "from": "DormancyInactive",
+      "to": "DormancyInactive",
+      "trigger": "timer",
+      "name": "SendOutreachAttempt",
+      "actor_type": "deterministic",
+      "actor_role": "Notification service",
+      "authority": "A2",
+      "guards": [
+        "verified-channels-only"
+      ],
+      "effects": [
+        "external-call",
+        "record-attempt-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownDeliveryStatus",
+          "to_state": "DormancyInactive"
+        },
+        {
+          "condition": "Bounced",
+          "to_state": "DormancyInactive"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "UNB-RCN-PLT-002"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-009"
+      ],
+      "notes": "Mandatory-legal class; not suppressible by preferences."
+    },
+    {
+      "id": "WFM-21-T04",
+      "from": [
+        "DormancyQuiet",
+        "DormancyInactive",
+        "DormancyUnresponsive",
+        "DormancyContinuedHolding",
+        "DormancyDispositionPending",
+        "DormancyDispositionHeld"
+      ],
+      "to": "DormancyActive",
+      "trigger": "event",
+      "name": "QualifyingActivityRecorded",
+      "actor_type": "deterministic",
+      "actor_role": "Dormancy monitor",
+      "authority": "A3",
+      "guards": [
+        "activity-by-authenticated-principal-with-current-rights",
+        "activity-event-in-policy-list"
+      ],
+      "effects": [
+        "reset-clock",
+        "cancel-outreach",
+        "withdraw-pending-disposition"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-010"
+      ],
+      "notes": "RR-UNB-WF-015-r1 AC-1. The activity and the disposition approval serialize on the fund revision; whichever commits first wins (DKS-ENT-010)."
+    },
+    {
+      "id": "WFM-21-T05",
+      "from": "DormancyInactive",
+      "to": "DormancyUnresponsive",
+      "trigger": "timer",
+      "name": "OutreachPeriodElapsed",
+      "actor_type": "timer",
+      "actor_role": "Dormancy monitor",
+      "authority": "A3",
+      "guards": [
+        "outreach-period-12-months-elapsed",
+        "outreach-minimum-attempts-met",
+        "successors-contacted"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "OutreachMinimumNotMet",
+          "to_state": "DormancyInactive"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "RCD-022"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-009"
+      ]
+    },
+    {
+      "id": "WFM-21-T06",
+      "from": "DormancyUnresponsive",
+      "to": "DormancyDispositionPending",
+      "trigger": "event",
+      "name": "ProposeCharitableDefault",
+      "actor_type": "deterministic",
+      "actor_role": "Dormancy policy",
+      "authority": "A3",
+      "guards": [
+        "no-escheat-of-fund-balance",
+        "default-disposition-is-charitable"
+      ],
+      "effects": [
+        "compute-disposition-per-program-terms",
+        "open-work-item"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "UNB-SUCC-011"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-011"
+      ]
+    },
+    {
+      "id": "WFM-21-T07",
+      "from": "DormancyUnresponsive",
+      "to": "DormancyContinuedHolding",
+      "trigger": "event",
+      "name": "ApplyContinuedHoldingPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Dormancy policy",
+      "authority": "A3",
+      "guards": [
+        "default-disposition-is-continued-holding"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-21-T08",
+      "from": "DormancyDispositionPending",
+      "to": "DormancyDisposed",
+      "trigger": "command",
+      "name": "ApproveDormancyCharitableDefault",
+      "actor_type": "human",
+      "actor_role": "Sponsor charitable-default approver (board-delegated)",
+      "authority": "A4",
+      "guards": [
+        "outreach-evidence-complete",
+        "no-qualifying-activity-since-proposal",
+        "segregation-of-duties",
+        "no-escheat-of-fund-balance"
+      ],
+      "effects": [
+        "create-grant-recommendations-charitable-default",
+        "closure-trigger-dormancy",
+        "decision-record"
+      ],
+      "idempotency_key": "(fundId, dispositionProposalId)",
+      "failure": [
+        {
+          "condition": "ActivityDetectedBeforeCommit",
+          "to_state": "DormancyActive"
+        },
+        {
+          "condition": "OutreachEvidenceIncomplete",
+          "to_state": "DormancyDispositionHeld"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "RCD-022",
+        "UNB-SUCC-011"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-009",
+        "DKS-ENT-010",
+        "DKS-ENT-011"
+      ],
+      "ui_surface": "NEW:Charitable default disposition",
+      "notes": "Distribution grants run through the normal grant lifecycle (eligibility, sanctions, approval); RR-UNB-WF-015-r1 AC-3 holds an ineligible recipient there."
+    },
+    {
+      "id": "WFM-21-T09",
+      "from": "DormancyDispositionPending",
+      "to": "DormancyDispositionHeld",
+      "trigger": "command",
+      "name": "RejectDormancyDisposition",
+      "actor_type": "human",
+      "actor_role": "Sponsor charitable-default approver (board-delegated)",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charitable default disposition"
+    },
+    {
+      "id": "WFM-21-T10",
+      "from": "DormancyDispositionHeld",
+      "to": "DormancyInactive",
+      "trigger": "command",
+      "name": "ResumeOutreach",
+      "actor_type": "human",
+      "actor_role": "Sponsor operations staff",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "restart-outreach-plan"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charitable default disposition"
+    },
+    {
+      "id": "WFM-21-T11",
+      "from": "DormancyDisposed",
+      "to": "DormancyPostDispositionClaim",
+      "trigger": "command",
+      "name": "RecordPostDispositionClaim",
+      "actor_type": "human",
+      "actor_role": "Sponsor operations staff",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "route-trailing-receipts-to-closure-destination"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-WF-015-r1",
+        "UNB-RCN-ENT-005",
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "Defaults per RCD-022: 36 months without qualifying advisor activity, then 12 months of outreach on all verified channels and to successors",
+    "Escheat never applies to fund balances unless counsel records it; only payment instruments may escheat (UNB-RCN-ENT-005)",
+    "A disposition that distributes assets is an A4 sponsor decision executed through the normal grant lifecycle",
+    "Disposition cannot be approved with fewer outreach attempts than the policy minimum (RR-UNB-WF-015-r1 AC-2)",
+    "Qualifying activity before disposition approval commits resets the fund to Active"
+  ]
+}

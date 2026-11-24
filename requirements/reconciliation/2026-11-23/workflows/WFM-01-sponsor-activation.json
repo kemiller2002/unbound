@@ -1,0 +1,900 @@
+{
+  "workflow_id": "WFM-01",
+  "name": "Legal sponsor onboarding, tenant provisioning and program activation",
+  "release": "R1",
+  "outcome": "A legal sponsor's DAF program becomes Active only after an executed contract, recorded board delegation, an isolated tenant, a validated brand/terminology/policy configuration with the legal-sponsor disclosure, validated integrations and tied-out opening balances",
+  "aggregate": "SponsorProgram",
+  "sources": [
+    "REQ-X-064",
+    "RR-UNB-PLAT-008-r1",
+    "UNB-RCN-PLT-001",
+    "UNB-RCN-PLT-012",
+    "RCD-004",
+    "RCD-005",
+    "TX-28",
+    "E2E-WF-01 (19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:32)",
+    "INV-18"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "SponsorProspect",
+      "kind": "initial",
+      "user_label": "Prospect",
+      "lozenge": "neutral",
+      "description": "A prospective legal sponsor (501(c)(3) sponsoring organization) is in discussion; no tenant and no authority exist."
+    },
+    {
+      "id": "SponsorDiligence",
+      "kind": "intermediate",
+      "user_label": "In diligence",
+      "lozenge": "attention",
+      "description": "Legal, financial and exemption-status diligence of the sponsor and negotiation of the sponsor contract and responsibility matrix (REQ-X-064)."
+    },
+    {
+      "id": "SponsorContractExecuted",
+      "kind": "intermediate",
+      "user_label": "Contract signed",
+      "lozenge": "attention",
+      "description": "Sponsor contract and responsibility matrix executed by both parties; effective and expiry dates recorded."
+    },
+    {
+      "id": "SponsorBoardDelegationRecorded",
+      "kind": "intermediate",
+      "user_label": "Board delegation recorded",
+      "lozenge": "attention",
+      "description": "Board resolution delegating approval authorities (grant approval, gift acceptance, policy approval, charitable default) recorded with effective dates; whether routine grant approval is delegated to deterministic policy (RCD-005) is an explicit flag, default not delegated."
+    },
+    {
+      "id": "SponsorTenantProvisioning",
+      "kind": "intermediate",
+      "user_label": "Setting up workspace",
+      "lozenge": "attention",
+      "description": "Dedicated database for the legal sponsor is being provisioned on shared managed PostgreSQL from the current release (RCD-004 Profile B)."
+    },
+    {
+      "id": "SponsorTenantProvisionUnknown",
+      "kind": "intermediate",
+      "user_label": "Setup status unknown",
+      "lozenge": "unknown",
+      "description": "Provisioning call returned no definite outcome; resolved by query on the provisioning idempotency key, never by blind re-run."
+    },
+    {
+      "id": "SponsorTenantProvisionFailed",
+      "kind": "intermediate",
+      "user_label": "Setup failed",
+      "lozenge": "blocked",
+      "description": "Provisioning or the isolation test suite failed; no binding generation exists for the tenant."
+    },
+    {
+      "id": "SponsorTenantProvisioned",
+      "kind": "intermediate",
+      "user_label": "Workspace ready",
+      "lozenge": "attention",
+      "description": "Tenant database provisioned, isolation suite passed, VerifiedTenantContext binding generation created."
+    },
+    {
+      "id": "SponsorConfigurationDraft",
+      "kind": "intermediate",
+      "user_label": "Configuration in progress",
+      "lozenge": "attention",
+      "description": "Brand kit, terminology catalog, communication templates and initial sponsor policy version are drafted."
+    },
+    {
+      "id": "SponsorConfigurationBlocked",
+      "kind": "intermediate",
+      "user_label": "Configuration blocked",
+      "lozenge": "blocked",
+      "description": "Publication validation failed: protected-term violation, missing legal-sponsor disclosure or unapproved initial policy."
+    },
+    {
+      "id": "SponsorConfigurationValidated",
+      "kind": "intermediate",
+      "user_label": "Configuration validated",
+      "lozenge": "attention",
+      "description": "Brand manifest compiled, terminology passes the protected-term registry, legal-sponsor disclosure injected, initial policy version approved (WFM-24)."
+    },
+    {
+      "id": "SponsorIntegrationsFailed",
+      "kind": "intermediate",
+      "user_label": "Integration checks failed",
+      "lozenge": "blocked",
+      "description": "Custodian feed, payment rail or identity/sanctions provider checks failed or returned no definite result."
+    },
+    {
+      "id": "SponsorIntegrationsValidated",
+      "kind": "intermediate",
+      "user_label": "Integrations validated",
+      "lozenge": "attention",
+      "description": "Custodian, partner payment rail, positive-pay, identity proofing and sanctions providers validated in the sponsor's tenant."
+    },
+    {
+      "id": "SponsorOpeningBalanceBreak",
+      "kind": "intermediate",
+      "user_label": "Opening balance break",
+      "lozenge": "blocked",
+      "description": "Opening balances do not tie to custodian/bank statements or to the migration tie-out (WFM-26)."
+    },
+    {
+      "id": "SponsorOpeningBalancesTiedOut",
+      "kind": "intermediate",
+      "user_label": "Opening balances tied out",
+      "lozenge": "attention",
+      "description": "Opening GL (zero for a new sponsor, imported for a migrating sponsor) ties to external statements."
+    },
+    {
+      "id": "SponsorReadyForActivation",
+      "kind": "intermediate",
+      "user_label": "Ready to activate",
+      "lozenge": "attention",
+      "description": "Finance readiness certified; waiting for the sponsor's authorized officer to activate."
+    },
+    {
+      "id": "SponsorActive",
+      "kind": "intermediate",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "Program active: funds may open, contributions be accepted and grants approved within recorded authority."
+    },
+    {
+      "id": "SponsorSuspended",
+      "kind": "intermediate",
+      "user_label": "Suspended",
+      "lozenge": "blocked",
+      "description": "Contract lapsed or suspended: no new funds, contributions or approvals; in-flight payments follow their own workflows; donors keep read access."
+    },
+    {
+      "id": "SponsorExitInProgress",
+      "kind": "intermediate",
+      "user_label": "Exit in progress",
+      "lozenge": "attention",
+      "description": "Sponsor offboarding: every fund closed or transferred (WFM-22), governed export and retention preserved."
+    },
+    {
+      "id": "SponsorOffboarded",
+      "kind": "terminal",
+      "user_label": "Offboarded",
+      "lozenge": "neutral",
+      "description": "Program exited; retained records preserved for their retention classes; tenant read-only."
+    },
+    {
+      "id": "SponsorActivationWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Prospect or onboarding abandoned before activation; any partial setup retained as evidence, no authority granted."
+    },
+    {
+      "id": "SponsorExitCorrection",
+      "kind": "correction",
+      "user_label": "Exit correction",
+      "lozenge": "neutral",
+      "description": "Linked correction child for a late receipt, retention defect or export error found after offboarding; the offboarded record is unchanged."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-01-T01",
+      "from": "SponsorProspect",
+      "to": "SponsorDiligence",
+      "trigger": "command",
+      "name": "StartSponsorDiligence",
+      "actor_type": "human",
+      "actor_role": "Platform implementation lead",
+      "authority": "A2",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-064",
+        "REQ-X-071"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor contract and activation record"
+    },
+    {
+      "id": "WFM-01-T02",
+      "from": "SponsorDiligence",
+      "to": "SponsorContractExecuted",
+      "trigger": "command",
+      "name": "RecordExecutedSponsorContract",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized signatory with platform contracts officer",
+      "authority": "A4",
+      "guards": [
+        "contract-countersigned",
+        "sponsor-exemption-status-current",
+        "responsibility-matrix-attached"
+      ],
+      "effects": [
+        "record-contract",
+        "audit"
+      ],
+      "idempotency_key": "(sponsorId, contractVersion)",
+      "failure": [
+        {
+          "condition": "ExemptionStatusNotCurrent",
+          "to_state": "SponsorDiligence"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-064",
+        "UNB-LEG-002",
+        "ADM-001"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor contract and activation record",
+      "notes": "Executed contract names the legal sponsor as holder of exclusive legal control; contractual outsourcing never transfers nondelegable sponsor authority."
+    },
+    {
+      "id": "WFM-01-T03",
+      "from": [
+        "SponsorProspect",
+        "SponsorDiligence",
+        "SponsorContractExecuted",
+        "SponsorBoardDelegationRecorded",
+        "SponsorConfigurationDraft",
+        "SponsorConfigurationBlocked",
+        "SponsorIntegrationsFailed"
+      ],
+      "to": "SponsorActivationWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawSponsorOnboarding",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized officer or platform implementation lead",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "retain-partial-setup-as-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-064",
+        "UNB-TEN-011"
+      ],
+      "scenario_ids": [
+        "TVS-372"
+      ],
+      "ui_surface": "NEW:Sponsor contract and activation record"
+    },
+    {
+      "id": "WFM-01-T04",
+      "from": "SponsorContractExecuted",
+      "to": "SponsorBoardDelegationRecorded",
+      "trigger": "command",
+      "name": "RecordBoardDelegation",
+      "actor_type": "human",
+      "actor_role": "Sponsor corporate secretary",
+      "authority": "A4",
+      "guards": [
+        "board-resolution-evidence-attached",
+        "effective-dated",
+        "delegation-within-bylaws"
+      ],
+      "effects": [
+        "authority-matrix-version",
+        "audit"
+      ],
+      "idempotency_key": "(sponsorId, resolutionId)",
+      "failure": [
+        {
+          "condition": "ResolutionEvidenceUnverifiable",
+          "to_state": "SponsorContractExecuted"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-064",
+        "RCD-005",
+        "GOV-AUTH-001",
+        "UNB-RCN-PLT-005",
+        "UNB-LEG-005"
+      ],
+      "scenario_ids": [
+        "TVS-623",
+        "TVS-485"
+      ],
+      "ui_surface": "NEW:Board delegation register",
+      "notes": "RCD-005: the routine-approval delegation flag defaults to not delegated; the deterministic tier then emits ApproveRecommended and grants need a human A4 batch approval. Recording a later board approval flips the authority flag only (no code change). A fabricated resolution (TVS-623) is mitigated by requiring the resolution to be confirmed by a second sponsor officer through a verified channel."
+    },
+    {
+      "id": "WFM-01-T05",
+      "from": "SponsorBoardDelegationRecorded",
+      "to": "SponsorTenantProvisioning",
+      "trigger": "command",
+      "name": "RequestTenantProvisioning",
+      "actor_type": "deterministic",
+      "actor_role": "Platform provisioning service",
+      "authority": "A3",
+      "guards": [
+        "isolation-profile-B-or-approved-TenantIsolationDecision",
+        "tenant-id-immutable"
+      ],
+      "effects": [
+        "provisioning-request"
+      ],
+      "idempotency_key": "(legalSponsorId, provisioningPlanVersion)",
+      "failure": [
+        {
+          "condition": "NonDefaultProfileWithoutApprovedDecision",
+          "to_state": "SponsorBoardDelegationRecorded"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PLAT-008-r1",
+        "RCD-004",
+        "UNB-RCN-PLT-001",
+        "UNB-RCN-PLT-012",
+        "UNB-TEN-001"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-003"
+      ],
+      "notes": "Tenant = legal sponsor. Distribution partners become schemas inside the sponsor's database, not separate tenants."
+    },
+    {
+      "id": "WFM-01-T06",
+      "from": "SponsorTenantProvisioning",
+      "to": "SponsorTenantProvisioned",
+      "trigger": "event",
+      "name": "TenantDatabaseProvisioned",
+      "actor_type": "external",
+      "actor_role": "Managed PostgreSQL / Strata deployment plan",
+      "authority": "A3",
+      "guards": [
+        "same-release-as-all-cells",
+        "isolation-suite-passed"
+      ],
+      "effects": [
+        "external-call",
+        "binding-generation-created",
+        "audit"
+      ],
+      "idempotency_key": "(legalSponsorId, provisioningPlanVersion)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProvisioningOutcome",
+          "to_state": "SponsorTenantProvisionUnknown"
+        },
+        {
+          "condition": "IsolationSuiteFailed",
+          "to_state": "SponsorTenantProvisionFailed"
+        },
+        {
+          "condition": "ProvisioningFailed",
+          "to_state": "SponsorTenantProvisionFailed"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PLAT-008-r1",
+        "RCD-004",
+        "UNB-TEN-011",
+        "RR-UNB-PLAT-007-r1"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-003"
+      ]
+    },
+    {
+      "id": "WFM-01-T07",
+      "from": "SponsorTenantProvisionUnknown",
+      "to": "SponsorTenantProvisioned",
+      "trigger": "command",
+      "name": "ResolveProvisioningByQuery",
+      "actor_type": "deterministic",
+      "actor_role": "Platform provisioning service",
+      "authority": "A3",
+      "guards": [
+        "query-by-idempotency-key"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersists",
+          "to_state": "SponsorTenantProvisionUnknown"
+        },
+        {
+          "condition": "NotProvisioned",
+          "to_state": "SponsorTenantProvisionFailed"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PLAT-008-r1",
+        "UNB-TEN-011"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-01-T08",
+      "from": "SponsorTenantProvisionFailed",
+      "to": "SponsorTenantProvisioning",
+      "trigger": "command",
+      "name": "RetryTenantProvisioning",
+      "actor_type": "human",
+      "actor_role": "Platform operations engineer",
+      "authority": "A2",
+      "guards": [
+        "failure-cause-recorded"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-PLAT-008-r1",
+        "UNB-TEN-011"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Tenant provisioning console"
+    },
+    {
+      "id": "WFM-01-T09",
+      "from": "SponsorTenantProvisioned",
+      "to": "SponsorConfigurationDraft",
+      "trigger": "event",
+      "name": "SeedSponsorConfiguration",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor configuration service",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "seed-platform-defaults"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "REQ-X-030",
+        "UNB-RCN-ARC-002"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-01-T10",
+      "from": "SponsorConfigurationDraft",
+      "to": "SponsorConfigurationValidated",
+      "trigger": "command",
+      "name": "ValidateSponsorConfiguration",
+      "actor_type": "deterministic",
+      "actor_role": "Brand kit publication and policy validator",
+      "authority": "A3",
+      "guards": [
+        "legal-sponsor-disclosure-present",
+        "protected-terms-unaltered",
+        "initial-policy-version-approved",
+        "brand-manifest-accessible"
+      ],
+      "effects": [
+        "compile-brand-manifest",
+        "publish-terminology-catalog"
+      ],
+      "idempotency_key": "(sponsorId, configurationVersion)",
+      "failure": [
+        {
+          "condition": "ProtectedTermViolation",
+          "to_state": "SponsorConfigurationBlocked"
+        },
+        {
+          "condition": "LegalSponsorDisclosureMissing",
+          "to_state": "SponsorConfigurationBlocked"
+        },
+        {
+          "condition": "InitialPolicyNotApproved",
+          "to_state": "SponsorConfigurationDraft"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-045",
+        "REQ-X-030",
+        "UNB-RCN-PLT-007",
+        "UNB-RCN-ARC-002",
+        "UNB-UI-G-014",
+        "UNB-UI-G-007",
+        "RR-REQ-X-029-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-022",
+        "ADV-588"
+      ],
+      "notes": "The initial policy version follows WFM-24 (draft, validate, preview, approve by non-author)."
+    },
+    {
+      "id": "WFM-01-T11",
+      "from": "SponsorConfigurationBlocked",
+      "to": "SponsorConfigurationDraft",
+      "trigger": "command",
+      "name": "ReviseSponsorConfiguration",
+      "actor_type": "human",
+      "actor_role": "Sponsor administrator",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-045",
+        "UNB-RCN-PLT-007"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-010"
+    },
+    {
+      "id": "WFM-01-T12",
+      "from": "SponsorConfigurationValidated",
+      "to": "SponsorIntegrationsValidated",
+      "trigger": "command",
+      "name": "ValidateProviderIntegrations",
+      "actor_type": "deterministic",
+      "actor_role": "Integration readiness checks",
+      "authority": "A3",
+      "guards": [
+        "custody-feed-reconciles",
+        "rail-sandbox-roundtrip",
+        "positive-pay-file-accepted",
+        "screening-provider-reachable"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(sponsorId, integrationCheckRunId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProviderResponse",
+          "to_state": "SponsorIntegrationsFailed"
+        },
+        {
+          "condition": "IntegrationCheckFailed",
+          "to_state": "SponsorIntegrationsFailed"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-046",
+        "REQ-X-064",
+        "RCD-013",
+        "RCD-028"
+      ],
+      "scenario_ids": [
+        "ADV-597"
+      ]
+    },
+    {
+      "id": "WFM-01-T13",
+      "from": "SponsorIntegrationsFailed",
+      "to": "SponsorConfigurationValidated",
+      "trigger": "command",
+      "name": "RetryIntegrationValidation",
+      "actor_type": "human",
+      "actor_role": "Platform integration engineer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-046",
+        "REQ-X-071"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor implementation readiness checklist"
+    },
+    {
+      "id": "WFM-01-T14",
+      "from": "SponsorIntegrationsValidated",
+      "to": "SponsorOpeningBalancesTiedOut",
+      "trigger": "command",
+      "name": "TieOutOpeningBalances",
+      "actor_type": "deterministic",
+      "actor_role": "Reconciliation service",
+      "authority": "A3",
+      "guards": [
+        "opening-balances-match-external-statements",
+        "migration-tie-out-passed-if-migrating"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(sponsorId, openingBalanceBatchId)",
+      "failure": [
+        {
+          "condition": "UnexplainedOpeningBreak",
+          "to_state": "SponsorOpeningBalanceBreak"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-064",
+        "RCD-020",
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [
+        "TVS-303"
+      ],
+      "notes": "A sponsor migrating an existing book reaches this step only after WFM-26 reaches Reconciled and ParallelValidated."
+    },
+    {
+      "id": "WFM-01-T15",
+      "from": "SponsorOpeningBalanceBreak",
+      "to": "SponsorIntegrationsValidated",
+      "trigger": "command",
+      "name": "ApproveOpeningBalanceExplanation",
+      "actor_type": "human",
+      "actor_role": "Sponsor controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "explanation-evidence-attached"
+      ],
+      "effects": [
+        "ledger",
+        "audit"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-020",
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Opening balance tie-out workspace",
+      "notes": "Never fabricates history; differences are corrected at source import or recorded as explained opening adjustments."
+    },
+    {
+      "id": "WFM-01-T16",
+      "from": "SponsorOpeningBalancesTiedOut",
+      "to": "SponsorReadyForActivation",
+      "trigger": "command",
+      "name": "CertifyFinanceReadiness",
+      "actor_type": "human",
+      "actor_role": "Sponsor finance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "opening-balances-tied-out"
+      ],
+      "effects": [
+        "audit"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-064",
+        "REQ-X-071"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor activation gate"
+    },
+    {
+      "id": "WFM-01-T17",
+      "from": "SponsorReadyForActivation",
+      "to": "SponsorActive",
+      "trigger": "command",
+      "name": "ActivateSponsorProgram",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized officer",
+      "authority": "A4",
+      "guards": [
+        "contract-current",
+        "board-delegation-current",
+        "legal-sponsor-disclosure-present",
+        "tenant-isolation-suite-passed",
+        "opening-balances-tied-out",
+        "finance-readiness-certified",
+        "segregation-of-duties",
+        "staff-roles-assigned"
+      ],
+      "effects": [
+        "activate-program",
+        "audit"
+      ],
+      "idempotency_key": "(sponsorId, activationEpoch)",
+      "failure": [
+        {
+          "condition": "ContractExpired",
+          "to_state": "SponsorDiligence"
+        },
+        {
+          "condition": "BoardDelegationExpired",
+          "to_state": "SponsorContractExecuted"
+        },
+        {
+          "condition": "ConfigurationChangedSinceValidation",
+          "to_state": "SponsorConfigurationDraft"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-064",
+        "RR-UNB-PLAT-008-r1",
+        "UNB-UI-G-014",
+        "RCD-005",
+        "UNB-RCN-PLT-005"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-022",
+        "TVS-638"
+      ],
+      "ui_surface": "NEW:Sponsor activation gate",
+      "notes": "Activation is a gate, not a brand publication. Activator must differ from the finance certifier."
+    },
+    {
+      "id": "WFM-01-T18",
+      "from": "SponsorActive",
+      "to": "SponsorActive",
+      "trigger": "timer",
+      "name": "RevertRoutineApprovalToHuman",
+      "actor_type": "timer",
+      "actor_role": "Authority matrix expiry monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "authority-flag-cleared",
+        "notify-sponsor-admin"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-005",
+        "UNB-RCN-PLT-005",
+        "GOV-AUTH-015"
+      ],
+      "scenario_ids": [
+        "TVS-078",
+        "TVS-638"
+      ],
+      "notes": "When the board delegation for deterministic routine approval expires or is rescinded, the routine tier output reverts to ApproveRecommended (human A4 batch approval). Dependent policy versions are suspended in WFM-24."
+    },
+    {
+      "id": "WFM-01-T19",
+      "from": "SponsorActive",
+      "to": "SponsorSuspended",
+      "trigger": "timer",
+      "name": "SuspendOnContractLapse",
+      "actor_type": "timer",
+      "actor_role": "Sponsor contract monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "block-new-funds-contributions-approvals",
+        "notify-sponsor-admin"
+      ],
+      "idempotency_key": "(sponsorId, contractVersion, expiry)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-064",
+        "UNB-TEN-011"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-01-T20",
+      "from": "SponsorSuspended",
+      "to": "SponsorActive",
+      "trigger": "command",
+      "name": "ReinstateSponsorProgram",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized officer",
+      "authority": "A4",
+      "guards": [
+        "contract-current",
+        "board-delegation-current",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "audit"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "ContractStillLapsed",
+          "to_state": "SponsorSuspended"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-064"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor activation gate"
+    },
+    {
+      "id": "WFM-01-T21",
+      "from": [
+        "SponsorActive",
+        "SponsorSuspended"
+      ],
+      "to": "SponsorExitInProgress",
+      "trigger": "command",
+      "name": "InitiateSponsorExit",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized officer",
+      "authority": "A4",
+      "guards": [
+        "exit-notice-per-contract"
+      ],
+      "effects": [
+        "closure-trigger-sponsor-exit",
+        "block-new-funds"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-TEN-011",
+        "UNB-TEN-016",
+        "REQ-X-071",
+        "UNB-RCN-ENT-006"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Sponsor contract and activation record",
+      "notes": "Each fund enters WFM-22 with trigger 'sponsor exit' (closure or outbound transfer)."
+    },
+    {
+      "id": "WFM-01-T22",
+      "from": "SponsorExitInProgress",
+      "to": "SponsorOffboarded",
+      "trigger": "command",
+      "name": "CompleteSponsorExit",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized officer with platform operations",
+      "authority": "A4",
+      "guards": [
+        "all-funds-closed-or-transferred",
+        "governed-export-delivered",
+        "retention-classes-preserved",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "tenant-read-only",
+        "audit"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "FundsRemainOpen",
+          "to_state": "SponsorExitInProgress"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-TEN-011",
+        "UNB-TEN-016",
+        "RR-REQ-X-036-r1"
+      ],
+      "scenario_ids": [
+        "ADV-592",
+        "ADV-368"
+      ],
+      "ui_surface": "NEW:Sponsor contract and activation record"
+    },
+    {
+      "id": "WFM-01-T23",
+      "from": "SponsorOffboarded",
+      "to": "SponsorExitCorrection",
+      "trigger": "event",
+      "name": "RecordPostExitCorrection",
+      "actor_type": "deterministic",
+      "actor_role": "Ledger / retention service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "linked-correction-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-TEN-011",
+        "RR-REQ-X-036-r1"
+      ],
+      "scenario_ids": [
+        "TVS-373"
+      ]
+    }
+  ],
+  "invariants": [
+    "No fund posting, contribution acceptance or grant approval exists for a sponsor program that is not SponsorActive",
+    "Exactly one tenant database exists per legal sponsor (Profile B) unless an approved TenantIsolationDecision cites a contractual clause (RCD-004, UNB-RCN-PLT-012)",
+    "No donor-facing page or document is published without the legal-sponsor disclosure (UNB-UI-G-014, INV-18)",
+    "The person who certifies finance readiness is not the person who activates the program",
+    "Until counsel and the sponsor board approve RCD-005 delegation, the deterministic approval tier outputs ApproveRecommended and grant approval stays a human A4 batch action"
+  ]
+}

@@ -26,6 +26,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-06, OD-07, OD-08, OD-10, OD-13, TVC-036, TVC-037, TVC-038, TVF-001, TVF-009.
 
 **Normative proposed requirement:** Routine grant approval and currency reservation commit atomically against net capacity under concurrency; exceptional pending-funding approvals cannot create external commitment.
+> Adopted 2026-11-23: refined by `RR-REQ-X-002-r1` (adopted-provisional); the adopted requirement is in `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given two simultaneous grants exceeding available capacity together, when processed, then no overcommitment occurs and failed grant has neither approval nor reservation.
 
@@ -48,6 +49,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-20, TVC-024, TVC-035, TVC-039, TVR-PAY-001-Q, TVR-PAY-002-Q, TVR-PAY-007-Q, TVF-003, TVF-024, TVF-231, TVF-249.
 
 **Normative proposed requirement:** Unknown payment state blocks duplicate submission until contractually sufficient independently controlled evidence proves non-receipt; durable payment identity survives restore.
+> Adopted 2026-11-23: refined by `RR-REQ-X-004-r1` (adopted-provisional); the adopted requirement is in `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given provider timeout and subsequent restore, when an operator retries without qualifying proof, then no second instruction is sent and original identity remains intact.
 
@@ -59,6 +61,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-22, TVF-222, TVF-223, TVF-233, TVF-234, TVF-236, TVF-250, TVR-PAY-005-Q.
 
 **Normative proposed requirement:** Every automated payment requires independently verifiable proof both that the destination is authorized and controlled by the intended charity and that the actual execution destination matches the sponsor-controlled authorization, including cryptographically or independently bound tokenized rails. Provider self-attestation alone is insufficient. Changes require independent authorization without self-approval. Missing or conflicting proof blocks automatic execution; noncompliant providers/rails are ineligible for fully automated payment. Reconcile authorization, execution and settlement evidence.
+> Adopted 2026-11-23: refined by `RR-REQ-X-005-r1` (adopted-provisional); the adopted requirement is in `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given a provider-substituted account, when provider returns a self-issued matching fingerprint but sponsor-controlled evidence differs, then release is blocked.
 
@@ -81,6 +84,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-02, TVC-006, TVC-007, TVC-040, TVA-009, TVA-028, TVR-SAN-001-Q, TVR-SAN-002-Q, TVF-027, TVF-048.
 
 **Normative proposed requirement:** Unbound maintains one authoritative, standardized charity-vetting framework and reusable evidence/status across sponsors. A vetted charity does not undergo duplicate routine vetting solely because another sponsor uses it. Record scope, evidence provenance, effective date and expiry; reverify at least every 180 days, on material changes, and check current sanctions/eligibility at execution. Adverse findings propagate to all affected sponsors. Sponsor-specific grant restrictions and approvals remain distinct from common charity vetting; no self-approved vetting exceptions. Cross-sponsor legal reliance, liability, jurisdictions and recipient classes require counsel validation; model never clears holds.
+> Adopted 2026-11-23: refined by `RR-REQ-X-007-r1` (adopted-provisional); the adopted requirement is in `requirements/charities/JURISDICTION-AWARE-REGULATORY-RULES-AND-ELIGIBILITY.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given a recipient verified 30 days ago and sanctioned today, when payment releases, then the current adverse signal holds the grant despite valid periodic review.
 
@@ -92,6 +96,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-03, OD-11, TVC-030, TVC-033, TVC-044, TVR-GR-008-Q.
 
 **Normative proposed requirement:** Donor death does not automatically cancel valid sponsor-approved unpaid grants; future instructions suspend until successor authority verified; each recurring instance rechecks authority and eligibility.
+> Adopted 2026-11-23: refined by `RR-REQ-X-008-r1` (adopted-provisional); the adopted requirement is in `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given notice of donor death before next recurring instance, when scheduler executes, then new instance is held while prior valid approved grant follows its separate policy.
 
@@ -103,6 +108,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 **Source questions:** OD-04, TVC-010, TVR-CON-001-Q, TVR-CON-003-Q, TVF-006, EXT-06.
 
 **Normative proposed requirement:** Rail-specific receipt, provisional availability, acknowledgment and finality remain distinct; returned funds trigger receivable, sponsor exposure and recovery classification without erasing disbursements.
+> Adopted 2026-11-23: refined by `RR-REQ-X-009-r1` (adopted-provisional); the adopted requirement is in `requirements/FULL-ACCOUNTING-SYSTEM.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance scenario (not executed):** Given a provisionally credited ACH that funds a grant then returns, when reconciled, then original payment remains recorded and receivable and loss attribution are opened.
 
@@ -266,6 +272,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **User-directed:** Unbound is a component monolith, **not microservices**. Domain components have explicit in-process boundaries and owned authoritative data, with one deployable application and one authoritative transactional financial/security core. Consequential commands use invariant-preserving atomic transactions, versioned evidence/policies, independently governed authority, durable outbox and idempotency. Internal components do not default to separate databases, independent deployments, service meshes or network calls. Managed external payment/evidence integrations, DR replication, independently durable nonauthoritative intake and minimal protective-only emergency plane are genuine distributed boundaries, not internal microservices.
 
 **Ordering:** Global charity/hold publication and payment release must have a provable serialization point. Holds are binding on releases ordered after their durable commit. A preexisting release intent is not the same as irreversible external submission; dispatch rechecks holds where possible. Post-submission holds cannot guarantee reversal. Quorum loss stops authoritative financial writes; replay reconciles protective state before execution. Historical policy/evidence and exact external Unknown status remain auditable.
+> Adopted 2026-11-23: refined by `RR-REQ-X-020-r1` (adopted-provisional); the adopted requirement is in `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** Test ADV-069..ADV-084 in `COMPONENT-MONOLITH-EVENT-ORDERING-AND-CONSISTENCY-2026-11-23.md`, including hold/release races, outbox loss, stale failback, AI stale snapshots, shared DB tenant leakage and concurrent reservation. No implementation or tests executed. Any future microservice split requires separately approved evidence-based ADR, not an assumed default.
 
@@ -320,6 +327,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ## REQ-X-029: Visual email designer, styling and reusable client brand themes (2026-11-23)
 
 **Proposed:** Authorized clients can style emails through a constrained WYSIWYG/block editor and reusable, versioned brand kit (logos, colors, typography, spacing, header/footer, buttons), responsive layouts and per-event content. Template, layout and theme revisions are independently governed and pinned for as-sent historical reconstruction. Provide desktop/mobile/dark-mode/plain-text previews, accessibility and email-client compatibility validation, safe image hosting, typed tokens, approval workflow and optional restricted sanitized HTML mode. Mandatory clauses, tenant boundaries and verified sender domains cannot be bypassed by styling.
+> Adopted 2026-11-23: superseded by `RR-REQ-X-029-r1` (adopted); the adopted requirement is in `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** ADV-217..ADV-232 and `VISUAL-EMAIL-DESIGNER-STYLING-BRAND-THEMES-AND-RENDERING-2026-11-23.md`. Verify no hidden disclosures, script injection, cross-tenant assets, sensitive-data image URL leakage, unreadable mobile/dark-mode output or retroactive historical rendering changes.
 
@@ -362,6 +370,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ## REQ-X-036: Seven-year financial document retention minimum and legal holds (2026-11-23)
 
 **Owner-directed policy:** Retain all financial documents and substantiating financial evidence for **at least seven years**, with longer applicable legal, regulatory, contractual, sponsor or litigation-hold requirements taking precedence. This is a nonwaivable platform floor, not a legal conclusion that all records can be deleted after seven years. Retention clocks must be approved per record class; fund closure, donor death, advisor change and sponsor offboarding do not shorten retention. Originals and corrections remain immutable and linked; legal holds apply to existing and future matching evidence. Expiry triggers governed disposition review, never automatic deletion.
+> Adopted 2026-11-23: refined by `RR-REQ-X-036-r1` (adopted-provisional); the adopted requirement is in `requirements/charities/JURISDICTION-AWARE-REGULATORY-RULES-AND-ELIGIBILITY.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** ADV-335..ADV-354 and `FINANCIAL-DOCUMENT-SEVEN-YEAR-RETENTION-LEGAL-HOLDS-AND-LIFECYCLE-2026-11-23.md`. Validate storage retention, backup/restore, legal hold propagation, access revocation, archived retrieval, disposition controls and sponsor offboarding. Counsel/compliance validation required for record-class triggers and jurisdictional minima.
 
@@ -395,7 +404,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 
 **Acceptance (not executed):** ADV-471..ADV-506 and `FINANCIAL-OPERATIONS-EXCEPTION-MANAGEMENT-AND-AUTOMATED-RESOLUTION-2026-11-23.md`. Validate concurrency, source-of-truth gates, external Unknown handling, sponsor isolation, idempotency, independent financial approvals, retention and AI authority limits.
 
-## REQ-X-041: Shared financial operations exception management and safe automated resolution (2026-11-23)
+## REQ-X-085: Shared financial operations exception management and safe automated resolution (2026-11-23) (formerly the 2nd definition of REQ-X-041; renumbered 2026-11-23)
 
 **Proposed:** Provide a unified, sponsor-scoped exception management component for accounting, payments, grants, charity vetting, compliance, document issuance and communications. Distinguish detected operational cases from authoritative financial or legal controls. Resolve safe routine cases deterministically with verified evidence, use bounded AI for investigation and recommendation, and require independent authorized human judgment for material financial, legal and policy decisions. Preserve Unknown external payment states, protective holds, tenant isolation, case provenance, and the seven-year floor for financially material evidence. Case closure never directly releases money, legal holds or accounting gates. Provide an accessible Exception Command Center, deduplication, root-cause grouping, risk-based SLAs and metrics.
 
@@ -440,6 +449,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ## REQ-X-048: Human work queues, round-robin routing and cradle-to-grave ownership (2026-11-23)
 
 **Proposed:** Provide shared sponsor-scoped human work orchestration for grant and charity vetting cases. Support deterministic round robin, sticky sponsor/fund/account ownership, cradle-to-grave case continuity, specialist/skills routing, capacity-weighted assignment, manual audited overrides and hybrid routing. Distinguish relationship owner, case owner, task assignee, independent decision authority and backup. Preserve eligibility, sponsor authorization, conflicts, segregation of duties, absences, SLA escalation, assignment audit and seven-year retention of financially material work evidence. Case completion never independently approves grants, clears charity/sanctions holds or releases payment. Provide My Work, My Accounts, Team Queue and Supervisor dashboard requirements; routine safe automated cases should not create unnecessary human tasks.
+> Adopted 2026-11-23: refined by `RR-REQ-X-048-r1` (adopted); the adopted requirement is in `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** ADV-619..ADV-654 and `HUMAN-WORK-QUEUES-ROUTING-OWNERSHIP-AND-CASE-CONTINUITY-2026-11-23.md`. Validate concurrent fair assignment, sticky ownership, specialist handoffs, authorization, absence coverage, shared charity vetting privacy and immutable history.
 
@@ -458,6 +468,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ## REQ-X-051: AI-discoverable API, input and configuration assistance contracts (2026-11-23)
 
 **Proposed:** Every public API operation, input field, configuration property, workflow action, dashboard widget and email block/token MUST expose authoritative, versioned, machine-readable AI assistance metadata covering purpose, types, dependencies, valid values, policy, permissions, side effects, errors, Unknown states, examples, source provenance and safe guidance. Generate contextual help and agent tool descriptions from typed contracts with reviewed semantic annotations, test for drift, and enforce caller-scoped discovery. AI can explain, guide and propose diffs, but cannot grant itself authority or bypass sponsor rules, approvals, holds or domain commands.
+> Adopted 2026-11-23: refined by `RR-REQ-X-051-r1` (adopted); the adopted requirement is in `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** ADV-723..ADV-752 and `AI-DISCOVERABLE-CONTRACTS-AND-SAFE-ASSISTANCE-2026-11-23.md`.
 
@@ -485,25 +496,25 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 
 **Acceptance (not executed):** ADV-867..ADV-890 and `PROACTIVE-AI-ASSISTANCE-DETERMINISTIC-DETECTION-AND-PREVENTIVE-OPERATIONS-2026-11-23.md`.
 
-## REQ-X-054: Contextual AI assistance UX, configuration previews and approval journeys (2026-11-23)
+## REQ-X-086: Contextual AI assistance UX, configuration previews and approval journeys (2026-11-23) (formerly the 2nd definition of REQ-X-054; renumbered 2026-11-23)
 
 **Proposed:** Integrate AI help into every eligible field, configuration panel and workflow without requiring a separate chatbot. Provide source-grounded explanations, valid-value guidance, typed proposed changes, deterministic validation, impact preview, human review, independent approval and execution-time reauthorization. Preserve sponsor scope, case ownership, financial/compliance holds, mobile accessibility and honest Draft/Approved/Applied/Unknown status. No AI-only bypass of domain commands.
 
 **Acceptance (not executed):** ADV-843..ADV-866 and `CONTEXTUAL-AI-ASSISTANT-UX-CONFIGURATION-AND-APPROVAL-JOURNEYS-2026-11-23.md`.
 
-## REQ-X-055: Proactive configuration health, prevention and safe remediation (2026-11-23)
+## REQ-X-087: Proactive configuration health, prevention and safe remediation (2026-11-23) (formerly the 2nd definition of REQ-X-055; renumbered 2026-11-23)
 
 **Proposed:** Use deterministic event-driven checks and bounded AI explanation/investigation to identify configuration contradictions, upcoming charity 180-day reverification, staffing gaps, provider uncertainty, finance/report mismatches and document/communication risks. Findings must be evidenced, classified, deduplicated, sponsor-scoped, assigned to an accountable owner and linked to smallest safe remediation. Existing domain controls retain holds and approvals. Prevent alert fatigue, prohibit silent policy changes and measure actual prevented harm rather than warning counts.
 
 **Acceptance (not executed):** ADV-867..ADV-890 and `PROACTIVE-AI-CONFIGURATION-HEALTH-AND-PREVENTION-2026-11-23.md`.
 
-## REQ-X-054: Reactive and proactive AI assistance, health checks and guided configuration UX (2026-11-23)
+## REQ-X-088: Reactive and proactive AI assistance, health checks and guided configuration UX (2026-11-23) (formerly the 3rd definition of REQ-X-054; renumbered 2026-11-23)
 
 **Proposed:** Provide one coordinated in-process assistance architecture for user-initiated contextual guidance and event-driven proactive health checks. Deterministic domain validators detect known violations before bounded AI investigation of ambiguity. Use typed evidence-based HealthIssues and RemediationProposals, issue deduplication, risk/owner/expiry, sponsor-scoped context, accessible configuration help, preview/diff/simulation, independent approvals, existing work queues, post-action verification and outcome-based measurement. Do not silently change financial/compliance policies, money movement, holds or protected disclosures; AI remains advisory, with narrowly permitted domain-command execution only after independent authorization.
 
 **Acceptance (not executed):** ADV-843..ADV-903 and `REACTIVE-PROACTIVE-AI-ASSISTANCE-HEALTH-CHECKS-AND-INTERACTION-DESIGN-2026-11-23.md`. Test deduplication, false-positive/false-negative coverage, source freshness, prompt injection, role revocation, accessibility, model outage, proposal safety, tenant isolation and verified outcomes.
 
-## REQ-X-055: Contextual AI assistance UX and notification governance (2026-11-23)
+## REQ-X-089: Contextual AI assistance UX and notification governance (2026-11-23) (formerly the 3rd definition of REQ-X-055; renumbered 2026-11-23)
 
 **Proposed:** Establish a reusable contextual assistance interaction system, using public Forma patterns and Forma Studio authoring, for inline help, evidence-backed explanations, permission-aware guided configuration, structured proposal diffs, simulation previews, authorized confirmations, human escalation and proactive Health Center notifications. Keep source/version/freshness and fact-versus-inference distinctions visible; preserve mandatory financial/compliance holds; deduplicate notifications and measure real-world harm reduction rather than engagement. Enforce accessible mobile/keyboard/screen-reader UX and explicit loading, Unknown, stale, degraded and unauthorized states. Unbound/Limen retains context, business semantics and action authority; Forma only presentation.
 
@@ -518,6 +529,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ## REQ-X-057: One-system architecture across all DAF operating models (2026-11-23)
 
 **Owner decision:** Unbound MUST remain one component monolith with one authoritative fund accounting/ledger core, sponsor-scoped policy and delegated authority, shared work orchestration, typed provider integration/evidence, semantic reporting, document/communication lifecycle, AI assistance contracts and reusable UI design system. Institutional sponsor SaaS, outsourced administration, turnkey sponsor partnership, digital donor channels, advisor programs, nonprofit-facing experiences and embedded giving MUST reuse these core domain commands and records. Differences are expressed through declarative configuration, legal/contractual role boundaries, permitted adapters and persona-specific views, not cloned products, separate financial state machines or microservices. Preserve legal sponsor asset separation and tenant isolation; the previously specified protective-only DR exception cannot move funds.
+> Adopted 2026-11-23: refined by `RR-REQ-X-057-r1` (adopted-provisional); the adopted requirement is in `requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** `ONE-SYSTEM-MULTI-OPERATING-MODEL-ARCHITECTURAL-INVARIANT-2026-11-23.md`; trace SCN-01..SCN-10 to single domain owners and test sponsor isolation, unified financial truth and shared authorization.
 
@@ -534,10 +546,12 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 ### REQ-X-060: Sponsor regulatory, tax and audit operations
 
 **Proposed:** Specify the full operating workflow in `SPONSOR-REGULATORY-TAX-AND-AUDIT-OPERATIONS-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+> Adopted 2026-11-23: refined by `RR-REQ-X-060-r1` (adopted-provisional); the adopted requirement is in `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md` under 'Adopted reconciliation requirements'.
 
 ### REQ-X-061: Legacy migration, portability and sponsor exit
 
 **Proposed:** Specify the full operating workflow in `LEGACY-MIGRATION-PORTABILITY-AND-SPONSOR-EXIT-2026-11-23.md`. Reuse REQ-X-057 one-system architecture and the same authoritative ledger, policy, identity, case, evidence, reporting and communication components. Validate role-specific UI, domain commands, provider mock fixtures, sponsor isolation, exceptions, legal authority, audit and end-to-end financial effects. This is theoretical; no software, tests or professional legal/accounting approval.
+> Adopted 2026-11-23: refined by `RR-REQ-X-061-r1` (adopted); the adopted requirement is in `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md` under 'Adopted reconciliation requirements'.
 
 ### REQ-X-062: Advisor, wealth manager, custody and CRM integration
 
@@ -645,6 +659,7 @@ All 20 initial landscape gaps have proposed requirements REQ-X-058..077, with a 
 ## REQ-X-083: Orthogonal payment state machine, rail-specific proof and governed recovery (2026-11-23)
 
 **Proposed:** Model payment authorization, dispatch, provider knowledge, settlement proof, accounting reconciliation, recipient acknowledgement and work case as distinct dimensions. Provider timeout produces Unknown, not failure; accepted dispatch is not settlement; recipient handoff is not check clearing. Pin verified payee destination version, retain immutable request/event evidence, deduplicate callbacks, forbid blind retries, and require controlled recall/reissue/return compensation. Reuse one authoritative payment/ledger system for all channels and sponsors.
+> Adopted 2026-11-23: refined by `RR-REQ-X-083-r1` (adopted-provisional); the adopted requirement is in `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md` under 'Adopted reconciliation requirements'.
 
 **Acceptance (not executed):** `PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md` defines commands, six payment state dimensions plus work-case state, rail proof hierarchy and PAY-01..09 adversarial fixtures. Exact bank/custodian proof thresholds require provider and sponsor review.
 

@@ -10,6 +10,7 @@ Date: 2026-11-21 | Status: requirements planning only
 - **UNB-PAY-004:** Require idempotent external instructions, replay defense, duplicate detection, settlement evidence, reconciliation, safe retry and explicit uncertain-result handling.
 - **UNB-PAY-005:** Record immutable payee identity, bank detail change controls, sanctions/eligibility freshness, approval evidence, payment status and correction/recovery history, with appropriate secrets/privacy protection.
 - **UNB-PAY-006:** Support bank/rail outages, failed transfers, returned ACH, lost/voided checks, partial payments, payment holds, escheat/unclaimed property applicability and fraud escalation.
+> Adopted 2026-11-23: refined by `RR-UNB-PAY-006-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-PAY-007:** Provide a simulated payment adapter and deterministic contract tests for grant/accounting integration before any real funds can move.
 - **UNB-PAY-008:** Payment provider selection, sponsor bank relationships, funds-flow legal review, rail eligibility, limits, fraud operations, security certification and production authorization are explicit future decision gates.
 - **UNB-PAY-009:** Forma SHALL display pending/approved/sent/settled/failed/returned states without conflating them. Folio SHALL generate payment advice, remittance notices and reconciliation/audit packs.
@@ -44,6 +45,32 @@ Date: 2026-11-21 | Status: requirements planning only
 
 ## Acceptance of this note
 This document reserves the future payment capability while expressly prohibiting premature provider commitment or live execution. It is a requirements artifact, not a completed integration, legal review or payment implementation.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-PAY-006-r1 (refines `UNB-PAY-006`) — adopted-provisional
+- **Original:** `requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:12` @ `777a70d` (kept verbatim) · **Decisions:** RCD-028
+- **Requirement:** The payment model MUST define explicit handling for rail outage, failure, ACH return, lost, voided and stale checks, partial payments, holds, Blocked, and unclaimed-property disposition, with states, ledger effects, configured thresholds and owners, as specified in RR-REQ-X-083-r1 and UNB-RCN-GRT-005.
+- **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence
+- **Acceptance criteria:**
+  - AC-1: Given a check outstanding for longer than the configured stale threshold; when the aging job runs; then StaleDated with outreach case.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-PAY-006-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-GRT-005 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-GRT-012 · **Parent:** UNB-PAY-006 · **Decisions:** RCD-028, RCD-047
+- **Requirement:** The check rail MUST model the states Issued, Outstanding, AgedOutreach (at configurable day thresholds), StaleDated, VoidRequested, VoidConfirmed (positive-pay void acknowledged), Cleared, and UnclaimedPropertyReportable. Each state MUST have a defined grant, reservation and ledger effect. Reissue requires VoidConfirmed, verified recipient eligibility and destination, and a linked replacement chain. When a check reaches the jurisdiction-specific dormancy rule, the system MUST either produce unclaimed-property report and remittance evidence or record the counsel-approved alternative disposition. It MUST NOT silently release the funds to the fund.
+- **Validation still required:** RCD-028: Counsel Q11; rail partner due diligence; RCD-047: Counsel per state
+- **Acceptance criteria:**
+  - AC-1: Given a check outstanding past the AgedOutreach threshold; when the daily aging job runs; then an outreach case is opened for the recipient and the grant stays Outstanding (not Paid).
+  - AC-2: Given a voided check is later presented; when the positive-pay exception arrives; then it is rejected and no ledger effect occurs.
+  - AC-3: Given a dormant outstanding check; when the dormancy threshold is reached; then the item becomes UnclaimedPropertyReportable with the jurisdiction recorded.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-005); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->
 
 <!-- BEGIN ADOPTED: cross-industry-discovery -->
 ## Adopted requirements: cross-industry discovery (2026-11-24)

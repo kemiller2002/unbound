@@ -1,0 +1,1 @@
+Self-hosted fonts from @echelon-foundry/echelon-theme 1.1.0 (kemiller2002/echelon-design-system @ 2c0e82e, dist/echelon-fonts.css and dist/fonts/), SIL OFL 1.1 (texts in fonts/licenses/). Copied unmodified for the design prototypes only.

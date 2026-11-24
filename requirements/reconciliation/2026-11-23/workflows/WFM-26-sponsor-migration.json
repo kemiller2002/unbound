@@ -1,0 +1,680 @@
+{
+  "workflow_id": "WFM-26",
+  "name": "Inbound migration of an existing sponsor book",
+  "release": "R1",
+  "outcome": "An existing sponsor book is migrated with provenance on every imported record, tie-outs and a parallel run before a dual-authorized cutover that fences the legacy writer; imported payees stay blocked until independently verified; rollback is allowed only before the first live posting and compensation after it",
+  "aggregate": "MigrationRun",
+  "sources": [
+    "RR-REQ-X-061-r1",
+    "REQ-X-061",
+    "TX-23",
+    "TX-24",
+    "INV-07",
+    "UNB-TEN-013",
+    "E2E-WF-17 (19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:305)",
+    "19-questions/LEGACY-MIGRATION-PORTABILITY-AND-SPONSOR-EXIT-2026-11-23.md:10"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "MigrationContracted",
+      "kind": "initial",
+      "user_label": "Contracted",
+      "lozenge": "attention",
+      "description": "Migration contracted with the incoming sponsor; rollback boundary and compensation procedure to be declared."
+    },
+    {
+      "id": "MigrationInventoried",
+      "kind": "intermediate",
+      "user_label": "Inventoried",
+      "lozenge": "attention",
+      "description": "Legacy data classes, in-flight items (pending ACH, outstanding checks, Unknown payments, open flags) and documents inventoried."
+    },
+    {
+      "id": "MigrationMapped",
+      "kind": "intermediate",
+      "user_label": "Mapped",
+      "lozenge": "attention",
+      "description": "Field, role, restriction and charity-identity mapping approved by the sponsor."
+    },
+    {
+      "id": "MigrationImportedToStaging",
+      "kind": "intermediate",
+      "user_label": "Staged",
+      "lozenge": "attention",
+      "description": "Records imported to staging with provenance and imported_unverified status; no live postings."
+    },
+    {
+      "id": "MigrationReconciliationBreak",
+      "kind": "intermediate",
+      "user_label": "Tie-out break",
+      "lozenge": "blocked",
+      "description": "Staged balances, pending items or parallel results do not tie to legacy statements and custodian/bank records."
+    },
+    {
+      "id": "MigrationReconciled",
+      "kind": "intermediate",
+      "user_label": "Reconciled",
+      "lozenge": "attention",
+      "description": "Fund balances, pending items and open flags tie out."
+    },
+    {
+      "id": "MigrationParallelRunning",
+      "kind": "intermediate",
+      "user_label": "Parallel run",
+      "lozenge": "attention",
+      "description": "Unbound shadow-computes while the legacy system remains the only writer."
+    },
+    {
+      "id": "MigrationParallelValidated",
+      "kind": "intermediate",
+      "user_label": "Parallel validated",
+      "lozenge": "attention",
+      "description": "Parallel variance within tolerance for the required cycles."
+    },
+    {
+      "id": "MigrationCutoverAuthorized",
+      "kind": "intermediate",
+      "user_label": "Cutover authorized",
+      "lozenge": "attention",
+      "description": "Sponsor CFO, finance and operations dual-authorized cutover."
+    },
+    {
+      "id": "MigrationFenceUnknown",
+      "kind": "intermediate",
+      "user_label": "Fence status unknown",
+      "lozenge": "unknown",
+      "description": "Legacy fencing request returned no definite result; Unbound does not post."
+    },
+    {
+      "id": "MigrationSingleWriterActive",
+      "kind": "intermediate",
+      "user_label": "Live on Unbound",
+      "lozenge": "attention",
+      "description": "Legacy writer fenced; Unbound is the single writer; imported payees remain blocked until verified."
+    },
+    {
+      "id": "MigrationCompensating",
+      "kind": "intermediate",
+      "user_label": "Compensating",
+      "lozenge": "blocked",
+      "description": "Post-cutover discrepancy or legacy write after fence; Unbound posting paused for affected funds; forward compensation only."
+    },
+    {
+      "id": "MigrationPostCutoverVerified",
+      "kind": "intermediate",
+      "user_label": "Verified",
+      "lozenge": "ok",
+      "description": "Independent post-cutover reconciliation signed off."
+    },
+    {
+      "id": "MigrationArchived",
+      "kind": "terminal",
+      "user_label": "Archived",
+      "lozenge": "neutral",
+      "description": "Migration evidence archived under retention."
+    },
+    {
+      "id": "MigrationRolledBack",
+      "kind": "terminal",
+      "user_label": "Rolled back",
+      "lozenge": "neutral",
+      "description": "Cutover reversed before any live Unbound posting; legacy remains writer."
+    },
+    {
+      "id": "MigrationAbandoned",
+      "kind": "terminal",
+      "user_label": "Abandoned",
+      "lozenge": "neutral",
+      "description": "Migration stopped before cutover; staged data retained as evidence."
+    },
+    {
+      "id": "MigrationCorrection",
+      "kind": "correction",
+      "user_label": "Migration correction",
+      "lozenge": "neutral",
+      "description": "Linked correction for a mapping defect found after archive (e.g. wrong EIN mapping); compensating entries, no history rewrite."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-26-T01",
+      "from": "MigrationContracted",
+      "to": "MigrationInventoried",
+      "trigger": "command",
+      "name": "InventoryLegacyBook",
+      "actor_type": "human",
+      "actor_role": "Migration operator",
+      "authority": "A2",
+      "guards": [
+        "rollback-boundary-declared",
+        "compensation-procedure-declared"
+      ],
+      "effects": [
+        "inventory-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "UNB-TEN-011"
+      ],
+      "scenario_ids": [
+        "TVS-303"
+      ],
+      "ui_surface": "NEW:Migration control console"
+    },
+    {
+      "id": "WFM-26-T02",
+      "from": "MigrationInventoried",
+      "to": "MigrationMapped",
+      "trigger": "command",
+      "name": "ApproveMigrationMapping",
+      "actor_type": "human",
+      "actor_role": "Sponsor operations lead",
+      "authority": "A4",
+      "guards": [
+        "roles-derived-from-signed-agreements",
+        "restrictions-mapped-to-structured-fields",
+        "charity-identity-canonical",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "mapping-version"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "REQ-X-061"
+      ],
+      "scenario_ids": [
+        "TVS-301",
+        "TVS-302",
+        "TVS-361"
+      ],
+      "ui_surface": "NEW:Migration mapping review"
+    },
+    {
+      "id": "WFM-26-T03",
+      "from": "MigrationMapped",
+      "to": "MigrationImportedToStaging",
+      "trigger": "command",
+      "name": "ImportToStaging",
+      "actor_type": "deterministic",
+      "actor_role": "Migration import service",
+      "authority": "A3",
+      "guards": [
+        "tenant-context-bound",
+        "no-live-postings"
+      ],
+      "effects": [
+        "external-call",
+        "stage-records-with-provenance",
+        "mark-imported-unverified"
+      ],
+      "idempotency_key": "(migrationRunId, importBatchId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownExportStatus",
+          "to_state": "MigrationMapped"
+        },
+        {
+          "condition": "ExportIncomplete",
+          "to_state": "MigrationMapped"
+        },
+        {
+          "condition": "IdentifierCollision",
+          "to_state": "MigrationMapped"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "UNB-TEN-013",
+        "RR-UNB-PLAT-008-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-018",
+        "TVS-418"
+      ]
+    },
+    {
+      "id": "WFM-26-T04",
+      "from": "MigrationImportedToStaging",
+      "to": "MigrationReconciled",
+      "trigger": "command",
+      "name": "TieOutStaging",
+      "actor_type": "deterministic",
+      "actor_role": "Independent reconciliation service",
+      "authority": "A3",
+      "guards": [
+        "fund-balances-tie-to-legacy-statements",
+        "pending-items-mapped",
+        "open-flags-imported",
+        "custody-and-bank-tie"
+      ],
+      "effects": [
+        "tie-out-report"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnexplainedBreak",
+          "to_state": "MigrationReconciliationBreak"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "RCD-020",
+        "UNB-TEN-013"
+      ],
+      "scenario_ids": [
+        "TVS-304",
+        "TVS-305",
+        "TVS-309",
+        "TVS-303"
+      ]
+    },
+    {
+      "id": "WFM-26-T05",
+      "from": "MigrationReconciliationBreak",
+      "to": "MigrationImportedToStaging",
+      "trigger": "command",
+      "name": "ResolveTieOutBreak",
+      "actor_type": "human",
+      "actor_role": "Sponsor controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "explanation-evidence-attached",
+        "no-fabricated-history"
+      ],
+      "effects": [
+        "corrected-import-or-explained-difference"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "RCD-020"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Opening balance tie-out workspace"
+    },
+    {
+      "id": "WFM-26-T06",
+      "from": "MigrationReconciled",
+      "to": "MigrationParallelRunning",
+      "trigger": "command",
+      "name": "StartParallelRun",
+      "actor_type": "deterministic",
+      "actor_role": "Migration orchestrator",
+      "authority": "A2",
+      "guards": [
+        "legacy-remains-sole-writer"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-26-T07",
+      "from": "MigrationParallelRunning",
+      "to": "MigrationParallelValidated",
+      "trigger": "event",
+      "name": "ParallelRunPassed",
+      "actor_type": "deterministic",
+      "actor_role": "Independent reconciliation service",
+      "authority": "A3",
+      "guards": [
+        "variance-within-tolerance-for-required-cycles"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "ParallelVarianceExceeded",
+          "to_state": "MigrationReconciliationBreak"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [
+        "TVS-308",
+        "TVS-306"
+      ]
+    },
+    {
+      "id": "WFM-26-T08",
+      "from": "MigrationParallelValidated",
+      "to": "MigrationCutoverAuthorized",
+      "trigger": "command",
+      "name": "AuthorizeCutover",
+      "actor_type": "human",
+      "actor_role": "Sponsor CFO with finance and operations (dual approval)",
+      "authority": "A4",
+      "guards": [
+        "dual-approval",
+        "segregation-of-duties",
+        "rollback-boundary-declared",
+        "tie-out-current",
+        "pending-items-routing-agreement"
+      ],
+      "effects": [
+        "decision-record",
+        "fencing-epoch-allocated"
+      ],
+      "idempotency_key": "(migrationRunId, cutoverEpoch)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "INV-07",
+        "GOV-AUTH-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Migration cutover authorization",
+      "notes": "TX-23: sponsor + finance + operations dual approval; opening balances posted exactly once."
+    },
+    {
+      "id": "WFM-26-T09",
+      "from": "MigrationCutoverAuthorized",
+      "to": "MigrationSingleWriterActive",
+      "trigger": "command",
+      "name": "FenceLegacyWriterAndActivate",
+      "actor_type": "external",
+      "actor_role": "Legacy provider fencing interface",
+      "authority": "A3",
+      "guards": [
+        "legacy-writer-fenced-at-epoch",
+        "opening-balances-posted-once",
+        "sponsor-active"
+      ],
+      "effects": [
+        "external-call",
+        "single-writer-token",
+        "post-opening-balances"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownFenceStatus",
+          "to_state": "MigrationFenceUnknown"
+        },
+        {
+          "condition": "FenceRefused",
+          "to_state": "MigrationCutoverAuthorized"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "INV-07",
+        "UNB-TEN-013"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-019"
+      ]
+    },
+    {
+      "id": "WFM-26-T10",
+      "from": "MigrationFenceUnknown",
+      "to": "MigrationSingleWriterActive",
+      "trigger": "command",
+      "name": "ConfirmFenceByQuery",
+      "actor_type": "deterministic",
+      "actor_role": "Migration orchestrator",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersists",
+          "to_state": "MigrationFenceUnknown"
+        },
+        {
+          "condition": "LegacyStillWriting",
+          "to_state": "MigrationCutoverAuthorized"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "INV-07"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-26-T11",
+      "from": [
+        "MigrationCutoverAuthorized",
+        "MigrationFenceUnknown"
+      ],
+      "to": "MigrationRolledBack",
+      "trigger": "command",
+      "name": "RollBackBeforeFirstLivePosting",
+      "actor_type": "human",
+      "actor_role": "Sponsor CFO",
+      "authority": "A4",
+      "guards": [
+        "no-live-unbound-posting",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "release-fence",
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Migration cutover authorization",
+      "notes": "Past the declared rollback boundary this transition is refused; use compensation instead (TVS-310)."
+    },
+    {
+      "id": "WFM-26-T12",
+      "from": "MigrationSingleWriterActive",
+      "to": "MigrationSingleWriterActive",
+      "trigger": "command",
+      "name": "VerifyImportedPayee",
+      "actor_type": "human",
+      "actor_role": "Sponsor payee verifier (independent of requester)",
+      "authority": "A4",
+      "guards": [
+        "destination-evidence-meets-table",
+        "requester-not-verifier"
+      ],
+      "effects": [
+        "new-destination-version-verified"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-018",
+        "TVS-608",
+        "TVS-619"
+      ],
+      "ui_surface": "NEW:Imported payee verification queue",
+      "notes": "Per-record lifecycle imported_unverified -> verified; bulk approval of thousands of records is not allowed (TVS-608)."
+    },
+    {
+      "id": "WFM-26-T13",
+      "from": "MigrationSingleWriterActive",
+      "to": "MigrationCompensating",
+      "trigger": "event",
+      "name": "PostCutoverDiscrepancyDetected",
+      "actor_type": "deterministic",
+      "actor_role": "Independent reconciliation service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "incident",
+        "pause-posting-for-affected-funds"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "INV-07"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-019",
+        "TVS-310"
+      ]
+    },
+    {
+      "id": "WFM-26-T14",
+      "from": "MigrationCompensating",
+      "to": "MigrationSingleWriterActive",
+      "trigger": "command",
+      "name": "ApproveCompensatingEntries",
+      "actor_type": "human",
+      "actor_role": "Sponsor controller",
+      "authority": "A4",
+      "guards": [
+        "compensating-entries-balanced",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger",
+        "resume-posting"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Migration control console"
+    },
+    {
+      "id": "WFM-26-T15",
+      "from": "MigrationSingleWriterActive",
+      "to": "MigrationPostCutoverVerified",
+      "trigger": "command",
+      "name": "SignOffPostCutoverReconciliation",
+      "actor_type": "human",
+      "actor_role": "Independent reconciler",
+      "authority": "A4",
+      "guards": [
+        "reconciler-independent-of-migration-operator",
+        "balances-tie",
+        "provider-acknowledgements-received"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnresolvedDiscrepancy",
+          "to_state": "MigrationCompensating"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "GOV-AUTH-014"
+      ],
+      "scenario_ids": [
+        "TVS-307"
+      ],
+      "ui_surface": "NEW:Migration control console"
+    },
+    {
+      "id": "WFM-26-T16",
+      "from": "MigrationPostCutoverVerified",
+      "to": "MigrationArchived",
+      "trigger": "timer",
+      "name": "ArchiveMigrationRun",
+      "actor_type": "timer",
+      "actor_role": "Retention scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1",
+        "RR-REQ-X-036-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-26-T17",
+      "from": [
+        "MigrationContracted",
+        "MigrationInventoried",
+        "MigrationMapped",
+        "MigrationImportedToStaging",
+        "MigrationReconciliationBreak",
+        "MigrationReconciled",
+        "MigrationParallelRunning",
+        "MigrationParallelValidated"
+      ],
+      "to": "MigrationAbandoned",
+      "trigger": "command",
+      "name": "AbandonMigration",
+      "actor_type": "human",
+      "actor_role": "Sponsor CFO",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "decision-record",
+        "retain-staging-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [
+        "TVS-303"
+      ],
+      "ui_surface": "NEW:Migration control console"
+    },
+    {
+      "id": "WFM-26-T18",
+      "from": "MigrationArchived",
+      "to": "MigrationCorrection",
+      "trigger": "command",
+      "name": "RecordPostArchiveMappingDefect",
+      "actor_type": "human",
+      "actor_role": "Sponsor controller",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "ledger"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-061-r1"
+      ],
+      "scenario_ids": [
+        "TVS-361"
+      ],
+      "ui_surface": "NEW:Migration control console"
+    }
+  ],
+  "invariants": [
+    "Every imported standing-data record carries source system, source record id, import batch and verification_status=imported_unverified",
+    "No payment is released to an imported_unverified destination (RR-REQ-X-061-r1 AC-1)",
+    "Legacy and Unbound never both post authoritative transactions; the legacy writer is fenced before Unbound posts (INV-07)",
+    "The rollback boundary and the compensation procedure are declared before cutover; after the first live posting only forward compensation applies",
+    "Missing history is never fabricated; advisor authority derives from the signed agreement, not the export role (TVS-302)"
+  ]
+}

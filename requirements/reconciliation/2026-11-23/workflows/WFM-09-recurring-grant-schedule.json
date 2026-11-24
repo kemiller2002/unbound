@@ -1,0 +1,508 @@
+{
+  "workflow_id": "WFM-09",
+  "name": "Recurring grant schedule and occurrences",
+  "release": "R1",
+  "outcome": "Each due occurrence is evaluated as a new grant exactly once; held occurrences clear within the window or are skipped, and repeated adverse holds suspend the schedule",
+  "aggregate": "RecurringSchedule (with one in-flight Occurrence keyed by (scheduleId, scheduleVersion, periodKey))",
+  "sources": [
+    "UNB-RCN-GRT-004",
+    "RR-UNB-GRANT-027-r1",
+    "UNB-RCN-GRT-010",
+    "RR-REQ-X-008-r1",
+    "RR-UNB-SUCC-008-r1",
+    "TX-17",
+    "TX-18",
+    "06-state-models/state-models.md §1 REC-6, REC-7",
+    "RCF-GRT-010",
+    "RCF-GRT-039"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-004",
+    "UNB-UI-S-008"
+  ],
+  "states": [
+    {
+      "id": "ScheduleSubmitted",
+      "kind": "initial",
+      "user_label": "Schedule submitted",
+      "lozenge": "neutral",
+      "description": "Recurring recommendation submitted from S-003 with a standing affirmation (sponsor-configured validity)."
+    },
+    {
+      "id": "ScheduleActive",
+      "kind": "intermediate",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "Schedule accepted; next occurrence pending. Adverse-hold counter shown to the donor."
+    },
+    {
+      "id": "ScheduleOccurrenceDue",
+      "kind": "intermediate",
+      "user_label": "Occurrence due",
+      "lozenge": "neutral",
+      "description": "The durable scheduler emitted the occurrence for (scheduleId, scheduleVersion, periodKey); evaluation as a new grant is running."
+    },
+    {
+      "id": "ScheduleOccurrenceHeld",
+      "kind": "intermediate",
+      "user_label": "This month's grant on hold",
+      "lozenge": "attention",
+      "description": "Occurrence held for eligibility, sanctions, authority, affirmation or funding. Stays Held until the OccurrenceHoldWindow ends."
+    },
+    {
+      "id": "ScheduleSuspended",
+      "kind": "intermediate",
+      "user_label": "Suspended – needs your confirmation",
+      "lozenge": "attention",
+      "description": "ConsecutiveAdverseHolds reached. Needs donor reconfirmation and a fresh standing affirmation to resume."
+    },
+    {
+      "id": "ScheduleAuthoritySuspended",
+      "kind": "intermediate",
+      "user_label": "Suspended – authority review",
+      "lozenge": "attention",
+      "description": "Death or incapacity notice (ProtectiveHold) or verified death. Suspended, not cancelled; resumes only under verified successor authority or after a false notice is cleared."
+    },
+    {
+      "id": "ScheduleCompleted",
+      "kind": "terminal",
+      "user_label": "Completed",
+      "lozenge": "ok",
+      "description": "End date or occurrence count reached."
+    },
+    {
+      "id": "ScheduleCanceled",
+      "kind": "terminal",
+      "user_label": "Canceled",
+      "lozenge": "neutral",
+      "description": "Canceled by the donor or the sponsor; any held occurrence is skipped with reason."
+    },
+    {
+      "id": "ScheduleRejected",
+      "kind": "terminal",
+      "user_label": "Not accepted",
+      "lozenge": "blocked",
+      "description": "Sponsor policy does not permit this schedule (recipient class, frequency, pledge policy, benefit context)."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-09-T01",
+      "from": "ScheduleSubmitted",
+      "to": "ScheduleActive",
+      "trigger": "event",
+      "name": "AcceptSchedule",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor policy engine",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "standing-affirmation-valid",
+        "recurrence-policy-permitted",
+        "canonical-charity-bound"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "schedule-version-created",
+        "notify"
+      ],
+      "idempotency_key": "(scheduleId, scheduleVersion)",
+      "failure": [
+        {
+          "condition": "PolicyReject",
+          "to_state": "ScheduleRejected"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-GRANT-027-r1",
+        "UNB-RCN-GRT-010",
+        "UNB-GRANT-003",
+        "UNB-RCN-GRT-009"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-011"
+      ]
+    },
+    {
+      "id": "WFM-09-T02",
+      "from": [
+        "ScheduleActive"
+      ],
+      "to": "ScheduleOccurrenceDue",
+      "trigger": "timer",
+      "name": "EmitOccurrence",
+      "actor_type": "timer",
+      "actor_role": "Durable scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "create-occurrence"
+      ],
+      "idempotency_key": "(scheduleId, scheduleVersion, periodKey)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-004",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-013"
+      ],
+      "notes": "Replay after a crash before acknowledgement finds the existing occurrence key and emits nothing new."
+    },
+    {
+      "id": "WFM-09-T03",
+      "from": "ScheduleOccurrenceDue",
+      "to": "ScheduleActive",
+      "trigger": "event",
+      "name": "OccurrencePasses",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor policy engine",
+      "authority": "A3",
+      "guards": [
+        "authority-current",
+        "standing-affirmation-valid",
+        "eligibility-current",
+        "sanctions-clear",
+        "sponsor-policy-current"
+      ],
+      "effects": [
+        "create-grant-under-review",
+        "reset-adverse-counter"
+      ],
+      "idempotency_key": "(scheduleId, scheduleVersion, periodKey)",
+      "failure": [
+        {
+          "condition": "AdverseEligibilitySanctionsAuthorityOrFunding",
+          "to_state": "ScheduleOccurrenceHeld"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-GRANT-027-r1",
+        "UNB-RCN-GRT-004",
+        "RR-REQ-X-007-r1",
+        "RR-UNB-EXT-004-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-011",
+        "DKS-GRT-013"
+      ],
+      "notes": "The created grant enters WFM-08 GrantUnderReview like any other grant; capacity is checked in its approval transaction. A grant that fails capacity there is reported back as a funding hold."
+    },
+    {
+      "id": "WFM-09-T04",
+      "from": "ScheduleOccurrenceHeld",
+      "to": "ScheduleActive",
+      "trigger": "event",
+      "name": "OccurrenceHoldCleared",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor policy engine",
+      "authority": "A3",
+      "guards": [
+        "within-occurrence-hold-window",
+        "authority-current",
+        "standing-affirmation-valid",
+        "eligibility-current",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "create-grant-under-review",
+        "reset-adverse-counter",
+        "notify"
+      ],
+      "idempotency_key": "(scheduleId, scheduleVersion, periodKey)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-004",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-011"
+      ],
+      "notes": "If it clears within the window it proceeds once."
+    },
+    {
+      "id": "WFM-09-T05",
+      "from": "ScheduleOccurrenceHeld",
+      "to": "ScheduleActive",
+      "trigger": "timer",
+      "name": "SkipOccurrence",
+      "actor_type": "timer",
+      "actor_role": "Durable scheduler",
+      "authority": "A3",
+      "guards": [
+        "occurrence-hold-window-ended",
+        "adverse-count-below-threshold"
+      ],
+      "effects": [
+        "record-skip-reason",
+        "increment-adverse-counter",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-004",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-011"
+      ],
+      "notes": "No catch-up unless the schedule's sponsor policy allows it; a catch-up, when allowed, is a separate occurrence key for the missed period."
+    },
+    {
+      "id": "WFM-09-T06",
+      "from": "ScheduleOccurrenceHeld",
+      "to": "ScheduleSuspended",
+      "trigger": "event",
+      "name": "SuspendOnAdverseThreshold",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor policy engine",
+      "authority": "A3",
+      "guards": [
+        "adverse-count-reaches-ConsecutiveAdverseHolds"
+      ],
+      "effects": [
+        "skip-held-occurrence",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-004",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-012"
+      ],
+      "notes": "Needs decision: GRT-004 counts 'held or skipped' occurrences, so the threshold can be reached while an occurrence is still held. Modelled as: suspend immediately and skip the held occurrence with reason 'schedule suspended'."
+    },
+    {
+      "id": "WFM-09-T07",
+      "from": "ScheduleSuspended",
+      "to": "ScheduleActive",
+      "trigger": "command",
+      "name": "DonorResumeSchedule",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "fresh-standing-affirmation",
+        "explicit-reconfirmation"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "schedule-version-created",
+        "reset-adverse-counter"
+      ],
+      "idempotency_key": "(scheduleId, newScheduleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-004",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-012"
+      ],
+      "ui_surface": "NEW:Recurring schedule management"
+    },
+    {
+      "id": "WFM-09-T08",
+      "from": "ScheduleActive",
+      "to": "ScheduleActive",
+      "trigger": "command",
+      "name": "AmendSchedule",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "fresh-standing-affirmation"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "schedule-version-created"
+      ],
+      "idempotency_key": "(scheduleId, newScheduleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Recurring schedule management",
+      "notes": "Material change (amount, recipient, purpose) invalidates the standing affirmation and creates a new scheduleVersion."
+    },
+    {
+      "id": "WFM-09-T09",
+      "from": [
+        "ScheduleActive",
+        "ScheduleSuspended",
+        "ScheduleOccurrenceHeld"
+      ],
+      "to": "ScheduleCanceled",
+      "trigger": "command",
+      "name": "DonorCancelSchedule",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current"
+      ],
+      "effects": [
+        "skip-held-occurrence",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-GRANT-003"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Recurring schedule management",
+      "notes": "Grants already created from earlier occurrences continue in WFM-08 and can be cancelled only by request."
+    },
+    {
+      "id": "WFM-09-T10",
+      "from": [
+        "ScheduleActive",
+        "ScheduleSuspended",
+        "ScheduleOccurrenceHeld",
+        "ScheduleAuthoritySuspended"
+      ],
+      "to": "ScheduleCanceled",
+      "trigger": "command",
+      "name": "SponsorCancelSchedule",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "skip-held-occurrence",
+        "notify-donor"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-REQ-X-008-r1",
+        "UNB-RCN-ENT-006"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-09-T11",
+      "from": [
+        "ScheduleActive",
+        "ScheduleOccurrenceDue",
+        "ScheduleOccurrenceHeld",
+        "ScheduleSuspended"
+      ],
+      "to": "ScheduleAuthoritySuspended",
+      "trigger": "event",
+      "name": "DeathOrIncapacityNotice",
+      "actor_type": "deterministic",
+      "actor_role": "Authority service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "skip-held-occurrence",
+        "block-instance-release",
+        "notify-verified-channel"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-REQ-X-008-r1",
+        "UNB-RCN-ENT-004"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-004",
+        "DKS-ENT-001"
+      ],
+      "notes": "Fires on any notice (ProtectiveHold blocks recurring-instance releases); verified death keeps it suspended. Only schedules whose authority derives from the subject are affected."
+    },
+    {
+      "id": "WFM-09-T12",
+      "from": "ScheduleAuthoritySuspended",
+      "to": "ScheduleActive",
+      "trigger": "command",
+      "name": "ResumeUnderSuccessor",
+      "actor_type": "human",
+      "actor_role": "Successor with activated rights",
+      "authority": "A2",
+      "guards": [
+        "successor-authority-active",
+        "fresh-standing-affirmation"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "schedule-version-created"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-REQ-X-008-r1",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Recurring schedule management"
+    },
+    {
+      "id": "WFM-09-T13",
+      "from": "ScheduleAuthoritySuspended",
+      "to": "ScheduleActive",
+      "trigger": "command",
+      "name": "ClearFalseNotice",
+      "actor_type": "human",
+      "actor_role": "Sponsor operations (not the notice recorder)",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "subject-confirmed-via-verified-channel"
+      ],
+      "effects": [
+        "notify-verified-channel"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-09-T14",
+      "from": "ScheduleActive",
+      "to": "ScheduleCompleted",
+      "trigger": "timer",
+      "name": "ScheduleEnded",
+      "actor_type": "timer",
+      "actor_role": "Durable scheduler",
+      "authority": "A2",
+      "guards": [
+        "end-date-or-count-reached"
+      ],
+      "effects": [
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-003",
+        "RR-UNB-GRANT-027-r1"
+      ],
+      "scenario_ids": []
+    }
+  ],
+  "invariants": [
+    "An occurrence is processed at most once per (scheduleId, scheduleVersion, periodKey), including after scheduler crash and replay",
+    "No automatic catch-up payment in a later period unless the schedule's sponsor policy explicitly allows catch-up",
+    "Every hold, skip and suspension notifies the donor",
+    "Each occurrence re-checks current authority, affirmation validity, common status, sanctions, sponsor policy and capacity at its due time",
+    "A schedule is never resumed under the authority of a deceased or revoked principal",
+    "OccurrenceHoldWindow must not exceed the schedule period, so at most one occurrence is in flight"
+  ]
+}

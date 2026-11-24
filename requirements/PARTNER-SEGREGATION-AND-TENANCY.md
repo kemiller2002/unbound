@@ -11,6 +11,7 @@ The **authoritative append-only rule applies identically in every isolation prof
 - **UNB-TEN-002:** Support shared-database/separate-schema, dedicated-database, and dedicated-infrastructure deployment profiles through explicit configuration and validated compatibility; partner business logic must not fork by tier.
 - **UNB-TEN-003:** Every authoritative event, fund, party relationship, grant, journal entry, policy, evidence reference, agent action and projection SHALL have an enforced tenant security boundary. Cross-tenant access is denied by default, including administrator, background job, support, analytics and agent paths.
 - **UNB-TEN-004:** Tenant routing SHALL derive from verified identity and authorized tenancy context, never a client-supplied schema/database name or unverified header. Use an independently tested routing and connection-broker boundary.
+> Adopted 2026-11-23: refined by `RR-UNB-TEN-004-r1` (adopted); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-TEN-005:** For shared databases with separate schemas, partner-specific roles SHALL be unable to read/write other schemas; default schema search paths, SECURITY DEFINER routines, migrations, connection pooling, shared extensions and administrative credentials require threat modeling and negative tests.
 - **UNB-TEN-006:** For dedicated databases, credentials, encryption keys, backup/restore policy, resource quotas, monitoring, recovery objectives and access reviews SHALL be partner-scoped to the degree promised by contract.
 - **UNB-TEN-007:** Shared services (identity, registry, charity intelligence, orchestration, telemetry, support and model services) SHALL have an explicit classification: shared public reference, permitted aggregated information, partner-confidential information, or prohibited cross-tenant flow. Shared infrastructure must not become an unreviewed data-sharing mechanism.
@@ -64,6 +65,32 @@ An additional shared-schema/row-level-security model is **not** approved as a de
 
 ## Traceability
 Expands UNB-API-005, UNB-DATA-008/011/012, UNB-IMM-009, UNB-PART and UNB-SUCC requirements, UNB-LEG-002, UNB-TEC-001/002/003 and UNB-COM-002. Candidate requirements must pass architecture, legal and security validation before implementation.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-TEN-004-r1 (refines `UNB-TEN-004`) — adopted
+- **Original:** `requirements/PARTNER-SEGREGATION-AND-TENANCY.md:13` @ `777a70d` (kept verbatim) · **Decisions:** —
+- **Requirement:** The TenantConnectionBroker MUST derive the tenant for every request from the authenticated principal's server-held entitlement set. A client MAY submit an opaque tenant selection token only if it was issued by the server from that entitlement set for the current session; the broker MUST revalidate membership and delegation validity on every request and MUST ignore any schema, database, host or raw tenant identifier supplied by a client, partner API, widget host or AI agent.
+- **Acceptance criteria:**
+  - AC-1: Given advisor A entitled to tenants T1 and T2 with T1 selected; when A requests a T2 fund by ID; then response is RESOURCE_NOT_FOUND and a denial event is recorded.
+  - AC-2: Given a request carries header X-Tenant: T2 and schema hint 'partner_b'; when the principal is entitled only to T1; then the hints are ignored and the request executes in T1 or is denied.
+  - AC-3: Given A's delegation for T2 is revoked; when A sends the next request with a valid T2 selection token; then the request is denied and the token invalidated.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-TEN-004-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-PLT-001 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-PLT-005 · **Parent:** UNB-TEN-020 · **Decisions:** RCD-004
+- **Requirement:** Unbound MUST define Tenant, LegalSponsor, DistributionPartner, Program, Fund and DeploymentCell as distinct typed entities, and MUST publish for every data class its isolation key (tenant or sponsor) and whether it may be shared across partners of the same sponsor.
+- **Validation still required:** RCD-004: Architecture spike DG-09 and DG-11
+- **Acceptance criteria:**
+  - AC-1: Given data class 'charity review note'; when the isolation map is queried; then it returns its isolation key and cross-partner sharing rule.
+  - AC-2: Given a requirement uses 'sponsor/tenant'; when lint runs; then it is flagged.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-001); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->
 
 <!-- BEGIN ADOPTED: cross-industry-discovery -->
 ## Adopted requirements: cross-industry discovery (2026-11-24)

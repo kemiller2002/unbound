@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-011 Sponsor overview | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-011, UNB-UI-G-003. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+</head>
+<body class="forma-site">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving · Sponsor operations</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-008-exception-inbox.html">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html">Sponsor policy</a><a href="S-011-sponsor-overview.html" aria-current="page">Overview</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-008-exception-inbox.html">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html">Sponsor policy</a><a href="S-011-sponsor-overview.html" aria-current="page">Overview</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-011 · UNB-UI-G-003</p>
+        <h1>Sponsor overview</h1>
+        <p class="forma-lead">Outcomes at risk without a composite health score: holds, straight-through rate, reconciliation, evidence freshness and statement publication. Tables and metric cards only in release 1.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s011-1">State 1: Overview with one stale reconciliation</a></li></ul></nav>
+    <section class="forma-section" id="s011-1" aria-labelledby="s011-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 1 · Operations lead</p>
+      <h2 id="s011-1-title">Overview with one stale reconciliation</h2>
+      <p>Demonstrates: UNB-UI-S-011 AC-1 (stale account shows 'Not current'; no green total)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor operations</a></li><li aria-current="page">Overview</li></ol></nav></forma-scope-trail><forma-dashboard-grid class="forma-component-tag"><section class="forma-dashboard-grid" aria-label="Outcomes at risk">
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Grants on hold</div>
+  <div class="forma-metric-card__value">19</div>
+  <div class="forma-metric-card__context"><p>Oldest 6 days. See holds by reason below.</p></div>
+  
+</article></forma-metric-card>
+<forma-metric-value-change class="forma-component-tag"><article class="forma-metric-card" aria-labelledby="s011-1-stp"><div class="forma-metric-card__label" id="s011-1-stp">Straight-through rate, last 7 days</div><div class="forma-metric-card__value" data-forma-value-change>94.2%</div><div class="forma-metric-card__context"><p>Up from 93.8% the previous 7 days.</p></div><p class="forma-visually-hidden" aria-live="polite">Straight-through rate updated to 94.2%, up from 93.8%.</p></article></forma-metric-value-change>
+<forma-metric-card class="forma-component-tag"><article class="forma-metric-card">
+  <div class="forma-metric-card__label">Accounts reconciled</div>
+  <div class="forma-metric-card__value">Not determinable</div>
+  <div class="forma-metric-card__context"><span class="forma-status-lozenge" data-state="unknown">1 account not current</span><p>No total is shown while any account's evidence is not current.</p></div>
+  
+</article></forma-metric-card>
+</section></forma-dashboard-grid>
+<section class="forma-stack" aria-labelledby="s011-1-holds"><h3 id="s011-1-holds">Holds by reason and age</h3><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Holds by reason and age">
+  <table>
+    <caption class="forma-visually-hidden">Holds by reason and age</caption>
+    <thead><tr><th scope="col"><button type="button">Reason</button></th><th scope="col"><button type="button">Under 1 day</button></th><th scope="col"><button type="button">1 to 3 days</button></th><th scope="col"><button type="button">Over 3 days</button></th><th scope="col"><button type="button">Total</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Reason">Charity eligibility not confirmed</td><td data-label="Under 1 day">7</td><td data-label="1 to 3 days">3</td><td data-label="Over 3 days">1</td><td data-label="Total">11</td></tr>
+      <tr><td data-label="Reason">Potential sanctions match</td><td data-label="Under 1 day">1</td><td data-label="1 to 3 days">2</td><td data-label="Over 3 days">1</td><td data-label="Total">4</td></tr>
+      <tr><td data-label="Reason">Payment outcome unknown</td><td data-label="Under 1 day">2</td><td data-label="1 to 3 days">2</td><td data-label="Over 3 days">0</td><td data-label="Total">4</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid></section>
+<section class="forma-stack" aria-labelledby="s011-1-stp-t"><h3 id="s011-1-stp-t">Straight-through rate by workflow</h3><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Straight-through rate by workflow">
+  <table>
+    <caption class="forma-visually-hidden">Straight-through rate by workflow</caption>
+    <thead><tr><th scope="col"><button type="button">Workflow</button></th><th scope="col"><button type="button">Last 7 days</button></th><th scope="col"><button type="button">Previous 7 days</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Workflow">Grant recommendation to approval</td><td data-label="Last 7 days">96.1%</td><td data-label="Previous 7 days">95.7%</td></tr>
+      <tr><td data-label="Workflow">Approval to payment</td><td data-label="Last 7 days">92.4%</td><td data-label="Previous 7 days">92.0%</td></tr>
+      <tr><td data-label="Workflow">Contribution to available</td><td data-label="Last 7 days">88.9%</td><td data-label="Previous 7 days">90.3%, down 1.4 points</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid></section>
+<section class="forma-stack" aria-labelledby="s011-1-rec"><h3 id="s011-1-rec">Reconciliation by account</h3><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Reconciliation status by account">
+  <table>
+    <caption class="forma-visually-hidden">Reconciliation status by account</caption>
+    <thead><tr><th scope="col"><button type="button">Account</button></th><th scope="col"><button type="button">Status</button></th><th scope="col"><button type="button">Evidence as of</button></th><th scope="col"><button type="button">Difference</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Account">Operating cash ••••0012</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Reconciled</span></td><td data-label="Evidence as of"><p class="forma-freshness"><span class="forma-freshness__label">Statement</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Difference"><span class="forma-identifier">$0.00</span></td></tr>
+      <tr><td data-label="Account">Grant disbursement ••••0034</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Reconciled</span></td><td data-label="Evidence as of"><p class="forma-freshness"><span class="forma-freshness__label">Statement</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></td><td data-label="Difference"><span class="forma-identifier">$0.00</span></td></tr>
+      <tr><td data-label="Account">Custody ••••0056</td><td data-label="Status"><span class="forma-status-lozenge" data-state="unknown">Not current</span></td><td data-label="Evidence as of"><p class="forma-freshness"><span class="forma-freshness__label">Statement</span> <time datetime="2026-11-28">28 Nov 2026</time> <span class="forma-status-lozenge" data-state="unknown">Not current</span></p></td><td data-label="Difference">Not determinable</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid><p><strong>All accounts:</strong> not determinable until Custody ••••0056 evidence is current.</p></section>
+<section class="forma-stack" aria-labelledby="s011-1-fresh"><h3 id="s011-1-fresh">Evidence freshness and statement publication</h3><dl class="forma-key-value-list"><div><dt>IRS eligibility data</dt><dd><p class="forma-freshness"><span class="forma-freshness__label">Loaded</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></dd></div><div><dt>Sanctions lists</dt><dd><p class="forma-freshness"><span class="forma-freshness__label">Loaded</span> <time datetime="2026-12-01T06:00:00-06:00">1 Dec 2026, 6:00 AM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div><div><dt>Market prices</dt><dd><p class="forma-freshness"><span class="forma-freshness__label">Priced</span> <time datetime="2026-11-30T16:00:00-06:00">30 Nov 2026, 4:00 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div><div><dt>Q3 2026 statements</dt><dd><span class="forma-status-lozenge" data-state="ok">Published</span> 4,812 of 4,812 on 9 Oct 2026</dd></div><div><dt>November 2026 monthly statements</dt><dd><span class="forma-status-lozenge" data-state="attention">Waiting on period lock</span> Due 7 Dec 2026</dd></div></dl></section>
+<forma-callout class="forma-component-tag"><aside class="forma-callout" data-forma-callout="note" aria-labelledby="s011-1-charts"><p class="forma-callout__label" id="s011-1-charts">Charts deferred</p><p>Trend charts are deferred to a later release (FORMA-GAP-05). Every trend here is a table or a sentence.</p></aside></forma-callout>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

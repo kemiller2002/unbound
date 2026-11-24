@@ -1,0 +1,555 @@
+{
+  "workflow_id": "WFM-25",
+  "name": "Support case, assisted change and reconsideration of a sponsor decision",
+  "release": "R1",
+  "outcome": "A support request is answered, an assisted change takes effect only after confirmation on the donor's verified channel, and a reconsideration request gets a recorded outcome from an independent sponsor reviewer within the response time",
+  "aggregate": "SupportCase",
+  "sources": [
+    "UNB-RCN-ENT-016",
+    "ADM-015",
+    "ADM-016",
+    "ADM-017",
+    "ADM-039",
+    "REQ-X-072",
+    "E2E-WF-16 (19-questions/END-TO-END-DAF-ENTERPRISE-WORKFLOW-COMPLETENESS-AUDIT-2026-11-23.md:288)"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-008",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "SupportCaseOpened",
+      "kind": "initial",
+      "user_label": "Received",
+      "lozenge": "attention",
+      "description": "Request received from a donor, advisor, charity or partner via any channel, with channel and assurance level recorded."
+    },
+    {
+      "id": "SupportCaseTriaged",
+      "kind": "intermediate",
+      "user_label": "In progress",
+      "lozenge": "attention",
+      "description": "Classified (question, document request, assisted change, complaint, reconsideration) and routed."
+    },
+    {
+      "id": "SupportAssistedChangePending",
+      "kind": "intermediate",
+      "user_label": "Awaiting your confirmation",
+      "lozenge": "attention",
+      "description": "Staff prepared a change (contact, payee, preference, recommendation edit); confirmation sent to the verified channel."
+    },
+    {
+      "id": "SupportSuspectedFraud",
+      "kind": "intermediate",
+      "user_label": "Security review",
+      "lozenge": "blocked",
+      "description": "Donor denied the assisted change on the verified channel; protective hold and security case opened."
+    },
+    {
+      "id": "SupportReconsideration",
+      "kind": "intermediate",
+      "user_label": "Under reconsideration",
+      "lozenge": "attention",
+      "description": "Independent sponsor reviewer re-examines a sponsor decision (grant decline, hold, fund decision, fee)."
+    },
+    {
+      "id": "SupportAwaitingRequester",
+      "kind": "intermediate",
+      "user_label": "Waiting on you",
+      "lozenge": "attention",
+      "description": "More information requested from the requester."
+    },
+    {
+      "id": "SupportReconsiderationDecided",
+      "kind": "intermediate",
+      "user_label": "Decision made",
+      "lozenge": "attention",
+      "description": "Outcome recorded (Upheld, Overturned, Modified, Referred); any new decision issued to the subject workflow."
+    },
+    {
+      "id": "SupportCaseResolved",
+      "kind": "intermediate",
+      "user_label": "Resolved",
+      "lozenge": "ok",
+      "description": "Answer, change or outcome delivered; reopen window running."
+    },
+    {
+      "id": "SupportCaseClosed",
+      "kind": "terminal",
+      "user_label": "Closed",
+      "lozenge": "ok",
+      "description": "Reopen window elapsed or requester confirmed; closure proof recorded."
+    },
+    {
+      "id": "SupportCaseWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Requester withdrew the request."
+    },
+    {
+      "id": "SupportCaseCorrection",
+      "kind": "correction",
+      "user_label": "Case corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction when a closed case is found to have been closed on a wrong basis."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-25-T01",
+      "from": "SupportCaseOpened",
+      "to": "SupportCaseTriaged",
+      "trigger": "event",
+      "name": "ClassifyRequest",
+      "actor_type": "ai",
+      "actor_role": "Support triage assistant (AI)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "classification-proposal"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "LowConfidence",
+          "to_state": "SupportCaseOpened"
+        }
+      ],
+      "requirement_ids": [
+        "ADM-039",
+        "ADM-015",
+        "UNB-UI-G-011"
+      ],
+      "scenario_ids": [],
+      "notes": "Classification is a routing proposal only; low confidence leaves the case for human triage."
+    },
+    {
+      "id": "WFM-25-T02",
+      "from": "SupportCaseOpened",
+      "to": "SupportCaseTriaged",
+      "trigger": "command",
+      "name": "TriageRequest",
+      "actor_type": "human",
+      "actor_role": "Support agent",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "route"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-015",
+        "ADM-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-008"
+    },
+    {
+      "id": "WFM-25-T03",
+      "from": "SupportCaseTriaged",
+      "to": "SupportAssistedChangePending",
+      "trigger": "command",
+      "name": "PrepareAssistedChange",
+      "actor_type": "human",
+      "actor_role": "Support agent",
+      "authority": "A1",
+      "guards": [
+        "caller-authenticated-at-required-assurance",
+        "channel-recorded",
+        "staff-identity-recorded"
+      ],
+      "effects": [
+        "send-confirmation-to-verified-channel",
+        "change-staged-not-applied"
+      ],
+      "idempotency_key": "(caseId, changeHash)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "ADM-017",
+        "REQ-X-072"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-024"
+      ],
+      "ui_surface": "NEW:Assisted change console"
+    },
+    {
+      "id": "WFM-25-T04",
+      "from": "SupportAssistedChangePending",
+      "to": "SupportCaseResolved",
+      "trigger": "command",
+      "name": "ConfirmViaVerifiedChannel",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "confirmation-from-verified-channel",
+        "confirmation-matches-change-hash",
+        "cooling-off-for-sensitive-change",
+        "change-requester-not-verifier-for-payee"
+      ],
+      "effects": [
+        "apply-change",
+        "notify-prior-channel"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "ChangeHashMismatch",
+          "to_state": "SupportCaseTriaged"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "ADM-017",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-024",
+        "TVS-626"
+      ],
+      "ui_surface": "NEW:Verified-channel confirmation",
+      "notes": "A payee or destination change still creates a new destination version that needs independent verification before release (RR-REQ-X-005-r1)."
+    },
+    {
+      "id": "WFM-25-T05",
+      "from": "SupportAssistedChangePending",
+      "to": "SupportCaseTriaged",
+      "trigger": "timer",
+      "name": "ConfirmationExpired",
+      "actor_type": "timer",
+      "actor_role": "Confirmation timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "discard-staged-change",
+        "notify-requester"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-25-T06",
+      "from": "SupportAssistedChangePending",
+      "to": "SupportSuspectedFraud",
+      "trigger": "command",
+      "name": "DenyAssistedChange",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "protective-hold",
+        "open-security-case"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "REQ-X-072"
+      ],
+      "scenario_ids": [
+        "TVS-601"
+      ],
+      "ui_surface": "NEW:Verified-channel confirmation"
+    },
+    {
+      "id": "WFM-25-T07",
+      "from": "SupportSuspectedFraud",
+      "to": "SupportCaseResolved",
+      "trigger": "command",
+      "name": "ConcludeSecurityReview",
+      "actor_type": "human",
+      "actor_role": "Sponsor security analyst",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "release-or-keep-protective-hold"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-072",
+        "GOV-AUTH-013"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-25-T08",
+      "from": "SupportCaseTriaged",
+      "to": "SupportCaseResolved",
+      "trigger": "command",
+      "name": "AnswerOrFulfilRequest",
+      "actor_type": "human",
+      "actor_role": "Support agent",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "respond-to-requester"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-015",
+        "UNB-WF-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-25-T09",
+      "from": "SupportCaseTriaged",
+      "to": "SupportReconsideration",
+      "trigger": "command",
+      "name": "RouteToReconsideration",
+      "actor_type": "deterministic",
+      "actor_role": "Case routing policy",
+      "authority": "A2",
+      "guards": [
+        "original-decision-identified",
+        "within-reconsideration-window",
+        "reviewer-independent-of-original-decider"
+      ],
+      "effects": [
+        "assign-independent-reviewer",
+        "start-response-time-clock"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "OutsideReconsiderationWindow",
+          "to_state": "SupportCaseResolved"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-25-T10",
+      "from": "SupportReconsideration",
+      "to": "SupportAwaitingRequester",
+      "trigger": "command",
+      "name": "RequestMoreInformation",
+      "actor_type": "human",
+      "actor_role": "Sponsor reconsideration reviewer",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "notify-requester"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-25-T11",
+      "from": "SupportAwaitingRequester",
+      "to": "SupportReconsideration",
+      "trigger": "command",
+      "name": "ProvideInformation",
+      "actor_type": "human",
+      "actor_role": "Requester (donor, advisor or charity)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "attach-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Support case status"
+    },
+    {
+      "id": "WFM-25-T12",
+      "from": "SupportAwaitingRequester",
+      "to": "SupportCaseResolved",
+      "trigger": "timer",
+      "name": "RequesterResponseLapsed",
+      "actor_type": "timer",
+      "actor_role": "Case timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "decide-on-available-evidence-notice"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-25-T13",
+      "from": "SupportReconsideration",
+      "to": "SupportReconsiderationDecided",
+      "trigger": "command",
+      "name": "RecordReconsiderationOutcome",
+      "actor_type": "human",
+      "actor_role": "Sponsor reconsideration reviewer",
+      "authority": "A4",
+      "guards": [
+        "reviewer-not-original-decider",
+        "evidence-snapshot-current",
+        "outcome-in-defined-set"
+      ],
+      "effects": [
+        "decision-record",
+        "issue-new-decision-to-subject-if-overturned"
+      ],
+      "idempotency_key": "(caseId, originalDecisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "UNB-LEG-002",
+        "GOV-AUTH-009",
+        "UNB-UI-D-005"
+      ],
+      "scenario_ids": [
+        "TVS-256"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Outcome set: Upheld, Overturned, Modified, Referred. An overturned grant decline becomes a new approval in the grant lifecycle, which re-runs eligibility and sanctions."
+    },
+    {
+      "id": "WFM-25-T14",
+      "from": "SupportReconsiderationDecided",
+      "to": "SupportCaseResolved",
+      "trigger": "event",
+      "name": "CommunicateOutcome",
+      "actor_type": "deterministic",
+      "actor_role": "Notification service",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-requester-with-reasons"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "SubjectCommandRejected",
+          "to_state": "SupportReconsideration"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "UNB-RCN-PLT-002"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-25-T15",
+      "from": "SupportCaseResolved",
+      "to": "SupportCaseClosed",
+      "trigger": "timer",
+      "name": "CloseAfterReopenWindow",
+      "actor_type": "timer",
+      "actor_role": "Case timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "closure-proof"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-016",
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-25-T16",
+      "from": "SupportCaseResolved",
+      "to": "SupportCaseTriaged",
+      "trigger": "command",
+      "name": "ReopenCase",
+      "actor_type": "human",
+      "actor_role": "Requester (donor, advisor or charity)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-016",
+        "UNB-RCN-ENT-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Support case status"
+    },
+    {
+      "id": "WFM-25-T17",
+      "from": [
+        "SupportCaseOpened",
+        "SupportCaseTriaged",
+        "SupportReconsideration",
+        "SupportAwaitingRequester"
+      ],
+      "to": "SupportCaseWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawRequest",
+      "actor_type": "human",
+      "actor_role": "Requester (donor, advisor or charity)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-015"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Support case status"
+    },
+    {
+      "id": "WFM-25-T18",
+      "from": "SupportCaseClosed",
+      "to": "SupportCaseCorrection",
+      "trigger": "command",
+      "name": "CorrectClosedCase",
+      "actor_type": "human",
+      "actor_role": "Support supervisor",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "linked-correction-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "ADM-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-008"
+    }
+  ],
+  "invariants": [
+    "Staff-assisted actions record channel, assurance level and staff identity, and have no consequential effect until confirmed through the donor's verified channel (UNB-RCN-ENT-016)",
+    "A reconsideration never edits the original decision; an overturn is a new sponsor decision in the subject workflow",
+    "The reconsideration reviewer is not the original decider",
+    "The assistant cannot close a case on a proposed action (E2E-WF-16)",
+    "Case closure (customer-facing resolution) is distinct from SLA closure"
+  ]
+}

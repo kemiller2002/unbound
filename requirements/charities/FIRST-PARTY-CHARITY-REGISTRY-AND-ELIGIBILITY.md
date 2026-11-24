@@ -103,3 +103,29 @@ CHAR-ADR-010: Crosswalk of each eligibility rule to current legal sources and in
 6. Payment-beneficiary verification integration seam, with actual outbound payment execution explicitly deferred.
 
 This file specifies a first-party internal charity information capability, not proof that source data has been acquired, an eligibility rule legally verified, a registry implemented or a provider integrated.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-GRT-013 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-GRT-038 · **Parent:** UNB-CHAR-016 · **Decisions:** RCD-006
+- **Requirement:** The system MUST maintain a counsel-approved EntityTypeEvidence matrix, giving accepted evidence for: government units; churches and conventions not required to file; group-exemption subordinates; disregarded entities of an eligible parent; and newly recognized organizations not yet in bulk files. Satisfying the matrix MUST produce a common verification status equivalent to an IRS-listed entity, recorded with its evidence class.
+- **Validation still required:** RCD-006: Counsel Q2
+- **Acceptance criteria:**
+  - AC-1: Given a public school district absent from the EO BMF with verified government-unit evidence; when G03 is evaluated; then it passes with evidence class recorded and no human queue.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-013); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-PLT-014 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-PLT-048 · **Parent:** CAP-12 donor-facing charity search; UNB-CHAR-001 · **Decisions:** RCD-029
+- **Requirement:** Donors and advisors MUST be able to search the canonical charity registry by name (including known aliases), EIN, city/state and cause category, with results showing legal name, EIN, location and the current platform eligibility state (Eligible, Held, Ineligible or Unknown) with its as-of date. Selecting a result MUST bind the recommendation to the canonical charity identity, never to free text. Results MUST NOT show sponsor-private notes or holds of other sponsors. A recipient not found MUST be submittable as an identity-resolution request, not as a free-text grant.
+- **Validation still required:** RCD-029: Counsel on defamation-sensitive facts
+- **Acceptance criteria:**
+  - AC-1: Given Two charities named 'Hope Foundation' in different states; when a donor searches 'Hope Foundation'; then both appear with EIN, city/state and eligibility state; the recommendation binds to the chosen EIN.
+  - AC-2: Given A charity held by sponsor S1 for a private investigation; when a donor of sponsor S2 searches it; then the result shows only platform-level eligibility; S1's hold reason is not visible.
+  - AC-3: Given No match; when the donor submits the recipient; then an identity-resolution request is created; no grant recommendation exists until it resolves.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-014); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

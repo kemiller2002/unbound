@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-010 Sponsor policy configuration and approval | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-010. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+</head>
+<body class="forma-site">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving · Sponsor operations</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-008-exception-inbox.html">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html" aria-current="page">Sponsor policy</a><a href="S-011-sponsor-overview.html">Overview</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-008-exception-inbox.html">Exception inbox</a><a href="S-009-case-workspace.html">Cases</a><a href="S-010-policy-configuration.html" aria-current="page">Sponsor policy</a><a href="S-011-sponsor-overview.html">Overview</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-010</p>
+        <h1>Sponsor policy configuration and approval</h1>
+        <p class="forma-lead">Draft a policy change, see it as a diff with its impact, and have a different authorized approver schedule it.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s010-1">State 1: Draft with live validation</a></li><li><a href="#s010-2">State 2: In review: the author views their own draft</a></li><li><a href="#s010-3">State 3: In review: a different approver</a></li><li><a href="#s010-4">State 4: Version history</a></li></ul></nav>
+    <section class="forma-section" id="s010-1" aria-labelledby="s010-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 4 · Sponsor administrator (author: Lee Tran)</p>
+      <h2 id="s010-1-title">Draft with live validation</h2>
+      <p>Demonstrates: Validation from assistance contracts as the user edits (UNB-UI-G-012)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor policy</a></li><li aria-current="page">Grant policy v8 (draft)</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="#policy">Sponsor policy</a> <span aria-hidden="true">/</span> <a href="#grant-policy">Grant policy</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant policy</span><h3>Version 8</h3></div>
+      <span class="forma-status-lozenge">Draft</span>
+    </div>
+    <p>Author Lee Tran · last saved 1 Dec 2026, 3:40 PM CT</p>
+  </div>
+  <div class="forma-record-header__actions">
+    <button type="button">Save draft</button><button type="button" disabled aria-describedby="s010-1-why">Submit for approval</button>
+    
+  </div>
+</header></forma-record-header>
+<p id="s010-1-why">Fix the problem below before submitting for approval.</p>
+<form class="forma-form" id="s010-1-f" aria-labelledby="s010-1-ft"><h4 id="s010-1-ft">Edit grant policy</h4>
+<forma-validation-summary class="forma-component-tag"><div class="forma-validation-summary" role="alert" tabindex="-1" aria-labelledby="s010-1-vs">
+  <div class="forma-validation-summary__icon" aria-hidden="true">!</div>
+  <div>
+    <h3 class="forma-validation-summary__title" id="s010-1-vs">There is 1 problem to fix</h3>
+    <ul class="forma-validation-summary__list"><li><a href="#s010-1-val">Minimum grant must be from $50.00 to $10,000.00.</a></li></ul>
+  </div>
+</div></forma-validation-summary>
+<forma-rule-builder class="forma-component-tag"><section class="forma-rule-builder" aria-labelledby="s010-1-rb">
+  <header class="forma-rule-builder__header"><div><h4 id="s010-1-rb">Grant minimum rule</h4><p>Applies to every new grant recommendation.</p></div><button type="button">Add condition</button></header>
+  <div class="forma-rule-group" data-forma-operator="and">
+    <div class="forma-rule-group__operator" aria-label="All conditions must be true">AND</div>
+    <div class="forma-rule-clause">
+      <label><span>Field</span><select name="s010-1-field"><option>Grant amount</option></select></label>
+      <label><span>Operator</span><select name="s010-1-op"><option>is at least</option></select></label>
+      <label><span>Value</span><input type="text" name="s010-1-val" id="s010-1-val" value="25" inputmode="decimal" aria-invalid="true" aria-describedby="s010-1-val-error"></label>
+      <button type="button" aria-label="Remove condition grant amount is at least">Remove</button>
+    </div>
+  </div>
+  <p class="forma-validation-message" id="s010-1-val-error"><span class="forma-validation-message__mark" aria-hidden="true">!</span>Enter an amount with cents, from $50.00 to $10,000.00. The assistance contract for grant minimums does not allow $25.</p>
+  <p class="forma-rule-builder__summary"><strong>Meaning:</strong> A grant is accepted only when its amount is at least $25.</p>
+</section></forma-rule-builder>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Recurring grants</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s010-1-recur" name="s010-1-recur">
+      <option value="monthly">Allowed, monthly or less often</option><option value="quarterly" selected>Allowed, quarterly or less often</option><option value="none">Not allowed</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Pledge policy</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s010-1-pledge" name="s010-1-pledge">
+      <option value="prohibited" selected>Prohibited</option><option value="allowed">Allowed with disclosure</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+</div></form>
+</section>
+<section class="forma-section" id="s010-2" aria-labelledby="s010-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 4 · Sponsor administrator who authored it</p>
+      <h2 id="s010-2-title">In review: the author views their own draft</h2>
+      <p>Demonstrates: UNB-UI-S-010 AC-1 (Approve unavailable with the reason shown); diff and impact preview</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor policy</a></li><li aria-current="page">Grant policy v8 (draft)</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="#policy">Sponsor policy</a> <span aria-hidden="true">/</span> <a href="#grant-policy">Grant policy</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant policy</span><h3>Version 8</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">In review: waiting on an approver</span>
+    </div>
+    <p>Author Lee Tran · submitted 1 Dec 2026, 4:05 PM CT</p>
+  </div>
+  <div class="forma-record-header__actions">
+    <button type="button" disabled aria-describedby="s010-2-why">Approve and schedule</button><button type="button">Withdraw from review</button>
+    
+  </div>
+</header></forma-record-header>
+<p id="s010-2-why"><strong>You wrote this draft, so another approver must approve it.</strong></p>
+<forma-diff-viewer class="forma-component-tag"><section class="forma-diff-viewer" aria-labelledby="s010-2-diff">
+  <header class="forma-diff-viewer__header"><h4 id="s010-2-diff">Changes against active version 7</h4><p>2 fields changed</p></header>
+  <div class="forma-diff-viewer__grid">
+    <section class="forma-diff-viewer__side" aria-label="Active version 7"><h5>Active (version 7)</h5><dl>
+      <div class="forma-diff-row" data-change="changed"><dt>Minimum grant</dt><dd>$50.00</dd></div>
+      <div class="forma-diff-row" data-change="changed"><dt>Recurring grants</dt><dd>Allowed, monthly or less often</dd></div>
+      <div class="forma-diff-row"><dt>Pledge policy</dt><dd>Prohibited</dd></div>
+    </dl></section>
+    <section class="forma-diff-viewer__side" aria-label="Draft version 8"><h5>Draft (version 8)</h5><dl>
+      <div class="forma-diff-row" data-change="changed"><dt>Minimum grant</dt><dd>$100.00</dd></div>
+      <div class="forma-diff-row" data-change="changed"><dt>Recurring grants</dt><dd>Allowed, quarterly or less often</dd></div>
+      <div class="forma-diff-row"><dt>Pledge policy</dt><dd>Prohibited</dd></div>
+    </dl></section>
+  </div>
+</section></forma-diff-viewer><forma-readiness-checklist class="forma-component-tag"><section class="forma-readiness-checklist" aria-labelledby="s010-2-impact">
+  <header><span class="forma-status-lozenge" data-state="attention">Impact preview</span><h4 id="s010-2-impact">What this change affects</h4></header>
+  <ul class="forma-readiness-checklist__items">
+    <li data-state="incomplete"><span aria-hidden="true">!</span><span>Affects 214 open recurring schedules (monthly schedules move to quarterly at their next run)</span></li>
+    <li data-state="incomplete"><span aria-hidden="true">!</span><span>Affects 37 draft recommendations below $100.00</span></li>
+    <li data-state="complete"><span aria-hidden="true">✓</span><span>No submitted or approved grant changes</span></li>
+  </ul>
+</section></forma-readiness-checklist>
+</section>
+<section class="forma-section" id="s010-3" aria-labelledby="s010-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 4 · Sponsor approver (Morgan Ellis)</p>
+      <h2 id="s010-3-title">In review: a different approver</h2>
+      <p>Demonstrates: Approve and schedule (A4) with effective date and consequences; Reject</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor policy</a></li><li aria-current="page">Grant policy v8 (draft)</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="#policy">Sponsor policy</a> <span aria-hidden="true">/</span> <a href="#grant-policy">Grant policy</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant policy</span><h3>Version 8</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">In review: waiting on you</span>
+    </div>
+    <p>Author Lee Tran · submitted 1 Dec 2026, 4:05 PM CT</p>
+  </div>
+  <div class="forma-record-header__actions">
+    <forma-dialog class="forma-component-tag"><button type="button" commandfor="s010-3-approve" command="show-modal">Approve and schedule…</button>
+<dialog class="forma-dialog" id="s010-3-approve" data-forma-motion-weight="heavy" aria-labelledby="s010-3-approve-title" aria-describedby="s010-3-approve-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s010-3-approve-title">Approve grant policy version 8?</h2>
+      <p id="s010-3-approve-description">Version 8 replaces version 7 on the effective date. It affects 214 open recurring schedules and 37 drafts.</p>
+      <forma-date-time-field class="forma-component-tag"><div class="forma-field">
+  <label class="forma-field__label" for="s010-3-eff">Effective date (required)</label>
+  <span class="forma-field__description" id="s010-3-eff-description">Midnight Central Time (America/Chicago) at the start of this date.</span>
+  <input id="s010-3-eff" name="s010-3-eff" type="date" value="2027-01-01" aria-describedby="s010-3-eff-description" required>
+  
+</div></forma-date-time-field>
+      <dl class="forma-key-value-list"><div><dt>Can it be undone?</dt><dd>Until the effective date you can withdraw approval; afterwards a new version is needed</dd></div><div><dt>Who acts next</dt><dd>No one; donors with affected schedules are notified 14 days before</dd></div></dl>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Cancel</button><button type="submit" value="approve">Approve and schedule version 8</button></div>
+  </form>
+</dialog></forma-dialog><button type="button">Reject…</button>
+    
+  </div>
+</header></forma-record-header><forma-diff-viewer class="forma-component-tag"><section class="forma-diff-viewer" aria-labelledby="s010-3-diff">
+  <header class="forma-diff-viewer__header"><h4 id="s010-3-diff">Changes against active version 7</h4><p>2 fields changed</p></header>
+  <div class="forma-diff-viewer__grid">
+    <section class="forma-diff-viewer__side" aria-label="Active version 7"><h5>Active (version 7)</h5><dl>
+      <div class="forma-diff-row" data-change="changed"><dt>Minimum grant</dt><dd>$50.00</dd></div>
+      <div class="forma-diff-row" data-change="changed"><dt>Recurring grants</dt><dd>Allowed, monthly or less often</dd></div>
+      <div class="forma-diff-row"><dt>Pledge policy</dt><dd>Prohibited</dd></div>
+    </dl></section>
+    <section class="forma-diff-viewer__side" aria-label="Draft version 8"><h5>Draft (version 8)</h5><dl>
+      <div class="forma-diff-row" data-change="changed"><dt>Minimum grant</dt><dd>$100.00</dd></div>
+      <div class="forma-diff-row" data-change="changed"><dt>Recurring grants</dt><dd>Allowed, quarterly or less often</dd></div>
+      <div class="forma-diff-row"><dt>Pledge policy</dt><dd>Prohibited</dd></div>
+    </dl></section>
+  </div>
+</section></forma-diff-viewer><forma-readiness-checklist class="forma-component-tag"><section class="forma-readiness-checklist" aria-labelledby="s010-3-impact">
+  <header><span class="forma-status-lozenge" data-state="attention">Impact preview</span><h4 id="s010-3-impact">What this change affects</h4></header>
+  <ul class="forma-readiness-checklist__items">
+    <li data-state="incomplete"><span aria-hidden="true">!</span><span>Affects 214 open recurring schedules (monthly schedules move to quarterly at their next run)</span></li>
+    <li data-state="incomplete"><span aria-hidden="true">!</span><span>Affects 37 draft recommendations below $100.00</span></li>
+    <li data-state="complete"><span aria-hidden="true">✓</span><span>No submitted or approved grant changes</span></li>
+  </ul>
+</section></forma-readiness-checklist>
+</section>
+<section class="forma-section" id="s010-4" aria-labelledby="s010-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 4 · Sponsor administrator</p>
+      <h2 id="s010-4-title">Version history</h2>
+      <p>Demonstrates: Approved (scheduled), Active and Superseded states</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Sponsor policy</a></li><li aria-current="page">Grant policy v8 (draft)</li></ol></nav></forma-scope-trail><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Grant policy versions">
+  <table>
+    <caption class="forma-visually-hidden">Grant policy versions</caption>
+    <thead><tr><th scope="col"><button type="button">Version</button></th><th scope="col"><button type="button">Status</button></th><th scope="col"><button type="button">Effective</button></th><th scope="col"><button type="button">Approved by</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Version">8</td><td data-label="Status"><span class="forma-status-lozenge" data-state="attention">Approved: scheduled</span></td><td data-label="Effective">1 Jan 2027</td><td data-label="Approved by">Morgan Ellis</td></tr>
+      <tr><td data-label="Version">7</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Active</span></td><td data-label="Effective">1 Jul 2026</td><td data-label="Approved by">Morgan Ellis</td></tr>
+      <tr><td data-label="Version">6</td><td data-label="Status"><span class="forma-status-lozenge">Superseded</span></td><td data-label="Effective">1 Jan 2026 to 30 Jun 2026</td><td data-label="Approved by">Casey Wong</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

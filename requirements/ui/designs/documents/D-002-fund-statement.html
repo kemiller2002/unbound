@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UNB-UI-D-002 prototype: quarterly fund statement with 72 grant rows, composed only from Folio 0.4.2 primitives.">
+  <title>Fund statement 2026-310482</title>
+  <link rel="stylesheet" href="../vendor/folio-0.4.2/src/styles/print.css">
+  <script type="module" src="../vendor/folio-0.4.2/src/components/register.js"></script>
+</head>
+<body>
+<ef-print-document data-document-kind="fund-statement" data-requirement="UNB-UI-D-002">
+  <ef-print-title-page>
+      <div class="ef-identity">
+        <p><strong>Harbor Giving</strong><br>Example Charitable Foundation</p>
+        <address>
+          <span>1200 Example Avenue, Suite 400</span>
+          <span>Springfield, IL 62701</span>
+          <span>EIN 00-0000000</span>
+        </address>
+      </div>
+    <h1>Fund statement</h1>
+    <p>The Rivera Family Fund &middot; fund 100482</p>
+    <dl class="ef-meta-list">
+        <div><dt>Statement period</dt><dd>1 Jul 2026 to 30 Sep 2026</dd></div>
+        <div><dt>Statement reference</dt><dd>2026-310482</dd></div>
+        <div><dt>Advisors</dt><dd>Elena Rivera, Marco Rivera</dd></div>
+        <div><dt>Generated from</dt><dd>Locked period snapshot 2026-Q3 (locked 3 Oct 2026)</dd></div>
+        <div><dt>Time zone</dt><dd>America/Chicago</dd></div>
+      </dl>
+    <ef-print-toc>
+      <nav aria-label="Statement contents">
+        <ol>
+          <li><a href="#summary">Period summary</a></li>
+          <li><a href="#contributions">Contributions</a></li>
+          <li><a href="#grants">Grants paid</a></li>
+          <li><a href="#pending">Pending grants</a></li>
+          <li><a href="#fees">Fees and fee basis</a></li>
+          <li><a href="#disclosures">Disclosures</a></li>
+        </ol>
+      </nav>
+    </ef-print-toc>
+  </ef-print-title-page>
+  <ef-print-header repeat="page">
+    <span slot="left">Harbor Giving</span>
+    <span slot="center">Fund statement, 1 Jul 2026 to 30 Sep 2026</span>
+    <span slot="right">Reference 2026-310482</span>
+  </ef-print-header>
+  <main class="ef-dense">
+    <ef-print-section id="summary">
+      <h2>Period summary</h2>
+      <ef-print-keep>
+        <ul class="ef-category-grid">
+          <li><ef-print-metric>
+            <span data-label>Opening value</span>
+            <strong data-value>$1,284,310.42</strong>
+            <span data-detail>at 1 Jul 2026</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Contributions</span>
+            <strong data-value>$84,250.50</strong>
+            <span data-detail>6 contributions</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Grants paid</span>
+            <strong data-value>$183,677.18</strong>
+            <span data-detail>72 grants</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Fees</span>
+            <strong data-value>$3,273.17</strong>
+            <span data-detail>Administrative fee</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric>
+            <span data-label>Investment change</span>
+            <strong data-value>−$4,210.33 (decrease)</strong>
+            <span data-detail>Net of fund expenses</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric emphasis="strong">
+            <span data-label>Closing value</span>
+            <strong data-value>$1,177,400.24</strong>
+            <span data-detail>at 30 Sep 2026</span>
+          </ef-print-metric></li>
+          <li><ef-print-metric emphasis="strong">
+            <span data-label>Available to grant</span>
+            <strong data-value>$1,168,150.24</strong>
+            <span data-detail>Closing value less $9,250.00 pending</span>
+          </ef-print-metric></li>
+        </ul>
+      </ef-print-keep>
+    </ef-print-section>
+    <ef-print-section id="contributions">
+      <h2>Contributions</h2>
+      <ef-print-table>
+        <table>
+          <caption>Contributions received in the period</caption>
+          <thead><tr><th scope="col">Contribution reference</th><th scope="col">Date of gift</th><th scope="col">Method</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">2026-101511</th><td>2 Jul 2026</td><td>ACH transfer</td><td data-align="number">$10,000.00</td></tr>
+            <tr><th scope="row">2026-101588</th><td>21 Jul 2026</td><td>Check</td><td data-align="number">$2,500.00</td></tr>
+            <tr><th scope="row">2026-101640</th><td>5 Aug 2026</td><td>ACH transfer</td><td data-align="number">$10,000.00</td></tr>
+            <tr><th scope="row">2026-101702</th><td>30 Aug 2026</td><td>Wire transfer</td><td data-align="number">$50,000.00</td></tr>
+            <tr><th scope="row">2026-101733</th><td>4 Sep 2026</td><td>ACH transfer</td><td data-align="number">$10,000.00</td></tr>
+            <tr><th scope="row">2026-101790</th><td>22 Sep 2026</td><td>Check</td><td data-align="number">$1,750.50</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total contributions</th><td></td><td></td><td data-align="number">$84,250.50</td></tr></tfoot>
+        </table>
+      </ef-print-table>
+    </ef-print-section>
+    <ef-print-section id="grants">
+      <h2>Grants paid</h2>
+      <ef-print-table>
+        <table>
+          <caption>Grants paid in the period</caption>
+          <thead><tr><th scope="col">Grant reference</th><th scope="col">Paid on</th><th scope="col">Charity</th><th scope="col">Purpose</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">2026-004700</th><td>1 Jul 2026</td><td>Riverside Youth Orchestra</td><td>Youth programs</td><td data-align="number">$172.25</td></tr>
+            <tr><th scope="row">2026-004703</th><td>2 Jul 2026</td><td>Riverside Youth Orchestra</td><td>Emergency relief</td><td data-align="number">$2,776.35</td></tr>
+            <tr><th scope="row">2026-004706</th><td>3 Jul 2026</td><td>Lakeshore Food Pantry</td><td>Conservation easement program</td><td data-align="number">$4,667.65</td></tr>
+            <tr><th scope="row">2026-004709</th><td>4 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Scholarship fund</td><td data-align="number">$2,469.19</td></tr>
+            <tr><th scope="row">2026-004712</th><td>6 Jul 2026</td><td>Fox Valley Hospice</td><td>Annual fund</td><td data-align="number">$2,711.01</td></tr>
+            <tr><th scope="row">2026-004715</th><td>7 Jul 2026</td><td>Great Lakes Science Center</td><td>Conservation easement program</td><td data-align="number">$2,818.82</td></tr>
+            <tr><th scope="row">2026-004718</th><td>8 Jul 2026</td><td>Coulee Region Habitat Builders</td><td>Scholarship fund</td><td data-align="number">$501.07</td></tr>
+            <tr><th scope="row">2026-004721</th><td>9 Jul 2026</td><td>Great Lakes Science Center</td><td>Youth programs</td><td data-align="number">$2,023.73</td></tr>
+            <tr><th scope="row">2026-004724</th><td>11 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Annual fund</td><td data-align="number">$648.41</td></tr>
+            <tr><th scope="row">2026-004727</th><td>12 Jul 2026</td><td>Lakeshore Food Pantry</td><td>Youth programs</td><td data-align="number">$1,671.51</td></tr>
+            <tr><th scope="row">2026-004730</th><td>13 Jul 2026</td><td>Second Chance Reentry Network</td><td>Capital campaign</td><td data-align="number">$4,291.67</td></tr>
+            <tr><th scope="row">2026-004733</th><td>15 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Conservation easement program</td><td data-align="number">$4,950.11</td></tr>
+            <tr><th scope="row">2026-004736</th><td>16 Jul 2026</td><td>Fox Valley Hospice</td><td>Annual fund</td><td data-align="number">$1,307.50</td></tr>
+            <tr><th scope="row">2026-004739</th><td>17 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Scholarship fund</td><td data-align="number">$3,465.48</td></tr>
+            <tr><th scope="row">2026-004742</th><td>18 Jul 2026</td><td>Harbor Animal Rescue</td><td>General operating support</td><td data-align="number">$1,378.74</td></tr>
+            <tr><th scope="row">2026-004745</th><td>20 Jul 2026</td><td>Second Chance Reentry Network</td><td>Scholarship fund</td><td data-align="number">$1,663.59</td></tr>
+            <tr><th scope="row">2026-004748</th><td>21 Jul 2026</td><td>Second Chance Reentry Network</td><td>Emergency relief</td><td data-align="number">$1,431.03</td></tr>
+            <tr><th scope="row">2026-004751</th><td>22 Jul 2026</td><td>Great Lakes Science Center</td><td>General operating support</td><td data-align="number">$4,181.50</td></tr>
+            <tr><th scope="row">2026-004754</th><td>24 Jul 2026</td><td>Lakeshore Food Pantry</td><td>Emergency relief</td><td data-align="number">$4,506.85</td></tr>
+            <tr><th scope="row">2026-004757</th><td>25 Jul 2026</td><td>Second Chance Reentry Network</td><td>General operating support</td><td data-align="number">$3,277.67</td></tr>
+            <tr><th scope="row">2026-004760</th><td>26 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Youth programs</td><td data-align="number">$4,016.60</td></tr>
+            <tr><th scope="row">2026-004763</th><td>27 Jul 2026</td><td>Prairie Literacy Alliance</td><td>Capital campaign</td><td data-align="number">$2,510.01</td></tr>
+            <tr><th scope="row">2026-004766</th><td>29 Jul 2026</td><td>Midwest Refugee Partnership</td><td>Emergency relief</td><td data-align="number">$3,009.62</td></tr>
+            <tr><th scope="row">2026-004769</th><td>30 Jul 2026</td><td>Harbor Animal Rescue</td><td>Conservation easement program</td><td data-align="number">$1,545.40</td></tr>
+            <tr><th scope="row">2026-004772</th><td>31 Jul 2026</td><td>Harbor Animal Rescue</td><td>Emergency relief</td><td data-align="number">$471.41</td></tr>
+            <tr><th scope="row">2026-004775</th><td>1 Aug 2026</td><td>Lakeshore Food Pantry</td><td>Annual fund</td><td data-align="number">$4,954.33</td></tr>
+            <tr><th scope="row">2026-004778</th><td>3 Aug 2026</td><td>Fox Valley Hospice</td><td>Youth programs</td><td data-align="number">$3,321.94</td></tr>
+            <tr><th scope="row">2026-004781</th><td>4 Aug 2026</td><td>Madison Free Clinic</td><td>Annual fund</td><td data-align="number">$901.11</td></tr>
+            <tr><th scope="row">2026-004784</th><td>5 Aug 2026</td><td>Midwest Refugee Partnership</td><td>Annual fund</td><td data-align="number">$4,172.75</td></tr>
+            <tr><th scope="row">2026-004787</th><td>7 Aug 2026</td><td>Great Lakes Science Center</td><td>General operating support</td><td data-align="number">$4,498.52</td></tr>
+            <tr><th scope="row">2026-004790</th><td>8 Aug 2026</td><td>Northwoods Land Trust</td><td>Youth programs</td><td data-align="number">$3,107.47</td></tr>
+            <tr><th scope="row">2026-004793</th><td>9 Aug 2026</td><td>Great Lakes Science Center</td><td>Youth programs</td><td data-align="number">$2,234.90</td></tr>
+            <tr><th scope="row">2026-004796</th><td>10 Aug 2026</td><td>Dane County Arts League</td><td>Youth programs</td><td data-align="number">$1,685.92</td></tr>
+            <tr><th scope="row">2026-004799</th><td>12 Aug 2026</td><td>Midwest Refugee Partnership</td><td>Annual fund</td><td data-align="number">$1,727.30</td></tr>
+            <tr><th scope="row">2026-004802</th><td>13 Aug 2026</td><td>Lakeshore Food Pantry</td><td>General operating support</td><td data-align="number">$263.97</td></tr>
+            <tr><th scope="row">2026-004805</th><td>14 Aug 2026</td><td>Lakeshore Food Pantry</td><td>Capital campaign</td><td data-align="number">$1,521.54</td></tr>
+            <tr><th scope="row">2026-004808</th><td>16 Aug 2026</td><td>Harbor Animal Rescue</td><td>Capital campaign</td><td data-align="number">$4,550.37</td></tr>
+            <tr><th scope="row">2026-004811</th><td>17 Aug 2026</td><td>Second Chance Reentry Network</td><td>Conservation easement program</td><td data-align="number">$4,091.47</td></tr>
+            <tr><th scope="row">2026-004814</th><td>18 Aug 2026</td><td>Harbor Animal Rescue</td><td>Capital campaign</td><td data-align="number">$3,628.40</td></tr>
+            <tr><th scope="row">2026-004817</th><td>19 Aug 2026</td><td>Lakeshore Food Pantry</td><td>Emergency relief</td><td data-align="number">$2,500.00</td></tr>
+            <tr><th scope="row">2026-004820</th><td>21 Aug 2026</td><td>Riverside Youth Orchestra</td><td>Capital campaign</td><td data-align="number">$645.85</td></tr>
+            <tr><th scope="row">2026-004823</th><td>22 Aug 2026</td><td>Midwest Refugee Partnership</td><td>Capital campaign</td><td data-align="number">$1,752.37</td></tr>
+            <tr><th scope="row">2026-004826</th><td>23 Aug 2026</td><td>Second Chance Reentry Network</td><td>Scholarship fund</td><td data-align="number">$1,700.90</td></tr>
+            <tr><th scope="row">2026-004829</th><td>24 Aug 2026</td><td>Dane County Arts League</td><td>Annual fund</td><td data-align="number">$3,247.39</td></tr>
+            <tr><th scope="row">2026-004832</th><td>26 Aug 2026</td><td>Lakeshore Food Pantry</td><td>Scholarship fund</td><td data-align="number">$2,507.25</td></tr>
+            <tr><th scope="row">2026-004835</th><td>27 Aug 2026</td><td>Northwoods Land Trust</td><td>Emergency relief</td><td data-align="number">$650.83</td></tr>
+            <tr><th scope="row">2026-004838</th><td>28 Aug 2026</td><td>Northwoods Land Trust</td><td>Annual fund</td><td data-align="number">$419.79</td></tr>
+            <tr><th scope="row">2026-004841</th><td>30 Aug 2026</td><td>Coulee Region Habitat Builders</td><td>Youth programs</td><td data-align="number">$2,411.98</td></tr>
+            <tr><th scope="row">2026-004844</th><td>31 Aug 2026</td><td>Great Lakes Science Center</td><td>Emergency relief</td><td data-align="number">$2,767.30</td></tr>
+            <tr><th scope="row">2026-004847</th><td>1 Sep 2026</td><td>Lakeshore Food Pantry</td><td>Conservation easement program</td><td data-align="number">$4,281.53</td></tr>
+            <tr><th scope="row">2026-004850</th><td>2 Sep 2026</td><td>Dane County Arts League</td><td>Scholarship fund</td><td data-align="number">$217.53</td></tr>
+            <tr><th scope="row">2026-004853</th><td>4 Sep 2026</td><td>Midwest Refugee Partnership</td><td>Conservation easement program</td><td data-align="number">$974.59</td></tr>
+            <tr><th scope="row">2026-004856</th><td>5 Sep 2026</td><td>Harbor Animal Rescue</td><td>Annual fund</td><td data-align="number">$4,086.57</td></tr>
+            <tr><th scope="row">2026-004859</th><td>6 Sep 2026</td><td>Fox Valley Hospice</td><td>Emergency relief</td><td data-align="number">$1,104.25</td></tr>
+            <tr><th scope="row">2026-004862</th><td>8 Sep 2026</td><td>Northwoods Land Trust</td><td>Annual fund</td><td data-align="number">$1,560.62</td></tr>
+            <tr><th scope="row">2026-004865</th><td>9 Sep 2026</td><td>Great Lakes Science Center</td><td>Youth programs</td><td data-align="number">$3,714.29</td></tr>
+            <tr><th scope="row">2026-004868</th><td>10 Sep 2026</td><td>Harbor Animal Rescue</td><td>Emergency relief</td><td data-align="number">$2,115.30</td></tr>
+            <tr><th scope="row">2026-004871</th><td>11 Sep 2026</td><td>Harbor Animal Rescue</td><td>General operating support</td><td data-align="number">$3,649.04</td></tr>
+            <tr><th scope="row">2026-004874</th><td>13 Sep 2026</td><td>Great Lakes Science Center</td><td>Scholarship fund</td><td data-align="number">$716.52</td></tr>
+            <tr><th scope="row">2026-004877</th><td>14 Sep 2026</td><td>Fox Valley Hospice</td><td>Youth programs</td><td data-align="number">$1,723.11</td></tr>
+            <tr><th scope="row">2026-004880</th><td>15 Sep 2026</td><td>Second Chance Reentry Network</td><td>Conservation easement program</td><td data-align="number">$2,374.66</td></tr>
+            <tr><th scope="row">2026-004883</th><td>16 Sep 2026</td><td>Lakeshore Food Pantry</td><td>Youth programs</td><td data-align="number">$4,150.13</td></tr>
+            <tr><th scope="row">2026-004886</th><td>18 Sep 2026</td><td>Riverside Youth Orchestra</td><td>Scholarship fund</td><td data-align="number">$2,863.22</td></tr>
+            <tr><th scope="row">2026-004889</th><td>19 Sep 2026</td><td>Lakeshore Food Pantry</td><td>Capital campaign</td><td data-align="number">$156.41</td></tr>
+            <tr><th scope="row">2026-004892</th><td>20 Sep 2026</td><td>Dane County Arts League</td><td>Youth programs</td><td data-align="number">$3,564.33</td></tr>
+            <tr><th scope="row">2026-004895</th><td>22 Sep 2026</td><td>Prairie Literacy Alliance</td><td>Youth programs</td><td data-align="number">$4,198.08</td></tr>
+            <tr><th scope="row">2026-004898</th><td>23 Sep 2026</td><td>Prairie Literacy Alliance</td><td>Conservation easement program</td><td data-align="number">$2,814.58</td></tr>
+            <tr><th scope="row">2026-004901</th><td>24 Sep 2026</td><td>Prairie Literacy Alliance</td><td>Youth programs</td><td data-align="number">$2,144.66</td></tr>
+            <tr><th scope="row">2026-004904</th><td>25 Sep 2026</td><td>Riverside Youth Orchestra</td><td>Capital campaign</td><td data-align="number">$3,247.48</td></tr>
+            <tr><th scope="row">2026-004907</th><td>27 Sep 2026</td><td>Harbor Animal Rescue</td><td>Annual fund</td><td data-align="number">$4,749.64</td></tr>
+            <tr><th scope="row">2026-004910</th><td>28 Sep 2026</td><td>Fox Valley Hospice</td><td>Annual fund</td><td data-align="number">$3,338.57</td></tr>
+            <tr><th scope="row">2026-004913</th><td>29 Sep 2026</td><td>Second Chance Reentry Network</td><td>General operating support</td><td data-align="number">$4,201.25</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total grants paid</th><td></td><td></td><td></td><td data-align="number">$183,677.18</td></tr></tfoot>
+        </table>
+      </ef-print-table>
+    </ef-print-section>
+    <ef-print-section id="pending">
+      <h2>Pending grants</h2>
+      <ef-print-table>
+        <table>
+          <caption>Grants recommended but not yet paid at period end</caption>
+          <thead><tr><th scope="col">Pending reference</th><th scope="col">Charity</th><th scope="col">Purpose</th><th scope="col">Status</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">2026-004936</th><td>Northwoods Land Trust</td><td>Conservation easement program</td><td>Due diligence</td><td data-align="number">$5,000.00</td></tr>
+            <tr><th scope="row">2026-004941</th><td>Madison Free Clinic</td><td>General operating support</td><td>Awaiting approval</td><td data-align="number">$1,200.00</td></tr>
+            <tr><th scope="row">2026-004947</th><td>Prairie Literacy Alliance</td><td>Youth programs</td><td>Approved, payment scheduled 2 Oct 2026</td><td data-align="number">$750.00</td></tr>
+            <tr><th scope="row">2026-004952</th><td>Harbor Animal Rescue</td><td>Annual fund</td><td>Awaiting approval</td><td data-align="number">$300.00</td></tr>
+            <tr><th scope="row">2026-004958</th><td>Great Lakes Science Center</td><td>Scholarship fund</td><td>Due diligence</td><td data-align="number">$2,000.00</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total pending</th><td></td><td></td><td></td><td data-align="number">$9,250.00</td></tr></tfoot>
+        </table>
+      </ef-print-table>
+    </ef-print-section>
+    <ef-print-section id="fees">
+      <h2>Fees and fee basis</h2>
+      <ef-print-table>
+        <table>
+          <caption>Administrative fees charged</caption>
+          <thead><tr><th scope="col">Charged on</th><th scope="col">Basis</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">31 Jul 2026</th><td>0.85% annual rate on average daily balance, accrued monthly</td><td data-align="number">$1,048.17</td></tr>
+            <tr><th scope="row">31 Aug 2026</th><td>0.85% annual rate on average daily balance, accrued monthly</td><td data-align="number">$1,101.92</td></tr>
+            <tr><th scope="row">30 Sep 2026</th><td>0.85% annual rate on average daily balance, accrued monthly</td><td data-align="number">$1,123.08</td></tr>
+          </tbody>
+          <tfoot><tr><th scope="row">Total fees</th><td></td><td data-align="number">$3,273.17</td></tr></tfoot>
+        </table>
+      </ef-print-table>
+      <ef-print-note role="note"><p>Fee basis: 0.85% annual rate on the average daily balance, charged monthly in arrears per the Harbor Giving fee schedule effective 1 Jan 2026.</p></ef-print-note>
+    </ef-print-section>
+    <ef-print-section id="disclosures">
+      <h2>Disclosures</h2>
+      <p>Values are stated in US dollars. Investment change is net of underlying fund expenses and is not a guarantee of future value. Grants are made by Example Charitable Foundation on the advice of the fund advisors; advice is not binding.</p>
+      <ef-print-callout variant="plain">
+        <p data-protected-text="exclusive-legal-control">Example Charitable Foundation, as sponsoring organization of this donor advised fund, has exclusive legal control over the contributed assets.</p>
+        <p data-protected-text="legal-sponsor-disclosure">Harbor Giving is a donor advised fund program of Example Charitable Foundation (EIN 00-0000000), the legal sponsor. Example Charitable Foundation holds exclusive legal control over all contributed assets.</p>
+      </ef-print-callout>
+    </ef-print-section>
+  </main>
+  <ef-print-footer repeat="page">
+    <span slot="left">Reference 2026-310482</span>
+    <span slot="center">Verify at https://verify.harborgiving.example/d/2026-310482 &middot; code 9TQM-3BX7-KD2F</span>
+    <span slot="right"><ef-print-page-number format="page-of-pages">Page numbers: renderer-supplied (P1/P2)</ef-print-page-number></span>
+    <p>Harbor Giving is a donor advised fund program of Example Charitable Foundation (EIN 00-0000000), the legal sponsor. Example Charitable Foundation holds exclusive legal control over all contributed assets.</p>
+  </ef-print-footer>
+</ef-print-document>
+</body>
+</html>

@@ -1,0 +1,471 @@
+{
+  "workflow_id": "WFM-15",
+  "name": "Fee accrual and settlement",
+  "release": "R1",
+  "outcome": "Each fund is charged exactly the contracted fee on a declared, recomputable base, settled monthly, with waivers and shortfalls decided by independent humans",
+  "aggregate": "FeePeriod",
+  "sources": [
+    "UNB-RCN-FIN-005",
+    "RR-UNB-NAV-033-r1",
+    "RCD-018",
+    "TX-20"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "FeePeriodAccruing",
+      "kind": "initial",
+      "user_label": "Accruing",
+      "lozenge": "neutral",
+      "description": "Fee period open for one fund; daily accruals on the declared FeeBase."
+    },
+    {
+      "id": "FeeAccrualHeld",
+      "kind": "intermediate",
+      "user_label": "Accrual held",
+      "lozenge": "blocked",
+      "description": "FeeBase undeclared or invalid, valuation not approved, advisor relationship unclassified, or fund frozen."
+    },
+    {
+      "id": "FeePeriodAccrued",
+      "kind": "intermediate",
+      "user_label": "Accrued, awaiting settlement",
+      "lozenge": "attention",
+      "description": "Period ended (month end or closure); accruals final for the period."
+    },
+    {
+      "id": "FeeWaiverRequested",
+      "kind": "intermediate",
+      "user_label": "Waiver requested",
+      "lozenge": "attention",
+      "description": "A waiver of the accrued period fee awaits an independent decision."
+    },
+    {
+      "id": "FeeSettlementCalculated",
+      "kind": "intermediate",
+      "user_label": "Settlement calculated",
+      "lozenge": "attention",
+      "description": "Accruals summed, minimum fee applied, recipient type resolved."
+    },
+    {
+      "id": "FeeCapacityShortfall",
+      "kind": "intermediate",
+      "user_label": "Fee exceeds available capacity",
+      "lozenge": "blocked",
+      "description": "Settlement exceeds the fund's available capacity (e.g. minimum fee with a fully reserved grant)."
+    },
+    {
+      "id": "FeeSettled",
+      "kind": "terminal",
+      "user_label": "Settled",
+      "lozenge": "ok",
+      "description": "Fee charged to the fund and recognized as sponsor revenue."
+    },
+    {
+      "id": "FeeWaived",
+      "kind": "terminal",
+      "user_label": "Waived",
+      "lozenge": "neutral",
+      "description": "Period fee waived by an independent approver; accruals reversed with linked entries."
+    },
+    {
+      "id": "FeeSettlementCorrected",
+      "kind": "correction",
+      "user_label": "Corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction after a NAV restatement or FeeBase error; current-period adjustment."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-15-T01",
+      "from": "FeePeriodAccruing",
+      "to": "FeePeriodAccruing",
+      "trigger": "timer",
+      "name": "AccrueDailyFee",
+      "actor_type": "timer",
+      "actor_role": "Fee engine (daily, actual/365)",
+      "authority": "A3",
+      "guards": [
+        "feebase-declared",
+        "valuation-approved",
+        "no-fee-on-fee",
+        "no-duplicate-service-fee",
+        "advisor-relationship-classified"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(fundId, feeScheduleVersion, accrualDate)",
+      "failure": [
+        {
+          "condition": "FeeBaseOrValuationInvalid",
+          "to_state": "FeeAccrualHeld"
+        },
+        {
+          "condition": "AdvisorRelationshipUnclassified",
+          "to_state": "FeeAccrualHeld"
+        },
+        {
+          "condition": "FundFrozen",
+          "to_state": "FeeAccrualHeld"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-007",
+        "DKS-FIN-008",
+        "DKS-FIN-021",
+        "TVS-347",
+        "ADV-041"
+      ],
+      "notes": "Base = end-of-day fund market value incl. reserved-unpaid, excl. fees embedded in pool NAV and accrued unpaid fees. Stored base makes each accrual recomputable."
+    },
+    {
+      "id": "WFM-15-T02",
+      "from": "FeeAccrualHeld",
+      "to": "FeePeriodAccruing",
+      "trigger": "command",
+      "name": "ResolveAccrualHold",
+      "actor_type": "human",
+      "actor_role": "Fee accountant",
+      "authority": "A4",
+      "guards": [
+        "hold-reason-dispositioned",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(fundId, holdId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1",
+        "UNB-RCN-FIN-010",
+        "RCD-021"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-021"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Missed days are caught up deterministically from the stored FeeBase on release."
+    },
+    {
+      "id": "WFM-15-T03",
+      "from": "FeePeriodAccruing",
+      "to": "FeePeriodAccrued",
+      "trigger": "timer",
+      "name": "CloseAccrualPeriod",
+      "actor_type": "timer",
+      "actor_role": "Fee engine (month end)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-period"
+      ],
+      "idempotency_key": "(fundId, period)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-15-T04",
+      "from": "FeePeriodAccruing",
+      "to": "FeePeriodAccrued",
+      "trigger": "event",
+      "name": "CloseAccrualPeriodOnFundClosure",
+      "actor_type": "deterministic",
+      "actor_role": "Fund closure workflow (FinalFeesPosted step)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-period"
+      ],
+      "idempotency_key": "(fundId, closureId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1",
+        "UNB-RCN-ENT-006"
+      ],
+      "scenario_ids": [
+        "TVS-263"
+      ]
+    },
+    {
+      "id": "WFM-15-T05",
+      "from": "FeePeriodAccrued",
+      "to": "FeeWaiverRequested",
+      "trigger": "command",
+      "name": "RequestFeeWaiver",
+      "actor_type": "human",
+      "actor_role": "Sponsor relationship manager",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(fundId, period, requestId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-010",
+        "RCD-018"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fee waiver decision"
+    },
+    {
+      "id": "WFM-15-T06",
+      "from": "FeeWaiverRequested",
+      "to": "FeeWaived",
+      "trigger": "command",
+      "name": "ApproveFeeWaiver",
+      "actor_type": "human",
+      "actor_role": "Sponsor finance approver independent of requester",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "waiver-within-delegated-limit"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(fundId, period, requestId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-010",
+        "UNB-ACC-022",
+        "RR-UNB-NAV-033-r1"
+      ],
+      "scenario_ids": [
+        "SIM-010"
+      ],
+      "ui_surface": "NEW:Fee waiver decision"
+    },
+    {
+      "id": "WFM-15-T07",
+      "from": "FeeWaiverRequested",
+      "to": "FeePeriodAccrued",
+      "trigger": "command",
+      "name": "RejectOrPartiallyWaive",
+      "actor_type": "human",
+      "actor_role": "Sponsor finance approver independent of requester",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "record-decision"
+      ],
+      "idempotency_key": "(fundId, period, requestId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-010",
+        "UNB-ACC-022"
+      ],
+      "scenario_ids": [
+        "SIM-010"
+      ],
+      "ui_surface": "NEW:Fee waiver decision"
+    },
+    {
+      "id": "WFM-15-T08",
+      "from": "FeePeriodAccrued",
+      "to": "FeeSettlementCalculated",
+      "trigger": "event",
+      "name": "CalculateSettlement",
+      "actor_type": "deterministic",
+      "actor_role": "Fee engine",
+      "authority": "A3",
+      "guards": [
+        "minimum-fee-rule-versioned",
+        "recipient-type-resolved"
+      ],
+      "effects": [
+        "record-settlement-calc"
+      ],
+      "idempotency_key": "(fundId, period, feeScheduleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1",
+        "UNB-ACC-010"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-022"
+      ]
+    },
+    {
+      "id": "WFM-15-T09",
+      "from": "FeeSettlementCalculated",
+      "to": "FeeSettled",
+      "trigger": "event",
+      "name": "SettleFee",
+      "actor_type": "deterministic",
+      "actor_role": "Fee engine / ledger",
+      "authority": "A3",
+      "guards": [
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "reserve-capacity",
+        "ledger",
+        "revenue-recognition"
+      ],
+      "idempotency_key": "(fundId, period)",
+      "failure": [
+        {
+          "condition": "InsufficientCapacity",
+          "to_state": "FeeCapacityShortfall"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1",
+        "UNB-RCN-FIN-009"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-022",
+        "ADV-105",
+        "ADV-122",
+        "ADV-123"
+      ],
+      "notes": "Capacity consumed in the same transaction as the posting; reservations for approved grants are not drawn."
+    },
+    {
+      "id": "WFM-15-T10",
+      "from": "FeeCapacityShortfall",
+      "to": "FeeSettlementCalculated",
+      "trigger": "event",
+      "name": "CapacityRestored",
+      "actor_type": "deterministic",
+      "actor_role": "Ledger capacity event",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-settlement-calc"
+      ],
+      "idempotency_key": "(fundId, period, capacityVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-009",
+        "RCD-018"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-022"
+      ]
+    },
+    {
+      "id": "WFM-15-T11",
+      "from": "FeeCapacityShortfall",
+      "to": "FeeSettled",
+      "trigger": "command",
+      "name": "ApproveShortfallTreatment",
+      "actor_type": "human",
+      "actor_role": "Controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "reserve-capacity",
+        "ledger",
+        "revenue-recognition"
+      ],
+      "idempotency_key": "(fundId, period, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-018",
+        "REQ-X-010"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-022",
+        "TVS-049",
+        "TVS-050"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "DECISION NEEDED (OD-10): priority between minimum fee and reserved grants is not decided. Modelled: settle up to free capacity, remainder carried as accrued unpaid (no fee-on-fee)."
+    },
+    {
+      "id": "WFM-15-T12",
+      "from": "FeeCapacityShortfall",
+      "to": "FeeWaived",
+      "trigger": "command",
+      "name": "WaiveShortfall",
+      "actor_type": "human",
+      "actor_role": "Sponsor finance approver",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "waiver-within-delegated-limit"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(fundId, period, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-010",
+        "RCD-018"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Fee waiver decision"
+    },
+    {
+      "id": "WFM-15-T13",
+      "from": "FeeSettled",
+      "to": "FeeSettlementCorrected",
+      "trigger": "event",
+      "name": "RecomputeAfterRestatement",
+      "actor_type": "deterministic",
+      "actor_role": "Fee engine",
+      "authority": "A3",
+      "guards": [
+        "restatement-approved",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "ledger",
+        "reserve-capacity"
+      ],
+      "idempotency_key": "(fundId, period, correctionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-005",
+        "RCD-018",
+        "RR-UNB-NAV-033-r1",
+        "UNB-NAV-018",
+        "UNB-NAV-042"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-013",
+        "ADV-587"
+      ],
+      "notes": "Adjustment posts in the current open period; issued statements are corrected via WFM-16, never overwritten."
+    }
+  ],
+  "invariants": [
+    "No fee accrues on accrued unpaid fees or on a fee already embedded in pool NAV for the same service.",
+    "Every accrual stores its computed base and is deterministically recomputable with zero tolerance.",
+    "A fee settlement never consumes capacity reserved for an approved grant without an explicit OD-10 decision.",
+    "Revenue is recognized only at settlement (RCD-018).",
+    "The waiver requester never approves the waiver."
+  ]
+}

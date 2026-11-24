@@ -1,0 +1,364 @@
+{
+  "denominator": 1148,
+  "by_class": {
+    "backend": 716,
+    "human-decision": 274,
+    "document-output": 58,
+    "ui-bearing": 100
+  },
+  "by_family": {
+    "REQ-X": {
+      "human-decision": 49,
+      "document-output": 6,
+      "backend": 21,
+      "ui-bearing": 8
+    },
+    "UNB-NAV": {
+      "backend": 33,
+      "human-decision": 14,
+      "ui-bearing": 3,
+      "document-output": 3
+    },
+    "ADM": {
+      "backend": 27,
+      "human-decision": 12,
+      "ui-bearing": 8,
+      "document-output": 2
+    },
+    "UNB-GRANT": {
+      "human-decision": 14,
+      "backend": 29,
+      "document-output": 4,
+      "ui-bearing": 1
+    },
+    "UNB-CHAR": {
+      "backend": 34,
+      "human-decision": 5,
+      "ui-bearing": 2,
+      "document-output": 1
+    },
+    "UNB-INV": {
+      "backend": 36,
+      "human-decision": 4,
+      "ui-bearing": 1,
+      "document-output": 1
+    },
+    "UNB-GEX": {
+      "backend": 29,
+      "human-decision": 7,
+      "document-output": 2,
+      "ui-bearing": 2
+    },
+    "UNB-KNOW": {
+      "backend": 35,
+      "human-decision": 2,
+      "ui-bearing": 2,
+      "document-output": 1
+    },
+    "UNB-EXT": {
+      "ui-bearing": 2,
+      "backend": 30,
+      "human-decision": 5,
+      "document-output": 1
+    },
+    "AIN": {
+      "backend": 22,
+      "human-decision": 7,
+      "ui-bearing": 7
+    },
+    "SOC2": {
+      "human-decision": 6,
+      "backend": 27,
+      "ui-bearing": 1,
+      "document-output": 2
+    },
+    "UNB-ACC": {
+      "backend": 21,
+      "human-decision": 12,
+      "document-output": 3
+    },
+    "UNB-GAP": {
+      "backend": 17,
+      "human-decision": 12,
+      "document-output": 4,
+      "ui-bearing": 1
+    },
+    "OPS": {
+      "backend": 25,
+      "human-decision": 6,
+      "ui-bearing": 1
+    },
+    "UNB-RULE": {
+      "backend": 24,
+      "human-decision": 6,
+      "document-output": 1,
+      "ui-bearing": 1
+    },
+    "UNB-GFUND": {
+      "backend": 19,
+      "ui-bearing": 4,
+      "human-decision": 7
+    },
+    "UNB-CUST": {
+      "backend": 19,
+      "human-decision": 6,
+      "document-output": 3
+    },
+    "GOV-AUTH": {
+      "human-decision": 13,
+      "backend": 13
+    },
+    "MON": {
+      "backend": 14,
+      "human-decision": 6,
+      "ui-bearing": 3,
+      "document-output": 1
+    },
+    "UNB-WF": {
+      "human-decision": 8,
+      "backend": 16
+    },
+    "INT": {
+      "ui-bearing": 10,
+      "backend": 8,
+      "human-decision": 1,
+      "document-output": 1
+    },
+    "UNB-TEN": {
+      "backend": 17,
+      "ui-bearing": 1,
+      "human-decision": 2
+    },
+    "EXC": {
+      "human-decision": 3,
+      "backend": 14,
+      "document-output": 1
+    },
+    "UNB-LS": {
+      "document-output": 2,
+      "backend": 13,
+      "human-decision": 2
+    },
+    "UNB-REM": {
+      "backend": 9,
+      "document-output": 3,
+      "ui-bearing": 1,
+      "human-decision": 2
+    },
+    "UNB-SUCC": {
+      "human-decision": 4,
+      "backend": 10
+    },
+    "ACC-MDL": {
+      "backend": 9,
+      "human-decision": 1,
+      "document-output": 2
+    },
+    "UNB-DATA": {
+      "human-decision": 2,
+      "backend": 9,
+      "document-output": 1
+    },
+    "UX": {
+      "human-decision": 7,
+      "backend": 3,
+      "document-output": 2
+    },
+    "WG": {
+      "ui-bearing": 6,
+      "backend": 3,
+      "human-decision": 3
+    },
+    "UNB-HYP": {
+      "backend": 8,
+      "human-decision": 1,
+      "document-output": 1
+    },
+    "UNB-IMM": {
+      "backend": 9,
+      "ui-bearing": 1
+    },
+    "UNB-PAY": {
+      "human-decision": 4,
+      "backend": 5,
+      "document-output": 1
+    },
+    "UNB-PART": {
+      "ui-bearing": 2,
+      "backend": 6,
+      "human-decision": 1
+    },
+    "UNB-PLAT": {
+      "backend": 3,
+      "ui-bearing": 4,
+      "human-decision": 1,
+      "document-output": 1
+    },
+    "AUTH": {
+      "ui-bearing": 4,
+      "backend": 3,
+      "human-decision": 1
+    },
+    "UNB-API": {
+      "backend": 5,
+      "human-decision": 3
+    },
+    "TVR-GR": {
+      "backend": 4,
+      "human-decision": 2,
+      "ui-bearing": 1
+    },
+    "UNB-ECO": {
+      "backend": 7
+    },
+    "UNB-GOV": {
+      "backend": 4,
+      "human-decision": 2,
+      "ui-bearing": 1
+    },
+    "UNB-UX": {
+      "ui-bearing": 3,
+      "backend": 3,
+      "human-decision": 1
+    },
+    "TVR-PAY": {
+      "document-output": 1,
+      "backend": 2,
+      "human-decision": 1,
+      "ui-bearing": 2
+    },
+    "TVR-SEC": {
+      "human-decision": 1,
+      "backend": 2,
+      "ui-bearing": 3
+    },
+    "UNB-API-STD": {
+      "backend": 5,
+      "human-decision": 1
+    },
+    "UNB-CTL": {
+      "human-decision": 2,
+      "backend": 4
+    },
+    "UNB-EVT": {
+      "backend": 4,
+      "human-decision": 1,
+      "document-output": 1
+    },
+    "UNB-REGMAP": {
+      "human-decision": 4,
+      "backend": 2
+    },
+    "TVR-ORG": {
+      "ui-bearing": 3,
+      "human-decision": 1,
+      "backend": 1
+    },
+    "TVR-WID": {
+      "ui-bearing": 3,
+      "human-decision": 1,
+      "backend": 1
+    },
+    "UNB-AGT": {
+      "backend": 2,
+      "human-decision": 3
+    },
+    "UNB-DOC": {
+      "backend": 2,
+      "document-output": 2,
+      "ui-bearing": 1
+    },
+    "UNB-LEG": {
+      "backend": 4,
+      "human-decision": 1
+    },
+    "UNB-TRACE": {
+      "backend": 3,
+      "human-decision": 2
+    },
+    "TVR-CMP": {
+      "human-decision": 2,
+      "backend": 2
+    },
+    "TVR-UX": {
+      "ui-bearing": 2,
+      "document-output": 1,
+      "human-decision": 1
+    },
+    "UNB-CAP": {
+      "human-decision": 2,
+      "backend": 2
+    },
+    "UNB-COM": {
+      "backend": 4
+    },
+    "UNB-ENT": {
+      "backend": 3,
+      "ui-bearing": 1
+    },
+    "UNB-TEC-STRATA": {
+      "backend": 4
+    },
+    "TVR-FIN": {
+      "ui-bearing": 1,
+      "backend": 2
+    },
+    "TVR-GOV": {
+      "backend": 3
+    },
+    "UNB-AI-STD": {
+      "backend": 1,
+      "human-decision": 2
+    },
+    "UNB-AIO": {
+      "human-decision": 2,
+      "backend": 1
+    },
+    "UNB-GRT": {
+      "backend": 2,
+      "human-decision": 1
+    },
+    "UNB-RES": {
+      "document-output": 1,
+      "backend": 1,
+      "human-decision": 1
+    },
+    "UNB-TEC": {
+      "backend": 2,
+      "ui-bearing": 1
+    },
+    "UNB-VAL": {
+      "backend": 2,
+      "human-decision": 1
+    },
+    "TVR-CON": {
+      "document-output": 2
+    },
+    "TVR-OPS": {
+      "backend": 2
+    },
+    "UNB-ADV": {
+      "backend": 2
+    },
+    "UNB-AST": {
+      "backend": 2
+    },
+    "UNB-DON": {
+      "ui-bearing": 1,
+      "backend": 1
+    },
+    "UNB-EXP": {
+      "ui-bearing": 1,
+      "backend": 1
+    },
+    "UNB-FIN": {
+      "backend": 2
+    },
+    "TVR-DATA": {
+      "backend": 1
+    },
+    "UNB-OPS": {
+      "backend": 1
+    }
+  }
+}

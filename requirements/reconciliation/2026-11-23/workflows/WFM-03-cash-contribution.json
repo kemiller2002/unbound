@@ -1,0 +1,1103 @@
+{
+  "workflow_id": "WFM-03",
+  "name": "Cash contribution (ACH, wire, check)",
+  "release": "R1",
+  "outcome": "Each cash gift is received once, accepted, made final, credited to grantable capacity exactly once and acknowledged with a compliant acknowledgment",
+  "aggregate": "Contribution",
+  "sources": [
+    "RR-UNB-ACC-006-r1",
+    "UNB-RCN-FIN-001",
+    "UNB-RCN-FIN-012",
+    "UNB-RCN-FIN-013",
+    "RCD-019",
+    "RCD-013",
+    "RR-REQ-X-009-r1",
+    "TX-01",
+    "TX-02",
+    "TX-03",
+    "TX-04",
+    "TX-05"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-007",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "CashContributionNew",
+      "kind": "initial",
+      "user_label": "New",
+      "lozenge": "neutral",
+      "description": "No contribution record yet. Created either by a donor declaration or by an unannounced bank receipt."
+    },
+    {
+      "id": "CashContributionDeclared",
+      "kind": "intermediate",
+      "user_label": "Declared",
+      "lozenge": "attention",
+      "description": "Intent recorded (rail ACH/wire/check, amount, fund, contributor of record). No ledger entry and no capacity (INV-01)."
+    },
+    {
+      "id": "CashAchDebitSubmitted",
+      "kind": "intermediate",
+      "user_label": "Debit submitted",
+      "lozenge": "attention",
+      "description": "ACH debit submitted to the partner rail with an idempotency key; not received."
+    },
+    {
+      "id": "CashAchDebitUnknown",
+      "kind": "intermediate",
+      "user_label": "Debit outcome unknown",
+      "lozenge": "unknown",
+      "description": "Partner rail gave no definite outcome for the debit; no re-submission until resolved."
+    },
+    {
+      "id": "CashReceivedUnmatched",
+      "kind": "intermediate",
+      "user_label": "Unidentified receipt",
+      "lozenge": "attention",
+      "description": "Funds observed on the bank feed that cannot be matched to a declaration or fund; held in suspense, never credited."
+    },
+    {
+      "id": "CashReceived",
+      "kind": "intermediate",
+      "user_label": "Received",
+      "lozenge": "attention",
+      "description": "Receipt evidence recorded by rail (bank trace, lockbox deposit). Clearing entry posted; not accepted, not final, not grantable."
+    },
+    {
+      "id": "CashContributionHeld",
+      "kind": "intermediate",
+      "user_label": "Held for review",
+      "lozenge": "blocked",
+      "description": "Completed-gift evidence missing, potential sanctions match, source-of-funds review above threshold, or fund not active."
+    },
+    {
+      "id": "CashAccepted",
+      "kind": "intermediate",
+      "user_label": "Accepted, not final",
+      "lozenge": "attention",
+      "description": "CompletedGiftDetermined and SponsorAccepted recorded; rail can still reverse (ACH return window, check not cleared). Not grantable."
+    },
+    {
+      "id": "CashAcknowledgedNotFinal",
+      "kind": "intermediate",
+      "user_label": "Acknowledged, not final",
+      "lozenge": "attention",
+      "description": "Acknowledgment issued under a sponsor policy that permits pre-final acknowledgment; rail can still reverse."
+    },
+    {
+      "id": "CashFinalNotAcknowledged",
+      "kind": "intermediate",
+      "user_label": "Final, acknowledgment pending",
+      "lozenge": "attention",
+      "description": "Final: grantable capacity credited. Acknowledgment not yet issued."
+    },
+    {
+      "id": "CashContributionComplete",
+      "kind": "terminal",
+      "user_label": "Final and acknowledged",
+      "lozenge": "ok",
+      "description": "Final, credited to grantable capacity, acknowledgment issued."
+    },
+    {
+      "id": "CashContributionReturned",
+      "kind": "terminal",
+      "user_label": "Returned",
+      "lozenge": "blocked",
+      "description": "Rail returned the funds before Final; clearing entry reversed; no capacity was ever credited; any acknowledgment voided via WFM-18."
+    },
+    {
+      "id": "CashContributionBlocked",
+      "kind": "terminal",
+      "user_label": "Blocked (sanctions)",
+      "lozenge": "blocked",
+      "description": "Confirmed sanctions true match: property blocked, OFAC report started; no movement."
+    },
+    {
+      "id": "CashCollectionFailed",
+      "kind": "terminal",
+      "user_label": "Collection failed",
+      "lozenge": "blocked",
+      "description": "ACH debit rejected by the rail before settlement (e.g. invalid account)."
+    },
+    {
+      "id": "CashReturnToSenderPending",
+      "kind": "intermediate",
+      "user_label": "Return to sender approved",
+      "lozenge": "attention",
+      "description": "Unaccepted funds approved for return to the remitter (pre-acceptance exception, UNB-RCN-FIN-013)."
+    },
+    {
+      "id": "CashReturnToSenderUnknown",
+      "kind": "intermediate",
+      "user_label": "Return outcome unknown",
+      "lozenge": "unknown",
+      "description": "Outbound return dispatched but outcome not determinable; no re-dispatch."
+    },
+    {
+      "id": "CashReturnedToSender",
+      "kind": "terminal",
+      "user_label": "Returned to sender",
+      "lozenge": "neutral",
+      "description": "Unaccepted funds returned to the remitter with settlement evidence."
+    },
+    {
+      "id": "CashReceiptDuplicateMerged",
+      "kind": "terminal",
+      "user_label": "Merged duplicate",
+      "lozenge": "neutral",
+      "description": "Receipt shown to be the same money as another record (e.g. bank feed and custodian sweep); no second credit."
+    },
+    {
+      "id": "CashContributionCancelled",
+      "kind": "terminal",
+      "user_label": "Cancelled",
+      "lozenge": "neutral",
+      "description": "Donor cancelled the declaration before any receipt."
+    },
+    {
+      "id": "CashContributionLapsed",
+      "kind": "terminal",
+      "user_label": "Lapsed",
+      "lozenge": "neutral",
+      "description": "No receipt within the sponsor-set declaration window."
+    },
+    {
+      "id": "CashReturnExposure",
+      "kind": "correction",
+      "user_label": "Returned after final",
+      "lozenge": "blocked",
+      "description": "Linked correction child: rail return after Final. ReturnedContributionExposure recorded, capacity reduced immediately, downstream grants preserved, acknowledgment corrected."
+    },
+    {
+      "id": "CashContributionReattributed",
+      "kind": "correction",
+      "user_label": "Corrected (fund reattributed)",
+      "lozenge": "neutral",
+      "description": "Linked correction child moving a misapplied contribution to the intended fund with balanced, approved entries."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-03-T01",
+      "from": "CashContributionNew",
+      "to": "CashContributionDeclared",
+      "trigger": "command",
+      "name": "DeclareCashContribution",
+      "actor_type": "human",
+      "actor_role": "Donor, advisor or successor with contribution permission",
+      "authority": "A1",
+      "guards": [
+        "fund-accepts-contributions",
+        "contributor-of-record-determined"
+      ],
+      "effects": [
+        "record-intent"
+      ],
+      "idempotency_key": "(fundId, clientRequestKey)",
+      "failure": [
+        {
+          "condition": "FundClosedOrSuspended"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-006",
+        "UNB-RCN-ENT-009",
+        "UNB-UI-S-005"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-016"
+      ],
+      "ui_surface": "UNB-UI-S-005",
+      "notes": "Rail chosen here: ACH (linked account), wire or check instructions. Intent is a fact only; never capacity (INV-01)."
+    },
+    {
+      "id": "WFM-03-T02",
+      "from": "CashContributionNew",
+      "to": "CashReceivedUnmatched",
+      "trigger": "event",
+      "name": "RecordUnannouncedReceipt",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank feed (deterministic intake adapter)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(bankAccountId, bankTransactionRef)",
+      "failure": [
+        {
+          "condition": "TimeoutBankFeedStale",
+          "to_state": "CashContributionNew"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-018",
+        "REQ-X-009"
+      ],
+      "scenario_ids": [
+        "TVS-325"
+      ],
+      "notes": "Ledger: Dr cash / Cr unidentified-receipts suspense. A wire with no intent reference lands here."
+    },
+    {
+      "id": "WFM-03-T03",
+      "from": "CashContributionDeclared",
+      "to": "CashAchDebitSubmitted",
+      "trigger": "command",
+      "name": "SubmitAchDebit",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution worker via partner ACH rail",
+      "authority": "A3",
+      "guards": [
+        "linked-account-verified",
+        "debit-authorization-on-file",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(contributionId, attempt=1)",
+      "failure": [
+        {
+          "condition": "UnknownProviderOutcome",
+          "to_state": "CashAchDebitUnknown"
+        },
+        {
+          "condition": "LinkedAccountUnverified",
+          "to_state": "CashContributionDeclared"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "RCD-013",
+        "REQ-X-009"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-002"
+      ],
+      "notes": "Only for rail=ACH. Wire and check wait for the receipt event."
+    },
+    {
+      "id": "WFM-03-T04",
+      "from": "CashAchDebitUnknown",
+      "to": "CashAchDebitSubmitted",
+      "trigger": "event",
+      "name": "ResolveAchDebitUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution worker (status query by idempotency key)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(contributionId, idempotencyKey)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "CashAchDebitUnknown"
+        },
+        {
+          "condition": "ProviderProvesNotSubmitted",
+          "to_state": "CashContributionDeclared"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-GRT-008",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-214"
+      ],
+      "notes": "GAP: the UnknownResolutionProtocol (UNB-RCN-GRT-008) is written for outbound payments; inbound collection pulls need their own protocol. Re-submission after NotSubmitted reuses the same idempotency key so a late original cannot double-debit."
+    },
+    {
+      "id": "WFM-03-T05",
+      "from": "CashAchDebitSubmitted",
+      "to": "CashAchDebitUnknown",
+      "trigger": "timer",
+      "name": "AchSettlementOverdue",
+      "actor_type": "timer",
+      "actor_role": "Contribution aging monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(contributionId, agingTier)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [
+        "TVS-015"
+      ]
+    },
+    {
+      "id": "WFM-03-T06",
+      "from": "CashAchDebitSubmitted",
+      "to": "CashCollectionFailed",
+      "trigger": "event",
+      "name": "AchDebitRejected",
+      "actor_type": "external",
+      "actor_role": "Partner ACH rail",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(provider, providerEventId)",
+      "failure": [
+        {
+          "condition": "UnknownRejectReason"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "REQ-X-009"
+      ],
+      "scenario_ids": [
+        "TVS-092"
+      ]
+    },
+    {
+      "id": "WFM-03-T07",
+      "from": [
+        "CashContributionDeclared",
+        "CashAchDebitSubmitted"
+      ],
+      "to": "CashReceived",
+      "trigger": "event",
+      "name": "RecordCashReceipt",
+      "actor_type": "external",
+      "actor_role": "Bank feed / lockbox / partner rail settlement",
+      "authority": "A3",
+      "guards": [
+        "receipt-evidence-authenticated"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(rail, bankTransactionRef) and semantic key (amount, valueDate, remitter)",
+      "failure": [
+        {
+          "condition": "UnknownMatch",
+          "to_state": "CashReceivedUnmatched"
+        },
+        {
+          "condition": "DuplicateReceiptEvidence"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-012",
+        "REQ-X-009",
+        "UNB-ACC-006"
+      ],
+      "scenario_ids": [
+        "TVS-325",
+        "TVS-321"
+      ],
+      "notes": "Ledger: Dr cash / Cr contributions-clearing (not grantable). Duplicate observation of the same money (bank feed + custodian sweep) is deduplicated, no state change."
+    },
+    {
+      "id": "WFM-03-T08",
+      "from": "CashReceivedUnmatched",
+      "to": "CashReceived",
+      "trigger": "command",
+      "name": "MatchUnidentifiedReceipt",
+      "actor_type": "human",
+      "actor_role": "Contribution operations specialist",
+      "authority": "A4",
+      "guards": [
+        "remitter-evidence-attached",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, matchedContributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "RR-REQ-X-048-r1",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "TVS-359"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Moves the amount from suspense to contributions-clearing for the identified fund and contributor of record."
+    },
+    {
+      "id": "WFM-03-T09",
+      "from": "CashReceivedUnmatched",
+      "to": "CashReceiptDuplicateMerged",
+      "trigger": "command",
+      "name": "ConfirmDuplicateReceipt",
+      "actor_type": "human",
+      "actor_role": "Contribution operations specialist",
+      "authority": "A4",
+      "guards": [
+        "duplicate-evidence-attached"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, survivingReceiptId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "TVS-325"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-03-T10",
+      "from": [
+        "CashReceivedUnmatched",
+        "CashContributionHeld"
+      ],
+      "to": "CashReturnToSenderPending",
+      "trigger": "command",
+      "name": "ApproveReturnToSender",
+      "actor_type": "human",
+      "actor_role": "Sponsor gift acceptance officer",
+      "authority": "A4",
+      "guards": [
+        "not-sponsor-accepted",
+        "refund-exception-cited",
+        "sanctions-clear",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(receiptId, decisionId)",
+      "failure": [
+        {
+          "condition": "SanctionsPotentialMatch"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-013",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-016",
+        "TVS-311"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Allowed only before SponsorAccepted (never-accepted property, or fund application rejected). The command must cite the counsel-approved exception."
+    },
+    {
+      "id": "WFM-03-T11",
+      "from": "CashReturnToSenderPending",
+      "to": "CashReturnedToSender",
+      "trigger": "command",
+      "name": "DispatchReturnToSender",
+      "actor_type": "deterministic",
+      "actor_role": "Payment worker via partner rail",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "not-sponsor-accepted"
+      ],
+      "effects": [
+        "external-money-out",
+        "external-call",
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, returnAttempt)",
+      "failure": [
+        {
+          "condition": "UnknownProviderOutcome",
+          "to_state": "CashReturnToSenderUnknown"
+        },
+        {
+          "condition": "DestinationUnverified",
+          "to_state": "CashReturnToSenderPending"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-013",
+        "RR-REQ-X-004-r1",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-016"
+      ],
+      "notes": "Guard interpretation for a refund: eligibility-current = refund exception still valid; destination-verified = original remitting account; funded = suspense balance present."
+    },
+    {
+      "id": "WFM-03-T12",
+      "from": "CashReturnToSenderUnknown",
+      "to": "CashReturnedToSender",
+      "trigger": "event",
+      "name": "ResolveReturnUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Payment worker (protocol query)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, idempotencyKey)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "CashReturnToSenderUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-GRT-008"
+      ],
+      "scenario_ids": [
+        "TVS-213"
+      ]
+    },
+    {
+      "id": "WFM-03-T13",
+      "from": "CashReturnToSenderUnknown",
+      "to": "CashReturnToSenderPending",
+      "trigger": "command",
+      "name": "DeclareReturnNotReceived",
+      "actor_type": "human",
+      "actor_role": "Treasury principal independent of the dispatcher",
+      "authority": "A4",
+      "guards": [
+        "protocol-evidence-combination",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(receiptId, attemptId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": [
+        "TVS-353"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-03-T14",
+      "from": "CashReceived",
+      "to": "CashAccepted",
+      "trigger": "event",
+      "name": "DetermineCompletedGiftAndAccept",
+      "actor_type": "deterministic",
+      "actor_role": "Gift acceptance policy (sponsor-delegated, cash)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-evidence-present",
+        "sanctions-clear",
+        "fund-active",
+        "source-of-funds-cleared-if-over-threshold"
+      ],
+      "effects": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, ruleTableVersion)",
+      "failure": [
+        {
+          "condition": "EvidenceMissingOrHoldRule",
+          "to_state": "CashContributionHeld"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-012",
+        "RCD-019",
+        "RCD-023",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "TVS-311",
+        "TVS-321"
+      ],
+      "notes": "Completed-gift date from the counsel-approved rule table keyed by rail (check mailbox rule, ACH, wire). Capacity unchanged."
+    },
+    {
+      "id": "WFM-03-T15",
+      "from": "CashContributionHeld",
+      "to": "CashReceived",
+      "trigger": "command",
+      "name": "ReleaseContributionHold",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "hold-reason-dispositioned",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(contributionId, holdId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "RCD-023",
+        "UNB-RCN-FIN-012",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Returns to Received so the acceptance rule re-runs on current evidence."
+    },
+    {
+      "id": "WFM-03-T16",
+      "from": "CashContributionHeld",
+      "to": "CashContributionBlocked",
+      "trigger": "command",
+      "name": "ConfirmSanctionsTrueMatch",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger",
+        "blocked-property",
+        "ofac-report"
+      ],
+      "idempotency_key": "(screeningCaseId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-03-T17",
+      "from": "CashAccepted",
+      "to": "CashAcknowledgedNotFinal",
+      "trigger": "command",
+      "name": "IssueAcknowledgmentBeforeFinal",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service (gated IssueAcknowledgment)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete",
+        "ack-timing-policy-OnAcceptance"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue"
+      ],
+      "idempotency_key": "(contributionId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "CashAccepted"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003"
+      ],
+      "notes": "Only when the sponsor ack-timing policy is OnAcceptance (RCD-019 literal). Conflicts with CON-2 (acknowledge reversible rails after Final): see report; default modelled is AfterFinal."
+    },
+    {
+      "id": "WFM-03-T18",
+      "from": "CashAccepted",
+      "to": "CashFinalNotAcknowledged",
+      "trigger": "timer",
+      "name": "AchReturnWindowElapsed",
+      "actor_type": "timer",
+      "actor_role": "Contribution finality timer (sponsor-set window, default 5 business days)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final",
+        "no-return-received"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, finalityRuleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1",
+        "REQ-X-009"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-002",
+        "TVS-331"
+      ],
+      "notes": "Rail=ACH. Ledger moves the amount from contributions-clearing to fund net assets; capacity increases in the same transaction. OD-04 provisional credit is not enabled at R1 (RCD-019)."
+    },
+    {
+      "id": "WFM-03-T19",
+      "from": "CashAccepted",
+      "to": "CashFinalNotAcknowledged",
+      "trigger": "event",
+      "name": "CheckCleared",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank (check clearing evidence)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(bankAccountId, depositItemRef)",
+      "failure": [
+        {
+          "condition": "TimeoutClearingEvidence",
+          "to_state": "CashAccepted"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-321"
+      ]
+    },
+    {
+      "id": "WFM-03-T20",
+      "from": "CashAccepted",
+      "to": "CashFinalNotAcknowledged",
+      "trigger": "event",
+      "name": "WireFinalOnReceipt",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution finality rule (wire is final on receipt)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, finalityRuleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-333"
+      ]
+    },
+    {
+      "id": "WFM-03-T21",
+      "from": "CashAcknowledgedNotFinal",
+      "to": "CashContributionComplete",
+      "trigger": "timer",
+      "name": "AchReturnWindowElapsed",
+      "actor_type": "timer",
+      "actor_role": "Contribution finality timer (sponsor-set window, default 5 business days)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final",
+        "no-return-received"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, finalityRuleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1",
+        "REQ-X-009"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-002",
+        "TVS-331"
+      ],
+      "notes": "Rail=ACH. Ledger moves the amount from contributions-clearing to fund net assets; capacity increases in the same transaction. OD-04 provisional credit is not enabled at R1 (RCD-019)."
+    },
+    {
+      "id": "WFM-03-T22",
+      "from": "CashAcknowledgedNotFinal",
+      "to": "CashContributionComplete",
+      "trigger": "event",
+      "name": "CheckCleared",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank (check clearing evidence)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(bankAccountId, depositItemRef)",
+      "failure": [
+        {
+          "condition": "TimeoutClearingEvidence",
+          "to_state": "CashAcknowledgedNotFinal"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-321"
+      ]
+    },
+    {
+      "id": "WFM-03-T23",
+      "from": "CashAcknowledgedNotFinal",
+      "to": "CashContributionComplete",
+      "trigger": "event",
+      "name": "WireFinalOnReceipt",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution finality rule (wire is final on receipt)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, finalityRuleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-333"
+      ]
+    },
+    {
+      "id": "WFM-03-T24",
+      "from": "CashFinalNotAcknowledged",
+      "to": "CashContributionComplete",
+      "trigger": "command",
+      "name": "IssueAcknowledgment",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service (gated IssueAcknowledgment)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue"
+      ],
+      "idempotency_key": "(contributionId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "CashFinalNotAcknowledged"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003"
+      ],
+      "notes": "Document produced by WFM-18 (UNB-UI-D-001). A missing mandatory element blocks issuance and opens a work item; the contribution stays Final."
+    },
+    {
+      "id": "WFM-03-T25",
+      "from": [
+        "CashReceived",
+        "CashContributionHeld",
+        "CashAccepted",
+        "CashAcknowledgedNotFinal"
+      ],
+      "to": "CashContributionReturned",
+      "trigger": "event",
+      "name": "RailReturnBeforeFinal",
+      "actor_type": "external",
+      "actor_role": "Partner ACH rail / bank (return or returned-item notice)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger",
+        "void-acknowledgment-if-issued",
+        "notify"
+      ],
+      "idempotency_key": "(provider, providerEventId) and (originalReceiptId)",
+      "failure": [
+        {
+          "condition": "UnknownReturnMatch"
+        }
+      ],
+      "requirement_ids": [
+        "REQ-X-009",
+        "RR-REQ-X-009-r1",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "TVS-092",
+        "DKS-FIN-002"
+      ],
+      "notes": "No capacity was credited, so no exposure. If an acknowledgment was issued (OnAcceptance policy) WFM-18 issues a void/correction linked to it."
+    },
+    {
+      "id": "WFM-03-T26",
+      "from": [
+        "CashFinalNotAcknowledged",
+        "CashContributionComplete"
+      ],
+      "to": "CashReturnExposure",
+      "trigger": "event",
+      "name": "RailReturnAfterFinal",
+      "actor_type": "external",
+      "actor_role": "Partner ACH rail (late return, e.g. R10 within 60 days)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger",
+        "reduce-capacity",
+        "returned-contribution-exposure",
+        "acknowledgment-correction",
+        "work-item"
+      ],
+      "idempotency_key": "(provider, providerEventId)",
+      "failure": [
+        {
+          "condition": "UnknownReturnMatch"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-009-r1",
+        "REQ-X-009",
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-002",
+        "TVS-091",
+        "TVS-352",
+        "ADV-129"
+      ],
+      "notes": "Posting chosen by the CPA-approved returned-contribution policy; no donor receivable presumed; paid grants preserved; negative capacity raises a fund deficit case."
+    },
+    {
+      "id": "WFM-03-T27",
+      "from": "CashContributionDeclared",
+      "to": "CashContributionCancelled",
+      "trigger": "command",
+      "name": "CancelDeclaration",
+      "actor_type": "human",
+      "actor_role": "Donor or advisor who declared",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "record-intent"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-UI-S-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-005",
+      "notes": "Cancels the intent only. An ACH already submitted cannot be cancelled here."
+    },
+    {
+      "id": "WFM-03-T28",
+      "from": "CashContributionDeclared",
+      "to": "CashContributionLapsed",
+      "trigger": "timer",
+      "name": "DeclarationExpired",
+      "actor_type": "timer",
+      "actor_role": "Contribution aging monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-006"
+      ],
+      "scenario_ids": [],
+      "notes": "GAP: no requirement sets a declaration expiry window; closest is UNB-ACC-006."
+    },
+    {
+      "id": "WFM-03-T29",
+      "from": "CashContributionComplete",
+      "to": "CashContributionReattributed",
+      "trigger": "command",
+      "name": "ReattributeContributionFund",
+      "actor_type": "human",
+      "actor_role": "Controller (with second approver)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "capacity-in-transaction",
+        "acknowledgment-unaffected-or-corrected"
+      ],
+      "effects": [
+        "ledger",
+        "reserve-capacity"
+      ],
+      "idempotency_key": "(contributionId, correctionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-003",
+        "UNB-RCN-FIN-006",
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": [
+        "TVS-359"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Balanced fund-to-fund correction (fund is a balancing segment). If the source fund's capacity is already spent, the deficit case policy applies."
+    }
+  ],
+  "invariants": [
+    "Grantable capacity increases only on the transition into a Final state (contribution-final guard); never from Declared, Received or Accepted (INV-01, RCD-019).",
+    "An acknowledgment is issued only when CompletedGiftDetermined and SponsorAccepted are both recorded and the template carries every mandatory element (UNB-RCN-FIN-001).",
+    "After SponsorAccepted no value returns to a donor; refunds are only for never-accepted receipts (UNB-RCN-FIN-013).",
+    "One bank transaction reference credits at most one contribution; duplicate observations are deduplicated by provider reference and semantic key.",
+    "A return after Final never deletes or reverses paid grants; it records ReturnedContributionExposure (RR-REQ-X-009-r1)."
+  ]
+}

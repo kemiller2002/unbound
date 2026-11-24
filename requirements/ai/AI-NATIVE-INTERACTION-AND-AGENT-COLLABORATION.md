@@ -11,6 +11,7 @@ Agents gather, compare, classify, prepare, explain and propose. They cannot gran
 - **AIN-001 Outcome-first agent work** (Orchestration): Agents begin from a sponsor/donor outcome, not an inherited department workflow.
 - **AIN-002 Explicit agent capability manifest** (Governance): Every agent advertises tools, data scope, allowed actions, authority ceiling and escalation routes.
 - **AIN-003 Human authority checkpoints** (Governance): Reserved legal, grant, financial, trading and payment decisions require authorized humans.
+> Adopted 2026-11-23: refined by `RR-AIN-003-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **AIN-004 Evidence-linked recommendations** (Trust): Every consequential proposal includes sources, freshness, uncertainties, assumptions and alternative interpretations.
 - **AIN-005 Separate facts from inferences** (Trust): UI and APIs label observed fact, unverified claim, inference, recommendation and authorized decision.
 - **AIN-006 Agent action preview** (UI): Show expected effects, affected DAFs, reversible and irreversible changes, and required approval.
@@ -62,3 +63,37 @@ Agent proposal and human authorization are separate records. Monitoring must det
 
 ## Unresolved research
 Actual sponsor delegations, agent model reliability, prompt-injection defenses, source-specific legal rights, exact Limen/Forma/Folio interfaces, operational SLAs, accessibility user testing and authorized communication policies require validation.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-AIN-003-r1 (refines `AIN-003`) — adopted-provisional
+- **Original:** `requirements/ai/AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md:13` @ `777a70d` (kept verbatim) · **Decisions:** RCD-005, RCD-025
+- **Requirement:** Decisions classified A4 (reserved human authority) MUST be approved by an authorized human who did not originate, prepare or materially modify the item. Decisions classified A3 MAY be executed by board-delegated deterministic policy only when OD-01 is approved for that decision type; otherwise they require an authorized human. An AI agent MUST NOT approve any A3, A4 or A5 decision; it MAY prepare proposals (A1) and perform A2 actions listed in the authority matrix.
+- **Validation still required:** RCD-005: Counsel Q1 + sponsor board resolution
+- **Acceptance criteria:**
+  - AC-1: Given an agent principal; when it calls ApproveDecision on a grant; then denied with AGENT_APPROVAL_PROHIBITED.
+  - AC-2: Given a human who edited the grant amount; when they attempt approval; then denied with SELF_APPROVAL_PROHIBITED.
+  - AC-3: Given OD-01 approved for routine grants; when a routine grant passes deterministic policy; then approval recorded with approver type deterministicPolicy and policy version.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-AIN-003-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-PLT-002 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-PLT-041 · **Parent:** ADM-030 · **Decisions:** —
+- **Requirement:** Unbound MUST maintain a versioned notification event catalog: event, class (mandatory-legal, security, transactional, service, optional), channels, consent basis, whether sponsor may disable, recipient eligibility rule, dedup key and quiet-hours policy. Mandatory and security classes MUST NOT be suppressible by user preference.
+- **Acceptance criteria:**
+  - AC-1: Given event SecurityContactChanged class security; when user disabled email; then notification still sent to prior channel.
+  - AC-2: Given two triggers with same dedup key within window; when both fire; then one notification.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-002); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-PLT-005 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-PLT-019 · **Parent:** GOV-AUTH-001 · **Decisions:** RCD-005, RCD-025
+- **Requirement:** Unbound MUST publish one authority matrix mapping each action class to A0-A5 and to permitted actor types (deterministic policy, AI agent, human role), with the human approval boundary per class; all other AI level/tier vocabularies MUST reference it.
+- **Validation still required:** RCD-005: Counsel Q1 + sponsor board resolution
+- **Acceptance criteria:**
+  - AC-1: Given action PreparePaymentInstruction; when matrix queried; then returns A3 and whether agents may perform it.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-005); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

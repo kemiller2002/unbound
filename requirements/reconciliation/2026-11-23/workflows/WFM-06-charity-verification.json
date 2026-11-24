@@ -1,0 +1,972 @@
+{
+  "workflow_id": "WFM-06",
+  "name": "Charity identity, status verification and holds",
+  "release": "R1",
+  "outcome": "Every grant recipient is a canonical, currently verified excepted public charity, and any adverse fact reaches every affected sponsor before the next approval or release",
+  "aggregate": "CharityVerification (common record) with per-sponsor reliance snapshot and sponsor-scoped hold overlay",
+  "sources": [
+    "RR-REQ-X-007-r1",
+    "UNB-RCN-GRT-001",
+    "UNB-RCN-GRT-013",
+    "UNB-RCN-GRT-014",
+    "UNB-RCN-REG-002",
+    "RCD-006",
+    "RCD-013",
+    "RCD-014",
+    "RCD-029",
+    "RR-REQ-X-020-r1",
+    "UNB-RCN-PLT-014",
+    "TX-27",
+    "WF-03 (completeness audit, charity eligibility)",
+    "06-state-models/state-models.md SM-0, SM-6"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-002",
+    "UNB-UI-S-004",
+    "UNB-UI-S-011",
+    "UNB-UI-S-012"
+  ],
+  "states": [
+    {
+      "id": "CharityIdentityRequested",
+      "kind": "initial",
+      "user_label": "Identity check requested",
+      "lozenge": "neutral",
+      "description": "A recipient was referenced for the first time (registry seed or a donor's 'Can't find it?' identity-resolution request from S-002). No grant may bind to free text."
+    },
+    {
+      "id": "CharityIdentityResolutionReview",
+      "kind": "intermediate",
+      "user_label": "Identity review",
+      "lozenge": "attention",
+      "description": "Automatic matching found zero or several candidates (same name, alias, EIN conflict). A charity data analyst resolves it."
+    },
+    {
+      "id": "CharityIdentityResolved",
+      "kind": "intermediate",
+      "user_label": "Identity confirmed",
+      "lozenge": "neutral",
+      "description": "Canonical identity (legal name, EIN, legal payee, fiscal sponsor/project as separate facts) is bound; status not yet observed."
+    },
+    {
+      "id": "CharityStatusObserving",
+      "kind": "intermediate",
+      "user_label": "Checking IRS status",
+      "lozenge": "neutral",
+      "description": "An IRS-status observation (TEOS/Pub 78 or EO BMF plus Auto-Revocation List, latest published revision) is being retrieved."
+    },
+    {
+      "id": "CharityStatusUnknown",
+      "kind": "intermediate",
+      "user_label": "Status unknown",
+      "lozenge": "unknown",
+      "description": "The IRS source was unreachable or returned an indeterminate result. Absence or outage is not ineligibility (UNB-RULE-009); approvals and releases that need a fresh observation fail closed."
+    },
+    {
+      "id": "CharityAlternateEvidenceReview",
+      "kind": "intermediate",
+      "user_label": "Evidence review",
+      "lozenge": "attention",
+      "description": "Recipient is absent from IRS bulk files (church, government unit, group subordinate, disregarded entity, newly recognised). Evidence is evaluated against the EntityTypeEvidence matrix."
+    },
+    {
+      "id": "CharityClassifying",
+      "kind": "intermediate",
+      "user_label": "Classifying recipient",
+      "lozenge": "neutral",
+      "description": "Deterministic RecipientClass rule (counsel-approved, versioned) maps the observation to Permitted, ERRequired, Prohibited or CounselReview."
+    },
+    {
+      "id": "CharityRecipientClassCounselReview",
+      "kind": "intermediate",
+      "user_label": "Counsel review",
+      "lozenge": "attention",
+      "description": "The class rule returned CounselReview. Counsel decides; AI output may not set a class."
+    },
+    {
+      "id": "CharitySupportingOrgCertPending",
+      "kind": "intermediate",
+      "user_label": "Certification needed",
+      "lozenge": "attention",
+      "description": "Type I, Type II or functionally integrated Type III supporting organisation without a current donor-control certification. New approvals are held (UNB-RCN-REG-002)."
+    },
+    {
+      "id": "CharityVerified",
+      "kind": "intermediate",
+      "user_label": "Eligible",
+      "lozenge": "ok",
+      "description": "Common verification status Eligible; deep review current; daily IRS-status observation current. Each sponsor's reliance snapshot is written to that sponsor's partition at approval and at release."
+    },
+    {
+      "id": "CharityRefreshInProgress",
+      "kind": "intermediate",
+      "user_label": "Eligible – review refreshing",
+      "lozenge": "ok",
+      "description": "Automatic deep-review refresh started at the FreshnessPolicy lead time (default 30 days before the 180-day expiry) or on a material-change signal. Charity remains Eligible."
+    },
+    {
+      "id": "CharityDeepReviewEscalated",
+      "kind": "intermediate",
+      "user_label": "Review needed",
+      "lozenge": "attention",
+      "description": "The refresh found conflicting or incomplete evidence that rules cannot settle. A work item exists; charity remains Eligible until the deep review expires."
+    },
+    {
+      "id": "CharityDeepReviewExpired",
+      "kind": "intermediate",
+      "user_label": "Review overdue",
+      "lozenge": "attention",
+      "description": "Deep review passed its maximum age without a passing refresh. New approvals are held; payment-time eligibility still relies on the IRS-status check, not on this expiry (RR-REQ-X-007-r1)."
+    },
+    {
+      "id": "CharitySponsorHold",
+      "kind": "intermediate",
+      "user_label": "On hold (this sponsor)",
+      "lozenge": "blocked",
+      "description": "Sponsor-scoped hold from a sponsor-private investigation. Never propagated to other sponsors (RCD-029); other sponsors see nothing."
+    },
+    {
+      "id": "CharityHeldAdverse",
+      "kind": "intermediate",
+      "user_label": "On hold",
+      "lozenge": "blocked",
+      "description": "Global hold published in the hold registry with a new HoldPublicationVersion, from verified public-source (E0/E1) evidence or independent compliance authority. Propagated to every affected sponsor as a reason class and date only."
+    },
+    {
+      "id": "CharityIneligible",
+      "kind": "terminal",
+      "user_label": "Not eligible",
+      "lozenge": "blocked",
+      "description": "Recipient is not a permitted release-1 recipient (revoked, private foundation, NFI Type III, foreign, natural person, non-charitable) or adverse status confirmed. Reinstatement starts a new verification record."
+    },
+    {
+      "id": "CharityNotVerified",
+      "kind": "terminal",
+      "user_label": "Could not verify",
+      "lozenge": "neutral",
+      "description": "Identity-resolution request rejected or evidence never supplied. Not an adverse finding."
+    },
+    {
+      "id": "CharityStatusCorrection",
+      "kind": "correction",
+      "user_label": "Status corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction child (erroneous determination, retroactive IRS reinstatement). The original determination and every reliance snapshot stay unchanged."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-06-T01",
+      "from": "CharityIdentityRequested",
+      "to": "CharityIdentityResolved",
+      "trigger": "command",
+      "name": "ResolveCanonicalIdentity",
+      "actor_type": "deterministic",
+      "actor_role": "Charity registry matcher",
+      "authority": "A2",
+      "guards": [
+        "canonical-registry-match-unique"
+      ],
+      "effects": [
+        "bind-canonical-identity"
+      ],
+      "idempotency_key": "(identityRequestId)",
+      "failure": [
+        {
+          "condition": "AmbiguousOrNoMatch",
+          "to_state": "CharityIdentityResolutionReview"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-PLT-014",
+        "UNB-GRANT-007"
+      ],
+      "scenario_ids": [
+        "DKS-XD-012"
+      ],
+      "notes": "EIN exact match binds automatically; name-only matches never auto-bind."
+    },
+    {
+      "id": "WFM-06-T02",
+      "from": "CharityIdentityResolutionReview",
+      "to": "CharityIdentityResolved",
+      "trigger": "command",
+      "name": "ConfirmIdentityMatch",
+      "actor_type": "human",
+      "actor_role": "Charity data analyst",
+      "authority": "A3",
+      "guards": [
+        "source-evidence-attached"
+      ],
+      "effects": [
+        "bind-canonical-identity",
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-PLT-014",
+        "UNB-GRANT-007",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [
+        "DKS-XD-012"
+      ],
+      "ui_surface": "NEW:Charity identity resolution"
+    },
+    {
+      "id": "WFM-06-T03",
+      "from": "CharityIdentityResolutionReview",
+      "to": "CharityNotVerified",
+      "trigger": "command",
+      "name": "RejectIdentityRequest",
+      "actor_type": "human",
+      "actor_role": "Charity data analyst",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-requester"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-PLT-014",
+        "UNB-CHAR-016"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity identity resolution",
+      "notes": "Requester is told the reason; no free-text grant can be created."
+    },
+    {
+      "id": "WFM-06-T04",
+      "from": "CharityIdentityResolved",
+      "to": "CharityStatusObserving",
+      "trigger": "command",
+      "name": "RequestIrsStatusObservation",
+      "actor_type": "deterministic",
+      "actor_role": "Charity registry",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "queue-observation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "RCD-006"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-06-T05",
+      "from": "CharityStatusObserving",
+      "to": "CharityClassifying",
+      "trigger": "event",
+      "name": "RecordIrsStatusObservation",
+      "actor_type": "external",
+      "actor_role": "IRS data source adapter (TEOS/Pub 78, EO BMF, Auto-Revocation List)",
+      "authority": "A2",
+      "guards": [
+        "latest-published-revision"
+      ],
+      "effects": [
+        "store-observation",
+        "external-call"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutOrSourceUnavailable",
+          "to_state": "CharityStatusUnknown"
+        },
+        {
+          "condition": "NotInIrsFiles",
+          "to_state": "CharityAlternateEvidenceReview"
+        },
+        {
+          "condition": "OnAutoRevocationList",
+          "to_state": "CharityHeldAdverse"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RULE-009",
+        "RCD-006"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-002",
+        "DKS-REG-001"
+      ]
+    },
+    {
+      "id": "WFM-06-T06",
+      "from": "CharityStatusUnknown",
+      "to": "CharityStatusObserving",
+      "trigger": "timer",
+      "name": "RetryIrsStatusObservation",
+      "actor_type": "timer",
+      "actor_role": "Charity registry scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "escalate-aging-tier"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RULE-009",
+        "RR-REQ-X-007-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-002"
+      ],
+      "notes": "Retries on the FreshnessPolicy monitoring cadence; aging beyond the configured tier opens a work item (RR-REQ-X-048-r1 (d))."
+    },
+    {
+      "id": "WFM-06-T07",
+      "from": "CharityAlternateEvidenceReview",
+      "to": "CharityClassifying",
+      "trigger": "command",
+      "name": "AcceptEntityTypeEvidence",
+      "actor_type": "human",
+      "actor_role": "Charity compliance analyst",
+      "authority": "A3",
+      "guards": [
+        "entity-type-evidence-matrix-satisfied",
+        "evidence-class-recorded"
+      ],
+      "effects": [
+        "write-common-status"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-013",
+        "RR-UNB-GRANT-023-r1",
+        "UNB-CHAR-016"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-026"
+      ],
+      "ui_surface": "NEW:Charity alternate evidence review",
+      "notes": "Produces a common verification status equivalent to an IRS-listed entity, recorded with its evidence class."
+    },
+    {
+      "id": "WFM-06-T08",
+      "from": "CharityAlternateEvidenceReview",
+      "to": "CharityNotVerified",
+      "trigger": "timer",
+      "name": "EvidenceRequestExpired",
+      "actor_type": "timer",
+      "actor_role": "Charity registry scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-requester"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-013",
+        "UNB-CHAR-016"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: no requirement sets the evidence-request window; see report."
+    },
+    {
+      "id": "WFM-06-T09",
+      "from": "CharityAlternateEvidenceReview",
+      "to": "CharityIneligible",
+      "trigger": "command",
+      "name": "DetermineNotPermittedEntity",
+      "actor_type": "human",
+      "actor_role": "Charity compliance analyst",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "write-common-status"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-013",
+        "UNB-RCN-GRT-001"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity alternate evidence review"
+    },
+    {
+      "id": "WFM-06-T10",
+      "from": "CharityClassifying",
+      "to": "CharityVerified",
+      "trigger": "event",
+      "name": "ClassifyRecipient",
+      "actor_type": "deterministic",
+      "actor_role": "RecipientClass rule (counsel-approved, versioned)",
+      "authority": "A3",
+      "guards": [
+        "irs-observation-within-freshness-window",
+        "class-rule-version-pinned"
+      ],
+      "effects": [
+        "write-common-status",
+        "start-deep-review-clock"
+      ],
+      "failure": [
+        {
+          "condition": "ClassSupportingOrgNeedsCertification",
+          "to_state": "CharitySupportingOrgCertPending"
+        },
+        {
+          "condition": "ClassProhibitedAtRelease1",
+          "to_state": "CharityIneligible"
+        },
+        {
+          "condition": "ClassCounselReview",
+          "to_state": "CharityRecipientClassCounselReview"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-001",
+        "RR-UNB-GRANT-023-r1",
+        "RCD-013",
+        "RCD-014",
+        "RR-REQ-X-007-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-005",
+        "DKS-GRT-006",
+        "DKS-GRT-026"
+      ],
+      "notes": "Release 1 Permitted = 509(a)(1)/(2), certified Type I/II/FI-III, government units. ER, private foundation, NFI Type III, foreign and individual recipients are rejected with an explanation (RCD-014)."
+    },
+    {
+      "id": "WFM-06-T11",
+      "from": "CharityRecipientClassCounselReview",
+      "to": "CharityVerified",
+      "trigger": "command",
+      "name": "CounselDeterminesPermitted",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "counsel-memo-attached"
+      ],
+      "effects": [
+        "write-common-status"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-001",
+        "RCD-014"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Recipient class counsel review"
+    },
+    {
+      "id": "WFM-06-T12",
+      "from": "CharityRecipientClassCounselReview",
+      "to": "CharityIneligible",
+      "trigger": "command",
+      "name": "CounselDeterminesNotPermitted",
+      "actor_type": "human",
+      "actor_role": "Sponsor counsel",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "counsel-memo-attached"
+      ],
+      "effects": [
+        "write-common-status"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-001",
+        "RCD-014"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Recipient class counsel review"
+    },
+    {
+      "id": "WFM-06-T13",
+      "from": "CharitySupportingOrgCertPending",
+      "to": "CharityVerified",
+      "trigger": "command",
+      "name": "SubmitDonorControlCertification",
+      "actor_type": "human",
+      "actor_role": "Charity officer (grantee certification)",
+      "authority": "A2",
+      "guards": [
+        "certification-form-counsel-approved",
+        "signer-authority-verified"
+      ],
+      "effects": [
+        "store-certification",
+        "set-certification-expiry"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-002",
+        "RCD-014"
+      ],
+      "scenario_ids": [
+        "DKS-REG-002"
+      ],
+      "ui_surface": "NEW:Supporting organization certification",
+      "notes": "Grantee-level certification. Donor/advisor certification for a specific grant is captured in WFM-07 and checked in WFM-08."
+    },
+    {
+      "id": "WFM-06-T14",
+      "from": "CharityVerified",
+      "to": "CharitySupportingOrgCertPending",
+      "trigger": "timer",
+      "name": "CertificationExpired",
+      "actor_type": "timer",
+      "actor_role": "Charity registry scheduler",
+      "authority": "A3",
+      "guards": [
+        "recipient-class-supporting-org"
+      ],
+      "effects": [
+        "hold-new-approvals",
+        "notify-charity"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-002"
+      ],
+      "scenario_ids": [
+        "DKS-REG-002"
+      ]
+    },
+    {
+      "id": "WFM-06-T15",
+      "from": "CharityVerified",
+      "to": "CharityVerified",
+      "trigger": "timer",
+      "name": "RefreshIrsStatusObservation",
+      "actor_type": "external",
+      "actor_role": "IRS data source adapter",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "store-observation",
+        "external-call"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutOrSourceUnavailable"
+        },
+        {
+          "condition": "AdverseStatusObserved",
+          "to_state": "CharityHeldAdverse"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "RCD-006",
+        "UNB-RCN-GRT-014"
+      ],
+      "scenario_ids": [
+        "DKS-REG-001",
+        "DKS-GRT-003"
+      ],
+      "notes": "Keeps an observation within the 24-hour status-freshness window. On Timeout the state is unchanged, but approval/release gates in WFM-08/WFM-10/WFM-11 fail closed once the observation is older than the window."
+    },
+    {
+      "id": "WFM-06-T16",
+      "from": "CharityVerified",
+      "to": "CharityRefreshInProgress",
+      "trigger": "timer",
+      "name": "StartDeepReviewRefresh",
+      "actor_type": "timer",
+      "actor_role": "FreshnessPolicy scheduler",
+      "authority": "A2",
+      "guards": [
+        "refresh-lead-time-reached"
+      ],
+      "effects": [
+        "start-reverification-bundle"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "RCD-006",
+        "UNB-RCN-GRT-014"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-001",
+        "DKS-XD-010"
+      ],
+      "notes": "Lead time default 30 days before the 180-day expiry, read from FreshnessPolicy (sponsor may tighten only)."
+    },
+    {
+      "id": "WFM-06-T17",
+      "from": "CharityVerified",
+      "to": "CharityRefreshInProgress",
+      "trigger": "event",
+      "name": "MaterialChangeSignal",
+      "actor_type": "deterministic",
+      "actor_role": "Charity registry monitor",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "start-reverification-bundle"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-CHAR-024"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-06-T18",
+      "from": [
+        "CharityRefreshInProgress",
+        "CharityDeepReviewExpired"
+      ],
+      "to": "CharityVerified",
+      "trigger": "event",
+      "name": "CompleteDeepReview",
+      "actor_type": "deterministic",
+      "actor_role": "Reverification bundle rules",
+      "authority": "A3",
+      "guards": [
+        "all-bundle-facts-pass"
+      ],
+      "effects": [
+        "external-call",
+        "write-common-status",
+        "reset-deep-review-clock"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutOrSourceUnavailable"
+        },
+        {
+          "condition": "AdverseFinding",
+          "to_state": "CharityHeldAdverse"
+        },
+        {
+          "condition": "ConflictingEvidence",
+          "to_state": "CharityDeepReviewEscalated"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-014",
+        "RCD-006"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-001",
+        "DKS-GRT-002"
+      ],
+      "notes": "Never moves straight from 'due' to an adverse state (RCF-GRT-003)."
+    },
+    {
+      "id": "WFM-06-T19",
+      "from": "CharityDeepReviewEscalated",
+      "to": "CharityVerified",
+      "trigger": "command",
+      "name": "AcceptDeepReview",
+      "actor_type": "human",
+      "actor_role": "Charity compliance analyst",
+      "authority": "A3",
+      "guards": [
+        "evidence-attached"
+      ],
+      "effects": [
+        "write-common-status",
+        "reset-deep-review-clock",
+        "close-workitem"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-06-T20",
+      "from": "CharityRefreshInProgress",
+      "to": "CharityDeepReviewExpired",
+      "trigger": "timer",
+      "name": "DeepReviewExpired",
+      "actor_type": "timer",
+      "actor_role": "FreshnessPolicy scheduler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "hold-new-approvals",
+        "notify-sponsors"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-014"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-002"
+      ]
+    },
+    {
+      "id": "WFM-06-T21",
+      "from": "CharityDeepReviewEscalated",
+      "to": "CharityDeepReviewExpired",
+      "trigger": "timer",
+      "name": "EscalatedReviewExpired",
+      "actor_type": "timer",
+      "actor_role": "FreshnessPolicy scheduler",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "hold-new-approvals"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-014"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-06-T22",
+      "from": [
+        "CharityVerified",
+        "CharityRefreshInProgress",
+        "CharityDeepReviewEscalated",
+        "CharityDeepReviewExpired",
+        "CharitySupportingOrgCertPending",
+        "CharitySponsorHold",
+        "CharityStatusUnknown"
+      ],
+      "to": "CharityHeldAdverse",
+      "trigger": "event",
+      "name": "PublishGlobalAdverseHold",
+      "actor_type": "deterministic",
+      "actor_role": "Hold registry (verified public-source rule)",
+      "authority": "A3",
+      "guards": [
+        "evidence-class-E0-or-E1"
+      ],
+      "effects": [
+        "publish-global-hold",
+        "increment-hold-publication-version",
+        "notify-affected-sponsors",
+        "open-inflight-payment-cases"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-020-r1",
+        "UNB-RCN-PLT-003",
+        "RCD-029",
+        "UNB-RCN-GRT-016",
+        "UNB-EXT-015"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-003",
+        "DKS-XD-007",
+        "DKS-PLT-001"
+      ],
+      "notes": "Affected sponsors receive reason class and date only. Dispatched-but-unsettled payments are handled by WFM-10/WFM-11 (stop/recall/void, GRT-016)."
+    },
+    {
+      "id": "WFM-06-T23",
+      "from": [
+        "CharityVerified",
+        "CharitySponsorHold",
+        "CharityDeepReviewExpired"
+      ],
+      "to": "CharityHeldAdverse",
+      "trigger": "command",
+      "name": "PlaceGlobalHoldByCompliance",
+      "actor_type": "human",
+      "actor_role": "Platform compliance officer (independent)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "reason-class-only-no-private-content"
+      ],
+      "effects": [
+        "publish-global-hold",
+        "increment-hold-publication-version",
+        "notify-affected-sponsors",
+        "open-inflight-payment-cases"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-029",
+        "RR-REQ-X-020-r1",
+        "UNB-EXT-015",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-004"
+      ],
+      "ui_surface": "NEW:Charity hold decision panel"
+    },
+    {
+      "id": "WFM-06-T24",
+      "from": "CharityVerified",
+      "to": "CharitySponsorHold",
+      "trigger": "command",
+      "name": "PlaceSponsorPrivateHold",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A3",
+      "guards": [
+        "sponsor-scope-only"
+      ],
+      "effects": [
+        "publish-sponsor-hold",
+        "increment-hold-publication-version"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-029",
+        "UNB-CHAR-036",
+        "UNB-EXT-033"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-004"
+      ],
+      "ui_surface": "NEW:Charity hold decision panel",
+      "notes": "Sponsor-partition overlay; the common record stays Eligible for every other sponsor."
+    },
+    {
+      "id": "WFM-06-T25",
+      "from": "CharitySponsorHold",
+      "to": "CharityVerified",
+      "trigger": "command",
+      "name": "ReleaseSponsorPrivateHold",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer (not the placer)",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "release-sponsor-hold",
+        "increment-hold-publication-version"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RCD-029",
+        "RR-UNB-AI-STD-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity hold decision panel"
+    },
+    {
+      "id": "WFM-06-T26",
+      "from": "CharityHeldAdverse",
+      "to": "CharityStatusObserving",
+      "trigger": "command",
+      "name": "ReleaseGlobalHold",
+      "actor_type": "human",
+      "actor_role": "Platform compliance officer (independent)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "cure-evidence-E0-or-E1"
+      ],
+      "effects": [
+        "release-global-hold",
+        "increment-hold-publication-version",
+        "notify-affected-sponsors"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-020-r1",
+        "RR-UNB-AI-STD-003-r1",
+        "RCD-029"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity hold decision panel",
+      "notes": "Release re-runs observation and classification; it never jumps straight to Eligible."
+    },
+    {
+      "id": "WFM-06-T27",
+      "from": "CharityHeldAdverse",
+      "to": "CharityIneligible",
+      "trigger": "event",
+      "name": "ConfirmRevocation",
+      "actor_type": "deterministic",
+      "actor_role": "RecipientClass rule",
+      "authority": "A3",
+      "guards": [
+        "e0-revocation-confirmed"
+      ],
+      "effects": [
+        "write-common-status",
+        "notify-affected-sponsors"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-001"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-003"
+      ]
+    },
+    {
+      "id": "WFM-06-T28",
+      "from": "CharityHeldAdverse",
+      "to": "CharityIneligible",
+      "trigger": "command",
+      "name": "ConfirmIneligibleByCompliance",
+      "actor_type": "human",
+      "actor_role": "Platform compliance officer (independent)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "write-common-status",
+        "notify-affected-sponsors"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-007-r1",
+        "UNB-RCN-GRT-001",
+        "RR-AIN-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity hold decision panel"
+    },
+    {
+      "id": "WFM-06-T29",
+      "from": "CharityIneligible",
+      "to": "CharityStatusCorrection",
+      "trigger": "command",
+      "name": "CorrectStatusDetermination",
+      "actor_type": "human",
+      "actor_role": "Platform compliance officer (independent)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "correction-evidence-attached"
+      ],
+      "effects": [
+        "create-linked-correction",
+        "open-new-verification-record"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-REQ-X-007-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Charity hold decision panel",
+      "notes": "Used for erroneous determinations and retroactive IRS reinstatement; reliance snapshots taken earlier remain as recorded."
+    }
+  ],
+  "invariants": [
+    "No grant approval or payment release relies on an IRS-status observation older than the sponsor status-freshness window (default 24 hours) or on a reliance snapshot outside that sponsor's partition",
+    "Deep-review expiry holds new approvals only; it is never the sole basis for payment-time ineligibility",
+    "No numeric interval is hard-coded: freshness, lead time and deep-review age come from the versioned FreshnessPolicy; sponsors may tighten, never loosen",
+    "A global hold carries a strictly increasing HoldPublicationVersion and never contains sponsor-private investigation content",
+    "Natural persons and non-charitable recipients are rejected in every tier with no human override",
+    "Outage or absence from a dataset is never recorded as ineligibility"
+  ]
+}

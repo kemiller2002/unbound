@@ -18,6 +18,7 @@ A donor/advisor may recommend a grant expressed as a fixed monetary amount or as
 - **UNB-GFUND-011:** When investments must be liquidated, generate a proposed funding plan that accounts for pool redemption cutoffs, liquidity gates, securities settlement, market holidays, fees and tax-lot rules where applicable.
 - **UNB-GFUND-012:** Sponsor may approve the proposed allocation, modify it under policy with a recorded explanation, request renewed advisor consent where policy requires, or reject/hold it.
 - **UNB-GFUND-013:** Market value movement after recommendation SHALL not silently alter a fixed-dollar grant. Percentage-based grants require an explicit policy deciding whether the amount locks at recommendation, sponsor approval or execution, with clear preview and immutable snapshot.
+> Adopted 2026-11-23: refined by `RR-UNB-GFUND-013-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-GFUND-014:** Support insufficient liquidity, price drift, partial redemptions, restricted assets, failed trades, failed settlement, custodian outage and grant cancellation with explicit recovery and reapproval rules.
 - **UNB-GFUND-015:** Permit partial funding and staged settlement only under approved grant policy, and distinguish authorized grant amount from paid, payable and pending funding amounts.
 - **UNB-GFUND-016:** Source allocation rounding SHALL be deterministic; for a fixed grant, the sum of source allocation amounts equals the intended funding amount, with documented residual handling.
@@ -26,6 +27,7 @@ A donor/advisor may recommend a grant expressed as a fixed monetary amount or as
 - **UNB-GFUND-019:** Record immutable recommendation, amount calculation, selected source IDs, percentages, valuation evidence, approvals, funding plan, actual redemptions, accounting journals, grant payment and reconciliations.
 - **UNB-GFUND-020:** Reconcile fund investment position reductions, unit redemptions, custody proceeds, cash, grants payable, payment settlement and fund available-to-recommend balance, with no double counting.
 - **UNB-GFUND-021:** Prevent concurrent recommendations or liquidation requests from committing the same liquidity twice using controlled reservations, authorization and idempotency.
+> Adopted 2026-11-23: refined by `RR-UNB-GFUND-021-r1` (adopted); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-GFUND-022:** Grant funding instructions SHALL remain distinct from investment rebalancing requests; selling a position to finance a grant is not automatically a mandate to rebalance the remaining portfolio.
 - **UNB-GFUND-023:** A grant may target one or multiple grantee recipients only through explicitly modeled separate grant awards and payment obligations; do not silently split a single recipient's award.
 - **UNB-GFUND-024:** A percentage-based recurring grant requires explicit frequency, valuation point, maximum amount, minimum, renewal, sponsor approval policy and stop conditions; recurring percentages are not assumed from a one-time instruction.
@@ -83,3 +85,37 @@ GF-ADR-007: Recurring percentage grant policy and approval renewal.
 
 ## Traceability
 Extends UNB-NAV-001..053, UNB-INV-001..042, UNB-CUST-001..028, UNB-ACC-001..036, UNB-SUCC-001..014 and UNB-TEN-001..020. No application code, integration or test execution is claimed.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-GFUND-013-r1 (refines `UNB-GFUND-013`) — adopted-provisional
+- **Original:** `requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:20` @ `777a70d` (kept verbatim) · **Decisions:** RCD-017
+- **Requirement:** Every grant amount mode MUST have exactly one FixingEvent at which it becomes a fixed currency amount: FixedAmount at recommendation; Percentage at the sponsor-configured fixing point (default: sponsor approval using the latest approved NAV/valuation snapshot); ResidualSweep and ProceedsLinked after the last relevant settlement. After fixing, the amount MUST NOT change; later valuation corrections MUST NOT re-fix it.
+- **Validation still required:** RCD-017: CFO/investment committee confirms buffer default
+- **Acceptance criteria:**
+  - AC-1: Given a 5% grant previewed at $10,000; when NAV falls 3% before approval with fixing at approval; then the fixed amount is computed from the approval snapshot and the donor sees both values.
+  - AC-2: Given a fixed grant; when a NAV restatement occurs after fixing; then the grant amount is unchanged and a NAV-error case is opened instead.
+  - AC-3: Given a 100% closing grant; when approval occurs; then the amount remains unfixed until the last settlement and the grant is held in FundingPlanned.
+  - AC-4: Given two simultaneous 50% grants of the available-to-recommend base; when both are approved; then the second is computed on the base net of the first's reservation, or retried.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-GFUND-013-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### RR-UNB-GFUND-021-r1 (refines `UNB-GFUND-021`) — adopted
+- **Original:** `requirements/grants/MULTI-INVESTMENT-FUNDING-AND-PERCENTAGE-GRANTS.md:28` @ `777a70d` (kept verbatim) · **Decisions:** —
+- **Requirement:** A grant reservation MUST be created only within one serializable transaction that computes reservable capacity from authoritative ledger, reservation and hold records for the fund and every constrained ancestor (pool cash buffer, custody account, legal entity, restricted sub-balance), acquiring locks in a deterministic order. Display projections MUST NOT be used for this check.
+- **Acceptance criteria:**
+  - AC-1: Given fund capacity $10,000 and two $6,000 approvals submitted concurrently; when both reservations execute; then exactly one succeeds and the other returns InsufficientCapacity.
+  - AC-2: Given two funds sharing a pool cash buffer of $5,000 paying ahead of redemption; when each reserves $4,000 against the buffer; then the second fails at the pool ancestor.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-GFUND-021-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-FIN-009 (P0, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-FIN-015 · **Parent:** REQ-X-022 · **Decisions:** —
+- **Requirement:** Capacity used to authorize reservations MUST be computed within the reservation transaction from authoritative records for all constrained ancestors with deterministic lock order; asynchronous projections MUST be labelled display-only and MUST NOT authorize.
+- **Acceptance criteria:**
+  - AC-1: Given a lagging capacity projection showing $10,000 while authoritative capacity is $2,000; when a $5,000 reservation is attempted; then it fails.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-009); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->
