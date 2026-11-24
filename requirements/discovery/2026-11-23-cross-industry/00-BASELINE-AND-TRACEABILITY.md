@@ -117,8 +117,8 @@ Most capabilities are partially covered. The baseline is *broad*: it names almos
 | Relationship | Edges |
 |---|---|
 | depends_on | 757 |
-| affects | 608 |
-| derived_from | 453 |
+| affects | 611 |
+| derived_from | 454 |
 | tested_by | 397 |
 | decided_by | 184 |
 | conflicts_with | 50 |

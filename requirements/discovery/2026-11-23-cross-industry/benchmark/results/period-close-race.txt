@@ -1,0 +1,1 @@
+postings_in_period_at_close=605991,postings_in_period_10s_later=605991,client_aborts_with_PERIOD_CLOSED=32

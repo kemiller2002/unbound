@@ -2,7 +2,7 @@
   "records": {
     "refinements": 32,
     "gaps": 150,
-    "findings": 217,
+    "findings": 218,
     "conflicts": 38,
     "scenarios": 211,
     "decisions": 86,
@@ -12,7 +12,7 @@
     "events": 96,
     "regulatory": 20
   },
-  "trace_edges": 2495,
+  "trace_edges": 2499,
   "errors": 0,
   "warnings": 0,
   "errors_by_gate": {}

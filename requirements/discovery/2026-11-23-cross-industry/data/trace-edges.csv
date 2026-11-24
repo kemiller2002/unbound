@@ -1849,6 +1849,10 @@ XIF-INT-008,affects,UNB-XIN-ECO-005,findings.csv
 XIF-INT-008,affects,UNB-XIN-ERP-006,findings.csv
 XIF-INT-009,affects,UNB-XIN-EVA-014,findings.csv
 XIF-INT-009,affects,UNB-XIN-CRM-001,findings.csv
+XIF-INT-010,affects,UNB-XIN-ERP-001,findings.csv
+XIF-INT-010,affects,UNB-XIN-EVA-011,findings.csv
+XIF-INT-010,affects,UNB-XIN-EVA-001,findings.csv
+XIF-INT-010,derived_from,XIF-ADV-006,findings.csv
 UNB-XIN-REG-003,duplicates,UNB-XIN-CRM-003,XIF-INT-001
 UNB-XIN-NPG-011,duplicates,UNB-XIN-BNK-007,XIF-INT-002
 UNB-XIN-SAS-007,duplicates,UNB-XIN-EVA-009,XIF-INT-003

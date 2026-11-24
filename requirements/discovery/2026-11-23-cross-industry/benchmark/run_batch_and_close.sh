@@ -12,11 +12,11 @@ load () {  # name seconds: grant approvals at 200/s (Fidelity-scale burst) logge
 
 # (a1) single-transaction batch at t=10s under load
 load B1-feebatch-single 40 & L=$!
-sleep 10; { /usr/bin/time -f "%e" psql $PG -d sponsor -q -v day=2026-12-01 -f "$S/fee_batch_single.sql"; } 2> "$OUT/B1-batch-seconds.txt"
+sleep 10; t0=$(date +%s.%N); psql $PG -d sponsor -q -v day=2026-12-01 -f "$S/fee_batch_single.sql"; echo "$(date +%s.%N) - $t0" | bc > "$OUT/B1-batch-seconds.txt"
 wait $L
 # (a2) chunked batch (1,000 funds/tx) at t=10s under load
 load B2-feebatch-chunked 40 & L=$!
-sleep 10; { /usr/bin/time -f "%e" "$S/fee_batch_chunked.sh" 2026-12-02 100000 "$PORT"; } 2> "$OUT/B2-batch-seconds.txt"
+sleep 10; t0=$(date +%s.%N); "$S/fee_batch_chunked.sh" 2026-12-02 100000 "$PORT"; echo "$(date +%s.%N) - $t0" | bc > "$OUT/B2-batch-seconds.txt"
 wait $L
 
 # (b) period close race: postings into 202612 at 200/s; close at t=10s; count postings 10s later.

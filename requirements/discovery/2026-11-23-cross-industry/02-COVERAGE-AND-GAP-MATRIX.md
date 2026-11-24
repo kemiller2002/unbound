@@ -114,8 +114,8 @@ Findings cover gaps, defects, contradictions, over-complication and duplicates. 
 | ECO |  | 5 | 13 | 2 | 20 |
 | EVA |  | 7 | 14 | 2 | 23 |
 | ADV | 1 | 6 | 14 | 1 | 22 |
-| INT |  |  | 9 |  | 9 |
-| **Total** | 8 | 70 | 117 | 22 | 217 |
+| INT |  | 1 | 9 |  | 10 |
+| **Total** | 8 | 71 | 117 | 22 | 218 |
 <!-- END GENERATED: findings-severity -->
 
 ### Critical and high findings
@@ -201,6 +201,7 @@ Findings cover gaps, defects, contradictions, over-complication and duplicates. 
 | XIF-ADV-005 | high | Economics stack is over-engineered and internally inconsistent with its own release-1 scope | UNB-XIN-ECO-001;UNB-XIN-ECO-002;UNB-XIN-ECO-003;UNB-XIN-ECO-004;UNB-XIN-ECO-005;UNB-XIN-ECO-006;UNB-XIN-ECO-007;UNB-XIN-ECO-008;UNB-XIN-ECO-009;UNB-XIN-ECO-010;UNB-XIN-ECO-011;UNB-XIN-ECO-012;UNB-XIN-ECO-013;UNB-XIN-ECO… | Collapse to five requirements: metering feed (merge ECO-005, ECO-009, SAS-009, BNK-005), non-posting attribution with GL reconciliation (merge ECO-001..004, P2), capacity forecast (ECO-017 absorbing SVC-008, P2), counte… |
 | XIF-ADV-012 | high | Two agents specify opposite defaults for multi-advisor instruction authority | RR-ADM-023-r1;UNB-XIN-EVA-012;AUTH-I4 | Recorded as XIC-ADV-004; recommend Any-one for grant recommendations below a sponsor threshold, AllRequired for transfers-out, closure, successor and authority changes, with mode captured at fund opening. |
 | XIF-ADV-013 | high | Contact details classed as mutable engagement data are used as authentication factors | UNB-XIN-EVA-014;UNB-XIN-SVC-004;UNB-XIN-IAM-003;UNB-XIN-CRM-001 | Recorded as XIC-ADV-003: authenticator bindings (registered device, verified OTP channel) are credentials owned by IAM as authority facts; changing them requires IAM-003 step-up on an existing factor plus out-of-band no… |
+| XIF-INT-010 | high | Single-transaction fund-row batches stall grant approvals | UNB-XIN-ERP-001;UNB-XIN-EVA-011;UNB-XIN-EVA-001 | Chunk every batch that updates fund rows (≤5,000 rows per transaction); added to UNB-XIN-ERP-001 as AC-D3. |
 <!-- END GENERATED: findings-severe -->
 
 ## Contradictions

@@ -101,6 +101,14 @@ A traditional modular; B event-driven modular monolith; C event-sourced financia
 
 ### Falsification criteria (any one reopens the ADR)
 
+**Measured 2026-11-24 ([18](18-ARCHITECTURE-BENCHMARK.md)):** criteria 1, 2 and 5 are not falsified on a single VM.
+- Capacity: 2,100–3,900 tx/s against a peak need of about 200 tx/s.
+- p99 approval latency: 41 ms or less at 200 tx/s, including the hot-row and round-trip variants.
+- Outbox lag p99: 20 ms or less.
+- Period close serialized correctly.
+
+**One exception:** a fund-row batch run in a single transaction breaks the latency bound, so batches must be chunked (XIF-INT-010). Repeat on the chosen managed database before production.
+
 1. A benchmark shows the largest sponsor's modelled peak needs more than 50% of sustainable commit capacity after tuning, or p99 reservation latency exceeds 500 ms.
 2. p99 outbox lag exceeds 60 s on three consecutive peak days.
 3. Contract or regulation requires dedicated infrastructure for a material share of sponsors.
