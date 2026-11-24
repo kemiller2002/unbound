@@ -137,3 +137,29 @@ Strata v0.1.1 is a **pilot**. It does declarative PostgreSQL 16 schema managemen
 5. **Strata mock interactions do not exist**: plan Unbound's own virtualization adapters, or co-develop STRATA-DIV.
 6. **Identity**: Fides is GitHub-only, so a managed IdP is required (DG-05 stands).
 7. **Licensing**: PolyForm Noncommercial covers almost the whole stack.
+
+## Unbound requirement consequences
+
+Each Echelon gap is traced to the Unbound requirement that needs it, with the Unbound position until the upstream
+improvement exists. Upstream repositories were not modified; proposed improvements are recorded here for their owners.
+
+| Gap | Unbound need (requirement) | Unbound position now | Proposed upstream improvement |
+|---|---|---|---|
+| LIMEN-GAP-01 embeddable mount | Embedded widgets (report 06 widgets; INT-015) | Widgets specified as Unbound-owned web components hosted outside the Limen kernel, or iframe embeds with postMessage contracts, until Limen supports element/shadow-root roots. Architecture decision ADR-M-03 (report 08). | `KernelOptions.root` (Element or ShadowRoot) plus multi-kernel conformance tests (Limen) |
+| LIMEN-GAP-02 / FIDES-GAP-01 auth | CNV-PLT-003 (AAL2/AAL3, CAL levels, risk-based proofing); DG-05 | Managed OIDC identity provider selected by Unbound; Limen hosts the engine only. Fides not used for donor or sponsor identity. | OIDC/PKCE session library (Limen) or OIDC provider with tenant claims (Fides) |
+| LIMEN-GAP-03 unpublished F# libraries | Offline outbox, forms (report 06 screens) | Pin to source commits under Conditor with digests, or vendor through Conditor; no copy outside Conditor (AGENT-MISSION rule). | Publish Forms, Http, Outbox, Resources as attested NuGet packages |
+| LIMEN-GAP-04 mobile cold start | CNV-EXP-001 mobile-first journeys; TB-06/DG-07 | Measure on mid-tier devices before architecture acceptance; fallback is server-rendered HTML for donor journeys (Limen SSR exists). | Device-class benchmark |
+| FORMA-GAP-27 channel lag; FOLIO-GAP-13 untagged vendor | Reproducible dependency (CNV-GOV-007, Conditor gate) | Re-pin Unbound design vendor copies to tagged releases (Forma 1.1.0, Folio 0.4.1) before implementation; request channel update. | Release manifests; registry channel update |
+| FORMA-GAP-28 embed runtime | Embedded widgets | As LIMEN-GAP-01: Unbound-owned embed profile with scoped CSS. | Documented embed profile and fixture |
+| FORMA-GAP-29 conformance evidence; open FORMA-GAP-03..09, 11..14, 16, 17 | CNV-EXP-001 WCAG 2.2 AA on every surface | Unbound runs its own axe/Playwright and manual assistive-technology evaluation per surface and publishes an ACR; temporary adapters for missing components tracked by migration issues (RCD-051). | Per-release ACR; components listed |
+| FOLIO-GAP-14/15 and FOLIO-GAP-01..12 (no PDF engine, no PDF/UA) | CNV-EXP-001 statements and acknowledgments; report catalog (report 06) | PDF pipeline is Unbound-owned: accessible HTML is the primary artifact; PDF produced by a pinned headless renderer with tagged output verified by veraPDF; Typst evaluated in the same ADR. Statement publication gated on accessibility verification. | Deterministic export adapter; PDF/UA path |
+| STRATA-GAP-01 virtualization | Deterministic mock providers for banks, custodians, rails, IRS data, OFAC lists; scenario replay (reports 04, 08) | Unbound defines provider-mock contracts in F# test harnesses; adopt Strata DIV contracts when implemented. | Implement DIV-001..015 |
+| STRATA-GAP-02 PG16 only | CNV-ARC-001 managed PostgreSQL over 7+ years | Strata used for schema governance only where versions match; upgrade path tested before adoption. | Multi-major support |
+| PRAXIS-GAP-01 catalog import | Machine-checked traceability (this mission's baseline) | `baseline/baseline.jsonl` is import-ready; Praxis import deferred to the implementation gate. | Importer from CSV/JSONL |
+| DOKIMOS-GAP-01 scenario runner | Acceptance criteria in every CNV clause; S1–S12 scenarios | Acceptance criteria written as Given/When/Then for xUnit/FsCheck and Playwright; Dokimos records evidence. | Adapter ingesting test results as requirement evidence |
+| Licensing (PolyForm Noncommercial across the stack) | Commercial launch | CNV-GOV-007: commercial licence required before commercial launch; architectural fallback is to replace a component, so dependency boundaries stay thin. | Commercial licence terms |
+
+**Verdict on the mandated stack.** F#, Limen, Forma, Folio and Strata remain appropriate as *governed starting
+points*, not as complete platforms: identity, embed runtime, PDF production and provider virtualization are
+Unbound-owned work until upstream gaps close. None of these findings is a reason to abandon the stack; each is a
+scoped work item with a fallback. The licence is a commercial-launch gate, not a design blocker.
