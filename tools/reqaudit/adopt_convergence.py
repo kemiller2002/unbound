@@ -264,7 +264,8 @@ def text_sha(t):
     return hashlib.sha256((t or "").encode("utf-8")).hexdigest()
 
 
-def baseline(clauses, inv, records, adoption, release, states):
+def baseline(clauses, inv, records, adoption, release, states, ratified=None):
+    ratified = ratified or {}
     conv = reduce(lambda acc, c: {**acc, **{a: acc.get(a, ()) + (c["id"],) for a in c["amends"]}}, clauses, {})
     adopted = {a["original_id"]: a for a in adoption}
     record_status = {a["record_id"]: a["status"] for a in adoption}
@@ -284,8 +285,13 @@ def baseline(clauses, inv, records, adoption, release, states):
     rows = tuple(row_req(i, r) for i, r in sorted(reqs.items())) + tuple(row_rec(i, r, f) for i, (r, f) in sorted(records.items()))
     def basis(c):
         appr = {states.get(q, {}).get("approval_status") for q in c["resolves"]}
-        return ("mission-adopted from adversarial review (owner ratification pending)" if not c["resolves"]
-                else "agent-recommended, owner ratification pending" if "agent-recommended" in appr else "owner-approved product direction")
+        if c["id"] in ratified:
+            return f"owner-ratified ({ratified[c['id']]})"
+        if not c["resolves"]:
+            return "mission-adopted from adversarial review (owner ratification pending)"
+        if "agent-recommended" in appr:
+            return "agent-recommended, owner ratification pending"
+        return "owner-ratified (packet review)" if "approved-owner" in appr else "owner-approved product direction"
     cls = tuple({"id": c["id"], "kind": "convergence-clause", "source": c["target_file"], "text": esc(c["statement"]),
                  "text_sha256": text_sha(c["statement"]), "approval_basis": basis(c), "resolves": c["resolves"],
                  "dependencies": c["dependencies"],
@@ -385,7 +391,10 @@ def main(argv):
     # 6. baseline index
     adoption = tuple(csv.DictReader(io.StringIO((root / "requirements/reconciliation/2026-11-23/data/adoption.csv").read_text(encoding="utf-8"))))
     release = {json.loads(l)["id"]: json.loads(l)["scope"] for l in (root / "requirements/discovery/2026-11-23-cross-industry/data/release1-scope.jsonl").read_text().splitlines() if l.strip()}
-    rows = baseline(clauses, inv, records, adoption, release, ql.fold(ql.load_events(root)))
+    od = root / MISSION / "data/owner-decisions.jsonl"
+    decisions = [json.loads(l) for l in od.read_text(encoding="utf-8").splitlines() if l.strip()] if od.exists() else []
+    ratified = {cid: d["id"] for d in decisions if d.get("ratifies_clauses") for cid in d.get("clauses", ())}
+    rows = baseline(clauses, inv, records, adoption, release, ql.fold(ql.load_events(root)), ratified)
     (root / "requirements/baseline").mkdir(exist_ok=True)
     (root / "requirements/baseline/baseline.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n" for r in rows), encoding="utf-8")
     (root / "requirements/AUTHORITATIVE-BASELINE.md").write_text(render_baseline(rows, clauses), encoding="utf-8")

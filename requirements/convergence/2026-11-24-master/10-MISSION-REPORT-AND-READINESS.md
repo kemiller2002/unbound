@@ -23,6 +23,28 @@ economic model of labelled assumptions). No software test of Unbound was execute
 > - **Readiness:** still **FAIL** for implementation; the remaining blockers are owner ratification of the report-11 packets,
 >   the measured economics (report 12) and the first sponsor's executed dependencies. Section 23 is updated accordingly.
 
+> **Owner packet review completed (2026-11-24).** The owner reviewed and explicitly ratified every packet in report 11
+> (P-LEG, P-PAY, P-FIN, P-GRT, P-GOV, P-PLT, P-ENT, P-EXP, P-ADV) and made two strategic decisions:
+> - **OD-M-07:** investment management is delegated to an external manager or custodian (Schwab-like); no sponsor pools.
+> - **OD-M-08:** one small core with two offers against Ren — software (vs iPhi) and an Unbound-operated administration
+>   team (vs Ren's outsourced administration; modelled cost $149–298 per fund-year against Ren's $413–745, report 05 §3b).
+>
+> **Release-1 scope cuts recorded** (all reversible; architecturally supported, disabled):
+>
+> | Packet | Cut |
+> |---|---|
+> | P-LEG | Sponsor-branded portals only (no marketplace, embedded checkout or charity-side buttons), so no CA/HI registration yet |
+> | P-PAY | No donor ACH debit pulls; one bank-feed and one partner-rail adapter first; donor-covered fee rules with cards |
+> | P-FIN | No UBIT-generating assets; standard DAFs only (agency, organization-advised, pass-through, restricted deferred) |
+> | P-GRT | No cross-sponsor reliance features; pledges prohibited or non-binding only; reconsideration as a case type |
+> | P-GOV | One sponsor policy configuration instead of published packs; vendor-report review annually; **added** SOC 1 Type 2 readiness before the first staffed client |
+> | P-PLT | Email and portal only (no SMS/voice); one 10-year retention floor; **one PostgreSQL cluster with a schema and role per sponsor** (dedicated database only by risk or contract) |
+> | P-ENT | Bulk sponsor-exit tooling deferred (export and single transfers kept) |
+> | P-ADV | Status-label table limited to release-1 reachable states |
+>
+> **Approval status now:** 316/316 questions approved (151 owner-approved in packet review, 166 product direction under
+> earlier delegation counted once each; 35 duplicates follow their canonical question); 82/82 clauses approved.
+
 ## 1. Executive summary
 
 - **Questions.** All 316 register questions are reconciled against their source records and resolved (281) or
@@ -210,12 +232,14 @@ Retained as explicit owner decisions rather than resolved by the mission:
 | UX, dashboard and reporting requirements complete | **Pass as specification**; no human testing |
 | Echelon capability gaps documented | **Pass** |
 | Material adversarial findings resolved or retained | **Pass** — two rounds; no open residual (report 08) |
-| Owner ratification of agent-recommended decisions | **Fail** — OD-M-01..05 decided; 148 questions and 69 clauses await domain review (report 11) |
+| Owner ratification of agent-recommended decisions | **Pass** — all packets explicitly ratified; OD-M-01..08 decided |
 | Legal and accounting assertions with traceable authority | **Pass** for research; sponsor-side authorizations not obtained (by design) |
 | Economic case supported by measurement | **Fail** — levers and scale unmeasured (CNV-ECO-003) |
 | Dependencies resolved for a first sponsor (licence, ODFI/rail, identity provider, auditor approach) | **Fail** — none executed |
 
-**Verdict: FAIL — not ready for application implementation.** The requirements gate can pass for *architecture and a
-design-partner evidence phase* once the owner reviews the report-11 ratification packets (OD-M-01..05 are already decided). Implementation
+**Verdict: FAIL for production implementation; PASS for architecture and the design-partner evidence phase.** With the
+packets ratified, the requirements are approved for architecture work and for the report-12 evidence phase (shadow replay,
+time study, benchmark). Production implementation still waits for measured economics and the first sponsor's executed
+dependencies (commercial licence, payment-partner or ODFI agreement, identity provider, the sponsor auditor's approach). Implementation
 of the production platform should wait for the shadow replay and time study, because the economics — not the
 requirements — are now the main open risk.

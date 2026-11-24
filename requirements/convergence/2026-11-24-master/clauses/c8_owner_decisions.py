@@ -65,8 +65,6 @@ AMENDMENTS = {
         "append": "Reconsideration SHALL be implemented as a case type in the common case kernel (CNV-SVC-001) with the independent-reviewer assignment rule and the filing and response clocks, not as a separate module (OD-P-GRT cut H)."},
     "CNV-GOV-005": {"finding": "OD-P-GOV cut I (owner decision)",
         "append": "Release 1 SHALL use one sponsor-adopted, versioned and effective-dated policy configuration per sponsor; platform-published policy packs and cross-sponsor shadow evaluation are deferred. Changes to a sponsor's configuration keep the independent-approval, emergency-path and history rules above, and representative replay uses that sponsor's own history (OD-P-GOV cut I)."},
-    "CNV-EXP-003": {"finding": "OD-P-GOV cut I (owner decision)",
-        "append": "In release 1 the adoption-time conflict check SHALL run against the sponsor's single configuration and the platform's non-removable rules (OD-P-GOV cut I)."},
     "CNV-GOV-002": {"finding": "OD-P-GOV cut J (owner decision)",
         "append": "In release 1 these checks SHALL be performed as an annual vendor-assurance review task with recorded evidence, plus an ad hoc review when a vendor reports an exception or outage; automated gap tracking is deferred (OD-P-GOV cut J)."},
     "CNV-PLT-001": {"finding": "OD-P-PLT cut K (owner decision)",
@@ -84,5 +82,7 @@ AMENDMENTS = {
         "append": "On the shared cluster a sponsor 'cell' is its schema and database role; the same delegation, routing-metadata and SharedStoreRegister rules apply (OD-P-PLT cut M)."},
     "CNV-ENT-002": {"finding": "OD-P-ENT cut O (owner decision)",
         "append": "Release 1 SHALL provide full reconciled export and one-at-a-time outbound transfer grants under the rules above; the batch exit-policy workflow and automatic Schedule N flagging are deferred and a sponsor exit before they ship SHALL be run as a recorded manual batch (OD-P-ENT cut O)."},
+    "CNV-EXP-003": {"finding": "OD-P-GOV cut I; OD-P-ADV scope (owner decisions)",
+        "append": "In release 1 the adoption-time conflict check SHALL run against the sponsor's single configuration and the platform's non-removable rules (OD-P-GOV cut I), and the StatusProjection table SHALL cover the state combinations reachable in release 1 given the owner's scope cuts, extended as deferred features are enabled (OD-P-ADV)."},
 }
 
