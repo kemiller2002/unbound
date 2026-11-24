@@ -1,0 +1,3357 @@
+{
+ "comparison": {
+  "E1": {
+   "A": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 206.2454,
+     "compliance_and_assurance": 21.6247,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 70.484,
+     "customer_service": 20.6923,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 42.9,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 5.7487,
+     "reconciliation_accounting_exceptions": 6.9775,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 50.9
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 504.3069,
+     "fund": 444.7728
+    },
+    "enterprise_admin_per_account": 444.3069,
+    "fixed_per_account": 117.7247,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 2718.4375,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 1045.8721,
+     "base_p50": 733.8019,
+     "enterprise_admin_p50": 694.8296,
+     "favourable_p10": 546.9335
+    },
+    "staff_fte_queue_equivalent": 88.0,
+    "total_economic_admin_per_account": 465.3033,
+    "variable_per_account": 35.7322
+   },
+   "AL": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 195.5088,
+     "compliance_and_assurance": 13.5278,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 68.909,
+     "customer_service": 20.2423,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 5.7487,
+     "reconciliation_accounting_exceptions": 6.8275,
+     "sponsor_onboarding_and_exit": 0.3,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 428.8221,
+     "fund": 444.7728,
+     "vendor": 0.3
+    },
+    "enterprise_admin_per_account": 368.8221,
+    "fixed_per_account": 309.3278,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 2718.4375,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 910.8957,
+     "base_p50": 662.6022,
+     "enterprise_admin_p50": 618.9483,
+     "favourable_p10": 463.2255
+    },
+    "staff_fte_queue_equivalent": 86.0,
+    "total_economic_admin_per_account": 389.8185,
+    "variable_per_account": 59.4943
+   },
+   "B": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.861,
+     "charity_vetting_and_grant_decisions": 60.656,
+     "compliance_and_assurance": 21.6247,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 70.484,
+     "customer_service": 17.2808,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 42.9,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 4.555,
+     "reconciliation_accounting_exceptions": 6.9775,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 6.0,
+     "technology": 50.9
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 351.9734,
+     "fund": 444.7728
+    },
+    "enterprise_admin_per_account": 291.9734,
+    "fixed_per_account": 117.7247,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 1048.9575,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 584.1948,
+     "base_p50": 450.2901,
+     "enterprise_admin_p50": 406.53,
+     "favourable_p10": 371.0767
+    },
+    "staff_fte_queue_equivalent": 44.0,
+    "total_economic_admin_per_account": 312.9698,
+    "variable_per_account": 28.5987
+   },
+   "C": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 17.127,
+     "compliance_and_assurance": 13.5278,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 28.393,
+     "customer_service": 8.9067,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 2.6452,
+     "reconciliation_accounting_exceptions": 5.28,
+     "sponsor_onboarding_and_exit": 0.3,
+     "statements_and_recurring_obligations": 3.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 170.9627,
+     "fund": 461.7478,
+     "vendor": 0.3
+    },
+    "enterprise_admin_per_account": 110.9627,
+    "fixed_per_account": 65.1278,
+    "fund_borne_admin_per_account": 37.9714,
+    "human_interventions_per_1000": 562.5575,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 253.3201,
+     "base_p50": 208.9965,
+     "enterprise_admin_p50": 145.6928,
+     "favourable_p10": 170.1735
+    },
+    "staff_fte_queue_equivalent": 12.0,
+    "total_economic_admin_per_account": 148.9341,
+    "variable_per_account": 45.8349
+   },
+   "D": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 14.3994,
+     "compliance_and_assurance": 13.5278,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 28.4945,
+     "customer_service": 6.1716,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 2.2872,
+     "reconciliation_accounting_exceptions": 5.3308,
+     "sponsor_onboarding_and_exit": 0.3,
+     "statements_and_recurring_obligations": 1.5,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 163.7943,
+     "fund": 461.7478,
+     "vendor": 0.3
+    },
+    "enterprise_admin_per_account": 103.7943,
+    "fixed_per_account": 60.1778,
+    "fund_borne_admin_per_account": 37.9714,
+    "human_interventions_per_1000": 459.5655,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 230.8123,
+     "base_p50": 191.1782,
+     "enterprise_admin_p50": 129.83,
+     "favourable_p10": 161.4358
+    },
+    "staff_fte_queue_equivalent": 10.5,
+    "total_economic_admin_per_account": 141.7657,
+    "variable_per_account": 43.6165
+   }
+  },
+  "E2": {
+   "A": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 2.76,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 633.6479,
+     "compliance_and_assurance": 355.6047,
+     "contributions": 27.1484,
+     "contributions_complex_assets": 334.29,
+     "customer_service": 110.0,
+     "investment_administration": 29.585,
+     "investment_management": 0.0,
+     "management_overhead": 660.0,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 9.6432,
+     "reconciliation_accounting_exceptions": 220.0,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 1159.6667
+    },
+    "bearers": {
+     "donor_or_fund": 13.1842,
+     "enterprise": 3569.0267,
+     "fund": 1585.756
+    },
+    "enterprise_admin_per_account": 3509.0267,
+    "fixed_per_account": 2348.938,
+    "fund_borne_admin_per_account": 42.7692,
+    "human_interventions_per_1000": 5519.4354,
+    "investment_management_per_account": 1556.171,
+    "range": {
+     "adverse_p90": 5320.1683,
+     "base_p50": 4383.3314,
+     "enterprise_admin_p50": 4269.2215,
+     "favourable_p10": 3761.9105
+    },
+    "staff_fte_queue_equivalent": 10.0,
+    "total_economic_admin_per_account": 3551.7959,
+    "variable_per_account": 59.6387
+   },
+   "AL": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 2.76,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 323.444,
+     "compliance_and_assurance": 237.9956,
+     "contributions": 27.1484,
+     "contributions_complex_assets": 235.29,
+     "customer_service": 77.0,
+     "investment_administration": 29.585,
+     "investment_management": 0.0,
+     "management_overhead": 40.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 9.6432,
+     "reconciliation_accounting_exceptions": 154.0,
+     "sponsor_onboarding_and_exit": 10.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 13.1842,
+     "enterprise": 1190.8708,
+     "fund": 1585.756,
+     "vendor": 10.0
+    },
+    "enterprise_admin_per_account": 1130.8708,
+    "fixed_per_account": 1047.9956,
+    "fund_borne_admin_per_account": 42.7692,
+    "human_interventions_per_1000": 5519.4354,
+    "investment_management_per_account": 1556.171,
+    "range": {
+     "adverse_p90": 2550.3554,
+     "base_p50": 1845.0821,
+     "enterprise_admin_p50": 1716.9272,
+     "favourable_p10": 1434.3887
+    },
+    "staff_fte_queue_equivalent": 7.0,
+    "total_economic_admin_per_account": 1173.64,
+    "variable_per_account": 82.8752
+   },
+   "B": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 2.76,
+     "ai_usage": 1.4858,
+     "charity_vetting_and_grant_decisions": 296.7839,
+     "compliance_and_assurance": 355.6047,
+     "contributions": 27.1484,
+     "contributions_complex_assets": 334.29,
+     "customer_service": 110.0,
+     "investment_administration": 29.585,
+     "investment_management": 0.0,
+     "management_overhead": 660.0,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 7.5268,
+     "reconciliation_accounting_exceptions": 220.0,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 6.0,
+     "technology": 1159.6667
+    },
+    "bearers": {
+     "donor_or_fund": 13.1842,
+     "enterprise": 3228.5321,
+     "fund": 1585.756
+    },
+    "enterprise_admin_per_account": 3168.5321,
+    "fixed_per_account": 2348.938,
+    "fund_borne_admin_per_account": 42.7692,
+    "human_interventions_per_1000": 2092.4753,
+    "investment_management_per_account": 1556.171,
+    "range": {
+     "adverse_p90": 4530.0597,
+     "base_p50": 3893.231,
+     "enterprise_admin_p50": 3810.643,
+     "favourable_p10": 3271.437
+    },
+    "staff_fte_queue_equivalent": 7.0,
+    "total_economic_admin_per_account": 3211.3012,
+    "variable_per_account": 49.144
+   },
+   "C": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 2.76,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 62.15,
+     "compliance_and_assurance": 237.9956,
+     "contributions": 27.1484,
+     "contributions_complex_assets": 132.395,
+     "customer_service": 62.15,
+     "investment_administration": 29.585,
+     "investment_management": 0.0,
+     "management_overhead": 40.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 4.1406,
+     "reconciliation_accounting_exceptions": 110.0,
+     "sponsor_onboarding_and_exit": 10.0,
+     "statements_and_recurring_obligations": 3.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 13.1842,
+     "enterprise": 686.0842,
+     "fund": 1656.001,
+     "vendor": 10.0
+    },
+    "enterprise_admin_per_account": 626.0842,
+    "fixed_per_account": 552.9956,
+    "fund_borne_admin_per_account": 113.0142,
+    "human_interventions_per_1000": 1178.2353,
+    "investment_management_per_account": 1556.171,
+    "range": {
+     "adverse_p90": 1024.7767,
+     "base_p50": 906.4795,
+     "enterprise_admin_p50": 706.535,
+     "favourable_p10": 780.5446
+    },
+    "staff_fte_queue_equivalent": 2.5,
+    "total_economic_admin_per_account": 739.0983,
+    "variable_per_account": 73.0886
+   },
+   "D": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 2.76,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 62.15,
+     "compliance_and_assurance": 237.9956,
+     "contributions": 27.1484,
+     "contributions_complex_assets": 132.395,
+     "customer_service": 62.15,
+     "investment_administration": 29.585,
+     "investment_management": 0.0,
+     "management_overhead": 40.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 3.5056,
+     "reconciliation_accounting_exceptions": 110.0,
+     "sponsor_onboarding_and_exit": 10.0,
+     "statements_and_recurring_obligations": 1.5,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 13.1842,
+     "enterprise": 683.9492,
+     "fund": 1656.001,
+     "vendor": 10.0
+    },
+    "enterprise_admin_per_account": 623.9492,
+    "fixed_per_account": 552.9956,
+    "fund_borne_admin_per_account": 113.0142,
+    "human_interventions_per_1000": 975.1714,
+    "investment_management_per_account": 1556.171,
+    "range": {
+     "adverse_p90": 1041.1567,
+     "base_p50": 892.481,
+     "enterprise_admin_p50": 703.4871,
+     "favourable_p10": 771.4215
+    },
+    "staff_fte_queue_equivalent": 2.5,
+    "total_economic_admin_per_account": 736.9634,
+    "variable_per_account": 70.9537
+   }
+  },
+  "E3": {
+   "A": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 9.5067,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 355.2525,
+     "compliance_and_assurance": 26.6983,
+     "contributions": 22.4922,
+     "contributions_complex_assets": 280.8152,
+     "customer_service": 38.7766,
+     "investment_administration": 23.2575,
+     "investment_management": 0.0,
+     "management_overhead": 41.25,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 9.365,
+     "reconciliation_accounting_exceptions": 8.4216,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 62.875
+    },
+    "bearers": {
+     "donor_or_fund": 3.879,
+     "enterprise": 921.024,
+     "fund": 1246.602
+    },
+    "enterprise_admin_per_account": 861.024,
+    "fixed_per_account": 134.4483,
+    "fund_borne_admin_per_account": 27.1365,
+    "human_interventions_per_1000": 4819.5236,
+    "investment_management_per_account": 1223.3445,
+    "range": {
+     "adverse_p90": 1963.878,
+     "base_p50": 1460.3997,
+     "enterprise_admin_p50": 1381.6407,
+     "favourable_p10": 1059.9047
+    },
+    "staff_fte_queue_equivalent": 160.0,
+    "total_economic_admin_per_account": 888.1605,
+    "variable_per_account": 66.1257
+   },
+   "AL": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 9.5067,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 343.0309,
+     "compliance_and_assurance": 16.9406,
+     "contributions": 22.4922,
+     "contributions_complex_assets": 277.3605,
+     "customer_service": 38.3126,
+     "investment_administration": 23.2575,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 9.365,
+     "reconciliation_accounting_exceptions": 8.3185,
+     "sponsor_onboarding_and_exit": 0.375,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.879,
+     "enterprise": 830.2215,
+     "fund": 1246.602,
+     "vendor": 0.375
+    },
+    "enterprise_admin_per_account": 770.2215,
+    "fixed_per_account": 680.6906,
+    "fund_borne_admin_per_account": 27.1365,
+    "human_interventions_per_1000": 4819.5236,
+    "investment_management_per_account": 1223.3445,
+    "range": {
+     "adverse_p90": 1920.3626,
+     "base_p50": 1349.0583,
+     "enterprise_admin_p50": 1269.1607,
+     "favourable_p10": 954.5807
+    },
+    "staff_fte_queue_equivalent": 158.0,
+    "total_economic_admin_per_account": 797.3581,
+    "variable_per_account": 89.5309
+   },
+   "B": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 9.5067,
+     "ai_usage": 1.3003,
+     "charity_vetting_and_grant_decisions": 101.3175,
+     "compliance_and_assurance": 26.6983,
+     "contributions": 22.4922,
+     "contributions_complex_assets": 280.8152,
+     "customer_service": 30.2264,
+     "investment_administration": 23.2575,
+     "investment_management": 0.0,
+     "management_overhead": 41.25,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 7.2208,
+     "reconciliation_accounting_exceptions": 8.4216,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 6.0,
+     "technology": 62.875
+    },
+    "bearers": {
+     "donor_or_fund": 3.879,
+     "enterprise": 654.6949,
+     "fund": 1246.602
+    },
+    "enterprise_admin_per_account": 594.6949,
+    "fixed_per_account": 134.4483,
+    "fund_borne_admin_per_account": 27.1365,
+    "human_interventions_per_1000": 1885.1336,
+    "investment_management_per_account": 1223.3445,
+    "range": {
+     "adverse_p90": 1322.568,
+     "base_p50": 986.1588,
+     "enterprise_admin_p50": 902.9955,
+     "favourable_p10": 735.8149
+    },
+    "staff_fte_queue_equivalent": 98.0,
+    "total_economic_admin_per_account": 621.8314,
+    "variable_per_account": 55.5465
+   },
+   "C": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 9.5067,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 30.2561,
+     "compliance_and_assurance": 16.9406,
+     "contributions": 22.4922,
+     "contributions_complex_assets": 113.1792,
+     "customer_service": 19.3605,
+     "investment_administration": 23.2575,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 3.7902,
+     "reconciliation_accounting_exceptions": 7.0278,
+     "sponsor_onboarding_and_exit": 0.375,
+     "statements_and_recurring_obligations": 3.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.879,
+     "enterprise": 253.6529,
+     "fund": 1314.397,
+     "vendor": 0.375
+    },
+    "enterprise_admin_per_account": 193.6529,
+    "fixed_per_account": 123.8156,
+    "fund_borne_admin_per_account": 94.9315,
+    "human_interventions_per_1000": 1073.2336,
+    "investment_management_per_account": 1223.3445,
+    "range": {
+     "adverse_p90": 531.2405,
+     "base_p50": 415.4925,
+     "enterprise_admin_p50": 254.8744,
+     "favourable_p10": 339.296
+    },
+    "staff_fte_queue_equivalent": 23.0,
+    "total_economic_admin_per_account": 288.5844,
+    "variable_per_account": 69.8373
+   },
+   "D": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 9.5067,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 22.921,
+     "compliance_and_assurance": 16.9406,
+     "contributions": 22.4922,
+     "contributions_complex_assets": 113.2938,
+     "customer_service": 15.3593,
+     "investment_administration": 23.2575,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 3.1469,
+     "reconciliation_accounting_exceptions": 7.0469,
+     "sponsor_onboarding_and_exit": 0.375,
+     "statements_and_recurring_obligations": 1.5,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.879,
+     "enterprise": 240.307,
+     "fund": 1314.397,
+     "vendor": 0.375
+    },
+    "enterprise_admin_per_account": 180.307,
+    "fixed_per_account": 113.5031,
+    "fund_borne_admin_per_account": 94.9315,
+    "human_interventions_per_1000": 887.8726,
+    "investment_management_per_account": 1223.3445,
+    "range": {
+     "adverse_p90": 480.1142,
+     "base_p50": 395.5062,
+     "enterprise_admin_p50": 230.4539,
+     "favourable_p10": 304.147
+    },
+    "staff_fte_queue_equivalent": 20.5,
+    "total_economic_admin_per_account": 275.2385,
+    "variable_per_account": 66.8039
+   }
+  },
+  "E4": {
+   "A": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 0.0,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 36.1616,
+     "compliance_and_assurance": 2.8355,
+     "contributions": 4.4812,
+     "contributions_complex_assets": 0.33,
+     "customer_service": 7.2063,
+     "investment_administration": 0.1562,
+     "investment_management": 0.0,
+     "management_overhead": 11.55,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 1.9863,
+     "reconciliation_accounting_exceptions": 4.1162,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 9.11
+    },
+    "bearers": {
+     "donor_or_fund": 3.234,
+     "employer": 60.0,
+     "enterprise": 83.9931,
+     "fund": 8.375
+    },
+    "enterprise_admin_per_account": 83.9931,
+    "fixed_per_account": 21.6855,
+    "fund_borne_admin_per_account": 3.3902,
+    "human_interventions_per_1000": 644.5275,
+    "investment_management_per_account": 8.2188,
+    "range": {
+     "adverse_p90": 179.8524,
+     "base_p50": 130.2576,
+     "enterprise_admin_p50": 126.4178,
+     "favourable_p10": 96.4
+    },
+    "staff_fte_queue_equivalent": 136.0,
+    "total_economic_admin_per_account": 87.3833,
+    "variable_per_account": 16.9775
+   },
+   "AL": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 0.0,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 33.8098,
+     "compliance_and_assurance": 1.7258,
+     "contributions": 4.4812,
+     "contributions_complex_assets": 0.3227,
+     "customer_service": 7.0534,
+     "investment_administration": 0.1562,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 1.9863,
+     "reconciliation_accounting_exceptions": 4.0288,
+     "sponsor_onboarding_and_exit": 0.03,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.234,
+     "employer": 60.0,
+     "enterprise": 98.9478,
+     "fund": 8.375,
+     "vendor": 0.03
+    },
+    "enterprise_admin_per_account": 98.9478,
+    "fixed_per_account": 57.6158,
+    "fund_borne_admin_per_account": 3.3902,
+    "human_interventions_per_1000": 644.5275,
+    "investment_management_per_account": 8.2188,
+    "range": {
+     "adverse_p90": 204.5712,
+     "base_p50": 144.9737,
+     "enterprise_admin_p50": 140.9319,
+     "favourable_p10": 114.3798
+    },
+    "staff_fte_queue_equivalent": 133.0,
+    "total_economic_admin_per_account": 102.3381,
+    "variable_per_account": 41.332
+   },
+   "B": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 0.0,
+     "ai_usage": 0.3499,
+     "charity_vetting_and_grant_decisions": 10.7681,
+     "compliance_and_assurance": 2.8355,
+     "contributions": 4.4812,
+     "contributions_complex_assets": 0.33,
+     "customer_service": 5.4962,
+     "investment_administration": 0.1562,
+     "investment_management": 0.0,
+     "management_overhead": 11.55,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 1.6237,
+     "reconciliation_accounting_exceptions": 4.1162,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 6.0,
+     "technology": 9.11
+    },
+    "bearers": {
+     "donor_or_fund": 3.234,
+     "employer": 60.0,
+     "enterprise": 53.8768,
+     "fund": 8.375
+    },
+    "enterprise_admin_per_account": 53.8768,
+    "fixed_per_account": 21.6855,
+    "fund_borne_admin_per_account": 3.3902,
+    "human_interventions_per_1000": 329.7775,
+    "investment_management_per_account": 8.2188,
+    "range": {
+     "adverse_p90": 99.8846,
+     "base_p50": 78.1423,
+     "enterprise_admin_p50": 74.0038,
+     "favourable_p10": 65.1396
+    },
+    "staff_fte_queue_equivalent": 56.0,
+    "total_economic_admin_per_account": 57.267,
+    "variable_per_account": 13.2613
+   },
+   "C": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 0.0,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 2.9538,
+     "compliance_and_assurance": 1.7258,
+     "contributions": 4.4812,
+     "contributions_complex_assets": 0.3251,
+     "customer_service": 3.3741,
+     "investment_administration": 0.1562,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 1.0435,
+     "reconciliation_accounting_exceptions": 1.5901,
+     "sponsor_onboarding_and_exit": 0.03,
+     "statements_and_recurring_obligations": 3.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.234,
+     "employer": 60.0,
+     "enterprise": 55.0332,
+     "fund": 8.375,
+     "vendor": 0.03
+    },
+    "enterprise_admin_per_account": 55.0332,
+    "fixed_per_account": 21.3158,
+    "fund_borne_admin_per_account": 3.3902,
+    "human_interventions_per_1000": 170.4695,
+    "investment_management_per_account": 8.2188,
+    "range": {
+     "adverse_p90": 86.1718,
+     "base_p50": 66.1942,
+     "enterprise_admin_p50": 62.3856,
+     "favourable_p10": 56.0294
+    },
+    "staff_fte_queue_equivalent": 23.0,
+    "total_economic_admin_per_account": 58.4235,
+    "variable_per_account": 33.7174
+   },
+   "D": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 0.0,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 2.4516,
+     "compliance_and_assurance": 1.7258,
+     "contributions": 4.4812,
+     "contributions_complex_assets": 0.3065,
+     "customer_service": 2.546,
+     "investment_administration": 0.1562,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 0.9348,
+     "reconciliation_accounting_exceptions": 1.4971,
+     "sponsor_onboarding_and_exit": 0.03,
+     "statements_and_recurring_obligations": 1.5,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 3.234,
+     "employer": 60.0,
+     "enterprise": 51.9826,
+     "fund": 8.375,
+     "vendor": 0.03
+    },
+    "enterprise_admin_per_account": 51.9826,
+    "fixed_per_account": 19.9958,
+    "fund_borne_admin_per_account": 3.3902,
+    "human_interventions_per_1000": 140.5945,
+    "investment_management_per_account": 8.2188,
+    "range": {
+     "adverse_p90": 77.5875,
+     "base_p50": 60.9865,
+     "enterprise_admin_p50": 56.9329,
+     "favourable_p10": 52.8351
+    },
+    "staff_fte_queue_equivalent": 19.0,
+    "total_economic_admin_per_account": 55.3729,
+    "variable_per_account": 31.9868
+   }
+  },
+  "E5": {
+   "A": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 200.4795,
+     "compliance_and_assurance": 5.569,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 70.4017,
+     "customer_service": 19.2007,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 15.18,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 5.7487,
+     "reconciliation_accounting_exceptions": 5.4859,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 13.9
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 414.6998,
+     "fund": 444.7728
+    },
+    "enterprise_admin_per_account": 354.6998,
+    "fixed_per_account": 34.029,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 2718.4375,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 905.6308,
+     "base_p50": 625.9336,
+     "enterprise_admin_p50": 579.6347,
+     "favourable_p10": 456.858
+    },
+    "staff_fte_queue_equivalent": 432.0,
+    "total_economic_admin_per_account": 375.6962,
+    "variable_per_account": 35.1007
+   },
+   "AL": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 199.0279,
+     "compliance_and_assurance": 3.5303,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 71.1017,
+     "customer_service": 19.2007,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 5.7487,
+     "reconciliation_accounting_exceptions": 5.4859,
+     "sponsor_onboarding_and_exit": 3.0,
+     "statements_and_recurring_obligations": 9.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 422.1531,
+     "fund": 444.7728,
+     "vendor": 3.0
+    },
+    "enterprise_admin_per_account": 362.1531,
+    "fixed_per_account": 279.5303,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 2718.4375,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 953.0045,
+     "base_p50": 662.3736,
+     "enterprise_admin_p50": 621.1839,
+     "favourable_p10": 483.5314
+    },
+    "staff_fte_queue_equivalent": 436.0,
+    "total_economic_admin_per_account": 383.1495,
+    "variable_per_account": 58.8628
+   },
+   "B": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.861,
+     "charity_vetting_and_grant_decisions": 56.2444,
+     "compliance_and_assurance": 5.569,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 70.4017,
+     "customer_service": 15.0966,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 15.18,
+     "onboarding_identity": 0.45,
+     "other": 0.0,
+     "payment_processing": 4.555,
+     "reconciliation_accounting_exceptions": 5.4859,
+     "sponsor_onboarding_and_exit": 0.0,
+     "statements_and_recurring_obligations": 6.0,
+     "technology": 13.9
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 263.028,
+     "fund": 444.7728
+    },
+    "enterprise_admin_per_account": 203.028,
+    "fixed_per_account": 34.029,
+    "fund_borne_admin_per_account": 20.9964,
+    "human_interventions_per_1000": 1048.9575,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 514.9651,
+     "base_p50": 369.092,
+     "enterprise_admin_p50": 327.888,
+     "favourable_p10": 276.4386
+    },
+    "staff_fte_queue_equivalent": 213.0,
+    "total_economic_admin_per_account": 224.0244,
+    "variable_per_account": 27.9689
+   },
+   "C": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 50.0095,
+     "compliance_and_assurance": 3.5303,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 51.4972,
+     "customer_service": 9.4466,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 2.6452,
+     "reconciliation_accounting_exceptions": 2.083,
+     "sponsor_onboarding_and_exit": 3.0,
+     "statements_and_recurring_obligations": 3.0,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 214.2948,
+     "fund": 461.7478,
+     "vendor": 3.0
+    },
+    "enterprise_admin_per_account": 154.2948,
+    "fixed_per_account": 98.0303,
+    "fund_borne_admin_per_account": 37.9714,
+    "human_interventions_per_1000": 562.5575,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 284.8533,
+     "base_p50": 244.971,
+     "enterprise_admin_p50": 185.7046,
+     "favourable_p10": 207.29
+    },
+    "staff_fte_queue_equivalent": 141.0,
+    "total_economic_admin_per_account": 192.2662,
+    "variable_per_account": 45.7045
+   },
+   "D": {
+    "acquisition_per_account": 60.0,
+    "activities": {
+     "acquisition": 60.0,
+     "advisor_service": 1.61,
+     "ai_usage": 0.0,
+     "charity_vetting_and_grant_decisions": 45.4424,
+     "compliance_and_assurance": 3.5303,
+     "contributions": 20.3726,
+     "contributions_complex_assets": 55.8241,
+     "customer_service": 7.2761,
+     "investment_administration": 8.298,
+     "investment_management": 0.0,
+     "management_overhead": 12.0,
+     "onboarding_identity": 0.0,
+     "other": 0.0,
+     "payment_processing": 2.2872,
+     "reconciliation_accounting_exceptions": 2.083,
+     "sponsor_onboarding_and_exit": 3.0,
+     "statements_and_recurring_obligations": 1.5,
+     "technology": 27.7738
+    },
+    "bearers": {
+     "donor_or_fund": 12.6984,
+     "enterprise": 210.026,
+     "fund": 461.7478,
+     "vendor": 3.0
+    },
+    "enterprise_admin_per_account": 150.026,
+    "fixed_per_account": 98.0303,
+    "fund_borne_admin_per_account": 37.9714,
+    "human_interventions_per_1000": 459.5655,
+    "investment_management_per_account": 436.4748,
+    "range": {
+     "adverse_p90": 282.6335,
+     "base_p50": 236.0998,
+     "enterprise_admin_p50": 175.6179,
+     "favourable_p10": 204.5645
+    },
+    "staff_fte_queue_equivalent": 138.0,
+    "total_economic_admin_per_account": 187.9974,
+    "variable_per_account": 43.4157
+   }
+  }
+ },
+ "meta": {
+  "approaches": {
+   "A": {
+    "basis": "[A] per-item human review: 30% of grants touched by a person; no AI; more paper and contacts",
+    "name": "Traditional human-centred operation",
+    "outsource_complex": false,
+    "platform": false
+   },
+   "AL": {
+    "basis": "[A] A's human workflows, but technology bought at the same licence as C; isolates the workflow effect from the build-versus-buy effect",
+    "name": "Traditional human-centred operation on licensed software",
+    "outsource_complex": false,
+    "platform": true
+   },
+   "B": {
+    "basis": "OM1 levers (parameters.json): exception-based review, AI assistance, same processes",
+    "name": "Existing workflow enhanced with AI",
+    "outsource_complex": false,
+    "platform": false
+   },
+   "C": {
+    "basis": "OM2/OM3 levers; Unbound licence; per-sponsor decision teams (SPD-ADV-001, SPD-ADV-004)",
+    "name": "AI-native redesign on Unbound",
+    "outsource_complex": true,
+    "platform": true
+   },
+   "D": {
+    "basis": "[A] removes convention-only recurring obligations, default-ACH, proactive notices; legal obligations retained",
+    "name": "AI-native redesign plus elimination of convention-only activities",
+    "outsource_complex": true,
+    "platform": true
+   }
+  },
+  "basis": "simplification model.py + decision_teams.py unchanged; assumptions in this file are [A]",
+  "enterprises": {
+   "E1": {
+    "accounts": 50000,
+    "accounts_per_sponsor": null,
+    "basis": "daf-landscape business model D2C; market mix from parameters.json",
+    "cac_bearer": "sponsor",
+    "complex_share_mult": 1.0,
+    "mix": "market",
+    "name": "Independent national DAF sponsor (direct to donor)",
+    "revenue": "asset_tiered_min100",
+    "route": "sponsor_direct",
+    "scales": [
+     10000,
+     50000,
+     250000
+    ]
+   },
+   "E2": {
+    "accounts": 1500,
+    "accounts_per_sponsor": null,
+    "basis": "[A] CF fund counts of hundreds to low thousands; non-DAF programs excluded from scope",
+    "cac_bearer": "sponsor",
+    "complex_share_mult": 1.5,
+    "mix": "community_foundation",
+    "name": "Community foundation (DAF program inside a broader foundation)",
+    "revenue": "asset_tiered_min250",
+    "route": "sponsor_direct",
+    "scales": [
+     500,
+     1500,
+     5000
+    ]
+   },
+   "E3": {
+    "accounts": 40000,
+    "accounts_per_sponsor": null,
+    "basis": "daf-landscape advisor-distribution model; investment management stays with advisors",
+    "cac_bearer": "sponsor",
+    "complex_share_mult": 1.3,
+    "mix": "advisor_distributed",
+    "name": "Wealth-management and advisor-distributed DAF provider",
+    "revenue": "advisor_sponsored",
+    "route": "sponsor_direct",
+    "scales": [
+     10000,
+     40000,
+     200000
+    ]
+   },
+   "E4": {
+    "accounts": 500000,
+    "accounts_per_sponsor": null,
+    "basis": "daf-landscape high-volume-low-balance and embedded models; employer pays acquisition",
+    "cac_bearer": "employer",
+    "complex_share_mult": 1.0,
+    "mix": "digital_minimal",
+    "name": "High-volume workplace giving provider",
+    "revenue": "employer_sponsored",
+    "route": "sponsor_direct",
+    "scales": [
+     100000,
+     500000,
+     2000000
+    ]
+   },
+   "E5": {
+    "accounts": 250000,
+    "accounts_per_sponsor": 5000,
+    "basis": "daf-landscape outsourced-admin/white-label; decisions stay with each sponsor (SPD-ADV-001)",
+    "cac_bearer": "sponsor",
+    "complex_share_mult": 1.0,
+    "mix": "market",
+    "name": "Enterprise outsourced DAF administrator serving many sponsors",
+    "revenue": "institutional_licensing",
+    "route": "via_administrator",
+    "scales": [
+     50000,
+     250000,
+     1000000
+    ]
+   }
+  },
+  "licence": {
+   "basis": "[A] Unbound's vendor cost per account (decision_teams.license_floors) at the stated whole-platform scale, plus markup",
+   "markup": {
+    "high": 0.6,
+    "low": 0.1,
+    "value": 0.3
+   },
+   "platform_accounts": {
+    "adverse": 250000,
+    "base": 1000000,
+    "favourable": 3000000
+   }
+  },
+  "licence_per_account": {
+   "adverse": 48.5981,
+   "base": 27.7738,
+   "favourable": 22.6914
+  },
+  "mc_runs": 300,
+  "seed": 20261124,
+  "theoretical": true
+ },
+ "revenue": {
+  "E1": {
+   "blended_revenue_per_account": 692.75,
+   "margin_C_after_decline": 426.0873,
+   "margin_C_per_account": 581.7873,
+   "model": "asset_tiered_min100",
+   "revenue_after_30pct_market_decline": 537.05
+  },
+  "E2": {
+   "blended_revenue_per_account": 1886.7,
+   "margin_C_after_decline": 854.3558,
+   "margin_C_per_account": 1260.6158,
+   "model": "asset_tiered_min250",
+   "revenue_after_30pct_market_decline": 1480.44
+  },
+  "E3": {
+   "blended_revenue_per_account": 1653.5,
+   "margin_C_after_decline": 1100.2971,
+   "margin_C_per_account": 1459.8471,
+   "model": "advisor_sponsored",
+   "revenue_after_30pct_market_decline": 1293.95
+  },
+  "E4": {
+   "blended_revenue_per_account": 60.4,
+   "margin_C_after_decline": 5.3668,
+   "margin_C_per_account": 5.3668,
+   "model": "employer_sponsored",
+   "revenue_after_30pct_market_decline": 60.4
+  },
+  "E5": {
+   "blended_revenue_per_account": 200.0,
+   "margin_C_after_decline": 45.7052,
+   "margin_C_per_account": 45.7052,
+   "model": "institutional_licensing",
+   "revenue_after_30pct_market_decline": 200.0
+  }
+ },
+ "scales": {
+  "E1": {
+   "10000": {
+    "A": 866.7727,
+    "AL": 432.8348,
+    "B": 712.0658,
+    "C": 190.5466,
+    "D": 187.616
+   },
+   "250000": {
+    "A": 375.6962,
+    "AL": 378.8595,
+    "B": 224.0244,
+    "C": 137.8162,
+    "D": 130.2474
+   },
+   "50000": {
+    "A": 465.3033,
+    "AL": 389.8185,
+    "B": 312.9698,
+    "C": 148.9341,
+    "D": 141.7657
+   }
+  },
+  "E2": {
+   "1500": {
+    "A": 3551.7959,
+    "AL": 1173.64,
+    "B": 3211.3012,
+    "C": 739.0983,
+    "D": 736.9634
+   },
+   "500": {
+    "A": 8992.0292,
+    "AL": 1699.8158,
+    "B": 8658.3986,
+    "C": 1815.1861,
+    "D": 1813.0512
+   },
+   "5000": {
+    "A": 1833.6821,
+    "AL": 971.9996,
+    "B": 1527.0455,
+    "C": 396.0199,
+    "D": 375.24
+   }
+  },
+  "E3": {
+   "10000": {
+    "A": 1269.9162,
+    "AL": 835.6215,
+    "B": 994.7365,
+    "C": 329.0531,
+    "D": 317.716
+   },
+   "200000": {
+    "A": 786.9616,
+    "AL": 784.6911,
+    "B": 522.3254,
+    "C": 275.4721,
+    "D": 262.2227
+   },
+   "40000": {
+    "A": 888.1605,
+    "AL": 797.3581,
+    "B": 621.8314,
+    "C": 288.5844,
+    "D": 275.2385
+   }
+  },
+  "E4": {
+   "100000": {
+    "A": 140.2623,
+    "AL": 108.7668,
+    "B": 110.116,
+    "C": 64.6531,
+    "D": 61.1884
+   },
+   "2000000": {
+    "A": 76.5263,
+    "AL": 101.0019,
+    "B": 46.7495,
+    "C": 57.1344,
+    "D": 54.0017
+   },
+   "500000": {
+    "A": 87.3833,
+    "AL": 102.3381,
+    "B": 57.267,
+    "C": 58.4235,
+    "D": 55.3729
+   }
+  },
+  "E5": {
+   "1000000": {
+    "A": 355.6174,
+    "AL": 380.0795,
+    "B": 203.7728,
+    "C": 189.5459,
+    "D": 185.2651
+   },
+   "250000": {
+    "A": 375.6962,
+    "AL": 383.1495,
+    "B": 224.0244,
+    "C": 192.2662,
+    "D": 187.9974
+   },
+   "50000": {
+    "A": 465.3033,
+    "AL": 396.4185,
+    "B": 312.9698,
+    "C": 208.3341,
+    "D": 202.8157
+   }
+  }
+ },
+ "segment_cost_to_serve": {
+  "E1": {
+   "accounts": 50000,
+   "fixed_per_account": 127.2247,
+   "om": "E1_C",
+   "segments": {
+    "advisor_managed": {
+     "balance": 300000,
+     "fully_allocated_per_account": 214.5097,
+     "fund_borne_per_account": 839.0,
+     "labour_per_account": 57.2299,
+     "marginal_variable_per_account": 87.285,
+     "nonlabour_per_account": 30.0551,
+     "revenue": {
+      "advisor_sponsored": 975.0,
+      "asset_flat_no_min": 1800.0,
+      "asset_tiered_min100": 1800.0,
+      "asset_tiered_min250": 1800.0,
+      "employer_sponsored": 1800.0,
+      "hybrid": 925.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 1800.0
+     }
+    },
+    "highly_active": {
+     "balance": 150000,
+     "fully_allocated_per_account": 292.4152,
+     "fund_borne_per_account": 430.0,
+     "labour_per_account": 119.3385,
+     "marginal_variable_per_account": 165.1905,
+     "nonlabour_per_account": 45.852,
+     "revenue": {
+      "advisor_sponsored": 900.0,
+      "asset_flat_no_min": 900.0,
+      "asset_tiered_min100": 900.0,
+      "asset_tiered_min250": 900.0,
+      "employer_sponsored": 900.0,
+      "hybrid": 475.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 480.0,
+      "transparent_cross_subsidy": 900.0
+     }
+    },
+    "hnw": {
+     "balance": 1500000,
+     "fully_allocated_per_account": 412.1008,
+     "fund_borne_per_account": 4177.5,
+     "labour_per_account": 234.0588,
+     "marginal_variable_per_account": 284.8761,
+     "nonlabour_per_account": 50.8173,
+     "revenue": {
+      "advisor_sponsored": 5500.0,
+      "asset_flat_no_min": 9000.0,
+      "asset_tiered_min100": 5500.0,
+      "asset_tiered_min250": 5500.0,
+      "employer_sponsored": 5500.0,
+      "hybrid": 4525.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 340.0,
+      "transparent_cross_subsidy": 9000.0
+     }
+    },
+    "inactive": {
+     "balance": 3000,
+     "fully_allocated_per_account": 135.6051,
+     "fund_borne_per_account": 8.04,
+     "labour_per_account": 1.9527,
+     "marginal_variable_per_account": 8.3804,
+     "nonlabour_per_account": 6.4277,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 18.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 34.0,
+      "institutional_licensing": 200,
+      "subscription": 0,
+      "transaction": 1.6,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "institutional": {
+     "balance": 10000000,
+     "fully_allocated_per_account": 1100.226,
+     "fund_borne_per_account": 27220.0,
+     "labour_per_account": 838.1613,
+     "marginal_variable_per_account": 973.0013,
+     "nonlabour_per_account": 134.84,
+     "revenue": {
+      "advisor_sponsored": 18750.0,
+      "asset_flat_no_min": 60000.0,
+      "asset_tiered_min100": 18750.0,
+      "asset_tiered_min250": 18750.0,
+      "employer_sponsored": 18750.0,
+      "hybrid": 30025.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 720.0,
+      "transparent_cross_subsidy": 60000.0
+     }
+    },
+    "small_recurring": {
+     "balance": 5000,
+     "fully_allocated_per_account": 150.7853,
+     "fund_borne_per_account": 13.4,
+     "labour_per_account": 12.6326,
+     "marginal_variable_per_account": 23.5606,
+     "nonlabour_per_account": 10.928,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 30.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 40.0,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 20.0,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "typical": {
+     "balance": 60000,
+     "fully_allocated_per_account": 184.2482,
+     "fund_borne_per_account": 174.8,
+     "labour_per_account": 36.8898,
+     "marginal_variable_per_account": 57.0235,
+     "nonlabour_per_account": 20.1337,
+     "revenue": {
+      "advisor_sponsored": 360.0,
+      "asset_flat_no_min": 360.0,
+      "asset_tiered_min100": 360.0,
+      "asset_tiered_min250": 360.0,
+      "employer_sponsored": 360.0,
+      "hybrid": 205.0,
+      "institutional_licensing": 200,
+      "subscription": 60,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 360.0
+     }
+    },
+    "workplace": {
+     "balance": 1500,
+     "fully_allocated_per_account": 140.3266,
+     "fund_borne_per_account": 4.02,
+     "labour_per_account": 4.9251,
+     "marginal_variable_per_account": 13.1019,
+     "nonlabour_per_account": 8.1768,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 9.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 12,
+      "hybrid": 29.5,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 16.4,
+      "transparent_cross_subsidy": 0
+     }
+    }
+   }
+  },
+  "E2": {
+   "accounts": 1500,
+   "fixed_per_account": 2303.6047,
+   "om": "E2_C",
+   "segments": {
+    "advisor_managed": {
+     "balance": 300000,
+     "fully_allocated_per_account": 2402.2413,
+     "fund_borne_per_account": 856.5,
+     "labour_per_account": 69.0878,
+     "marginal_variable_per_account": 98.6366,
+     "nonlabour_per_account": 29.5489,
+     "revenue": {
+      "advisor_sponsored": 975.0,
+      "asset_flat_no_min": 1800.0,
+      "asset_tiered_min100": 1800.0,
+      "asset_tiered_min250": 1800.0,
+      "employer_sponsored": 1800.0,
+      "hybrid": 925.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 1800.0
+     }
+    },
+    "highly_active": {
+     "balance": 150000,
+     "fully_allocated_per_account": 2478.0903,
+     "fund_borne_per_account": 444.0,
+     "labour_per_account": 128.8236,
+     "marginal_variable_per_account": 174.4856,
+     "nonlabour_per_account": 45.662,
+     "revenue": {
+      "advisor_sponsored": 900.0,
+      "asset_flat_no_min": 900.0,
+      "asset_tiered_min100": 900.0,
+      "asset_tiered_min250": 900.0,
+      "employer_sponsored": 900.0,
+      "hybrid": 475.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 480.0,
+      "transparent_cross_subsidy": 900.0
+     }
+    },
+    "hnw": {
+     "balance": 1500000,
+     "fully_allocated_per_account": 2639.0108,
+     "fund_borne_per_account": 4256.25,
+     "labour_per_account": 287.4227,
+     "marginal_variable_per_account": 335.4061,
+     "nonlabour_per_account": 47.9834,
+     "revenue": {
+      "advisor_sponsored": 5500.0,
+      "asset_flat_no_min": 9000.0,
+      "asset_tiered_min100": 5500.0,
+      "asset_tiered_min250": 5500.0,
+      "employer_sponsored": 5500.0,
+      "hybrid": 4525.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 340.0,
+      "transparent_cross_subsidy": 9000.0
+     }
+    },
+    "inactive": {
+     "balance": 3000,
+     "fully_allocated_per_account": 2311.9851,
+     "fund_borne_per_account": 8.04,
+     "labour_per_account": 1.9527,
+     "marginal_variable_per_account": 8.3804,
+     "nonlabour_per_account": 6.4277,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 18.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 34.0,
+      "institutional_licensing": 200,
+      "subscription": 0,
+      "transaction": 1.6,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "institutional": {
+     "balance": 10000000,
+     "fully_allocated_per_account": 3407.5185,
+     "fund_borne_per_account": 27430.0,
+     "labour_per_account": 980.4738,
+     "marginal_variable_per_account": 1103.9138,
+     "nonlabour_per_account": 123.44,
+     "revenue": {
+      "advisor_sponsored": 18750.0,
+      "asset_flat_no_min": 60000.0,
+      "asset_tiered_min100": 18750.0,
+      "asset_tiered_min250": 18750.0,
+      "employer_sponsored": 18750.0,
+      "hybrid": 30025.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 720.0,
+      "transparent_cross_subsidy": 60000.0
+     }
+    },
+    "small_recurring": {
+     "balance": 5000,
+     "fully_allocated_per_account": 2327.1653,
+     "fund_borne_per_account": 13.4,
+     "labour_per_account": 12.6326,
+     "marginal_variable_per_account": 23.5606,
+     "nonlabour_per_account": 10.928,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 30.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 40.0,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 20.0,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "typical": {
+     "balance": 60000,
+     "fully_allocated_per_account": 2365.2751,
+     "fund_borne_per_account": 181.8,
+     "labour_per_account": 41.6323,
+     "marginal_variable_per_account": 61.6704,
+     "nonlabour_per_account": 20.038,
+     "revenue": {
+      "advisor_sponsored": 360.0,
+      "asset_flat_no_min": 360.0,
+      "asset_tiered_min100": 360.0,
+      "asset_tiered_min250": 360.0,
+      "employer_sponsored": 360.0,
+      "hybrid": 205.0,
+      "institutional_licensing": 200,
+      "subscription": 60,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 360.0
+     }
+    }
+   }
+  },
+  "E3": {
+   "accounts": 40000,
+   "fixed_per_account": 145.5983,
+   "om": "E3_C",
+   "segments": {
+    "advisor_managed": {
+     "balance": 300000,
+     "fully_allocated_per_account": 239.6943,
+     "fund_borne_per_account": 849.5,
+     "labour_per_account": 64.3446,
+     "marginal_variable_per_account": 94.096,
+     "nonlabour_per_account": 29.7514,
+     "revenue": {
+      "advisor_sponsored": 975.0,
+      "asset_flat_no_min": 1800.0,
+      "asset_tiered_min100": 1800.0,
+      "asset_tiered_min250": 1800.0,
+      "employer_sponsored": 1800.0,
+      "hybrid": 925.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 1800.0
+     }
+    },
+    "hnw": {
+     "balance": 1500000,
+     "fully_allocated_per_account": 460.7924,
+     "fund_borne_per_account": 4224.75,
+     "labour_per_account": 266.0772,
+     "marginal_variable_per_account": 315.1941,
+     "nonlabour_per_account": 49.1169,
+     "revenue": {
+      "advisor_sponsored": 5500.0,
+      "asset_flat_no_min": 9000.0,
+      "asset_tiered_min100": 5500.0,
+      "asset_tiered_min250": 5500.0,
+      "employer_sponsored": 5500.0,
+      "hybrid": 4525.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 340.0,
+      "transparent_cross_subsidy": 9000.0
+     }
+    },
+    "inactive": {
+     "balance": 3000,
+     "fully_allocated_per_account": 153.9787,
+     "fund_borne_per_account": 8.04,
+     "labour_per_account": 1.9527,
+     "marginal_variable_per_account": 8.3804,
+     "nonlabour_per_account": 6.4277,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 18.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 34.0,
+      "institutional_licensing": 200,
+      "subscription": 0,
+      "transaction": 1.6,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "typical": {
+     "balance": 60000,
+     "fully_allocated_per_account": 205.4099,
+     "fund_borne_per_account": 179.0,
+     "labour_per_account": 39.7353,
+     "marginal_variable_per_account": 59.8116,
+     "nonlabour_per_account": 20.0763,
+     "revenue": {
+      "advisor_sponsored": 360.0,
+      "asset_flat_no_min": 360.0,
+      "asset_tiered_min100": 360.0,
+      "asset_tiered_min250": 360.0,
+      "employer_sponsored": 360.0,
+      "hybrid": 205.0,
+      "institutional_licensing": 200,
+      "subscription": 60,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 360.0
+     }
+    }
+   }
+  },
+  "E4": {
+   "accounts": 500000,
+   "fixed_per_account": 32.8355,
+   "om": "E4_C",
+   "segments": {
+    "inactive": {
+     "balance": 3000,
+     "fully_allocated_per_account": 41.2159,
+     "fund_borne_per_account": 8.04,
+     "labour_per_account": 1.9527,
+     "marginal_variable_per_account": 8.3804,
+     "nonlabour_per_account": 6.4277,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 18.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 34.0,
+      "institutional_licensing": 200,
+      "subscription": 0,
+      "transaction": 1.6,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "small_recurring": {
+     "balance": 5000,
+     "fully_allocated_per_account": 56.3961,
+     "fund_borne_per_account": 13.4,
+     "labour_per_account": 12.6326,
+     "marginal_variable_per_account": 23.5606,
+     "nonlabour_per_account": 10.928,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 30.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 40.0,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 20.0,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "workplace": {
+     "balance": 1500,
+     "fully_allocated_per_account": 45.9374,
+     "fund_borne_per_account": 4.02,
+     "labour_per_account": 4.9251,
+     "marginal_variable_per_account": 13.1019,
+     "nonlabour_per_account": 8.1768,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 9.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 12,
+      "hybrid": 29.5,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 16.4,
+      "transparent_cross_subsidy": 0
+     }
+    }
+   }
+  },
+  "E5": {
+   "accounts": 250000,
+   "fixed_per_account": 44.849,
+   "om": "E5_C",
+   "segments": {
+    "advisor_managed": {
+     "balance": 300000,
+     "fully_allocated_per_account": 132.134,
+     "fund_borne_per_account": 839.0,
+     "labour_per_account": 57.2299,
+     "marginal_variable_per_account": 87.285,
+     "nonlabour_per_account": 30.0551,
+     "revenue": {
+      "advisor_sponsored": 975.0,
+      "asset_flat_no_min": 1800.0,
+      "asset_tiered_min100": 1800.0,
+      "asset_tiered_min250": 1800.0,
+      "employer_sponsored": 1800.0,
+      "hybrid": 925.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 1800.0
+     }
+    },
+    "highly_active": {
+     "balance": 150000,
+     "fully_allocated_per_account": 210.0396,
+     "fund_borne_per_account": 430.0,
+     "labour_per_account": 119.3385,
+     "marginal_variable_per_account": 165.1905,
+     "nonlabour_per_account": 45.852,
+     "revenue": {
+      "advisor_sponsored": 900.0,
+      "asset_flat_no_min": 900.0,
+      "asset_tiered_min100": 900.0,
+      "asset_tiered_min250": 900.0,
+      "employer_sponsored": 900.0,
+      "hybrid": 475.0,
+      "institutional_licensing": 200,
+      "subscription": 240,
+      "transaction": 480.0,
+      "transparent_cross_subsidy": 900.0
+     }
+    },
+    "hnw": {
+     "balance": 1500000,
+     "fully_allocated_per_account": 329.7251,
+     "fund_borne_per_account": 4177.5,
+     "labour_per_account": 234.0588,
+     "marginal_variable_per_account": 284.8761,
+     "nonlabour_per_account": 50.8173,
+     "revenue": {
+      "advisor_sponsored": 5500.0,
+      "asset_flat_no_min": 9000.0,
+      "asset_tiered_min100": 5500.0,
+      "asset_tiered_min250": 5500.0,
+      "employer_sponsored": 5500.0,
+      "hybrid": 4525.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 340.0,
+      "transparent_cross_subsidy": 9000.0
+     }
+    },
+    "inactive": {
+     "balance": 3000,
+     "fully_allocated_per_account": 53.2294,
+     "fund_borne_per_account": 8.04,
+     "labour_per_account": 1.9527,
+     "marginal_variable_per_account": 8.3804,
+     "nonlabour_per_account": 6.4277,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 18.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 34.0,
+      "institutional_licensing": 200,
+      "subscription": 0,
+      "transaction": 1.6,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "institutional": {
+     "balance": 10000000,
+     "fully_allocated_per_account": 1017.8504,
+     "fund_borne_per_account": 27220.0,
+     "labour_per_account": 838.1613,
+     "marginal_variable_per_account": 973.0013,
+     "nonlabour_per_account": 134.84,
+     "revenue": {
+      "advisor_sponsored": 18750.0,
+      "asset_flat_no_min": 60000.0,
+      "asset_tiered_min100": 18750.0,
+      "asset_tiered_min250": 18750.0,
+      "employer_sponsored": 18750.0,
+      "hybrid": 30025.0,
+      "institutional_licensing": 200,
+      "subscription": 480,
+      "transaction": 720.0,
+      "transparent_cross_subsidy": 60000.0
+     }
+    },
+    "small_recurring": {
+     "balance": 5000,
+     "fully_allocated_per_account": 68.4096,
+     "fund_borne_per_account": 13.4,
+     "labour_per_account": 12.6326,
+     "marginal_variable_per_account": 23.5606,
+     "nonlabour_per_account": 10.928,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 30.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 100,
+      "hybrid": 40.0,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 20.0,
+      "transparent_cross_subsidy": 0
+     }
+    },
+    "typical": {
+     "balance": 60000,
+     "fully_allocated_per_account": 101.8725,
+     "fund_borne_per_account": 174.8,
+     "labour_per_account": 36.8898,
+     "marginal_variable_per_account": 57.0235,
+     "nonlabour_per_account": 20.1337,
+     "revenue": {
+      "advisor_sponsored": 360.0,
+      "asset_flat_no_min": 360.0,
+      "asset_tiered_min100": 360.0,
+      "asset_tiered_min250": 360.0,
+      "employer_sponsored": 360.0,
+      "hybrid": 205.0,
+      "institutional_licensing": 200,
+      "subscription": 60,
+      "transaction": 216.0,
+      "transparent_cross_subsidy": 360.0
+     }
+    },
+    "workplace": {
+     "balance": 1500,
+     "fully_allocated_per_account": 57.9509,
+     "fund_borne_per_account": 4.02,
+     "labour_per_account": 4.9251,
+     "marginal_variable_per_account": 13.1019,
+     "nonlabour_per_account": 8.1768,
+     "revenue": {
+      "advisor_sponsored": 100,
+      "asset_flat_no_min": 9.0,
+      "asset_tiered_min100": 100,
+      "asset_tiered_min250": 250,
+      "employer_sponsored": 12,
+      "hybrid": 29.5,
+      "institutional_licensing": 200,
+      "subscription": 36,
+      "transaction": 16.4,
+      "transparent_cross_subsidy": 0
+     }
+    }
+   }
+  }
+ },
+ "sensitivity": {
+  "E1": [
+   {
+    "base": 148.9341,
+    "cost_at_high": 186.038,
+    "cost_at_low": 141.9051,
+    "enterprise": "E1",
+    "high_value": 135,
+    "label": "A",
+    "low_value": 30,
+    "parameter": "minutes_per_exception",
+    "swing": 44.1329
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 170.9474,
+    "cost_at_low": 138.4473,
+    "enterprise": "E1",
+    "high_value": 250000,
+    "label": "A",
+    "low_value": 124507,
+    "parameter": "loaded_cost_per_fte",
+    "swing": 32.5002
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 168.4913,
+    "cost_at_low": 136.5261,
+    "enterprise": "E1",
+    "high_value": 0.17,
+    "label": "A",
+    "low_value": 0.028,
+    "parameter": "exception_rate",
+    "swing": 31.9651
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 158.1708,
+    "cost_at_low": 143.4264,
+    "enterprise": "E1",
+    "high_value": 2.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "contacts_mult",
+    "swing": 14.7444
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 150.8587,
+    "cost_at_low": 147.2841,
+    "enterprise": "E1",
+    "high_value": 0.03,
+    "label": "A",
+    "low_value": 0.002,
+    "parameter": "recon_break_rate",
+    "swing": 3.5746
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 150.3535,
+    "cost_at_low": 147.5147,
+    "enterprise": "E1",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.1,
+    "parameter": "ach_grant_cost",
+    "swing": 2.8388
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 4.0,
+    "label": "S",
+    "low_value": 0.45,
+    "parameter": "ai_cost_per_dossier",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.02,
+    "parameter": "ai_cost_per_interaction",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 0.14,
+    "label": "S",
+    "low_value": 0.14,
+    "parameter": "routine_eligibility_per_grant",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 1000,
+    "label": "A",
+    "low_value": 150,
+    "parameter": "cac",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 6.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "infra_per_account",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 148.9341,
+    "cost_at_low": 148.9341,
+    "enterprise": "E1",
+    "high_value": 30,
+    "label": "A",
+    "low_value": 6,
+    "parameter": "complex_hours",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 149.0883,
+    "cost_at_low": 143.8518,
+    "enterprise": "E1",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:favourable",
+    "swing": 0.0
+   },
+   {
+    "base": 148.9341,
+    "cost_at_high": 180.9735,
+    "cost_at_low": 169.7585,
+    "enterprise": "E1",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:adverse",
+    "swing": 0.0
+   }
+  ],
+  "E2": [
+   {
+    "base": 739.0983,
+    "cost_at_high": 891.815,
+    "cost_at_low": 666.3459,
+    "enterprise": "E2",
+    "high_value": 250000,
+    "label": "A",
+    "low_value": 124507,
+    "parameter": "loaded_cost_per_fte",
+    "swing": 225.4691
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 741.2486,
+    "cost_at_low": 736.9481,
+    "enterprise": "E2",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.1,
+    "parameter": "ach_grant_cost",
+    "swing": 4.3005
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 740.8143,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 135,
+    "label": "A",
+    "low_value": 30,
+    "parameter": "minutes_per_exception",
+    "swing": 1.716
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 4.0,
+    "label": "S",
+    "low_value": 0.45,
+    "parameter": "ai_cost_per_dossier",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.02,
+    "parameter": "ai_cost_per_interaction",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 0.17,
+    "label": "A",
+    "low_value": 0.028,
+    "parameter": "exception_rate",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 0.14,
+    "label": "S",
+    "low_value": 0.14,
+    "parameter": "routine_eligibility_per_grant",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 1000,
+    "label": "A",
+    "low_value": 150,
+    "parameter": "cac",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 2.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "contacts_mult",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 0.03,
+    "label": "A",
+    "low_value": 0.002,
+    "parameter": "recon_break_rate",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 6.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "infra_per_account",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.0983,
+    "cost_at_low": 739.0983,
+    "enterprise": "E2",
+    "high_value": 30,
+    "label": "A",
+    "low_value": 6,
+    "parameter": "complex_hours",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 739.2525,
+    "cost_at_low": 734.016,
+    "enterprise": "E2",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:favourable",
+    "swing": 0.0
+   },
+   {
+    "base": 739.0983,
+    "cost_at_high": 771.1377,
+    "cost_at_low": 759.9227,
+    "enterprise": "E2",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:adverse",
+    "swing": 0.0
+   }
+  ],
+  "E3": [
+   {
+    "base": 288.5844,
+    "cost_at_high": 341.1446,
+    "cost_at_low": 263.5454,
+    "enterprise": "E3",
+    "high_value": 250000,
+    "label": "A",
+    "low_value": 124507,
+    "parameter": "loaded_cost_per_fte",
+    "swing": 77.5992
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 352.9229,
+    "cost_at_low": 277.6177,
+    "enterprise": "E3",
+    "high_value": 135,
+    "label": "A",
+    "low_value": 30,
+    "parameter": "minutes_per_exception",
+    "swing": 75.3052
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 324.1155,
+    "cost_at_low": 268.6813,
+    "enterprise": "E3",
+    "high_value": 0.17,
+    "label": "A",
+    "low_value": 0.028,
+    "parameter": "exception_rate",
+    "swing": 55.4342
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 307.0042,
+    "cost_at_low": 279.3477,
+    "enterprise": "E3",
+    "high_value": 2.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "contacts_mult",
+    "swing": 27.6565
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 290.6469,
+    "cost_at_low": 286.5219,
+    "enterprise": "E3",
+    "high_value": 0.03,
+    "label": "A",
+    "low_value": 0.002,
+    "parameter": "recon_break_rate",
+    "swing": 4.125
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 290.4931,
+    "cost_at_low": 286.6758,
+    "enterprise": "E3",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.1,
+    "parameter": "ach_grant_cost",
+    "swing": 3.8173
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 4.0,
+    "label": "S",
+    "low_value": 0.45,
+    "parameter": "ai_cost_per_dossier",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.02,
+    "parameter": "ai_cost_per_interaction",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 0.14,
+    "label": "S",
+    "low_value": 0.14,
+    "parameter": "routine_eligibility_per_grant",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 1000,
+    "label": "A",
+    "low_value": 150,
+    "parameter": "cac",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 6.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "infra_per_account",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.5844,
+    "cost_at_low": 288.5844,
+    "enterprise": "E3",
+    "high_value": 30,
+    "label": "A",
+    "low_value": 6,
+    "parameter": "complex_hours",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 288.7386,
+    "cost_at_low": 283.5021,
+    "enterprise": "E3",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:favourable",
+    "swing": 0.0
+   },
+   {
+    "base": 288.5844,
+    "cost_at_high": 320.6238,
+    "cost_at_low": 309.4088,
+    "enterprise": "E3",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:adverse",
+    "swing": 0.0
+   }
+  ],
+  "E4": [
+   {
+    "base": 58.4235,
+    "cost_at_high": 64.7959,
+    "cost_at_low": 57.3614,
+    "enterprise": "E4",
+    "high_value": 135,
+    "label": "A",
+    "low_value": 30,
+    "parameter": "minutes_per_exception",
+    "swing": 7.4345
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 62.6699,
+    "cost_at_low": 56.4006,
+    "enterprise": "E4",
+    "high_value": 250000,
+    "label": "A",
+    "low_value": 124507,
+    "parameter": "loaded_cost_per_fte",
+    "swing": 6.2693
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 62.115,
+    "cost_at_low": 56.4729,
+    "enterprise": "E4",
+    "high_value": 0.17,
+    "label": "A",
+    "low_value": 0.028,
+    "parameter": "exception_rate",
+    "swing": 5.6421
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 61.876,
+    "cost_at_low": 56.7798,
+    "enterprise": "E4",
+    "high_value": 2.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "contacts_mult",
+    "swing": 5.0962
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 60.4764,
+    "cost_at_low": 57.7386,
+    "enterprise": "E4",
+    "high_value": 0.03,
+    "label": "A",
+    "low_value": 0.002,
+    "parameter": "recon_break_rate",
+    "swing": 2.7378
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 59.0147,
+    "cost_at_low": 57.8323,
+    "enterprise": "E4",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.1,
+    "parameter": "ach_grant_cost",
+    "swing": 1.1823
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 4.0,
+    "label": "S",
+    "low_value": 0.45,
+    "parameter": "ai_cost_per_dossier",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.02,
+    "parameter": "ai_cost_per_interaction",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 0.14,
+    "label": "S",
+    "low_value": 0.14,
+    "parameter": "routine_eligibility_per_grant",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 1000,
+    "label": "A",
+    "low_value": 150,
+    "parameter": "cac",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 6.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "infra_per_account",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.4235,
+    "cost_at_low": 58.4235,
+    "enterprise": "E4",
+    "high_value": 30,
+    "label": "A",
+    "low_value": 6,
+    "parameter": "complex_hours",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 58.5777,
+    "cost_at_low": 53.3412,
+    "enterprise": "E4",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:favourable",
+    "swing": 0.0
+   },
+   {
+    "base": 58.4235,
+    "cost_at_high": 90.4628,
+    "cost_at_low": 79.2479,
+    "enterprise": "E4",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:adverse",
+    "swing": 0.0
+   }
+  ],
+  "E5": [
+   {
+    "base": 192.2662,
+    "cost_at_high": 241.7523,
+    "cost_at_low": 168.6916,
+    "enterprise": "E5",
+    "high_value": 250000,
+    "label": "A",
+    "low_value": 124507,
+    "parameter": "loaded_cost_per_fte",
+    "swing": 73.0607
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 201.6716,
+    "cost_at_low": 187.9098,
+    "enterprise": "E5",
+    "high_value": 2.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "contacts_mult",
+    "swing": 13.7618
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 195.004,
+    "cost_at_low": 191.5032,
+    "enterprise": "E5",
+    "high_value": 0.03,
+    "label": "A",
+    "low_value": 0.002,
+    "parameter": "recon_break_rate",
+    "swing": 3.5008
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 194.7647,
+    "cost_at_low": 191.8132,
+    "enterprise": "E5",
+    "high_value": 135,
+    "label": "A",
+    "low_value": 30,
+    "parameter": "minutes_per_exception",
+    "swing": 2.9515
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 193.6856,
+    "cost_at_low": 190.8468,
+    "enterprise": "E5",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.1,
+    "parameter": "ach_grant_cost",
+    "swing": 2.8388
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 193.6596,
+    "cost_at_low": 191.4357,
+    "enterprise": "E5",
+    "high_value": 0.17,
+    "label": "A",
+    "low_value": 0.028,
+    "parameter": "exception_rate",
+    "swing": 2.2239
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 4.0,
+    "label": "S",
+    "low_value": 0.45,
+    "parameter": "ai_cost_per_dossier",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 0.5,
+    "label": "A",
+    "low_value": 0.02,
+    "parameter": "ai_cost_per_interaction",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 0.14,
+    "label": "S",
+    "low_value": 0.14,
+    "parameter": "routine_eligibility_per_grant",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 1000,
+    "label": "A",
+    "low_value": 150,
+    "parameter": "cac",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 6.0,
+    "label": "A",
+    "low_value": 0.5,
+    "parameter": "infra_per_account",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.2662,
+    "cost_at_low": 192.2662,
+    "enterprise": "E5",
+    "high_value": 30,
+    "label": "A",
+    "low_value": 6,
+    "parameter": "complex_hours",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 192.4204,
+    "cost_at_low": 187.1839,
+    "enterprise": "E5",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:favourable",
+    "swing": 0.0
+   },
+   {
+    "base": 192.2662,
+    "cost_at_high": 224.3055,
+    "cost_at_low": 213.0906,
+    "enterprise": "E5",
+    "high_value": "",
+    "label": "A",
+    "low_value": "",
+    "parameter": "licence:adverse",
+    "swing": 0.0
+   }
+  ]
+ },
+ "stress": {
+  "E1": [
+   {
+    "delta_vs_normal": 0.8666,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 10.3439,
+    "recovery_days_max_queue": 23,
+    "scenario": "december_peak",
+    "sla_attainment_exceptions": 0.7286,
+    "total_economic_admin_per_account": 149.8007,
+    "uncontained_exposure_usd": 150802.5
+   },
+   {
+    "delta_vs_normal": -2.3058,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 5.9315,
+    "recovery_days_max_queue": 24,
+    "scenario": "market_downturn",
+    "sla_attainment_exceptions": 0.8743,
+    "total_economic_admin_per_account": 146.6283,
+    "uncontained_exposure_usd": 5129602.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 3.9377,
+    "recovery_days_max_queue": 0,
+    "scenario": "payment_failures",
+    "sla_attainment_exceptions": 0.95,
+    "total_economic_admin_per_account": 148.9341,
+    "uncontained_exposure_usd": 154956.58
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 3.6916,
+    "recovery_days_max_queue": 0,
+    "scenario": "fraud_attempts",
+    "sla_attainment_exceptions": 0.9509,
+    "total_economic_admin_per_account": 148.9341,
+    "uncontained_exposure_usd": 246802.5
+   },
+   {
+    "delta_vs_normal": 0.695,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 5.9533,
+    "recovery_days_max_queue": 29,
+    "scenario": "staff_absence",
+    "sla_attainment_exceptions": 0.85,
+    "total_economic_admin_per_account": 149.6291,
+    "uncontained_exposure_usd": 150802.5
+   },
+   {
+    "delta_vs_normal": 0.2917,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 3.9377,
+    "recovery_days_max_queue": 41,
+    "scenario": "vendor_outage",
+    "sla_attainment_exceptions": 0.95,
+    "total_economic_admin_per_account": 149.2259,
+    "uncontained_exposure_usd": 175726.98
+   },
+   {
+    "delta_vs_normal": 0.7465,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 4.9611,
+    "recovery_days_max_queue": 41,
+    "scenario": "ai_outage",
+    "sla_attainment_exceptions": 0.91,
+    "total_economic_admin_per_account": 149.6806,
+    "uncontained_exposure_usd": 150802.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 3.6916,
+    "recovery_days_max_queue": 0,
+    "scenario": "incorrect_ai_outputs",
+    "sla_attainment_exceptions": 0.9503,
+    "total_economic_admin_per_account": 148.9341,
+    "uncontained_exposure_usd": 325273.86
+   },
+   {
+    "delta_vs_normal": 4.9305,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 7.2647,
+    "recovery_days_max_queue": 44,
+    "scenario": "regulatory_change",
+    "sla_attainment_exceptions": 0.8278,
+    "total_economic_admin_per_account": 153.8646,
+    "uncontained_exposure_usd": 150802.5
+   },
+   {
+    "delta_vs_normal": 5.1004,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 18,
+    "scenario": "sponsor_termination",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 154.0345,
+    "uncontained_exposure_usd": 139906.2
+   },
+   {
+    "delta_vs_normal": 1.819,
+    "enterprise": "E1",
+    "p90_wait_days_exceptions": 11.9662,
+    "recovery_days_max_queue": 52,
+    "scenario": "simultaneous_failures",
+    "sla_attainment_exceptions": 0.7292,
+    "total_economic_admin_per_account": 150.7531,
+    "uncontained_exposure_usd": 290378.34
+   }
+  ],
+  "E2": [
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "december_peak",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 6566.8275
+   },
+   {
+    "delta_vs_normal": -9.2305,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "market_downturn",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 729.8678,
+    "uncontained_exposure_usd": 539096.8275
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "payment_failures",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 7019.8095
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "fraud_attempts",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 9446.8275
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "staff_absence",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 6566.8275
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "vendor_outage",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 9284.7195
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "ai_outage",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 6566.8275
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "incorrect_ai_outputs",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 25592.0715
+   },
+   {
+    "delta_vs_normal": 100.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "regulatory_change",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 839.0983,
+    "uncontained_exposure_usd": 6566.8275
+   },
+   {
+    "delta_vs_normal": 78.1721,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "sponsor_termination",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 817.2704,
+    "uncontained_exposure_usd": 5994.8082
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E2",
+    "p90_wait_days_exceptions": 0.3379,
+    "recovery_days_max_queue": 0,
+    "scenario": "simultaneous_failures",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 739.0983,
+    "uncontained_exposure_usd": 21358.7595
+   }
+  ],
+  "E3": [
+   {
+    "delta_vs_normal": 2.0914,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 11.4411,
+    "recovery_days_max_queue": 31,
+    "scenario": "december_peak",
+    "sla_attainment_exceptions": 0.7143,
+    "total_economic_admin_per_account": 290.6758,
+    "uncontained_exposure_usd": 266383.6
+   },
+   {
+    "delta_vs_normal": -6.4091,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 6.8606,
+    "recovery_days_max_queue": 20,
+    "scenario": "market_downturn",
+    "sla_attainment_exceptions": 0.8533,
+    "total_economic_admin_per_account": 282.1754,
+    "uncontained_exposure_usd": 11429983.6
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 4.9555,
+    "recovery_days_max_queue": 0,
+    "scenario": "payment_failures",
+    "sla_attainment_exceptions": 0.91,
+    "total_economic_admin_per_account": 288.5844,
+    "uncontained_exposure_usd": 272975.96
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 4.6458,
+    "recovery_days_max_queue": 0,
+    "scenario": "fraud_attempts",
+    "sla_attainment_exceptions": 0.9109,
+    "total_economic_admin_per_account": 288.5844,
+    "uncontained_exposure_usd": 343183.6
+   },
+   {
+    "delta_vs_normal": 1.6838,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 6.2882,
+    "recovery_days_max_queue": 29,
+    "scenario": "staff_absence",
+    "sla_attainment_exceptions": 0.81,
+    "total_economic_admin_per_account": 290.2683,
+    "uncontained_exposure_usd": 266383.6
+   },
+   {
+    "delta_vs_normal": 0.4826,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 4.9555,
+    "recovery_days_max_queue": 37,
+    "scenario": "vendor_outage",
+    "sla_attainment_exceptions": 0.91,
+    "total_economic_admin_per_account": 289.0671,
+    "uncontained_exposure_usd": 305937.76
+   },
+   {
+    "delta_vs_normal": 1.4479,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 5.2875,
+    "recovery_days_max_queue": 37,
+    "scenario": "ai_outage",
+    "sla_attainment_exceptions": 0.89,
+    "total_economic_admin_per_account": 290.0323,
+    "uncontained_exposure_usd": 266383.6
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 4.6458,
+    "recovery_days_max_queue": 0,
+    "scenario": "incorrect_ai_outputs",
+    "sla_attainment_exceptions": 0.9103,
+    "total_economic_admin_per_account": 288.5844,
+    "uncontained_exposure_usd": 543262.72
+   },
+   {
+    "delta_vs_normal": 4.9941,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 8.1791,
+    "recovery_days_max_queue": 40,
+    "scenario": "regulatory_change",
+    "sla_attainment_exceptions": 0.8145,
+    "total_economic_admin_per_account": 293.5785,
+    "uncontained_exposure_usd": 266383.6
+   },
+   {
+    "delta_vs_normal": 6.9523,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 0.0,
+    "recovery_days_max_queue": 0,
+    "scenario": "sponsor_termination",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 295.5367,
+    "uncontained_exposure_usd": 240177.568
+   },
+   {
+    "delta_vs_normal": 3.314,
+    "enterprise": "E3",
+    "p90_wait_days_exceptions": 13.3453,
+    "recovery_days_max_queue": 54,
+    "scenario": "simultaneous_failures",
+    "sla_attainment_exceptions": 0.7292,
+    "total_economic_admin_per_account": 291.8985,
+    "uncontained_exposure_usd": 537690.88
+   }
+  ],
+  "E4": [
+   {
+    "delta_vs_normal": 0.0824,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 14.1963,
+    "recovery_days_max_queue": 32,
+    "scenario": "december_peak",
+    "sla_attainment_exceptions": 0.7,
+    "total_economic_admin_per_account": 58.5059,
+    "uncontained_exposure_usd": 642937.5
+   },
+   {
+    "delta_vs_normal": -0.0101,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 8.2912,
+    "recovery_days_max_queue": 22,
+    "scenario": "market_downturn",
+    "sla_attainment_exceptions": 0.8219,
+    "total_economic_admin_per_account": 58.4134,
+    "uncontained_exposure_usd": 1580437.5
+   },
+   {
+    "delta_vs_normal": 0.1501,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 6.7122,
+    "recovery_days_max_queue": 25,
+    "scenario": "payment_failures",
+    "sla_attainment_exceptions": 0.86,
+    "total_economic_admin_per_account": 58.5736,
+    "uncontained_exposure_usd": 643633.5
+   },
+   {
+    "delta_vs_normal": 0.1673,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 8.6631,
+    "recovery_days_max_queue": 14,
+    "scenario": "fraud_attempts",
+    "sla_attainment_exceptions": 0.7455,
+    "total_economic_admin_per_account": 58.5908,
+    "uncontained_exposure_usd": 1602937.5
+   },
+   {
+    "delta_vs_normal": 0.0729,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 7.951,
+    "recovery_days_max_queue": 27,
+    "scenario": "staff_absence",
+    "sla_attainment_exceptions": 0.8,
+    "total_economic_admin_per_account": 58.4964,
+    "uncontained_exposure_usd": 642937.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 6.7122,
+    "recovery_days_max_queue": 77,
+    "scenario": "vendor_outage",
+    "sla_attainment_exceptions": 0.86,
+    "total_economic_admin_per_account": 58.4235,
+    "uncontained_exposure_usd": 647113.5
+   },
+   {
+    "delta_vs_normal": 0.0661,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 6.8018,
+    "recovery_days_max_queue": 45,
+    "scenario": "ai_outage",
+    "sla_attainment_exceptions": 0.79,
+    "total_economic_admin_per_account": 58.4896,
+    "uncontained_exposure_usd": 642937.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 6.7122,
+    "recovery_days_max_queue": 0,
+    "scenario": "incorrect_ai_outputs",
+    "sla_attainment_exceptions": 0.8617,
+    "total_economic_admin_per_account": 58.4235,
+    "uncontained_exposure_usd": 672169.5
+   },
+   {
+    "delta_vs_normal": 1.2558,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 13.1735,
+    "recovery_days_max_queue": 80,
+    "scenario": "regulatory_change",
+    "sla_attainment_exceptions": 0.5063,
+    "total_economic_admin_per_account": 59.6793,
+    "uncontained_exposure_usd": 642937.5
+   },
+   {
+    "delta_vs_normal": 3.2401,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 0.1721,
+    "recovery_days_max_queue": 124,
+    "scenario": "sponsor_termination",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 61.6636,
+    "uncontained_exposure_usd": 637785.0
+   },
+   {
+    "delta_vs_normal": 0.1175,
+    "enterprise": "E4",
+    "p90_wait_days_exceptions": 15.7536,
+    "recovery_days_max_queue": 60,
+    "scenario": "simultaneous_failures",
+    "sla_attainment_exceptions": 0.7292,
+    "total_economic_admin_per_account": 58.541,
+    "uncontained_exposure_usd": 667021.5
+   }
+  ],
+  "E5": [
+   {
+    "delta_vs_normal": 0.568,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 14.1913,
+    "recovery_days_max_queue": 36,
+    "scenario": "december_peak",
+    "sla_attainment_exceptions": 0.7,
+    "total_economic_admin_per_account": 192.8342,
+    "uncontained_exposure_usd": 754012.5
+   },
+   {
+    "delta_vs_normal": -2.4191,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 8.4591,
+    "recovery_days_max_queue": 26,
+    "scenario": "market_downturn",
+    "sla_attainment_exceptions": 0.8219,
+    "total_economic_admin_per_account": 189.8471,
+    "uncontained_exposure_usd": 25648012.5
+   },
+   {
+    "delta_vs_normal": 0.1716,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 7.0051,
+    "recovery_days_max_queue": 20,
+    "scenario": "payment_failures",
+    "sla_attainment_exceptions": 0.86,
+    "total_economic_admin_per_account": 192.4378,
+    "uncontained_exposure_usd": 774782.9
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 6.5673,
+    "recovery_days_max_queue": 0,
+    "scenario": "fraud_attempts",
+    "sla_attainment_exceptions": 0.8624,
+    "total_economic_admin_per_account": 192.2662,
+    "uncontained_exposure_usd": 1234012.5
+   },
+   {
+    "delta_vs_normal": 0.4256,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 8.3202,
+    "recovery_days_max_queue": 32,
+    "scenario": "staff_absence",
+    "sla_attainment_exceptions": 0.8,
+    "total_economic_admin_per_account": 192.6918,
+    "uncontained_exposure_usd": 754012.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 7.0051,
+    "recovery_days_max_queue": 77,
+    "scenario": "vendor_outage",
+    "sla_attainment_exceptions": 0.86,
+    "total_economic_admin_per_account": 192.2662,
+    "uncontained_exposure_usd": 878634.9
+   },
+   {
+    "delta_vs_normal": 0.3363,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 7.1943,
+    "recovery_days_max_queue": 49,
+    "scenario": "ai_outage",
+    "sla_attainment_exceptions": 0.79,
+    "total_economic_admin_per_account": 192.6025,
+    "uncontained_exposure_usd": 754012.5
+   },
+   {
+    "delta_vs_normal": 0.0,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 6.5673,
+    "recovery_days_max_queue": 0,
+    "scenario": "incorrect_ai_outputs",
+    "sla_attainment_exceptions": 0.8607,
+    "total_economic_admin_per_account": 192.2662,
+    "uncontained_exposure_usd": 1626369.3
+   },
+   {
+    "delta_vs_normal": 2.0723,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 10.2746,
+    "recovery_days_max_queue": 49,
+    "scenario": "regulatory_change",
+    "sla_attainment_exceptions": 0.7847,
+    "total_economic_admin_per_account": 194.3385,
+    "uncontained_exposure_usd": 754012.5
+   },
+   {
+    "delta_vs_normal": 16.6655,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 0.0841,
+    "recovery_days_max_queue": 39,
+    "scenario": "sponsor_termination",
+    "sla_attainment_exceptions": 1.0,
+    "total_economic_admin_per_account": 208.9317,
+    "uncontained_exposure_usd": 699531.0
+   },
+   {
+    "delta_vs_normal": 0.7413,
+    "enterprise": "E5",
+    "p90_wait_days_exceptions": 15.595,
+    "recovery_days_max_queue": 60,
+    "scenario": "simultaneous_failures",
+    "sla_attainment_exceptions": 0.7292,
+    "total_economic_admin_per_account": 193.0075,
+    "uncontained_exposure_usd": 1451891.7
+   }
+  ]
+ }
+}
