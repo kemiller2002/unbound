@@ -82,5 +82,7 @@ AMENDMENTS = {
         "append": "On the shared cluster, migration state SHALL be recorded per tenant schema."},
     "CNV-TEN-001": {"finding": "OD-P-PLT cut M (owner decision)",
         "append": "On the shared cluster a sponsor 'cell' is its schema and database role; the same delegation, routing-metadata and SharedStoreRegister rules apply (OD-P-PLT cut M)."},
+    "CNV-ENT-002": {"finding": "OD-P-ENT cut O (owner decision)",
+        "append": "Release 1 SHALL provide full reconciled export and one-at-a-time outbound transfer grants under the rules above; the batch exit-policy workflow and automatic Schedule N flagging are deferred and a sponsor exit before they ship SHALL be run as a recorded manual batch (OD-P-ENT cut O)."},
 }
 

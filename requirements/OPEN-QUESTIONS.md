@@ -25,23 +25,18 @@ Every question in the requirements missions that still needs an answer, in one p
 
 | Resolution status | Approval | Evidence disposition | Questions |
 |---|---|---|---|
-| resolved | agent-recommended | business-policy-decision | 7 |
-| resolved | agent-recommended | empirical-validation-required | 2 |
-| resolved | agent-recommended | reasoned-interpretation | 3 |
-| resolved | approved-owner | business-policy-decision | 33 |
-| resolved | approved-owner | empirical-validation-required | 6 |
+| resolved | approved-owner | business-policy-decision | 40 |
+| resolved | approved-owner | empirical-validation-required | 8 |
 | resolved | approved-owner | established-by-authoritative-evidence | 18 |
 | resolved | approved-owner | external-authorization-required | 12 |
-| resolved | approved-owner | reasoned-interpretation | 34 |
+| resolved | approved-owner | reasoned-interpretation | 37 |
 | resolved | approved-product-direction | business-policy-decision | 163 |
 | resolved | approved-product-direction | empirical-validation-required | 3 |
-| superseded-by-duplicate | agent-recommended | business-policy-decision | 2 |
-| superseded-by-duplicate | agent-recommended | reasoned-interpretation | 4 |
-| superseded-by-duplicate | approved-owner | business-policy-decision | 8 |
+| superseded-by-duplicate | approved-owner | business-policy-decision | 10 |
 | superseded-by-duplicate | approved-owner | empirical-validation-required | 1 |
 | superseded-by-duplicate | approved-owner | established-by-authoritative-evidence | 4 |
 | superseded-by-duplicate | approved-owner | external-authorization-required | 3 |
-| superseded-by-duplicate | approved-owner | reasoned-interpretation | 13 |
+| superseded-by-duplicate | approved-owner | reasoned-interpretation | 17 |
 
 ## Decide first: open decisions that block implementation (25)
 
