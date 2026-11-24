@@ -59,6 +59,7 @@ PARAMETERS = (
     ("CNV-PLT-001", "25 November 2026", A, "FCC revocation rules effective date (batch F)"),
     ("CNV-PLT-004", "10 years", A, "31 CFR 501.601 as amended 2025"),
     ("CNV-PLT-004", "7 years", P, "platform floor"),
+    ("CNV-PLT-004", "10-year", A, "31 CFR 501.601 as amended 2025, applied as the release-1 floor (OD-P-PLT cut L)"),
     ("CNV-PLT-005", "2 business days", P, "complaint acknowledgment (CFPB/FCA benchmarks only)"),
     ("CNV-PLT-005", "15 business days", P, "complaint response target"),
     ("CNV-PLT-005", "60 calendar days", P, "complaint outer limit"),
