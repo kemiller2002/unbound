@@ -66,6 +66,24 @@ about 1M funds, which exceeds the addressable traditional market.
 Public Form 990 data puts incumbent software at $32–$129 per DAF-year for large national sponsors, about $100 per fund-year (all funds) at community foundations and $413–$745 for fully outsourced administration. Unbound's break-even (≈$81 at 100k platform funds, ≈$131 at 50k) is therefore inside or above the large-national band: price competition is viable only against mid-size nationals, community foundations priced per fund, and outsourced-administration buyers. EV-01 stands and is sharper.
 
 
+## 3a-bis. Complex assets sold on receipt (OD-M-09)
+
+The owner set complex assets as rare and sold on receipt by an intermediary. The model now applies that policy to every
+approach (1 hour of internal handling for intake and proceeds reconciliation; a quarter of the earlier complex-gift share;
+intermediary fee fund-borne), so it is no longer an Unbound-only lever. Re-run at the base licence ($/fund-year, total
+economic administration):
+
+| Enterprise | A8 traditional (same exceptions) | B AI-enhanced incumbent | C0 Unbound without levers | C Unbound redesign |
+|---|---|---|---|---|
+| E1 independent (50k) | 257 | 251 | 237 | 189 |
+| E3 advisor-distributed (40k) | 380 | 368 | 339 | 260 |
+| E5 administrator (250k) | 168 | 160 | 256 | 242 |
+
+The C-over-B advantage for E1 narrows from about $100 to about $62 per fund-year and for E3 from about $270 to about
+$108, because the largest unmeasured lever (complex-gift hours) is gone. The remaining advantage rests on exception
+incidence, determination reuse, handling minutes and contacts — the inputs the public-data replay is designed to measure.
+The staffed offer is unchanged ($150–299 per fund-year against Ren's $413–745).
+
 ## 3b. Staffed administration offer (OD-M-08, report 05a section 8)
 
 After the owner chose to compete with Ren on two fronts, the model priced an Unbound-operated administration team

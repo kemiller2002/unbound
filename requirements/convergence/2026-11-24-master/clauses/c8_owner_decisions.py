@@ -84,5 +84,8 @@ AMENDMENTS = {
         "append": "Release 1 SHALL provide full reconciled export and one-at-a-time outbound transfer grants under the rules above; the batch exit-policy workflow and automatic Schedule N flagging are deferred and a sponsor exit before they ship SHALL be run as a recorded manual batch (OD-P-ENT cut O)."},
     "CNV-EXP-003": {"finding": "OD-P-GOV cut I; OD-P-ADV scope (owner decisions)",
         "append": "In release 1 the adoption-time conflict check SHALL run against the sponsor's single configuration and the platform's non-removable rules (OD-P-GOV cut I), and the StatusProjection table SHALL cover the state combinations reachable in release 1 given the owner's scope cuts, extended as deferred features are enabled (OD-P-ADV)."},
+    "CNV-GRT-013": {"finding": "OD-M-09 (owner decision)",
+        "append": "Complex assets SHALL be accepted only through a contracted intermediary that sells them on receipt, crediting the fund with cash proceeds; the platform SHALL record intake checks, the acknowledgment (describing the asset without stating a value), the intermediary's sale confirmation and the proceeds reconciliation, and SHALL NOT hold or value complex assets (OD-M-09).",
+        "acceptance_add": ["Given a complex-asset gift, when the intermediary confirms sale, then the fund is credited with net proceeds and the reconciliation links the sale confirmation to the receipt."]},
 }
 

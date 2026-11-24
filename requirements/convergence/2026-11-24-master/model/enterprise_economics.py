@@ -152,12 +152,20 @@ def activity_of(line):
 
 # ---------------------------------------------------------------------------- configuration
 
+COMPLEX_POLICY = {"complex_hours": 1.0, "share_factor": 0.25,
+                  "basis": "OD-M-09 (owner decision): complex assets are rare and are sold on receipt by a contracted intermediary, "
+                           "so internal handling is intake checks and proceeds reconciliation (1 hour [A]) and the complex share is a "
+                           "quarter of the earlier mix assumption [A]. Applied to every approach, so it is a business policy, not an "
+                           "Unbound-only lever; the intermediary fee stays fund-borne."}
+
+
 def config(base_cfg):
     """parameters.json plus the enterprise x approach operating models (pure)."""
     oms = {f"{e}_{a}": {"name": f"{E['name']} / {A['name']}", "mix": E["mix"], "platform": A["platform"],
                         "cac_bearer": E["cac_bearer"] if E["cac_bearer"] != "employer" else "employer",
-                        "contractors": True, "outsource_complex": A["outsource_complex"],
-                        "overrides": dict(A["overrides"], complex_share_mult={"set": E["complex_share_mult"]},
+                        "contractors": True, "outsource_complex": True,
+                        "overrides": dict(A["overrides"], complex_share_mult={"set": E["complex_share_mult"] * COMPLEX_POLICY["share_factor"]},
+                                          complex_hours={"set": COMPLEX_POLICY["complex_hours"]},
                                           **({"accounts_per_sponsor": {"set": E["accounts_per_sponsor"]}} if E["accounts_per_sponsor"] else {}))}
            for e, E in ENTERPRISES.items() for a, A in APPROACHES.items()}
     return dict(base_cfg, mixes=dict(base_cfg["mixes"], **MIXES), operating_models=dict(base_cfg["operating_models"], **oms))
@@ -417,7 +425,7 @@ def results(base_cfg):
     return {"meta": {"seed": SEED, "mc_runs": MC_RUNS, "theoretical": True,
                      "basis": "simplification model.py + decision_teams.py unchanged; assumptions in this file are [A]",
                      "enterprises": ENTERPRISES, "approaches": {k: {kk: vv for kk, vv in v.items() if kk != "overrides"} for k, v in APPROACHES.items()},
-                     "licence": LICENCE,
+                     "licence": LICENCE, "complex_policy": COMPLEX_POLICY,
                      "licence_per_account": {w: licence_per_account(cfg, random.Random(0), w) for w in ("favourable", "base", "adverse", "market_exceeding_reference")}},
             "comparison": comparison, "scales": scales, "revenue": revenue, "licence_sensitivity": corrected,
             "vendor_pnl": vendor_table(cfg), "vendor_assumptions": VENDOR,

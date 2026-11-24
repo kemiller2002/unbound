@@ -8,27 +8,27 @@ Unbound licence per fund-year used for approaches AL, C and D (vendor cost at wh
 
 | Ent. | Enterprise | Approach | Total economic admin $/fund-yr (expected) | Borne by enterprise | Borne by funds | Acquisition (separate) | MC P10 / P50 / P90 | Human interventions /1,000 funds |
 |---|---|---|---|---|---|---|---|---|
-| E1 | Independent national DAF sponsor (direct to donor) | A | 465 | 444 | 21 | 60 | 547 / 734 / 1,046 | 2,718 |
-| E1 | Independent national DAF sponsor (direct to donor) | A8 | 320 | 299 | 21 | 60 | 365 / 472 / 608 | 1,140 |
-| E1 | Independent national DAF sponsor (direct to donor) | AL | 453 | 432 | 21 | 60 | 526 / 725 / 974 | 2,718 |
-| E1 | Independent national DAF sponsor (direct to donor) | B | 313 | 292 | 21 | 60 | 371 / 450 / 584 | 1,049 |
-| E1 | Independent national DAF sponsor (direct to donor) | C0 | 301 | 280 | 21 | 60 | 351 / 440 / 597 | 1,049 |
-| E1 | Independent national DAF sponsor (direct to donor) | C | 212 | 174 | 38 | 60 | 233 / 272 / 316 | 563 |
-| E1 | Independent national DAF sponsor (direct to donor) | D | 205 | 167 | 38 | 60 | 224 / 254 / 294 | 460 |
-| E2 | Community foundation (DAF program inside a broader foundation) | A | 33,561 | 33,518 | 43 | 60 | 31,753 / 36,594 / 43,586 | 5,519 |
-| E2 | Community foundation (DAF program inside a broader foundation) | A8 | 33,561 | 33,518 | 43 | 60 | 31,058 / 36,120 / 42,656 | 2,262 |
-| E2 | Community foundation (DAF program inside a broader foundation) | AL | 6,361 | 6,319 | 43 | 60 | 6,256 / 7,259 / 8,384 | 5,519 |
-| E2 | Community foundation (DAF program inside a broader foundation) | B | 33,557 | 33,514 | 43 | 60 | 31,568 / 36,019 / 42,183 | 2,092 |
-| E2 | Community foundation (DAF program inside a broader foundation) | C0 | 6,356 | 6,313 | 43 | 60 | 6,360 / 7,276 / 8,466 | 2,092 |
-| E2 | Community foundation (DAF program inside a broader foundation) | C | 6,671 | 6,558 | 113 | 60 | 6,636 / 7,550 / 8,916 | 1,178 |
-| E2 | Community foundation (DAF program inside a broader foundation) | D | 6,669 | 6,556 | 113 | 60 | 6,602 / 7,709 / 8,899 | 975 |
-| E3 | Wealth-management and advisor-distributed DAF provider | A | 888 | 861 | 27 | 60 | 1,060 / 1,460 / 1,964 | 4,820 |
-| E3 | Wealth-management and advisor-distributed DAF provider | A8 | 634 | 607 | 27 | 60 | 751 / 958 / 1,306 | 2,055 |
-| E3 | Wealth-management and advisor-distributed DAF provider | AL | 860 | 833 | 27 | 60 | 1,017 / 1,412 / 1,983 | 4,820 |
-| E3 | Wealth-management and advisor-distributed DAF provider | B | 622 | 595 | 27 | 60 | 736 / 986 / 1,323 | 1,885 |
-| E3 | Wealth-management and advisor-distributed DAF provider | C0 | 595 | 567 | 27 | 60 | 698 / 932 / 1,294 | 1,885 |
-| E3 | Wealth-management and advisor-distributed DAF provider | C | 351 | 256 | 95 | 60 | 402 / 478 / 594 | 1,073 |
-| E3 | Wealth-management and advisor-distributed DAF provider | D | 338 | 243 | 95 | 60 | 367 / 458 / 543 | 888 |
+| E1 | Independent national DAF sponsor (direct to donor) | A | 403 | 378 | 25 | 60 | 467 / 628 / 930 | 2,682 |
+| E1 | Independent national DAF sponsor (direct to donor) | A8 | 257 | 232 | 25 | 60 | 293 / 366 / 486 | 1,104 |
+| E1 | Independent national DAF sponsor (direct to donor) | AL | 389 | 363 | 25 | 60 | 446 / 614 / 850 | 2,682 |
+| E1 | Independent national DAF sponsor (direct to donor) | B | 251 | 225 | 25 | 60 | 287 / 351 / 480 | 1,013 |
+| E1 | Independent national DAF sponsor (direct to donor) | C0 | 237 | 212 | 25 | 60 | 267 / 339 / 454 | 1,013 |
+| E1 | Independent national DAF sponsor (direct to donor) | C | 189 | 164 | 25 | 60 | 209 / 245 / 288 | 526 |
+| E1 | Independent national DAF sponsor (direct to donor) | D | 180 | 155 | 25 | 60 | 201 / 229 / 267 | 423 |
+| E2 | Community foundation (DAF program inside a broader foundation) | A | 33,581 | 33,520 | 61 | 60 | 31,773 / 36,614 / 43,568 | 5,369 |
+| E2 | Community foundation (DAF program inside a broader foundation) | A8 | 33,581 | 33,520 | 61 | 60 | 31,080 / 36,139 / 42,674 | 2,111 |
+| E2 | Community foundation (DAF program inside a broader foundation) | AL | 6,381 | 6,320 | 61 | 60 | 6,274 / 7,274 / 8,403 | 5,369 |
+| E2 | Community foundation (DAF program inside a broader foundation) | B | 33,577 | 33,516 | 61 | 60 | 31,585 / 36,027 / 42,206 | 1,942 |
+| E2 | Community foundation (DAF program inside a broader foundation) | C0 | 6,376 | 6,315 | 61 | 60 | 6,370 / 7,299 / 8,486 | 1,942 |
+| E2 | Community foundation (DAF program inside a broader foundation) | C | 6,621 | 6,560 | 61 | 60 | 6,583 / 7,504 / 8,860 | 1,028 |
+| E2 | Community foundation (DAF program inside a broader foundation) | D | 6,619 | 6,558 | 61 | 60 | 6,558 / 7,654 / 8,845 | 825 |
+| E3 | Wealth-management and advisor-distributed DAF provider | A | 634 | 590 | 44 | 60 | 733 / 1,037 / 1,479 | 4,674 |
+| E3 | Wealth-management and advisor-distributed DAF provider | A8 | 380 | 336 | 44 | 60 | 456 / 587 / 794 | 1,910 |
+| E3 | Wealth-management and advisor-distributed DAF provider | AL | 606 | 562 | 44 | 60 | 729 / 983 / 1,437 | 4,674 |
+| E3 | Wealth-management and advisor-distributed DAF provider | B | 368 | 324 | 44 | 60 | 448 / 589 / 786 | 1,740 |
+| E3 | Wealth-management and advisor-distributed DAF provider | C0 | 339 | 294 | 44 | 60 | 409 / 529 / 743 | 1,740 |
+| E3 | Wealth-management and advisor-distributed DAF provider | C | 260 | 216 | 44 | 60 | 299 / 375 / 480 | 928 |
+| E3 | Wealth-management and advisor-distributed DAF provider | D | 247 | 203 | 44 | 60 | 276 / 355 / 439 | 743 |
 | E4 | High-volume workplace giving provider | A | 87 | 84 | 3 | 60 | 96 / 130 / 180 | 645 |
 | E4 | High-volume workplace giving provider | A8 | 62 | 59 | 3 | 60 | 68 / 84 / 107 | 370 |
 | E4 | High-volume workplace giving provider | AL | 165 | 162 | 3 | 60 | 177 / 208 / 267 | 645 |
@@ -36,49 +36,49 @@ Unbound licence per fund-year used for approaches AL, C and D (vendor cost at wh
 | E4 | High-volume workplace giving provider | C0 | 135 | 132 | 3 | 60 | 139 / 153 / 182 | 330 |
 | E4 | High-volume workplace giving provider | C | 121 | 118 | 3 | 60 | 119 / 129 / 149 | 170 |
 | E4 | High-volume workplace giving provider | D | 118 | 115 | 3 | 60 | 116 / 124 / 140 | 141 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | A | 376 | 355 | 21 | 60 | 457 / 626 / 906 | 2,718 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | A8 | 231 | 210 | 21 | 60 | 280 / 371 / 492 | 1,140 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | AL | 446 | 425 | 21 | 60 | 546 / 725 / 1,016 | 2,718 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | B | 224 | 203 | 21 | 60 | 276 / 369 / 515 | 1,049 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | C0 | 302 | 281 | 21 | 60 | 363 / 441 / 585 | 1,049 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | C | 255 | 217 | 38 | 60 | 270 / 308 / 348 | 563 |
-| E5 | Enterprise outsourced DAF administrator serving many sponsors | D | 251 | 213 | 38 | 60 | 267 / 299 / 345 | 460 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | A | 312 | 287 | 25 | 60 | 368 / 526 / 777 | 2,682 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | A8 | 168 | 142 | 25 | 60 | 196 / 261 / 370 | 1,104 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | AL | 384 | 358 | 25 | 60 | 460 / 604 / 912 | 2,682 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | B | 160 | 135 | 25 | 60 | 192 / 268 / 389 | 1,013 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | C0 | 256 | 231 | 25 | 60 | 289 / 349 / 466 | 1,013 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | C | 242 | 217 | 25 | 60 | 257 / 294 / 335 | 526 |
+| E5 | Enterprise outsourced DAF administrator serving many sponsors | D | 238 | 213 | 25 | 60 | 254 / 287 / 332 | 423 |
 
 ## 2. Scale
 
 | Ent. | Funds | A | A8 | AL | B | C0 | C | D |
 |---|---|---|---|---|---|---|---|---|
-| E1 | 10000 | 867 | 731 | 496 | 712 | 340 | 253 | 250 |
-| E1 | 50000 | 465 | 320 | 453 | 313 | 301 | 212 | 205 |
-| E1 | 250000 | 376 | 231 | 442 | 224 | 289 | 201 | 193 |
-| E2 | 46 | 93,236 | 93,236 | 17,398 | 93,233 | 17,393 | 18,156 | 18,154 |
-| E2 | 128 | 33,561 | 33,561 | 6,361 | 33,557 | 6,356 | 6,671 | 6,669 |
-| E2 | 313 | 13,803 | 13,774 | 2,731 | 13,771 | 2,697 | 2,863 | 2,861 |
-| E2 | 1500 | 3,552 | 3,215 | 1,236 | 3,211 | 894 | 802 | 800 |
-| E3 | 10000 | 1,270 | 1,016 | 898 | 995 | 638 | 392 | 381 |
-| E3 | 40000 | 888 | 634 | 860 | 622 | 595 | 351 | 338 |
-| E3 | 200000 | 787 | 535 | 847 | 522 | 582 | 338 | 325 |
+| E1 | 10000 | 805 | 669 | 434 | 650 | 278 | 241 | 238 |
+| E1 | 50000 | 403 | 257 | 389 | 251 | 237 | 189 | 180 |
+| E1 | 250000 | 312 | 168 | 378 | 160 | 225 | 178 | 170 |
+| E2 | 46 | 93,256 | 93,256 | 17,418 | 93,253 | 17,413 | 18,106 | 18,104 |
+| E2 | 128 | 33,581 | 33,581 | 6,381 | 33,577 | 6,376 | 6,621 | 6,619 |
+| E2 | 313 | 13,823 | 13,794 | 2,750 | 13,791 | 2,717 | 2,813 | 2,811 |
+| E2 | 1500 | 3,347 | 3,010 | 977 | 3,007 | 745 | 751 | 749 |
+| E3 | 10000 | 1,020 | 765 | 648 | 745 | 380 | 299 | 288 |
+| E3 | 40000 | 634 | 380 | 606 | 368 | 339 | 260 | 247 |
+| E3 | 200000 | 531 | 279 | 592 | 266 | 326 | 246 | 233 |
 | E4 | 100000 | 140 | 115 | 172 | 110 | 141 | 127 | 124 |
 | E4 | 500000 | 87 | 62 | 165 | 57 | 135 | 121 | 118 |
 | E4 | 2000000 | 77 | 51 | 164 | 47 | 134 | 120 | 117 |
-| E5 | 50000 | 465 | 320 | 459 | 313 | 316 | 271 | 266 |
-| E5 | 250000 | 376 | 231 | 446 | 224 | 302 | 255 | 251 |
-| E5 | 1000000 | 356 | 212 | 443 | 204 | 299 | 252 | 248 |
+| E5 | 50000 | 403 | 257 | 397 | 251 | 270 | 258 | 253 |
+| E5 | 250000 | 312 | 168 | 384 | 160 | 256 | 242 | 238 |
+| E5 | 1000000 | 292 | 148 | 381 | 140 | 253 | 240 | 235 |
 
 ## 2a. Licence scale sensitivity (adversarial correction ADV-B-001)
 
 | Ent. | Approach | Total economic admin $/fund-yr by licence scale |
 |---|---|---|
-| E1 | C0_at_licence | adverse: 439 / base: 301 / favourable: 259 |
-| E1 | C_at_licence | adverse: 350 / base: 212 / favourable: 170 / market_exceeding_reference: 149 |
-| E2 | C0_at_licence | adverse: 6,494 / base: 6,356 / favourable: 6,314 |
-| E2 | C_at_licence | adverse: 6,809 / base: 6,671 / favourable: 6,629 / market_exceeding_reference: 6,609 |
-| E3 | C0_at_licence | adverse: 733 / base: 595 / favourable: 553 |
-| E3 | C_at_licence | adverse: 489 / base: 351 / favourable: 309 / market_exceeding_reference: 289 |
+| E1 | C0_at_licence | adverse: 375 / base: 237 / favourable: 195 |
+| E1 | C_at_licence | adverse: 327 / base: 189 / favourable: 147 / market_exceeding_reference: 126 |
+| E2 | C0_at_licence | adverse: 6,514 / base: 6,376 / favourable: 6,334 |
+| E2 | C_at_licence | adverse: 6,759 / base: 6,621 / favourable: 6,579 / market_exceeding_reference: 6,558 |
+| E3 | C0_at_licence | adverse: 477 / base: 339 / favourable: 297 |
+| E3 | C_at_licence | adverse: 398 / base: 260 / favourable: 218 / market_exceeding_reference: 198 |
 | E4 | C0_at_licence | adverse: 273 / base: 135 / favourable: 93 |
 | E4 | C_at_licence | adverse: 259 / base: 121 / favourable: 79 / market_exceeding_reference: 58 |
-| E5 | C0_at_licence | adverse: 440 / base: 302 / favourable: 260 |
-| E5 | C_at_licence | adverse: 393 / base: 255 / favourable: 213 / market_exceeding_reference: 192 |
+| E5 | C0_at_licence | adverse: 394 / base: 256 / favourable: 214 |
+| E5 | C_at_licence | adverse: 380 / base: 242 / favourable: 200 / market_exceeding_reference: 179 |
 
 ## 2b. Unbound vendor P&L (ADV-B-002)
 
@@ -114,23 +114,23 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | acquisition | 60 | 60 | 60 | 60 | 60 | 60 | 60 |
 | advisor service | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 | ai usage | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| charity vetting and grant decisions | 206 | 61 | 196 | 61 | 53 | 17 | 14 |
+| charity vetting and grant decisions | 206 | 61 | 193 | 61 | 50 | 16 | 13 |
 | compliance and assurance | 22 | 22 | 14 | 22 | 14 | 14 | 14 |
-| contributions | 20 | 20 | 20 | 20 | 20 | 20 | 20 |
-| contributions complex assets | 70 | 70 | 69 | 70 | 68 | 28 | 28 |
-| customer service | 21 | 21 | 20 | 17 | 17 | 9 | 6 |
+| contributions | 21 | 21 | 21 | 21 | 21 | 21 | 21 |
+| contributions complex assets | 8 | 8 | 7 | 8 | 7 | 7 | 7 |
+| customer service | 21 | 21 | 20 | 17 | 16 | 8 | 5 |
 | investment administration | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
 | management overhead | 43 | 43 | 12 | 43 | 12 | 12 | 12 |
 | payment processing | 6 | 6 | 6 | 5 | 5 | 3 | 2 |
-| reconciliation accounting exceptions | 7 | 7 | 7 | 7 | 7 | 5 | 5 |
+| reconciliation accounting exceptions | 7 | 7 | 7 | 7 | 6 | 5 | 5 |
 | statements and recurring obligations | 9 | 9 | 9 | 6 | 6 | 3 | 2 |
 | technology | 51 | 51 | 91 | 51 | 91 | 91 | 91 |
 
 | Bearer ($/fund-yr, all lines incl. investment management and acquisition) | A | A8 | AL | B | C0 | C | D |
 |---|---|---|---|---|---|---|---|
 | donor_or_fund | 13 | 13 | 13 | 13 | 13 | 13 | 13 |
-| enterprise | 504 | 359 | 492 | 352 | 340 | 234 | 227 |
-| fund | 445 | 445 | 445 | 445 | 445 | 462 | 462 |
+| enterprise | 438 | 292 | 423 | 285 | 272 | 224 | 215 |
+| fund | 449 | 449 | 449 | 449 | 449 | 449 | 449 |
 | vendor | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### E2 — Community foundation (DAF program inside a broader foundation)
@@ -142,8 +142,8 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | ai usage | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
 | charity vetting and grant decisions | 3,361 | 3,361 | 645 | 3,361 | 645 | 728 | 728 |
 | compliance and assurance | 3,673 | 3,673 | 2,501 | 3,673 | 2,501 | 2,501 | 2,501 |
-| contributions | 27 | 27 | 27 | 27 | 27 | 27 | 27 |
-| contributions complex assets | 1,289 | 1,289 | 645 | 1,289 | 645 | 799 | 799 |
+| contributions | 29 | 29 | 29 | 29 | 29 | 29 | 29 |
+| contributions complex assets | 1,307 | 1,307 | 662 | 1,307 | 662 | 746 | 746 |
 | customer service | 1,289 | 1,289 | 645 | 1,289 | 645 | 728 | 728 |
 | investment administration | 30 | 30 | 30 | 30 | 30 | 30 | 30 |
 | management overhead | 7,734 | 7,734 | 469 | 7,734 | 469 | 469 | 469 |
@@ -156,8 +156,8 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | Bearer ($/fund-yr, all lines incl. investment management and acquisition) | A | A8 | AL | B | C0 | C | D |
 |---|---|---|---|---|---|---|---|
 | donor_or_fund | 13 | 13 | 13 | 13 | 13 | 13 | 13 |
-| enterprise | 33,578 | 33,578 | 6,379 | 33,574 | 6,373 | 6,618 | 6,616 |
-| fund | 1,586 | 1,586 | 1,586 | 1,586 | 1,586 | 1,656 | 1,656 |
+| enterprise | 33,580 | 33,580 | 6,380 | 33,576 | 6,375 | 6,620 | 6,618 |
+| fund | 1,603 | 1,603 | 1,603 | 1,603 | 1,603 | 1,603 | 1,603 |
 | vendor | 0 | 0 | 117 | 0 | 117 | 117 | 117 |
 
 ### E3 — Wealth-management and advisor-distributed DAF provider
@@ -167,23 +167,23 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | acquisition | 60 | 60 | 60 | 60 | 60 | 60 | 60 |
 | advisor service | 10 | 10 | 10 | 10 | 10 | 10 | 10 |
 | ai usage | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| charity vetting and grant decisions | 355 | 101 | 343 | 101 | 92 | 30 | 23 |
+| charity vetting and grant decisions | 355 | 101 | 340 | 101 | 88 | 28 | 21 |
 | compliance and assurance | 27 | 27 | 17 | 27 | 17 | 17 | 17 |
-| contributions | 22 | 22 | 22 | 22 | 22 | 22 | 22 |
-| contributions complex assets | 281 | 281 | 277 | 281 | 277 | 113 | 113 |
-| customer service | 39 | 39 | 38 | 30 | 30 | 19 | 15 |
+| contributions | 24 | 24 | 24 | 24 | 24 | 24 | 24 |
+| contributions complex assets | 25 | 25 | 25 | 25 | 25 | 24 | 24 |
+| customer service | 39 | 39 | 38 | 30 | 28 | 18 | 14 |
 | investment administration | 23 | 23 | 23 | 23 | 23 | 23 | 23 |
 | management overhead | 41 | 41 | 12 | 41 | 12 | 12 | 12 |
 | payment processing | 9 | 9 | 9 | 7 | 7 | 4 | 3 |
-| reconciliation accounting exceptions | 8 | 8 | 8 | 8 | 8 | 7 | 7 |
+| reconciliation accounting exceptions | 8 | 8 | 8 | 8 | 8 | 7 | 6 |
 | statements and recurring obligations | 9 | 9 | 9 | 6 | 6 | 3 | 2 |
 | technology | 63 | 63 | 91 | 63 | 91 | 91 | 91 |
 
 | Bearer ($/fund-yr, all lines incl. investment management and acquisition) | A | A8 | AL | B | C0 | C | D |
 |---|---|---|---|---|---|---|---|
 | donor_or_fund | 4 | 4 | 4 | 4 | 4 | 4 | 4 |
-| enterprise | 921 | 667 | 893 | 655 | 627 | 316 | 303 |
-| fund | 1,247 | 1,247 | 1,247 | 1,247 | 1,247 | 1,314 | 1,314 |
+| enterprise | 650 | 396 | 622 | 384 | 354 | 276 | 263 |
+| fund | 1,264 | 1,264 | 1,264 | 1,264 | 1,264 | 1,264 | 1,264 |
 | vendor | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
 
 ### E4 — High-volume workplace giving provider
@@ -216,10 +216,10 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | acquisition | 60 | 60 | 60 | 60 | 60 | 60 | 60 |
 | advisor service | 2 | 2 | 2 | 2 | 2 | 2 | 2 |
 | ai usage | 0 | 0 | 0 | 1 | 0 | 0 | 0 |
-| charity vetting and grant decisions | 200 | 56 | 199 | 56 | 58 | 50 | 45 |
+| charity vetting and grant decisions | 200 | 56 | 201 | 56 | 81 | 75 | 73 |
 | compliance and assurance | 6 | 6 | 4 | 6 | 4 | 4 | 4 |
-| contributions | 20 | 20 | 20 | 20 | 20 | 20 | 20 |
-| contributions complex assets | 70 | 70 | 71 | 70 | 77 | 51 | 56 |
+| contributions | 21 | 21 | 21 | 21 | 21 | 21 | 21 |
+| contributions complex assets | 6 | 6 | 6 | 6 | 7 | 13 | 15 |
 | customer service | 19 | 19 | 19 | 15 | 15 | 9 | 7 |
 | investment administration | 8 | 8 | 8 | 8 | 8 | 8 | 8 |
 | management overhead | 15 | 15 | 12 | 15 | 12 | 12 | 12 |
@@ -232,17 +232,17 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | Bearer ($/fund-yr, all lines incl. investment management and acquisition) | A | A8 | AL | B | C0 | C | D |
 |---|---|---|---|---|---|---|---|
 | donor_or_fund | 13 | 13 | 13 | 13 | 13 | 13 | 13 |
-| enterprise | 415 | 270 | 485 | 263 | 341 | 277 | 273 |
-| fund | 445 | 445 | 445 | 445 | 445 | 462 | 462 |
+| enterprise | 347 | 202 | 418 | 195 | 291 | 277 | 273 |
+| fund | 449 | 449 | 449 | 449 | 449 | 449 | 449 |
 | vendor | 0 | 0 | 3 | 0 | 3 | 3 | 3 |
 
 ## 4. Revenue and margin
 
 | Ent. | Revenue model | Revenue $/fund | After 30% market decline | Margin over enterprise admin (C) | Margin after decline |
 |---|---|---|---|---|---|
-| E1 | asset_tiered_min100 | 693 | 537 | 519 | 363 |
-| E2 | asset_tiered_min250 | 1,887 | 1,480 | -4,672 | -5,078 |
-| E3 | asset_tiered_min250 | 2,172 | 1,660 | 1,916 | 1,403 |
+| E1 | asset_tiered_min100 | 693 | 537 | 529 | 373 |
+| E2 | asset_tiered_min250 | 1,887 | 1,480 | -4,674 | -5,080 |
+| E3 | asset_tiered_min250 | 2,172 | 1,660 | 1,956 | 1,443 |
 | E4 | employer_sponsored | 60 | 60 | -57 | -57 |
 | E5 | institutional_licensing | 200 | 200 | -17 | -17 |
 
@@ -250,30 +250,30 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 
 | Ent. | Parameter | Low | High | Label | Cost at low | Cost at high | Base |
 |---|---|---|---|---|---|---|---|
-| E1 | minutes_per_exception | 30 | 135 | A | 205 | 249 | 212 |
-| E1 | loaded_cost_per_fte | 124507 | 250000 | A | 201 | 234 | 212 |
-| E1 | exception_rate | 0.028 | 0.17 | A | 199 | 231 | 212 |
-| E1 | contacts_mult | 0.5 | 2.0 | A | 206 | 221 | 212 |
-| E1 | recon_break_rate | 0.002 | 0.03 | A | 210 | 214 | 212 |
-| E1 | ach_grant_cost | 0.1 | 0.5 | A | 210 | 213 | 212 |
-| E1 | licence:favourable |  |  | A | 170 | 181 | 212 |
-| E1 | licence:adverse |  |  | A | 350 | 403 | 212 |
-| E2 | loaded_cost_per_fte | 124507 | 250000 | A | 5,819 | 8,461 | 6,671 |
-| E2 | ach_grant_cost | 0.1 | 0.5 | A | 6,669 | 6,674 | 6,671 |
-| E2 | ai_cost_per_dossier | 0.45 | 4.0 | S | 6,671 | 6,671 | 6,671 |
-| E2 | ai_cost_per_interaction | 0.02 | 0.5 | A | 6,671 | 6,671 | 6,671 |
-| E2 | exception_rate | 0.028 | 0.17 | A | 6,671 | 6,671 | 6,671 |
-| E2 | minutes_per_exception | 30 | 135 | A | 6,671 | 6,671 | 6,671 |
-| E2 | licence:favourable |  |  | A | 6,629 | 6,641 | 6,671 |
-| E2 | licence:adverse |  |  | A | 6,809 | 6,862 | 6,671 |
-| E3 | loaded_cost_per_fte | 124507 | 250000 | A | 326 | 404 | 351 |
-| E3 | minutes_per_exception | 30 | 135 | A | 340 | 416 | 351 |
-| E3 | exception_rate | 0.028 | 0.17 | A | 331 | 387 | 351 |
-| E3 | contacts_mult | 0.5 | 2.0 | A | 342 | 370 | 351 |
-| E3 | recon_break_rate | 0.002 | 0.03 | A | 349 | 353 | 351 |
-| E3 | ach_grant_cost | 0.1 | 0.5 | A | 349 | 353 | 351 |
-| E3 | licence:favourable |  |  | A | 309 | 321 | 351 |
-| E3 | licence:adverse |  |  | A | 489 | 542 | 351 |
+| E1 | minutes_per_exception | 30 | 135 | A | 182 | 224 | 189 |
+| E1 | exception_rate | 0.028 | 0.17 | A | 177 | 209 | 189 |
+| E1 | loaded_cost_per_fte | 124507 | 250000 | A | 181 | 206 | 189 |
+| E1 | contacts_mult | 0.5 | 2.0 | A | 183 | 198 | 189 |
+| E1 | recon_break_rate | 0.002 | 0.03 | A | 187 | 191 | 189 |
+| E1 | ach_grant_cost | 0.1 | 0.5 | A | 188 | 190 | 189 |
+| E1 | licence:favourable |  |  | A | 147 | 158 | 189 |
+| E1 | licence:adverse |  |  | A | 327 | 380 | 189 |
+| E2 | loaded_cost_per_fte | 124507 | 250000 | A | 5,768 | 8,411 | 6,621 |
+| E2 | ach_grant_cost | 0.1 | 0.5 | A | 6,619 | 6,623 | 6,621 |
+| E2 | ai_cost_per_dossier | 0.45 | 4.0 | S | 6,621 | 6,621 | 6,621 |
+| E2 | ai_cost_per_interaction | 0.02 | 0.5 | A | 6,621 | 6,621 | 6,621 |
+| E2 | exception_rate | 0.028 | 0.17 | A | 6,621 | 6,621 | 6,621 |
+| E2 | minutes_per_exception | 30 | 135 | A | 6,621 | 6,621 | 6,621 |
+| E2 | licence:favourable |  |  | A | 6,579 | 6,590 | 6,621 |
+| E2 | licence:adverse |  |  | A | 6,759 | 6,812 | 6,621 |
+| E3 | minutes_per_exception | 30 | 135 | A | 249 | 323 | 260 |
+| E3 | exception_rate | 0.028 | 0.17 | A | 238 | 296 | 260 |
+| E3 | loaded_cost_per_fte | 124507 | 250000 | A | 246 | 291 | 260 |
+| E3 | contacts_mult | 0.5 | 2.0 | A | 249 | 279 | 260 |
+| E3 | recon_break_rate | 0.002 | 0.03 | A | 258 | 262 | 260 |
+| E3 | ach_grant_cost | 0.1 | 0.5 | A | 258 | 262 | 260 |
+| E3 | licence:favourable |  |  | A | 218 | 230 | 260 |
+| E3 | licence:adverse |  |  | A | 398 | 451 | 260 |
 | E4 | minutes_per_exception | 30 | 135 | A | 120 | 128 | 121 |
 | E4 | loaded_cost_per_fte | 124507 | 250000 | A | 119 | 125 | 121 |
 | E4 | exception_rate | 0.028 | 0.17 | A | 119 | 125 | 121 |
@@ -282,52 +282,52 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | E4 | ach_grant_cost | 0.1 | 0.5 | A | 121 | 122 | 121 |
 | E4 | licence:favourable |  |  | A | 79 | 90 | 121 |
 | E4 | licence:adverse |  |  | A | 259 | 312 | 121 |
-| E5 | loaded_cost_per_fte | 124507 | 250000 | A | 231 | 305 | 255 |
-| E5 | contacts_mult | 0.5 | 2.0 | A | 251 | 264 | 255 |
-| E5 | recon_break_rate | 0.002 | 0.03 | A | 254 | 258 | 255 |
-| E5 | minutes_per_exception | 30 | 135 | A | 255 | 258 | 255 |
-| E5 | ach_grant_cost | 0.1 | 0.5 | A | 254 | 256 | 255 |
-| E5 | exception_rate | 0.028 | 0.17 | A | 254 | 256 | 255 |
-| E5 | licence:favourable |  |  | A | 213 | 224 | 255 |
-| E5 | licence:adverse |  |  | A | 393 | 446 | 255 |
+| E5 | loaded_cost_per_fte | 124507 | 250000 | A | 219 | 291 | 242 |
+| E5 | contacts_mult | 0.5 | 2.0 | A | 238 | 252 | 242 |
+| E5 | recon_break_rate | 0.002 | 0.03 | A | 241 | 245 | 242 |
+| E5 | minutes_per_exception | 30 | 135 | A | 242 | 245 | 242 |
+| E5 | ach_grant_cost | 0.1 | 0.5 | A | 241 | 244 | 242 |
+| E5 | exception_rate | 0.028 | 0.17 | A | 241 | 244 | 242 |
+| E5 | licence:favourable |  |  | A | 200 | 211 | 242 |
+| E5 | licence:adverse |  |  | A | 380 | 433 | 242 |
 
 ## 6. Stress scenarios (approach C)
 
 | Ent. | Scenario (approach C) | $/fund-yr | Δ vs normal | Exception SLA attainment | P90 wait (days) | Uncontained exposure $ |
 |---|---|---|---|---|---|---|
-| E1 | december_peak | 213 | +1 | 0.73 | 10.3 | 150,802 |
-| E1 | market_downturn | 209 | -2 | 0.87 | 5.9 | 5,129,602 |
-| E1 | payment_failures | 212 | +0 | 0.95 | 3.9 | 154,957 |
-| E1 | fraud_attempts | 212 | +0 | 0.95 | 3.7 | 246,802 |
-| E1 | staff_absence | 212 | +1 | 0.85 | 6.0 | 150,802 |
-| E1 | vendor_outage | 212 | +0 | 0.95 | 3.9 | 175,727 |
-| E1 | ai_outage | 212 | +1 | 0.91 | 5.0 | 150,802 |
-| E1 | incorrect_ai_outputs | 212 | +0 | 0.95 | 3.7 | 325,274 |
-| E1 | regulatory_change | 217 | +5 | 0.83 | 7.3 | 150,802 |
-| E1 | sponsor_termination | 217 | +5 | 1.00 | 0.0 | 139,906 |
-| E1 | simultaneous_failures | 214 | +2 | 0.73 | 12.0 | 290,378 |
-| E2 | december_peak | 6,671 | +0 | 1.00 | 0.0 | 560 |
-| E2 | market_downturn | 6,662 | -9 | 1.00 | 0.0 | 46,003 |
-| E2 | payment_failures | 6,671 | +0 | 1.00 | 0.0 | 599 |
-| E2 | fraud_attempts | 6,671 | +0 | 1.00 | 0.0 | 806 |
-| E2 | staff_absence | 6,671 | +0 | 1.00 | 0.0 | 560 |
-| E2 | vendor_outage | 6,671 | +0 | 1.00 | 0.0 | 792 |
-| E2 | ai_outage | 6,671 | +0 | 1.00 | 0.0 | 560 |
-| E2 | incorrect_ai_outputs | 6,671 | +0 | 1.00 | 0.0 | 2,184 |
-| E2 | regulatory_change | 7,843 | +1,172 | 1.00 | 0.0 | 560 |
-| E2 | sponsor_termination | 7,550 | +879 | 1.00 | 0.0 | 512 |
-| E2 | simultaneous_failures | 6,671 | +0 | 1.00 | 0.0 | 1,823 |
-| E3 | december_peak | 353 | +2 | 0.71 | 11.4 | 266,384 |
-| E3 | market_downturn | 345 | -6 | 0.85 | 6.9 | 11,429,984 |
-| E3 | payment_failures | 351 | +0 | 0.91 | 5.0 | 272,976 |
-| E3 | fraud_attempts | 351 | +0 | 0.91 | 4.6 | 343,184 |
-| E3 | staff_absence | 353 | +2 | 0.81 | 6.3 | 266,384 |
-| E3 | vendor_outage | 352 | +0 | 0.91 | 5.0 | 305,938 |
-| E3 | ai_outage | 353 | +1 | 0.89 | 5.3 | 266,384 |
-| E3 | incorrect_ai_outputs | 351 | +0 | 0.91 | 4.6 | 543,263 |
-| E3 | regulatory_change | 356 | +5 | 0.81 | 8.2 | 266,384 |
-| E3 | sponsor_termination | 358 | +7 | 1.00 | 0.0 | 240,178 |
-| E3 | simultaneous_failures | 355 | +3 | 0.73 | 13.3 | 537,691 |
+| E1 | december_peak | 190 | +1 | 0.73 | 10.3 | 155,115 |
+| E1 | market_downturn | 187 | -2 | 0.87 | 5.9 | 5,133,915 |
+| E1 | payment_failures | 189 | +0 | 0.95 | 3.9 | 159,269 |
+| E1 | fraud_attempts | 189 | +0 | 0.95 | 3.7 | 251,115 |
+| E1 | staff_absence | 190 | +1 | 0.85 | 6.0 | 155,115 |
+| E1 | vendor_outage | 189 | +0 | 0.95 | 3.9 | 180,039 |
+| E1 | ai_outage | 190 | +1 | 0.91 | 5.0 | 155,115 |
+| E1 | incorrect_ai_outputs | 189 | +0 | 0.95 | 3.7 | 329,586 |
+| E1 | regulatory_change | 194 | +5 | 0.83 | 7.3 | 155,115 |
+| E1 | sponsor_termination | 195 | +6 | 1.00 | 0.0 | 143,701 |
+| E1 | simultaneous_failures | 191 | +2 | 0.73 | 12.0 | 294,691 |
+| E2 | december_peak | 6,621 | +0 | 1.00 | 0.0 | 605 |
+| E2 | market_downturn | 6,612 | -9 | 1.00 | 0.0 | 46,048 |
+| E2 | payment_failures | 6,621 | +0 | 1.00 | 0.0 | 644 |
+| E2 | fraud_attempts | 6,621 | +0 | 1.00 | 0.0 | 851 |
+| E2 | staff_absence | 6,621 | +0 | 1.00 | 0.0 | 605 |
+| E2 | vendor_outage | 6,621 | +0 | 1.00 | 0.0 | 837 |
+| E2 | ai_outage | 6,621 | +0 | 1.00 | 0.0 | 605 |
+| E2 | incorrect_ai_outputs | 6,621 | +0 | 1.00 | 0.0 | 2,228 |
+| E2 | regulatory_change | 7,793 | +1,172 | 1.00 | 0.0 | 605 |
+| E2 | sponsor_termination | 7,500 | +879 | 1.00 | 0.0 | 551 |
+| E2 | simultaneous_failures | 6,621 | +0 | 1.00 | 0.0 | 1,867 |
+| E3 | december_peak | 262 | +1 | 0.71 | 11.4 | 285,765 |
+| E3 | market_downturn | 254 | -6 | 0.85 | 6.9 | 11,449,365 |
+| E3 | payment_failures | 260 | +0 | 0.91 | 5.0 | 292,357 |
+| E3 | fraud_attempts | 260 | +0 | 0.91 | 4.6 | 362,565 |
+| E3 | staff_absence | 262 | +1 | 0.81 | 6.3 | 285,765 |
+| E3 | vendor_outage | 261 | +0 | 0.91 | 5.0 | 325,319 |
+| E3 | ai_outage | 262 | +1 | 0.89 | 5.3 | 285,765 |
+| E3 | incorrect_ai_outputs | 260 | +0 | 0.91 | 4.6 | 562,644 |
+| E3 | regulatory_change | 265 | +5 | 0.81 | 8.2 | 285,765 |
+| E3 | sponsor_termination | 264 | +4 | 1.00 | 0.0 | 257,233 |
+| E3 | simultaneous_failures | 263 | +2 | 0.73 | 13.3 | 557,072 |
 | E4 | december_peak | 121 | +0 | 0.70 | 14.2 | 642,938 |
 | E4 | market_downturn | 121 | -0 | 0.82 | 8.3 | 1,580,438 |
 | E4 | payment_failures | 121 | +0 | 0.86 | 6.7 | 643,634 |
@@ -339,42 +339,42 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | E4 | regulatory_change | 122 | +1 | 0.51 | 13.2 | 642,938 |
 | E4 | sponsor_termination | 124 | +3 | 1.00 | 0.2 | 637,785 |
 | E4 | simultaneous_failures | 121 | +0 | 0.73 | 15.8 | 667,022 |
-| E5 | december_peak | 256 | +1 | 0.70 | 14.2 | 754,012 |
-| E5 | market_downturn | 253 | -2 | 0.82 | 8.5 | 25,648,012 |
-| E5 | payment_failures | 255 | +0 | 0.86 | 7.0 | 774,783 |
-| E5 | fraud_attempts | 255 | +0 | 0.86 | 6.6 | 1,234,012 |
-| E5 | staff_absence | 255 | +0 | 0.80 | 8.3 | 754,012 |
-| E5 | vendor_outage | 255 | +0 | 0.86 | 7.0 | 878,635 |
-| E5 | ai_outage | 255 | +0 | 0.79 | 7.2 | 754,012 |
-| E5 | incorrect_ai_outputs | 255 | +0 | 0.86 | 6.6 | 1,626,369 |
-| E5 | regulatory_change | 257 | +2 | 0.78 | 10.3 | 754,012 |
-| E5 | sponsor_termination | 272 | +17 | 1.00 | 0.1 | 699,531 |
-| E5 | simultaneous_failures | 256 | +1 | 0.73 | 15.6 | 1,451,892 |
+| E5 | december_peak | 243 | +0 | 0.70 | 14.2 | 775,575 |
+| E5 | market_downturn | 240 | -2 | 0.82 | 8.5 | 25,669,575 |
+| E5 | payment_failures | 242 | +0 | 0.86 | 7.0 | 796,345 |
+| E5 | fraud_attempts | 242 | +0 | 0.86 | 6.6 | 1,255,575 |
+| E5 | staff_absence | 243 | +0 | 0.80 | 8.3 | 775,575 |
+| E5 | vendor_outage | 242 | +0 | 0.86 | 7.0 | 900,197 |
+| E5 | ai_outage | 243 | +0 | 0.79 | 7.2 | 775,575 |
+| E5 | incorrect_ai_outputs | 242 | +0 | 0.86 | 6.6 | 1,647,932 |
+| E5 | regulatory_change | 244 | +2 | 0.78 | 10.3 | 775,575 |
+| E5 | sponsor_termination | 259 | +17 | 1.00 | 0.1 | 718,506 |
+| E5 | simultaneous_failures | 243 | +1 | 0.73 | 15.6 | 1,473,454 |
 
 ## 7. December surge staffing (TEV-001; pooled queue simulation)
 
 | Ent. | December extra staff (x base) | $/fund-yr | Δ vs normal C | Exception SLA attainment | P90 wait (days) |
 |---|---|---|---|---|---|
-| E1 | 0.5 | 213 | +1 | 0.73 | 10.3 |
-| E1 | 1.0 | 215 | +3 | 0.84 | 6.0 |
-| E1 | 2.0 | 220 | +8 | 1.00 | 0.0 |
-| E1 | 3.0 | 225 | +14 | 1.00 | 0.0 |
-| E2 | 0.5 | 6,671 | +0 | 1.00 | 0.0 |
-| E2 | 1.0 | 6,923 | +251 | 1.00 | 0.0 |
-| E2 | 2.0 | 7,426 | +754 | 1.00 | 0.0 |
-| E2 | 3.0 | 7,928 | +1,257 | 1.00 | 0.0 |
-| E3 | 0.5 | 353 | +2 | 0.71 | 11.4 |
-| E3 | 1.0 | 359 | +7 | 0.81 | 7.1 |
-| E3 | 2.0 | 371 | +20 | 1.00 | 0.0 |
-| E3 | 3.0 | 384 | +33 | 1.00 | 0.0 |
+| E1 | 0.5 | 190 | +1 | 0.73 | 10.3 |
+| E1 | 1.0 | 191 | +2 | 0.84 | 6.0 |
+| E1 | 2.0 | 195 | +6 | 1.00 | 0.0 |
+| E1 | 3.0 | 199 | +10 | 1.00 | 0.0 |
+| E2 | 0.5 | 6,621 | +0 | 1.00 | 0.0 |
+| E2 | 1.0 | 6,872 | +251 | 1.00 | 0.0 |
+| E2 | 2.0 | 7,375 | +754 | 1.00 | 0.0 |
+| E2 | 3.0 | 7,878 | +1,257 | 1.00 | 0.0 |
+| E3 | 0.5 | 262 | +1 | 0.71 | 11.4 |
+| E3 | 1.0 | 265 | +5 | 0.81 | 7.1 |
+| E3 | 2.0 | 272 | +12 | 1.00 | 0.0 |
+| E3 | 3.0 | 280 | +20 | 1.00 | 0.0 |
 | E4 | 0.5 | 121 | +0 | 0.70 | 14.2 |
 | E4 | 1.0 | 122 | +0 | 0.77 | 9.0 |
 | E4 | 2.0 | 122 | +1 | 1.00 | 0.6 |
 | E4 | 3.0 | 123 | +2 | 1.00 | 0.0 |
-| E5 | 0.5 | 256 | +1 | 0.70 | 14.2 |
-| E5 | 1.0 | 258 | +3 | 0.77 | 8.9 |
-| E5 | 2.0 | 262 | +7 | 1.00 | 0.5 |
-| E5 | 3.0 | 267 | +12 | 1.00 | 0.0 |
+| E5 | 0.5 | 243 | +0 | 0.70 | 14.2 |
+| E5 | 1.0 | 244 | +2 | 0.77 | 8.9 |
+| E5 | 2.0 | 247 | +5 | 1.00 | 0.5 |
+| E5 | 3.0 | 251 | +9 | 1.00 | 0.0 |
 
 ## 8. Staffed administration offer vs Ren (OD-M-08)
 
@@ -382,11 +382,11 @@ Assumptions: [A] floor of 4 FTE for coverage and segregation of duties; 15% supe
 
 | Funds administered | Platform cost scale | Unbound admin cost $/fund-yr | Sponsor-retained decision cost $/fund-yr | Team floor binds | Headroom vs Ren low ($413) |
 |---|---|---|---|---|---|
-| 10,000 | adverse | 298 | 43 | no | +115 |
+| 10,000 | adverse | 299 | 43 | no | +114 |
 | 10,000 | base | 192 | 43 | no | +221 |
 | 25,000 | adverse | 271 | 42 | no | +142 |
 | 25,000 | base | 165 | 42 | no | +248 |
 | 50,000 | adverse | 260 | 42 | no | +153 |
 | 50,000 | base | 153 | 42 | no | +260 |
 | 100,000 | adverse | 256 | 42 | no | +157 |
-| 100,000 | base | 149 | 42 | no | +264 |
+| 100,000 | base | 150 | 42 | no | +263 |
