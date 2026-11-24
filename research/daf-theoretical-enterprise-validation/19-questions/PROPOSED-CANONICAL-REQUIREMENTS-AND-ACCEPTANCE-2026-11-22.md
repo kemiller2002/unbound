@@ -22,6 +22,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 
 ### REQ-X-002: Atomic grant approval and reservation
+> Converged 2026-11-24: governed by `CNV-FIN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Source questions:** OD-06, OD-07, OD-08, OD-10, OD-13, TVC-036, TVC-037, TVC-038, TVF-001, TVF-009.
 
@@ -57,6 +58,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 
 ### REQ-X-005: Payee and external destination integrity
+> Converged 2026-11-24: governed by `CNV-PAY-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Source questions:** OD-22, TVF-222, TVF-223, TVF-233, TVF-234, TVF-236, TVF-250, TVR-PAY-005-Q.
 
@@ -80,6 +82,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 
 ### REQ-X-007: Charity verification and sanctions
+> Converged 2026-11-24: governed by `CNV-GRT-001`, `CNV-GRT-003` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Source questions:** OD-02, TVC-006, TVC-007, TVC-040, TVA-009, TVA-028, TVR-SAN-001-Q, TVR-SAN-002-Q, TVF-027, TVF-048.
 
@@ -254,6 +257,7 @@ All 183 questions now have at least one proposed canonical-requirement linkage a
 The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENTORY-2026-11-23.md`, covering 62 decision types across nine domains. It applies REQ-X-017 to each process with rules-first behavior, conditional AI evidence work, independently authorized human exceptions, hard stops and acceptance invariants. This is initial inventory coverage, not exhaustive proof or executed tests. Cross-check against `ADVERSARIAL-VALIDATION-AND-TIERED-DECISION-ARCHITECTURE-2026-11-23.md` and original registers before source migration.
 
 ## REQ-X-018: Policy precedence, evidence trust and critical workflow safety (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-GRT-003` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** Separate authority precedence from factual evidence trust. Nonwaivable legal requirements and platform safety controls prevail over common charity vetting, sponsor-specific rules, donor mandates and operational/AI optimizations; sponsors may impose stricter valid grant restrictions, not weaken common mandatory controls. Evidence is evaluated by fact-specific provenance, directness, independence, jurisdiction and freshness, with explicit Unknown/Disputed/Stale outcomes. Before AI, run bounded deterministic evidence enrichment. No AI/human escalation overrides a hard prohibition. All 16 safety gates and the charity, grant, payment and DR workflow transitions require execution-time rechecks and auditable versions.
 
@@ -268,6 +272,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** Test the 16 invariants and 12 concurrency schedules in `TYPED-DECISION-CONTRACTS-STATE-TRANSITIONS-AND-CONCURRENCY-2026-11-23.md`, including simultaneous reservations, charity adverse-event race, payment Unknown after crash, revoked recurring mandate, stale failback and emergency hold racing replay. Each transition has a falsifiable oracle and provenance trace. No test or legal/provider validation is claimed completed.
 
 ## REQ-X-020: Component-monolith architecture and safety-critical event ordering (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-ARC-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **User-directed:** Unbound is a component monolith, **not microservices**. Domain components have explicit in-process boundaries and owned authoritative data, with one deployable application and one authoritative transactional financial/security core. Consequential commands use invariant-preserving atomic transactions, versioned evidence/policies, independently governed authority, durable outbox and idempotency. Internal components do not default to separate databases, independent deployments, service meshes or network calls. Managed external payment/evidence integrations, DR replication, independently durable nonauthoritative intake and minimal protective-only emergency plane are genuine distributed boundaries, not internal microservices.
 
@@ -301,6 +306,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** ADV-141..ADV-152 and requirements in `ADMINISTRATIVE-NOTES-CROSS-ENTITY-REQUIREMENTS-2026-11-23.md`. A note stating 'approved' must not authorize a grant; private charity notes cannot cross sponsors; edits preserve prior revisions; sensitive exports require authorization. Notes can initiate independently authorized review/referral but never bypass domain safety gates.
 
 ## REQ-X-025: IVR telephone self-service and numeric record references (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-PLT-002` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** All IVR-eligible account/fund, grant, charity and related records have stable digit-only DTMF-enterable alternate references distinct from immutable internal IDs and separately namespaced external provider IDs. Preserve leading zeros, uniqueness scope, non-reassignment, check-digit/error detection where justified, legacy aliases and sponsor white-label terminology. IVR integrates through the authenticated application facade within the component monolith; no direct ledger or note database access. Numeric references are lookup keys, not secrets. Caller authentication, authorization, privacy, neutral anti-enumeration responses, accessible DTMF fallback, precise authoritative statuses and secure support handoff are mandatory. Initial IVR capabilities are read-only pending separate approval for consequential commands.
 
@@ -344,6 +350,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** Follow the 30 ED-001..030 scenarios, 10 acceptance gates and 15 ADR topics in `kemiller2002/forma` and `kemiller2002/forma-studio` at `docs/requirements/email-designer-2026-11-23.md`, plus `FORMA-EMAIL-DESIGNER-UNBOUND-INTEGRATION-2026-11-23.md`. No implementation or tests authorized or completed.
 
 ## REQ-X-032: Monthly fund statement generation, publication and distribution (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-PLT-005` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** Unbound generates monthly statements by default for eligible funds, from approved reconciled period-end financial snapshots, with sponsor-configurable schedule, cutoff, disclosures, branding and delivery policy. Statements have distinct generation, approval, publication, availability and delivery states. Support fund-level and authorized consolidated views, secure portal access, email notification, optional physical mail, accessible print/PDF, immutable as-issued history, governed corrections, month-end exception handling, idempotent batch scheduling and full audit. Statement data never derives from unverified portal caches or AI; account NAV and available-to-grant remain distinct.
 
@@ -368,6 +375,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** ADV-315..ADV-334 and `DOCUMENT-CENTER-PORTAL-ADMIN-SEARCH-ACCESS-AND-VERIFICATION-2026-11-23.md`. Validate access revocation, cross-tenant isolation, byte integrity checks, corrected document lineage, accessible UI and accurate delivery state.
 
 ## REQ-X-036: Seven-year financial document retention minimum and legal holds (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-PLT-004` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Owner-directed policy:** Retain all financial documents and substantiating financial evidence for **at least seven years**, with longer applicable legal, regulatory, contractual, sponsor or litigation-hold requirements taking precedence. This is a nonwaivable platform floor, not a legal conclusion that all records can be deleted after seven years. Retention clocks must be approved per record class; fund closure, donor death, advisor change and sponsor offboarding do not shorten retention. Originals and corrections remain immutable and linked; legal holds apply to existing and future matching evidence. Expiry triggers governed disposition review, never automatic deletion.
 > Adopted 2026-11-23: refined by `RR-REQ-X-036-r1` (adopted-provisional); the adopted requirement is in `requirements/charities/JURISDICTION-AWARE-REGULATORY-RULES-AND-ELIGIBILITY.md` under 'Adopted reconciliation requirements'.
@@ -441,6 +449,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Acceptance (not executed):** Relevant ADV-579..ADV-618; `ENTERPRISE-DATA-CONTRACTS-PROVIDER-INTEGRATION-AND-EVIDENCE-GOVERNANCE-2026-11-23.md`. Cross-package challenge and prioritized dashboard/report handoff: `ENTERPRISE-GOVERNANCE-INTEGRATION-CONSOLIDATION-AND-DASHBOARD-REPORT-ROADMAP-2026-11-23.md`.
 
 ## REQ-X-047: Operational resilience and protective continuity (2026-11-23)
+> Converged 2026-11-24: governed by `CNV-ARC-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** Fenced authoritative financial writer, explicit fault-assumption RPO/RTO, protective-only emergency plane, safe outage queue, recoverable archive and provider-status reconciliation.
 
@@ -601,6 +610,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-015. See the dedicated REQ-X-072 specification dated 2026-11-23. No implementation or tests claimed.
 
 ### REQ-X-073: Vendor assurance, SOC control ownership and evidence
+> Converged 2026-11-24: governed by `CNV-GOV-002` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-016. See the dedicated REQ-X-073 specification dated 2026-11-23. No implementation or tests claimed.
 
@@ -613,6 +623,7 @@ The proposed implementation-level routing catalog is `ENTERPRISE-DECISION-INVENT
 **Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-018. See the dedicated REQ-X-075 specification dated 2026-11-23. No implementation or tests claimed.
 
 ### REQ-X-076: Sponsor conflicts, related-party transactions and board governance
+> Converged 2026-11-24: governed by `CNV-GRT-009`, `CNV-LEG-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Proposed:** Extend the one Unbound component monolith with the capability's documented operating workflow, domain ownership, sponsor-scoped permissions, legal/partner boundaries, role-specific UX, typed API/data contracts, deterministic provider mocks, evidence, exceptions and audit. Corresponds to GAP-019. See the dedicated REQ-X-076 specification dated 2026-11-23. No implementation or tests claimed.
 

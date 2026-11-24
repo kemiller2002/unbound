@@ -9,6 +9,7 @@ Date: 2026-11-21 | Status: requirements and research inventory, no ingestion imp
 - **UNB-EXT-002:** State charity solicitation registration, secretary of state corporate status, attorney general charity enforcement, nonprofit annual reports and relevant state licensing, with per-state coverage maps.
 - **UNB-EXT-003:** Federal and state grants, contracts, awards and spending sources (e.g., USAspending.gov, SAM.gov where relevant), distinguishing nonprofit recipient identity from legal grant eligibility.
 - **UNB-EXT-004:** OFAC and other legally applicable sanctions/debarment/exclusion lists, with source freshness and exact legal screening applicability; do not equate name similarity with a sanctions match.
+> Converged 2026-11-24: governed by `CNV-GRT-006` (section 'Converged requirements: master mission' in the domain file named by each clause).
 > Adopted 2026-11-23: refined by `RR-UNB-EXT-004-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-EXT-005:** Federal/state court dockets, bankruptcy and public enforcement actions where lawfully accessible, distinguishing allegation, pending matter, disposition and appeal.
 - **UNB-EXT-006:** Charity official websites, annual reports, audited statements, program descriptions, leadership, contact details, service areas, public grant reports and impact claims, subject to website terms and robots/access constraints.

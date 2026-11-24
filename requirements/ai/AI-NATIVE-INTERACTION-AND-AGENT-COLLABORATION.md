@@ -97,3 +97,18 @@ Adopted on owner instruction (2026-11-23). Original requirements above are uncha
 - Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-PLT-005); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
 
 <!-- END ADOPTED: reconciliation-2026-11-23 -->
+
+<!-- BEGIN ADOPTED: convergence-2026-11-24 -->
+## Converged requirements: master mission (2026-11-24)
+
+Status: adopted into the baseline by the master mission. Clauses resolving product-owner-approved directions are binding for design; clauses resting on agent-recommended evidence answers are binding for design as conservative positions pending owner ratification. No clause is a legal, accounting, bank or auditor approval: each activation gate names the authorization still required before production use. Where a clause conflicts with an earlier requirement in this file, the clause governs and the earlier requirement is annotated.
+
+- **CNV-AIO-001 — AI authority boundary and machine-readable assistance:** AI agents and assistants MAY recommend and prepare; they SHALL NOT execute any action reserved to a human authority or exceed the recorded authority of the principal they act for, and the API SHALL reject execution without recorded authority. Every API operation, configuration field, user input and communication template SHALL publish machine-readable assistance documentation (purpose, expected values, constraints, examples, dependencies, validation rules, common mistakes, financial and regulatory implications, required authority and permitted agent level: recommend, prepare or execute). Repeated recommendations rejected for lack of authority SHALL be rate-limited, pattern-detected and reported to the agent owner, never auto-escalated to a decision (TEV-009). AI unavailability SHALL NOT stop deterministic paths. AI SHALL NOT produce individualized investment or tax advice.
+  - Provenance: resolves Phase 3 feedback; amends UNB-AIO-001, UNB-AIO-002, UNB-AIO-003. Evidence and reasoning: [../convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md](../convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md), [../convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md](../convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md).
+  - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
+  - Activation gate: none beyond release scope.
+  - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Acceptance:
+    - AC-1: Given an agent with prepare permission, when it calls the release endpoint, then the call is rejected with AuthorityRequired and logged.
+    - AC-2: Given a configuration field without assistance metadata, when the documentation build runs, then it fails.
+<!-- END ADOPTED: convergence-2026-11-24 -->

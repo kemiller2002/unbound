@@ -32,8 +32,11 @@ Status: candidate requirements; NOT approved. Each item needs source validation,
 
 ## AI, enterprise operations and technology
 - UNB-AIO-001: Every agent action SHALL identify its permissions, inputs, policy version, result, evidence, and escalation route.
+> Converged 2026-11-24: governed by `CNV-AIO-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - UNB-AIO-002: High-impact, ambiguous, irreversible or legally reserved decisions SHALL require appropriate authorized human review.
+> Converged 2026-11-24: governed by `CNV-AIO-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - UNB-AIO-003: Agent unavailability, model changes and prompt injection SHALL not bypass deterministic financial or authorization controls.
+> Converged 2026-11-24: governed by `CNV-AIO-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - UNB-OPS-001: The enterprise SHALL support incident response, vendor failure, disputes, business continuity and recoverable audit trails.
 - UNB-TEC-001: Integration SHALL use versioned contracts and the current Echelon Registry capability-discovery model; optional EF providers SHALL not break core operations.
 - UNB-TEC-002: The intended implementation SHALL prioritize F#, WASM-first delivery, Limen and Forma where validated, managed persistence, and minimal operational complexity.

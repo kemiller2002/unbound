@@ -133,3 +133,18 @@ Status: adopted at the product owner's direction from [requirements/discovery/20
     - AC-3: Given Program crashes after 4,000 funds; when resumed; then no fund transfers twice (TransferProgramId + FundId key).
     - AC-D1: Given a TransferProgram with no master agreement recorded; when the first transfer is proposed; then it is blocked with MASTER_AGREEMENT_REQUIRED.
 <!-- END ADOPTED: cross-industry-discovery -->
+
+<!-- BEGIN ADOPTED: convergence-2026-11-24 -->
+## Converged requirements: master mission (2026-11-24)
+
+Status: adopted into the baseline by the master mission. Clauses resolving product-owner-approved directions are binding for design; clauses resting on agent-recommended evidence answers are binding for design as conservative positions pending owner ratification. No clause is a legal, accounting, bank or auditor approval: each activation gate names the authorization still required before production use. Where a clause conflicts with an earlier requirement in this file, the clause governs and the earlier requirement is annotated.
+
+- **CNV-ARC-002 — Tenant isolation and operator access:** The tenant unit SHALL be the legal sponsor; partner and program isolation SHALL be threat-tested. Operator access to a tenant SHALL be denied by default; read diagnostics SHALL be scoped, expiring and pre-approved by the sponsor; writes SHALL require per-case approval; revocation SHALL take effect immediately and every access SHALL be evidenced. A minimal shared party core SHALL be partitioned by role and tenant.
+  - Provenance: resolves XID-IAM-001, UNB-XIN-IAM-002#Q1, XID-CRM-003, RCD-004; amends UNB-XIN-IAM-002; related findings RCF-PLT-001. Evidence and reasoning: [convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md](convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md), [convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md](convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md).
+  - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
+  - Activation gate: none beyond release scope.
+  - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Acceptance:
+    - AC-1: Given an operator without an active grant, when they query tenant B, then the request is refused and alerted.
+    - AC-2: Given a revoked grant, when the operator session continues, then the next request is refused.
+<!-- END ADOPTED: convergence-2026-11-24 -->

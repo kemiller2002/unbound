@@ -32,8 +32,10 @@ def clause(cid, title, statement, acceptance, resolves, amends, domain, scope, g
     assert classification in CLASSIFICATIONS, classification
     assert "SHALL" in statement or classification != "normative", cid
     assert acceptance, cid
+    finding = lambda i: i.startswith(("RCF-", "RCC-", "OB-", "OD-"))
     return {"id": cid, "title": title, "statement": " ".join(statement.split()), "acceptance_criteria": list(acceptance),
-            "resolves": list(resolves), "amends": list(amends), "domain": domain, "target_file": DOMAINS[domain],
+            "resolves": list(resolves), "amends": [i for i in amends if not finding(i)],
+            "related_findings": [i for i in amends if finding(i)], "domain": domain, "target_file": DOMAINS[domain],
             "release_scope": scope, "activation_gate": gate, "owners": owners, "evidence_batches": list(evidence),
             "classification": classification, "operating_models": list(models), "dependencies": list(dependencies),
             "activation_conditions": activation or (gate if gate else "none beyond release scope")}
