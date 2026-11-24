@@ -116,12 +116,12 @@ Most capabilities are partially covered. The baseline is *broad*: it names almos
 <!-- BEGIN GENERATED: trace -->
 | Relationship | Edges |
 |---|---|
-| depends_on | 741 |
-| affects | 484 |
-| derived_from | 446 |
-| tested_by | 316 |
-| decided_by | 137 |
-| conflicts_with | 35 |
+| depends_on | 757 |
+| affects | 608 |
+| derived_from | 453 |
+| tested_by | 380 |
+| decided_by | 184 |
+| conflicts_with | 50 |
 | refines | 28 |
 | duplicates | 14 |
 | supersedes | 3 |

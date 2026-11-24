@@ -1,18 +1,18 @@
 {
   "records": {
     "refinements": 31,
-    "gaps": 148,
-    "findings": 195,
-    "conflicts": 27,
-    "scenarios": 194,
-    "decisions": 75,
+    "gaps": 150,
+    "findings": 217,
+    "conflicts": 38,
+    "scenarios": 205,
+    "decisions": 86,
     "atlas": 368,
-    "rejected": 86,
+    "rejected": 93,
     "failures": 148,
     "events": 96,
     "regulatory": 20
   },
-  "trace_edges": 2204,
+  "trace_edges": 2477,
   "errors": 0,
   "warnings": 0,
   "errors_by_gate": {}

@@ -38,6 +38,7 @@ The table below abbreviates each record. Read the JSONL for full text and eviden
 | SaaS, IAM, records, workflow, other | 66 |  | 24 | 5 |  | 11 | 21 |
 | Operating economics | 36 |  | 22 | 4 |  | 11 | 16 |
 | Event architecture | 27 |  | 16 | 4 |  | 10 | 20 |
+| Adversarial review |  |  | 2 |  |  | 7 |  |
 <!-- END GENERATED: by-group -->
 
 ### How the capabilities should be executed

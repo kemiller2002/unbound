@@ -1,0 +1,48 @@
+{"id": "UNB-XIN-BNK-001", "current_priority": "P0", "proposed_priority": "P1", "reason": "A register is documentation; enforcement is the RailGoLive gate in RR-UNB-PAY-008-r1, which is already P0."}
+{"id": "UNB-XIN-PAY-003", "current_priority": "P0", "proposed_priority": "P1", "reason": "Card disputes are run by the processor; ledger exposure is already handled by RR-REQ-X-009-r1 exposure recording; only relevant if cards are in R1."}
+{"id": "UNB-XIN-CLM-004", "current_priority": "P0", "proposed_priority": "P1", "reason": "Restricted visibility for investigation cases is good practice, but existing role scoping prevents disclosure; not itself loss-preventing."}
+{"id": "UNB-XIN-ERP-001", "current_priority": "P0", "proposed_priority": "P1", "reason": "Accrual method is an open decision (XID-ERP-001); monthly accrual is also correct; integrity is ensured by RR-ADM-028-r1 idempotent fee runs."}
+{"id": "UNB-XIN-ERP-004", "current_priority": "P0", "proposed_priority": "P1", "reason": "Fraud-reduction separation of payee registries; grant payees are already verified destinations under existing payment controls."}
+{"id": "UNB-XIN-CRM-001", "current_priority": "P0", "proposed_priority": "P1", "reason": "Data-partitioning design preference; disclosure risk is controlled by role scoping and EVA-014."}
+{"id": "UNB-XIN-CRM-002", "current_priority": "P0", "proposed_priority": "P1", "reason": "No statute requires attestations; detection of §4958/§4967 risk is valuable but declarations are low-reliability; make event-driven, not annual."}
+{"id": "UNB-XIN-CRM-003", "current_priority": "P0", "proposed_priority": "P1", "reason": "CAN-SPAM email violations carry low per-message harm; keep P0 only for SMS/prerecorded voice (TCPA statutory damages), per XIF-INT-001."}
+{"id": "UNB-XIN-REG-002", "current_priority": "P0", "proposed_priority": "P1", "reason": "A register of open legal questions is a governance artifact; the gating effect belongs to REG-001 and launch checklists."}
+{"id": "UNB-XIN-SAS-005", "current_priority": "P0", "proposed_priority": "P1", "reason": "With one database per legal sponsor, isolation is physical; the envelope aids audit and metering but is not the isolation boundary."}
+{"id": "UNB-XIN-SAS-007", "current_priority": "P0", "proposed_priority": "P1", "reason": "No distribution partners in R1 single-tenant launch; P0 once a partner contract exists."}
+{"id": "UNB-XIN-REC-001", "current_priority": "P0", "proposed_priority": "P1", "reason": "Legal holds are required, but automated multi-processor notice with 5-day escalation is an operational enhancement over a manual counsel notice."}
+{"id": "UNB-XIN-ECO-021", "current_priority": "P0", "proposed_priority": "P2", "reason": "Management cost dashboards; cross-tenant leakage is already prevented by tenancy controls; benchmark k-anonymity is a P2 reporting rule."}
+{"id": "UNB-XIN-EVA-014", "current_priority": "P0", "proposed_priority": "P1", "reason": "Classification of data classes is architecture guidance; the P0 effect (CRM data never authorizes money) is already in RR-UNB-EVT-005-r1 and EVA-016."}
+{"id": "UNB-XIN-ACC-002", "current_priority": "P0", "proposed_priority": "P1", "reason": "Recognition timing is corrected at audit (ACC-005) and the policy choice is open (XID-INV-001)."}
+{"id": "UNB-XIN-OTH-003", "current_priority": "P0", "proposed_priority": "merge into UNB-XIN-REG-001 (P0)", "reason": "Duplicate of REG-001 funds-flow rule (XIF-INT-007); keep one P0 requirement."}
+{"id": "UNB-XIN-SAS-001", "current_priority": "P1", "proposed_priority": "P2", "reason": "Entitlements matter once there are multiple contracted tenants with different scopes; R1 can run on configuration."}
+{"id": "UNB-XIN-SAS-002", "current_priority": "P1", "proposed_priority": "P2", "reason": "Flag hygiene is engineering practice; the semantic prohibition can be a code-review rule."}
+{"id": "UNB-XIN-SAS-003", "current_priority": "P1", "proposed_priority": "P2", "reason": "Ring deployment matters with many cells; R1 has few cells; keep the December freeze as a P1 runbook item."}
+{"id": "UNB-XIN-SAS-010", "current_priority": "P1", "proposed_priority": "P2", "reason": "Sandboxes are a commercial convenience; mock adapters already exist for testing."}
+{"id": "UNB-XIN-ECO-001", "current_priority": "P1", "proposed_priority": "P2", "reason": "Management attribution is not an essential customer obligation."}
+{"id": "UNB-XIN-ECO-002", "current_priority": "P1", "proposed_priority": "P2", "reason": "Same as ECO-001."}
+{"id": "UNB-XIN-ECO-003", "current_priority": "P1", "proposed_priority": "P2", "reason": "Same as ECO-001."}
+{"id": "UNB-XIN-ECO-004", "current_priority": "P1", "proposed_priority": "P2", "reason": "Same as ECO-001; control is also tautological as written (XIF-ADV-008)."}
+{"id": "UNB-XIN-ECO-016", "current_priority": "P1", "proposed_priority": "P2", "reason": "Only meaningful once improvement initiatives exist."}
+{"id": "UNB-XIN-ECO-017", "current_priority": "P1", "proposed_priority": "P2", "reason": "Staffing forecast can live in a spreadsheet fed by queue exports for R1; capacity is decided by humans anyway."}
+{"id": "UNB-XIN-ACC-003", "current_priority": "P1", "proposed_priority": "P2", "reason": "Comparison control valuable but sample-based re-derivation can follow go-live."}
+{"id": "UNB-XIN-ACC-004", "current_priority": "P1", "proposed_priority": "P2", "reason": "Accounting change classification is handled by the controller manually at low frequency."}
+{"id": "UNB-XIN-INV-001", "current_priority": "P1", "proposed_priority": "P2", "reason": "Advisory fee recomputation is an integration reconciliation only for advisor-managed accounts."}
+{"id": "UNB-XIN-EVA-008", "current_priority": "P1", "proposed_priority": "P2", "reason": "Published integration events only needed for partner/embedded models."}
+{"id": "UNB-XIN-ERP-003", "current_priority": "P1", "proposed_priority": "P2", "reason": "Operator billing in the operator system is a boundary statement; nothing is built in R1."}
+{"id": "UNB-XIN-CRM-004", "current_priority": "P1", "proposed_priority": "P2", "reason": "Segmentation allowlist matters once marketing segments exist."}
+{"id": "UNB-XIN-NPG-009", "current_priority": "P1", "proposed_priority": "P2", "reason": "Grantee declarations add friction with low detection value; only for direct foreign grants (possibly out of R1)."}
+{"id": "UNB-XIN-REC-002", "current_priority": "P1", "proposed_priority": "P2", "reason": "Legal production can be assembled manually in R1."}
+{"id": "UNB-XIN-SVC-001", "current_priority": "P1", "proposed_priority": "P2", "reason": "Logging every interaction as a Contact is CX instrumentation, not an obligation."}
+{"id": "UNB-XIN-ACC-009", "current_priority": "P1", "proposed_priority": "P2", "reason": "SOC 1 is a commercial/vendor-assurance commitment of the operator, not platform behaviour; track under RR-REQ-X-073-r1."}
+{"id": "UNB-XIN-ECO-008", "current_priority": "P2", "proposed_priority": "P3", "reason": "Cost quotes advisory only."}
+{"id": "UNB-XIN-ECO-010", "current_priority": "P2", "proposed_priority": "P3", "reason": "Weekly process mining before measured data exists."}
+{"id": "UNB-XIN-ECO-015", "current_priority": "P2", "proposed_priority": "P3", "reason": "Improvement programme governance; merge into REQ-X-042."}
+{"id": "UNB-XIN-ECO-019", "current_priority": "P2", "proposed_priority": "P3", "reason": "Automation ROI; duplicate of ECO-015 verification."}
+{"id": "UNB-XIN-ECO-022", "current_priority": "P2", "proposed_priority": "P3", "reason": "Ten dashboards versus the report's own six-metric R1 scope."}
+{"id": "UNB-XIN-ECO-018", "current_priority": "P2", "proposed_priority": "P3", "reason": "Recovery ratio only once service charges exist."}
+{"id": "UNB-XIN-INV-007", "current_priority": "P2", "proposed_priority": "P3", "reason": "Crypto is normally liquidated on receipt; holding crypto is an optional sponsor policy."}
+{"id": "UNB-XIN-ERP-006", "current_priority": "P2", "proposed_priority": "P3", "reason": "Duplicate effort tagging of ECO-006 (XIF-INT-008)."}
+{"id": "UNB-XIN-BNK-005", "current_priority": "P2", "proposed_priority": "P3", "reason": "Duplicate cost feed (XIF-INT-008)."}
+{"id": "UNB-XIN-SVC-008", "current_priority": "P2", "proposed_priority": "P3", "reason": "Merged into ECO-017 (XIF-INT-004)."}
+{"id": "UNB-XIN-ECO-013", "current_priority": "P3", "proposed_priority": "reject", "reason": "Contradicts ECO report (Echelon offline first) and XRJ-ERP-002."}
+{"id": "UNB-XIN-ECO-020", "current_priority": "P3", "proposed_priority": "reject", "reason": "SLA-tier lifetime value is a commercial analysis, not platform behaviour."}

@@ -1,5 +1,7 @@
 # EVA: Event-driven enterprise architecture hypothesis (addendum §19)
 
+> **Integrator note (2026-11-24).** The adversarial review corrected the volume test: the outbox figure is inconsistent, and daily per-fund fee accrual rows were omitted. It also qualified the "one transactional boundary" claim, because the hold registry spans two databases. See [12](../12-EVENT-ARCHITECTURE-DECISION.md) §1 and XIF-ADV-006, XIF-ADV-007. The text below is the research pass as delivered.
+
 Domain code EVA. Date 2026-11-23. This is requirements research only: nothing was built, benchmarked or executed. Volume figures are arithmetic on cited inputs; assumptions are marked [A].
 
 **Outputs**

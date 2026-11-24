@@ -150,9 +150,17 @@ def g_priority_counts(d) -> str:
 def g_register(d) -> str:
     order = {p: i for i, p in enumerate(PRIORITIES)}
     rows = sorted(d["G"], key=lambda g: (order.get(g.get("priority"), 9), g["id"]))
-    return table(("ID", "P", "Parent capability", "Statement", "Applicability", "Discovery source", "Priority justification", "Links"),
-                 tuple((g["id"], g.get("priority"), g.get("parent_capability"), g.get("statement"), g.get("applicability"),
-                        g.get("discovery_source"), g.get("priority_justification"), g.get("links", ())) for g in rows), 260)
+    pri = lambda g: g.get("priority") + (f" (was {g['priority_as_proposed']})" if g.get("priority_as_proposed", g.get("priority")) != g.get("priority") else "")
+    return table(("ID", "P", "Parent capability", "Statement", "Applicability", "Discovery source", "Priority justification", "Adversarial disposition", "Links"),
+                 tuple((g["id"], pri(g), g.get("parent_capability"), g.get("statement"), g.get("applicability"),
+                        g.get("discovery_source"), g.get("priority_revision") or g.get("priority_justification"),
+                        g.get("adversarial_disposition", ""), g.get("links", ())) for g in rows), 260)
+
+
+def g_priority_shift(d) -> str:
+    c = Counter((g.get("priority_as_proposed", g.get("priority")), g.get("priority")) for g in d["G"])
+    return table(("As proposed by research pass", *PRIORITIES, "Total"),
+                 tuple((p, *(c[(p, q)] for q in PRIORITIES), sum(c[(p, q)] for q in PRIORITIES)) for p in PRIORITIES))
 
 
 def g_refinements(d) -> str:
@@ -285,6 +293,22 @@ def g_adv_findings(d) -> str:
     rows = tuple(f for f in d["F"] if f["finding_id"].startswith("XIF-ADV-"))
     return table(("Finding", "Severity", "Title", "Affected", "Proposed resolution"),
                  tuple((f["finding_id"], f["severity"], f["title"], f["affected_ids"], f["proposed_resolution"]) for f in rows), 260)
+
+
+def g_adv_conflicts(d) -> str:
+    return table(("Conflict", "A", "B", "Incompatibility", "Recommended resolution"),
+                 tuple((c["conflict_id"], c["requirement_a"], c["requirement_b"], c["incompatibility"], c["recommended_resolution"])
+                       for c in d["C"] if c["conflict_id"].startswith("XIC-ADV-")), 300)
+
+
+def g_adv_decisions(d) -> str:
+    return table(("Decision", "Question", "Recommendation"),
+                 tuple((x["decision_id"], x["question"], x["recommendation"]) for x in d["D"] if x["decision_id"].startswith("XID-ADV-")), 300)
+
+
+def g_adv_requirements(d) -> str:
+    return table(("ID", "P", "Statement", "Business problem"),
+                 tuple((g["id"], g.get("priority"), g.get("statement"), g.get("business_problem")) for g in d["G"] if g["id"].startswith("UNB-XIN-ADV-")), 600)
 
 
 def g_trace(d) -> str:

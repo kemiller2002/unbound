@@ -1,5 +1,7 @@
 # Enterprise operating economics and cost-to-serve — addendum §18 (code ECO)
 
+> **Integrator note (2026-11-24).** The adversarial review corrected parts of the worked example in §3: unused capacity is about 4.9× the operating result, not about 3×; the $12.70-per-grant figure is withdrawn; the unit-cost ranges cannot be reproduced. See [11](../11-OPERATING-ECONOMICS.md) §3 and XIF-ADV-008. The text below is the research pass as delivered.
+
 Status: proposed and unvalidated. Date: 2026-11-23.
 
 Records produced:

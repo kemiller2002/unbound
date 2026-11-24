@@ -62,7 +62,7 @@ A foundation grants office works through these steps:
 2. **Equivalency determination is settled enough to build.**
    - Records: XIF-NPG-001 → UNB-XIN-NPG-001 and RR-UNB-GRANT-041-r1. OB-20 moves from low to high confidence.
    - Rev. Proc. 2017-53 §2, read directly: "sponsoring organizations of donor advised funds may also use the guidelines" for the §4966(c)(2)(A) exception.
-   - §4.02(1) makes currency computable: up to about two years, tied to the grantee's taxable year.
+   - §3.03(1) makes currency computable: up to about two years, tied to the grantee's taxable year.
    - Written advice must come from an attorney, CPA or enrolled agent.
    - Routing becomes deterministic, tried in this order: listed charity → US intermediary → ED → ER → decline.
 3. **A 2026 temporary regulation contradicts UNB-RCN-GRT-001.**

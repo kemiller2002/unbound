@@ -54,7 +54,7 @@ These are cited in the individual requirements and are not limited to `XRA-*`.
 <!-- BEGIN GENERATED: regulatory -->
 | ID | Topic | Binding | Authority | Citation | Applies to (entity) | Activity | Models | Confidence | Counsel question |
 |---|---|---|---|---|---|---|---|---|---|
-| XRA-001 | Equivalency determinations for DAF sponsors | uncertain (reliance safe harbor, not mandate) | official IRS guidance | Rev. Proc. 2017-53 §§2, 4.02 | sponsor | direct foreign grants | sponsor-dependent; models offering international | high | May advice procured by another grantor be relied on? |
+| XRA-001 | Equivalency determinations for DAF sponsors | uncertain (reliance safe harbor, not mandate) | official IRS guidance | Rev. Proc. 2017-53 §§2, 3.03(1) | sponsor | direct foreign grants | sponsor-dependent; models offering international | high | May advice procured by another grantor be relied on? |
 | XRA-002 | 2023 proposed DAF regulations status (late 2026) | N | proposed regulation | REG-142338-07; 88 FR 77922 (2023-11-14) | sponsor, advisor | all DAF distributions | universal | high | Applicability date and transition when final. |
 | XRA-003 | Supporting-organization reliance (Notice 2006-109 via Notice 2014-4) | uncertain (reliance) | official IRS guidance | Notice 2014-4 §3.02; Notice 2006-109 §3 | sponsor | grants to Type I/II/FI-III supporting organizations | universal | high | Certification form wording. |
 | XRA-004 | Trump account general funding contributions via DAF | Y | final regulation (temporary) | Temp. Treas. Reg. §1.530A-7T(e)(2), (f); FR Doc. 2026-20026 | sponsor, donor | distributions to Treasury-administered Trump accounts | D2C; HNW-family-office; institutional; hybrid | high | §4967 where the class includes the donor's family? |
@@ -73,7 +73,7 @@ These are cited in the individual requirements and are not limited to `XRA-*`.
 | XRA-017 | OFAC humanitarian/NGO general licenses | Y | final regulation | 87 FR 78470, 87 FR 78484 (2022-12-21); 31 CFR ch. V | sponsor, platform vendor | grants touching sanctioned jurisdictions | international-capable models | medium | Which GLs apply to DAF grants? |
 | XRA-018 | Expenditure responsibility mechanics | Y | final regulation (by reference) | Treas. Reg. §53.4945-5(b)(3), (c); §4966(c)(1)(B) | sponsor, grantee | ER grants | institutional; HNW-family-office; investment-centric; hybrid | high | DAF-specific modifications under NPRM. |
 | XRA-019 | E-SIGN scope for grantee agreements | Y | statute | 15 USC §7001(c); UETA | sponsor, grantee | electronic grant agreements | universal | medium | Confirm for unincorporated associations. |
-| XRA-020 | Colorado ADMT law re-check | uncertain | statute (state) | Colo. SB 26-189 | sponsor, platform vendor | automated decisions about donors | universal | medium | Does any donor-account decision fall within 'financial or lending'? |
+| XRA-020 | Colorado ADMT law re-check | uncertain | statute (state) | Colo. SB 26-189 | sponsor, platform vendor | automated decisions about donors | universal | low | Does any donor-account decision fall within 'financial or lending'? |
 <!-- END GENERATED: regulatory -->
 
 ## Questions for qualified legal or accounting review
@@ -84,8 +84,8 @@ All are recorded as open decisions in [15](15-OPEN-DECISIONS-AND-SCENARIOS.md) w
 | Type | Open decisions |
 |---|---|
 | legal | 29 |
-| product | 14 |
-| governance | 13 |
-| accounting | 10 |
-| architecture | 9 |
+| product | 18 |
+| governance | 15 |
+| accounting | 12 |
+| architecture | 12 |
 <!-- END GENERATED: decision-types -->
