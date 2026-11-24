@@ -17,4 +17,18 @@ AMENDMENTS = {
     "CNV-ECO-004": {"finding": "OD-M-04, OD-M-05 (owner decisions)",
         "append": "The owner approved this segment choice (OD-M-05). The decision on Unbound- or partner-supplied staffed services (SPR-ADV-009) SHALL be reopened if fewer than five sponsors with under 10,000 funds have signed within 12 months of general availability (OD-M-04; the threshold of five is a business-policy default the owner confirms at the annual review).",
         "acceptance_add": ["Given 12 months after general availability with four signed sponsors under 10,000 funds, when the review runs, then a staffed-services decision record is opened."]},
+    "CNV-LEG-001": {"finding": "OD-M-07 (owner decision)",
+        "replace": [("implementing sponsor-selected models executed by the sponsor's custodian and factual, non-evaluative reporting are permitted.",
+                     "relaying donor allocation recommendations among options made available by the sponsor's external investment manager, and factual, non-evaluative reporting, are permitted."),
+                    ("Pools SHALL rely on Investment Company Act §3(c)(10)(B) with §7(e) donor disclosure; release 1 SHALL be single-sponsor pools only (multi-sponsor pools are lawful but deferred);",
+                     "No sponsor-maintained investment pools SHALL be offered (OD-M-07): each sponsor SHALL delegate investment management of fund assets to an external registered investment manager or custodian platform under a written agreement, and the sponsor board SHALL keep the duties to select the manager, set its scope and investment policy, and monitor performance and cost (prudent delegation under applicable state law, for example UPMIFA §5 where enacted; interpretation). Unbound SHALL ingest the manager's positions, transactions, units and valuations and reconcile them, and SHALL NOT select or recommend investments or managers. Sponsor-maintained pools (lawful under Investment Company Act §3(c)(10)(B) with §7(e) disclosure, including multi-sponsor pools) are not offered and would require a new owner decision;")],
+        "acceptance_add": ["Given a sponsor configuration that defines a sponsor-maintained investment pool, when saved, then it is rejected with SponsorPoolsNotOffered.",
+                           "Given a donor allocation recommendation naming an option the external manager does not offer, when submitted, then it is rejected and the available options are shown."]},
+    "CNV-FIN-005": {"finding": "OD-M-07 (owner decision)",
+        "append": "Because investment management is delegated to an external manager (OD-M-07), values for each fund SHALL come from the manager's or custodian's positions and prices (or unit values the manager publishes) and SHALL be reconciled to the custodian; the deterministic-publication delegation in this clause applies only to fund-level valuations Unbound derives from those inputs, and a missing or stale manager price SHALL block the affected statement rather than be estimated.",
+        "acceptance_add": ["Given a manager price feed missing for one holding, when statements run, then statements for funds holding it are withheld with reason ManagerPriceMissing."]},
+    "CNV-FIN-001": {"finding": "OD-M-07 (owner decision)",
+        "replace": [("Each investment pool SHALL carry a sponsor-approved liquidity buffer", "Each fund's investments at the external manager SHALL be backed by a sponsor-approved liquidity buffer (a cash allocation at the custodian)")],
+        "append": "The buffer's stress model SHALL include the manager's settlement times for liquidating investments to fund grants."},
 }
+
