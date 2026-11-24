@@ -252,11 +252,16 @@ def join(r, s):
                 resolution_events=str(len(hist)))
 
 
-def discarded_hand_answers(existing, rows):
-    """CSV answers that would be lost by regeneration (present before, absent or different now)."""
-    new = {r["question_id"]: r for r in rows}
+def logged_answers(events):
+    """Every answer text ever recorded in the log, per question."""
+    return reduce(lambda acc, e: {**acc, e["question_id"]: acc.get(e["question_id"], frozenset()) | {e["set"]["answer"].strip()}}
+                  if (e.get("set") or {}).get("answer") else acc, events, {})
+
+
+def discarded_hand_answers(existing, logged):
+    """CSV answers that the log never recorded: hand edits that regeneration would silently discard."""
     return tuple(e["question_id"] for e in existing
-                 if (e.get("answer") or "").strip() and (new.get(e["question_id"], {}).get("answer") or "").strip() != e["answer"].strip())
+                 if (e.get("answer") or "").strip() and e["answer"].strip() not in logged.get(e["question_id"], frozenset()))
 
 
 def main(argv):
@@ -274,7 +279,7 @@ def main(argv):
         return 2
     rows = tuple(join(r, states.get(r["question_id"])) for r in base)
     csv_path = root / "requirements/open-questions.csv"
-    lost = discarded_hand_answers(load_csv(csv_path), rows) if "--allow-discard" not in argv else ()
+    lost = discarded_hand_answers(load_csv(csv_path), logged_answers(events)) if "--allow-discard" not in argv else ()
     if lost:
         print(f"refusing to write: {len(lost)} answers in {csv_path} are not in {ql.EVENTS}: {list(lost)[:10]}", file=sys.stderr)
         return 3
