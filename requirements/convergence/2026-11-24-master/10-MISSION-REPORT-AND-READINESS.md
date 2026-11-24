@@ -42,8 +42,8 @@ economic model of labelled assumptions). No software test of Unbound was execute
 > | P-ENT | Bulk sponsor-exit tooling deferred (export and single transfers kept) |
 > | P-ADV | Status-label table limited to release-1 reachable states |
 >
-> **Approval status now:** 316/316 questions approved (151 owner-approved in packet review, 166 product direction under
-> earlier delegation counted once each; 35 duplicates follow their canonical question); 82/82 clauses approved.
+> **Approval status now:** 316/316 questions approved — 150 owner-approved in this review (including 35 duplicates that
+> follow their canonical question) and 166 under the earlier delegated product-direction approval; 82/82 clauses approved.
 
 ## 1. Executive summary
 
