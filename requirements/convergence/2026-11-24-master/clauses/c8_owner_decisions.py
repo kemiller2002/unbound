@@ -69,5 +69,18 @@ AMENDMENTS = {
         "append": "In release 1 the adoption-time conflict check SHALL run against the sponsor's single configuration and the platform's non-removable rules (OD-P-GOV cut I)."},
     "CNV-GOV-002": {"finding": "OD-P-GOV cut J (owner decision)",
         "append": "In release 1 these checks SHALL be performed as an annual vendor-assurance review task with recorded evidence, plus an ad hoc review when a vendor reports an exception or outage; automated gap tracking is deferred (OD-P-GOV cut J)."},
+    "CNV-PLT-001": {"finding": "OD-P-PLT cut K (owner decision)",
+        "append": "Release 1 SHALL communicate by email and in-portal messages only; SMS and automated or prerecorded voice are disabled, and the consent, revocation and call-limit rules above apply when they are enabled (OD-P-PLT cut K). One-time codes SHALL use email or authenticator apps, not SMS."},
+    "CNV-PLT-004": {"finding": "OD-P-PLT cut L (owner decision)",
+        "append": "To avoid per-record classification, release 1 SHALL apply the 10-year floor to all transaction-level financial and grant records, keeping the blocked-property and permanent classes and legal-hold precedence (OD-P-PLT cut L)."},
+    "CNV-ARC-001": {"finding": "OD-P-PLT cut M (owner decision)",
+        "replace": [("in one managed PostgreSQL database per sponsor tenant (candidate)", "in one managed PostgreSQL cluster with a schema and database role per sponsor tenant, row-level security on every tenant table and negative isolation tests, moving a sponsor to a dedicated database only when risk or contract requires (OD-P-PLT cut M)")]},
+    "CNV-ARC-003": {"finding": "OD-P-PLT cut M (owner decision)",
+        "replace": [("Because each sponsor has its own database, global hold publications SHALL be replicated", "For sponsors on the shared cluster, the hold registry SHALL live in the same cluster and dispatch SHALL check the current hold version in the same transaction that releases the instruction; for any sponsor moved to a dedicated database, global hold publications SHALL be replicated")]},
+    "CNV-ARC-005": {"finding": "OD-P-PLT cut M (owner decision)",
+        "replace": [("Fleet provisioning SHALL be declarative", "Provisioning of the shared cluster and of any dedicated sponsor databases SHALL be declarative")],
+        "append": "On the shared cluster, migration state SHALL be recorded per tenant schema."},
+    "CNV-TEN-001": {"finding": "OD-P-PLT cut M (owner decision)",
+        "append": "On the shared cluster a sponsor 'cell' is its schema and database role; the same delegation, routing-metadata and SharedStoreRegister rules apply (OD-P-PLT cut M)."},
 }
 
