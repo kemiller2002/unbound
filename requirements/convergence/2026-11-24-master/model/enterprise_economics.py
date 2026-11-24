@@ -58,13 +58,16 @@ ENTERPRISES = {
            "revenue": "asset_tiered_min100", "cac_bearer": "sponsor", "complex_share_mult": 1.0,
            "basis": "daf-landscape business model D2C; market mix from parameters.json"},
     "E2": {"name": "Community foundation (DAF program inside a broader foundation)", "mix": "community_foundation",
-           "route": "sponsor_direct", "accounts": 1500, "scales": (500, 1500, 5000), "accounts_per_sponsor": None,
+           "route": "sponsor_direct", "accounts": 128, "scales": (46, 128, 313, 1500), "accounts_per_sponsor": None,
            "revenue": "asset_tiered_min250", "cac_bearer": "sponsor", "complex_share_mult": 1.5,
-           "basis": "[A] CF fund counts of hundreds to low thousands; non-DAF programs excluded from scope"},
+           "basis": "[S] DAFRC FY2024 panel, 802 community foundations: median 46, p75 128, p90 313 DAFs; only 7 hold >=1,500 "
+                    "(daf-landscape data/mission-2026-11-14/dafrc-sponsor-schedule-d-fy2019-2024.csv); non-DAF programs excluded"},
     "E3": {"name": "Wealth-management and advisor-distributed DAF provider", "mix": "advisor_distributed",
            "route": "sponsor_direct", "accounts": 40000, "scales": (10000, 40000, 200000), "accounts_per_sponsor": None,
-           "revenue": "advisor_sponsored", "cac_bearer": "sponsor", "complex_share_mult": 1.3,
-           "basis": "daf-landscape advisor-distribution model; investment management stays with advisors"},
+           "revenue": "asset_tiered_min250", "cac_bearer": "sponsor", "complex_share_mult": 1.3,
+           "revenue_later": "advisor_sponsored",
+           "basis": "daf-landscape advisor-distribution model; release 1 has no advisor-managed program and no fund-paid advisor "
+                    "compensation (CNV-GRT-009), so release-1 revenue is the sponsor admin fee only; advisor_sponsored is a later option"},
     "E4": {"name": "High-volume workplace giving provider", "mix": "digital_minimal", "route": "sponsor_direct",
            "accounts": 500000, "scales": (100000, 500000, 2000000), "accounts_per_sponsor": None,
            "revenue": "employer_sponsored", "cac_bearer": "employer", "complex_share_mult": 1.0,
@@ -92,6 +95,15 @@ APPROACHES = {
                          "check_share_mult": {"set": 1.5}},
            "basis": "[A] A's human workflows, but technology bought at the same licence as C; isolates the workflow effect "
                     "from the build-versus-buy effect"},
+    "A8": {"name": "Traditional operation, same exception definition as B-D (8%)", "platform": False, "outsource_complex": False,
+           "overrides": {"contacts_mult": {"mult": 1.3}, "ai_cost_per_dossier": {"set": 0.0}, "ai_interactions_per_account": {"set": 0.0},
+                         "ai_cost_per_grant_screen": {"set": 0.0}, "recurring_obligations_per_account": {"mult": 1.5},
+                         "check_share_mult": {"set": 1.5}},
+           "basis": "Adversarial correction ADV-B-005: A with the same exception incidence as the other approaches; the 30% "
+                    "per-item-review assumption in A is a separate, unmeasured lever"},
+    "C0": {"name": "Unbound without unmeasured redesign levers", "platform": True, "outsource_complex": False, "overrides": {},
+           "basis": "Adversarial correction ADV-B-006: C's platform, licence and per-sponsor teams with B's workflow parameters "
+                    "(no determination reuse, no minute/contact/reconciliation/complex-hour reductions)"},
     "B": {"name": "Existing workflow enhanced with AI", "platform": False, "outsource_complex": False, "overrides": {},
           "basis": "OM1 levers (parameters.json): exception-based review, AI assistance, same processes"},
     "C": {"name": "AI-native redesign on Unbound", "platform": True, "outsource_complex": True, "overrides": LEVERS_C,
@@ -102,9 +114,15 @@ APPROACHES = {
           "basis": "[A] removes convention-only recurring obligations, default-ACH, proactive notices; legal obligations retained"},
 }
 
-LICENCE = {"platform_accounts": {"base": 1000000, "favourable": 3000000, "adverse": 250000},
+LICENCE = {"platform_accounts": {"favourable": 250000, "base": 100000, "adverse": 25000, "market_exceeding_reference": 1000000},
            "markup": {"value": 0.30, "low": 0.10, "high": 0.60},
-           "basis": "[A] Unbound's vendor cost per account (decision_teams.license_floors) at the stated whole-platform scale, plus markup"}
+           "basis": "[A] Unbound's vendor cost per account (decision_teams.license_floors) at the stated whole-platform scale, plus markup. "
+                    "Scales corrected after adversarial review ADV-B-001: the US market holds at most ~737k traditional invested DAF "
+                    "accounts and only 20 sponsors hold >=5,000 (DAFRC FY2024); 1M is kept only as a labelled reference."}
+VENDOR = {"build_capex_amortisation_years": 5, "sales_cost_per_new_sponsor": 40000, "new_sponsor_share": 0.2,
+          "basis": "[A] build_capex from parameters.json amortised over 5 years; sales and implementation per new sponsor; 20% of "
+                   "sponsors new each year. Sponsor onboarding cost is already in the vendor floor (sponsor_level:platform_service)."}
+PLATFORM_SCALES = (25000, 50000, 100000, 250000, 500000, 1000000)
 
 ACTIVITY = {
     "customer_acquisition": "acquisition", "identity_new_accounts": "onboarding_identity",
@@ -153,7 +171,8 @@ def sponsors_for(e, accounts):
 def licence_per_account(cfg, rng_dt, which="base", markup=None, noise=False):
     """Vendor cost per account at whole-platform scale (OM3 licence floor) plus markup."""
     dt = DT.dt_sample(rng_dt) if noise else DT.dt_expected()
-    floors = DT.license_floors(cfg, "OM3", LICENCE["platform_accounts"][which], dt)
+    scale = which if isinstance(which, int) else LICENCE["platform_accounts"][which]
+    floors = DT.license_floors(cfg, "OM3", scale, dt)
     per_tenant_amortised = floors["B_tenant_fee_per_sponsor_floor"] / 5000.0
     m = LICENCE["markup"]["value"] if markup is None else markup
     return (floors["A_licence_fee_per_account_floor"] + per_tenant_amortised) * (1 + m)
@@ -298,6 +317,27 @@ def stress(cfg, e, accounts):
     return tuple(one(s) for s in STRESS)
 
 
+# ---------------------------------------------------------------------------- vendor P&L (ADV-B-002)
+
+def vendor_pnl(cfg, platform_funds, price_per_fund):
+    """Unbound's own annual P&L at a platform scale and a licence price (deterministic)."""
+    dt = DT.dt_expected()
+    floors = DT.license_floors(cfg, "OM3", platform_funds, dt)
+    sponsors = floors["sponsors"]
+    run_cost = floors["vendor_cost_total_usd"]
+    capex = cfg["params"]["build_capex"]["value"] / VENDOR["build_capex_amortisation_years"]
+    sales = sponsors * VENDOR["new_sponsor_share"] * VENDOR["sales_cost_per_new_sponsor"]
+    cost = run_cost + capex + sales
+    revenue = platform_funds * price_per_fund
+    return {"platform_funds": platform_funds, "sponsors": sponsors, "price_per_fund": price_per_fund,
+            "revenue": revenue, "run_cost": run_cost, "capex_amortisation": capex, "sales_and_implementation": sales,
+            "total_cost": cost, "operating_result": revenue - cost, "break_even_price_per_fund": cost / platform_funds}
+
+
+def vendor_table(cfg):
+    return tuple(vendor_pnl(cfg, n, p) for n in PLATFORM_SCALES for p in (28.0, 50.0, 100.0))
+
+
 # ---------------------------------------------------------------------------- orchestration
 
 def results(base_cfg):
@@ -313,12 +353,18 @@ def results(base_cfg):
                    "margin_C_after_decline": revenue_under_market(cfg, e, 0.7) - comparison[e]["C"]["enterprise_admin_per_account"]}
                for e in ents}
     segment = {e: M.segment_cost_to_serve(cfg, f"{e}_C", ENTERPRISES[e]["accounts"]) for e in ents}
+    corrected = {e: {"C_at_licence": {w: det(cfg, e, "C", ENTERPRISES[e]["accounts"], licence_which=w)["total_economic_admin_per_account"]
+                                      for w in ("favourable", "base", "adverse", "market_exceeding_reference")},
+                     "C0_at_licence": {w: det(cfg, e, "C0", ENTERPRISES[e]["accounts"], licence_which=w)["total_economic_admin_per_account"]
+                                       for w in ("favourable", "base", "adverse")}}
+                 for e in ents}
     return {"meta": {"seed": SEED, "mc_runs": MC_RUNS, "theoretical": True,
                      "basis": "simplification model.py + decision_teams.py unchanged; assumptions in this file are [A]",
                      "enterprises": ENTERPRISES, "approaches": {k: {kk: vv for kk, vv in v.items() if kk != "overrides"} for k, v in APPROACHES.items()},
                      "licence": LICENCE,
-                     "licence_per_account": {w: licence_per_account(cfg, random.Random(0), w) for w in ("favourable", "base", "adverse")}},
-            "comparison": comparison, "scales": scales, "revenue": revenue,
+                     "licence_per_account": {w: licence_per_account(cfg, random.Random(0), w) for w in ("favourable", "base", "adverse", "market_exceeding_reference")}},
+            "comparison": comparison, "scales": scales, "revenue": revenue, "licence_sensitivity": corrected,
+            "vendor_pnl": vendor_table(cfg), "vendor_assumptions": VENDOR,
             "sensitivity": {e: sensitivity(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "stress": {e: stress(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "segment_cost_to_serve": segment}

@@ -7,7 +7,7 @@ import json
 import os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-APPROACH_ORDER = ("A", "AL", "B", "C", "D")
+APPROACH_ORDER = ("A", "A8", "AL", "B", "C0", "C", "D")
 
 
 def money(x):
@@ -69,6 +69,17 @@ def stress(res):
     return table(("Ent.", "Scenario (approach C)", "$/fund-yr", "Δ vs normal", "Exception SLA attainment", "P90 wait (days)", "Uncontained exposure $"), rows)
 
 
+def licence(res):
+    rows = [(e, k, " / ".join(f"{w}: {money(v)}" for w, v in d.items())) for e, by in res["licence_sensitivity"].items() for k, d in by.items()]
+    return table(("Ent.", "Approach", "Total economic admin $/fund-yr by licence scale"), rows)
+
+
+def vendor(res):
+    rows = [(f"{v['platform_funds']:,}", str(v["sponsors"]), money(v["price_per_fund"]), money(v["revenue"]), money(v["total_cost"]),
+             f"{v['operating_result']:+,.0f}", money(v["break_even_price_per_fund"])) for v in res["vendor_pnl"]]
+    return table(("Platform funds", "Sponsors (5k avg)", "Licence $/fund", "Revenue", "Total vendor cost", "Operating result", "Break-even $/fund"), rows)
+
+
 def main():
     res = json.load(open(os.path.join(HERE, "enterprise-results.json")))
     lic = res["meta"]["licence_per_account"]
@@ -79,9 +90,14 @@ def main():
              "(enterprise and funds), excluding investment management fees and customer acquisition; this is the measure on "
              "which approaches are compared, so moving a cost to funds is never counted as a saving.",
              f"Unbound licence per fund-year used for approaches AL, C and D (vendor cost at whole-platform scale plus 30% markup): "
-             f"favourable {money(lic['favourable'])}, base {money(lic['base'])}, adverse {money(lic['adverse'])}.",
+             f"favourable (250k platform funds) {money(lic['favourable'])}, base (100k) {money(lic['base'])}, adverse (25k) {money(lic['adverse'])}; "
+             f"market-exceeding reference (1M) {money(lic['market_exceeding_reference'])}. Approaches: A traditional (30% per-item review), "
+             "A8 traditional with the same 8% exception definition, AL traditional on licensed software, B AI-enhanced self-built, "
+             "C0 Unbound without unmeasured redesign levers, C AI-native redesign, D C plus elimination.",
              "## 1. Approach comparison at modelled size\n\n" + comparison(res),
              "## 2. Scale\n\n" + scales(res),
+             "## 2a. Licence scale sensitivity (adversarial correction ADV-B-001)\n\n" + licence(res),
+             "## 2b. Unbound vendor P&L (ADV-B-002)\n\nAssumptions [A]: " + res["vendor_assumptions"]["basis"] + "\n\n" + vendor(res),
              "## 3. Activity costs by approach\n\n" + "\n\n".join(f"### {e} — {res['meta']['enterprises'][e]['name']}\n\n" + activities(res, e)
                                                                  + "\n\n" + bearers(res, e) for e in res["comparison"]),
              "## 4. Revenue and margin\n\n" + revenue(res),

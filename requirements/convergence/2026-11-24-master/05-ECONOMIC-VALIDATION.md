@@ -1,113 +1,104 @@
-# 05 — Economic validation and business redesign (Phase 4)
+# 05 — Economic validation and business redesign (Phase 4, revised after adversarial review)
 
 **Status:** theoretical. The model ([`model/enterprise_economics.py`](model/enterprise_economics.py)) imports the
 executed simplification model (`requirements/discovery/2026-11-24-simplification-economics/model/model.py`) and
-`decision_teams.py` **unchanged**. About 60 of the 73 base parameters are assumptions; the five enterprises, the
-approach overrides, the community-foundation and advisor mixes and the licence markup added here are all
-assumptions ([A]). Nothing is observed business performance. Tables: [05a-ECONOMIC-TABLES.md](05a-ECONOMIC-TABLES.md).
-Reproduce: `python3 -I -B model/enterprise_economics.py && python3 -I -B model/render_tables.py` (byte-identical
-outputs; hashes in `model/hashes.txt`).
+`decision_teams.py` **unchanged**. About 60 of the 73 base parameters are assumptions; the enterprises, approach
+overrides, mixes, licence scales and vendor assumptions added here are labelled. Nothing is observed business
+performance. Tables: [05a-ECONOMIC-TABLES.md](05a-ECONOMIC-TABLES.md). Reproduce:
+`python3 -I -B model/enterprise_economics.py && python3 -I -B model/render_tables.py` (byte-identical; `model/hashes.txt`).
 
-## 1. What was modelled
+**Revision.** The first version of this report (commit `42d83f0`) priced the Unbound licence at a whole-platform
+scale of 1–3 million funds, compared Unbound against a traditional operation given a 30% per-item review rate, and
+modelled the community foundation at 1,500 funds. The business adversarial review (report 08, ADV-B-001 to ADV-B-006,
+ADV-B-010) showed each of these to be unsupported. I verified the market facts against the repository's own data
+(DAFRC FY2024 sponsor panel in `daf-landscape`): **802 community foundations hold 104,425 DAF accounts; median 46,
+p75 128, p90 313; only 7 hold 1,500 or more; only 20 US sponsors of any kind hold 5,000 or more accounts; traditional
+invested DAF accounts are at most ~737k.** The model and this report were corrected; the earlier figures are
+superseded.
 
-- **Five enterprises** (report 04): E1 independent sponsor, E2 community foundation, E3 advisor-distributed,
-  E4 workplace giving, E5 outsourced administrator — at three scales each.
-- **Five approaches** per enterprise:
-  - **A** traditional human-centred operation on self-built systems (30% of grants touched by a person, no AI);
-  - **AL** A's workflows on licensed software (isolates *workflow* effects from *build-versus-buy* effects);
-  - **B** existing workflow enhanced with AI (exception-based review, AI assistance, self-built systems);
-  - **C** AI-native redesign on Unbound (determination reuse, typed exceptions, proactive notices, default ACH,
-    per-sponsor decision teams per SPD-ADV-001/004, licence fee);
-  - **D** C plus elimination of activities whose only basis is convention.
-- **Measure.** *Total economic administration cost per fund-year*: every administration cost line whoever bears it
-  (enterprise or funds), excluding investment-management fees and customer acquisition, which are reported
-  separately. Moving a cost to funds, donors, employers or Unbound therefore never appears as a saving.
-- **Ranges.** Expected value, and Monte Carlo P10 (favourable), P50 (base), P90 (adverse) over 300 runs.
-- **Separations.** Fixed vs variable, enterprise vs fund vs acquisition bearer, activity, and the Unbound licence
-  (vendor cost at whole-platform scale of 250k / 1M / 3M funds plus 30% markup: about $49 / $28 / $23 per fund-year).
+## 1. What is modelled
 
-## 2. Results
+- **Five enterprises** (report 04) at observed or stated sizes: E1 independent sponsor (50k funds), E2 community
+  foundation (**128 funds = p75**, also 46, 313, 1,500), E3 advisor-distributed (40k; release-1 revenue is the sponsor
+  admin fee only, because fund-paid advisor compensation is blocked by CNV-GRT-009), E4 workplace (500k), E5
+  administrator (50 sponsors × 5k).
+- **Seven approaches:** A traditional (30% per-item review, an assumption); **A8** traditional with the same 8%
+  exception definition as the others; AL traditional workflows on licensed software; B AI-enhanced self-built;
+  **C0** Unbound without the unmeasured redesign levers; C AI-native redesign; D C plus elimination.
+- **Licence** = Unbound vendor cost per fund at whole-platform scale plus 30% markup: **$49 at 250k funds (favourable),
+  $91 at 100k (base), $229 at 25k (adverse)**; $28 at 1M kept only as a labelled market-exceeding reference.
+- **Measure:** total economic administration cost per fund-year, whoever bears it, excluding investment management and
+  acquisition. Cost transfers never count as savings.
 
-| Enterprise | A | AL | B | C | D | C range P10–P90 |
-|---|---|---|---|---|---|---|
-| E1 independent sponsor (50k) | 465 | 390 | 313 | 149 | 142 | 170–253 |
-| E2 community foundation (1.5k) | 3,552 | 1,174 | 3,211 | 739 | 737 | 781–1,025 |
-| E3 advisor-distributed (40k) | 888 | 797 | 622 | 289 | 275 | 339–531 |
-| E4 workplace giving (500k) | 87 | 102 | 57 | 58 | 55 | 56–86 |
-| E5 outsourced administrator (250k) | 376 | 383 | 224 | 192 | 188 | 207–285 |
+## 2. Results (base licence, expected values, $/fund-year)
 
-$ per fund-year, total economic administration, expected values. The deterministic expected value can sit below
-P10 because the Monte Carlo samples skewed (triangular) parameters.
+Deterministic expected values are shown for comparability across approaches; the skewed parameter distributions put Monte Carlo P50 higher (05a §1 gives P10/P50/P90). Under CNV-ECO-003 any customer-facing or commercial figure must headline P50 with its range.
 
-### Findings
+| Enterprise | A | A8 | AL | B | C0 | C | D |
+|---|---|---|---|---|---|---|---|
+| E1 independent (50k) | 465 | 320 | 453 | 313 | 301 | 212 | 205 |
+| E2 community foundation (128) | 33,561 | 33,561 | 6,361 | 33,557 | 6,356 | 6,671 | 6,669 |
+| E3 advisor-distributed (40k) | 888 | 634 | 860 | 622 | 595 | 351 | 338 |
+| E4 workplace (500k) | 87 | 62 | 165 | 57 | 135 | 121 | 118 |
+| E5 administrator (250k) | 376 | 231 | 446 | 224 | 302 | 255 | 251 |
 
-| # | Finding | Evidence in the model | Consequence |
-|---|---|---|---|
-| EV-01 | **Workflow redesign, not AI spend, produces most of the saving.** For E1, charity vetting and grant decisions fall from $196 (AL) to $17 (C), driven by the exception rate, determination reuse and minutes per exception. AI inference is ≤ $1 per fund-year in every approach and every sensitivity case. | Activity tables §3; sensitivity §5 (AI cost parameters move cost by < $1) | The business case rests on exception incidence and reuse of determinations. These are the first empirical validations (evidence backlog EB-01, EB-02). |
-| EV-02 | **Build-versus-buy dominates for small organizations.** E2 on self-built systems (A, B) costs $3,200–3,600 per fund; on licensed software with the same human workflows (AL) $1,174; with redesign (C) $739. | A vs AL vs C for E2 | Community foundations gain mostly from shared software; redesign adds roughly a further third. |
-| EV-03 | **AI-enhanced incumbents (B) close much of the gap at scale.** E1 B $313 vs C $149; at 250k funds B $224 vs C $138. | Scale table §2 | A competitor that adopts exception-based review captures part of the benefit without Unbound. The durable remainder is in §4. |
-| EV-04 | **For high-volume low-balance books the licence is the largest cost.** E4 C $58, of which the licence is about $28; a self-built AI-enhanced operation at 2M funds is cheaper ($47 vs $57). | E4 activity table; scale table | Unbound must price digital-minimal servicing classes by measured platform cost (TEV-010); otherwise large workplace providers should build. |
-| EV-05 | **Per-sponsor decision teams cap the administrator model's advantage.** E5 C $192 vs B $224: 50 sponsors × a 2.5-FTE decision-team floor ≈ 125 of the modelled 141 FTE. | E5 FTE; decision_teams floor | Accepted (SPD-ADV-001). Part-time and contracted authority holders reduce but do not remove the floor (TEV-003, SPD-ORG-002 dossier). |
-| EV-06 | **Community-foundation cost is fixed-cost dominated.** E2 C: $553 of $739 is fixed (team floor, audit, entity costs). | Fixed vs variable | A foundation already bears audit and entity costs; charge the DAF program only its driver-based share (TEV-002). The model's $739 overstates the incremental cost. |
-| EV-07 | **Complex-asset outsourcing is a transfer, partly offset by real savings.** C moves complex-gift processing to a fund-borne vendor fee (+$17 per E1 fund) while removing $42 of internal effort. | Bearer tables | Counted net. Fund-borne charges need disclosure and authority (SPD-ECN-005 dossier). |
-| EV-08 | **Margins under asset-based pricing are large.** E1 revenue about $693 per fund against $171 enterprise cost; E3 $1,654 against about $194. A 30% market decline cuts E1 margin from $582 to $426. | Revenue table | Price is the main competitive lever available to an Unbound-based sponsor; lower fees for donors are an economically real benefit, not a cost transfer. |
-| EV-09 | **Workplace giving is thin.** E4 margin about $5 per fund at $12 employer fee plus asset fees above minimums. | Revenue table | Activate only with employer-paid fees or funded subsidy commitments (UNB-SMP-ECN-003; TEV-011). |
-| EV-10 | **The most sensitive inputs are people, not machines:** loaded cost per FTE, minutes per exception, exception rate and contact rate. | Sensitivity table | Validate with time studies (UNB-XIN-ECO-006) before any price commitment. |
-| EV-11 | **December peak:** exception SLA attainment ≈ 0.70 for E1, E3, E4 and E5 with no cost change (backlog absorbs it). | Stress table | Surge planning requirement (TEV-001). |
-| EV-12 | **Regulatory change and sponsor exit are the costliest shocks for small organizations** (E2: +$100 and +$78 per fund). | Stress table | Policy-pack research shared across sponsors (public facts only) is valuable to small sponsors; exit tooling must be cheap. |
+**Unbound vendor P&L** (report 05a §2b): break-even licence ≈ **$217/fund at 25k platform funds, $131 at 50k, $81 at
+100k, $43 at 250k, $31 at 500k, $24 at 1M**, including build amortisation and sales. At $28 Unbound loses money below
+about 1M funds, which exceeds the addressable traditional market.
 
-## 3. Why each activity exists, and what each approach does with it
+## 3. Findings
 
-| Activity | Basis (law / contract / integrity / value / risk / convention) | A traditional | B AI-enhanced | C AI-native | D eliminate |
+| # | Finding | Consequence |
+|---|---|---|
+| EV-01 | **Unbound's own business case as a vendor is not demonstrated.** Break-even needs roughly $80–130 per fund at 50–100k platform funds, i.e. 10–20 sponsors of 5,000 funds when only 20 such sponsors exist in the US. | Pricing and market entry are gated on evidence (CNV-ECO-003). The platform's viability depends on winning a large share of mid-size and large sponsors or on a different revenue model. |
+| EV-02 | **Unbound's advantage over AI-enhanced incumbents rests on redesign levers that are not yet measured.** C0 (Unbound without levers) is about equal to B: E1 $301 vs $313, E3 $595 vs $622; with the levers C is $212 and $351. The levers are determination reuse, shorter exception handling, fewer contacts, fewer reconciliation breaks and complex-gift handling cut from 12 to 2 hours (worth ≈$61/fund for E1 and ≈$244 for E3). Several are policy changes an incumbent could adopt. | Measure the levers first (CNV-EVB-001 extended); headline comparisons use C0 as base and C as upside until measured. |
+| EV-03 | **The 30% traditional review rate inflated the saving.** With the same 8% definition (A8), E1 traditional falls from $465 to $320; about 46% of the original A→C gap came from that assumption. | A8 is the fair traditional comparator. |
+| EV-04 | **The community-foundation entry hypothesis is not supported.** At observed sizes (46–313 DAFs) every approach is dominated by fixed floors (decision-team floor, audit, entity costs) that the model charges wholly to the DAF program; redesign adds nothing over licensed traditional software (C $6,671 vs AL $6,361 at 128 funds) and incumbent CF software already serves all fund types. The model cannot represent CF economics properly without driver-based allocation of shared foundation staff (TEV-002). | SPD-CMP-001 direction revised: community foundations are not the entry segment; serve them, if at all, through partnership with CF software or as a DAF module. Entry segment = mid-size national and single-issue sponsors with ~5k–50k funds (E1-like) and advisor-distributed sponsors (E3), subject to EV-01. |
+| EV-05 | **Workplace and administrator models do not benefit at realistic licence scale.** E4 C $121 vs B $57; E5 C $255 vs B $224. At $28 (1M platform funds) they did; at $91 they do not. | Activate E4/E5 only with tiered licence pricing at measured cost and a positive contribution margin at adverse scale (CNV-ECO-002, CNV-ECO-003). |
+| EV-06 | **E3 margin was overstated.** Release 1 cannot use fund-paid advisor fee sharing (CNV-GRT-009). On the sponsor admin fee alone E3 still has the largest margin ($2,172 revenue vs ≈$351 cost). | E3 economics hold without advisor compensation; the advisor-sponsored structure is a later option requiring a sponsor-engaged manager program. |
+| EV-07 | **Sponsor margins under asset-based pricing are large** (E1 revenue ≈$693 vs ≈$212). | Incumbents have little cost pressure to switch; Unbound's pitch must be price competition, transparency, controls and evidence, not cost alone. |
+| EV-08 | **Activation gates delay automation.** Up to eight sponsor-side authorizations (board delegations, auditor approach, bank agreements, controller policies) must exist before C's levers apply; until then the sponsor operates near C0. | Model results for C are steady-state only; onboarding plans must schedule the gates (report 09 §3). |
+| EV-09 | **AI inference cost is immaterial** (≤ $1/fund) in every case; people dominate sensitivity (loaded cost, minutes per exception, exception rate). | Unchanged from the first version. |
+| EV-10 | **December peak** lowers exception SLA attainment to ≈0.70 at modelled staffing (TEV-001). | Unchanged. |
+
+## 4. Why each activity exists, and what each approach does with it
+
+Unchanged from the first version and still valid as a classification (law, contract, integrity, value, risk,
+convention); see [05a](05a-ECONOMIC-TABLES.md) §3 for activity costs under each approach. Human involvement is retained
+wherever judgement, accountability, independence, accessibility or legal authority requires it.
+
+| Activity | Basis | A | B | C | D eliminate |
 |---|---|---|---|---|---|
-| Account acquisition | Value | Marketing | Same | Embedded and partner distribution | — (cannot eliminate) |
-| Onboarding and identity | Risk (OFAC, fraud); no CIP mandate for sponsors (RCD-023 dossier) | Manual forms | Prefill | Verified prefill, risk-based proofing | Remove re-keying |
-| Contributions | Law (§170 substantiation), integrity | Manual matching | Assisted matching | Typed rails, payroll batching | Paper checks by exception |
-| Complex assets | Law (valuation, §170(f)(11)), risk | Staff | Staff + AI | Qualified intermediaries, fund-borne disclosed fee | — |
-| Investment administration | Contract, fiduciary (UPMIFA) | Manual NAV check | Sampled | Deterministic in-tolerance NAV under delegation (RCD-035) | Per-NAV human checker (convention) |
-| Charity vetting | Law (§4966 eligibility; Rev. Proc. 2018-32 reliance) | Per-grant review | Exception review | Continuous monitoring, determination reuse, release-time check | Manual 180-day revalidation (convention) |
-| Grant decisions | Law (sponsor control, variance power) | Every grant | Exceptions | Deterministic recommendation; human decision only where delegation absent or exception | Per-grant sign-off where delegation exists |
-| Payments | Contract (Nacha), integrity | Checks common | ACH | Verified ACH default, partner rails | Checks except by request |
-| Customer service | Value, accessibility | Phone-first | Chat-assisted | Proactive notices, async, accessible human route | Status-chasing contacts |
-| Reconciliation and accounting | Integrity, law (Form 990) | Monthly manual | Assisted | Continuous, typed reconciling items | Per-journal approval (convention) |
-| Statements | Contract/program terms; no statutory periodic-statement duty found (RR-REQ-X-032 dossier) | Paper quarterly | Electronic | On demand + approved cadence | Paper by default |
-| Compliance and assurance | Law, contract (auditor reliance) | Checklists | Assisted | Evidence generated from inception | Manual checklists where generated evidence is accepted |
-| Technology | — | Self-built | Self-built | Licensed shared platform | — |
-| Management overhead | Organizational | Departments | Same | Small accountable team | Layers without decisions |
-| Sponsor onboarding and exit | Contract | Bespoke | Bespoke | Policy packs, outcome questions, exit export | Bespoke configuration |
+| Acquisition | Value | Marketing | Same | Embedded and partner distribution | — |
+| Onboarding and identity | Risk; no CIP mandate (RCD-023) | Manual | Prefill | Verified prefill, risk-based proofing | Re-keying |
+| Contributions | Law (§170 substantiation) | Manual matching | Assisted | Typed rails, payroll batching | Paper by default |
+| Complex assets | Law, risk | Staff | Staff + AI | Agent-model intermediaries | — |
+| Investment administration | Contract, fiduciary | Manual NAV | Sampled | Delegated deterministic NAV | Per-NAV checker |
+| Charity vetting | Law (§4966; Rev. Proc. 2018-32) | Per grant | Exceptions | Continuous monitoring, reuse | Manual revalidation |
+| Grant decisions | Law (sponsor control) | Every grant | Exceptions | Delegated deterministic approval | Per-grant sign-off where delegated |
+| Payments | Contract (Nacha) | Checks | ACH | Verified ACH default | Checks except by request |
+| Service | Value, accessibility | Phone | Chat | Proactive, async, accessible human route | Status-chasing contacts |
+| Reconciliation | Integrity, law | Monthly manual | Assisted | Continuous, typed items | Per-journal approval |
+| Statements | Program terms | Paper | Electronic | On demand + cadence | Paper by default |
+| Assurance | Law, contract | Checklists | Assisted | Evidence by design | Checklists once accepted |
 
-Human involvement is retained wherever judgement, accountability, independence, accessibility or legal
-authority requires it: reserved decisions, exceptions, complex-asset acceptance, independent reconciliation
-review, appeals, and an accessible human route for every service.
+## 5. Durable differentiation (revised)
 
-## 4. Durable differentiation
+The review's point stands: the cost advantage alone is copyable. What is harder to copy: deterministic controls that
+emit audit evidence by design, a shared registry of re-verified public charity facts (network effect), a single program
+ledger bridged to Schedule D, and published, measured service levels. Easy to copy: automated revalidation (public
+data), embedded checkout, AI-readable documentation, and the policy levers (reuse, sampling, ACH default). The
+strategy must therefore lead with control, evidence and transparency for mid-size and large sponsors, and treat cost as
+a consequence to be measured, not the headline.
 
-| Advantage | Mechanism | Ease for competitors to copy | Why |
-|---|---|---|---|
-| Eliminated per-item review | Deterministic policy + delegation + sampling | Moderate | Needs board delegations and auditor acceptance, not just software |
-| Shared verified charity knowledge | Common registry of re-verified public facts, never private evidence (RCD-006, RCD-029) | Hard | Network effect across sponsors; quality compounds |
-| Automated revalidation | Continuous monitoring of IRS lists and events | Easy | Data is public (EO BMF, Pub 78, auto-revocation list) |
-| Deterministic controls with integrated evidence | Controls emit evidence by design | Hard | Architectural; retrofitting incumbents is expensive |
-| Reduced reconciliation | Single program ledger, typed reconciling items, bridge to Schedule D | Hard | Architectural |
-| Embedded distribution | Widgets and checkout | Easy | DAF-checkout networks already exist |
-| Sponsor self-service configuration | Outcome questions + versioned policy packs | Moderate | Requires disciplined policy model |
-| AI-readable documentation | Machine-readable assistance metadata on every field and API | Easy to start, hard to keep complete | Needs governance tooling |
-| Accessibility | WCAG 2.2 AA from inception | Moderate | Incumbent UIs need rework |
-| Transparency (published service levels, fee quotes) | Measured SLOs, maximum accepted quote | Easy technically, hard commercially | Incumbents resist publishing tail outcomes |
+## 6. Distinguishing efficiency, transfer and projection
 
-## 5. Distinguishing efficiency from transfer and projection
+- **Real efficiency (if measured):** fewer human touches per grant, fewer contacts, continuous reconciliation, shared software.
+- **Transfers:** complex-asset fees to funds; acquisition to employers or partners; decision staff to sponsors (SPD-ADV-004).
+- **Projections:** every lever, the licence scale and the vendor P&L.
 
-- **Real efficiency:** fewer human touches per grant (exception rate, determination reuse), fewer contacts through
-  proactive notices, continuous reconciliation, shared software.
-- **Transfers (not savings):** complex-asset vendor fees moved to funds; acquisition paid by employers (E4) or
-  distribution partners; decision staff employed by sponsors rather than Unbound (SPD-ADV-004). All are shown by bearer.
-- **Unvalidated projections:** every exception rate, handling time, contact rate and licence scale. The evidence
-  backlog (report 08 §6) lists the measurements that would replace them.
+## 7. Failure conditions
 
-## 6. Failure conditions
-
-The business case fails if any of these hold after measurement: exception incidence above roughly 17% of grants
-with handling above 90 minutes (C converges toward B); auditors refuse reliance on deterministic controls
-(per-item review returns); sponsors cannot lawfully delegate routine approvals (RCD-005 dossier: then C uses
-individual accountable batch decisions, SPD-CLR-004); Unbound platform scale stays near 250k funds (licence
-≈ $49, eroding E4 and E5); or asset-based fee compression exceeds the cost advantage.
+The business case fails if: measured levers are small (C converges to C0 ≈ B); Unbound cannot reach roughly 100k funds
+across 10–20 sponsors within the funding horizon; auditors or boards do not accept deterministic controls (sponsors
+operate near C0 indefinitely); or asset-fee compression outruns the cost advantage.

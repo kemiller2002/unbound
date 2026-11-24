@@ -14,7 +14,7 @@ foundation is new: none of the ten covered a DAF program run inside a broader co
 | ID | Enterprise | Extends business model(s) | Route for human work (SPD-ADV-004) | Modelled size |
 |---|---|---|---|---|
 | E1 | Independent national DAF sponsor (direct to donor) | D2C, hybrid | Sponsor employs its own people | 50,000 funds (10k–250k) |
-| E2 | Community foundation | new (CF) | Foundation staff; DAF program is one of several | 1,500 funds (500–5,000) |
+| E2 | Community foundation | new (CF) | Foundation staff; DAF program is one of several | 128 funds (p75 of 802 US community foundations; 46 median, 313 p90) — corrected from 1,500 after adversarial review |
 | E3 | Wealth-management and advisor-distributed DAF provider | advisor-distribution, investment-centric, HNW-family-office | Sponsor employs; advisors service clients and manage investments | 40,000 funds (10k–200k) |
 | E4 | High-volume workplace giving provider | high-volume-low-balance, embedded | Sponsor employs; employers fund acquisition and subsidies | 500,000 funds (100k–2M) |
 | E5 | Enterprise outsourced DAF administrator | outsourced-admin, white-label, institutional | Administrator pools service and operations; each sponsor keeps its own decision team | 50 sponsors × 5,000 funds |
@@ -46,8 +46,8 @@ servicing class).
 | Customers | Donors, successors | Donors, local nonprofits, professional advisors | Advisors' clients; advisors | Employees, employers | Sponsors (and through them donors) |
 | Distribution | Direct digital, embedded checkout | Relationship and advisor referrals | RIA/wealth platforms | Employer benefits platforms | Sponsor-branded white label |
 | Revenue | Asset-tiered fee with minimum | Asset-tiered fee, higher minimum; investment spread where disclosed | Advisor-managed pools; sponsor admin fee share | Employer per-account fee + asset fee on larger balances | Per-account licence/administration fee from sponsors |
-| Cost structure (model C, $/fund-year total economic admin) | ≈149 (range 170–253 P10–P90) | ≈739 (781–1,025) | ≈289 (339–531) | ≈58 (56–86) | ≈192 (207–285) |
-| Human work (FTE, decision + service + operations, C) | ≈12 | ≈2.5 (floor) | ≈23 | ≈23 | ≈141 (50 sponsor decision teams + pooled ops) |
+| Cost structure (model C at base licence $91/fund, $/fund-year total economic admin; report 05 revised) | ≈212 | ≈6,671 at 128 funds (fixed-floor dominated; model does not allocate shared foundation staff) | ≈351 | ≈121 | ≈255 |
+| Human work (FTE, decision + service + operations, C; first model run) | ≈12 | ≈2.5 (floor; in practice shared foundation staff) | ≈23 | ≈23 | ≈141 (50 sponsor decision teams + pooled ops) |
 | Retained internally | Board, DoA officers, exception decisions, complex-gift acceptance, donor escalations | Same, plus donor relationships (core to CF mission) | Same; advisors keep investment management | Same; very small decision team relative to volume | Each sponsor: reserved decisions; administrator: service, operations, reconciliation preparation |
 | Outsourced | Complex-asset liquidation (fund-borne, disclosed), audit, legal research | Investment management, audit | Investment management (advisors), complex assets | Payroll transmission, employer onboarding | Audit, complex assets |
 | Shared (with other Unbound customers) | Charity facts registry (public facts only), policy-pack research, software | Same | Same | Same | Same |
