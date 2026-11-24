@@ -16,6 +16,8 @@ and the path to pass are in its section 23).
 | 08 | [Adversarial enterprise review](08-ADVERSARIAL-ENTERPRISE-REVIEW.md) | `tools/reqaudit/render_adversarial.py` |
 | 09 | [Decision register and rejected alternatives](09-DECISION-REGISTER-AND-REJECTED-ALTERNATIVES.md) | `tools/reqaudit/render_decision_register.py` |
 | 10 | [Mission report and readiness](10-MISSION-REPORT-AND-READINESS.md) | hand |
+| 11 | [Owner ratification packets](11-OWNER-RATIFICATION-PACKETS.md) | `tools/reqaudit/render_ratification_packets.py` |
+| 12 | [Evidence-phase protocol](12-EVIDENCE-PHASE-PROTOCOL.md) | hand |
 
 Sources of truth: `clauses/` (convergence clause source and adversarial amendments), `data/` (dossiers, evidence,
 clauses, catalogs, findings), `requirements/questions/` (resolution log), `requirements/baseline/` and
