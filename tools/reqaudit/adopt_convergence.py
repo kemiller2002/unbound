@@ -62,6 +62,7 @@ def amend(c, a):
                 acceptance_criteria=[sub(x) for x in c["acceptance_criteria"]] + list(a.get("acceptance_add", ())),
                 amends=list(dict.fromkeys(c["amends"] + list(a.get("amends_add", ())))),
                 dependencies=list(dict.fromkeys(c["dependencies"] + list(a.get("dependencies", ())))),
+                release_scope=a.get("release_scope", c["release_scope"]),
                 revision_history=c.get("revision_history", []) + [{"on": ON, "source": "owner decision" if "owner decision" in a["finding"] else ("evidence backlog (report 13)" if a["finding"].startswith("EVB-") else ("report 08 round 2" if "ADV-R2" in a["finding"] else "report 08 adversarial review")),
                                                                     "findings": a["finding"], "original_statement": c["statement"]}])
 

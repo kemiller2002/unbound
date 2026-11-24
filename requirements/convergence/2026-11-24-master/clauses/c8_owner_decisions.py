@@ -33,5 +33,15 @@ AMENDMENTS = {
     "CNV-LEG-002": {"finding": "OD-P-LEG, OD-M-08 (owner decisions)",
         "append": "Release 1 SHALL ship sponsor-branded deployments only, in which charity listings are visible to advisory-privileged users on the sponsor's own branded portal; white-label consumer marketplaces, embedded checkout, Unbound-branded donor apps and charity-side donation buttons SHALL be disabled until the registrations above are recorded (OD-P-LEG).",
         "acceptance_add": ["Given a release-1 deployment, when embedded checkout is enabled, then activation is refused unless California and Hawaii registrations are recorded."]},
+    "CNV-PAY-005": {"finding": "OD-P-PAY cut A (owner decision)",
+        "append": "Release 1 SHALL NOT originate ACH debits from donors (OD-P-PAY cut A): contributions arrive by ACH credit, wire, check or securities transfer, or through the sponsor's existing payment processor; authorization retention and reinitiation rules apply only when donor ACH debit origination is enabled, while return and NOC matching apply to grant payments from release 1.",
+        "acceptance_add": ["Given a release-1 deployment, when a donor ACH debit contribution is configured, then it is refused with FeatureNotActivated."]},
+    "CNV-PAY-007": {"finding": "OD-P-PAY cut B (owner decision)",
+        "append": "Release 1 SHALL ship one bank-feed adapter (a bank API or BAI2/BTRS) and one networked payment-partner adapter (Chariot first, then PayPal Grant Payments), adding further adapters on demand; staleness and debit-block rules are unchanged."},
+    "CNV-PAY-006": {"finding": "OD-P-PAY cut C (owner decision)",
+        "append": "These rules SHALL ship with card contributions (deferred, CNV-PAY-008) and are not part of release 1 (OD-P-PAY cut C).",
+        "release_scope": "deferred"},
+    "CNV-FIN-003": {"finding": "OD-P-PAY cut A (owner decision)",
+        "append": "With no donor ACH debit origination in release 1, the per-donor exposure cap applies to reversible contributions received through the sponsor's processor."},
 }
 
