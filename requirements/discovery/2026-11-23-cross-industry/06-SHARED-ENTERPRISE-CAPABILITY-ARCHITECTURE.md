@@ -1,0 +1,40 @@
+# 06 — Shared enterprise capability architecture (deliverable 6, mission §7)
+
+Mission §7 proposes eight unified abstractions. This report tests each one: is it genuinely useful, or would it create harmful coupling? The tests rely on findings from all eight research passes and on the event-architecture decision in [12](12-EVENT-ARCHITECTURE-DECISION.md).
+
+**General rule.** Share a *kernel*: identity, envelope, audit, routing and timers. Keep *semantics* typed per domain: states, closure authority, clocks, access class, retention and legal effect. Every harmful abstraction found in this mission came from sharing semantics, not from sharing a kernel.
+
+## Verdicts
+
+| Abstraction (§7) | Verdict | Share | Keep separate | Where it becomes harmful | Requirements |
+|---|---|---|---|---|---|
+| **Unified work management:** one case model for grants, contributions, vetting, complaints, financial exceptions and investigations | **Adopt as a kernel plus per-kind profiles; reject one shared lifecycle** | Case ID, kind, subjects, owner, routing, timeline, evidence, commitments, audit; one My Work list; one SLA engine | Per kind, defined in code as F# types: states and closure rule, clocks, access class, retention and hold binding, outcome set, independence rule, reopen window. About five profiles at release 1. | **SLA:** a shared clock pressures investigations to close. **Access:** unified search exposes restricted or privileged matters. **Retention:** one class over-retains service chat or purges held matters. **Reopening:** reopens rewrite decisions (SM-0). **Independence:** separation of duties between reconsideration and investigation breaks. **Metrics:** averaged across kinds they hide failure. **Money:** a case that carries financial semantics gets closed instead of the money being fixed. | UNB-XIN-SVC-001, -002, UNB-XIN-CLM-004, -007, RR-REQ-X-048-r2; XIC-SVC-002, XIC-INT-003 |
+| **Unified financial event model** | **Adopt, but the journal is the only financial log** | One insert-only double-entry journal per sponsor entity; typed payment and contribution state machines; one event envelope | No separate event store under the ledger. AI observations go in their own schema with separate privileges. | One generic Event table mixes authority classes and duplicates the journal. Replaying under a new posting-rule version re-posts history. | UNB-XIN-EVA-001, -016, UNB-XIN-ACC-003, RR-ACC-MDL-007-r1; XIC-EVA-001 |
+| **Unified relationship model** (donors, advisors, charities, staff, institutions, providers) | **Adopt a minimal identity core, plus capacity-scoped profiles and a separate authority-fact class** | PartyId, legal name, screening identifiers, verification state; declared affiliations | Profiles scoped to each capacity, with their own visibility rules. Authority facts (advisory privilege, successors, anonymity, contributor of record) are separate from CRM engagement data, which never authorizes money. | A 360° view leaks PII across capacities (a donor who is also a charity officer). A household view exposes a spouse's gifts. Self-recommendation by an organization-advised fund goes undetected without affiliations. Erasure is impossible if CRM data is event-sourced. | UNB-XIN-CRM-001, -002, -004, UNB-XIN-EVA-014; XIF-INT-009 |
+| **Unified policy engine** | **Adopt, with versioned effective dates and golden tests from authorities** | Rule versions, effective dating, explanations, decision trace (REQ-X-017/018), sponsor configuration lifecycle (REQ-X-045) | Discretionary sponsor policy (board-approved criteria, automatic expiry) is kept distinct from statutory rules and platform floors | A policy engine used to encode *discretion* hides who decided. A single global rule set ignores temporary rules that must sunset (§1.530A-7T). | UNB-XIN-GOV-001, UNB-XIN-NPG-006, -007 |
+| **Unified communications** | **Adopt, with a legal classification and sender entity on every message type** | Templates, delivery history, suppression, revalidation at send time | Classification under CAN-SPAM (commercial vs transactional) and TCPA consent class, per *sender legal entity* (a white-label partner vs the nonprofit sponsor) | Global unsubscribe across senders breaks white-label obligations. A "paid" notice sent from a stale projection after a return. | UNB-XIN-CRM-003 (canonical; REG-003 merged), UNB-XIN-EVA-015, UNB-XIN-SVC-003 |
+| **Unified reporting** | **Adopt, only from sealed snapshots** | Snapshot sealed at a ledger watermark; named asset measures; Schedule D/I/F bridges | Management cost attribution is a non-posting projection with confidence grades, kept apart from financial statements | Reports built from raw event streams vary with timing. Cost allocations that post to the ledger change fund balances. | UNB-XIN-EVA-003, UNB-XIN-INV-008, UNB-XIN-ACC-006, UNB-XIN-ECO-001, RR-UNB-ACC-014-r1 |
+| **Unified automation** (events, schedules, AI, rules, approvals, exceptions) | **Adopt in-database; no workflow engine or broker at release 1** | Transactional outbox; persisted process managers; DueObligation timers; one human-resolution queue | Invariant-bearing commands are synchronous. A batch is a container of independent items and never carries approval. | Batch-level approval ignores a sanctions hit partway through a batch. A generic Hold over-blocks (a records hold stops grants). An engine creates a second durable state that must be reconciled with the ledger. | UNB-XIN-EVA-007, -010, -011, -013, UNB-XIN-WFA-001, -002 |
+| **Unified knowledge model** (AI-readable processes, API contracts, configuration metadata, policy) | **Adopt for contracts and answer corpus; AI answers must cite** | AI-readable contracts (REQ-X-051, UNB-RCN-ARC-001); a versioned, sponsor-scoped answer corpus | Published partner event schemas are separate from private domain events | Event schemas used as the public API lock in internal states. AI answers that do not cite a state field or clause. | UNB-XIN-SVC-007, UNB-XIN-EVA-008, UNB-XIN-SAS-004 |
+
+## Platform-level shared services this mission adds
+
+| Shared service | Why one shared instance | Requirements |
+|---|---|---|
+| Tenant event and telemetry envelope | Basis for isolation proofs, migration equivalence, metering and incident scoping. Merged from two passes (XIC-INT-001). | UNB-XIN-SAS-005, UNB-XIN-EVA-006 |
+| Entitlements, feature flags, release rings | One codebase serves every sponsor model without forking. Fiduciary capabilities can never be switched off. | UNB-XIN-SAS-001, -002, -003 |
+| Identity realms, operator access, step-up, break-glass | Outsourced and white-label models are unlawful if operator staff act outside sponsor authority | UNB-XIN-IAM-001..005 |
+| Hold registry with typed holds, propagated to processors | One hold vocabulary. Legal holds reach third parties. | UNB-XIN-EVA-010, UNB-XIN-REC-001 |
+| Rail obligation and eligibility registers | The sponsor's duties as Originator, payee and merchant are explicit and versioned | UNB-XIN-BNK-001, -004 |
+| Cost attribution model | One canonical cost model fed by metering from payments, infrastructure, vendors and labour | UNB-XIN-ECO-002 (canonical); XIF-INT-008 |
+
+## What stays an integration rather than platform
+
+| Capability | Decision | Basis |
+|---|---|---|
+| Sponsor operating accounts payable, procurement, budgeting, HR, payroll | Integration: journal export and vendor extract for the payee cross-match | industry/erp.md §1; XRJ-ERP-001..004 |
+| B2B sales pipeline and operator SaaS billing | The operator's own CRM and billing systems; never in tenant books | XRJ-CRM-001; UNB-XIN-ERP-003 |
+| Customer identity provider | Buy a managed identity provider | XRJ-IAM-001 |
+| Order management and trading | External manager or outsourced CIO | XIF-INV-011 |
+| Telephony, ESP and SMS, print/mail, card processing | Adapters with metered costs and dispositions per piece | UNB-XIN-OTH-004, UNB-XIN-PAY-006 |
+| Full matter management, GRC, third-party risk management | Integration. Platform keeps only privileged access class, holds and a critical-vendor register. | industry/svc.md, industry/erp.md |

@@ -1,0 +1,49 @@
+{
+  "bnk": {
+    "RR-TVR-CON-001-r1": "RR-TVR-CON-001-r1",
+    "RR-UNB-PAY-008-r1": "RR-UNB-PAY-008-r1",
+    "RR-UNB-GAP-013-r1": "RR-UNB-GAP-013-r1"
+  },
+  "inv": {
+    "RR-ACC-MDL-007-r1": "RR-ACC-MDL-007-r1",
+    "RR-UNB-ACC-033-r1": "RR-UNB-ACC-033-r1",
+    "RR-UNB-ACC-031-r1": "RR-UNB-ACC-031-r1",
+    "RR-UNB-INV-019-r1": "RR-UNB-INV-019-r1"
+  },
+  "svc": {
+    "RR-REQ-X-048-r2": "RR-REQ-X-048-r2",
+    "RR-ADM-033-r1": "RR-ADM-033-r1",
+    "RR-ADM-042-r1": "RR-ADM-042-r1",
+    "RR-CTL-040-r1": "RR-CTL-040-r1"
+  },
+  "erp": {
+    "RR-ADM-023-r1": "RR-ADM-023-r1",
+    "RR-ADM-028-r1": "RR-ADM-028-r1",
+    "RR-REQ-X-073-r1": "RR-REQ-X-073-r1",
+    "RR-ADM-008-r1": "RR-ADM-008-r1"
+  },
+  "grt": {
+    "RR-UNB-GRANT-024-r1": "RR-UNB-GRANT-024-r1",
+    "RR-UNB-GRANT-026-r1": "RR-UNB-GRANT-026-r1",
+    "RR-UNB-GRANT-041-r1": "RR-UNB-GRANT-041-r1"
+  },
+  "sas": {
+    "RR-UNB-RES-003-r1": "RR-UNB-RES-003-r1",
+    "RR-UNB-TEN-011-r1": "RR-UNB-TEN-011-r1",
+    "RR-UNB-TEN-016-r1": "RR-UNB-TEN-016-r1",
+    "RR-REQ-X-038-r1": "RR-REQ-X-038-r1",
+    "RR-UNB-API-STD-003-r1": "RR-UNB-API-STD-003-r1"
+  },
+  "eco": {
+    "RR-UNB-ACC-014-r1": "RR-UNB-ACC-014-r1",
+    "RR-AIN-028-r1": "RR-AIN-028-r1",
+    "RR-UNB-ENT-003-r1": "RR-UNB-ENT-003-r1",
+    "RR-UNB-ECO-001-r1": "RR-UNB-ECO-001-r1"
+  },
+  "eva": {
+    "RR-UNB-EVT-001-r1": "RR-UNB-EVT-001-r1",
+    "RR-UNB-EVT-005-r1": "RR-UNB-EVT-005-r1",
+    "RR-UNB-DATA-004-r1": "RR-UNB-DATA-004-r1",
+    "RR-UNB-DATA-005-r1": "RR-UNB-DATA-005-r1"
+  }
+}
