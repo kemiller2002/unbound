@@ -121,5 +121,26 @@ baseline (report 03) under the IDs below.
 | TEV-011 | E4 margin ≈$5 per fund at modelled revenue. | Accepted limitation + evidence task | High-volume workplace giving is viable only with employer-paid fees or subsidy commitments (UNB-SMP-ECN-003); evidence task: obtain employer willingness-to-pay data. |
 | TEV-012 | Unknown payment outcome during holiday staffing. | Revised acceptance criterion | Unknown-outcome aging clocks use business calendars; aging tiers cannot auto-close; S6 scenario test included in release acceptance. |
 
-Repeat validation after these changes: re-running S1–S12 against the corrected requirements found no
-unhandled transition; TEV-001 and TEV-011 remain dependent on empirical data (evidence backlog).
+## 6. Re-validation against the converged baseline
+
+After Phase 2 each scenario step was traced to the clause that now governs it. A step with no governing clause would
+be an unhandled transition.
+
+| Scenario | Governing clauses (report 03) | Unhandled step found |
+|---|---|---|
+| S1 sanctions match before dispatch | CNV-GRT-006 (release-time screening, atomic dispatch fence, Block/Reject/Proceed, 10-business-day report data, neutral status), CNV-ARC-003 (fencing token), CNV-PLT-004 (10-year retention) | none |
+| S2 concurrent recommendations | CNV-FIN-001 (atomic reservation), CNV-GRT-016 (recorded authority, conflicting instructions) | none |
+| S3 bank outage at year end | CNV-PAY-007 (stale-feed fail-closed), CNV-PAY-004 (unknown outcomes), CNV-FIN-003 (completed-gift date independent of feed), CNV-ARC-003 (idempotency) | none |
+| S4 recipient loses status | CNV-GRT-003 (release-time status check) | none |
+| S5 charity merger | CNV-GRT-010 (successor verification, notice-and-opt-out, bulk notices) | none |
+| S6 unknown payment | CNV-PAY-004 | none |
+| S7 two critical absences | CNV-GOV-004 (roster coverage, double-absence stress, appointed contracted holders), CNV-SVC-002 (December readiness gate) | none |
+| S8 exit during investigation | CNV-ENT-002 (held funds do not transfer, read-only persists), CNV-PLT-004 (legal hold precedence) | none |
+| S9 regulatory change | CNV-GOV-005 (effective-dated packs, emergency path, affirmative adoption, independent approval) | none |
+| S10 compromised operator | CNV-ARC-002 (default deny, scoped expiring grants, immediate revocation) | none |
+| S11 AI beyond authority | CNV-AIO-001 | none |
+| S12 cost cut degrades service | CNV-GOV-006 (non-removable capabilities, budgets never deny mandatory service), CNV-ECO-002 | none |
+| TEV-005 death with co-advisor | CNV-ENT-001 | none |
+
+TEV-001 (December capacity) and TEV-011 (workplace margin) remain dependent on empirical data (CNV-EVB-001). This is
+theoretical validation of requirement coverage; no software was executed.
