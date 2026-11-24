@@ -18,6 +18,7 @@ and the path to pass are in its section 23).
 | 10 | [Mission report and readiness](10-MISSION-REPORT-AND-READINESS.md) | hand |
 | 11 | [Owner ratification packets](11-OWNER-RATIFICATION-PACKETS.md) | `tools/reqaudit/render_ratification_packets.py` |
 | 12 | [Evidence-phase protocol](12-EVIDENCE-PHASE-PROTOCOL.md) | hand |
+| 13 | [Evidence-backlog results](13-EVIDENCE-BACKLOG-RESULTS.md) | delegated research + verification |
 
 Sources of truth: `clauses/` (convergence clause source and adversarial amendments), `data/` (dossiers, evidence,
 clauses, catalogs, findings), `requirements/questions/` (resolution log), `requirements/baseline/` and

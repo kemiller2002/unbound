@@ -61,6 +61,10 @@ about 1M funds, which exceeds the addressable traditional market.
 | EV-09 | **AI inference cost is immaterial** (≤ $1/fund) in every case; people dominate sensitivity (loaded cost, minutes per exception, exception rate). | Unchanged from the first version. |
 | EV-10 | **December peak** lowers exception SLA attainment to ≈0.70 at modelled staffing (TEV-001). | Unchanged. |
 
+## 3a. Evidence update: incumbent prices (report 13)
+
+Public Form 990 data puts incumbent software at $32–$129 per DAF-year for large national sponsors, about $100 per fund-year (all funds) at community foundations and $413–$745 for fully outsourced administration. Unbound's break-even (≈$81 at 100k platform funds, ≈$131 at 50k) is therefore inside or above the large-national band: price competition is viable only against mid-size nationals, community foundations priced per fund, and outsourced-administration buyers. EV-01 stands and is sharper.
+
 ## 4. Why each activity exists, and what each approach does with it
 
 Unchanged from the first version and still valid as a classification (law, contract, integrity, value, risk,

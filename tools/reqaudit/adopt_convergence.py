@@ -37,7 +37,7 @@ ON = "2026-11-24"
 ACTOR = "Master mission agent (convergence; product-owner directions and mission-adopted evidence, owner ratification pending where agent-recommended)"
 CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulatory", "c4_platform_product",
                   "c5_adversarial_business", "c6_adversarial_technical")
-AMENDMENT_MODULES = ("c7_amendments", "c8_owner_decisions")  # applied in order; each records revision history
+AMENDMENT_MODULES = ("c7_amendments", "c8_owner_decisions", "c9_evidence_amendments")  # applied in order; each records revision history
 RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
                 "requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl",
                 "requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl",
@@ -59,7 +59,7 @@ def amend(c, a):
                 acceptance_criteria=[sub(x) for x in c["acceptance_criteria"]] + list(a.get("acceptance_add", ())),
                 amends=list(dict.fromkeys(c["amends"] + list(a.get("amends_add", ())))),
                 dependencies=list(dict.fromkeys(c["dependencies"] + list(a.get("dependencies", ())))),
-                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "owner decision" if "owner decision" in a["finding"] else "report 08 adversarial review",
+                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "owner decision" if "owner decision" in a["finding"] else ("evidence backlog (report 13)" if a["finding"].startswith("EVB-") else "report 08 adversarial review"),
                                                                     "findings": a["finding"], "original_statement": c["statement"]}])
 
 
