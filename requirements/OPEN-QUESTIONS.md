@@ -25,25 +25,23 @@ Every question in the requirements missions that still needs an answer, in one p
 
 | Resolution status | Approval | Evidence disposition | Questions |
 |---|---|---|---|
-| resolved | agent-recommended | business-policy-decision | 14 |
-| resolved | agent-recommended | empirical-validation-required | 4 |
-| resolved | agent-recommended | established-by-authoritative-evidence | 4 |
-| resolved | agent-recommended | external-authorization-required | 9 |
-| resolved | agent-recommended | reasoned-interpretation | 11 |
-| resolved | approved-owner | business-policy-decision | 26 |
-| resolved | approved-owner | empirical-validation-required | 4 |
-| resolved | approved-owner | established-by-authoritative-evidence | 14 |
-| resolved | approved-owner | external-authorization-required | 3 |
-| resolved | approved-owner | reasoned-interpretation | 26 |
+| resolved | agent-recommended | business-policy-decision | 10 |
+| resolved | agent-recommended | empirical-validation-required | 3 |
+| resolved | agent-recommended | established-by-authoritative-evidence | 3 |
+| resolved | agent-recommended | reasoned-interpretation | 8 |
+| resolved | approved-owner | business-policy-decision | 30 |
+| resolved | approved-owner | empirical-validation-required | 5 |
+| resolved | approved-owner | established-by-authoritative-evidence | 15 |
+| resolved | approved-owner | external-authorization-required | 12 |
+| resolved | approved-owner | reasoned-interpretation | 29 |
 | resolved | approved-product-direction | business-policy-decision | 163 |
 | resolved | approved-product-direction | empirical-validation-required | 3 |
 | superseded-by-duplicate | agent-recommended | business-policy-decision | 3 |
-| superseded-by-duplicate | agent-recommended | external-authorization-required | 1 |
 | superseded-by-duplicate | agent-recommended | reasoned-interpretation | 6 |
 | superseded-by-duplicate | approved-owner | business-policy-decision | 7 |
 | superseded-by-duplicate | approved-owner | empirical-validation-required | 1 |
 | superseded-by-duplicate | approved-owner | established-by-authoritative-evidence | 4 |
-| superseded-by-duplicate | approved-owner | external-authorization-required | 2 |
+| superseded-by-duplicate | approved-owner | external-authorization-required | 3 |
 | superseded-by-duplicate | approved-owner | reasoned-interpretation | 11 |
 
 ## Decide first: open decisions that block implementation (25)

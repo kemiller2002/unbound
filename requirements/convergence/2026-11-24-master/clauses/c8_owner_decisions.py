@@ -5,6 +5,9 @@ owner review, so review packets are prepared in report 11 and approvals are reco
 """
 
 AMENDMENTS = {
+    "CNV-GOV-001": {"finding": "OD-P-GOV addition (owner decision)",
+        "append": "For the Unbound-operated administration offer (OD-M-08), SOC 1 Type 2 readiness, including the start of the first observation period, SHALL begin before the first staffed-administration client goes live, because that client's auditor is expected to rely on Unbound's controls (OD-P-GOV).",
+        "acceptance_add": ["Given a first staffed-administration client scheduled to go live, when go-live readiness is assessed, then a SOC 1 Type 2 observation period has started or go-live is refused."]},
     "CNV-GOV-004": {"finding": "OD-M-01 (owner decision)",
         "replace": [("whether to replace the absolute rule with a recorded conflict rule (cross-appointments disclosed in each board resolution, no relationship to the matter, never deciding the same matter for two sponsors) is owner decision OD-M-01 (report 10).",
                      "the owner decided (OD-M-01) to keep the absolute rule for release 1 and to revisit it only with evidence from an administrator deployment.")]},
@@ -60,5 +63,11 @@ AMENDMENTS = {
         "acceptance_add": ["Given a release-1 sponsor, when NoticeConditions is selected, then it is refused with OptionNotActivated."]},
     "CNV-GRT-012": {"finding": "OD-P-GRT cut H (owner decision)",
         "append": "Reconsideration SHALL be implemented as a case type in the common case kernel (CNV-SVC-001) with the independent-reviewer assignment rule and the filing and response clocks, not as a separate module (OD-P-GRT cut H)."},
+    "CNV-GOV-005": {"finding": "OD-P-GOV cut I (owner decision)",
+        "append": "Release 1 SHALL use one sponsor-adopted, versioned and effective-dated policy configuration per sponsor; platform-published policy packs and cross-sponsor shadow evaluation are deferred. Changes to a sponsor's configuration keep the independent-approval, emergency-path and history rules above, and representative replay uses that sponsor's own history (OD-P-GOV cut I)."},
+    "CNV-EXP-003": {"finding": "OD-P-GOV cut I (owner decision)",
+        "append": "In release 1 the adoption-time conflict check SHALL run against the sponsor's single configuration and the platform's non-removable rules (OD-P-GOV cut I)."},
+    "CNV-GOV-002": {"finding": "OD-P-GOV cut J (owner decision)",
+        "append": "In release 1 these checks SHALL be performed as an annual vendor-assurance review task with recorded evidence, plus an ad hoc review when a vendor reports an exception or outage; automated gap tracking is deferred (OD-P-GOV cut J)."},
 }
 
