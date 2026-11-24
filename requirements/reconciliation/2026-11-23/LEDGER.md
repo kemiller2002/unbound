@@ -98,7 +98,7 @@ The integrating session's own token use is not reported by the harness and is no
 
   Do **not** re-run the old `ui_build.py` alone: it rewrites `ui-requirements.jsonl` from the first-pass records only.
 - **Audit.** 63 v1 defects (`data/ui-defects.csv`); 47 are resolved in v2 or prevented by the gate, and 16 are open on screens not yet redesigned (roadmap waves 2–3).
-- **Not filed.** FORMA-GAP-18..26 are not filed in Forma yet; that waits on the owner's instruction. The primary-button finding is to be added to forma#186.
+- **Filed (owner instruction, 2026-11-24).** FORMA-GAP-18..26 are kemiller2002/forma#199–#207; the primary-button finding is a comment on forma#186.
 - **Workflow-model issues found while specifying views** (not yet fixed in `workflows/`):
   - WFM-14 has no deterministic "publish in-tolerance NAV by policy" transition and no sampled-review step; the note on WFM-14-T11 is stale against RCD-035.
   - WFM-12 has no human transition for recording an OFAC rejected-transaction report (UNB-RCN-WF-024).

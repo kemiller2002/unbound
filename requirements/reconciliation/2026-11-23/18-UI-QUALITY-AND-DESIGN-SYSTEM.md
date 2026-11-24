@@ -388,7 +388,7 @@ Equivalent business operations share one implementation:
 
 The widget reuses the application layer's tokens inside its iframe rather than a separate implementation.
 
-Filing: FORMA-GAP-18..26 are recorded with `filed_as = pending`. Like the earlier gaps, they are filed in the Forma repository only on the owner's instruction (the owner asked for that explicitly last time). The finding that the primary button is marketing-only should be added to forma#186.
+Filed on the owner's instruction (2026-11-24): FORMA-GAP-18..26 are kemiller2002/forma#199–#207, and the marketing-only primary-button finding was added to forma#186 as a comment.
 
 ## 8. Visual regression and interaction test specification
 
@@ -466,7 +466,7 @@ Every UIR record reaches at least one inbound original. Defects with no v2 desig
 
 | Wave | Work | Closes | Exit criterion |
 |---|---|---|---|
-| 0 (owner) | Approve RCD-050..053 (default brand, Forma ownership of the application layer, date format, phone navigation); file FORMA-GAP-18..26; add the primary-button finding to forma#186 | Decisions | Owner sign-off; issues filed |
+| 0 (owner) | Approve RCD-050..053 (default brand, Forma ownership of the application layer, date format, phone navigation). Done: FORMA-GAP-18..26 filed as forma#199–#207, and the forma#186 comment added | Decisions | Owner sign-off; issues filed |
 | 1 (done in this pass) | Design system layer; Giving home in 12 states; S-003, S-004, S-008, S-011, S-012 and W-001 in v2; verification harness | 47 of 63 v1 defects; all 17 required scenarios | Every v2 state passes `verify.mjs` at 5 viewports |
 | 2a | Consolidate the redesign passes' screen-local components (`v2/proposed/*.css`) into the shared layer; one helper per pattern | Duplication between screens | No pattern defined twice |
 | 2 | Redesign S-002 charity search, S-005 add money, S-006 people and successors, S-007 documents, S-009 case workspace (with the 18 typed panels of S-014/P-*) | UXD-026, 027, 029, 030, 033, 044, 045, 046, 049, 052, 053, 056 | Same gate; critique items closed |
