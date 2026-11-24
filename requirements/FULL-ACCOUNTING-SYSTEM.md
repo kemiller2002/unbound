@@ -314,6 +314,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Investment committee approval of the buffer policy within the investment policy statement.
   - Ownership: domain owner: Grants and capacity; financial system of record: Unbound program ledger (capacity); custodian (positions); policy owner: Sponsor investment committee; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor controller.
+  - Numeric parameters: twelve months [policy: sponsor investment committee].
+  - Internal control: UNB-CTRL-025, UNB-CTRL-043; operator Unbound; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-FIN-001.
   - Acceptance:
     - AC-1: Given two approvals for the same fund committed concurrently whose sum exceeds available capacity, when both commit, then exactly one succeeds and the other is rejected with InsufficientAvailableCapacity.
     - AC-2: Given a pool whose buffer policy is labelled placeholder and twelve months of outflow history, when the buffer review runs, then a recalibration task is opened for the investment committee.
@@ -332,6 +334,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor sign-off of the completed-gift rule table and acknowledgment template (the sponsor is the legal issuer).
   - Ownership: domain owner: Contributions; financial system of record: Unbound program ledger; bank (settlement); policy owner: Sponsor controller; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor controller.
+  - Numeric parameters: 60 days [authority: Nacha Operating Rules: consumer unauthorized return window]; 2 banking days [authority: Nacha Operating Rules: CCD return window]; 540 days [authority: card network maximum dispute window (batch C)]; up to two years [authority: Nacha warranty-claim period]; one year [authority: Nacha business-entry claim period].
+  - Internal control: UNB-CTRL-052, UNB-CTRL-053; operator shared; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-FIN-003.
   - Acceptance:
     - AC-1: Given an ACH contribution settled 3 January for a debit initiated 30 December, when the acknowledgment is issued, then GiftCompletionDate follows the approved rule table and the initiation date is retained.
     - AC-2: Given an ACH contribution returned R10 on day 45, when the return posts, then the contribution and its acknowledgment are reversed and any shortfall against the fund is recorded as a sponsor loss.
@@ -342,6 +346,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Reconciliation; financial system of record: Unbound program ledger vs bank and custodian; policy owner: Sponsor controller; data owner: Sponsor; operational owner: Independent reconciler (outside payment chain); evidence owner: Sponsor controller.
+  - Numeric parameters: 100% [policy: sponsor controller (provisional calibration)].
+  - Internal control: UNB-CTRL-046, UNB-CTRL-047, UNB-CTRL-048; operator shared; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-FIN-004.
   - Acceptance:
     - AC-1: Given an unexplained $12 break on fund F1, when monthly statements run, then F1's statement is withheld and all other statements publish.
     - AC-2: Given an error found in an attested sample, when the next sampling period starts, then the sample size for that stratum increases per the recorded policy.
@@ -352,6 +358,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Investment committee or board resolution delegating NAV publication.
   - Ownership: domain owner: Investment administration; financial system of record: Unbound unit ledger; custodian prices; policy owner: Sponsor investment committee; data owner: Sponsor; operational owner: Sponsor investment operations; evidence owner: Sponsor controller.
+  - Internal control: UNB-CTRL-037, UNB-CTRL-038, UNB-CTRL-039; operator shared; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-FIN-005.
   - Acceptance:
     - AC-1: Given no recorded delegation, when a NAV is computed, then it waits for a human checker.
     - AC-2: Given a delegation and a price 3% outside tolerance, when NAV runs, then publication waits for an approver and the exception is evidenced.
@@ -385,6 +392,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Signed Form 990 by the sponsor officer.
   - Ownership: domain owner: Tax reporting; financial system of record: Unbound program ledger; policy owner: Sponsor controller; data owner: Sponsor; operational owner: Return preparer; evidence owner: Sponsor controller.
+  - Numeric parameters: line 4 [authority: Form 990 Schedule D Part I line reference (not a duration)].
   - Acceptance:
     - AC-1: Given a fund excepted from DAF status by statute, when the Schedule D package is built, then it is excluded from column (a) and the bridge shows ExceptedFund.
 - **CNV-FIN-010 — UBIT accrual default:** Estimated UBIT SHALL accrue by default in the period earned with quarterly estimates aligned to Form 990-T installments, true-up on filing and allocation to generating funds where program terms allow; filing-basis GL recognition MAY be configured only under a documented immateriality policy; the fund-level capacity hold SHALL apply in both cases.
@@ -399,6 +407,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Accounting; financial system of record: Unbound program ledger; sponsor GL; policy owner: Sponsor CFO; data owner: Sponsor; operational owner: Sponsor finance; evidence owner: Sponsor controller.
+  - Internal control: UNB-CTRL-043, UNB-CTRL-044; operator sponsor; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-FIN-011.
   - Acceptance:
     - AC-1: Given a non-public sponsor, when the available-to-be-issued date is recorded, then period 13 hard-closes on that date.
     - AC-2: Given a post-issuance correction, when it is posted, then the record requires a qualitative materiality assessment before approval.

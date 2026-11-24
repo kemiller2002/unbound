@@ -182,6 +182,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Empirical: December interval data and time studies (evidence backlog).
   - Ownership: domain owner: Service operations; financial system of record: n/a; policy owner: Sponsor operations owner; data owner: Sponsor; operational owner: Sponsor or administrator service team; evidence owner: Sponsor operations owner.
+  - Numeric parameters: five working days [policy: surge activation lead time candidate]; 1 December [policy: December readiness gate date].
   - Acceptance:
     - AC-1: Given no recorded surge plan on 1 December, when readiness is assessed, then the gate fails and the sponsor executive is alerted.
     - AC-2: Given the December readiness gate, when a simulation of P90 forecast December arrivals against rostered capacity including double absence shows any legal deadline missed or internal attainment below the sponsor floor, then the gate fails and the plan must be revised.

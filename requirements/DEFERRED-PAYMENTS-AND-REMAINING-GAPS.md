@@ -130,6 +130,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Each sponsor's executed ODFI origination agreement naming or permitting Unbound as TPSP; executed rail-partner agreement.
   - Ownership: domain owner: Payments; financial system of record: Bank / rail partner (payment status); policy owner: Sponsor treasurer; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Internal control: UNB-CTRL-049; operator Unbound; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-PAY-001.
   - Acceptance:
     - AC-1: Given a program configuration naming Unbound as Originator, when it is saved, then it is rejected with ProhibitedRole.
     - AC-2: Given a role table without the agreement its rail requires (an ODFI origination agreement for sponsor-originated ACH; a partner agreement naming the Third-Party Sender and its ODFI for partner rails), when payment activation is requested, then activation is refused.
@@ -139,6 +140,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor ODFI and positive-pay service agreements; sponsor adoption of void and disposition policy.
   - Ownership: domain owner: Payments; financial system of record: Bank; policy owner: Sponsor treasurer; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Numeric parameters: 90 days [authority: narrowest RUUPA timely-void window (batch C); configurable shorter]; 30 days [policy: sponsor treasurer (callback contact age)]; six banking days [authority: Nacha NOC correction timing]; one business day [policy: minimum cooling-off floor (sponsor may lengthen)].
+  - Internal control: UNB-CTRL-031, UNB-CTRL-032, UNB-CTRL-033, UNB-CTRL-049; operator shared; service-organization report relevance SOC1+SOC2; manual or mixed; complementary user entity control CUEC-CNV-PAY-002.
   - Acceptance:
     - AC-1: Given a charity bank-detail change, when the next grant releases, then release waits for new destination evidence.
     - AC-2: Given a check voided at day 90, when the void posts, then the payable remains and a VoidDisposition is opened.
@@ -159,6 +162,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor CFO approval of aging tiers and delegation for two approvers.
   - Ownership: domain owner: Payments; financial system of record: Bank / rail partner; policy owner: Sponsor CFO; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Numeric parameters: 30 days [policy: sponsor CFO (unknown-outcome tier)].
+  - Internal control: UNB-CTRL-049, UNB-CTRL-051; operator sponsor; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-PAY-004.
   - Acceptance:
     - AC-1: Given an ACH grant with no status after the window, when the final tier is reached without a trace request, then escalation is blocked until a trace is recorded.
     - AC-2: Given an unobtainable outcome, when one approver attempts reissue alone, then it is rejected.
@@ -167,6 +172,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Empirical: confirm each bank partner's return-file layout.
   - Ownership: domain owner: Payments; financial system of record: Bank; policy owner: Sponsor treasurer; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Numeric parameters: 180 days [authority: Nacha reinitiation rule]; two years [authority: Nacha authorization retention].
+  - Internal control: UNB-CTRL-053; operator Unbound; service-organization report relevance SOC1; automated.
   - Acceptance:
     - AC-1: Given a third R01 return within 180 days, when reinitiation is requested, then it is refused.
     - AC-2: Given a return without addenda, when matched by fallback, then it is queued for a person.
@@ -183,6 +190,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Bank information-reporting enrolment and debit-block service agreement per sponsor account.
   - Ownership: domain owner: Treasury; financial system of record: Bank; policy owner: Sponsor treasurer; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Numeric parameters: two business days [policy: sponsor treasurer (attestation ceiling)]; one business day [policy: sponsor treasurer (attestation validity)].
+  - Internal control: UNB-CTRL-046, UNB-CTRL-049; operator shared; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-PAY-007.
   - Acceptance:
     - AC-1: Given a feed stale beyond the approved window, when a new grant release is requested, then it is held with reason StaleBankFeed.
     - AC-2: Given an ACH debit from an unapproved originator against a disbursement account, when presented, then the bank block rejects it (bank-side test evidence recorded at activation).
@@ -199,6 +208,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor approval of exposure limits.
   - Ownership: domain owner: Payments; financial system of record: Rail partner / bank; policy owner: Sponsor treasurer; data owner: Sponsor; operational owner: Sponsor treasury; evidence owner: Sponsor treasurer.
+  - Internal control: UNB-CTRL-082, UNB-CTRL-049; operator shared; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-PLT-012.
   - Acceptance:
     - AC-1: Given a partner funding request that would exceed the approved exposure, when presented, then it is refused.
     - AC-2: Given a partner outage with unconfirmed instructions, when failover is requested, then those instructions are not re-sent until non-execution is confirmed.

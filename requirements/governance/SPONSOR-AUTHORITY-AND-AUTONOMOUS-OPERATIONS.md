@@ -83,6 +83,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: commercial-availability; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor external auditor's written planned approach; executed contract assurance clause.
   - Ownership: domain owner: Platform assurance; financial system of record: n/a; policy owner: Unbound security and compliance; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound compliance.
+  - Numeric parameters: 12 months [policy: sponsor CFO (pending-approach expiry)].
   - Acceptance:
     - AC-1: Given a sponsor without a recorded auditor planned approach, when production reliance is requested, then activation is refused.
     - AC-2: Given a generated close certification, when produced, then it includes population counts, query hash and run log.
@@ -91,6 +92,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor external auditor confirms the tolerance used in its reliance.
   - Ownership: domain owner: Platform assurance; financial system of record: n/a; policy owner: Unbound security and compliance; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound compliance.
+  - Numeric parameters: 3-month [policy: practice, not standard (batch G)]; 12 months [policy: practice, not standard (batch G)].
   - Acceptance:
     - AC-1: Given a vendor report ending 30 June and a sponsor fiscal year ending 31 December, when monitoring runs on 1 October, then a bridge letter request is due.
     - AC-2: Given an adverse opinion, when recorded, then a risk acceptance or compensating procedure is required before continued reliance.
@@ -99,6 +101,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: External auditor acceptance of the SoD design; board or audit committee approval.
   - Ownership: domain owner: Governance; financial system of record: n/a; policy owner: Sponsor board; data owner: Sponsor; operational owner: Sponsor executive; evidence owner: Sponsor compliance officer.
+  - Internal control: UNB-CTRL-001, UNB-CTRL-003, UNB-CTRL-046; operator shared; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-GOV-003.
   - Acceptance:
     - AC-1: Given an approver who also has deploy rights to the gate, when they approve a PA-2 resolution, then the system requires a third distinct person.
     - AC-2: Given an alternative control past its expiry, when the control register runs, then it is flagged for committee review.
@@ -108,6 +111,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor board resolution of appointment; bylaws permitting additional officers.
   - Ownership: domain owner: Governance; financial system of record: n/a; policy owner: Sponsor board; data owner: Sponsor; operational owner: Sponsor executive; evidence owner: Sponsor compliance officer.
+  - Internal control: UNB-CTRL-001, UNB-CTRL-004; operator sponsor; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-GOV-004.
   - Acceptance:
     - AC-1: Given an appointment record without expiry, when saved, then it is rejected.
     - AC-2: Given a person appointed by sponsor A, when sponsor B attempts to appoint them for A3 decisions, then the appointment is refused.
@@ -116,6 +120,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Internal control: UNB-CTRL-070, UNB-CTRL-071, UNB-CTRL-072; operator shared; service-organization report relevance SOC1+SOC2; manual or mixed; complementary user entity control CUEC-CNV-GOV-005.
   - Acceptance:
     - AC-1: Given a pack change that lowers a grant limit, when submitted by its author, then independent approval is required before adoption.
     - AC-2: Given an activation element whose basis decision is unresolved, when activation is requested, then it is refused.
@@ -132,6 +137,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Commercial licence for Echelon components before commercial launch.
   - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Numeric parameters: 30-day [policy: sponsor controller (aggregation window candidate)]; 35% [authority: IRC 35% controlled entities].
   - Acceptance:
     - AC-1: Given two approvals of $9,000 each to the same counterparty within 30 days by different approvers under a $10,000 limit, when the second is approved, then cumulative-limit escalation triggers.
     - AC-2: Given two $9,000 grants from unrelated funds to the same charity within 30 days, when approved, then no cumulative escalation occurs and the analytic records the pattern.
@@ -140,6 +146,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor board acknowledgment of quarterly delegation reports.
   - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Numeric parameters: 12 months [policy: sponsor board (delegation expiry)].
   - Acceptance:
     - AC-1: Given a delegation whose quarterly report is unacknowledged, when renewal is requested, then it is refused.
     - AC-2: Given an unratified clause, when marketing copy cites it, then the content check fails.
@@ -156,6 +163,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Governance; financial system of record: n/a; policy owner: Sponsor board / Unbound product owner; data owner: Sponsor; operational owner: Sponsor executive; evidence owner: Sponsor compliance officer.
+  - Internal control: UNB-CTRL-001, UNB-CTRL-064, UNB-CTRL-067; operator Unbound; service-organization report relevance SOC1+SOC2; automated.
   - Acceptance:
     - AC-1: Given a command not mapped in the matrix, when invoked, then it is refused with UnclassifiedCommand.
     - AC-2: Given a clause text containing an authority label outside the defined set, when the baseline builds, then it fails.

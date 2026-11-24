@@ -64,6 +64,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Economics; financial system of record: n/a (non-posting attribution); policy owner: Sponsor CFO / Unbound CFO for platform costs; data owner: Unbound; operational owner: Unbound finance; evidence owner: Unbound finance.
+  - Numeric parameters: 60% [illustrative: experimental dominance threshold; not an anonymity guarantee].
   - Acceptance:
     - AC-1: Given a cost source without calibration, when attribution runs, then residuals are reported and not written off.
     - AC-2: Given a benchmark cell with four sponsors, when rendered, then it is suppressed.
@@ -81,6 +82,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: evidence-backlog; release scope: architectural-support; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Empirical measurements listed.
   - Ownership: domain owner: Economics; financial system of record: n/a (non-posting attribution); policy owner: Sponsor CFO / Unbound CFO for platform costs; data owner: Unbound; operational owner: Unbound finance; evidence owner: Unbound finance.
+  - Numeric parameters: 90-day [empirical: time study duration].
   - Acceptance:
     - AC-1: Given a dashboard figure derived from an unmeasured parameter, when displayed, then it carries the 'scenario assumption' label.
 - **CNV-ECO-003 — Economic claims and commercial commitments gated on evidence:** No licence price list, customer cost-saving claim or segment commitment SHALL be approved until (a) a shadow replay of at least 12 months of a real sponsor's grant and contribution history and (b) a 90-day time study have measured exception incidence, handling minutes, determination-reuse share, complex-gift handling hours and contact rates. Economic comparisons SHALL use the same exception definition and source for every approach, state each lever separately with its evidence and activation gate, headline Monte Carlo P50 with the P10–P90 range, and use the no-lever Unbound case (C0) as base until levers are measured. The licence used in any comparison SHALL be computed at the platform scale reachable by named target sponsors within five years, never above the addressable market. Unbound SHALL maintain a vendor P&L (revenue ramp by segment, sales and implementation per sponsor, build and maintenance capex, compliance staff, assurance fees) and a configuration SHALL be called viable only if contribution margin is positive at P90 cost and adverse licence scale. Per-tenant costs SHALL be charged on each sponsor's actual fund count. Customer-facing claims SHALL attribute savings by lever (policy delegation, determination reuse, outsourcing, software). Platform scale for licence computation SHALL be the sum over the maintained target-sponsor list of funds × stage-gated adoption probability; any run needing more than a stated share of listed sponsors SHALL be labelled share-dependent with the share shown. Viability SHALL be tested on Unbound's fully loaded annual result (amortised build capex, sales, implementation, compliance staff, assurance fees) being non-negative at P90 cost and adverse scale, naming the party whose result is tested; contribution margin alone SHALL NOT establish viability. Price-list approval SHALL additionally require measured results showing C below both B and C0 at P50 for the sponsor size band being priced, from a replay covering that band, and SHALL be approved by the Unbound board. Each enterprise configuration SHALL name whose margin is tested (sponsor, administrator or Unbound) and SHALL be called viable only if that party's margin is non-negative at P90 cost and adverse licence scale. Volumes that depend on partner distribution SHALL be labelled scenario assumptions until willingness-to-distribute records exist from at least three partners. The vendor P&L SHALL include platform registration, annual reporting and compliance costs for each jurisdiction where Unbound must register.
@@ -88,6 +90,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: commercial-availability; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Empirical: shadow replay and 90-day time study at a real sponsor.
   - Ownership: domain owner: Economics; financial system of record: n/a (non-posting model); policy owner: Unbound CFO and product owner; data owner: Unbound; operational owner: Unbound finance; evidence owner: Unbound finance.
+  - Numeric parameters: 12 months [empirical: shadow replay minimum coverage]; 90-day [empirical: time study duration].
   - Acceptance:
     - AC-1: Given a price list submitted before the shadow replay and time study are recorded, when approval is requested, then it is refused.
     - AC-2: Given a model run, when rendered, then every per-approach override appears in the run log with its evidence label and C0 is reported beside C.
@@ -100,6 +103,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: commercial-availability; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Economics; financial system of record: n/a (non-posting model); policy owner: Unbound CFO and product owner; data owner: Unbound; operational owner: Unbound finance; evidence owner: Unbound finance.
+  - Numeric parameters: 5,000–50,000 [market-data: entry segment band from DAFRC FY2024 sponsor distribution]; 25% [policy: Unbound board (concentration cap)]; 12 months [policy: OD-M-04 reopening window]; 10,000 [policy: OD-M-04 sponsor size band].
   - Acceptance:
     - AC-1: Given a community foundation prospect, when a sales commitment is proposed, then it requires a recorded partnership or scoped non-DAF requirement set.
     - AC-2: Given an E4 activation request without an executed employer funding commitment, when submitted, then it is refused.
@@ -111,6 +115,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: architectural-support; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Economics; financial system of record: n/a (non-posting model); policy owner: Unbound CFO and product owner; data owner: Unbound; operational owner: Unbound finance; evidence owner: Unbound finance.
+  - Numeric parameters: 15% [illustrative: stress scenario magnitude]; 20% [illustrative: stress scenario magnitude]; 5% [illustrative: stress scenario magnitude].
   - Acceptance:
     - AC-1: Given a sponsor with no recorded board delegation, when its year-1 cost is reported, then the pre-delegation figure is shown.
     - AC-2: Given an ODFI agreement in negotiation, when activation readiness is assessed, then readiness is false.

@@ -152,6 +152,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-004, UNB-CTRL-007, UNB-CTRL-008; operator Unbound; service-organization report relevance SOC2; automated; complementary user entity control CUEC-CNV-ARC-002.
   - Acceptance:
     - AC-1: Given an operator without an active grant, when they query tenant B, then the request is refused and alerted.
     - AC-2: Given a revoked grant, when the operator session continues, then the next request is refused.
@@ -160,6 +161,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-007, UNB-CTRL-008, UNB-CTRL-009; operator Unbound; service-organization report relevance SOC2; automated.
   - Acceptance:
     - AC-1: Given an administrator user without a delegation for sponsor B, when they open a B case from the federated queue, then access is refused.
     - AC-2: Given a new cross-tenant store not in the register, when deployment runs, then the release check fails.

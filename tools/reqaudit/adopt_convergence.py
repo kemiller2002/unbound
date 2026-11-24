@@ -39,6 +39,8 @@ CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulat
                   "c5_adversarial_business", "c6_adversarial_technical")
 AMENDMENT_MODULES = ("c7_amendments", "c8_owner_decisions", "c9_evidence_amendments", "c10_round2_amendments",
                      "c11_round2_partial_closures")  # applied in order; each records revision history
+CONTROL_MATRIX = Path("requirements/governance/MASTER-ENTERPRISE-CONTROL-MATRIX.csv")
+CROSSWALK = Path("requirements/governance/CONVERGENCE-CLAUSE-TO-CONTROL-CROSSWALK.csv")
 RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
                 "requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl",
                 "requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl",
@@ -77,8 +79,26 @@ def load_clauses(root):
     amended = reduce(apply_set, AMENDMENT_MODULES, base)
     ids = {c["id"] for c in amended}
     refs = lambda c: tuple(r for r in dict.fromkeys(re.findall(r"CNV-[A-Z]+-\d{3}", c["statement"])) if r != c["id"] and r in ids)
+    params = importlib.import_module("clauses.c13_numeric_parameters").PARAMETERS
+    by_clause = reduce(lambda acc, t: {**acc, t[0]: acc.get(t[0], ()) + ({"text": t[1], "basis": t[2], "source": t[3]},)}, params, {})
+    stmt = {c["id"]: c["statement"] for c in amended}
+    stale = [f"{cid}: '{q['text']}'" for cid, qs in by_clause.items() for q in qs if q["text"] not in stmt.get(cid, "")]
+    if stale:
+        raise ValueError(f"numeric parameters not found in clause text: {stale}")
+    unit = re.compile(r"\$?\d[\d,.]*\s?(?:%|-?(?:business|banking|calendar|working)?\s?(?:days?|hours?|months?|years?)\b)")
+    covered = lambda cid, m: any(m.strip(" -").split()[0].rstrip(",.%") in q["text"] for q in by_clause.get(cid, ()))
+    untagged = [f"{c['id']}: '{m.group(0)}'" for c in amended for m in unit.finditer(c["statement"]) if not covered(c["id"], m.group(0))]
+    if untagged:
+        raise ValueError(f"numbers without a basis tag: {untagged}")
+    links = importlib.import_module("clauses.c12_control_links").CONTROL_LINKS
+    unknown_links = set(links) - ids
+    if unknown_links:
+        raise ValueError(f"control links for unknown clauses: {sorted(unknown_links)}")
     # every clause cited in a statement is a declared dependency (derived, so citations cannot go undeclared)
-    return tuple(dict(c, dependencies=list(dict.fromkeys(c["dependencies"] + list(refs(c))))) for c in amended)
+    return tuple(dict(c, dependencies=list(dict.fromkeys(c["dependencies"] + list(refs(c)))),
+                      internal_control=(dict(links[c["id"]], cuec_id=(f"CUEC-{c['id']}" if links[c["id"]]["cuec"] else "")) if c["id"] in links else None),
+                      numeric_parameters=list(by_clause.get(c["id"], ())))
+                 for c in amended)
 
 
 def cycles(clauses):
@@ -104,14 +124,15 @@ def inventory(root):
     return tuple(csv.DictReader(io.StringIO((root / "requirements/reconciliation/2026-11-23/data/inventory.csv").read_text(encoding="utf-8"))))
 
 
-def validate(clauses, inv, records, register):
+def validate(clauses, inv, records, register, control_ids=frozenset()):
     ids = Counter(c["id"] for c in clauses)
     known = {r["identifier"] for r in inv} | set(records)
     return (tuple(f"duplicate clause {i}" for i, n in ids.items() if n > 1)
             + tuple(f"{c['id']}: unknown amended id {a}" for c in clauses for a in c["amends"] if a not in known)
             + tuple(f"{c['id']}: unknown question {q}" for c in clauses for q in c["resolves"] if q not in register)
             + tuple(f"{c['id']}: unknown dependency {d}" for c in clauses for d in c["dependencies"] if d not in ids)
-            + tuple(f"dependency cycle through {i}" for i in cycles(clauses)))
+            + tuple(f"dependency cycle through {i}" for i in cycles(clauses))
+            + tuple(f"{c['id']}: unknown control {k}" for c in clauses for k in ((c.get("internal_control") or {}).get("controls", ())) if k not in control_ids))
 
 
 # ---------------------------------------------------------------- markdown sections
@@ -131,6 +152,12 @@ def render_clause(c, mission_rel):
         f"  - Classification: {c['classification']}; release scope: {c['release_scope']}; operating models: {', '.join(c['operating_models'])}.",
         f"  - Activation gate: {esc(c['activation_gate']).rstrip('.') or 'none beyond release scope'}.",
         f"  - Ownership: {owners}.",
+        *([("  - Numeric parameters: " + "; ".join(f"{q['text']} [{q['basis']}: {q['source']}]" for q in c["numeric_parameters"]) + ".")]
+          if c.get("numeric_parameters") else []),
+        *([f"  - Internal control: {', '.join(c['internal_control']['controls'])}; operator {c['internal_control']['operator']}; "
+           f"service-organization report relevance {c['internal_control']['report']}; {'automated' if c['internal_control']['automated'] else 'manual or mixed'}"
+           + (f"; complementary user entity control {c['internal_control']['cuec_id']}" if c['internal_control']['cuec_id'] else "") + "."]
+          if c.get("internal_control") else []),
         "  - Acceptance:",
         *[f"    - AC-{i}: {esc(a)}" for i, a in enumerate(c["acceptance_criteria"], 1)],
     ])
@@ -303,7 +330,8 @@ def main(argv):
     records_by_file = {f: read_jsonl(root / f) for f in RECORD_FILES}
     records = {rid(r): (r, f) for f, rs in records_by_file.items() for r in rs}
     register = {r["question_id"] for r in ql.load_csv(root / "requirements/open-questions.csv")}
-    problems = validate(clauses, inv, records, register)
+    control_ids = frozenset(r["control_id"] for r in csv.DictReader(io.StringIO((root / CONTROL_MATRIX).read_text(encoding="utf-8"))))
+    problems = validate(clauses, inv, records, register, control_ids)
     if problems:
         print("\n".join(problems), file=sys.stderr)
         return 2
@@ -343,6 +371,16 @@ def main(argv):
     add = applied_events(clauses, ql.fold(events), events)
     with open(root / ql.EVENTS, "a", encoding="utf-8") as fh:
         fh.write("".join(json.dumps({k: e[k] for k in ("event_id", "question_id", "on", "type", "artifact", "actor", "set")}, ensure_ascii=False) + "\n" for e in add))
+    # 5b. clause-to-control crosswalk (ADV-T-011)
+    buf = io.StringIO()
+    w = csv.writer(buf, quoting=csv.QUOTE_ALL, lineterminator="\n")
+    w.writerow(("clause_id", "control_id", "control_operator", "report_relevance", "automated", "cuec_id", "evidence_query"))
+    for c in clauses:
+        ic = c.get("internal_control")
+        for k in (ic or {}).get("controls", ()):
+            w.writerow((c["id"], k, ic["operator"], ic["report"], "yes" if ic["automated"] else "no", ic["cuec_id"],
+                        "to be defined at implementation (IPE definition per CNV-GOV-001)"))
+    (root / CROSSWALK).write_text(buf.getvalue(), encoding="utf-8")
     # 6. baseline index
     adoption = tuple(csv.DictReader(io.StringIO((root / "requirements/reconciliation/2026-11-23/data/adoption.csv").read_text(encoding="utf-8"))))
     release = {json.loads(l)["id"]: json.loads(l)["scope"] for l in (root / "requirements/discovery/2026-11-23-cross-industry/data/release1-scope.jsonl").read_text().splitlines() if l.strip()}

@@ -224,6 +224,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: regulatory-authorization; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Operator registration with the California Attorney General Registry as a charitable fundraising platform.
   - Ownership: domain owner: Regulatory perimeter; financial system of record: n/a; policy owner: Unbound general counsel function; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound compliance.
+  - Numeric parameters: 1 July 2026 [authority: HRS §467B-2.3 effective date]; 1 July [authority: HRS §467B-2.3 annual renewal date].
   - Acceptance:
     - AC-1: Given no recorded registration, when a white-label sponsor enables California donors, then activation is refused with CaliforniaPlatformRegistrationRequired.
     - AC-2: Given no recorded Hawaii registration, when a white-label sponsor enables Hawaii donors, then activation is refused with PlatformRegistrationRequired.
@@ -233,6 +234,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor master agreement adopting the hold policy.
   - Ownership: domain owner: Governance; financial system of record: n/a; policy owner: Sponsor board / Unbound product owner; data owner: Sponsor; operational owner: Sponsor executive; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: one business day [policy: sponsor-approved hold window default].
+  - Internal control: UNB-CTRL-076, UNB-CTRL-077, UNB-CTRL-049; operator Unbound; service-organization report relevance SOC1+SOC2; manual or mixed; complementary user entity control CUEC-CNV-PLT-007.
   - Acceptance:
     - AC-1: Given a discretionary break-glass freeze with no sponsor decision after the window, when it ends, then it converts to a sponsor decision task; a legally mandatory or integrity hold never auto-releases.
     - AC-2: Given a platform freeze, when the sponsor pays a grant directly through its bank portal, then nothing in Unbound prevents it and the payment is reconciled on the next feed.

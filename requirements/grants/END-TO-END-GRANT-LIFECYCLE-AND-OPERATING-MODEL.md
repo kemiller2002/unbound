@@ -369,6 +369,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor board (or bylaw-authorized committee) resolution adopting the policy version and naming the delegate.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Internal control: UNB-CTRL-025, UNB-CTRL-026, UNB-CTRL-027; operator shared; service-organization report relevance SOC1; automated; complementary user entity control CUEC-CNV-GRT-001.
   - Acceptance:
     - AC-1: Given no recorded resolution, when a conforming grant is evaluated, then its state is ApproveRecommended and it waits for a named approver.
     - AC-2: Given a recorded resolution delegating to the CFO, when a conforming grant is evaluated, then it is approved with the CFO as accountable authority and the policy version recorded.
@@ -386,6 +387,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 24 hours [policy: operational target, not a legal threshold]; 180 days [policy: sponsor (deep review; may tighten)]; 30 days [policy: refresh lead time].
+  - Internal control: UNB-CTRL-016, UNB-CTRL-017; operator Unbound; service-organization report relevance SOC1; automated.
   - Acceptance:
     - AC-1: Given a recipient removed from Pub 78 after approval, when release runs, then payment is held with EligibilityChanged.
     - AC-2: Given cached status older than the source's approved window, when release runs, then a fresh check is required before payment.
@@ -403,6 +406,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor board resolution approving DiscretionaryGrantPolicy.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 90 days [policy: sponsor board (maximum discretionary hold)].
+  - Internal control: UNB-CTRL-028, UNB-CTRL-030; operator sponsor; service-organization report relevance none; manual or mixed; complementary user entity control CUEC-CNV-GRT-005.
   - Acceptance:
     - AC-1: Given a hold based on a media report approved by a single grant officer, when saved, then it is rejected for insufficient authority.
     - AC-2: Given a discretionary hold reaching 90 days without new evidence, when the deadline passes, then it is released and the donor notified.
@@ -411,6 +416,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor compliance officer designation and approval of the ScreeningScope matrix and reuse policy.
   - Ownership: domain owner: Sanctions; financial system of record: Unbound program ledger; policy owner: Sponsor compliance officer; data owner: Sponsor; operational owner: Sponsor compliance; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 10 business days [authority: 31 CFR 501.603/501.604 reporting]; 12 months [policy: sponsor compliance officer (disposition reuse backstop)]; 30 June [authority: OFAC annual blocked property report date].
+  - Internal control: UNB-CTRL-016, UNB-CTRL-018, UNB-CTRL-028; operator shared; service-organization report relevance SOC1+SOC2; automated; complementary user entity control CUEC-CNV-GRT-006.
   - Acceptance:
     - AC-1: Given a potential match found after the payment instruction was staged, when dispatch runs, then nothing is transmitted and the reservation remains.
     - AC-2: Given a disposition reused after the SDN entry's hash changed, when screening runs, then the reuse is refused and a new review opens.
@@ -435,6 +442,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor board-approved account-type classification policy; executed investment-management agreements.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 35% [authority: IRC §4958(f)(3) / §4966(d)(2) 35% controlled entities].
+  - Internal control: UNB-CTRL-025, UNB-CTRL-028; operator Unbound; service-organization report relevance SOC1; automated.
   - Acceptance:
     - AC-1: Given a payment from a fund to its donor-advisor's investment firm designated by the donor, when proposed, then it is blocked with AutomaticExcessBenefit.
     - AC-2: Given an organization-advised fund that is a DAF, when it recommends a grant to the advising charity, then the grant is blocked.
@@ -451,6 +460,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Internal control: UNB-CTRL-027, UNB-CTRL-030; operator sponsor; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-GRT-011.
   - Acceptance:
     - AC-1: Given a grant to a Type I supporting organization, when evaluated, then it routes to Tier 2 regardless of amount.
 - **CNV-GRT-012 — Decline reasons and reconsideration:** Declines SHALL use the sponsor-configurable neutral catalog: donor-facing text describes the policy outcome, never facts about a charity; sanctions, investigation and law-enforcement reasons map to COMPLIANCE_REVIEW; charity-facing communication is limited to status codes; free text is optional and drawn from approved phrases. Reconsideration SHALL default to a 60-day filing window and a 30-day response target, configurable with mandatory exceptions, decided by a reviewer independent of the original decision (contracted or board-appointed for single-reviewer sponsors); the original and reconsideration records SHALL both survive with outcomes {Upheld, Reversed, Modified, Withdrawn, Referred}. Charity corrections of shared facts and appeals of sponsor decisions SHALL be distinct paths.
@@ -458,6 +468,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 60-day [policy: product default reconsideration filing window]; 30-day [policy: product default response target].
   - Acceptance:
     - AC-1: Given a decline for an OFAC match, when shown to the donor, then the text is the COMPLIANCE_REVIEW phrase.
     - AC-2: Given a single-reviewer sponsor, when reconsideration is filed, then it is assigned to an appointed independent reviewer, not the original decider.
@@ -466,6 +477,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: sponsor-activation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Executed intermediary agreement; sponsor-approved fee schedule.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 1.10 [policy: review trigger, not a legal safe harbour (XID-ECO-002)]; 35% [authority: IRC 35% controlled entities].
   - Acceptance:
     - AC-1: Given an intermediary agreement without a title clause, when a complex gift is configured, then activation is refused.
     - AC-2: Given a charge schedule with recovery ratio 1.25, when the annual review runs, then a CFO review task is opened and service continues.
@@ -474,6 +486,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Grants and eligibility; financial system of record: Unbound program ledger; policy owner: Sponsor board via DoA; data owner: Sponsor; operational owner: Sponsor grant operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 0.5% [authority: IRC §170(b)(1)(I) floor from 2026 (batch A)].
   - Acceptance:
     - AC-1: Given the donor tax summary, when rendered, then every statement cites its authority and effective year.
 - **CNV-GRT-016 — Recorded instruction authority for multi-advisor funds:** Instruction authority SHALL come from the recorded fund agreement, never from marital status. Absent explicit any-one authority, all authorized parties SHALL approve or the ambiguity SHALL be resolved before execution; closure, succession and authority changes SHALL require joint approval; conflicting instructions SHALL be detected and capacity reserved atomically. Changing only the funding source of an unchanged grant SHALL require notice only when recipient, amount, purpose, timing, donor costs, investment exposure, restrictions and tax or accounting consequences are unchanged and the funding instruction is authorized; otherwise approval SHALL be obtained. Fixed and percentage-of-available-capacity grants (frozen at approval), the closing sweep and recurring fixed grants SHALL ship in release 1; cash-first funding SHALL be configurable. Electronic payment to a verified destination SHALL be the default (rail per CNV-PAY-001), with checks and authorized hand delivery supported; instant rails SHALL be deferred behind the rail adapter boundary.

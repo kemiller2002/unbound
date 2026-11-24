@@ -80,6 +80,12 @@ def vendor(res):
     return table(("Platform funds", "Sponsors (5k avg)", "Licence $/fund", "Revenue", "Total vendor cost", "Operating result", "Break-even $/fund"), rows)
 
 
+def surge(res):
+    rows = [(r["enterprise"], f"{r['seasonal_frac']:.1f}", money(r["total_economic_admin_per_account"]), f"{r['delta_vs_normal_C']:+,.0f}",
+             f"{r['sla_attainment_exceptions']:.2f}", f"{r['p90_wait_days_exceptions']:.1f}") for e, rs in res["december_surge"].items() for r in rs]
+    return table(("Ent.", "December extra staff (x base)", "$/fund-yr", "Δ vs normal C", "Exception SLA attainment", "P90 wait (days)"), rows)
+
+
 def main():
     res = json.load(open(os.path.join(HERE, "enterprise-results.json")))
     lic = res["meta"]["licence_per_account"]
@@ -102,7 +108,8 @@ def main():
                                                                  + "\n\n" + bearers(res, e) for e in res["comparison"]),
              "## 4. Revenue and margin\n\n" + revenue(res),
              "## 5. One-way sensitivity (approach C; top six plus licence scale)\n\n" + sensitivity(res),
-             "## 6. Stress scenarios (approach C)\n\n" + stress(res)]
+             "## 6. Stress scenarios (approach C)\n\n" + stress(res),
+             "## 7. December surge staffing (TEV-001; pooled queue simulation)\n\n" + surge(res)]
     with open(os.path.join(HERE, "..", "05a-ECONOMIC-TABLES.md"), "w") as fh:
         fh.write("\n\n".join(parts) + "\n")
 

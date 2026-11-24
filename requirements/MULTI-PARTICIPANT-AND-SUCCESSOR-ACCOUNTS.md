@@ -234,6 +234,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor-approved program terms on succession, dormancy, representatives and protective suspension.
   - Ownership: domain owner: Accounts and succession; financial system of record: Unbound program ledger; policy owner: Sponsor operations owner; data owner: Sponsor; operational owner: Sponsor donor services; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 90 days [policy: published sponsor practice (Fidelity); configurable]; 90–365 [policy: configurable range (published sponsor practice)]; 7 business days [authority: Uniform Power of Attorney Act §120 response period (enacting states)]; 15 business days [policy: program terms (FINRA 2165 analogy only)]; 10-business-day [policy: program terms (FINRA 2165 analogy only)]; 30 further business days [policy: program terms (FINRA 2165 analogy only)]; 2 business days [policy: program terms (notice)].
+  - Internal control: UNB-CTRL-022, UNB-CTRL-023; operator sponsor; service-organization report relevance SOC1; manual or mixed; complementary user entity control CUEC-CNV-ENT-001.
   - Acceptance:
     - AC-1: Given two co-advisors and one verified death, when the survivor recommends a grant, then it proceeds under the survivor's recorded authority.
     - AC-2: Given a presented POA with no gift authority, when reviewed, then the response within 7 business days is a refusal citing the listed ground and succession review is opened.
@@ -244,6 +246,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Executed master agreement; board-adopted exit policy; contract clause on custody and exit.
   - Ownership: domain owner: Tenancy and exit; financial system of record: Unbound program ledger; policy owner: Sponsor board; data owner: Sponsor; operational owner: Unbound operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 25% [authority: Form 990 Schedule N threshold for significant dispositions]; 90 days [policy: contract (read-only retention)]; 35 days [policy: contract (backup expiry)].
+  - Internal control: UNB-CTRL-007, UNB-CTRL-079; operator shared; service-organization report relevance SOC2; manual or mixed; complementary user entity control CUEC-CNV-ENT-002.
   - Acceptance:
     - AC-1: Given an exit while an investigation hold exists on fund F, when the exit runs, then F is not transferred and remains readable.
     - AC-2: Given transfers totalling 30% of net assets, when the series completes, then a Schedule N flag is recorded.

@@ -59,7 +59,7 @@ about 1M funds, which exceeds the addressable traditional market.
 | EV-07 | **Sponsor margins under asset-based pricing are large** (E1 revenue ≈$693 vs ≈$212). | Incumbents have little cost pressure to switch; Unbound's pitch must be price competition, transparency, controls and evidence, not cost alone. |
 | EV-08 | **Activation gates delay automation.** Up to eight sponsor-side authorizations (board delegations, auditor approach, bank agreements, controller policies) must exist before C's levers apply; until then the sponsor operates near C0. | Model results for C are steady-state only; onboarding plans must schedule the gates (report 09 §3). |
 | EV-09 | **AI inference cost is immaterial** (≤ $1/fund) in every case; people dominate sensitivity (loaded cost, minutes per exception, exception rate). | Unchanged from the first version. |
-| EV-10 | **December peak** lowers exception SLA attainment to ≈0.70 at modelled staffing (TEV-001). | Unchanged. |
+| EV-10 | **December peak** lowers exception SLA attainment to ≈0.70 at base surge staffing (TEV-001). Re-run (05a §7): adding December staff equal to twice base queue staff reaches full attainment for about +$8 (E1), +$20 (E3), +$1 (E4) and +$7 (E5) per fund-year (pooled-queue simulation). | Surge plan cost is small relative to total cost; CNV-SVC-002 gate is achievable. |
 
 ## 3a. Evidence update: incumbent prices (report 13)
 

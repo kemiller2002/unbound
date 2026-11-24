@@ -29,9 +29,9 @@ ROUND2_OTHER = {
     "ADV-R2-030": "addressed with ADV-R2-075 (CNV-GOV-010 amended: one level set)",
     "ADV-R2-032": "tooling: baseline rows now carry full source text and hash (adopt_convergence.py)",
     "ADV-R2-054": "tooling: textual clause citations are now derived as declared dependencies and cycle-checked",
-    "ADV-R2-021": "RESIDUAL: December surge cost not yet re-run in the model (report 10 residuals)",
-    "ADV-R2-033": "RESIDUAL: clauses not yet tagged internal-control and mapped to the control register (report 10 residuals)",
-    "ADV-R2-063": "RESIDUAL: numeric basis tags not yet applied to every clause (report 10 residuals)",
+    "ADV-R2-021": "model: December surge staffing re-run (05a section 7); full exception-SLA attainment at twice base staff for +$1 to +$20 per fund-year",
+    "ADV-R2-033": "34 clauses tagged internal-control with operator, report relevance, automation and CUEC; crosswalk requirements/governance/CONVERGENCE-CLAUSE-TO-CONTROL-CROSSWALK.csv",
+    "ADV-R2-063": "numeric basis tags applied (clauses/c13_numeric_parameters.py); generation fails on any untagged number with a unit",
 }
 
 
@@ -64,7 +64,7 @@ A second pass, run by a different model tier and given the amended clauses rathe
 checked whether each critical and a sample of major first-round findings was actually closed, and searched for defects
 the amendments introduced. It reported no finding 'not closed' or 'worse'. Its 22 new defects and the partially closed
 items were answered by the amendments in `clauses/c10_round2_amendments.py` and `clauses/c11_round2_partial_closures.py`
-(original wording kept in each clause's revision history) or by tooling changes. Three items remain as named residuals.
+(original wording kept in each clause's revision history) or by tooling and model changes. No residual remains open.
 The same caveat applies: an AI pass is not independent evidence.
 
 | Kind | Severity | Verdict | Count |

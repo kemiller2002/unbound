@@ -108,6 +108,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Internal control: UNB-CTRL-064, UNB-CTRL-065; operator Unbound; service-organization report relevance SOC2; automated.
   - Acceptance:
     - AC-1: Given an agent with prepare permission, when it calls the release endpoint, then the call is rejected with AuthorityRequired and logged.
     - AC-2: Given a configuration field without assistance metadata, when the documentation build runs, then it fails.
@@ -116,6 +117,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-064, UNB-CTRL-066; operator Unbound; service-organization report relevance SOC2; automated.
   - Acceptance:
     - AC-1: Given a charity web page containing instructions to approve, when a dossier is generated, then the text appears only as quoted source and the deterministic section is unchanged.
     - AC-2: Given a batch containing an item with an unresolved sanctions finding, when batch approval is attempted, then that item is excluded.

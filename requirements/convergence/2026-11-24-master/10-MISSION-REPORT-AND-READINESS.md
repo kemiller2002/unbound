@@ -14,8 +14,8 @@ economic model of labelled assumptions). No software test of Unbound was execute
 >   ratification was deliberately not written to the log; [report 11](11-OWNER-RATIFICATION-PACKETS.md) holds the eight
 >   review packets (148 questions, 69 unratified clauses).
 > - **Second adversarial round:** 64 closure checks (no finding 'not closed' or 'worse') and 22 new defects; all answered
->   by amendments except three named residuals (December surge cost re-run; internal-control tagging of clauses; numeric
->   basis tags). Report 08 now covers both rounds.
+>   by amendments; the three residuals were then closed (December surge re-run, 34 clauses linked to the control register
+>   with a generated crosswalk, numeric basis tags enforced by the generator). Report 08 now covers both rounds.
 > - **Evidence backlog:** state platform registration (Hawaii added, verified from statute), incumbent prices (Unbound's
 >   break-even sits inside the large-national price band) and rail coverage ([report 13](13-EVIDENCE-BACKLOG-RESULTS.md));
 >   evidence-phase protocol for the shadow replay, time study and benchmark ([report 12](12-EVIDENCE-PHASE-PROTOCOL.md)).
@@ -209,7 +209,7 @@ Retained as explicit owner decisions rather than resolved by the mission:
 | Economic models challenged | **Pass** — and the challenge found the vendor case not demonstrated |
 | UX, dashboard and reporting requirements complete | **Pass as specification**; no human testing |
 | Echelon capability gaps documented | **Pass** |
-| Material adversarial findings resolved or retained | **Pass** — two rounds; three named residuals (report 08) |
+| Material adversarial findings resolved or retained | **Pass** — two rounds; no open residual (report 08) |
 | Owner ratification of agent-recommended decisions | **Fail** — OD-M-01..05 decided; 148 questions and 69 clauses await domain review (report 11) |
 | Legal and accounting assertions with traceable authority | **Pass** for research; sponsor-side authorizations not obtained (by design) |
 | Economic case supported by measurement | **Fail** — levers and scale unmeasured (CNV-ECO-003) |

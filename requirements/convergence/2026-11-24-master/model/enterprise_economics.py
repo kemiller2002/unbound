@@ -317,6 +317,27 @@ def stress(cfg, e, accounts):
     return tuple(one(s) for s in STRESS)
 
 
+# ---------------------------------------------------------------------------- December surge (TEV-001, ADV-R2-021)
+
+SURGE_LEVELS = (0.5, 1.0, 2.0, 3.0)
+
+
+def december_surge(cfg, e):
+    """Cost and exception-SLA attainment of approach C in the december_peak scenario at several seasonal staffing levels
+    (seasonal_frac = extra December staff as a multiple of base queue staff). Note: the queue simulation is the base
+    model's pooled queue, so per-sponsor team rounding is not reflected in waiting times."""
+    n = ENTERPRISES[e]["accounts"]
+    base = det(cfg, e, "C", n)["total_economic_admin_per_account"]
+    def one(sf):
+        om = dict(cfg["operating_models"][f"{e}_C"], overrides=dict(cfg["operating_models"][f"{e}_C"]["overrides"], seasonal_frac={"set": sf}))
+        c2 = dict(cfg, operating_models=dict(cfg["operating_models"], **{f"{e}_C": om}))
+        ev = evaluate(c2, e, "C", n, random.Random(0), random.Random(0), False, scen="december_peak")
+        return {"enterprise": e, "seasonal_frac": sf, "total_economic_admin_per_account": summarise(ev)["total_economic_admin_per_account"],
+                "delta_vs_normal_C": summarise(ev)["total_economic_admin_per_account"] - base,
+                "sla_attainment_exceptions": ev["metrics"]["sla_attainment_exceptions"], "p90_wait_days_exceptions": ev["metrics"]["p90_wait_days_exceptions"]}
+    return tuple(one(sf) for sf in SURGE_LEVELS)
+
+
 # ---------------------------------------------------------------------------- vendor P&L (ADV-B-002)
 
 def vendor_pnl(cfg, platform_funds, price_per_fund):
@@ -365,6 +386,7 @@ def results(base_cfg):
                      "licence_per_account": {w: licence_per_account(cfg, random.Random(0), w) for w in ("favourable", "base", "adverse", "market_exceeding_reference")}},
             "comparison": comparison, "scales": scales, "revenue": revenue, "licence_sensitivity": corrected,
             "vendor_pnl": vendor_table(cfg), "vendor_assumptions": VENDOR,
+            "december_surge": {e: december_surge(cfg, e) for e in ents},
             "sensitivity": {e: sensitivity(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "stress": {e: stress(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "segment_cost_to_serve": segment}

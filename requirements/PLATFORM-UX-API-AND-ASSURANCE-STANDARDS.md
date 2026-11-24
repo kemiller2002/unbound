@@ -215,6 +215,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Communications; financial system of record: n/a; policy owner: Sponsor marketing and compliance; data owner: Sponsor; operational owner: Sponsor donor services; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 10 business days [authority: CAN-SPAM opt-out (16 CFR 316.5 / 15 U.S.C. 7704)]; 3 per 30 days [authority: 47 CFR 64.1200 residential prerecorded-call limit]; 25 November 2026 [authority: FCC revocation rules effective date (batch F)].
   - Acceptance:
     - AC-1: Given an unclassified template, when activation is requested, then it is refused.
     - AC-2: Given an SMS opt-out reply, when received, then all future automated texts for that sender stop and the revocation is evidenced.
@@ -230,6 +231,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor bank confirmation that its agreement imposes no stricter KYC.
   - Ownership: domain owner: Identity; financial system of record: n/a; policy owner: Unbound security; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound security.
+  - Internal control: UNB-CTRL-004, UNB-CTRL-019; operator Unbound; service-organization report relevance SOC2; automated.
   - Acceptance:
     - AC-1: Given a caller verified only by knowledge questions, when they request a bank-detail change, then it is refused below CAL3.
     - AC-2: Given a privileged sponsor user with a synced passkey, when they attempt to approve a reserved decision, then step-up to an AAL3 authenticator is required.
@@ -238,6 +240,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Sponsor compliance owner approval of the retention schedule.
   - Ownership: domain owner: Records; financial system of record: n/a; policy owner: Sponsor compliance owner; data owner: Sponsor; operational owner: Unbound operations; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 10 years [authority: 31 CFR 501.601 as amended 2025]; 7 years [policy: platform floor].
+  - Internal control: UNB-CTRL-074, UNB-CTRL-086; operator Unbound; service-organization report relevance SOC2; automated; complementary user entity control CUEC-CNV-PLT-004.
   - Acceptance:
     - AC-1: Given a grant paid on 1 March 2026, when disposition is evaluated on 2 March 2035, then the record is retained.
 - **CNV-PLT-005 — Statements and complaints:** Statements SHALL be generated for every configured period; the default notification SHALL be a quarterly digest plus correction alerts, monthly by opt-in, paper on request or absent electronic consent, and any cadence promised in program terms SHALL override defaults (no statutory periodic-statement duty was found). A complaint SHALL mean any expression of dissatisfaction, justified or not; acknowledgment within 2 business days, substantive response target 15 business days, outer limit 60 calendar days with a holding response; regulator-originated complaints SHALL route to the sponsor's legal function within 1 business day; contractual or legal deadlines SHALL override. A deterministic classification rule set with examples SHALL separate complaints from inquiries, automatic acknowledgment is allowed, and complaint incidence SHALL be measured in the CNV-EVB-001 time study before staffing.
@@ -245,6 +249,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Service; financial system of record: Unbound program ledger; policy owner: Sponsor operations owner; data owner: Sponsor; operational owner: Sponsor donor services; evidence owner: Sponsor compliance officer.
+  - Numeric parameters: 2 business days [policy: complaint acknowledgment (CFPB/FCA benchmarks only)]; 15 business days [policy: complaint response target]; 60 calendar days [policy: complaint outer limit]; 1 business day [policy: regulator-originated routing].
   - Acceptance:
     - AC-1: Given a donor without e-consent, when the quarter closes, then a paper statement is queued.
     - AC-2: Given a complaint unresolved at day 15, when the target passes, then a holding response is sent and the case escalates.
@@ -264,6 +269,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-049, UNB-CTRL-050; operator Unbound; service-organization report relevance SOC1; automated.
   - Acceptance:
     - AC-1: Given a hold published between authorization and dispatch, when dispatch runs, then the fencing check fails and nothing is transmitted.
     - AC-2: Given the hold registry unavailable for longer than the freshness bound, when a sponsor cell attempts dispatch, then dispatch is refused and all non-dispatch functions continue; given a stalled replica in cell A only, other cells continue to dispatch.
@@ -274,6 +280,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: Empirical: moderated usability tests (INT-020) and PDF accessibility verification.
   - Ownership: domain owner: Product; financial system of record: n/a; policy owner: Unbound product owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound product owner.
+  - Numeric parameters: 18 months [policy: API deprecation notice (commercial)].
   - Acceptance:
     - AC-1: Given a sponsor brand colour failing contrast, when the brand is compiled, then compilation fails with the failing pair named.
     - AC-2: Given a breaking API change, when released, then the old version remains supported for 18 months unless an emergency exception is recorded.
@@ -292,6 +299,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Security; financial system of record: n/a; policy owner: Unbound security; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound security.
+  - Internal control: UNB-CTRL-074; operator Unbound; service-organization report relevance SOC1+SOC2; automated.
   - Acceptance:
     - AC-1: Given a sponsor exit and deletion of tenant data, when the evidence store is queried for that period, then operator-access and change records remain.
 - **CNV-ARC-004 — Strata scope and authoritative history (ADV-T-018):** Strata SHALL be used for declarative schema governance where its supported PostgreSQL versions match production. Authoritative append-only history SHALL be an Unbound-owned ledger component on managed PostgreSQL. Strata version support SHALL be a precondition checked before each database major-version upgrade; deterministic mock interactions SHALL be Unbound-owned provider contracts until Strata virtualization exists.
@@ -306,6 +314,7 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Security; financial system of record: n/a; policy owner: Unbound security; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound security.
+  - Internal control: UNB-CTRL-070, UNB-CTRL-071, UNB-CTRL-073; operator Unbound; service-organization report relevance SOC1+SOC2; automated.
   - Acceptance:
     - AC-1: Given a change to the dispatch module approved only by its author and one other engineer, when merged, then the release check fails.
     - AC-2: Given an API request carrying a client-computed capacity value, when processed, then the value is ignored and recomputed on the server.
@@ -315,6 +324,8 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
   - Activation gate: none beyond release scope.
   - Ownership: domain owner: Security; financial system of record: n/a; policy owner: Unbound security; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound security.
+  - Numeric parameters: 72 hours [policy: sponsor (post-change hold)].
+  - Internal control: UNB-CTRL-019, UNB-CTRL-020, UNB-CTRL-031; operator Unbound; service-organization report relevance SOC2; automated.
   - Acceptance:
     - AC-1: Given an email change followed by a successor change within 72 hours, when submitted, then the successor change is held and the previous email notified.
     - AC-2: Given a deaf donor without a smartphone, when they need CAL3 to change bank details, then a documented accessible path reaches CAL3.
