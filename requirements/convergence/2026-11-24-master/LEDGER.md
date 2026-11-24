@@ -12,7 +12,7 @@ Branch: `claude/unbound-master-agent-0r5kql` from `main` @ `ab1638d`. Repositori
 | 2 | [03 Authoritative baseline and convergence](03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md); `requirements/AUTHORITATIVE-BASELINE.md`; 63 CNV clauses adopted | done |
 | 3 | [04 Theoretical enterprises and operating year](04-THEORETICAL-ENTERPRISES-AND-OPERATING-YEAR.md) | draft done; repeat after baseline |
 | 4 | [05 Economic validation](05-ECONOMIC-VALIDATION.md), [05a tables](05a-ECONOMIC-TABLES.md), `model/` | done (theoretical) |
-| 5 | 06 Experience, dashboard, report, widget and AI-assistance specifications; Echelon capability gaps | pending |
+| 5 | [06 Experience specifications](06-EXPERIENCE-SPECIFICATIONS.md) (140 screens, 112 metrics, 60 reports, 12 widgets, AI-assistance schema); [07 Echelon capability assessment](07-ECHELON-CAPABILITY-ASSESSMENT.md) | done (specification; no human testing yet) |
 | 6 | 07 Adversarial enterprise review | pending |
 | 7 | 08 Readiness assessment and mission report | pending |
 
