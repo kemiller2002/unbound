@@ -43,5 +43,12 @@ AMENDMENTS = {
         "release_scope": "deferred"},
     "CNV-FIN-003": {"finding": "OD-P-PAY cut A (owner decision)",
         "append": "With no donor ACH debit origination in release 1, the per-donor exposure cap applies to reversible contributions received through the sponsor's processor."},
+    "CNV-FIN-010": {"finding": "OD-P-FIN cut D (owner decision)",
+        "append": "Release 1 SHALL refuse, at acceptance, assets that generate unrelated business taxable income (S-corporation stock, pass-through interests with UBTI, debt-financed property); complex assets that a contracted intermediary sells on receipt remain accepted. The accrual rules above SHALL ship when such assets are enabled (OD-P-FIN cut D).",
+        "acceptance_add": ["Given a release-1 deployment, when S-corporation stock is offered, then acceptance is refused with AssetClassNotSupported."],
+        "release_scope": "deferred"},
+    "CNV-FIN-008": {"finding": "OD-P-FIN cut E (owner decision)",
+        "append": "Release 1 SHALL support only the standard donor-advised account type (contribution without donor restrictions, variance power granted); agency, organization-advised, pass-through and restricted account types SHALL be architecturally supported but disabled until enabled by a later decision (OD-P-FIN cut E).",
+        "acceptance_add": ["Given a release-1 deployment, when an agency account type is configured, then it is refused with AccountTypeNotActivated."]},
 }
 
