@@ -184,4 +184,5 @@ Status: adopted into the baseline by the master mission. Clauses resolving produ
   - Ownership: domain owner: Service operations; financial system of record: n/a; policy owner: Sponsor operations owner; data owner: Sponsor; operational owner: Sponsor or administrator service team; evidence owner: Sponsor operations owner.
   - Acceptance:
     - AC-1: Given no recorded surge plan on 1 December, when readiness is assessed, then the gate fails and the sponsor executive is alerted.
+    - AC-2: Given the December readiness gate, when a simulation of P90 forecast December arrivals against rostered capacity including double absence shows any legal deadline missed or internal attainment below the sponsor floor, then the gate fails and the plan must be revised.
 <!-- END ADOPTED: convergence-2026-11-24 -->

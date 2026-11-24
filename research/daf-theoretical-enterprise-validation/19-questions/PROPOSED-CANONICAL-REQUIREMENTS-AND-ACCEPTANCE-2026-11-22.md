@@ -82,7 +82,7 @@ Date: 2026-11-22. **Draft, not formally approved.** This document is a proposed 
 
 
 ### REQ-X-007: Charity verification and sanctions
-> Converged 2026-11-24: governed by `CNV-GRT-001`, `CNV-GRT-003` (section 'Converged requirements: master mission' in the domain file named by each clause).
+> Converged 2026-11-24: governed by `CNV-GOV-008`, `CNV-GRT-001`, `CNV-GRT-003` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Source questions:** OD-02, TVC-006, TVC-007, TVC-040, TVA-009, TVA-028, TVR-SAN-001-Q, TVR-SAN-002-Q, TVF-027, TVF-048.
 

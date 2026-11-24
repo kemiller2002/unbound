@@ -15,6 +15,7 @@ Rules (same discipline as tools/reqaudit/adopt.py):
 Usage: python3 -I -B tools/reqaudit/adopt_convergence.py <repo-root>
 """
 import csv
+import hashlib
 import os
 import importlib
 import io
@@ -34,7 +35,8 @@ BEGIN, END = f"<!-- BEGIN ADOPTED: {TAG} -->", f"<!-- END ADOPTED: {TAG} -->"
 NOTE = "Converged 2026-11-24"
 ON = "2026-11-24"
 ACTOR = "Master mission agent (convergence; product-owner directions and mission-adopted evidence, owner ratification pending where agent-recommended)"
-CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulatory", "c4_platform_product")
+CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulatory", "c4_platform_product",
+                  "c5_adversarial_business", "c6_adversarial_technical")
 RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
                 "requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl",
                 "requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl",
@@ -43,10 +45,43 @@ RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
                 "requirements/discovery/2026-11-24-simplification-economics/data/gap-requirements.jsonl")
 
 
+def amend(c, a):
+    """Apply one adversarial amendment to a clause (pure); fails loudly if a replacement target is missing."""
+    texts = (c["statement"],) + tuple(c["acceptance_criteria"])
+    missing = [old for old, _ in a.get("replace", ()) if not any(old in t for t in texts)]
+    if missing:
+        raise ValueError(f"{c['id']}: amendment target not found: {missing[0][:80]}")
+    sub = lambda t: reduce(lambda x, on: x.replace(on[0], on[1]), a.get("replace", ()), t)
+    stmt = sub(c["statement"])
+    stmt = (stmt + " " + a["append"]) if a.get("append") else stmt
+    return dict(c, statement=" ".join(stmt.split()),
+                acceptance_criteria=[sub(x) for x in c["acceptance_criteria"]] + list(a.get("acceptance_add", ())),
+                amends=list(dict.fromkeys(c["amends"] + list(a.get("amends_add", ())))),
+                dependencies=list(dict.fromkeys(c["dependencies"] + list(a.get("dependencies", ())))),
+                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "report 08 adversarial review",
+                                                                    "findings": a["finding"], "original_statement": c["statement"]}])
+
+
 def load_clauses(root):
     sys.path.insert(0, str(root / MISSION))
     mods = tuple(importlib.import_module(f"clauses.{m}") for m in CLAUSE_MODULES)
-    return tuple(c for m in mods for c in m.CLAUSES)
+    amendments = importlib.import_module("clauses.c7_amendments").AMENDMENTS
+    base = tuple(c for m in mods for c in m.CLAUSES)
+    unknown = set(amendments) - {c["id"] for c in base}
+    if unknown:
+        raise ValueError(f"amendments for unknown clauses: {sorted(unknown)}")
+    return tuple(amend(c, amendments[c["id"]]) if c["id"] in amendments else c for c in base)
+
+
+def cycles(clauses):
+    """Clause ids that sit on a dependency cycle (depth-first, pure)."""
+    deps = {c["id"]: tuple(c["dependencies"]) for c in clauses}
+    def reach(start):
+        def go(frontier, seen):
+            nxt = tuple(d for f in frontier for d in deps.get(f, ()) if d not in seen)
+            return seen if not nxt else go(nxt, seen | set(nxt))
+        return go(deps.get(start, ()), set(deps.get(start, ())))
+    return tuple(i for i in deps if i in reach(i))
 
 
 def read_jsonl(p):
@@ -66,7 +101,9 @@ def validate(clauses, inv, records, register):
     known = {r["identifier"] for r in inv} | set(records)
     return (tuple(f"duplicate clause {i}" for i, n in ids.items() if n > 1)
             + tuple(f"{c['id']}: unknown amended id {a}" for c in clauses for a in c["amends"] if a not in known)
-            + tuple(f"{c['id']}: unknown question {q}" for c in clauses for q in c["resolves"] if q not in register))
+            + tuple(f"{c['id']}: unknown question {q}" for c in clauses for q in c["resolves"] if q not in register)
+            + tuple(f"{c['id']}: unknown dependency {d}" for c in clauses for d in c["dependencies"] if d not in ids)
+            + tuple(f"dependency cycle through {i}" for i in cycles(clauses)))
 
 
 # ---------------------------------------------------------------- markdown sections
@@ -187,23 +224,35 @@ def classify(i, text):
     return "normative"
 
 
-def baseline(clauses, inv, records, adoption, release):
+def text_sha(t):
+    return hashlib.sha256((t or "").encode("utf-8")).hexdigest()
+
+
+def baseline(clauses, inv, records, adoption, release, states):
     conv = reduce(lambda acc, c: {**acc, **{a: acc.get(a, ()) + (c["id"],) for a in c["amends"]}}, clauses, {})
     adopted = {a["original_id"]: a for a in adoption}
+    record_status = {a["record_id"]: a["status"] for a in adoption}
     reqs = {r["identifier"]: r for r in inv if r["kind"] == "requirement"}
     def row_req(i, r):
         a = adopted.get(i)
         status = ("refined by " + a["record_id"] + f" ({a['status']})") if a else "original"
-        return {"id": i, "kind": "requirement", "source": f"{r['path']}:{r['line']}", "text": esc(r["text"])[:300],
+        return {"id": i, "kind": "requirement", "source": f"{r['path']}:{r['line']}", "text": esc(r["text"])[:300], "text_sha256": text_sha(r["text"]),
                 "status": status, "converged_by": list(conv.get(i, ())), "classification": classify(i, r["text"]),
                 "domain_owner": owner_of(i), "release_scope": release.get(i, "unassigned (default initial-implementation unless a clause defers)")}
     def row_rec(i, r, f):
-        st = r.get("approval_status") or r.get("validation_status") or ("adopted" if "cross-industry" in f and "gap" in f else "")
-        return {"id": i, "kind": "record", "source": f, "text": esc(r.get("statement", ""))[:300], "status": st or "recorded",
+        st = (record_status.get(i) or ("adopted (cross-industry-discovery section)" if "cross-industry" in f and "gap" in f else "")
+              or r.get("approval_status") or r.get("validation_status") or "recorded")
+        return {"id": i, "kind": "record", "source": f, "text": esc(r.get("statement", ""))[:300], "text_sha256": text_sha(r.get("statement", "")), "status": st,
                 "converged_by": list(conv.get(i, ())), "classification": classify(i, r.get("statement", "")),
                 "domain_owner": owner_of(i), "release_scope": release.get(i, "unassigned (default initial-implementation unless a clause defers)")}
     rows = tuple(row_req(i, r) for i, r in sorted(reqs.items())) + tuple(row_rec(i, r, f) for i, (r, f) in sorted(records.items()))
+    def basis(c):
+        appr = {states.get(q, {}).get("approval_status") for q in c["resolves"]}
+        return ("mission-adopted from adversarial review (owner ratification pending)" if not c["resolves"]
+                else "agent-recommended, owner ratification pending" if "agent-recommended" in appr else "owner-approved product direction")
     cls = tuple({"id": c["id"], "kind": "convergence-clause", "source": c["target_file"], "text": esc(c["statement"])[:300],
+                 "text_sha256": text_sha(c["statement"]), "approval_basis": basis(c), "resolves": c["resolves"],
+                 "dependencies": c["dependencies"],
                  "status": "adopted (convergence)", "converged_by": [], "classification": c["classification"],
                  "domain_owner": c["owners"]["domain_owner"], "release_scope": c["release_scope"]} for c in clauses)
     return rows + cls
@@ -215,7 +264,7 @@ def render_baseline(rows, clauses):
     cls = Counter(r["classification"].split(" (")[0] for r in rows)
     def table(h, rs):
         return "\n".join(["| " + " | ".join(h) + " |", "|" + "---|" * len(h)] + ["| " + " | ".join(x) + " |" for x in rs])
-    clause_rows = [(c["id"], esc(c["title"]), c["domain"], c["release_scope"], c["classification"], str(len(c["resolves"])),
+    clause_rows = [(c["id"] + (" (amended)" if c.get("revision_history") else ""), esc(c["title"]), c["domain"], c["release_scope"], c["classification"], str(len(c["resolves"])),
                     ", ".join(c["amends"][:6]) + (" …" if len(c["amends"]) > 6 else "")) for c in clauses]
     converged = [(r["id"], r["source"], ", ".join(r["converged_by"])) for r in rows if r["converged_by"]]
     return "\n\n".join([
@@ -288,7 +337,7 @@ def main(argv):
     # 6. baseline index
     adoption = tuple(csv.DictReader(io.StringIO((root / "requirements/reconciliation/2026-11-23/data/adoption.csv").read_text(encoding="utf-8"))))
     release = {json.loads(l)["id"]: json.loads(l)["scope"] for l in (root / "requirements/discovery/2026-11-23-cross-industry/data/release1-scope.jsonl").read_text().splitlines() if l.strip()}
-    rows = baseline(clauses, inv, records, adoption, release)
+    rows = baseline(clauses, inv, records, adoption, release, ql.fold(ql.load_events(root)))
     (root / "requirements/baseline").mkdir(exist_ok=True)
     (root / "requirements/baseline/baseline.jsonl").write_text("".join(json.dumps(r, ensure_ascii=False, sort_keys=True) + "\n" for r in rows), encoding="utf-8")
     (root / "requirements/AUTHORITATIVE-BASELINE.md").write_text(render_baseline(rows, clauses), encoding="utf-8")
