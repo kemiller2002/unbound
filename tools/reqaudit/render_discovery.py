@@ -43,7 +43,7 @@ def load(data: Path) -> Dict[str, tuple]:
                 F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 X=jl("rejected.jsonl"), FC=jl("failure-catalog.jsonl"), EV=jl("event-matrix.jsonl"),
                 RA=jl("regulatory-applicability.jsonl"), BM=jl("business-models.jsonl"), E=cv("trace-edges.csv"),
-                PC=jl("priority-challenges.jsonl"), O=jl("decision-outcomes.jsonl"), DU=cv("duplicates.csv"),
+                PC=jl("priority-challenges.jsonl"), O=jl("decision-outcomes.jsonl"), SC=jl("release1-scope.jsonl"), SP=jl("scope-proposals.jsonl"), DU=cv("duplicates.csv"),
                 V=json.loads((data / "validation-report.json").read_text()) if (data / "validation-report.json").exists() else {})
 
 
@@ -340,6 +340,34 @@ def g_applied(d) -> str:
     rows = tuple((rid, ", ".join(r.get("decisions_applied", ())), r.get("statement"))
                  for rid, r in sorted(recs.items()) if r.get("decisions_applied"))
     return table(("Requirement", "Decisions applied", "Statement as revised"), rows, 900)
+
+
+def g_scope_summary(d) -> str:
+    scopes = ("R1", "R1-conditional", "Deferred", "Rejected-recommended")
+    c = Counter((x["priority"] or "refinement", x["scope"]) for x in d["SC"])
+    pris = tuple(sorted({k[0] for k in c}))
+    rows = tuple((p, *(c[(p, sc)] for sc in scopes), sum(c[(p, sc)] for sc in scopes)) for p in pris)
+    tot = ("**Total**", *(sum(c[(p, sc)] for p in pris) for sc in scopes), len(d["SC"]))
+    return table(("Priority", *scopes, "Total"), rows + (tot,))
+
+
+def g_scope_out(d) -> str:
+    rows = tuple(x for x in d["SC"] if x["scope"] != "R1")
+    return table(("Requirement", "Priority", "Scope", "Reason"), tuple((x["id"], x["priority"], x["scope"], x["reason"]) for x in rows), 200)
+
+
+def g_scope_in(d) -> str:
+    stmt = {**{g["id"]: g for g in d["G"]}, **{r["refinement_id"]: r for r in d["R"]}}
+    rows = tuple(x for x in d["SC"] if x["scope"] == "R1")
+    order = {p: i for i, p in enumerate(PRIORITIES)}
+    rows = sorted(rows, key=lambda x: (order.get(x["priority"], 9), x["id"]))
+    return table(("Requirement", "Priority", "Statement"), tuple((x["id"], x["priority"], stmt[x["id"]].get("statement")) for x in rows), 180)
+
+
+def g_scope_proposals(d) -> str:
+    q = {x["decision_id"]: x for x in d["D"]}
+    return table(("Decision", "Question", "Proposed answer", "Effect"),
+                 tuple((p["decision_id"], q.get(p["decision_id"], {}).get("question"), p["proposed_answer"], p["effect"]) for p in d["SP"]), 700)
 
 
 def g_trace(d) -> str:

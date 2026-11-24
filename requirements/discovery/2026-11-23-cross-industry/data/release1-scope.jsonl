@@ -1,0 +1,182 @@
+{"id": "UNB-XIN-BNK-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-002", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-PAY-001", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-PAY-002", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-PAY-003", "priority": "P1", "scope": "Deferred", "reason": "card intake excluded"}
+{"id": "UNB-XIN-PAY-004", "priority": "P1", "scope": "Deferred", "reason": "card intake excluded"}
+{"id": "UNB-XIN-PAY-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-PAY-006", "priority": "P1", "scope": "Deferred", "reason": "no processor-settled intake in R1"}
+{"id": "UNB-XIN-PAY-007", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-003", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-005", "priority": "P3", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-006", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-007", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-BNK-008", "priority": "P1", "scope": "Deferred", "reason": "no processor-settled intake in R1"}
+{"id": "UNB-XIN-BNK-009", "priority": "P2", "scope": "Deferred", "reason": "cash ladder P2; single pool"}
+{"id": "UNB-XIN-ACC-001", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-003", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-004", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-006", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-007", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ACC-008", "priority": "P1", "scope": "Deferred", "reason": "cash and public securities only; UBTI exposure negligible"}
+{"id": "UNB-XIN-ACC-009", "priority": "P2", "scope": "Deferred", "reason": "SOC 1 only for outsourced/white-label"}
+{"id": "UNB-XIN-ACC-010", "priority": "P1", "scope": "Deferred", "reason": "Unbound is book of record in R1"}
+{"id": "UNB-XIN-INV-001", "priority": "P2", "scope": "Deferred", "reason": "no advisor-managed accounts"}
+{"id": "UNB-XIN-INV-002", "priority": "P0", "scope": "R1-conditional", "reason": "pools only if securities counsel opinion (XID-INV-003) is on file; fallback: cash sweep only"}
+{"id": "UNB-XIN-INV-003", "priority": "P2", "scope": "Deferred", "reason": "gifted securities liquidated; no directly held positions"}
+{"id": "UNB-XIN-INV-004", "priority": "P3", "scope": "Deferred", "reason": "class actions P3"}
+{"id": "UNB-XIN-INV-005", "priority": "P2", "scope": "Deferred", "reason": "no alternative assets"}
+{"id": "UNB-XIN-INV-006", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-INV-007", "priority": "P3", "scope": "Deferred", "reason": "no crypto (RCD-011)"}
+{"id": "UNB-XIN-INV-008", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-001", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-003", "priority": "P0", "scope": "R1-conditional", "reason": "satisfied in R1 by keeping recording disabled"}
+{"id": "UNB-XIN-SVC-004", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-006", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-007", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SVC-008", "priority": "P3", "scope": "Deferred", "reason": "merged into ECO-017"}
+{"id": "UNB-XIN-SVC-009", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-003", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-005", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-006", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CLM-007", "priority": "P2", "scope": "Deferred", "reason": "privileged access class P2"}
+{"id": "UNB-XIN-CLM-008", "priority": "P2", "scope": "Deferred", "reason": "no outsourced service vendor"}
+{"id": "UNB-XIN-ERP-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ERP-002", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ERP-003", "priority": "P2", "scope": "Deferred", "reason": "no operator-to-tenant billing with one sponsor"}
+{"id": "UNB-XIN-ERP-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ERP-005", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ERP-006", "priority": "P3", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ERP-007", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CRM-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CRM-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CRM-003", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CRM-004", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-CRM-005", "priority": "P2", "scope": "Deferred", "reason": "servicing models deferred"}
+{"id": "UNB-XIN-CRM-006", "priority": "P1", "scope": "Deferred", "reason": "no referral programmes"}
+{"id": "UNB-XIN-CRM-007", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-TRS-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-TRS-002", "priority": "P2", "scope": "Deferred", "reason": "legacy intent P2"}
+{"id": "UNB-XIN-TRS-003", "priority": "P1", "scope": "Deferred", "reason": "natural-person fund holders only in R1"}
+{"id": "UNB-XIN-TRS-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-TRS-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-TRS-006", "priority": "P3", "scope": "Deferred", "reason": "no family-office feeds"}
+{"id": "UNB-XIN-NPG-001", "priority": "P0", "scope": "Deferred", "reason": "direct foreign grants excluded; intermediaries used"}
+{"id": "UNB-XIN-NPG-002", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-003", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-006", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-007", "priority": "P3", "scope": "Deferred", "reason": "\u00a7530A disabled (XID-NPG-003)"}
+{"id": "UNB-XIN-NPG-008", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-NPG-009", "priority": "P2", "scope": "Deferred", "reason": "direct foreign grants excluded"}
+{"id": "UNB-XIN-NPG-010", "priority": "P0", "scope": "Deferred", "reason": "direct foreign grants excluded (domestic OFAC screening remains via existing UNB-RCN-GRT-007)"}
+{"id": "UNB-XIN-NPG-011", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-REG-001", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-REG-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-REG-003", "priority": "P1", "scope": "Rejected-recommended", "reason": "XRJ-ADV-005 (merged into CRM-003)"}
+{"id": "UNB-XIN-GOV-001", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-001", "priority": "P2", "scope": "R1-conditional", "reason": "California D2C giving requires the opinion in XID-SAS-005; fallback: launch outside California"}
+{"id": "UNB-XIN-SAS-002", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-003", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-004", "priority": "P2", "scope": "Deferred", "reason": "no partner webhooks"}
+{"id": "UNB-XIN-SAS-005", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-006", "priority": "P2", "scope": "Deferred", "reason": "no third-party apps"}
+{"id": "UNB-XIN-SAS-007", "priority": "P1", "scope": "Deferred", "reason": "no distribution partners"}
+{"id": "UNB-XIN-SAS-008", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-009", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-SAS-010", "priority": "P2", "scope": "Deferred", "reason": "single sponsor; sandbox deferred"}
+{"id": "UNB-XIN-SAS-011", "priority": "P2", "scope": "Deferred", "reason": "subprocessor register P2"}
+{"id": "UNB-XIN-IAM-001", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-IAM-002", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-IAM-003", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-IAM-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-IAM-005", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-REC-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-REC-002", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-WFA-001", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-WFA-002", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-OTH-001", "priority": "P3", "scope": "Deferred", "reason": "no white-label programs"}
+{"id": "UNB-XIN-OTH-002", "priority": "P1", "scope": "Deferred", "reason": "no migration in R1"}
+{"id": "UNB-XIN-OTH-003", "priority": "P0", "scope": "Deferred", "reason": "no partners in R1 (merge into REG-001 recommended)"}
+{"id": "UNB-XIN-OTH-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-001", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-002", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-003", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-004", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-005", "priority": "P2", "scope": "Deferred", "reason": "FOCUS vendor records after R1"}
+{"id": "UNB-XIN-ECO-006", "priority": "P2", "scope": "Deferred", "reason": "time-driven labour costing after measurement exists"}
+{"id": "UNB-XIN-ECO-007", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-008", "priority": "P3", "scope": "Deferred", "reason": "cost quotes after R1"}
+{"id": "UNB-XIN-ECO-009", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-010", "priority": "P3", "scope": "Deferred", "reason": "process mining after R1"}
+{"id": "UNB-XIN-ECO-011", "priority": "P2", "scope": "Deferred", "reason": "AI recommendations after R1"}
+{"id": "UNB-XIN-ECO-012", "priority": "P3", "scope": "Deferred", "reason": "profitability after R1"}
+{"id": "UNB-XIN-ECO-013", "priority": "P3", "scope": "Rejected-recommended", "reason": "XRJ-ADV-001"}
+{"id": "UNB-XIN-ECO-014", "priority": "P2", "scope": "Deferred", "reason": "thresholds after R1"}
+{"id": "UNB-XIN-ECO-015", "priority": "P3", "scope": "Deferred", "reason": "improvement loop after measurement exists"}
+{"id": "UNB-XIN-ECO-016", "priority": "P2", "scope": "Deferred", "reason": "floors ship with the loop"}
+{"id": "UNB-XIN-ECO-017", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-018", "priority": "P3", "scope": "Deferred", "reason": "no special service charges in R1"}
+{"id": "UNB-XIN-ECO-019", "priority": "P3", "scope": "Deferred", "reason": "merge into REQ-X-042 recommended"}
+{"id": "UNB-XIN-ECO-020", "priority": "P3", "scope": "Rejected-recommended", "reason": "XRJ-ADV-002"}
+{"id": "UNB-XIN-ECO-021", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ECO-022", "priority": "P3", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-001", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-002", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-003", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-004", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-005", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-006", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-007", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-008", "priority": "P2", "scope": "Deferred", "reason": "no published partner events"}
+{"id": "UNB-XIN-EVA-009", "priority": "P1", "scope": "Deferred", "reason": "no bulk sponsor transfers"}
+{"id": "UNB-XIN-EVA-010", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-011", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-012", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-013", "priority": "P2", "scope": "Rejected-recommended", "reason": "XRJ-ADV-003 (move into ADR)"}
+{"id": "UNB-XIN-EVA-014", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-015", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-EVA-016", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "UNB-XIN-ADV-001", "priority": "P1", "scope": "Deferred", "reason": "high-volume-low-balance not an R1 model"}
+{"id": "UNB-XIN-ADV-002", "priority": "P1", "scope": "Deferred", "reason": "Unbound is book of record in R1"}
+{"id": "RR-TVR-CON-001-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-PAY-008-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-GAP-013-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ACC-MDL-007-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-ACC-033-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-ACC-031-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-INV-019-r1", "priority": "P0", "scope": "R1-conditional", "reason": "with pools"}
+{"id": "RR-REQ-X-048-r2", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ADM-033-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ADM-042-r1", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-CTL-040-r1", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ADM-023-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ADM-028-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-REQ-X-073-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-ADM-008-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-GRANT-024-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-GRANT-026-r1", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-GRANT-041-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-RES-003-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-TEN-011-r1", "priority": "P1", "scope": "Deferred", "reason": "tenant lifecycle beyond single tenant deferred"}
+{"id": "RR-UNB-TEN-016-r1", "priority": "P0", "scope": "Deferred", "reason": "sponsor exit tooling deferred (one sponsor)"}
+{"id": "RR-REQ-X-038-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-API-STD-003-r1", "priority": "P1", "scope": "Deferred", "reason": "no external API consumers in R1"}
+{"id": "RR-UNB-ACC-014-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-AIN-028-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-ENT-003-r1", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-ECO-001-r1", "priority": "P2", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-EVT-001-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-EVT-005-r1", "priority": "P0", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-DATA-004-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-UNB-DATA-005-r1", "priority": "P1", "scope": "R1", "reason": "inside the R1 shape"}
+{"id": "RR-REQ-X-069-r1", "priority": "", "scope": "R1", "reason": "inside the R1 shape"}
