@@ -1,5 +1,13 @@
 # 03 — Authoritative baseline and requirements convergence (Phase 2)
 
+> **Status update (after report 08, rounds 1 and 2, owner decisions and report 13).** The baseline now holds **82 clauses**
+> (63 from this report plus 19 from the adversarial review), **40 of them amended** (65 recorded amendments, each with the
+> original wording kept in the clause's revision history), **37** annotated original definitions and **133** source records
+> with revision history. Owner decisions OD-M-01..05 are applied. The figures in sections 1–6 below describe the first
+> convergence pass and are retained as history; the live counts are in `requirements/AUTHORITATIVE-BASELINE.md`.
+> Two statements below are superseded: "Conflicts not resolved: none" (report 08 lists the residuals) and the description
+> of CNV-FIN-007 as auditor-accepted (the clause requires a documented sponsor policy; auditor acceptance is its activation gate).
+
 **Outcome.** One authoritative baseline now exists: [`requirements/AUTHORITATIVE-BASELINE.md`](../../AUTHORITATIVE-BASELINE.md)
 (index) with full rows in [`requirements/baseline/baseline.jsonl`](../../baseline/baseline.jsonl). Approved and
 mission-adopted resolutions are incorporated into the normative requirement files as 63 convergence clauses

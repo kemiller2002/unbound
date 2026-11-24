@@ -25,6 +25,58 @@ BUSINESS_MAP = {
 }
 
 
+ROUND2_OTHER = {
+    "ADV-R2-030": "addressed with ADV-R2-075 (CNV-GOV-010 amended: one level set)",
+    "ADV-R2-032": "tooling: baseline rows now carry full source text and hash (adopt_convergence.py)",
+    "ADV-R2-054": "tooling: textual clause citations are now derived as declared dependencies and cycle-checked",
+    "ADV-R2-021": "RESIDUAL: December surge cost not yet re-run in the model (report 10 residuals)",
+    "ADV-R2-033": "RESIDUAL: clauses not yet tagged internal-control and mapped to the control register (report 10 residuals)",
+    "ADV-R2-063": "RESIDUAL: numeric basis tags not yet applied to every clause (report 10 residuals)",
+}
+
+
+def round2(root, cell):
+    import re as _re
+    from clauses.c10_round2_amendments import AMENDMENTS as A10
+    from clauses.c11_round2_partial_closures import AMENDMENTS as A11
+    disp = {}
+    for mod, am in (("c10", A10), ("c11", A11)):
+        for cid, a in am.items():
+            for f in _re.findall(r"ADV-R2-\d{3}", a["finding"]):
+                disp.setdefault(f, []).append(f"amended {cid}")
+    rows = [json.loads(l) for l in (root / MISSION / "data/adversarial-round2.jsonl").read_text().splitlines() if l.strip()]
+    def d(r):
+        if r["finding_id"] in disp:
+            return "; ".join(dict.fromkeys(disp[r["finding_id"]]))
+        if r["finding_id"] in ROUND2_OTHER:
+            return ROUND2_OTHER[r["finding_id"]]
+        return "closed in round 2 (no action)" if r["verdict"] == "closed" else "UNDISPOSITIONED"
+    missing = [r["finding_id"] for r in rows if d(r) == "UNDISPOSITIONED"]
+    if missing:
+        raise SystemExit(f"round-2 items without disposition: {missing}")
+    verdicts = Counter((r["kind"], r["severity"], r["verdict"]) for r in rows)
+    table = "\n".join(f"| {r['finding_id']} | {r['kind']} | {r['refers_to']} | {r['severity']} | {r['verdict']} | {cell(r['claim'], 220)} | {d(r)} |" for r in rows)
+    summary = "\n".join(f"| {k[0]} | {k[1]} | {k[2]} | {n} |" for k, n in sorted(verdicts.items()))
+    return f"""
+## Round 2 (verification of the amended baseline)
+
+A second pass, run by a different model tier and given the amended clauses rather than the first-round conclusions,
+checked whether each critical and a sample of major first-round findings was actually closed, and searched for defects
+the amendments introduced. It reported no finding 'not closed' or 'worse'. Its 22 new defects and the partially closed
+items were answered by the amendments in `clauses/c10_round2_amendments.py` and `clauses/c11_round2_partial_closures.py`
+(original wording kept in each clause's revision history) or by tooling changes. Three items remain as named residuals.
+The same caveat applies: an AI pass is not independent evidence.
+
+| Kind | Severity | Verdict | Count |
+|---|---|---|---|
+{summary}
+
+| Item | Kind | Refers to | Severity | Verdict | Claim | Disposition |
+|---|---|---|---|---|---|---|
+{table}
+"""
+
+
 def main(argv):
     root = Path(argv[1])
     sys.path.insert(0, str(root / MISSION))
@@ -119,6 +171,7 @@ a new clause, a revised report, or a named owner decision. None was dismissed.
 |---|---|---|---|---|
 {rows}
 """
+    text += round2(root, cell)
     (root / MISSION / "08-ADVERSARIAL-ENTERPRISE-REVIEW.md").write_text(text, encoding="utf-8")
     print(len(findings), "findings rendered")
     return 0

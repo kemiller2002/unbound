@@ -8,6 +8,21 @@ infrastructure was created. `daf-landscape` and all Echelon repositories were re
 All validation in this mission is **theoretical** (requirement coverage traced against scenarios; an executed
 economic model of labelled assumptions). No software test of Unbound was executed, because no Unbound software exists.
 
+> **Update after the owner's instruction "Do what you recommend" (2026-11-24).**
+> - **Owner decisions recorded:** OD-M-01..05 (`data/owner-decisions.jsonl`), applied as clause amendments.
+> - **OD-M-06 not recorded on the owner's behalf:** the mission recommended domain-by-domain ratification, so blanket
+>   ratification was deliberately not written to the log; [report 11](11-OWNER-RATIFICATION-PACKETS.md) holds the eight
+>   review packets (148 questions, 69 unratified clauses).
+> - **Second adversarial round:** 64 closure checks (no finding 'not closed' or 'worse') and 22 new defects; all answered
+>   by amendments except three named residuals (December surge cost re-run; internal-control tagging of clauses; numeric
+>   basis tags). Report 08 now covers both rounds.
+> - **Evidence backlog:** state platform registration (Hawaii added, verified from statute), incumbent prices (Unbound's
+>   break-even sits inside the large-national price band) and rail coverage ([report 13](13-EVIDENCE-BACKLOG-RESULTS.md));
+>   evidence-phase protocol for the shadow replay, time study and benchmark ([report 12](12-EVIDENCE-PHASE-PROTOCOL.md)).
+> - **Counts now:** 82 clauses (40 amended), 37 annotated definitions, 133 revised records.
+> - **Readiness:** still **FAIL** for implementation; the remaining blockers are owner ratification of the report-11 packets,
+>   the measured economics (report 12) and the first sponsor's executed dependencies. Section 23 is updated accordingly.
+
 ## 1. Executive summary
 
 - **Questions.** All 316 register questions are reconciled against their source records and resolved (281) or
@@ -194,13 +209,13 @@ Retained as explicit owner decisions rather than resolved by the mission:
 | Economic models challenged | **Pass** — and the challenge found the vendor case not demonstrated |
 | UX, dashboard and reporting requirements complete | **Pass as specification**; no human testing |
 | Echelon capability gaps documented | **Pass** |
-| Material adversarial findings resolved or retained | **Pass** (one review round; a second independent round on the amended clauses is recommended) |
-| Owner ratification of agent-recommended decisions | **Fail** — 115 resolutions and 72 clauses unratified; OD-M-01..06 open |
+| Material adversarial findings resolved or retained | **Pass** — two rounds; three named residuals (report 08) |
+| Owner ratification of agent-recommended decisions | **Fail** — OD-M-01..05 decided; 148 questions and 69 clauses await domain review (report 11) |
 | Legal and accounting assertions with traceable authority | **Pass** for research; sponsor-side authorizations not obtained (by design) |
 | Economic case supported by measurement | **Fail** — levers and scale unmeasured (CNV-ECO-003) |
 | Dependencies resolved for a first sponsor (licence, ODFI/rail, identity provider, auditor approach) | **Fail** — none executed |
 
 **Verdict: FAIL — not ready for application implementation.** The requirements gate can pass for *architecture and a
-design-partner evidence phase* once the owner ratifies OD-M-01..06 and the agent-recommended resolutions. Implementation
+design-partner evidence phase* once the owner reviews the report-11 ratification packets (OD-M-01..05 are already decided). Implementation
 of the production platform should wait for the shadow replay and time study, because the economics — not the
 requirements — are now the main open risk.
