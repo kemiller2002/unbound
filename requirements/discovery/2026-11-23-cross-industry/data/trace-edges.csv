@@ -95,6 +95,7 @@ RR-UNB-DATA-004-r1,derived_from,XIF-EVA-004,refinements.jsonl
 RR-UNB-DATA-004-r1,derived_from,XIF-EVA-021,refinements.jsonl
 RR-UNB-DATA-005-r1,refines,UNB-DATA-005,refinements.jsonl
 RR-UNB-DATA-005-r1,derived_from,XIF-EVA-017,refinements.jsonl
+RR-REQ-X-069-r1,refines,REQ-X-069,refinements.jsonl
 UNB-XIN-BNK-001,derived_from,XIF-BNK-001,gap-requirements.jsonl
 UNB-XIN-BNK-001,derived_from,UNB-PAY-008,gap-requirements.jsonl
 UNB-XIN-BNK-001,depends_on,OB-43,gap-requirements.jsonl
@@ -2291,6 +2292,23 @@ UNB-XIN-EVA-001,tested_by,XDS-ADV-011,scenarios.csv
 UNB-XIN-EVA-013,tested_by,XDS-ADV-011,scenarios.csv
 UNB-XIN-INV-006,tested_by,XDS-ADV-011,scenarios.csv
 UNB-XIN-ADV-001,tested_by,XDS-ADV-011,scenarios.csv
+UNB-XIN-ACC-002,tested_by,XDS-DEC-001,scenarios.csv
+UNB-XIN-ACC-006,tested_by,XDS-DEC-001,scenarios.csv
+UNB-XIN-EVA-002,tested_by,XDS-DEC-001,scenarios.csv
+RR-TVR-CON-001-r1,tested_by,XDS-DEC-002,scenarios.csv
+UNB-XIN-PAY-006,tested_by,XDS-DEC-002,scenarios.csv
+UNB-XIN-ERP-001,tested_by,XDS-DEC-003,scenarios.csv
+UNB-XIN-EVA-001,tested_by,XDS-DEC-003,scenarios.csv
+UNB-XIN-NPG-008,tested_by,XDS-DEC-004,scenarios.csv
+RR-REQ-X-069-r1,tested_by,XDS-DEC-004,scenarios.csv
+UNB-XIN-EVA-002,tested_by,XDS-DEC-005,scenarios.csv
+UNB-XIN-ACC-005,tested_by,XDS-DEC-005,scenarios.csv
+RR-UNB-DATA-005-r1,tested_by,XDS-DEC-005,scenarios.csv
+UNB-XIN-REG-001,tested_by,XDS-DEC-006,scenarios.csv
+UNB-XIN-SAS-001,tested_by,XDS-DEC-006,scenarios.csv
+UNB-XIN-SVC-003,tested_by,XDS-DEC-006,scenarios.csv
+UNB-XIN-INV-002,tested_by,XDS-DEC-006,scenarios.csv
+UNB-XIN-REG-002,tested_by,XDS-DEC-006,scenarios.csv
 RR-ADM-023-r1,tested_by,XDS-EVA-010,scenarios.csv (via original)
 UNB-XIN-PAY-003,decided_by,XID-BNK-001,decisions.csv
 UNB-XIN-PAY-004,decided_by,XID-BNK-001,decisions.csv

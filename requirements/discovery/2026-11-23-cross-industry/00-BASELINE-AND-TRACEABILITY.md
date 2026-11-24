@@ -119,10 +119,10 @@ Most capabilities are partially covered. The baseline is *broad*: it names almos
 | depends_on | 757 |
 | affects | 608 |
 | derived_from | 453 |
-| tested_by | 380 |
+| tested_by | 397 |
 | decided_by | 184 |
 | conflicts_with | 50 |
-| refines | 28 |
+| refines | 29 |
 | duplicates | 14 |
 | supersedes | 3 |
 <!-- END GENERATED: trace -->

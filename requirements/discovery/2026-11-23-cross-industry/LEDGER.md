@@ -42,6 +42,7 @@ python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must st
 | 10 | Adversarial, independent brief | §16: assume failure; priorities; contradictions; legal spot-checks; arithmetic | XIF-ADV, XIC-ADV, XID-ADV, XRJ-ADV, UNB-XIN-ADV, priority-challenges.jsonl |
 | 11 | Integrator | Applied the adversarial revisions; wrote 10, 14 and this ledger | §4 below |
 | 12 | Integrator, at the owner's direction (2026-11-24) | Decided the 41 legal and accounting questions after reading the accounting rules; verified §4966(c)(2), §4962, 47 CFR 64.1200, FINRA 2165 and Rev. Proc. 2017-53 | `data/decision-outcomes.jsonl`, report 16, gate D10 |
+| 13 | Integrator, at the owner's direction (2026-11-24) | Translated the 41 decisions into requirement text: 45 records revised (`statement_as_proposed`, `decisions_applied`, `AC-D*` criteria); RR-REQ-X-069-r1 added; scenarios XDS-DEC-001..006 | `gap-requirements.jsonl`, `refinements.jsonl`, `scenarios.csv` |
 
 ## 3. Integrator fixups applied to research-pass output
 
@@ -67,12 +68,12 @@ The integrator applied these fixups with session scripts in the order fixups, me
 |---|---|
 | Errors |  |
 | Warnings |  |
-| Trace edges | 2477 |
-| Records: refinements | 31 |
+| Trace edges | 2495 |
+| Records: refinements | 32 |
 | Records: gaps | 150 |
 | Records: findings | 217 |
 | Records: conflicts | 38 |
-| Records: scenarios | 205 |
+| Records: scenarios | 211 |
 | Records: decisions | 86 |
 | Records: atlas | 368 |
 | Records: rejected | 93 |

@@ -335,6 +335,13 @@ def g_outcomes(d) -> str:
     return "\n".join(one(o) for o in sorted(d["O"], key=order))
 
 
+def g_applied(d) -> str:
+    recs = {**{g["id"]: g for g in d["G"]}, **{r["refinement_id"]: r for r in d["R"]}}
+    rows = tuple((rid, ", ".join(r.get("decisions_applied", ())), r.get("statement"))
+                 for rid, r in sorted(recs.items()) if r.get("decisions_applied"))
+    return table(("Requirement", "Decisions applied", "Statement as revised"), rows, 900)
+
+
 def g_trace(d) -> str:
     c = Counter(e["relationship"] for e in d["E"])
     return table(("Relationship", "Edges"), sorted(c.items(), key=lambda kv: -kv[1]))
