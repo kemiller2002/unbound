@@ -18,10 +18,52 @@ python3 -I -B tools/reqaudit/validate_simplification.py .
 | Pass | Scope | Status |
 |---|---|---|
 | 0 | Baseline, source revisions, review universe (1,473 records), validator `validate_simplification.py` | done |
-| 1–4 | Reverse requirements analysis: finance, grants/charities/payments, platform/governance, enterprise/admin | running |
-| 5 | Work inventory, minimum-touch model, human-intervention taxonomy, staffing | running |
-| 6 | Economic targets, cost floor, revenue models, executed simulation model | running |
-| 7 | Customer friction, configuration, dashboards | running |
-| 8 | Competitive differentiation, research transfer | running |
-| 9 | Clarity and EDF evaluation, architecture | running |
-| 10 | Adversarial passes A–H | pending |
+| 1–4 | Reverse requirements analysis: finance (342), grants, charities and payments (370), platform and governance (379), enterprise administration (382); plus integrator review of 14 distinct second definition sites | done |
+| 5 | Work inventory (143), minimum-touch model, human-intervention taxonomy, staffing (24 roles) | done |
+| 6 | Economic targets, cost floor, revenue models, executed simulation model (seed 20261124; integrator re-run byte-identical) | done |
+| 7 | Customer friction (90 interactions), configuration (120 items), dashboards (84 metrics) | done |
+| 8 | Competitive differentiation (114 rows), research transfer (16 candidates) | done |
+| 9 | Clarity and EDF evaluation (frameworks attached read-only at 200a9eb and 710d54c), architecture | done |
+| 10 | Adversarial passes A–H (28 findings, 32 disposition challenges, executed model variants) | done |
+| 11 | Integrator: applied adversarial revisions (scripted, idempotent; prior values kept as `*_as_proposed` with `adversarial_revision`); added gate S7; assembled reports; wrote 00, 23, README | done |
+
+## Integrator fixups and revisions
+
+| Change | Reason |
+|---|---|
+| 14 register rows for distinct second definition sites; 168 mirrors accounted for in `second-site-accounting.csv` | Gate S1 universe was keyed on first sites; PR #3 renamed colliding IDs (commit 8f4860c) |
+| `external-ids.csv` (48 Forma, Folio and dependency gap IDs, each with its defining file) | Agents cited Echelon component gaps defined outside the requirement corpus |
+| SPD-CLR-005 added; SPF-CLR-006, SPF-CLR-007 and SPF-EDF-001 linked to it | Method findings affect no requirement record |
+| Duplicate refinement ID RR-REQ-X-007-r2 renumbered | Both the grants pass and the operations pass refined REQ-X-007; the operations pass's version is now RR-REQ-X-007-r3 |
+| Adversarial revisions (`fixups3`): survivors for two consolidation cycles and the deferred-carrier cases; four refinements made owner-decision; sanctions reuse limited to the deciding sponsor; three interaction recommendations made risk-triggered; five decision recommendations revised; duplicate $258 findings merged; seven new requirements flagged for merge, rejection or deferral | Report 22 |
+
+The scripts for these changes live in the session scratch area and are **not** in the repository. The merged `data/` is the canonical record, and every change is visible in it through `*_as_proposed`, `adversarial_revision` and `adversarial_disposition`.
+
+## Validation (last run)
+
+See `data/validation-report.json`: **0 errors and 3 warnings**. The warnings are S7 notices for obligations carried by deferred requirements, which are deferred with their capability. The validators of the two earlier missions also pass; see the PR description.
+
+## Telemetry
+
+| Pass | Sub-agent tokens (harness-reported) |
+|---|---:|
+| Reverse analysis: finance | 339,023 |
+| Reverse analysis: grants, charities, payments | 311,227 |
+| Reverse analysis: platform and governance | 268,352 |
+| Reverse analysis: enterprise administration | 391,206 |
+| Work inventory and staffing | 336,333 |
+| Economics and simulation | 379,180 |
+| Friction, configuration and dashboards | 405,989 |
+| Competitive and research transfer | 350,015 |
+| Clarity, EDF and architecture | 320,633 |
+| Adversarial passes A–H | 314,233 |
+| **Total** | **3,416,191** |
+
+The integrating session's own token use is not reported. There was no human intervention during the run.
+
+## Limits and resumption
+
+- **Assumptions.** Every hour, interaction, setting and most economic parameters are assumptions.
+- **Template text.** Register purpose and consequence fields are partly templated (SPF-ADV-013).
+- **No measurement or professional review.** No measurement, counsel, CPA or auditor review exists.
+- **Resume point.** Report 23, "Decisions needed first". The next useful work needs measured data (shadow replay, UNB-LSGAP-001; specialist-pool time study) or owner and counsel decisions.

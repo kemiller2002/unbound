@@ -4,6 +4,15 @@
 
 The per-account targets ($258 reference, $100, $50, $25, $10) are **exploratory design targets**, not costs or forecasts. Figures marked as model output come from the executed model in [`model/`](model/); see [08](08-ENTERPRISE-SIMULATION-SPECIFICATION.md) and [09](09-SIMULATION-SCENARIOS-AND-RESULTS.md).
 
+**Adversarial revision (report 22, SPF-ADV-001..006).**
+- **Pooled deciders.** The platform models OM3–OM5 pool exception, gift-acceptance and treasury deciders across sponsors, which the governance passes forbid.
+- **Executed variant results.** Adding a 2.5-person per-sponsor decision floor, removing the unsourced shortcuts and capping cross-sponsor reuse gives these medians:
+  - $274 per account for a shared platform at 100k accounts;
+  - $53 for the digital-minimal class at 1M;
+  - $32 for the cheapest model at 5M.
+- **Targets under the variants.** No configuration up to 5M accounts reaches $100, $25 or $10. $50 is reached only by the cheapest model at 1M or more. $258 is reached by a lean sponsor at 100k.
+- **Hidden costs in the base figures.** They assume 76–82% service-level attainment and exclude acquisition (about $60 per account per year). The base cost bands in SPD-ECN-001 are therefore **not decision-grade**: read every target together with these variants.
+
 ## Reference scenario and what $258 represents
 
 *Source pass: Economic engineering and simulation.*

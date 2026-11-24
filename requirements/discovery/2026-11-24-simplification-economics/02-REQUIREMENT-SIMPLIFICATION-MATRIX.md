@@ -13,12 +13,12 @@ This is the complete matrix of dispositions, with aggregate estimates of avoidab
 
 | Slice | retain | simplify | consolidate | replace | automate-deterministic | automate-ai-assisted | exception-driven | conditional-on-operating-model | defer | recommend-removal | need-evidence | Rows |
 |---|---|---|---|---|---|---|---|---|---|---|---|---|
-| Reverse analysis — finance | 87 | 49 | 127 | 3 | 15 | 0 | 4 | 37 | 17 | 3 | 0 | 342 |
-| Reverse analysis — grants, charities, payments | 188 | 40 | 80 | 1 | 16 | 0 | 13 | 5 | 26 | 0 | 1 | 370 |
-| Reverse analysis — platform, AI, UI, governance | 175 | 35 | 95 | 1 | 22 | 0 | 0 | 15 | 31 | 5 | 0 | 379 |
+| Reverse analysis — finance | 90 | 49 | 124 | 3 | 15 | 0 | 4 | 37 | 17 | 3 | 0 | 342 |
+| Reverse analysis — grants, charities, payments | 190 | 40 | 77 | 1 | 16 | 0 | 13 | 5 | 26 | 1 | 1 | 370 |
+| Reverse analysis — platform, AI, UI, governance | 175 | 35 | 95 | 1 | 22 | 0 | 0 | 15 | 32 | 4 | 0 | 379 |
 | Reverse analysis — enterprise administration and lifecycle | 104 | 25 | 166 | 1 | 17 | 3 | 6 | 11 | 37 | 1 | 11 | 382 |
 | Integrator | 1 | 0 | 13 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 14 |
-| **Total** | 555 | 149 | 481 | 6 | 70 | 3 | 23 | 68 | 111 | 9 | 12 | 1487 |
+| **Total** | 560 | 149 | 475 | 6 | 70 | 3 | 23 | 68 | 112 | 9 | 12 | 1487 |
 
 ## Aggregate estimates
 
@@ -35,12 +35,12 @@ This is the complete matrix of dispositions, with aggregate estimates of avoidab
 
 | Basis of the requirement | Rows | of which simplify/consolidate/replace/defer/remove |
 |---|---|---|
-| accounting-standard | 121 | 59 |
-| contract | 121 | 70 |
-| convention | 45 | 22 |
+| accounting-standard | 121 | 58 |
+| contract | 121 | 69 |
+| convention | 45 | 21 |
 | fiduciary | 93 | 40 |
 | guidance | 128 | 53 |
-| internal-control | 495 | 238 |
+| internal-control | 495 | 236 |
 | none | 120 | 101 |
 | regulation | 33 | 11 |
 | sponsor-policy | 60 | 34 |
@@ -286,10 +286,10 @@ Each row: canonical survivor <- records that consolidate into it (first-named su
 | UNB-XIN-ECO-013 | recommend-removal | XRJ-ADV-001: simulation stays offline in Echelon; production simulation duplicates analysis tooling. Removal is for duplication, not cost. | None; offline analysis remains (UNB-ECO-005). | Sponsors needing self-serve pricing simulation. | high |
 | UNB-XIN-ECO-020 | recommend-removal | XRJ-ADV-002; commercial analysis outside the operating platform. | None. | Multi-sponsor commercial need. | high |
 | UNB-XIN-EVA-013 | replace | XRJ-ADV-003: an architecture decision criterion, not a product requirement; move into ADR-EVA-001 falsification criteria (report 18 already tests them). | None once in ADR. | None. | high |
+| UNB-REM-011 | recommend-removal | Placeholder outside this slice's substance; owned by the enterprise-admin slice. | None: index entry with no obligation of its own. | A requirement found to rely on this index entry as its only statement. | low |
 | UNB-CHAR-037 | need-evidence | Undecided legal/contractual question (UNB-GAP-004 counsel review of inter-sponsor determination reuse). RCD-029 covers holds and public facts only. Needs a decision before sponsor-originated corrections (e.g. a verified new address) can flow to the common rec… | Low direct consequence; mainly lost engineering clarity or capability that no current decision consumes. | Counsel opinion or sponsor contract terms on the open question. | medium |
 | UNB-GRANT-012 | replace | If every grant received a human approval (conventional practice) at ~2 min [A], 80,000 grants per 10k accounts [D] = 2,667 h [D]. RR-UNB-GRANT-012-r1 replaces it with Tier 1 deterministic board-delegated approval where OD-01 is validated; human approval for ~… | Cannot be eliminated: removal creates direct legal exposure (IRC 4966/4967/4958 excise tax or OFAC/Nacha/escheat violation). | Counsel or sponsor rejection of the superseding requirement (e.g. OD-01 not validated). | medium |
 | UNB-API-008 | recommend-removal | Document-status note, not a system requirement; becomes false once contracts are generated (UNB-API-STD-006). Move to a status note. | Loss of tenant isolation or history integrity would be a security and financial-integrity failure; for deferred multi-tenant items, elimination only removes future optionality. | A reason the platform must behave differently because of this note. | high |
-| WG-12 | recommend-removal | Row itself says "Already specified" (GRW-F14). Remove as duplicate. | None while no partner embeds exist (R1); full set required before any embed launches. | Evidence GRW-F14 does not cover the host-retry case. | high |
 | UNB-VAL-003 | recommend-removal | Project-delivery telemetry for the Echelon research programme, not a DAF platform behaviour. Move to project governance. | Evidence integrity, missing-evidence detection and no-false-claims must stay; periodic manual attestations and duplicate catalogs can go. | Any platform behaviour that depends on this statement. | medium |
 | SOC2-024 | replace | Periodic owner attestation is the digitized-paper version of monitoring. Where a control is machine-evaluated (MON-005) with complete populations (MON-009), a quarterly signature adds no information. Replace with continuous evaluation plus exception-driven ow… | Evidence integrity, missing-evidence detection and no-false-claims must stay; periodic manual attestations and duplicate catalogs can go. | Auditor or CPA position that machine-evaluated controls still require periodic owner sign-off for the sponsor's purposes. | medium |
 | SOC2-029 | recommend-removal | Instruction to development agents, not a platform behaviour. Belongs in the repository's agent instructions (AGENTS.md), not the requirement baseline. | Evidence integrity, missing-evidence detection and no-false-claims must stay; periodic manual attestations and duplicate catalogs can go. | Any platform behaviour that depends on this statement. | high |
@@ -481,7 +481,7 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | UNB-CUST-024 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:39 | internal-control | none | none | none | automate-deterministic |  | Engineering control that reduces production exceptions; keep. | high |
 | UNB-CUST-025 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:40 | contract | low | none | none | retain |  | Legal/contract obligation; one-time per provider. | high |
 | UNB-CUST-026 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:41 | internal-control | none | none | none | consolidate | UNB-CUST-001 | Duplicate of UNB-CUST-001. | high |
-| UNB-CUST-027 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:42 | convention | none | none | none | consolidate | UNB-INV-028 | Triple duplicate (UNB-INV-028, UNB-NAV-037). Manager attribution duplicates OCIO/manager reporting. | high |
+| UNB-CUST-027 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:42 | convention | none | none | none | consolidate | UNB-NAV-037 | Triple duplicate (UNB-INV-028, UNB-NAV-037). Manager attribution duplicates OCIO/manager reporting. | high |
 | UNB-CUST-028 | requirements/integrations/CUSTODIAN-AND-INVESTMENT-MANAGEMENT.md:43 | contract | none | none | none | consolidate | UNB-DATA-011, UNB-NAV-029 | Isolation in UNB-DATA-011; look-through in UNB-NAV-029. | high |
 | UNB-INV-001 | requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:8 | fiduciary | none | none | none | simplify |  | Correct domain model; keep identities but instantiate only the ones enabled (R1: sponsor, custodian, omnibus/pool account, pool, fund, position). | medium |
 | UNB-INV-002 | requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:9 | accounting-standard | none | none | none | consolidate | RR-UNB-INV-002-r1 | Superseded by RR-UNB-INV-002-r1 (declared attribution method). | high |
@@ -554,14 +554,14 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | UNB-NAV-027 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:38 | accounting-standard | none | none | none | retain | UNB-INV-004, UNB-INV-026 | Core invariant for unitized pools; keep (automate-deterministic). | high |
 | UNB-NAV-028 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:39 | internal-control | none | none | none | consolidate | RR-UNB-GFUND-021-r1 | Same mechanism as reservation in RR-UNB-GFUND-021-r1 (single transaction, lock order). | high |
 | UNB-NAV-029 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:40 | accounting-standard | none | none | none | retain | UNB-GFUND-029, UNB-CUST-028 | Survivor for aggregation rule. | high |
-| UNB-NAV-030 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:41 | accounting-standard | none | none | none | consolidate | UNB-ACC-011 | Unit clause of the lifecycle posting catalogue (UNB-ACC-011). | high |
+| UNB-NAV-030 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:41 | accounting-standard | none | none | none | retain |  | Unit clause of the lifecycle posting catalogue (UNB-ACC-011). | high |
 | UNB-NAV-031 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:42 | sponsor-policy | none | none | none | defer |  | No pool restructuring in R1; single pool, no share classes. | high |
 | UNB-NAV-032 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:45 | sponsor-policy | none | none | medium | consolidate | RR-UNB-NAV-033-r1, UNB-XIN-ERP-002 | FeeBase contract RR-UNB-NAV-033-r1 and payer source UNB-XIN-ERP-002. Performance fees are unusual for DAF pools; not in R1. | high |
 | UNB-NAV-033 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:46 | sponsor-policy | none | none | none | consolidate | RR-UNB-NAV-033-r1 | Superseded by RR-UNB-NAV-033-r1. | high |
 | UNB-NAV-034 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:47 | accounting-standard | none | none | none | simplify | UNB-INV-025 | If pools are accumulating (income retained in NAV, no distributions to DAFs), distribution reinvestment logic is unnecessary. Keep realized/unrealized split in… | medium |
-| UNB-NAV-035 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:48 | internal-control | none | none | none | consolidate | ACC-MDL-004 | RCF-FIN-031 duplicate of ACC-MDL-004. | high |
+| UNB-NAV-035 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:48 | internal-control | none | none | none | retain |  | RCF-FIN-031 duplicate of ACC-MDL-004. | high |
 | UNB-NAV-036 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:49 | sponsor-policy | none | none | low | simplify | TVR-FIN-003, UNB-INV-030 | Buffer is the key simplifier (RCD-017) and stays. Side pockets and gates are for illiquid pools (none in R1); defer them. | medium |
-| UNB-NAV-037 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:50 | convention | none | none | none | consolidate | UNB-INV-028 | Triple duplicate; deferred with UNB-INV-028. | high |
+| UNB-NAV-037 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:50 | convention | none | none | none | retain |  | Triple duplicate; deferred with UNB-INV-028. | high |
 | UNB-NAV-038 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:53 | internal-control | low | none | none | retain | UNB-NAV-039, UNB-NAV-042 | Survivor for NAV correction publication; absorbs cause taxonomy (NAV-039). | high |
 | UNB-NAV-039 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:54 | internal-control | none | none | none | consolidate | UNB-NAV-038 | Cause code list belongs inside NAV-038. | high |
 | UNB-NAV-040 | requirements/investments/NAV-UNITIZATION-VALUATION-ENGINE.md:55 | fiduciary | none | none | none | simplify | UNB-NAV-041 | Counterfactual computation is needed for material errors; for immaterial errors under the materiality policy (NAV-041) a summary impact suffices. Compute count… | medium |
@@ -693,7 +693,7 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | UNB-KNOW-011 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:33 | none | none | none | low | defer | UNB-KNOW-022 | Only relevant to direct foreign grants, excluded from R1 (RCD-014; XID-ADV-001). Defer until the direct-foreign route is enabled. | medium |
 | UNB-KNOW-012 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:34 | contract | none | none | low | retain | UNB-CHAR-036, UNB-EXT-033, UNB-RULE-017 | This is the legal enabler of cross-sponsor evidence reuse (RR-REQ-X-007-r1, RCD-029). Retain; consolidate the four statements (KNOW-012, CHAR-036, EXT-033, RUL… | high |
 | UNB-KNOW-013 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:35 | guidance | low | low | none | consolidate | UNB-CHAR-014, UNB-CHAR-017, UNB-EXT-031 | Dispute/correction is stated in CHAR-014, CHAR-017, EXT-031 and here. One dispute channel. | high |
-| UNB-KNOW-014 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:36 | internal-control | none | none | none | consolidate | UNB-EXT-027, UNB-CHAR-040, UNB-GEX-002 | Cross-cutting event-store property, already decided at platform level (report 12/18). State once in architecture, reference from domains. | high |
+| UNB-KNOW-014 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:36 | internal-control | none | none | none | retain |  | Cross-cutting event-store property, already decided at platform level (report 12/18). State once in architecture, reference from domains. | high |
 | UNB-KNOW-015 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:37 | internal-control | none | none | none | consolidate | UNB-CHAR-008, UNB-RULE-008 | Covered by CHAR-008 and RULE-008. Consolidate. | high |
 | UNB-KNOW-016 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:38 | none | none | none | none | defer | UNB-RULE-031 | A knowledge compiler and Echelon knowledge-store integration are engineering choices with no outcome requirement behind them. Defer; nothing in R1 depends on i… | medium |
 | UNB-KNOW-017 | architecture/CHARITY-KNOWLEDGE-MODEL-AND-ACQUISITION-PIPELINE.md:70 | internal-control | none | none | low | consolidate | UNB-EXT-023, UNB-CHAR-005 | Same as EXT-023. Deterministic EIN-first matching with collision checks; one statement. | high |
@@ -754,7 +754,7 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | UNB-REM-008 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:28 | contract | none | none | none | consolidate | UNB-CHAR-041, UNB-CHAR-042 | Placeholder; charity-side content covered by CHAR-041/042. | medium |
 | UNB-REM-009 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:29 | statute | none | none | none | consolidate | UNB-GRANT-002, UNB-GRANT-035 | Placeholder covered by GRANT-002/035. | medium |
 | UNB-REM-010 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:30 | internal-control | none | none | none | consolidate | UNB-XIN-BNK-003, UNB-GEX-036 | Placeholder covered by finance domain and UNB-XIN-BNK-003. | medium |
-| UNB-REM-011 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:31 | contract | none | none | none | consolidate |  | Placeholder outside this slice's substance; owned by the enterprise-admin slice. | low |
+| UNB-REM-011 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:31 | contract | none | none | none | recommend-removal |  | Placeholder outside this slice's substance; owned by the enterprise-admin slice. | low |
 | UNB-REM-012 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:32 | internal-control | none | none | none | consolidate | UNB-REGMAP-001 | Covered by UNB-REGMAP-001/002. | high |
 | UNB-REM-013 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:33 | contract | none | low | low | simplify | RR-UNB-GRANT-026-r1, UNB-RCN-GRT-011 | A charity-facing status lookup (by remittance reference) is useful and reduces staff contacts; keep it to status + restrictions + legal-donor statement. No cha… | medium |
 | UNB-REM-014 | requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md:34 | statute | none | none | none | defer | RR-UNB-GRANT-041-r1 | R1 excludes direct foreign grants; intermediaries cover foreign causes (report 17). Covered by RR-UNB-GRANT-041-r1 when enabled. | high |
@@ -793,7 +793,7 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | UNB-EXT-032 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:41 | internal-control | none | none | none | retain | UNB-KNOW-026, UNB-KNOW-027 | Retain as the single ingestion-robustness statement. | high |
 | UNB-EXT-033 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:42 | contract | none | none | none | consolidate | UNB-CHAR-036, UNB-KNOW-012 | Duplicate of CHAR-036. | high |
 | UNB-EXT-034 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:43 | none | none | none | low | simplify | UNB-KNOW-037 | A graph database is not required by any decision; relational tables with typed edges (UNB-CHAR-009) suffice. Keep 'evidence-linked, historical'; drop 'knowledg… | medium |
-| UNB-EXT-035 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:44 | contract | none | none | none | consolidate | UNB-KNOW-040 | Duplicate. | high |
+| UNB-EXT-035 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:44 | contract | none | none | none | retain |  | Duplicate. | high |
 | UNB-EXT-036 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:45 | guidance | none | low | low | retain | EXC-13, UNB-KNOW-004 | Retain; consolidate with EXC-13. Policy: hold only freshness-critical steps; observation within RCD-006 window else hold. | high |
 | UNB-EXT-037 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:46 | internal-control | low | none | low | retain | UNB-KNOW-026 | Retain; cheap insurance for automated clearance. | high |
 | UNB-EXT-038 | requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:47 | internal-control | none | none | none | consolidate | UNB-EXT-017 | Property of the registry (EXT-017). | high |
@@ -1210,7 +1210,7 @@ IDs defined at more than one site were reviewed at the first site. The 14 distin
 | WG-9 | research/daf-theoretical-enterprise-validation/10-widgets/widget-integration-model.md:48 | guidance | none | none | none | defer |  | No distribution partners or embedded widgets in R1 (17 §1); this gap analysis applies when embeds launch. When embeds launch, the combined-page test must not b… | medium |
 | WG-10 | research/daf-theoretical-enterprise-validation/10-widgets/widget-integration-model.md:49 | contract | none | none | none | defer |  | No distribution partners or embedded widgets in R1 (17 §1); this gap analysis applies when embeds launch. Contract decision, not a system behaviour. | medium |
 | WG-11 | research/daf-theoretical-enterprise-validation/10-widgets/widget-integration-model.md:50 | internal-control | none | none | none | defer |  | No distribution partners or embedded widgets in R1 (17 §1); this gap analysis applies when embeds launch. | medium |
-| WG-12 | research/daf-theoretical-enterprise-validation/10-widgets/widget-integration-model.md:51 | fiduciary | none | none | none | recommend-removal |  | Row itself says "Already specified" (GRW-F14). Remove as duplicate. | high |
+| WG-12 | research/daf-theoretical-enterprise-validation/10-widgets/widget-integration-model.md:51 | fiduciary | none | none | none | defer |  | Row itself says "Already specified" (GRW-F14). Remove as duplicate. | high |
 | TVR-SEC-004 | research/daf-theoretical-enterprise-validation/16-registers/requirements.csv:17 | internal-control | none | low | low | retain | TVCTL-06, TVR-SEC-010 | Anti account-takeover; the main fraud vector for DAFs is a compromised donor session redirecting grants. Friction is limited to new recipients from weak sessio… | high |
 | TVR-SEC-006 | research/daf-theoretical-enterprise-validation/16-registers/requirements.csv:18 | internal-control | medium | low | none | conditional-on-operating-model | TVR-ORG-003, TVCTL-07 | Anomaly analytics are automated and keep. Mandatory rotation needs at least two trained people per role; at small staff sizes rotation is infeasible and the so… | medium |
 | TVR-WID-001 | research/daf-theoretical-enterprise-validation/16-registers/requirements.csv:26 | internal-control | none | none | none | defer | AUTH-I1, TVCTL-10 | No widgets in R1; operative when embeds launch. | medium |

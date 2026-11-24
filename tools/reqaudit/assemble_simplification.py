@@ -314,7 +314,7 @@ def r05(d):
 
 @report("06-ECONOMIC-TARGET-ENGINEERING.md")
 def r06(d):
-    return doc("06 — Economic target engineering (Phase Four)", "The per-account targets ($258 reference, $100, $50, $25, $10) are **exploratory design targets**, not costs or forecasts. Figures marked as model output come from the executed model in [`model/`](model/); see [08](08-ENTERPRISE-SIMULATION-SPECIFICATION.md) and [09](09-SIMULATION-SCENARIOS-AND-RESULTS.md).",
+    return doc("06 — Economic target engineering (Phase Four)", "The per-account targets ($258 reference, $100, $50, $25, $10) are **exploratory design targets**, not costs or forecasts. Figures marked as model output come from the executed model in [`model/`](model/); see [08](08-ENTERPRISE-SIMULATION-SPECIFICATION.md) and [09](09-SIMULATION-SCENARIOS-AND-RESULTS.md).\n\n**Adversarial revision (report 22, SPF-ADV-001..006).**\n- **Pooled deciders.** The platform models OM3–OM5 pool exception, gift-acceptance and treasury deciders across sponsors, which the governance passes forbid.\n- **Executed variant results.** Adding a 2.5-person per-sponsor decision floor, removing the unsourced shortcuts and capping cross-sponsor reuse gives these medians:\n  - $274 per account for a shared platform at 100k accounts;\n  - $53 for the digital-minimal class at 1M;\n  - $32 for the cheapest model at 5M.\n- **Targets under the variants.** No configuration up to 5M accounts reaches $100, $25 or $10. $50 is reached only by the cheapest model at 1M or more. $258 is reached by a lean sponsor at 100k.\n- **Hidden costs in the base figures.** They assume 76–82% service-level attainment and exclude acquisition (about $60 per account per year). The base cost bands in SPD-ECN-001 are therefore **not decision-grade**: read every target together with these variants.",
                [sections(d, "econ", ("Reference scenario and what $258 represents", "Economic target engineering", "Cost taxonomy", "Revenue models", "Small-balance viability"))])
 
 
@@ -332,14 +332,14 @@ def r08(d):
 
 @report("09-SIMULATION-SCENARIOS-AND-RESULTS.md")
 def r09(d):
-    return doc("09 — Simulation scenarios and results", "These are outputs of the executed theoretical model (see [08](08-ENTERPRISE-SIMULATION-SPECIFICATION.md)). They are not measurements.",
+    return doc("09 — Simulation scenarios and results", "These are outputs of the executed theoretical model (see [08](08-ENTERPRISE-SIMULATION-SPECIFICATION.md)). They are not measurements.\n\n**Adversarial revision (report 22, SPF-ADV-001..006).**\n- **Pooled deciders.** The platform models OM3–OM5 pool exception, gift-acceptance and treasury deciders across sponsors, which the governance passes forbid.\n- **Executed variant results.** Adding a 2.5-person per-sponsor decision floor, removing the unsourced shortcuts and capping cross-sponsor reuse gives these medians:\n  - $274 per account for a shared platform at 100k accounts;\n  - $53 for the digital-minimal class at 1M;\n  - $32 for the cheapest model at 5M.\n- **Targets under the variants.** No configuration up to 5M accounts reaches $100, $25 or $10. $50 is reached only by the cheapest model at 1M or more. $258 is reached by a lean sponsor at 100k.\n- **Hidden costs in the base figures.** They assume 76–82% service-level attainment and exclude acquisition (about $60 per account per year). The base cost bands in SPD-ECN-001 are therefore **not decision-grade**: read every target together with these variants.",
                [sections(d, "econ", ("Simulation results", "Sensitivity and uncertainty", "Which assumptions matter most"))])
 
 
 @report("10-ORGANIZATIONAL-AND-STAFFING-MODELS.md")
 def r10(d):
     return doc("10 — Organizational and staffing models (Phase Six)",
-               "**Correction carried from the evaluation pass:** the \"6–8 person floor (TVC-018)\" cited in the cross-industry reports 10, 11 and 14 is a mis-citation. TVC-018 records about 20 people against 8–10 (SPF-CLR-003). The documents give several floors for different scopes, and none is a derivation.",
+               "**Correction carried from the evaluation pass:** the \"6–8 person floor (TVC-018)\" cited in the cross-industry reports 10, 11 and 14 is a mis-citation. TVC-018 records about 20 people against 8–10 (SPF-CLR-003). The documents give several floors for different scopes, and none is a derivation. The adversarial review counts at least seven staffing floors across this mission's own passes and asks for one definition: a roster-derived floor per decision class with absence cover (SPF-ADV-014). It also notes that the vetting pass prices labour at $55.45/h against $103/h elsewhere, so the vetting dollar figures are about 1.86× too low (SPF-ADV-015).",
                [sections(d, "ops", ("Alternative organizational structures", "Staffing models by operating model and scale", "Responsibility and authority matrices",
                                     "Segregation of duties minimums", "Staffing cost model", "Succession and continuity requirements", "Limitations")),
                 "## Roles defined by authority\n\n" + t_roles(d)])

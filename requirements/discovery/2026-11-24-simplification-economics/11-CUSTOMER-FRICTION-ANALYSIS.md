@@ -215,15 +215,15 @@ Legend: **Keep (legal/consent/control)** = must not be removed; **Prefill**, **A
 
 ## Interactions by persona and recommendation
 
-| Persona | async | default | derive | eliminate | infer | prefill | proactive-notice | progressive-disclosure | retain | Effort seconds before → after [A] |
-|---|---|---|---|---|---|---|---|---|---|---|
-| administrator | 0 | 1 | 0 | 3 | 0 | 1 | 0 | 0 | 2 | 27900 → 3900 |
-| charity | 0 | 0 | 0 | 3 | 0 | 1 | 1 | 0 | 4 | 9900 → 1920 |
-| donor | 0 | 10 | 0 | 6 | 2 | 7 | 5 | 3 | 10 | 8060 → 1883 |
-| employee | 0 | 0 | 0 | 1 | 2 | 1 | 0 | 0 | 2 | 13200 → 6180 |
-| financial advisor | 1 | 1 | 0 | 0 | 1 | 3 | 1 | 0 | 2 | 3855 → 565 |
-| institutional partner | 0 | 2 | 1 | 1 | 0 | 0 | 0 | 0 | 3 | 21000 → 7980 |
-| sponsor | 0 | 3 | 0 | 0 | 0 | 1 | 0 | 0 | 5 | 399600 → 50700 |
+| Persona | align with SPD-ENT-004: prefilled confirmation after 12 months (SPF-ADV-017) | async | default | derive | eliminate | infer | prefill | proactive-notice | progressive-disclosure | retain | risk-triggered for complex assets, contributions above band or unverified sources, instead of elimination (SPF-ADV-021) | risk-triggered step-up (new device + new recipient + amount band) instead of elimination (SPF-ADV-021) | Effort seconds before → after [A] |
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+| administrator | 0 | 0 | 1 | 0 | 3 | 0 | 1 | 0 | 0 | 2 | 0 | 0 | 27900 → 3900 |
+| charity | 0 | 0 | 0 | 0 | 3 | 0 | 1 | 1 | 0 | 4 | 0 | 0 | 9900 → 1920 |
+| donor | 1 | 0 | 10 | 0 | 3 | 2 | 7 | 5 | 3 | 10 | 1 | 1 | 8060 → 1883 |
+| employee | 0 | 0 | 0 | 0 | 1 | 2 | 1 | 0 | 0 | 2 | 0 | 0 | 13200 → 6180 |
+| financial advisor | 0 | 1 | 1 | 0 | 0 | 1 | 3 | 1 | 0 | 2 | 0 | 0 | 3855 → 565 |
+| institutional partner | 0 | 0 | 2 | 1 | 1 | 0 | 0 | 0 | 0 | 3 | 0 | 0 | 21000 → 7980 |
+| sponsor | 0 | 0 | 3 | 0 | 0 | 0 | 1 | 0 | 0 | 5 | 0 | 0 | 399600 → 50700 |
 
 ## Interaction register
 
@@ -231,7 +231,7 @@ Legend: **Keep (legal/consent/control)** = must not be removed; **Prefill**, **A
 |---|---|---|---|---|---|---|---|---|
 | SPX-001 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Applicant identity | Legal name, date of birth, residential address, TIN | partial — existing donor of same sponsor, or advisor CRM feed (REQ-X-062); otherwise N | Y — basis: security (identity proofing is sponsor policy; donor CIP/CDD is not law for the sponsor per XIF-BNK-017/XRJ-BNK-001; TIN needed for acknow… | prefill | 240 → 90 |
 | SPX-002 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Identity document and selfie capture | Government ID image, selfie | N | partial — basis: security; needed only when database/credit-header verification fails or risk is elevated | progressive-disclosure | 300 → 45 |
-| SPX-003 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Source-of-funds and risk questionnaire | Occupation, employer, source of wealth, expected contribution size | N | N — basis: convention (bank CDD imported into donor onboarding; rejected by XRJ-BNK-001); risk-triggered only for complex assets (RR-UNB-INV-012-r1) | eliminate | 180 → 0 |
+| SPX-003 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Source-of-funds and risk questionnaire | Occupation, employer, source of wealth, expected contribution size | N | N — basis: convention (bank CDD imported into donor onboarding; rejected by XRJ-BNK-001); risk-triggered only for complex assets (RR-UNB-INV-012-r1) | risk-triggered for complex assets, contributions above band or unverified sources, instead of elimination (SPF-ADV-021) | 180 → 0 |
 | SPX-004 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Fund name and product choice | Fund display name; product type | N | partial — basis: convention; product choice is moot in release 1 (standard DAF only, RCD-024) | default | 60 → 5 |
 | SPX-005 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Co-advisors and successors at opening | Names, contacts, roles, successor shares | N | N at opening — basis: donor-control (needed only when donor wants them); UNB-UI-S-030 already invites after opening | progressive-disclosure | 180 → 0 |
 | SPX-006 | donor | D1 Open a fund (UNB-UI-S-030; ADM-002; WF-01) | Program agreement and exclusive-legal-control acknowledgment | Explicit acceptance of program agreement version incl. sponsor exclusive legal control | N | Y — basis: law (contract formation) and donor-control; sponsor control is the basis of the §170(f)(18) acknowledgment the sponsor later issues (UNB-R… | retain | 120 → 90 |
@@ -255,7 +255,7 @@ Legend: **Keep (legal/consent/control)** = must not be removed; **Prefill**, **A
 | SPX-024 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Sponsor required affirmations (benefit, pledge, purpose) | Explicit affirmative action on current disclosure version | N — must be per submission or covered by standing affirmation | Y — basis: sponsor control evidence for §4967/§4966 compliance (UNB-RCN-GRT-010; WL-06/07); statute does not prescribe a donor statement — counsel co… | retain | 90 → 20 |
 | SPX-025 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Conditional benefit follow-up | Details of any ticket, membership or other benefit | N | partial — basis: law (§4967 benefit) only when a benefit is indicated | progressive-disclosure | 120 → 5 |
 | SPX-026 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Pledge question | Whether grant satisfies a pledge | N | partial — basis: sponsor policy (UNB-RCN-GRT-009); a separate question is needed only under NoticeConditions | eliminate | 20 → 0 |
-| SPX-027 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Step-up authentication for grant above threshold | Phishing-resistant re-authentication within 5 minutes | Y — session at AAL2 | N for recommendations in release 1 — basis: security proportionality (XID-ADV-009: AAL2 any for recommendations); retained for payee/authority changes | eliminate | 60 → 0 |
+| SPX-027 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Step-up authentication for grant above threshold | Phishing-resistant re-authentication within 5 minutes | Y — session at AAL2 | N for recommendations in release 1 — basis: security proportionality (XID-ADV-009: AAL2 any for recommendations); retained for payee/authority changes | risk-triggered step-up (new device + new recipient + amount band) instead of elimination (SPF-ADV-021) | 60 → 0 |
 | SPX-028 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Review and submit | Confirm what will change, reversibility, who acts next | Y | Y — basis: donor-control (A2+ action, UNB-UI-G-005) | retain | 45 → 25 |
 | SPX-029 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Check whether charity was paid | Donor logs in or calls to learn status | Y — milestone track | N — basis: convention (pull) | proactive-notice | 180 → 0 |
 | SPX-030 | donor | D4 Recommend a grant (UNB-UI-S-003; UNB-RCN-GRT-010; daf-landscape WL-06..WL-13) | Respond to eligibility information request on held grant | Evidence about the charity or purpose | partial — registry evidence often already held | partial — basis: law (eligibility) but the evidence is usually obtainable without the donor | eliminate | 900 → 120 |
@@ -265,7 +265,7 @@ Legend: **Keep (legal/consent/control)** = must not be removed; **Prefill**, **A
 | SPX-034 | donor | D6 Add participants (UNB-UI-S-006; UNB-UI-S-027; ADM-021) | Successor designation | Successors and percentage shares | N | Y — basis: donor-control (succession policy, UNB-XIN-TRS-005) | retain | 180 → 120 |
 | SPX-035 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Change email, phone or authenticator | New contact or factor plus step-up on existing factor | Y — existing factors | Y — basis: security (authenticator bindings are authority facts, XID-ADV-008; UNB-XIN-IAM-003) | retain | 150 → 75 |
 | SPX-036 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Balance inquiry by phone | Possession of registered device before any account-summary disclosure | Y — balance shown in portal | partial — basis: security; registered-device rule (UNB-XIN-SVC-004) blocks donors without the app (XIF-ADV-018) | retain | 420 → 120 |
-| SPX-037 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Annual affiliation attestation | Officer/director/employee/substantial-contributor affiliations | Y — captured at onboarding | partial — basis: law-derived (excess-benefit gate needs affiliation graph) but annual re-ask is convention; at onboarding and on change suffices exce… | eliminate | 180 → 0 |
+| SPX-037 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Annual affiliation attestation | Officer/director/employee/substantial-contributor affiliations | Y — captured at onboarding | partial — basis: law-derived (excess-benefit gate needs affiliation graph) but annual re-ask is convention; at onboarding and on change suffices exce… | align with SPD-ENT-004: prefilled confirmation after 12 months (SPF-ADV-017) | 180 → 0 |
 | SPX-038 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Delegated-role annual recertification | Confirm each advisor/viewer still authorized | Y — role grants held | partial — basis: security; notice-and-continue suffices for customer roles (XIF-ADV-018), auto-suspension after 14 days is disproportionate | proactive-notice | 120 → 10 |
 | SPX-039 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Retrieve statement | Login and download | Y — issued artifact | N — basis: convention | proactive-notice | 90 → 10 |
 | SPX-040 | donor | D7 Ongoing servicing (ADM-015..017; WF-14) | Request reconsideration of a decline | Reason and any new evidence | Y — decision record and reason code (UNB-XIN-CLM-002) | Y — basis: donor-control (appeal right, UNB-RCN-ENT-016) | prefill | 600 → 180 |

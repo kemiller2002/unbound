@@ -2,21 +2,22 @@
   "records": {
     "refinements": 40,
     "gaps": 13,
-    "findings": 128,
+    "findings": 156,
     "conflicts": 0,
-    "scenarios": 61,
-    "decisions": 55,
-    "rejected": 57,
+    "scenarios": 73,
+    "decisions": 58,
+    "rejected": 64,
     "work": 143,
     "metrics": 84,
     "config": 120,
     "interactions": 90,
     "comparison": 114,
-    "transfer": 16
+    "transfer": 16,
+    "roles": 24
   },
   "register_rows": 1487,
-  "trace_edges": 1277,
+  "trace_edges": 1490,
   "errors": 0,
-  "warnings": 0,
+  "warnings": 3,
   "errors_by_gate": {}
 }

@@ -4,29 +4,273 @@
 
 An independent pass received the merged records, not the integrator's conclusions. It is the same model family as every other pass, so it is not independent human review.
 
+## Pass A Elimination
+
+*Source pass: Independent adversarial review.*
+
+**Scope and status.** Same-model adversarial review (not independent validation). Every number is labelled; [D] numbers marked *executed* come from a copy of `model.py`/`parameters.json` (SHA-256 identical to `unbound:requirements/discovery/2026-11-24-simplification-economics/model/hashes.txt`) run in `adv/model_variants/` with the mission seed.
+
+**What the mission eliminated that I accept.** Per-item human review where decisions already adopted exception-driven control (SPF-FIN-003; RR-UNB-ACC-022-r1 rule-level SoD), per-grant routine vetting (RR-UNB-GRT-003-r1, RR-REQ-X-007-r2), periodic owner attestation of machine-evaluated controls (RR-SOC2-024-r1, keeping manual-control attestation and independent quarterly review), native AP/budgeting/rebalancing (UNB-ACC-012, UNB-ACC-014, UNB-INV-031 — correctly labelled as moved to ERP/managers, not eliminated), charity registration and receipt acknowledgment (SPX-053, SPX-056), micro-deposits (SPX-011). The nine recommend-removal rows were each checked: seven remove project-process or duplicate text with no obligation; **WG-12 is not safe** (its claimed duplicate GRW-F14 is undefined, SPF-ADV-011); TVR-CON-003 is safe only if RR-REQ-X-009-r1 keeps the 'no silent negative fund' invariant.
+
+**Eliminations I reject or condition.**
+
+| Item | Mission disposition | Problem | Proposed |
+|---|---|---|---|
+| SPX-027 step-up for recommendations | eliminate | ATO can recommend large grants to a new recipient | risk-triggered step-up (SPF-ADV-021) |
+| SPX-003 source of funds | eliminate except complex assets | large/unusual cash contributions unscreened | risk-triggered |
+| SPX-037 annual affiliation attestation | eliminate | conflicts with SPD-ENT-004/SPD-CXP-003 | align (SPF-ADV-017) |
+| NAV maker-checker (RR-UNB-NAV-008-r1) | autonomous-reversible | financial control; no staleness test named | owner-decision + staleness AC (SPS-ADV-004) |
+
+**What the nine passes added that should be eliminated** (detail in Pass H): duplicate coverage requirement UNB-SMP-CLR-001; fee-ceiling UNB-SMP-ECN-001; NBA registry UNB-SMP-DSH-001; a separate Configuration Register (UNB-SMP-CFG-003); 56 of 70 kept metrics beyond the adopted R1 catalog; four duplicate $258 findings; six duplicate decisions.
+
+## Pass B Consolidation
+
+*Source pass: Independent adversarial review.*
+
+**Safe to share (no boundary breach).** Public charity *facts* and source payloads (UNB-CHAR-036, RR-REQ-X-007-r1; already distinguished from decisions by SPR-GRT-003/SPR-ORG-007); one control register (SPD-PLT-003); one metric registry (RR-REQ-X-043-r1); one case kernel; deterministic engines and policy-pack *content* (not adoption).
+
+**Not safe to share as designed.**
+
+| Shared capability | Boundary breached | Evidence | Fix |
+|---|---|---|---|
+| Pooled exception/gift/treasury deciders across sponsors (econ OM3–OM5) | sponsor exclusive legal control; SPR-ORG-004; SPD-ORG-002 | `model.py:370-377` bearer platform_operator | SPD-ADV-001; SPF-ADV-001 |
+| Sanctions false-positive disposition reuse (RR-UNB-EXT-004-r2) | per-sponsor OFAC liability | no sponsor scope in statement | SPD-ADV-002; SPS-ADV-002 |
+| Determination reuse 0.7–0.8 in OM4/OM5 | cross-sponsor reliance unresolved (TVA-020); ED reliance unverified (SPF-ORG-008) | parameters.json OM4/OM5 | V3: +$3–4/acct at 1M [D executed] |
+| Auto-applied legal-change packs (SPD-CFG-001) | sponsor policy changed by silence; common-mode error (SPF-EDF-003) | decisions.csv | SPR-ADV-001; SPS-ADV-003 |
+
+**Register consolidation clusters — over-consolidation check (executed transitive analysis of `consolidate_with`).** 481 consolidate rows; 172 have statute/regulation/fiduciary/accounting basis. 116 edges point at survivors that are themselves consolidated or deferred. **12 rows end with no carrying record** (SPF-ADV-009): the append-only history cycle UNB-KNOW-014/UNB-EXT-027/UNB-CHAR-040/UNB-GEX-002; the no-resale gate cycle UNB-KNOW-040/UNB-EXT-035; UNB-REM-011 (no survivor); UNB-CUST-027/UNB-NAV-037 → deferred UNB-INV-028 (performance-honesty rule orphaned); REQ-X-061 → deferred RR-REQ-X-061-r1; UNB-XIN-ECO-011/019 → deferred REQ-X-042. Spot-checks also found two consolidations whose survivor text lacks the absorbed obligation: UNB-NAV-030 → UNB-ACC-011 (unit preservation, rounding residual), UNB-NAV-035 → ACC-MDL-004 (settled/unsettled/redemption-pending) (SPF-ADV-010). No accessibility or security obligation was found lost in the sampled rows; WG-9 (combined host+widget accessibility) is deferred with an explicit 'must not be weakened' note.
+
+## Pass C Prevention
+
+*Source pass: Independent adversarial review.*
+
+| Exception / failure | Mission treatment | Prevent instead | Records |
+|---|---|---|---|
+| Migration/onboarding backlog (SLA 13–22%, 67k–841k items unresolved +60 d [model]) | approver acknowledgment (UNB-SMP-ECN-002) | phased intake waves sized to forecast capacity; auto-pause when live SLA below floor | SPF-ADV-023; SPS-ADV-005 |
+| Correlated policy-pack error across sponsors | shadow evaluation before second sponsor (RR-UNB-RULE-019-r1) | plus: no auto-apply of non-tightening changes; provisional-basis block (UNB-SMP-CLR-002) | SPR-ADV-001 |
+| NAV published on stale input | next-day sample | staleness as a pre-publication check (prevent, not sample) | SPS-ADV-004 |
+| ACH returns and reconciliation breaks (ops queue ≈ exception queue in OM4) | handled per item | instant account validation at link, first-debit limits, end-to-end IDs for matching; batch small recurring debits | econ WE-4 |
+| ATO grant recommendations | step-up removed | risk-triggered step-up | SPS-ADV-009 |
+| Coverage gaps at year end | gap work item ≥10 days ahead (UNB-SMP-ORG-002) | accept: this is prevention; keep one requirement only | SPS-ADV-007 |
+| AI incorrect outputs ($0.33m uncontained per 5-day detection at 100k [model WE-3]) | sampling, detection | staged rollout of new rule/model versions with holdback and lower STP ceiling in first N days; detection time is the lever (econ WE-3) | SPF-ADV-026 |
+| Unit leakage on splits | not covered after consolidation | explicit rounding policy precondition | SPS-ADV-011 |
+
+The mission's best prevention levers — determination reuse, disposition reuse, materiality tables, proactive status (SPX-029), ACH default — are sound **within a sponsor**; across sponsors they need SPD-ADV-001/002 first.
+
+## Pass D Economics
+
+*Source pass: Independent adversarial review.*
+
+**Recomputed and verified.** Re-running the copied model reproduces the published cells exactly (e.g. OM3@1M P10/P50/P90 $94.29/$124.61/$167.75; OM4@1M $23.90/$29.43/$37.05). The $258 = ($243.84 + $272)/2 arithmetic is correct; its use as *the* origin of $258 is an inference (SPF-ADV-027). Fund-borne cost OM1@100k $457.47, OM2/OM3 $474.45 (difference = outsourced complex-asset fees) [D executed] — both figures in the econ text are right for their models.
+
+**Adversarial variants (executed, 300 MC runs, same seed; cost = sponsor+platform opex ex-acquisition ex-fund, $/account-year P50 [P10–P90]):**
+
+| Cell | Base | V1 per-sponsor authority floor (2.5 FTE × $165k per sponsor [A]) | V2 no unsourced levers (minutes ×0.667, contacts cuts removed) | V3 reuse capped 0.5 (OM4/5) | V5 = V1+V2+V3 |
+|---|---|---|---|---|---|
+| OM2 @100k | 180 [142–224] | 180 | 207 [161–268] | 180 | 207 [161–268] |
+| OM3 @100k | 192 [155–243] | 238 [190–333] | 220 [172–292] | 192 | 274 [212–376] |
+| OM3 @1M | 125 [94–168] | 174 [124–262] | 151 [111–209] | 125 | 202 [144–305] |
+| OM4 @1M | 29 [24–37] | 40 [31–62] | 37 [30–47] | 33 [26–41] | 53 [40–77] |
+| OM5 @1M | 20 [17–24] | 24 [21–28] | 28 [23–34] | 24 [19–32] | 38 [30–50] |
+| OM5 @5M | 14 [12–17] | 18 [16–22] | 22 [17–28] | 18 [14–25] | 32 [25–44] |
+
+Target reachability under V5 [D]: $258 — OM2@100k, OM3@1M; $100 — none; $50 — OM5 ≥1M only; $25 — none ≤5M; $10 — none. SPD-ECN-001's bands (≤$200 Standard at 100k; ≤$30 DigitalMinimal at 1M) fail (SPF-ADV-003; SPR-ADV-002).
+
+**Challenges to major assumptions.**
+
+| Assumption | Basis | Challenge | Effect |
+|---|---|---|---|
+| Queue staff pooled at operator in OM3–OM5 | model structure | contradicts SPD-ORG-002/SPR-ORG-004 | V1 above (SPF-ADV-001) |
+| minutes ×0.667, contacts ×0.6/0.3/0.15 | none cited | hypotheses only | V2 above (SPF-ADV-002) |
+| complex_hours 12→2 with outsourcing | [A]; 'most fragile' (SPF-ORG-006) | $58.65 of the $103 OM1→OM2 saving; $16.98/acct moves to funds [D executed decomposition] | SPF-ADV-004 |
+| staffing_headroom 1.15 | [A] | buys P50 SLA 76–82%; headroom 1.5 → exception SLA 100% for +$11.9 (OM2@100k), +$12.2 (OM3@1M), +$1.7 (OM4@1M) [D executed, deterministic] | SPF-ADV-005 |
+| CAC $400 × 15% = $60/acct for workplace books, borne by employer | [A] advisor channel | DigitalMinimal incl. acquisition ≈ $84/acct (OM4@1M modal) vs $9–30 revenue | SPF-ADV-006 |
+| audit_base $120k fixed, no range | [A] | SOC 1/2 for multi-sponsor platform; sponsor auditor ITGC testing while SOC deferred | SPF-ADV-020; SPD-ADV-003 |
+| labour rate | $103/h (econ/ops) vs $55.45/h (revB) | revB dollars understated ×1.86 | SPF-ADV-015 |
+| ai_cost_per_dossier labelled [S] | $0.45 sourced ×2 | value is [D]/[A] | label only; not material |
+
+**Hidden and displaced costs (moving work is not elimination).**
+
+| Displaced to | Work | Counted? |
+|---|---|---|
+| Donor funds | complex-asset vendor fees $16.98/acct (OM2/OM3); pool expense $436/acct dwarfs operating cost | fund-borne line yes; not netted |
+| Charities | ACH/network enrolment, destination upkeep; no-check OM5 | no (SPF-ADV-022) |
+| Employers | acquisition $60/acct, payroll files | acquisition yes, separately; payroll effort no |
+| Sponsor's ERP | AP, budgeting, entity statements | acknowledged (SPF-FIN-005) |
+| Sponsor's auditor | ITGC testing absent SOC 1 | no (SPD-ADV-003) |
+| Investment managers/custodians | rebalancing, trade compliance | acknowledged (UNB-INV-031) |
+| Customers | ~20% of exceptions beyond SLA | no — reported as SLA, not cost |
+| Networked rail partner | grant payment network fees (SPD-CMP-003) | no |
+
+**Mission-added mechanisms are uncosted.** Rosters, AuthorityCoverage, CostBasis, ServicingClass gate, Interaction/Configuration/Metric registers, policy-pack content maintenance ('medium-high', UNB-SMP-CFG-002) carry recurring owner time absent from the model.
+
+## Pass E Customer experience
+
+*Source pass: Independent adversarial review.*
+
+**Who benefits.** Donor- and charity-facing eliminations are genuine where data is held or inferable (SPX-001, SPX-011, SPX-021, SPX-022, SPX-032, SPX-053, SPX-056, SPX-088). But the operating model's cost figures are struck at P50 SLA attainment of 76–82%: about one held grant in five waits beyond the 5-day SLA, and up to 87% during migrations [model]. Those delays fall on donors and charities, not on the administrator's cost line (SPF-ADV-005).
+
+**Friction moved rather than removed.**
+
+| Interaction | Moved to | Comment |
+|---|---|---|
+| Check grants removed (OM5), ACH default (SPD-GRT-004), networked rail (SPD-CMP-003) | charities | enrolment per platform/network; small charities without ACH need a path (SPF-ADV-022) |
+| Employer funding of DigitalMinimal | employers | payroll files, acquisition |
+| SPX-030 eligibility information request | registry/enrichment, then charity | acceptable if the charity is asked once (RR-AIN-007-r1) |
+| Statement notification quarterly digest (RR-REQ-X-032-r1) | donor must look | acceptable: statements are still generated each period; correction notices are immediate |
+
+**Material information.** Grouped affirmations (SPD-CXP-001) keep each representation verbatim — acceptable. Fee-to-cost ratios: SPR-ADV-005 keeps a disclosure route rather than a ceiling. The step-up and source-of-funds removals (SPX-027, SPX-003) trade small friction for unpriced fraud exposure (SPF-ADV-021). Accessibility: SPX-002 keeps a staffed alternative to camera capture; SPD-FIN-006 keeps WCAG 2.2 AA for staff surfaces — no accessibility obligation weakened was found.
+
+## Pass F Governance
+
+*Source pass: Independent adversarial review.*
+
+| Risk | Records | Severity | Required change |
+|---|---|---|---|
+| Legal authority pooled across sponsors in OM3–OM5 economics | SPF-ADV-001; SPD-ADV-001 | critical | resolve SPD-ADV-001 before any platform cost band |
+| Cross-sponsor reuse of sanctions dispositions | RR-UNB-EXT-004-r2; SPF-ADV-007; SPD-ADV-002 | high | sponsor-scoped default |
+| Policy packs auto-applied by silence | SPD-CFG-001; SPF-ADV-008; SPR-ADV-001 | high | tighten-only auto-apply |
+| Control-weakening refinements marked autonomous-reversible | RR-UNB-NAV-008-r1, RR-UNB-NAV-005-r1, RR-SOC2-007-r2, RR-UNB-AI-STD-002-r1; SPF-ADV-012 | medium | owner-decision |
+| SOC report deferral displaces assurance to sponsor's auditor | SPD-PLT-001; SPF-ADV-020; SPD-ADV-003 | medium | ask auditor now |
+| Operator configures AI and may sign off its model risk | ORG-R16/ORG-R17; SPF-ADV-025 | medium | independent model-risk sign-off; caps per person |
+| AI-scored QA reviews only disagreements | RR-CTL-040-r1; UNB-XIN-CLM-005; SPF-ADV-026 | medium | human sample of agreements; stated detection power |
+| Staffing floors inconsistent; econ exception floor of 1 cannot meet preparer≠decider | SPF-ADV-014 | high | one floor definition (RR-UNB-ECO-003-r1) |
+| Orphaned obligations after consolidation | SPF-ADV-009/010 | high | validator gate on carrying survivor |
+
+**Accepted with conditions.** Removal of per-item reviews where a board-delegated deterministic policy decides (conditional on RCD-005/OD-01; SPD-CLR-004 fallback is correctly pre-defined); RR-SOC2-024-r1 (manual controls still attested; add an annual independent review of monitor logic so the monitor is not its own only check); SPD-ORG-001 (gate counts as releaser only if two humans did not author/publish it); UNB-SMP-CLR-002 (P0 provisional-basis block — the single most valuable governance addition; it also makes every minimum-touch saving conditional on the 41 decided-provisional decisions, which the econ pass should state). Sampling as the detective control for STP is acceptable only with budgeted hours and a stated detection target (SPF-CLR-005).
+
+## Pass G Competitive challenge
+
+*Source pass: Independent adversarial review.*
+
+I agree with the cmp pass that no documented Unbound advantage survives a well-funded competitor with the same technology (SPF-CMP-001), and add two economic points from the model:
+
+1. **Sponsor size is the platform cost floor** (accounts_per_sponsor is the #1 tornado driver: OM3@1M modal $166 at 1,000 accounts/sponsor vs $88 at 5,000 [model]). Incumbent platforms serving larger sponsors therefore keep a structural cost advantage even with identical technology. The recommended entry segment (community-foundation/independent-sponsor administration, SPD-CMP-001) is the small-sponsor segment, and a per-sponsor authority floor (SPF-ADV-001) widens the gap (SPF-ADV-024).
+2. **What could survive** is not technology but (a) a measured, assured operating record (SOC 1/2 periods, clean audits — which SPD-PLT-001 defers), (b) executed migrations, and (c) a demonstrably lower *authority* cost per sponsor if SPD-ADV-001 allows board-appointed shared agents lawfully — something incumbents with affiliated asset managers may not adopt quickly. (c) is a hypothesis, replicable by an unaffiliated entrant.
+
+Implication: prioritise a segment where sponsors are large enough (model suggests ≥~20k accounts per sponsor) or price the per-sponsor component explicitly (SPD-ECN-003), and start the assurance record early rather than deferring it.
+
+## Pass H Simplification of our own recommendations
+
+*Source pass: Independent adversarial review.*
+
+**What this mission added** (validation-report.json): 13 new requirements, 40 refinements, 128 findings, 61 scenarios, 55 decisions, 57 rejected approaches, 143 work-inventory activities, 84 metrics (70 kept), 120 configuration items, 90 interactions, 114 comparison rows, 16 transfer candidates, 24 roles, 1,487 register rows; plus new runtime mechanisms (HumanInterventionClass, AuthorityCoverage, roster, CostBasis, ServicingClass gate, Interaction Register, Configuration Register, Policy Packs, Outcome Questionnaire, NBA registry, decision-basis tracking).
+
+**Recommended cuts.**
+
+| Area | Now | Keep | Action |
+|---|---|---|---|
+| New requirements | 13 | 7 | keep CLR-002 (P0), ARX-001, ORG-002, CFG-001, CFG-002, ORG-001 (class on rule, inherited), ECN-003 (+acquisition bearer); merge CLR-001→ORG-002, CFG-003→CFG-002; fold ECN-002 into UNB-XIN-ECO-017; reject ECN-001; defer DSH-001; CXP-001 → design-review artefact |
+| Refinements | 40 | ~37 platform + 3 analysis notes | reclassify RR-UNB-ECO-001-r2, RR-UNB-ECO-005-r1 (and RR-UNB-ECO-002-r1) as offline-model governance; RR-REQ-X-051-r2 scope expansion (metrics/widgets in assistance contract) only after R1 |
+| Decisions | 55 open | ~40 | merge SPD-CFG-002→SPD-ENT-003, SPD-CXP-003→SPD-ENT-004, SPD-CLR-001→SPD-ECN-001, SPD-CLR-002→SPD-ORG-003; move commercial/strategy SPD-CMP-001..004, SPD-ECN-002/003 to a non-blocking backlog |
+| Metrics | 70 kept | ~12–15 | XID-ADV-011 six + counter-metrics + SPD-DSH-001 executive set + mandated control monitors (SPR-ADV-007) |
+| Findings on $258 | 4 | 1 | SPF-ECN-001 survives |
+| Configuration items | 120 (14 shown after) | as proposed | the cx reduction (110 → 14 surfaced) is the mission's strongest simplification; keep |
+| Registers as runtime gates | 4 (interaction, configuration, metric, intervention) | 2 (metric registry, pack items) | others as build-time review |
+
+New records from this review are deliberately few: 3 decisions, 0 new requirements, 0 refinements.
+
+## Cross-pass consistency
+
+*Source pass: Independent adversarial review.*
+
+| Topic | Pass X | Pass Y | Verdict |
+|---|---|---|---|
+| Staffing floor | ops S1 2.5 FTE (5×0.5); pool 4/5; PA-2 needs 3 | econ ~21 FTE fixed at 1k, exception floor 1; CLR-001 '≥2 principals'; prior '6–8' | inconsistent (SPF-ADV-014) |
+| '6–8' citation | 14-ADVERSARIAL-REVIEW:17, 10-EXECUTIVE-FINDINGS:26 attribute to TVC-018 | TVC-018 says ~20 vs 8–10 (contradiction-register.md:26); org §4 says 8–10 (organization-and-authority.md:90); '6–8' only in review-fin-ops.md:203 | mis-cited (confirms SPF-CLR-003) |
+| Staff at 100k | ops S1 41.3 sponsor FTE (e·m 0.9) + 1.8 purchased; S3 56.1 | econ OM2 base FTE 59 modal / 73 P50; OM1 188 P50 | different scopes; not reconciled |
+| Volumes at 100k | ops 800k grants, 200k contributions | econ 722,600 grants, 644,200 contributions (market mix) | contributions differ 3.2× (SPF-ADV-016) |
+| Vetting hours | revB 766 h/10k (ED/ER ~100 h) | ops 7,350 h/100k (ED/ER 5,500 h) | totals agree, composition does not (SPF-ADV-016) |
+| Labour rate | revB $55.45/h | econ/ops $103.13/h | revB $ ×1.86 low (SPF-ADV-015) |
+| Agent ownership | econ 4 FTE | ops 2 (TVA-021) | SPF-ADV-028 |
+| Who decides exceptions on a platform | econ: operator pool | ops/SPD-ORG-002/SPR-ORG-004: sponsor-appointed | contradiction (SPF-ADV-001) |
+| Statement cadence | RR-REQ-X-032-r1 / SPD-ENT-003 | SPD-CFG-002 | merge (SPS-ADV-012) |
+| Affiliation attestation | SPX-037 eliminate | SPD-ENT-004, SPD-CXP-003 | merge |
+| Coverage requirement | UNB-SMP-ORG-002 (20 bd) | UNB-SMP-CLR-001 (30 d) | merge (SPR-ADV-003) |
+| R1 metrics | cx 70 kept | revD ADM-047 → six-metric catalog XID-ADV-011 | SPF-ADV-019 |
+| $258 | econ midpoint [D] | SPF-FIN-013/SPF-ORG-012 '$272 not $258' | same conclusion; label midpoint as inference |
+
+**Register spot-checks (10 per slice against inventory.csv text).**
+
+| Slice | Rows checked | Issues |
+|---|---|---|
+| revA | UNB-ACC-026, UNB-NAV-030, UNB-AST-001, UNB-EVT-003, UNB-NAV-035, UNB-ACC-016, UNB-NAV-005, UNB-INV-007, UNB-INV-014, UNB-ACC-023 | NAV-030 and NAV-035 survivors lack absorbed clauses |
+| revB | UNB-GRANT-002, UNB-RULE-024, UNB-GEX-002, UNB-EXT-008, UNB-KNOW-024, UNB-KNOW-001, UNB-GEX-018, EXC-11, UNB-KNOW-018, UNB-REGMAP-004 | GEX-002 in an orphan cycle; GEX-018 automation acceptable because UNB-RCN-GRT-017 evidence classes and UNB-RCN-WF-023 independent release carry the control |
+| revC | GOV-AUTH-011, MON-012, INT-004, UNB-TEC-003, TVR-GOV-002, OPS-029, WG-9, SOC2-018, AIN-029, UNB-TEN-007 | none |
+| revD | UNB-LS-012, ADM-047, UNB-GAP-013, REQ-X-025, UNB-WF-003, ADM-021, REQ-X-059, REQ-X-055, UNB-GAP-032, UNB-WF-020 | none of substance (UNB-WF-020 officer sign-off carried by REQ-X-040 'mandated finance signoffs') |
+| All removal/replace/AI rows (18) | reviewed | WG-12 (undefined survivor); templated consequence text on UNB-API-008, UNB-GAP-027 purpose (SPF-ADV-013) |
+
+Plus the executed transitive check over all 481 consolidate rows (12 orphans, SPF-ADV-009).
+
+## Verdict and required revisions
+
+*Source pass: Independent adversarial review.*
+
+**Verdict: accept the mission's direction with required revisions; do not adopt its platform cost bands or its multi-sponsor sharing positions yet.** The per-item-review eliminations, vetting redesign, configuration reduction (110 → 14 surfaced items) and the provisional-basis block (UNB-SMP-CLR-002) are sound. The economics overstate what shared platforms and DigitalMinimal books achieve because the model pools legal authority the governance passes forbid, applies unsourced lean levers, prices a service that misses SLA ~20% of the time, and leaves acquisition and several displaced costs outside the target.
+
+**Required revisions (in order).**
+1. Resolve SPD-ADV-001 and re-run OM3–OM5 with the answer; until then mark OM3–OM5 outputs conditional (SPF-ADV-001).
+2. Replace SPD-ECN-001 bands with base vs adversarial ranges; state each target with its SLA attainment and acquisition bearer (SPF-ADV-003/005/006).
+3. Scope RR-UNB-EXT-004-r2 reuse to the sponsor (SPD-ADV-002); reject auto-apply of non-tightening packs (SPR-ADV-001).
+4. Fix the 12 orphaned consolidations and the two weak survivors; add a validator gate for terminal carriers (SPF-ADV-009/010/011).
+5. Reclassify four control-weakening refinements to owner-decision (SPF-ADV-012).
+6. Make one staffing-floor definition and one volume/labour-rate register across passes (SPF-ADV-014/015/016).
+7. Apply the Pass H cuts: 13 → 7 new requirements, ~15 fewer decisions, R1 metrics to the adopted catalog.
+
+**Limitations.** Same-model review (not independent validation). Variants change one structural assumption each and reuse the mission's [A] ranges; the per-sponsor authority floor uses the ops 2.5-FTE [A] floor. No external sources were fetched; claims about auditor practice and community-foundation sizes are unverified general knowledge. Spot-checks covered 40 sampled rows + 18 targeted rows + an automated chain check, not all 1,487 rows.
+
 ## Adversarial findings
 
 | Finding | Severity | Dimension | Title | Affected | Proposed resolution |
 |---|---|---|---|---|---|
+| SPF-ADV-001 | critical | legal | Shared-platform economics (OM3-OM5) pool all exception, complex-gift, service and ops staff at the platform operator and size them once for the whole book. | SPD-ORG-002;SPR-ORG-004;UNB-XIN-CLM-008;SPD-ECN-001;SPD-ECN-003;UNB-RCN-PLT-005 | Restate OM3-OM5 with an explicit per-sponsor authority floor (or with board-appointed shared deciders under SPD-ADV-001) and re-run the targets table; until then mark OM3-OM5 results as conditional on SPD-ADV-001. Do no… |
+| SPF-ADV-002 | high | economics | The lean operating models apply unsourced multipliers to exception minutes (x0.667) and human contacts (x0.6, x0.3, x0.15). | SPD-ECN-001;SPF-ECN-005;SPF-ORG-006 | Label each OM lever with its basis; treat x0.667 and the contact reductions as hypotheses to be tested by the GAP-001 shadow replay (SPD-ENT-008) and report targets both with and without them. |
+| SPF-ADV-003 | high | economics | Under a combined adversarial variant, SPD-ECN-001's recommended bands fail and $25 is unreachable at P50 by any modelled configuration up to 5M accounts. | SPD-ECN-001;SPD-CLR-001;SPF-ECN-005;UNB-SMP-ECN-003 | Replace SPD-ECN-001 bands with ranges stated per variant (base vs V5) and per cost layer; adopt only '$258 is reachable by a lean self-operated sponsor near 100k' as a planning claim; treat $50/$25 as research hypothese… |
+| SPF-ADV-004 | high | economics | More than half of the lean-model saving comes from one fragile lever (complex-gift hours 12 -> 2) that is paired with a bearer shift to donor funds. | SPD-ECN-005;SPF-ORG-006;SPW-060 | Report the complex-asset lever separately as (a) avoided sponsor hours and (b) fund-borne vendor fees; require measured hours per complex gift before using 2 h in any target. |
+| SPF-ADV-005 | high | experience | Every modelled cost assumes a service that misses the 5-day exception SLA for roughly one item in five; customers absorb the gap as latency. | SPF-ECN-007;UNB-SMP-ARX-001;UNB-SMP-ECN-002 | State every cost target together with the SLA attainment it buys; adopt '>=95% exception SLA attainment' as the reference service level for targets and add the headroom cost. |
+| SPF-ADV-006 | high | economics | Small-balance viability is asserted on operating cost alone; acquisition at $60 per account-year is three times the DigitalMinimal operating cost and is assigned to employers. | SPD-ECN-002;UNB-SMP-ECN-003;SPF-CMP-002 | Make acquisition bearer explicit in UNB-SMP-ECN-003 (declare who pays and how much) and restate small-balance viability as conditional on a measured workplace CAC. |
+| SPF-ADV-007 | high | legal | Sanctions false-positive dispositions are reused with no sponsor (legal-entity) scope. | RR-UNB-EXT-004-r2;SPD-GRT-003;UNB-EXT-004 | Scope reuse to the sponsor legal entity that made the disposition unless counsel approves cross-sponsor reliance (SPD-ADV-002); record the relying sponsor's reliance event. |
+| SPF-ADV-008 | high | legal | Platform-authored legal-change policy packs would change a sponsor's approval policy by silence. | SPD-CFG-001;UNB-SMP-CFG-002;RR-UNB-RULE-019-r1;UNB-SMP-CLR-002;SPD-CFG-003 | Auto-apply only changes that are strictly tightening under the deterministic comparator AND have passed per-sponsor shadow evaluation (RR-UNB-RULE-019-r1) AND rest on confirmed decisions (UNB-SMP-CLR-002); everything el… |
+| SPF-ADV-009 | high | completeness | Twelve consolidated rows have no retained carrier: their consolidation chains end in cycles, deferred rows or nothing. | UNB-KNOW-014;UNB-EXT-027;UNB-CHAR-040;UNB-GEX-002;UNB-KNOW-040;UNB-EXT-035;UNB-REM-011;UNB-CUST-027;UNB-NAV-037;UNB-INV-028;REQ-X-061;UNB-XIN-ECO-011;UNB-XIN-ECO-019 | Name one retained survivor per cycle (UNB-KNOW-014 and UNB-EXT-035); move the performance-honesty rule to the statement requirement; add a validator gate: every consolidate chain must terminate in a carrying disposition… |
+| SPF-ADV-010 | medium | correctness | Spot-checks found two finance consolidations whose survivors do not carry the absorbed obligation. | UNB-NAV-030;UNB-ACC-011;UNB-NAV-035;ACC-MDL-004 | Add the missing clauses as acceptance criteria on the survivors (or retain the rows). |
+| SPF-ADV-011 | medium | consistency | WG-12 is recommended for removal as a duplicate of a requirement that does not exist. | WG-12 | Change to defer with the widget set (embeds are out of R1) and require definition before embeds launch. |
+| SPF-ADV-012 | medium | legal | Four refinements that weaken or remove human approval of financial or AI-supported outputs are labelled autonomous-reversible. | RR-UNB-NAV-008-r1;RR-UNB-NAV-005-r1;RR-SOC2-007-r2;RR-UNB-AI-STD-002-r1 | Reclassify all four as owner-decision (controller for NAV, model-risk owner for AI, control owner for SOC2). |
+| SPF-ADV-013 | medium | correctness | The register's elimination-consequence and purpose fields are largely cluster templates, not row-specific analysis. | UNB-API-008;UNB-GAP-027;SOC2-029;TVR-GOV-001 | Treat the template fields as non-evidence; require row-specific consequence text for every recommend-removal, replace and consolidate row with a statute/regulation/fiduciary/accounting basis (~172 consolidate rows + 15… |
+| SPF-ADV-014 | high | consistency | The mission now carries at least seven different staffing floors and the '6-8' figure is still mis-attributed. | TVC-018;SPF-ORG-001;SPF-CLR-003;UNB-SMP-CLR-001;UNB-SMP-ORG-002;RR-UNB-ECO-003-r1 | Adopt RR-UNB-ECO-003-r1's three-term floor (authority floor, coverage depth, workload) as the single definition; set econ queue floors from it (exceptions >=2); withdraw '6-8' everywhere (SPD-CLR-002). |
+| SPF-ADV-015 | medium | consistency | The vetting pass prices labour at $55.45/h while the economics and organisation passes use ~$103/h. | RR-REQ-X-007-r2;SPF-GRT-004 | Use one rate register (TVC-020); restate revB dollars. |
+| SPF-ADV-016 | medium | consistency | Vetting and volume bases differ between passes even where totals look consistent. | SPW-049;SPW-051;SPW-053;SPW-054;RR-REQ-X-007-r2 | Reconcile on one volume register before any staffing figure is quoted; distinct charities should not scale linearly with accounts. |
+| SPF-ADV-017 | medium | consistency | Passes produced duplicate and conflicting records on the same questions. | UNB-SMP-ORG-002;UNB-SMP-CLR-001;SPD-CFG-002;SPD-ENT-003;RR-REQ-X-032-r1;SPX-037;SPD-ENT-004;SPD-CXP-003;SPD-CLR-001;SPD-ECN-001;SPF-FIN-013;SPF-ORG-012;SPF-CLR-001;SPF-ECN-001 | Merge as listed in disposition-challenges. |
+| SPF-ADV-018 | high | simplicity | The simplification mission added a large body of new requirements, registers, metrics and decisions of its own. | UNB-SMP-CLR-001;UNB-SMP-ECN-001;UNB-SMP-ECN-002;UNB-SMP-CFG-003;UNB-SMP-DSH-001;UNB-SMP-CXP-001;RR-UNB-ECO-001-r2;RR-UNB-ECO-002-r1;RR-UNB-ECO-005-r1;RR-REQ-X-051-r2 | Cut 13 gap requirements to 7 (merge CLR-001 into ORG-002, ECN-001 into ECN-003, CFG-003 into CFG-002; fold ECN-002 into UNB-XIN-ECO-017 as an AC; defer DSH-001; make CXP-001 a design-review artefact); reclassify the thr… |
+| SPF-ADV-019 | medium | simplicity | The customer pass keeps 70 metrics while the adopted release-1 position is a six-metric economics catalog. | XID-ADV-011;SPD-DSH-001;RR-REQ-X-043-r1 | R1: XID-ADV-011 six metrics + their counter-metrics + SPD-DSH-001 executive set + control monitors required by law or controls; everything else is a queue view, not a registered metric. |
+| SPF-ADV-020 | medium | economics | Deferring SOC reports moves assurance cost to the sponsor's auditor, and the model under-ranges assurance cost for multi-sponsor platforms. | SPD-PLT-001;SPF-PLT-003 | Record the displaced audit cost in the bearer map; give audit/assurance a range and a per-platform SOC line for OM3-OM5; keep SPD-PLT-001 for the single-sponsor R1 only if the operator and sponsor are the same entity or… |
+| SPF-ADV-021 | medium | legal | Two eliminated customer steps remove fraud controls without a compensating risk trigger. | SPX-027;SPX-003;XID-ADV-009;UNB-XIN-IAM-003 | Keep both steps risk-triggered (new device + new recipient + amount above band; contribution above a band or unusual pattern) rather than eliminated. |
+| SPF-ADV-022 | medium | experience | Friction eliminated for donors and staff partly reappears at charities and employers and is not counted. | SPD-GRT-004;SPD-CMP-003;SPX-053;SPX-054;SPF-CLR-009 | Add charity-side and employer-side effort to the interaction register and bearer map; keep a check path for charities that cannot enrol. |
+| SPF-ADV-023 | medium | feasibility | Growth shocks are handled by acknowledgment rather than prevented. | UNB-SMP-ECN-002;SPF-ECN-006 | Revise ECN-002: default to phased intake (waves sized so forecast SLA stays above floor); proceed above capacity only with pre-contracted surge (SPD-ECN-004) in place. |
+| SPF-ADV-024 | high | feasibility | The recommended entry segment is the one the economics model says is most expensive to serve. | SPD-CMP-001;SPF-CMP-004;SPF-ECN-004 | Test the entry hypothesis with sponsor-size distribution data before committing; price a per-sponsor component (SPD-ECN-003) and shared-service authority models (SPD-ADV-001) explicitly. |
+| SPF-ADV-025 | medium | legal | In the recommended solo-sponsor structure the platform operator can both configure the AI and sign off its model risk. | ORG-R16;ORG-R17;ORG-R19;SPD-ORG-004 | Require ORG-R17 to be independent of the operator; cap A4 roles per individual and per sponsor count (SPD-ADV-001). |
+| SPF-ADV-026 | medium | legal | AI-assisted QA and after-the-fact sampling lack a check on cases where AI and the original outcome agree. | RR-CTL-040-r1;UNB-XIN-CLM-005;SPF-CLR-005 | Require a random human-reviewed share of AI-agreeing cases and a sample size per stratum that detects a stated error rate at stated confidence; budget the hours. |
+| SPF-ADV-027 | low | consistency | The $258 explanation is a reconstruction that matches to the dollar, not a documented derivation. | SPF-ECN-001;SPF-CLR-001 | Label the midpoint explanation [H] and keep a single finding (SPF-ECN-001). |
+| SPF-ADV-028 | low | consistency | Economics and organisation passes use different agent-ownership headcounts. | TVA-021 | Use one value with its label. |
 
 ## Validation
 
 | Measure | Value |
 |---|---|
 | Errors | 0 |
-| Warnings | 0 |
+| Warnings | 3 |
 | Register rows | 1487 |
-| Trace edges | 1277 |
+| Trace edges | 1490 |
 | Records: refinements | 40 |
 | Records: gaps | 13 |
-| Records: findings | 128 |
+| Records: findings | 156 |
 | Records: conflicts | 0 |
-| Records: scenarios | 61 |
-| Records: decisions | 55 |
-| Records: rejected | 57 |
+| Records: scenarios | 73 |
+| Records: decisions | 58 |
+| Records: rejected | 64 |
 | Records: work | 143 |
 | Records: metrics | 84 |
 | Records: config | 120 |
 | Records: interactions | 90 |
 | Records: comparison | 114 |
 | Records: transfer | 16 |
+| Records: roles | 24 |

@@ -18,6 +18,8 @@ Gates (in addition to G1-G9, D2, D3, D5, D7, D8, D9 reused):
   S5  work-inventory, configuration, interaction, comparison and transfer rows carry their mandatory fields and
       their referenced IDs resolve; transfer candidates are independent of Unbound
   S6  identifiers cited in the mission Markdown reports resolve
+  S7  every 'consolidate' row names a target, and following consolidate links ends at a row that is not itself
+      consolidated or deferred (or at a record outside the register); cycles and dead ends would lose the obligation
 
 The review universe also includes the 14 distinct second definition sites listed as 'reviewed-separately' in
 data/second-site-accounting.csv. Identifiers defined outside the requirement corpus (Echelon component gap IDs) resolve
@@ -41,7 +43,7 @@ from graph import ids_in  # noqa: E402
 
 MISSION = Path("requirements/discovery/2026-11-24-simplification-economics")
 DISCOVERY = Path("requirements/discovery/2026-11-23-cross-industry")
-NEW_ID = re.compile(r"^(RR-.+-r\d+|UNB-SMP-[A-Z]{3}-\d{3}|SP[FDSR]-[A-Z]{3}-\d{3}|SP[WMGCTX]-\d{3})$")
+NEW_ID = re.compile(r"^(RR-.+-r\d+|UNB-SMP-[A-Z]{3}-\d{3}|SP[FDSR]-[A-Z]{3}-\d{3}|SP[WMGCTX]-\d{3}|ORG-R\d{2})$")
 CITED = re.compile(
     r"\b(UNB-SMP-[A-Z]{3}-\d{3}|SP[FDSR]-[A-Z]{3}-\d{3}|SP[WMGCTX]-\d{3}|"
     r"UNB-XIN-[A-Z]{3}-\d{3}|XI[FCD]-[A-Z]{3}-\d{3}|XDS-[A-Z]{3}-\d{3}|XRJ-[A-Z]{3}-\d{3}|"
@@ -107,6 +109,35 @@ def g_register(reg: Tuple[dict, ...], scope: FrozenSet[str]) -> Tuple[Issue, ...
     return missing + extra + dup + tuple(x for r in reg for x in row(r))
 
 
+def g_chains(reg: Tuple[dict, ...]) -> Tuple[Issue, ...]:
+    by = {r["id"]: r for r in reg}
+    def end(i: str, seen: Tuple[str, ...]) -> Tuple[bool, str]:
+        r = by.get(i)
+        if r is None:
+            return True, i                       # record outside the register (e.g. a control or decision) carries it
+        if r["disposition"] == "recommend-removal" and seen:
+            return False, f"{i} (recommend-removal)"
+        if r["disposition"] == "defer" and seen:
+            return True, f"DEFERRED:{i}"
+        if r["disposition"] != "consolidate":
+            return True, i
+        targets = [t for t in (r.get("consolidate_with") or []) if t != i]
+        if not targets:
+            return False, f"{i} (no target)"
+        if i in seen:
+            return False, "cycle " + " -> ".join(seen + (i,))
+        results = [end(t, seen + (i,)) for t in targets]
+        return (True, results[[ok for ok, _ in results].index(True)][1]) if any(ok for ok, _ in results) else results[0]
+    def check(r: dict) -> Iterable[Issue]:
+        if r["disposition"] == "consolidate":
+            ok, where = end(r["id"], ())
+            if not ok:
+                yield Issue("ERROR", "S7", r["id"], f"consolidation chain does not reach a retained carrier: {where}")
+            elif where.startswith("DEFERRED:"):
+                yield Issue("WARN", "S7", r["id"], f"obligation is carried by a deferred requirement ({where[9:]}); it is deferred with that capability")
+    return tuple(x for r in reg for x in check(r))
+
+
 def g_metrics(metrics: Tuple[dict, ...]) -> Tuple[Issue, ...]:
     def row(m: dict) -> Iterable[Issue]:
         i = m.get("id", "?")
@@ -141,7 +172,7 @@ def main(argv) -> int:
             "rejected": tuple(r["id"] for r in rejected), "work": tuple(w["id"] for w in work),
             "metrics": tuple(m["id"] for m in metrics), "config": tuple(c["id"] for c in config),
             "interactions": tuple(x["id"] for x in inter), "comparison": tuple(c["id"] for c in comp),
-            "transfer": tuple(t["id"] for t in transfer)}
+            "transfer": tuple(t["id"] for t in transfer), "roles": tuple(r.get("id") or r["role_id"] for r in L("roles.jsonl"))}
     new = frozenset(i for ids in sets.values() for i in ids)
     ok = v.resolver(baseline, new | prior, narr, known_undefined)
     issues = (
@@ -160,7 +191,7 @@ def main(argv) -> int:
         *v.g_edges(edges, ok),
         *vd.g_fields("D2", gaps, "id", vd.SECTION11), *vd.g_enum("D3", gaps, "id", "priority", vd.PRIORITY),
         *vd.g_fields("D5", rejected, "id", ("idea", "argue_for", "argue_against", "reason_rejected")),
-        *g_register(reg, universe(root, recon, disc, data)),
+        *g_register(reg, universe(root, recon, disc, data)), *g_chains(reg),
         *vd.g_refs_list("S2", reg, "id", ("dependencies", "consolidate_with"), ok),
         *g_metrics(metrics),
         *vd.g_fields("S5", work, "id", ("function", "activity", "trigger", "why_exists", "if_not_performed", "automation")),
