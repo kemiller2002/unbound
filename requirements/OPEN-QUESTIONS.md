@@ -25,11 +25,12 @@ Every question in the requirements missions that still needs an answer, in one p
 
 | Resolution status | Approval | Evidence disposition | Questions |
 |---|---|---|---|
-| resolved | agent-recommended | business-policy-decision | 39 |
+| resolved | agent-recommended | business-policy-decision | 37 |
 | resolved | agent-recommended | empirical-validation-required | 8 |
 | resolved | agent-recommended | established-by-authoritative-evidence | 19 |
 | resolved | agent-recommended | external-authorization-required | 12 |
 | resolved | agent-recommended | reasoned-interpretation | 37 |
+| resolved | approved-owner | business-policy-decision | 2 |
 | resolved | approved-product-direction | business-policy-decision | 163 |
 | resolved | approved-product-direction | empirical-validation-required | 3 |
 | superseded-by-duplicate | agent-recommended | business-policy-decision | 9 |

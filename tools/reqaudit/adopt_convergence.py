@@ -37,6 +37,7 @@ ON = "2026-11-24"
 ACTOR = "Master mission agent (convergence; product-owner directions and mission-adopted evidence, owner ratification pending where agent-recommended)"
 CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulatory", "c4_platform_product",
                   "c5_adversarial_business", "c6_adversarial_technical")
+AMENDMENT_MODULES = ("c7_amendments", "c8_owner_decisions")  # applied in order; each records revision history
 RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
                 "requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl",
                 "requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl",
@@ -58,19 +59,21 @@ def amend(c, a):
                 acceptance_criteria=[sub(x) for x in c["acceptance_criteria"]] + list(a.get("acceptance_add", ())),
                 amends=list(dict.fromkeys(c["amends"] + list(a.get("amends_add", ())))),
                 dependencies=list(dict.fromkeys(c["dependencies"] + list(a.get("dependencies", ())))),
-                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "report 08 adversarial review",
+                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "owner decision" if "owner decision" in a["finding"] else "report 08 adversarial review",
                                                                     "findings": a["finding"], "original_statement": c["statement"]}])
 
 
 def load_clauses(root):
     sys.path.insert(0, str(root / MISSION))
     mods = tuple(importlib.import_module(f"clauses.{m}") for m in CLAUSE_MODULES)
-    amendments = importlib.import_module("clauses.c7_amendments").AMENDMENTS
     base = tuple(c for m in mods for c in m.CLAUSES)
-    unknown = set(amendments) - {c["id"] for c in base}
-    if unknown:
-        raise ValueError(f"amendments for unknown clauses: {sorted(unknown)}")
-    return tuple(amend(c, amendments[c["id"]]) if c["id"] in amendments else c for c in base)
+    def apply_set(cs, module):
+        amendments = importlib.import_module(f"clauses.{module}").AMENDMENTS
+        unknown = set(amendments) - {c["id"] for c in cs}
+        if unknown:
+            raise ValueError(f"{module}: amendments for unknown clauses: {sorted(unknown)}")
+        return tuple(amend(c, amendments[c["id"]]) if c["id"] in amendments else c for c in cs)
+    return reduce(apply_set, AMENDMENT_MODULES, base)
 
 
 def cycles(clauses):
