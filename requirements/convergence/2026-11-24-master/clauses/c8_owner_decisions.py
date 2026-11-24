@@ -50,5 +50,15 @@ AMENDMENTS = {
     "CNV-FIN-008": {"finding": "OD-P-FIN cut E (owner decision)",
         "append": "Release 1 SHALL support only the standard donor-advised account type (contribution without donor restrictions, variance power granted); agency, organization-advised, pass-through and restricted account types SHALL be architecturally supported but disabled until enabled by a later decision (OD-P-FIN cut E).",
         "acceptance_add": ["Given a release-1 deployment, when an agency account type is configured, then it is refused with AccountTypeNotActivated."]},
+    "CNV-GRT-004": {"finding": "OD-P-GRT cut F (owner decision)",
+        "append": "Release 1 SHALL NOT offer the neutral 'enhanced review recommended' flag or any inter-sponsor information-sharing agreement; only re-verified public facts propagate (OD-P-GRT cut F)."},
+    "CNV-GRT-006": {"finding": "OD-P-GRT cut F (owner decision)",
+        "append": "Release 1 SHALL reuse false-positive dispositions only within the deciding sponsor; cross-sponsor reuse for recipient organizations is deferred (OD-P-GRT cut F).",
+        "acceptance_add": ["Given a recipient disposition made by sponsor A, when sponsor B screens the same recipient in release 1, then B's officer must make its own disposition."]},
+    "CNV-GRT-010": {"finding": "OD-P-GRT cut G (owner decision)",
+        "append": "Release 1 SHALL offer only the Prohibited and NonBindingOnly pledge policies; the NoticeConditions option is deferred (OD-P-GRT cut G).",
+        "acceptance_add": ["Given a release-1 sponsor, when NoticeConditions is selected, then it is refused with OptionNotActivated."]},
+    "CNV-GRT-012": {"finding": "OD-P-GRT cut H (owner decision)",
+        "append": "Reconsideration SHALL be implemented as a case type in the common case kernel (CNV-SVC-001) with the independent-reviewer assignment rule and the filing and response clocks, not as a separate module (OD-P-GRT cut H)."},
 }
 
