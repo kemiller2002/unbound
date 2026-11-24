@@ -47,6 +47,8 @@ python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must st
 | 10 | Adversarial, independent brief | §16: assume failure; priorities; contradictions; legal spot-checks; arithmetic | XIF-ADV, XIC-ADV, XID-ADV, XRJ-ADV, UNB-XIN-ADV, priority-challenges.jsonl |
 | 11 | Integrator | Applied the adversarial revisions; wrote 10, 14 and this ledger | §4 below |
 | 12 | Integrator, at the owner's direction (2026-11-24) | Decided the 41 legal and accounting questions after reading the accounting rules; verified §4966(c)(2), §4962, 47 CFR 64.1200, FINRA 2165 and Rev. Proc. 2017-53 | `data/decision-outcomes.jsonl`, report 16, gate D10 |
+| 16 | Integrator, at the owner's direction (2026-11-24) | PostgreSQL 16 benchmark of ADR-EVA-001 (seven pgbench scenarios, fee batch, period-close race); criteria 1, 2 and 5 not falsified; chunking requirement added to UNB-XIN-ERP-001 (XIF-INT-010) | report 18, `benchmark/` |
+| 15 | Integrator, at the owner's direction (2026-11-24) | First-pass release-1 scope: 182 records classified; proposed answers to eight scope decisions (status proposed) | report 17 |
 | 14 | Integrator, at the owner's direction (2026-11-24) | Adopted the 46 decision-translated records into 9 domain files (additions only); records carry `adoption_status`, `adopted_into` and `adopted_on` | domain files listed in the header |
 | 13 | Integrator, at the owner's direction (2026-11-24) | Translated the 41 decisions into requirement text: 45 records revised (`statement_as_proposed`, `decisions_applied`, `AC-D*` criteria); RR-REQ-X-069-r1 added; scenarios XDS-DEC-001..006 | `gap-requirements.jsonl`, `refinements.jsonl`, `scenarios.csv` |
 
@@ -74,10 +76,10 @@ The integrator applied these fixups with session scripts in the order fixups, me
 |---|---|
 | Errors |  |
 | Warnings |  |
-| Trace edges | 2495 |
+| Trace edges | 2499 |
 | Records: refinements | 32 |
 | Records: gaps | 150 |
-| Records: findings | 217 |
+| Records: findings | 218 |
 | Records: conflicts | 38 |
 | Records: scenarios | 211 |
 | Records: decisions | 86 |

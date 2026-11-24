@@ -39,6 +39,8 @@ This is requirements engineering only. No application code was written. All data
 | §16 | Final adversarial review | [14-ADVERSARIAL-REVIEW.md](14-ADVERSARIAL-REVIEW.md) | `XIF-ADV-*`, `priority-challenges.jsonl` |
 | — | Open decisions and acceptance scenarios | [15-OPEN-DECISIONS-AND-SCENARIOS.md](15-OPEN-DECISIONS-AND-SCENARIOS.md) | `decisions.csv`, `scenarios.csv` |
 | — | Decisions on the 41 legal and accounting questions (provisional; confirmations listed) | [16-LEGAL-AND-ACCOUNTING-DECISIONS.md](16-LEGAL-AND-ACCOUNTING-DECISIONS.md) | `decision-outcomes.jsonl` |
+| — | Release-1 scope (first-pass proposal; owner to confirm) | [17-RELEASE-1-SCOPE.md](17-RELEASE-1-SCOPE.md) | `release1-scope.jsonl`, `scope-proposals.jsonl` |
+| §19 | Benchmark of the event-architecture decision (falsification criteria 1, 2 and 5) | [18-ARCHITECTURE-BENCHMARK.md](18-ARCHITECTURE-BENCHMARK.md) | `benchmark/` |
 | — | Independent industry assessments (eight research passes) | [`industry/`](industry/) | — |
 | — | Checkpoint ledger (resume here) | [LEDGER.md](LEDGER.md) | `validation-report.json` |
 

@@ -80,7 +80,7 @@ Neither is a missing feature, and both now have requirements and open decisions.
   - Event coordination runs through an outbox.
   - Process managers run in the database.
   - No broker, workflow engine or event store.
-- **Falsification criteria** are explicit, and the first test is an unrun benchmark.
+- **Falsification criteria** are explicit. The benchmark has since run ([18](18-ARCHITECTURE-BENCHMARK.md)): criteria 1, 2 and 5 hold at 5–10% of measured capacity, provided fund-row batches are chunked.
 - Report: [12](12-EVENT-ARCHITECTURE-DECISION.md).
 
 ## 4. Most consequential contradictions
