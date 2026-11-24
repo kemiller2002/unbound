@@ -97,6 +97,12 @@ def inherited_test_edges(refs: Iterable[dict], scen: Iterable[dict]) -> Iterator
             yield from ((rr, "tested_by", s["scenario_id"], "scenarios.csv (via original)") for rr in by_orig.get(rid, ()))
 
 
+def ui_edges(recs: Iterable[dict]) -> Iterator[Edge]:
+    for u in recs:
+        yield from ((u["id"], "derived_from", t, "ui-requirements.jsonl") for t in u.get("traces", ()) if ID.fullmatch(t))
+        yield from ((u["id"], "depends_on", g, "ui-requirements.jsonl") for g in u.get("capability_gaps", ()))
+
+
 def decision_edges(recs: Iterable[dict]) -> Iterator[Edge]:
     for d in recs:
         yield from ((x, "decided_by", d["decision_id"], "decisions.csv") for x in ids_in(d.get("affected_ids", "")))
@@ -112,6 +118,7 @@ def build(data: Path) -> Tuple[Edge, ...]:
         *scenario_edges(rows(data / "scenarios.csv")),
         *inherited_test_edges(jsonl(data / "refinements.jsonl"), rows(data / "scenarios.csv")),
         *decision_edges(rows(data / "decisions.csv")),
+        *ui_edges(jsonl(data / "ui-requirements.jsonl")),
     )
     return tuple(dict.fromkeys(edges))
 

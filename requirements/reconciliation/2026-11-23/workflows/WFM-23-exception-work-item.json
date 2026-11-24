@@ -1,0 +1,558 @@
+{
+  "workflow_id": "WFM-23",
+  "name": "Rule-created exception work item",
+  "release": "R1",
+  "outcome": "A work item exists only when a deterministic process cannot complete; it closes automatically when its exit condition is met, escalates on SLA breach, and is decided only by an authorized human who is not its preparer",
+  "aggregate": "WorkItem",
+  "sources": [
+    "RR-REQ-X-048-r1",
+    "UNB-RCN-PLT-006",
+    "REQ-X-049",
+    "REQ-X-017",
+    "ADM-016",
+    "ADM-031",
+    "ADM-033",
+    "19-questions/HUMAN-WORK-QUEUES-ROUTING-OWNERSHIP-AND-CASE-CONTINUITY-2026-11-23.md:29",
+    "06-state-models/state-models.md#8 (FLAG-1)"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "WorkItemOpen",
+      "kind": "initial",
+      "user_label": "Open",
+      "lozenge": "attention",
+      "description": "Created by a rule with blocked-outcome reference, creating rule, exit condition and SLA."
+    },
+    {
+      "id": "WorkItemAssigned",
+      "kind": "intermediate",
+      "user_label": "Assigned",
+      "lozenge": "attention",
+      "description": "Routed by the sponsor routing policy (round robin, sticky owner, skill, capacity, hybrid) to an assignee."
+    },
+    {
+      "id": "WorkItemInReview",
+      "kind": "intermediate",
+      "user_label": "In review",
+      "lozenge": "attention",
+      "description": "Claimed by one assignee who gathers evidence and prepares a decision."
+    },
+    {
+      "id": "WorkItemWaitingExternal",
+      "kind": "intermediate",
+      "user_label": "Waiting on others",
+      "lozenge": "attention",
+      "description": "Evidence requested from a donor, charity, provider or other external party."
+    },
+    {
+      "id": "WorkItemEscalated",
+      "kind": "intermediate",
+      "user_label": "Escalated",
+      "lozenge": "attention",
+      "description": "SLA breached or authority beyond the assignee's; supervisor notified."
+    },
+    {
+      "id": "WorkItemDecisionProposed",
+      "kind": "intermediate",
+      "user_label": "Decision proposed",
+      "lozenge": "attention",
+      "description": "Preparer proposed a decision with evidence snapshot; waiting for an authorized decider."
+    },
+    {
+      "id": "WorkItemDecisionRecorded",
+      "kind": "intermediate",
+      "user_label": "Decision recorded",
+      "lozenge": "attention",
+      "description": "Decision record written; command issued to the subject aggregate; waiting for the subject to reach its exit state."
+    },
+    {
+      "id": "WorkItemReopened",
+      "kind": "intermediate",
+      "user_label": "Reopened",
+      "lozenge": "attention",
+      "description": "Decision could not be executed (stale revision, changed evidence) or the subject left its exit state; returns to routing."
+    },
+    {
+      "id": "WorkItemClosed",
+      "kind": "terminal",
+      "user_label": "Closed",
+      "lozenge": "ok",
+      "description": "Subject reached the exit condition after a human decision."
+    },
+    {
+      "id": "WorkItemAutoClosed",
+      "kind": "terminal",
+      "user_label": "Closed automatically",
+      "lozenge": "ok",
+      "description": "Exit condition met by system events without a human decision."
+    },
+    {
+      "id": "WorkItemCancelled",
+      "kind": "terminal",
+      "user_label": "Cancelled",
+      "lozenge": "neutral",
+      "description": "Subject withdrawn or superseded; item no longer needed."
+    },
+    {
+      "id": "WorkItemFollowUp",
+      "kind": "correction",
+      "user_label": "Follow-up item linked",
+      "lozenge": "neutral",
+      "description": "Same condition recurred on new evidence after closure: a new linked item is raised; the closed item is unchanged."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-23-T01",
+      "from": "WorkItemOpen",
+      "to": "WorkItemAssigned",
+      "trigger": "event",
+      "name": "AssignByRoutingPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Routing engine",
+      "authority": "A2",
+      "guards": [
+        "assignment-confers-no-authority",
+        "assignee-in-sponsor-scope"
+      ],
+      "effects": [
+        "set-owner"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "NoEligibleAssignee",
+          "to_state": "WorkItemOpen"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "REQ-X-049",
+        "ADM-031"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-017"
+      ],
+      "notes": "Creation itself is governed: each creating rule states its expected volume and the decision only a human can make (UNB-RCN-PLT-006)."
+    },
+    {
+      "id": "WFM-23-T02",
+      "from": [
+        "WorkItemOpen",
+        "WorkItemAssigned"
+      ],
+      "to": "WorkItemInReview",
+      "trigger": "command",
+      "name": "ClaimWorkItem",
+      "actor_type": "human",
+      "actor_role": "Assignee (sponsor operations, compliance or finance staff)",
+      "authority": "A1",
+      "guards": [
+        "single-claim",
+        "claimant-in-sponsor-scope"
+      ],
+      "effects": [
+        "record-claim"
+      ],
+      "idempotency_key": "(workItemId, assignmentVersion)",
+      "failure": [
+        {
+          "condition": "AlreadyClaimed",
+          "to_state": "WorkItemAssigned"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "UNB-UI-S-008"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-018"
+      ],
+      "ui_surface": "UNB-UI-S-008"
+    },
+    {
+      "id": "WFM-23-T03",
+      "from": [
+        "WorkItemAssigned",
+        "WorkItemInReview",
+        "WorkItemEscalated"
+      ],
+      "to": "WorkItemAssigned",
+      "trigger": "command",
+      "name": "ReassignWorkItem",
+      "actor_type": "human",
+      "actor_role": "Team lead or supervisor",
+      "authority": "A2",
+      "guards": [
+        "reason-recorded"
+      ],
+      "effects": [
+        "assignment-version-increment"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "REQ-X-049"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-008"
+    },
+    {
+      "id": "WFM-23-T04",
+      "from": "WorkItemInReview",
+      "to": "WorkItemWaitingExternal",
+      "trigger": "command",
+      "name": "RequestEvidence",
+      "actor_type": "human",
+      "actor_role": "Assignee",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "send-evidence-request",
+        "pause-sla-if-policy-allows"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "UNB-UI-S-009"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-23-T05",
+      "from": "WorkItemWaitingExternal",
+      "to": "WorkItemInReview",
+      "trigger": "event",
+      "name": "ExternalEvidenceReceived",
+      "actor_type": "external",
+      "actor_role": "Donor, charity or provider",
+      "authority": "A3",
+      "guards": [
+        "source-authenticated"
+      ],
+      "effects": [
+        "attach-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutNoResponse",
+          "to_state": "WorkItemEscalated"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "REQ-X-046"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T06",
+      "from": [
+        "WorkItemOpen",
+        "WorkItemAssigned",
+        "WorkItemInReview",
+        "WorkItemWaitingExternal",
+        "WorkItemEscalated",
+        "WorkItemDecisionProposed"
+      ],
+      "to": "WorkItemAutoClosed",
+      "trigger": "event",
+      "name": "ExitConditionMetBySystemEvents",
+      "actor_type": "deterministic",
+      "actor_role": "Rule engine",
+      "authority": "A3",
+      "guards": [
+        "exit-condition-evaluated-on-authoritative-state"
+      ],
+      "effects": [
+        "close-without-decision",
+        "record-touch-metrics"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "UNB-RCN-PLT-006"
+      ],
+      "scenario_ids": [
+        "DKS-PLT-019"
+      ],
+      "notes": "Only a rule-raised item may auto-close; a model-raised flag never supersedes itself (state-models #8)."
+    },
+    {
+      "id": "WFM-23-T07",
+      "from": [
+        "WorkItemOpen",
+        "WorkItemAssigned",
+        "WorkItemInReview",
+        "WorkItemWaitingExternal"
+      ],
+      "to": "WorkItemEscalated",
+      "trigger": "timer",
+      "name": "SlaBreached",
+      "actor_type": "timer",
+      "actor_role": "SLA timer (sponsor calendar)",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-supervisor",
+        "raise-priority"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "ADM-033",
+        "GOV-AUTH-026"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T08",
+      "from": "WorkItemInReview",
+      "to": "WorkItemEscalated",
+      "trigger": "command",
+      "name": "EscalateForAuthority",
+      "actor_type": "human",
+      "actor_role": "Assignee",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "notify-authority-holder"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "GOV-AUTH-013",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-23-T09",
+      "from": "WorkItemInReview",
+      "to": "WorkItemDecisionProposed",
+      "trigger": "command",
+      "name": "ProposeDecision",
+      "actor_type": "human",
+      "actor_role": "Assignee (preparer)",
+      "authority": "A1",
+      "guards": [
+        "evidence-snapshot-recorded"
+      ],
+      "effects": [
+        "record-proposal"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "REQ-X-017",
+        "UNB-UI-D-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-23-T10",
+      "from": "WorkItemInReview",
+      "to": "WorkItemInReview",
+      "trigger": "command",
+      "name": "DraftEvidenceSummary",
+      "actor_type": "ai",
+      "actor_role": "Case assistant (AI)",
+      "authority": "A1",
+      "guards": [
+        "context-read-under-principal-tenant-context"
+      ],
+      "effects": [
+        "ai-summary-labelled-not-a-decision"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "REQ-X-017",
+        "UNB-UI-G-011",
+        "UNB-RCN-PLT-004"
+      ],
+      "scenario_ids": [],
+      "notes": "AI may summarise and propose; it never records a decision or closes an item (INV-15)."
+    },
+    {
+      "id": "WFM-23-T11",
+      "from": "WorkItemDecisionProposed",
+      "to": "WorkItemDecisionRecorded",
+      "trigger": "command",
+      "name": "RecordDecision",
+      "actor_type": "human",
+      "actor_role": "Authorized decider for the action class",
+      "authority": "A4",
+      "guards": [
+        "decider-holds-authority-for-action-class",
+        "segregation-of-duties",
+        "decider-not-preparer",
+        "evidence-snapshot-current"
+      ],
+      "effects": [
+        "decision-record",
+        "issue-command-to-subject"
+      ],
+      "idempotency_key": "(workItemId, proposalVersion)",
+      "failure": [
+        {
+          "condition": "EvidenceChangedSinceProposal",
+          "to_state": "WorkItemInReview"
+        },
+        {
+          "condition": "DeciderIsPreparer",
+          "to_state": "WorkItemDecisionProposed"
+        },
+        {
+          "condition": "DeciderLacksAuthority",
+          "to_state": "WorkItemEscalated"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "GOV-AUTH-004",
+        "GOV-AUTH-009",
+        "UNB-RCN-PLT-005",
+        "UNB-UI-D-005"
+      ],
+      "scenario_ids": [
+        "ADV-034",
+        "ADV-580",
+        "ADV-582"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "When the decision is a grant approval, the grant workflow carries the grant-approval effect and its mandatory guards; under RCD-005 this is the human A4 (batch) approval until delegation is approved."
+    },
+    {
+      "id": "WFM-23-T12",
+      "from": "WorkItemDecisionRecorded",
+      "to": "WorkItemClosed",
+      "trigger": "event",
+      "name": "SubjectReachedExitState",
+      "actor_type": "deterministic",
+      "actor_role": "Rule engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "close-item",
+        "record-touch-metrics"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T13",
+      "from": "WorkItemDecisionRecorded",
+      "to": "WorkItemReopened",
+      "trigger": "event",
+      "name": "DecisionExecutionFailed",
+      "actor_type": "deterministic",
+      "actor_role": "Rule engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-failure-cause"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "GOV-AUTH-009"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T14",
+      "from": "WorkItemReopened",
+      "to": "WorkItemAssigned",
+      "trigger": "event",
+      "name": "RerouteReopenedItem",
+      "actor_type": "deterministic",
+      "actor_role": "Routing engine",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "prefer-previous-owner"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "REQ-X-049"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T15",
+      "from": [
+        "WorkItemOpen",
+        "WorkItemAssigned",
+        "WorkItemInReview",
+        "WorkItemWaitingExternal",
+        "WorkItemEscalated",
+        "WorkItemDecisionProposed"
+      ],
+      "to": "WorkItemCancelled",
+      "trigger": "event",
+      "name": "SubjectWithdrawnOrSuperseded",
+      "actor_type": "deterministic",
+      "actor_role": "Rule engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "close-without-decision"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-23-T16",
+      "from": "WorkItemClosed",
+      "to": "WorkItemFollowUp",
+      "trigger": "event",
+      "name": "ConditionRecursOnNewEvidence",
+      "actor_type": "deterministic",
+      "actor_role": "Rule engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "create-linked-work-item"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "ADM-016"
+      ],
+      "scenario_ids": []
+    }
+  ],
+  "invariants": [
+    "A WorkItem is created only for (a) a rule-defined hold, (b) missing or conflicting evidence, (c) a decision requiring human authority, or (d) a provider Unknown requiring reconciliation",
+    "Every WorkItem references the blocked outcome, the creating rule or event and its exit condition",
+    "Assignment never confers decision authority; the decider holds authority for the action class and is not the preparer",
+    "A WorkItem never expires by time alone; SLA breach escalates (FLAG-1)",
+    "An AI-prepared summary is labelled and is never a decision (UNB-UI-G-011)",
+    "STP rate, human touches per outcome and items per rule are measured per sponsor and workflow (UNB-RCN-PLT-006)"
+  ]
+}

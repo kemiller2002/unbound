@@ -1,0 +1,515 @@
+{
+  "workflow_id": "WFM-13",
+  "name": "Charity payment destination change",
+  "release": "R1",
+  "outcome": "A charity's new bank destination becomes usable only after DestinationEvidence meeting the rail minimum and an independent callback, while authorized payments stay pinned to the previous verified destination",
+  "aggregate": "PayeeDestinationVersion",
+  "sources": [
+    "RR-REQ-X-005-r1",
+    "UNB-RCN-GRT-017",
+    "UNB-UI-S-012",
+    "UNB-GEX-018",
+    "UNB-CHAR-032",
+    "UNB-RCN-GRT-002",
+    "UNB-RCN-ENT-016",
+    "RCD-028",
+    "TX-19",
+    "RCF-GRT-018",
+    "RCF-GRT-019",
+    "PRECISE-PAYMENT-STATE-MACHINE-AND-RAIL-PROOF-CONTRACT-2026-11-23.md invariant 2"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-012",
+    "UNB-UI-S-008",
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "DestDraft",
+      "kind": "initial",
+      "user_label": "Draft",
+      "lozenge": "neutral",
+      "description": "A new destination version is being prepared (charity portal, staff-assisted intake or an ACH NOC)."
+    },
+    {
+      "id": "DestChangeRequested",
+      "kind": "intermediate",
+      "user_label": "Change requested",
+      "lozenge": "attention",
+      "description": "Request recorded with requester identity and channel. The previous verified version stays effective for every payment."
+    },
+    {
+      "id": "DestEvidenceCollecting",
+      "kind": "intermediate",
+      "user_label": "Verifying account",
+      "lozenge": "neutral",
+      "description": "Collecting evidence named in the Treasury DestinationEvidence table (bank-originated account-owner match, prenote/return absence)."
+    },
+    {
+      "id": "DestCallbackPending",
+      "kind": "intermediate",
+      "user_label": "Awaiting callback",
+      "lozenge": "attention",
+      "description": "Independent callback using a contact sourced separately from the change request (registry contact, not the request's contact)."
+    },
+    {
+      "id": "DestFraudSuspected",
+      "kind": "intermediate",
+      "user_label": "Under security review",
+      "lozenge": "blocked",
+      "description": "Owner mismatch, related-party owner match, callback denial or other fraud signal. No activation possible."
+    },
+    {
+      "id": "DestPending",
+      "kind": "intermediate",
+      "user_label": "Verified – pending activation",
+      "lozenge": "neutral",
+      "description": "Evidence meets the rail minimum; waiting for the effective time/cooling-off period and old-channel notice."
+    },
+    {
+      "id": "DestActive",
+      "kind": "intermediate",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "Effective destination version. Payments authorized after activation pin this version; payments authorized earlier stay on the version pinned at authorization."
+    },
+    {
+      "id": "DestSuperseded",
+      "kind": "terminal",
+      "user_label": "Replaced",
+      "lozenge": "neutral",
+      "description": "A newer version became Active."
+    },
+    {
+      "id": "DestRevoked",
+      "kind": "terminal",
+      "user_label": "Revoked",
+      "lozenge": "blocked",
+      "description": "Account closed (R02/R03/R04), fraud discovered or charity withdrew the account."
+    },
+    {
+      "id": "DestRejected",
+      "kind": "terminal",
+      "user_label": "Rejected",
+      "lozenge": "blocked",
+      "description": "Verification failed or fraud confirmed; charity notified on its verified channel."
+    },
+    {
+      "id": "DestWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Requester withdrew before activation."
+    },
+    {
+      "id": "DestExpired",
+      "kind": "terminal",
+      "user_label": "Expired",
+      "lozenge": "neutral",
+      "description": "Callback or evidence window elapsed without verification."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-13-T01",
+      "from": "DestDraft",
+      "to": "DestChangeRequested",
+      "trigger": "command",
+      "name": "SubmitDestinationChange",
+      "actor_type": "human",
+      "actor_role": "Charity officer (authenticated, role-verified)",
+      "authority": "A2",
+      "guards": [
+        "requester-role-verified"
+      ],
+      "effects": [
+        "create-destination-version",
+        "notify-previous-channel"
+      ],
+      "idempotency_key": "(charityId, requestId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017",
+        "UNB-UI-S-012",
+        "UNB-GEX-018"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-012"
+    },
+    {
+      "id": "WFM-13-T02",
+      "from": "DestDraft",
+      "to": "DestChangeRequested",
+      "trigger": "command",
+      "name": "RecordStaffAssistedChange",
+      "actor_type": "human",
+      "actor_role": "Sponsor operations (staff-assisted)",
+      "authority": "A2",
+      "guards": [
+        "channel-and-assurance-recorded"
+      ],
+      "effects": [
+        "create-destination-version",
+        "notify-previous-channel"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-016",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-024"
+      ],
+      "ui_surface": "NEW:Assisted change console",
+      "notes": "Must be confirmed through the charity's verified channel before any consequential effect (UNB-RCN-ENT-016)."
+    },
+    {
+      "id": "WFM-13-T03",
+      "from": "DestDraft",
+      "to": "DestChangeRequested",
+      "trigger": "event",
+      "name": "RecordNocCorrection",
+      "actor_type": "external",
+      "actor_role": "Partner payment rail (RDFI NOC)",
+      "authority": "A2",
+      "guards": [
+        "callback-authenticated"
+      ],
+      "effects": [
+        "create-destination-version",
+        "hold-new-releases-to-previous-version"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutNocDetailsIncomplete"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-024"
+      ],
+      "notes": "NOC exception: the previous version is known wrong, so new releases to it are held (WFM-10 DestinationCorrectionPending) instead of continuing; already-authorized payments keep their pin."
+    },
+    {
+      "id": "WFM-13-T04",
+      "from": "DestChangeRequested",
+      "to": "DestEvidenceCollecting",
+      "trigger": "event",
+      "name": "StartVerification",
+      "actor_type": "deterministic",
+      "actor_role": "Destination verification service",
+      "authority": "A2",
+      "guards": [
+        "destination-evidence-table-version-pinned"
+      ],
+      "effects": [
+        "related-party-owner-check"
+      ],
+      "failure": [
+        {
+          "condition": "RelatedPartyOwnerMatch",
+          "to_state": "DestFraudSuspected"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-002",
+        "UNB-RCN-GRT-017"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-007"
+      ]
+    },
+    {
+      "id": "WFM-13-T05",
+      "from": "DestEvidenceCollecting",
+      "to": "DestCallbackPending",
+      "trigger": "event",
+      "name": "RecordBankOwnerEvidence",
+      "actor_type": "external",
+      "actor_role": "Bank account-verification provider / prenote",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-evidence-class"
+      ],
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownOwnerMatch"
+        },
+        {
+          "condition": "OwnerMismatch",
+          "to_state": "DestFraudSuspected"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-017",
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [
+        "DKS-XD-011"
+      ],
+      "notes": "For a NOC the RDFI-originated correction is itself E1 owner evidence (expedited path, RCF-GRT-019; Treasury and counsel to confirm)."
+    },
+    {
+      "id": "WFM-13-T06",
+      "from": "DestCallbackPending",
+      "to": "DestPending",
+      "trigger": "command",
+      "name": "ConfirmIndependentCallback",
+      "actor_type": "human",
+      "actor_role": "Destination verifier (not the requester)",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "contact-sourced-independently",
+        "evidence-meets-rail-minimum"
+      ],
+      "effects": [
+        "record-evidence-class",
+        "set-effective-time"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017",
+        "UNB-GEX-018"
+      ],
+      "scenario_ids": [
+        "DKS-XD-011",
+        "DKS-GRT-024"
+      ],
+      "ui_surface": "NEW:Destination change verification"
+    },
+    {
+      "id": "WFM-13-T07",
+      "from": "DestCallbackPending",
+      "to": "DestFraudSuspected",
+      "trigger": "command",
+      "name": "RecordCallbackDenial",
+      "actor_type": "human",
+      "actor_role": "Destination verifier (not the requester)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify-security",
+        "notify-previous-channel"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-GEX-018"
+      ],
+      "scenario_ids": [
+        "DKS-XD-011"
+      ],
+      "ui_surface": "NEW:Destination change verification"
+    },
+    {
+      "id": "WFM-13-T08",
+      "from": [
+        "DestEvidenceCollecting",
+        "DestCallbackPending"
+      ],
+      "to": "DestExpired",
+      "trigger": "timer",
+      "name": "VerificationWindowElapsed",
+      "actor_type": "timer",
+      "actor_role": "Destination verification scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-requester"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: the verification window is not parameterised by any requirement."
+    },
+    {
+      "id": "WFM-13-T09",
+      "from": "DestFraudSuspected",
+      "to": "DestRejected",
+      "trigger": "command",
+      "name": "RejectDestination",
+      "actor_type": "human",
+      "actor_role": "Sponsor security or compliance reviewer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "notify-previous-channel",
+        "flag-charity-record"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-CHAR-032"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Destination change verification"
+    },
+    {
+      "id": "WFM-13-T10",
+      "from": "DestFraudSuspected",
+      "to": "DestEvidenceCollecting",
+      "trigger": "command",
+      "name": "ClearFraudSignal",
+      "actor_type": "human",
+      "actor_role": "Sponsor security or compliance reviewer",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties",
+        "explanation-evidence-attached",
+        "not-a-related-party-match"
+      ],
+      "effects": [
+        "record-decision"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-002"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Destination change verification",
+      "notes": "A related-party owner match cannot be cleared here; it needs counsel's determination (UNB-RCN-GRT-002) and stays rejected otherwise."
+    },
+    {
+      "id": "WFM-13-T11",
+      "from": [
+        "DestChangeRequested",
+        "DestEvidenceCollecting",
+        "DestCallbackPending",
+        "DestPending"
+      ],
+      "to": "DestWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawChange",
+      "actor_type": "human",
+      "actor_role": "Charity officer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-UI-S-012"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-012"
+    },
+    {
+      "id": "WFM-13-T12",
+      "from": "DestPending",
+      "to": "DestActive",
+      "trigger": "timer",
+      "name": "ActivateDestination",
+      "actor_type": "timer",
+      "actor_role": "Destination verification scheduler",
+      "authority": "A3",
+      "guards": [
+        "evidence-meets-rail-minimum",
+        "no-open-fraud-flag",
+        "effective-time-reached"
+      ],
+      "effects": [
+        "activate-version",
+        "supersede-previous-version",
+        "notify-previous-and-new-channel",
+        "release-noc-hold"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-RCN-GRT-017",
+        "UNB-CHAR-032"
+      ],
+      "scenario_ids": [
+        "DKS-XD-011",
+        "DKS-GRT-024"
+      ]
+    },
+    {
+      "id": "WFM-13-T13",
+      "from": "DestActive",
+      "to": "DestSuperseded",
+      "trigger": "event",
+      "name": "SupersedeByNewerVersion",
+      "actor_type": "deterministic",
+      "actor_role": "Destination verification service",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "keep-pins-on-authorized-payments"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-13-T14",
+      "from": "DestActive",
+      "to": "DestRevoked",
+      "trigger": "event",
+      "name": "RevokeOnAccountClosedReturn",
+      "actor_type": "deterministic",
+      "actor_role": "ACH return handler (WFM-10)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "block-new-releases-to-version",
+        "notify-charity"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "RR-UNB-PAY-006-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "R02/R03/R04 return codes; the charity must submit a new destination through this workflow."
+    },
+    {
+      "id": "WFM-13-T15",
+      "from": "DestActive",
+      "to": "DestRevoked",
+      "trigger": "command",
+      "name": "RevokeDestination",
+      "actor_type": "human",
+      "actor_role": "Sponsor treasury operations",
+      "authority": "A3",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "block-new-releases-to-version",
+        "notify-charity"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-005-r1",
+        "UNB-CHAR-032"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Destination change verification"
+    }
+  ],
+  "invariants": [
+    "Requester and verifier are different principals; no charity self-service activation",
+    "A destination change, including a corrected NOC, always creates a new version; versions are never edited",
+    "An authorized payment is dispatched only to the version pinned at its authorization",
+    "Rails or providers that cannot meet the DestinationEvidence minimum are ineligible for automated release",
+    "Every activation notifies the charity on both the previous and the new verified channels"
+  ]
+}

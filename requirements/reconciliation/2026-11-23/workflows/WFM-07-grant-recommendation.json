@@ -1,0 +1,599 @@
+{
+  "workflow_id": "WFM-07",
+  "name": "Grant recommendation (donor and advisor side)",
+  "release": "R1",
+  "outcome": "A donor or advisor's recommendation reaches the sponsor exactly once, bound to a canonical charity and a valid affirmation, or ends with a stated reason",
+  "aggregate": "GrantRecommendation",
+  "sources": [
+    "UNB-RCN-GRT-010",
+    "UNB-RCN-GRT-009",
+    "UNB-RCN-GRT-012",
+    "RR-UNB-GRANT-011-r1",
+    "UNB-RCN-PLT-014",
+    "UNB-UI-S-003",
+    "RCD-016",
+    "RCD-014",
+    "RR-REQ-X-008-r1",
+    "RR-UNB-SUCC-008-r1",
+    "TX-10",
+    "TX-26",
+    "06-state-models/state-models.md §1 REC-1..REC-7"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-001",
+    "UNB-UI-S-004",
+    "UNB-UI-W-001"
+  ],
+  "states": [
+    {
+      "id": "RecDraft",
+      "kind": "initial",
+      "user_label": "Draft",
+      "lozenge": "neutral",
+      "description": "Recommendation being prepared in the S-003 wizard. No financial effect; may hold a soft pending claim that lowers only the displayed recommendable amount (REC-1)."
+    },
+    {
+      "id": "RecAwaitingPrincipalConfirmation",
+      "kind": "intermediate",
+      "user_label": "Waiting for your confirmation",
+      "lozenge": "attention",
+      "description": "Prepared by a delegate (professional advisor or co-advisor) whose role grant requires the principal's confirmation."
+    },
+    {
+      "id": "RecSubmitted",
+      "kind": "intermediate",
+      "user_label": "Submitted",
+      "lozenge": "neutral",
+      "description": "Accepted with valid AffirmationEvidence; a sponsor-side grant (WFM-08) is under review. The requester can still withdraw."
+    },
+    {
+      "id": "RecReaffirmationRequired",
+      "kind": "intermediate",
+      "user_label": "Needs your confirmation",
+      "lozenge": "attention",
+      "description": "The disclosure version or sponsor policy version changed after submission; the affirmation is invalid until the requester re-affirms (UNB-RCN-GRT-010)."
+    },
+    {
+      "id": "RecAuthorityHeld",
+      "kind": "intermediate",
+      "user_label": "On hold – authority review",
+      "lozenge": "attention",
+      "description": "The requester's authority changed before a decision (death or incapacity notice, revocation). Not decided under authority that no longer exists (REC-3)."
+    },
+    {
+      "id": "RecDecided",
+      "kind": "terminal",
+      "user_label": "Decision issued",
+      "lozenge": "neutral",
+      "description": "The sponsor approved or declined (outcome on the grant, WFM-08). After this only a cancellation request is possible."
+    },
+    {
+      "id": "RecPolicyRejected",
+      "kind": "terminal",
+      "user_label": "Not accepted",
+      "lozenge": "blocked",
+      "description": "Rejected by the deterministic intake policy (prohibited recipient class, benefit-bearing host context, pledge prohibited) with an explanation."
+    },
+    {
+      "id": "RecWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Withdrawn by the requester before a sponsor decision; the linked grant closed in the same operation (REC-5)."
+    },
+    {
+      "id": "RecSuperseded",
+      "kind": "terminal",
+      "user_label": "Replaced by an edit",
+      "lozenge": "neutral",
+      "description": "Material edit after submission created a new linked recommendation."
+    },
+    {
+      "id": "RecLapsed",
+      "kind": "terminal",
+      "user_label": "Lapsed",
+      "lozenge": "neutral",
+      "description": "Sponsor lapsed the recommendation after an authority change."
+    },
+    {
+      "id": "RecExpired",
+      "kind": "terminal",
+      "user_label": "Expired",
+      "lozenge": "neutral",
+      "description": "Draft, confirmation or re-affirmation window elapsed."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-07-T01",
+      "from": "RecDraft",
+      "to": "RecSubmitted",
+      "trigger": "command",
+      "name": "SubmitRecommendation",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "affirmation-valid-current-disclosure",
+        "canonical-charity-bound",
+        "pledge-policy-satisfied",
+        "host-context-declared"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "soft-pending-claim",
+        "create-grant-under-review",
+        "notify"
+      ],
+      "idempotency_key": "(fundId, draftHash, clientIdempotencyKey)",
+      "failure": [
+        {
+          "condition": "AffirmationMissingOrStaleVersion",
+          "to_state": "RecDraft"
+        },
+        {
+          "condition": "RecipientNotCanonical",
+          "to_state": "RecDraft"
+        },
+        {
+          "condition": "RoleGrantOutOfScope",
+          "to_state": "RecDraft"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010",
+        "UNB-RCN-PLT-014",
+        "RR-UNB-ADV-001-r1",
+        "UNB-RCN-GRT-009",
+        "UNB-RCN-GRT-012",
+        "UNB-GRANT-002",
+        "UNB-UI-S-003"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-010",
+        "DKS-XD-012"
+      ],
+      "ui_surface": "UNB-UI-S-003",
+      "notes": "Widget and API submissions use the same command and the same affirmation check (UNB-RCN-GRT-010). Supporting-org grants capture the donor/advisor donor-control certification here when the grantee certification is absent (UNB-RCN-REG-002). Pledge question shown per sponsor policy (RCD-016: default NoticeConditions)."
+    },
+    {
+      "id": "WFM-07-T02",
+      "from": "RecDraft",
+      "to": "RecAwaitingPrincipalConfirmation",
+      "trigger": "command",
+      "name": "PrepareForPrincipal",
+      "actor_type": "human",
+      "actor_role": "Delegate (professional advisor or co-advisor)",
+      "authority": "A1",
+      "guards": [
+        "authority-current",
+        "canonical-charity-bound"
+      ],
+      "effects": [
+        "notify-principal"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-003",
+      "notes": "Delegates without submit scope prepare only. AI agents acting on accounts are out of release 1 (RCD-013)."
+    },
+    {
+      "id": "WFM-07-T03",
+      "from": "RecAwaitingPrincipalConfirmation",
+      "to": "RecSubmitted",
+      "trigger": "command",
+      "name": "PrincipalConfirms",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "affirmation-valid-current-disclosure",
+        "step-up-authentication"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "soft-pending-claim",
+        "create-grant-under-review"
+      ],
+      "idempotency_key": "(recommendationId, draftHash)",
+      "failure": [
+        {
+          "condition": "DraftChangedSincePreparation",
+          "to_state": "RecDraft"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-004"
+    },
+    {
+      "id": "WFM-07-T04",
+      "from": "RecAwaitingPrincipalConfirmation",
+      "to": "RecWithdrawn",
+      "trigger": "command",
+      "name": "PrincipalDeclines",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-delegate"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-004"
+    },
+    {
+      "id": "WFM-07-T05",
+      "from": "RecAwaitingPrincipalConfirmation",
+      "to": "RecExpired",
+      "trigger": "timer",
+      "name": "ConfirmationWindowElapsed",
+      "actor_type": "timer",
+      "actor_role": "Recommendation scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "notify-delegate"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: confirmation window is not parameterised by any requirement."
+    },
+    {
+      "id": "WFM-07-T06",
+      "from": "RecDraft",
+      "to": "RecExpired",
+      "trigger": "timer",
+      "name": "DraftExpired",
+      "actor_type": "timer",
+      "actor_role": "Recommendation scheduler",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "release-soft-claim"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-07-T07",
+      "from": "RecSubmitted",
+      "to": "RecPolicyRejected",
+      "trigger": "event",
+      "name": "IntakePolicyReject",
+      "actor_type": "deterministic",
+      "actor_role": "BenefitAndPurposeGate / RecipientClass rule",
+      "authority": "A3",
+      "guards": [
+        "gate-outcome-reject",
+        "policy-version-pinned"
+      ],
+      "effects": [
+        "close-linked-grant",
+        "release-soft-claim",
+        "notify-with-explanation"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-GRANT-011-r1",
+        "UNB-RCN-GRT-001",
+        "UNB-RCN-GRT-009",
+        "UNB-RCN-GRT-012",
+        "RCD-014",
+        "RCD-016"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-005",
+        "DKS-GRT-006",
+        "DKS-GRT-009"
+      ],
+      "notes": "Reject outcomes only; Hold outcomes stay Submitted and are handled by WFM-08 qualified review. Natural-person and non-charitable classes have no override."
+    },
+    {
+      "id": "WFM-07-T08",
+      "from": [
+        "RecSubmitted",
+        "RecReaffirmationRequired",
+        "RecAuthorityHeld"
+      ],
+      "to": "RecDecided",
+      "trigger": "event",
+      "name": "RecordSponsorDecision",
+      "actor_type": "deterministic",
+      "actor_role": "Grant aggregate (WFM-08)",
+      "authority": "A0",
+      "guards": [],
+      "effects": [
+        "release-soft-claim",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-GRANT-001",
+        "RR-REQ-X-002-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Emitted when WFM-08 reaches GrantReserved (approved) or GrantDeclined."
+    },
+    {
+      "id": "WFM-07-T09",
+      "from": [
+        "RecSubmitted",
+        "RecReaffirmationRequired"
+      ],
+      "to": "RecWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawRecommendation",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "no-sponsor-decision",
+        "authority-current"
+      ],
+      "effects": [
+        "close-linked-grant",
+        "release-soft-claim"
+      ],
+      "idempotency_key": "(recommendationId, revision)",
+      "failure": [
+        {
+          "condition": "DecisionAlreadyIssued",
+          "to_state": "RecDecided"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-GRANT-001"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-004",
+      "notes": "Serialised on the grant revision against batch approval; if approval committed first the user is offered 'Request cancellation' (WFM-08)."
+    },
+    {
+      "id": "WFM-07-T10",
+      "from": "RecSubmitted",
+      "to": "RecSuperseded",
+      "trigger": "command",
+      "name": "EditSubmittedRecommendation",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "no-sponsor-decision",
+        "authority-current"
+      ],
+      "effects": [
+        "close-linked-grant",
+        "create-linked-draft"
+      ],
+      "failure": [
+        {
+          "condition": "DecisionAlreadyIssued",
+          "to_state": "RecDecided"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-GRANT-028",
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-004",
+      "notes": "Material change of amount, recipient or purpose invalidates the affirmation; the new draft needs a fresh affirmation."
+    },
+    {
+      "id": "WFM-07-T11",
+      "from": "RecSubmitted",
+      "to": "RecReaffirmationRequired",
+      "trigger": "event",
+      "name": "AffirmationInvalidated",
+      "actor_type": "deterministic",
+      "actor_role": "Affirmation rule",
+      "authority": "A2",
+      "guards": [
+        "material-disclosure-or-policy-change"
+      ],
+      "effects": [
+        "pause-linked-grant-review",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-010",
+        "DKS-XD-013"
+      ]
+    },
+    {
+      "id": "WFM-07-T12",
+      "from": "RecReaffirmationRequired",
+      "to": "RecSubmitted",
+      "trigger": "command",
+      "name": "Reaffirm",
+      "actor_type": "human",
+      "actor_role": "Donor or advisory-privilege holder",
+      "authority": "A2",
+      "guards": [
+        "authority-current",
+        "affirmation-valid-current-disclosure"
+      ],
+      "effects": [
+        "record-affirmation-evidence",
+        "resume-linked-grant-review"
+      ],
+      "idempotency_key": "(recommendationId, disclosureVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010"
+      ],
+      "scenario_ids": [
+        "DKS-GRT-010"
+      ],
+      "ui_surface": "UNB-UI-S-003"
+    },
+    {
+      "id": "WFM-07-T13",
+      "from": "RecReaffirmationRequired",
+      "to": "RecExpired",
+      "trigger": "timer",
+      "name": "ReaffirmationWindowElapsed",
+      "actor_type": "timer",
+      "actor_role": "Recommendation scheduler",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "close-linked-grant",
+        "release-soft-claim",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-GRT-010",
+        "UNB-GRANT-028"
+      ],
+      "scenario_ids": [],
+      "notes": "Gap: re-affirmation window not parameterised."
+    },
+    {
+      "id": "WFM-07-T14",
+      "from": [
+        "RecDraft",
+        "RecSubmitted",
+        "RecAwaitingPrincipalConfirmation",
+        "RecReaffirmationRequired"
+      ],
+      "to": "RecAuthorityHeld",
+      "trigger": "event",
+      "name": "RequesterAuthorityChanged",
+      "actor_type": "deterministic",
+      "actor_role": "Authority service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "pause-linked-grant-review",
+        "notify-verified-channel"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-REQ-X-008-r1",
+        "UNB-RCN-ENT-004",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001",
+        "DKS-ENT-023"
+      ],
+      "notes": "ProtectiveHold on any death/incapacity notice; revocation of a co-advisor role grant affects only recommendations derived from that person."
+    },
+    {
+      "id": "WFM-07-T15",
+      "from": "RecAuthorityHeld",
+      "to": "RecLapsed",
+      "trigger": "command",
+      "name": "LapseRecommendation",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [
+        "death-or-revocation-verified"
+      ],
+      "effects": [
+        "close-linked-grant",
+        "release-soft-claim",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-008-r1",
+        "RCD-022"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Sponsor death_pending_grant_policy for unapproved recommendations is lapse | hold. A deterministic lapse is allowed when the policy value is 'lapse'."
+    },
+    {
+      "id": "WFM-07-T16",
+      "from": "RecAuthorityHeld",
+      "to": "RecLapsed",
+      "trigger": "event",
+      "name": "LapseByPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "death_pending_grant_policy",
+      "authority": "A3",
+      "guards": [
+        "death-verified",
+        "policy-value-lapse"
+      ],
+      "effects": [
+        "close-linked-grant",
+        "release-soft-claim",
+        "notify"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-008-r1",
+        "RCD-022"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-003"
+      ]
+    },
+    {
+      "id": "WFM-07-T17",
+      "from": "RecAuthorityHeld",
+      "to": "RecSubmitted",
+      "trigger": "command",
+      "name": "ReinstateRecommendation",
+      "actor_type": "human",
+      "actor_role": "Sponsor grants officer",
+      "authority": "A3",
+      "guards": [
+        "authority-current",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "resume-linked-grant-review"
+      ],
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Notice proved false, or a co-advisor with independent authority adopts it with a fresh affirmation."
+    }
+  ],
+  "invariants": [
+    "A recommendation never moves money and never reserves capacity",
+    "Every submission carries AffirmationEvidence for the current disclosure version with an explicit affirmative action; no pre-checked or inferred consent",
+    "A recommendation binds to a canonical charity identity, never free text",
+    "Under pledge policy NoticeConditions no pledge identifier leaves the platform in sponsor-issued artifacts; inbound pledge references are internal evidence only",
+    "Withdrawal is possible only before the sponsor decision; withdrawal and grant closure commit together"
+  ]
+}

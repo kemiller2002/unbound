@@ -1,0 +1,1213 @@
+{
+  "workflow_id": "WFM-04",
+  "name": "Publicly traded securities contribution (DTC)",
+  "release": "R1",
+  "outcome": "Each delivered lot is matched, accepted, valued, settled into custody and credited once, acknowledged by description, disposed per policy, with 8283/8282 obligations tracked",
+  "aggregate": "Contribution",
+  "sources": [
+    "RR-UNB-ACC-006-r1",
+    "RR-UNB-INV-012-r1",
+    "UNB-RCN-FIN-002",
+    "UNB-RCN-FIN-003",
+    "UNB-RCN-FIN-011",
+    "RCD-019",
+    "TX-06",
+    "TX-07",
+    "TX-08",
+    "TX-09"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-005",
+    "UNB-UI-S-001",
+    "UNB-UI-S-007"
+  ],
+  "states": [
+    {
+      "id": "SecuritiesGiftNew",
+      "kind": "initial",
+      "user_label": "New",
+      "lozenge": "neutral",
+      "description": "No record yet; created by a donor intent or by an unannounced DTC delivery."
+    },
+    {
+      "id": "SecuritiesIntentDeclared",
+      "kind": "intermediate",
+      "user_label": "Transfer expected",
+      "lozenge": "attention",
+      "description": "Intent: security (CUSIP), quantity, delivering broker, fund. No ledger entry."
+    },
+    {
+      "id": "SecuritiesDeliveryUnmatched",
+      "kind": "intermediate",
+      "user_label": "Unidentified delivery",
+      "lozenge": "attention",
+      "description": "Custodian reports a DTC receipt with no usable intent reference; held in suspense position."
+    },
+    {
+      "id": "SecuritiesPartiallyReceived",
+      "kind": "intermediate",
+      "user_label": "Partially received",
+      "lozenge": "attention",
+      "description": "Some declared lots received at the custodian; acknowledgment withheld (DKS-REG-006)."
+    },
+    {
+      "id": "SecuritiesReceived",
+      "kind": "intermediate",
+      "user_label": "Received",
+      "lozenge": "attention",
+      "description": "All expected lots (or the closed partial set) reported received by the custodian; not yet accepted."
+    },
+    {
+      "id": "SecuritiesHeld",
+      "kind": "intermediate",
+      "user_label": "Held for review",
+      "lozenge": "blocked",
+      "description": "Restricted/legended security, unsupported asset, potential sanctions match, missing completed-gift evidence or fund not active."
+    },
+    {
+      "id": "SecuritiesAccepted",
+      "kind": "intermediate",
+      "user_label": "Accepted",
+      "lozenge": "attention",
+      "description": "CompletedGiftDetermined and SponsorAccepted recorded per lot."
+    },
+    {
+      "id": "SecuritiesValuationException",
+      "kind": "intermediate",
+      "user_label": "Valuation exception",
+      "lozenge": "unknown",
+      "description": "Gift-date price stale, missing or conflicting; no value recorded."
+    },
+    {
+      "id": "SecuritiesValued",
+      "kind": "intermediate",
+      "user_label": "Valued",
+      "lozenge": "attention",
+      "description": "Separate typed values recorded: sponsor book value, custody receipt value (UTC timestamp, convention, price source)."
+    },
+    {
+      "id": "SecuritiesFinal",
+      "kind": "intermediate",
+      "user_label": "Settled in custody",
+      "lozenge": "ok",
+      "description": "Position settled into sponsor custody and reconciled; grantable capacity credited at the policy value (haircut per RR-REQ-X-002-r1)."
+    },
+    {
+      "id": "SecuritiesAcknowledged",
+      "kind": "intermediate",
+      "user_label": "Acknowledged",
+      "lozenge": "ok",
+      "description": "Acknowledgment issued describing the property (no value)."
+    },
+    {
+      "id": "SecuritiesHeldInKind",
+      "kind": "intermediate",
+      "user_label": "Held in kind",
+      "lozenge": "ok",
+      "description": "Sponsor investment policy retains the position; later sale follows the same sale path."
+    },
+    {
+      "id": "SecuritiesSaleOrdered",
+      "kind": "intermediate",
+      "user_label": "Sale ordered",
+      "lozenge": "attention",
+      "description": "Sale instruction sent to the custodian per liquidation policy."
+    },
+    {
+      "id": "SecuritiesSaleUnknown",
+      "kind": "intermediate",
+      "user_label": "Sale outcome unknown",
+      "lozenge": "unknown",
+      "description": "Custodian gave no definite outcome for the sale instruction; no re-order."
+    },
+    {
+      "id": "SecuritiesSold",
+      "kind": "intermediate",
+      "user_label": "Sold",
+      "lozenge": "ok",
+      "description": "Sale settled; proceeds and realized result posted; proceeds value recorded as a separate fact."
+    },
+    {
+      "id": "SecuritiesForm8282Due",
+      "kind": "intermediate",
+      "user_label": "Form 8282 due",
+      "lozenge": "attention",
+      "description": "Disposition of a lot linked to a signed Form 8283 Section B within the reporting window; obligation tracked to filing evidence."
+    },
+    {
+      "id": "SecuritiesGiftComplete",
+      "kind": "terminal",
+      "user_label": "Complete",
+      "lozenge": "ok",
+      "description": "Gift final, acknowledged, disposed per policy and every Form 8282 obligation satisfied or excepted."
+    },
+    {
+      "id": "SecuritiesIntentRejected",
+      "kind": "terminal",
+      "user_label": "Not accepted (use intermediary)",
+      "lozenge": "neutral",
+      "description": "Asset is not a publicly traded security; donor directed to WFM-05."
+    },
+    {
+      "id": "SecuritiesIntentCancelled",
+      "kind": "terminal",
+      "user_label": "Cancelled",
+      "lozenge": "neutral",
+      "description": "Donor cancelled before any delivery."
+    },
+    {
+      "id": "SecuritiesIntentLapsed",
+      "kind": "terminal",
+      "user_label": "Lapsed",
+      "lozenge": "neutral",
+      "description": "No delivery within the declaration window."
+    },
+    {
+      "id": "SecuritiesReturnedToBroker",
+      "kind": "terminal",
+      "user_label": "Returned to delivering broker",
+      "lozenge": "neutral",
+      "description": "Never-accepted securities redelivered to the donor's broker (UNB-RCN-FIN-013 exception)."
+    },
+    {
+      "id": "SecuritiesReturnUnknown",
+      "kind": "intermediate",
+      "user_label": "Redelivery outcome unknown",
+      "lozenge": "unknown",
+      "description": "Redelivery to the donor's broker submitted; outcome not determinable."
+    },
+    {
+      "id": "SecuritiesDeliveryReversed",
+      "kind": "terminal",
+      "user_label": "Delivery reversed by custodian",
+      "lozenge": "blocked",
+      "description": "Custodian reversed a misposted receipt before acceptance."
+    },
+    {
+      "id": "SecuritiesBlocked",
+      "kind": "terminal",
+      "user_label": "Blocked (sanctions)",
+      "lozenge": "blocked",
+      "description": "Confirmed sanctions match: position blocked, OFAC report started."
+    },
+    {
+      "id": "SecuritiesGiftCorrected",
+      "kind": "correction",
+      "user_label": "Corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction child (misattributed fund, custodian restatement of lot data); original preserved."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-04-T01",
+      "from": "SecuritiesGiftNew",
+      "to": "SecuritiesIntentDeclared",
+      "trigger": "command",
+      "name": "DeclareSecuritiesTransfer",
+      "actor_type": "human",
+      "actor_role": "Donor, advisor or successor with contribution permission",
+      "authority": "A1",
+      "guards": [
+        "fund-accepts-contributions",
+        "contributor-of-record-determined"
+      ],
+      "effects": [
+        "record-intent",
+        "issue-dtc-instructions"
+      ],
+      "idempotency_key": "(fundId, clientRequestKey)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-UI-S-005",
+        "UNB-RCN-ENT-009"
+      ],
+      "scenario_ids": [
+        "TVS-312"
+      ],
+      "ui_surface": "UNB-UI-S-005"
+    },
+    {
+      "id": "WFM-04-T02",
+      "from": "SecuritiesGiftNew",
+      "to": "SecuritiesDeliveryUnmatched",
+      "trigger": "event",
+      "name": "RecordUnannouncedDelivery",
+      "actor_type": "external",
+      "actor_role": "Custodian receipt feed",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(custodianId, custodianTxnRef)",
+      "failure": [
+        {
+          "condition": "TimeoutCustodianFeedStale",
+          "to_state": "SecuritiesGiftNew"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-020"
+      ]
+    },
+    {
+      "id": "WFM-04-T03",
+      "from": "SecuritiesIntentDeclared",
+      "to": "SecuritiesIntentRejected",
+      "trigger": "event",
+      "name": "ClassifyAssetNotPubliclyTraded",
+      "actor_type": "deterministic",
+      "actor_role": "Asset classification rule",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(contributionId, classificationVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-013",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-005"
+      ],
+      "notes": "Release 1 accepts only publicly traded securities directly; others go to the intermediary (WFM-05)."
+    },
+    {
+      "id": "WFM-04-T04",
+      "from": [
+        "SecuritiesIntentDeclared",
+        "SecuritiesPartiallyReceived"
+      ],
+      "to": "SecuritiesPartiallyReceived",
+      "trigger": "event",
+      "name": "RecordLotReceipt",
+      "actor_type": "external",
+      "actor_role": "Custodian receipt feed (DTC)",
+      "authority": "A3",
+      "guards": [
+        "receipt-evidence-authenticated"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(custodianId, custodianTxnRef, lotId)",
+      "failure": [
+        {
+          "condition": "UnknownMatch"
+        },
+        {
+          "condition": "DuplicateCustodianRecord"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-002"
+      ],
+      "scenario_ids": [
+        "DKS-REG-006",
+        "DKS-FIN-020"
+      ],
+      "notes": "Lot-level: quantity, acquisition date and basis per lot (needed for 8283/8282). Late or out-of-order files are applied by effective date; prices are not back-dated (TVS-323)."
+    },
+    {
+      "id": "WFM-04-T05",
+      "from": [
+        "SecuritiesIntentDeclared",
+        "SecuritiesPartiallyReceived"
+      ],
+      "to": "SecuritiesReceived",
+      "trigger": "event",
+      "name": "RecordFinalLotReceipt",
+      "actor_type": "external",
+      "actor_role": "Custodian receipt feed (DTC)",
+      "authority": "A3",
+      "guards": [
+        "receipt-evidence-authenticated"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(custodianId, custodianTxnRef, lotId)",
+      "failure": [
+        {
+          "condition": "UnknownMatch"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-012"
+      ],
+      "scenario_ids": [
+        "DKS-REG-006",
+        "TVS-323"
+      ]
+    },
+    {
+      "id": "WFM-04-T06",
+      "from": "SecuritiesPartiallyReceived",
+      "to": "SecuritiesReceived",
+      "trigger": "timer",
+      "name": "ClosePartialReceipt",
+      "actor_type": "timer",
+      "actor_role": "Contribution aging monitor (remaining-lots window)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": [
+        "DKS-REG-006"
+      ],
+      "notes": "GAP: no requirement defines when an incomplete multi-lot delivery is closed as partial; modelled as a sponsor-set window or donor confirmation."
+    },
+    {
+      "id": "WFM-04-T07",
+      "from": "SecuritiesDeliveryUnmatched",
+      "to": "SecuritiesReceived",
+      "trigger": "command",
+      "name": "MatchUnidentifiedDelivery",
+      "actor_type": "human",
+      "actor_role": "Contribution operations specialist",
+      "authority": "A4",
+      "guards": [
+        "remitter-evidence-attached",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1",
+        "UNB-ACC-018"
+      ],
+      "scenario_ids": [
+        "TVS-359"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-04-T08",
+      "from": "SecuritiesReceived",
+      "to": "SecuritiesAccepted",
+      "trigger": "event",
+      "name": "DetermineCompletedGiftAndAccept",
+      "actor_type": "deterministic",
+      "actor_role": "Gift acceptance policy (publicly traded securities)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-evidence-present",
+        "sanctions-clear",
+        "fund-active",
+        "security-unrestricted"
+      ],
+      "effects": [
+        "completed-gift-determined",
+        "sponsor-accepted"
+      ],
+      "idempotency_key": "(contributionId, ruleTableVersion)",
+      "failure": [
+        {
+          "condition": "HoldRuleMatched",
+          "to_state": "SecuritiesHeld"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-012",
+        "RCD-019",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "TVS-312"
+      ]
+    },
+    {
+      "id": "WFM-04-T09",
+      "from": "SecuritiesHeld",
+      "to": "SecuritiesAccepted",
+      "trigger": "command",
+      "name": "AcceptAfterReview",
+      "actor_type": "human",
+      "actor_role": "Sponsor gift acceptance officer",
+      "authority": "A4",
+      "guards": [
+        "hold-reason-dispositioned",
+        "segregation-of-duties",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "completed-gift-determined",
+        "sponsor-accepted"
+      ],
+      "idempotency_key": "(contributionId, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-INV-012-r1",
+        "RCD-015",
+        "RCD-023"
+      ],
+      "scenario_ids": [
+        "SIM-007"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Restricted (Rule 144) shares require a recorded liquidation plan before acceptance."
+    },
+    {
+      "id": "WFM-04-T10",
+      "from": "SecuritiesHeld",
+      "to": "SecuritiesBlocked",
+      "trigger": "command",
+      "name": "ConfirmSanctionsTrueMatch",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ledger",
+        "blocked-property",
+        "ofac-report"
+      ],
+      "idempotency_key": "(screeningCaseId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-04-T11",
+      "from": [
+        "SecuritiesHeld",
+        "SecuritiesDeliveryUnmatched"
+      ],
+      "to": "SecuritiesReturnedToBroker",
+      "trigger": "command",
+      "name": "RedeliverNeverAcceptedSecurities",
+      "actor_type": "deterministic",
+      "actor_role": "Custody operations via custodian (after A4 decline decision)",
+      "authority": "A3",
+      "guards": [
+        "eligibility-current",
+        "sanctions-clear",
+        "hold-watermark-current",
+        "destination-verified",
+        "funded",
+        "not-sponsor-accepted",
+        "decline-decision-recorded"
+      ],
+      "effects": [
+        "external-money-out",
+        "external-call",
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, redeliveryAttempt)",
+      "failure": [
+        {
+          "condition": "UnknownCustodianOutcome",
+          "to_state": "SecuritiesReturnUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-016"
+      ],
+      "notes": "Decline decision is taken in the case workspace (A4) before this command. Guard interpretation as in WFM-03 return-to-sender."
+    },
+    {
+      "id": "WFM-04-T12",
+      "from": "SecuritiesReturnUnknown",
+      "to": "SecuritiesReturnedToBroker",
+      "trigger": "event",
+      "name": "ResolveRedeliveryUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Custody operations (custodian status query)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call",
+        "ledger"
+      ],
+      "idempotency_key": "(receiptId, idempotencyKey)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "SecuritiesReturnUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-REQ-X-004-r1",
+        "UNB-RCN-FIN-013"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T13",
+      "from": [
+        "SecuritiesReceived",
+        "SecuritiesHeld"
+      ],
+      "to": "SecuritiesDeliveryReversed",
+      "trigger": "event",
+      "name": "CustodianReversesDelivery",
+      "actor_type": "external",
+      "actor_role": "Custodian",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(custodianId, reversalRef)",
+      "failure": [
+        {
+          "condition": "UnknownReversalScope"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-ACC-003"
+      ],
+      "scenario_ids": [
+        "TVS-359"
+      ]
+    },
+    {
+      "id": "WFM-04-T14",
+      "from": "SecuritiesAccepted",
+      "to": "SecuritiesValued",
+      "trigger": "event",
+      "name": "ValueGift",
+      "actor_type": "deterministic",
+      "actor_role": "Valuation policy engine",
+      "authority": "A3",
+      "guards": [
+        "price-source-fresh",
+        "valuation-convention-declared"
+      ],
+      "effects": [
+        "record-valuation"
+      ],
+      "idempotency_key": "(contributionId, lotId, valuationPolicyVersion)",
+      "failure": [
+        {
+          "condition": "PriceStaleMissingOrConflicting",
+          "to_state": "SecuritiesValuationException"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-011",
+        "RR-UNB-ACC-006-r1",
+        "UNB-NAV-013"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-006",
+        "TVS-323"
+      ]
+    },
+    {
+      "id": "WFM-04-T15",
+      "from": "SecuritiesValuationException",
+      "to": "SecuritiesValued",
+      "trigger": "command",
+      "name": "ApproveFallbackPrice",
+      "actor_type": "human",
+      "actor_role": "Pricing reviewer (independent of preparer)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "fallback-in-pricing-hierarchy"
+      ],
+      "effects": [
+        "record-valuation"
+      ],
+      "idempotency_key": "(contributionId, lotId, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-015",
+        "UNB-RCN-FIN-011"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-006"
+      ],
+      "ui_surface": "NEW:Price exception review"
+    },
+    {
+      "id": "WFM-04-T16",
+      "from": "SecuritiesValued",
+      "to": "SecuritiesFinal",
+      "trigger": "event",
+      "name": "ConfirmSettlementIntoCustody",
+      "actor_type": "external",
+      "actor_role": "Custodian position statement",
+      "authority": "A3",
+      "guards": [
+        "contribution-final",
+        "lot-owner-assigned"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, custodyStatementDate)",
+      "failure": [
+        {
+          "condition": "TimeoutCustodyConfirmation",
+          "to_state": "SecuritiesValued"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-019",
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-007",
+        "RR-REQ-X-002-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-012",
+        "ADV-120"
+      ],
+      "notes": "Capacity credited at the policy value with the configured haircut for positional sources; multi-fund custody accounts require a declared attribution method."
+    },
+    {
+      "id": "WFM-04-T17",
+      "from": "SecuritiesFinal",
+      "to": "SecuritiesAcknowledged",
+      "trigger": "command",
+      "name": "IssueAcknowledgment",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service (gated IssueAcknowledgment)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete",
+        "all-lots-closed"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue"
+      ],
+      "idempotency_key": "(contributionId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "SecuritiesFinal"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019",
+        "RR-UNB-ACC-006-r1",
+        "UNB-UI-D-001"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003",
+        "DKS-REG-006"
+      ],
+      "notes": "Describes the property (security, quantity, date); states no value. An informational value only where counsel policy allows, labelled as not an appraisal."
+    },
+    {
+      "id": "WFM-04-T18",
+      "from": [
+        "SecuritiesFinal",
+        "SecuritiesAcknowledged"
+      ],
+      "to": "SecuritiesSaleOrdered",
+      "trigger": "event",
+      "name": "ApplyLiquidationPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor liquidation policy (sell on receipt)",
+      "authority": "A3",
+      "guards": [
+        "trading-not-frozen",
+        "lot-owner-assigned"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(contributionId, lotId, saleInstructionVersion)",
+      "failure": [
+        {
+          "condition": "UnknownCustodianAck",
+          "to_state": "SecuritiesSaleUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-INV-012-r1",
+        "UNB-INV-015"
+      ],
+      "scenario_ids": [
+        "TVS-330"
+      ],
+      "notes": "Liquidation does not wait for the acknowledgment; an acknowledgment for an already-sold gift is issued from Sold."
+    },
+    {
+      "id": "WFM-04-T19",
+      "from": [
+        "SecuritiesFinal",
+        "SecuritiesAcknowledged"
+      ],
+      "to": "SecuritiesHeldInKind",
+      "trigger": "event",
+      "name": "RetainInKind",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor investment policy",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(contributionId, policyVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-INV-012-r1",
+        "UNB-INV-014"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T20",
+      "from": "SecuritiesHeldInKind",
+      "to": "SecuritiesSaleOrdered",
+      "trigger": "command",
+      "name": "OrderSaleOfHeldPosition",
+      "actor_type": "deterministic",
+      "actor_role": "Rebalancing or grant-funding instruction (approved under INV-015)",
+      "authority": "A3",
+      "guards": [
+        "trading-not-frozen"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(positionId, instructionId)",
+      "failure": [
+        {
+          "condition": "UnknownCustodianAck",
+          "to_state": "SecuritiesSaleUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-INV-015",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T21",
+      "from": "SecuritiesHeldInKind",
+      "to": "SecuritiesHeldInKind",
+      "trigger": "command",
+      "name": "IssueAcknowledgmentForHeldPosition",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue"
+      ],
+      "idempotency_key": "(contributionId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "SecuritiesHeldInKind"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003"
+      ]
+    },
+    {
+      "id": "WFM-04-T22",
+      "from": "SecuritiesSaleUnknown",
+      "to": "SecuritiesSaleOrdered",
+      "trigger": "event",
+      "name": "ResolveSaleUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Custody operations (query by instruction id)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(instructionId)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "SecuritiesSaleUnknown"
+        },
+        {
+          "condition": "ProvenNotReceived",
+          "to_state": "SecuritiesFinal"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-INV-037",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T23",
+      "from": "SecuritiesSaleOrdered",
+      "to": "SecuritiesHeldInKind",
+      "trigger": "event",
+      "name": "SaleRejectedOrHalted",
+      "actor_type": "external",
+      "actor_role": "Custodian / market",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(instructionId, providerEventId)",
+      "failure": [
+        {
+          "condition": "UnknownRejectReason"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-INV-037"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T24",
+      "from": "SecuritiesSaleOrdered",
+      "to": "SecuritiesSold",
+      "trigger": "event",
+      "name": "SaleSettled",
+      "actor_type": "external",
+      "actor_role": "Custodian trade settlement",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "ledger",
+        "record-proceeds"
+      ],
+      "idempotency_key": "(instructionId, settlementRef)",
+      "failure": [
+        {
+          "condition": "TimeoutSettlementEvidence",
+          "to_state": "SecuritiesSaleUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-003",
+        "UNB-ACC-031"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ],
+      "notes": "Proceeds recorded as a separate typed value; sponsor book value and acknowledgment unaffected."
+    },
+    {
+      "id": "WFM-04-T25",
+      "from": "SecuritiesSold",
+      "to": "SecuritiesSold",
+      "trigger": "command",
+      "name": "IssueAcknowledgmentAfterSale",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue"
+      ],
+      "idempotency_key": "(contributionId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "SecuritiesSold"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003"
+      ]
+    },
+    {
+      "id": "WFM-04-T26",
+      "from": "SecuritiesFinal",
+      "to": "SecuritiesFinal",
+      "trigger": "command",
+      "name": "SignForm8283SectionB",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized donee signatory",
+      "authority": "A4",
+      "guards": [
+        "sponsor-accepted",
+        "lot-identifiers-recorded"
+      ],
+      "effects": [
+        "form8283-signed-record"
+      ],
+      "idempotency_key": "(contributionId, form8283RequestId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-002",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ],
+      "ui_surface": "NEW:Form 8283 donee signature",
+      "notes": "Records signature event, property description, lot ids and date of receipt; signature acknowledges receipt, not value."
+    },
+    {
+      "id": "WFM-04-T27",
+      "from": "SecuritiesHeldInKind",
+      "to": "SecuritiesHeldInKind",
+      "trigger": "command",
+      "name": "SignForm8283SectionB",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized donee signatory",
+      "authority": "A4",
+      "guards": [
+        "sponsor-accepted",
+        "lot-identifiers-recorded"
+      ],
+      "effects": [
+        "form8283-signed-record"
+      ],
+      "idempotency_key": "(contributionId, form8283RequestId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-002",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ],
+      "ui_surface": "NEW:Form 8283 donee signature",
+      "notes": "Records signature event, property description, lot ids and date of receipt; signature acknowledges receipt, not value."
+    },
+    {
+      "id": "WFM-04-T28",
+      "from": "SecuritiesSold",
+      "to": "SecuritiesForm8282Due",
+      "trigger": "event",
+      "name": "CreateForm8282Obligation",
+      "actor_type": "deterministic",
+      "actor_role": "Tax compliance rule (disposition within reporting window of a Form8283Signed lot)",
+      "authority": "A3",
+      "guards": [
+        "form8283-signed-lot-disposed-in-window",
+        "no-counsel-exception"
+      ],
+      "effects": [
+        "form8282-obligation",
+        "work-item"
+      ],
+      "idempotency_key": "(lotId, dispositionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-003",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ]
+    },
+    {
+      "id": "WFM-04-T29",
+      "from": "SecuritiesSold",
+      "to": "SecuritiesGiftComplete",
+      "trigger": "event",
+      "name": "CloseGiftRecord",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution lifecycle",
+      "authority": "A3",
+      "guards": [
+        "acknowledgment-issued",
+        "no-open-form8282-obligation"
+      ],
+      "effects": [
+        "record-disposed"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentOutstanding",
+          "to_state": "SecuritiesSold"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-04-T30",
+      "from": "SecuritiesForm8282Due",
+      "to": "SecuritiesForm8282Due",
+      "trigger": "timer",
+      "name": "EscalateForm8282BeforeDue",
+      "actor_type": "timer",
+      "actor_role": "Tax compliance deadline monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item",
+        "notify"
+      ],
+      "idempotency_key": "(obligationId, escalationTier)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-003"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ]
+    },
+    {
+      "id": "WFM-04-T31",
+      "from": "SecuritiesForm8282Due",
+      "to": "SecuritiesGiftComplete",
+      "trigger": "command",
+      "name": "RecordForm8282Filed",
+      "actor_type": "human",
+      "actor_role": "Sponsor tax compliance officer",
+      "authority": "A4",
+      "guards": [
+        "filing-receipt-evidence",
+        "donor-copy-sent",
+        "acknowledgment-issued"
+      ],
+      "effects": [
+        "record-filing"
+      ],
+      "idempotency_key": "(obligationId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-003"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-004"
+      ],
+      "ui_surface": "NEW:Form 8282 obligation tracker"
+    },
+    {
+      "id": "WFM-04-T32",
+      "from": "SecuritiesIntentDeclared",
+      "to": "SecuritiesIntentCancelled",
+      "trigger": "command",
+      "name": "CancelDeclaration",
+      "actor_type": "human",
+      "actor_role": "Donor or advisor who declared",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "record-intent"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ACC-006-r1",
+        "UNB-UI-S-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-005"
+    },
+    {
+      "id": "WFM-04-T33",
+      "from": "SecuritiesIntentDeclared",
+      "to": "SecuritiesIntentLapsed",
+      "trigger": "timer",
+      "name": "DeclarationExpired",
+      "actor_type": "timer",
+      "actor_role": "Contribution aging monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(contributionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-006"
+      ],
+      "scenario_ids": [],
+      "notes": "GAP: no requirement sets an intent expiry window."
+    },
+    {
+      "id": "WFM-04-T34",
+      "from": [
+        "SecuritiesGiftComplete"
+      ],
+      "to": "SecuritiesGiftCorrected",
+      "trigger": "command",
+      "name": "CorrectSecuritiesGift",
+      "actor_type": "human",
+      "actor_role": "Controller (with second approver)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "ledger",
+        "reserve-capacity",
+        "acknowledgment-correction"
+      ],
+      "idempotency_key": "(contributionId, correctionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-003",
+        "UNB-RCN-FIN-006",
+        "UNB-NAV-042"
+      ],
+      "scenario_ids": [
+        "TVS-359",
+        "TVS-345"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "Capacity is credited only on SecuritiesFinal (settlement into custody) and never from intent, partial receipt or acceptance.",
+    "No acknowledgment while any declared lot is still open (DKS-REG-006); acknowledgments state no value.",
+    "Every sale of a lot linked to a Form8283Signed record within the window creates exactly one Form8282Obligation unless a counsel exception applies.",
+    "Sponsor book value, custody receipt value, informational acknowledgment value and sale proceeds are separate typed facts.",
+    "Never-accepted securities may be redelivered; accepted securities never return to the donor."
+  ]
+}

@@ -25,6 +25,10 @@
 | 13 | Architecture dependency analysis | [13-ARCHITECTURE-DEPENDENCY-ANALYSIS.md](13-ARCHITECTURE-DEPENDENCY-ANALYSIS.md) | — |
 | 14 | Open decisions and unresolved questions | [14-OPEN-DECISIONS.md](14-OPEN-DECISIONS.md) | `data/decisions.csv` |
 | 15 | Final reconciliation and readiness assessment | [15-READINESS-ASSESSMENT.md](15-READINESS-ASSESSMENT.md) | `data/validation-report.json` |
+| 16 | UI requirements and concrete designs (Forma/Folio fit) | [16-UI-REQUIREMENTS-AND-DESIGNS.md](16-UI-REQUIREMENTS-AND-DESIGNS.md) | `data/ui-requirements.jsonl`, `ui-component-gaps.csv`, `forma-catalog.csv`, `folio-elements.csv`; prototypes in `requirements/ui/designs/` |
+| 17 | Workflow validation (26 release-1 state machines) and surface inventory | [17-WORKFLOW-VALIDATION.md](17-WORKFLOW-VALIDATION.md) | `workflows/WFM-*.json`, `data/workflow-validation.json`, `surface-inventory.csv`, `surface-ia.csv` |
+| 18 | UI quality, design system and experience refinement (audit, tokens, navigation, financial presentation, accessibility, responsive, visual regression, roadmap) | [18-UI-QUALITY-AND-DESIGN-SYSTEM.md](18-UI-QUALITY-AND-DESIGN-SYSTEM.md) | `data/ui-defects.csv`, `ui-state-matrix.csv`, `ui-scenario-coverage.csv`, `ui-refinement-trace.csv`, `ui-requirements.jsonl` (`UNB-UI-DS/N/F/R/A/V`), `scenarios.csv` (`DKS-UI-*`); prototypes in `requirements/ui/designs/v2/` |
+| — | Adoption, decisions and renames | domain files (marked sections), [14](14-OPEN-DECISIONS.md) | `data/adoption.csv`, `decisions.csv`, `counsel-positions.csv`, `renamed-ids.csv` |
 | — | Checkpoint ledger (resume here) | [LEDGER.md](LEDGER.md) | — |
 
 ## Identifier schemes (new; none overlap a baseline family)
@@ -37,6 +41,10 @@
 | `RCC-<DOMAIN>-<nnn>` | Conflict |
 | `RCD-<nnn>` | Open decision requiring human authority |
 | `DKS-<DOMAIN>-<nnn>` | Dokimos-ready acceptance scenario |
+| `UNB-UI-<G\|S\|D\|W\|P>-<nnn>` | UI requirement: global rule, screen, document, widget, case panel |
+| `UNB-UI-<DS\|N\|F\|R\|A\|V>-<nnn>` | UI quality requirement: design system, navigation, financial presentation, responsive, accessibility, visual regression (report 18) |
+| `UXD-nnn`, `UIR-nnn` | v1 UI defect (`data/ui-defects.csv`); UI refinement traceability record (`data/ui-refinement-trace.csv`) |
+| `FORMA-GAP-nn`, `FOLIO-GAP-nn`, `UNB-GAP-W-nn` | Component capability gap (recorded; not raised in other repositories) |
 | `NARR-<8 hex>` | Content-addressed surrogate for a normative statement that has no identifier |
 
 Withdrawn identifiers are listed with their replacement in `data/withdrawn-ids.csv` and must never be reused (gate G1).
@@ -54,7 +62,9 @@ python3 -I tools/reqaudit/inventory.py . requirements/reconciliation/2026-11-23/
 python3 -I tools/reqaudit/quality.py requirements/reconciliation/2026-11-23/data .     # heuristic signals
 python3 -I tools/reqaudit/graph.py requirements/reconciliation/2026-11-23/data          # regenerate edges
 python3 -I tools/reqaudit/render.py .                                                    # refresh generated tables in reports
-python3 -I tools/reqaudit/validate.py .                                                  # gates G1-G11; non-zero exit on error
+python3 -I tools/reqaudit/validate.py .                                                  # gates G1-G12; non-zero exit on error
+python3 -I tools/reqaudit/workflows.py .                                                 # workflow checks W1-W11; writes surface inventory
+python3 -I tools/reqaudit/ia.py                                                          # every surface mapped to a workspace
 ```
 
 Gates: duplicate identifiers (G1); collisions with baseline IDs (G2); originals exist (G3) and are quoted verbatim at the baseline revision (G4); required fields (G5); Given/When/Then acceptance criteria (G6); gap-analysis origin and finding (G7); references resolve (G8); edge vocabulary and endpoints (G9); identifiers cited in these reports resolve (G10); every refinement and gap requirement is tested by a scenario (G11, warning).

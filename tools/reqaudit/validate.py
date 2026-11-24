@@ -18,6 +18,9 @@ Checks:
   G9 trace-edge relationships belong to the vocabulary and endpoints resolve
   G10 identifiers cited in reconciliation Markdown reports resolve
   G11 every refinement and gap requirement has at least one tested_by edge (WARN)
+  G12 UI requirements name only Forma components and Folio elements present in the pinned catalog
+      snapshots (forma-catalog.csv, folio-elements.csv); every cited capability gap is registered in
+      ui-component-gaps.csv; every UI record has Given/When/Then acceptance criteria
 
 Usage: python3 -I tools/reqaudit/validate.py <repo-root>
 """
@@ -37,8 +40,8 @@ RECON = Path("requirements/reconciliation/2026-11-23")
 BASELINE_REV = "777a70d"
 REL_VOCAB = frozenset({"refines", "supersedes", "conflicts_with", "duplicates", "depends_on", "derived_from",
                        "validated_by", "implemented_by", "tested_by", "affects", "decided_by"})
-NEW_ID = re.compile(r"^(RR-.+-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})$")
-CITED = re.compile(r"\b(RR-[A-Z0-9-]+?-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})\b")
+NEW_ID = re.compile(r"^(UNB-UI-(?:[GSDWPNFRAV]|DS)-\d{3}|RR-.+-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})$")
+CITED = re.compile(r"\b(UNB-UI-(?:[GSDWPNFRAV]|DS)-\d{3}|RR-[A-Z0-9-]+?-r\d+|UNB-RCN-[A-Z]+-\d{3}|RCF-[A-Z]+-\d{3}|RCC-[A-Z]+-\d{3}|RCD-\d{3}|DKS-[A-Z]+-\d{3})\b")
 ANY_ID = re.compile(r"^[A-Z][A-Z0-9]*(?:-[A-Z0-9]+)*-(?:[A-Z]?\d{1,4}[A-Za-z]?(?:-Q)?|\*)$")
 
 REQUIRED = {
@@ -52,6 +55,7 @@ REQUIRED = {
     "conflicts": ("conflict_id", "requirement_a", "requirement_b", "incompatibility", "recommended_resolution"),
     "scenarios": ("scenario_id", "title", "requirement_ids", "stimulus", "expected_states"),
     "decisions": ("decision_id", "question", "affected_ids", "decision_owner", "recommendation", "status"),
+    "ui": ("id", "kind", "title", "statement", "traces", "acceptance_criteria"),
 }
 
 
@@ -165,6 +169,14 @@ def g_reports(root: Path, ok: Callable[[str], bool]) -> Tuple[Issue, ...]:
                  for d in docs for m in sorted(set(CITED.findall(d.read_text(encoding="utf-8")))) if not ok(m))
 
 
+def g_ui(ui: Tuple[dict, ...], forma: FrozenSet[str], folio: FrozenSet[str], gaps: FrozenSet[str]) -> Tuple[Issue, ...]:
+    return tuple(i for u in ui for i in (
+        *(Issue("ERROR", "G12", u["id"], f"Forma component '{c}' not in catalog snapshot") for c in u.get("forma_components", ()) if c not in forma),
+        *(Issue("ERROR", "G12", u["id"], f"Folio element '{c}' not in element snapshot") for c in u.get("folio_elements", ()) if c not in folio),
+        *(Issue("ERROR", "G12", u["id"], f"capability gap '{g}' not registered") for g in u.get("capability_gaps", ()) if g not in gaps),
+    ))
+
+
 def g_tested(new_reqs: Iterable[str], edges: Tuple[dict, ...]) -> Tuple[Issue, ...]:
     tested = {e["source"] for e in edges if e["relationship"] == "tested_by"}
     return tuple(Issue("WARN", "G11", r, "no tested_by scenario") for r in new_reqs if r not in tested)
@@ -178,15 +190,22 @@ def main(argv) -> int:
     narr = frozenset(r["surrogate_id"] for r in load_csv(data / "narrative-requirements.csv")) | \
         frozenset(r["capability_id"] for r in load_csv(data / "competitive-rollup.csv")) | \
         frozenset(r["obligation_id"] for r in load_csv(data / "regulatory-obligations.csv")) | \
-        frozenset(r["identifier"] for r in load_csv(data / "withdrawn-ids.csv"))
+        frozenset(r["identifier"] for r in load_csv(data / "withdrawn-ids.csv")) | \
+        frozenset(r["new_id"] for r in load_csv(data / "renamed-ids.csv")) | \
+        frozenset(r["gap_id"] for r in load_csv(data / "ui-component-gaps.csv")) | \
+        frozenset(x for p in sorted((root / RECON / "workflows").glob("WFM-*.json"))
+                  for w in [json.loads(p.read_text(encoding="utf-8"))] for x in [w["workflow_id"], *(t["id"] for t in w["transitions"])])
     refs_, gaps = load_jsonl(data / "refinements.jsonl"), load_jsonl(data / "gap-requirements.jsonl")
     finds, confs = load_csv(data / "findings.csv"), load_csv(data / "conflicts.csv")
     scens, decs = load_csv(data / "scenarios.csv"), load_csv(data / "decisions.csv")
     edges = load_csv(data / "trace-edges.csv")
+    ui = load_jsonl(data / "ui-requirements.jsonl")
+    uigaps = frozenset(r["gap_id"] for r in load_csv(data / "ui-component-gaps.csv"))
     sets = {
         "refinements": tuple(r["refinement_id"] for r in refs_), "gaps": tuple(g["id"] for g in gaps),
         "findings": tuple(f["finding_id"] for f in finds), "conflicts": tuple(c["conflict_id"] for c in confs),
         "scenarios": tuple(s["scenario_id"] for s in scens), "decisions": tuple(d["decision_id"] for d in decs),
+        "ui": tuple(u["id"] for u in ui),
     }
     new = frozenset(i for ids in sets.values() for i in ids)
     known_undefined = frozenset(r["identifier"] for r in load_csv(data / "undefined-references.csv"))
@@ -210,6 +229,10 @@ def main(argv) -> int:
         *(i for g in gaps for i in g_refs("links", g["id"], g.get("links", ()), ok)),
         *g_edges(edges, ok), *g_reports(root, ok),
         *g_tested(sets["refinements"] + sets["gaps"], edges),
+        *g_required("ui", ui, "id"), *g_acceptance(ui, "id"),
+        *g_ui(ui, frozenset(r["component_id"] for r in load_csv(data / "forma-catalog.csv")),
+              frozenset(r["element"] for r in load_csv(data / "folio-elements.csv")), uigaps),
+        *(i for u in ui for i in g_refs("traces", u["id"], u.get("traces", ()), ok)),
         *(Issue("ERROR", "G1", w["identifier"], "withdrawn id is still used by a live record")
           for w in load_csv(data / "withdrawn-ids.csv") if w["identifier"] in new),
         *(Issue("WARN", "G8u", e["source"], f"references {e['target']}, which the baseline cites but never defines")

@@ -1,0 +1,107 @@
+/* Generated from unbound-default.brand.json. Do not edit directly. */
+@layer forma.brand {
+  [data-forma-brand="unbound-default"] {
+  --forma-primitive-font-family-display: Newsreader, Georgia, serif;
+  --forma-primitive-font-family-sans: Manrope, system-ui, sans-serif;
+  --forma-primitive-font-family-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --forma-primitive-radius-small: 4px;
+  --forma-primitive-radius-medium: 8px;
+  --forma-primitive-radius-pill: 999px;
+  --forma-color-text-primary: #171a18;
+  --forma-color-text-heading: #202421;
+  --forma-color-text-secondary: #686d68;
+  --forma-color-text-on-secondary-surface: #3a403c;
+  --forma-color-text-inverse: #f2efe7;
+  --forma-color-surface-primary: #f2efe7;
+  --forma-color-surface-secondary: #e3e0d7;
+  --forma-color-surface-inverse: #202421;
+  --forma-color-surface-inverse-secondary: #3a403c;
+  --forma-color-accent-primary: #905831;
+  --forma-color-accent-secondary: #47756b;
+  --forma-color-border-subtle: #e3e0d7;
+  --forma-color-border-functional: #3a403c;
+  --forma-color-focus-ring: #171a18;
+  --forma-color-focus-gap: #f2efe7;
+  --forma-color-control-track: #686d68;
+  --forma-color-control-thumb: #f2efe7;
+  --forma-color-control-active: #905831;
+  --forma-color-status-success: #2e6a45;
+  --forma-color-status-warning: #86560f;
+  --forma-color-status-danger: #a13a2c;
+  --forma-color-status-info: #2d5f86;
+}
+  [data-forma-theme="light"] [data-forma-brand="unbound-default"], [data-forma-brand="unbound-default"][data-forma-theme="light"] {
+  --forma-color-text-primary: #171a18;
+  --forma-color-text-heading: #202421;
+  --forma-color-text-secondary: #686d68;
+  --forma-color-text-on-secondary-surface: #3a403c;
+  --forma-color-text-inverse: #f2efe7;
+  --forma-color-surface-primary: #f2efe7;
+  --forma-color-surface-secondary: #e3e0d7;
+  --forma-color-surface-inverse: #202421;
+  --forma-color-surface-inverse-secondary: #3a403c;
+  --forma-color-accent-primary: #905831;
+  --forma-color-accent-secondary: #47756b;
+  --forma-color-border-subtle: #e3e0d7;
+  --forma-color-border-functional: #3a403c;
+  --forma-color-focus-ring: #171a18;
+  --forma-color-focus-gap: #f2efe7;
+  --forma-color-control-track: #686d68;
+  --forma-color-control-thumb: #f2efe7;
+  --forma-color-control-active: #905831;
+  --forma-color-status-success: #2e6a45;
+  --forma-color-status-warning: #86560f;
+  --forma-color-status-danger: #a13a2c;
+  --forma-color-status-info: #2d5f86;
+}
+  [data-forma-theme="dark"] [data-forma-brand="unbound-default"], [data-forma-brand="unbound-default"][data-forma-theme="dark"] {
+  --forma-color-text-primary: #f2efe7;
+  --forma-color-text-heading: #f2efe7;
+  --forma-color-text-secondary: #e3e0d7;
+  --forma-color-text-on-secondary-surface: #f2efe7;
+  --forma-color-text-inverse: #171a18;
+  --forma-color-surface-primary: #171a18;
+  --forma-color-surface-secondary: #202421;
+  --forma-color-surface-inverse: #f2efe7;
+  --forma-color-surface-inverse-secondary: #e3e0d7;
+  --forma-color-accent-primary: #a87e5e;
+  --forma-color-accent-secondary: #698d84;
+  --forma-color-border-subtle: #3a403c;
+  --forma-color-border-functional: #e3e0d7;
+  --forma-color-focus-ring: #f2efe7;
+  --forma-color-focus-gap: #171a18;
+  --forma-color-control-track: #686d68;
+  --forma-color-control-thumb: #f2efe7;
+  --forma-color-control-active: #a87e5e;
+  --forma-color-status-success: #8cc49f;
+  --forma-color-status-warning: #ddb266;
+  --forma-color-status-danger: #ef9a8b;
+  --forma-color-status-info: #90b9dc;
+}
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-forma-theme]) [data-forma-brand="unbound-default"]:not([data-forma-theme]), :root[data-forma-brand="unbound-default"]:not([data-forma-theme]) {
+  --forma-color-text-primary: #f2efe7;
+  --forma-color-text-heading: #f2efe7;
+  --forma-color-text-secondary: #e3e0d7;
+  --forma-color-text-on-secondary-surface: #f2efe7;
+  --forma-color-text-inverse: #171a18;
+  --forma-color-surface-primary: #171a18;
+  --forma-color-surface-secondary: #202421;
+  --forma-color-surface-inverse: #f2efe7;
+  --forma-color-surface-inverse-secondary: #e3e0d7;
+  --forma-color-accent-primary: #a87e5e;
+  --forma-color-accent-secondary: #698d84;
+  --forma-color-border-subtle: #3a403c;
+  --forma-color-border-functional: #e3e0d7;
+  --forma-color-focus-ring: #f2efe7;
+  --forma-color-focus-gap: #171a18;
+  --forma-color-control-track: #686d68;
+  --forma-color-control-thumb: #f2efe7;
+  --forma-color-control-active: #a87e5e;
+  --forma-color-status-success: #8cc49f;
+  --forma-color-status-warning: #ddb266;
+  --forma-color-status-danger: #ef9a8b;
+  --forma-color-status-info: #90b9dc;
+}
+  }
+}

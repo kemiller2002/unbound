@@ -55,7 +55,7 @@ Families are mapped to charter domains by name.
 | ENT |  | 18 | 16 | 3 | 37 |
 | REG |  | 2 | 5 | 3 | 10 |
 | ARC | 1 |  | 3 |  | 4 |
-| **Total** | 7 | 71 | 80 | 17 | 175 |
+| **Total** | 7 | 71 | 80 | 17 | 178 |
 <!-- END GENERATED: findings-matrix -->
 
 409 of the 1,148 canonical requirements (35.6%) are named in at least one finding (ranges such as `UNB-SUCC-001..014` expanded).
@@ -65,7 +65,7 @@ Families are mapped to charter domains by name.
 <!-- BEGIN GENERATED: findings-dimension -->
 | Dimension | Findings |
 |---|---|
-| completeness | 44 |
+| completeness | 47 |
 | consistency | 30 |
 | necessity | 23 |
 | correctness | 21 |
@@ -172,6 +172,9 @@ How to read the dimensions:
 | RCF-PLT-048 | high | completeness | Donor-facing charity search is not specified | UNB-CHAR-001;UNB-UX-001;REQ-X-011 | Add UNB-RCN-PLT-014. |
 | RCF-REG-001 | high | correctness | 180-day revalidation treated as the currency standard for charity status | REQ-X-007;REQ-X-018 | Adopt RR-REQ-X-007-r1: an IRS-status check at approval and at release, a per-sponsor snapshot, and 180 days as a sponsor-configurable deep-review interval. |
 | RCF-REG-005 | high | completeness | Donor control of supporting organizations cannot be determined from IRS data | REQ-X-007;UNB-CHAR-001 | Add UNB-RCN-REG-002. |
+| RCF-WF-001 | high | completeness | Finance workflow validation: missing exits and conflicting rules | RR-UNB-ACC-006-r1;UNB-NAV-008;UNB-RCN-FIN-008;REQ-X-032;REQ-X-040 | RCD-032..038 and UNB-RCN-WF-001..008 |
+| RCF-WF-002 | high | completeness | Enterprise workflow validation: dead ends, missing lifecycles and stale rules | RR-REQ-X-008-r1;REQ-X-064;REQ-X-045;UNB-RCN-ENT-006;UNB-RCN-ENT-016;RR-REQ-X-048-r1;RR-UN… | RCD-039..041 and UNB-RCN-WF-009..021, 030 |
+| RCF-WF-003 | high | completeness | Grants and payments workflow validation: stuck states and contradictions | RR-REQ-X-002-r1;RR-REQ-X-005-r1;UNB-RCN-GRT-004;UNB-RCN-GRT-005;UNB-RCN-GRT-015;UNB-RCN-G… | RCD-042..049 and UNB-RCN-WF-022..029 |
 <!-- END GENERATED: findings-severe -->
 
 ## 7. Medium and low findings

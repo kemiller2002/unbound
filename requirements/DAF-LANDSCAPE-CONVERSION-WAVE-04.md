@@ -242,3 +242,19 @@ Source: [scenarios.csv](https://github.com/kemiller2002/daf-landscape/blob/main/
 4. A complete reviewed REG→CTL legal mapping is still missing. Do not report 100% legal-control coverage.
 5. No live partner replay, real financial transactions, legal counsel sign-off or Conditor execution was performed by this inventory conversion.
 6. Next gate: create row-level tests and regulatory mappings, reconcile source-control gaps, and execute synthetic append-only tamper/replay/correction/adversarial tests. Do not implement the application before requirements approval.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-ENT-015 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-ENT-023 · **Parent:** REQ-X-062 · **Decisions:** RCD-021
+- **Requirement:** Fees paid from fund assets to any professional advisor with a personal advisory relationship with the donor, or to any holder of advisory privileges, MUST be blocked until a counsel-approved rule for that arrangement is recorded. Tracking of the 2023 proposed DAF regulations MUST trigger re-review on finalization.
+- **Validation still required:** RCD-021: Counsel Q-advisor (§4958)
+- **Acceptance criteria:**
+  - AC-1: Given a fee schedule naming the donor's wealth manager as payee; when activation is attempted; then it is blocked pending a counsel rule.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-015); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

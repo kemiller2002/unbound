@@ -1,0 +1,434 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-003 Recommend a grant | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-003, UNB-UI-G-005, UNB-UI-G-006, UNB-UI-G-012. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html" aria-current="page">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html" aria-current="page">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-003 · UNB-UI-G-005 · UNB-UI-G-006 · UNB-UI-G-012</p>
+        <h1>Recommend a grant</h1>
+        <p class="forma-lead">Four steps: charity, amount, purpose and acknowledgements, review and submit. Available to grant stays visible throughout.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s003-1">State 1: Step 1: charity selected</a></li><li><a href="#s003-2">State 2: Step 2: amount (normal)</a></li><li><a href="#s003-3">State 3: Step 2: amount above Available to grant</a></li><li><a href="#s003-4">State 4: Step 3: purpose, recognition and a pledge answered Yes</a></li><li><a href="#s003-5">State 5: Step 4: review and confirmation dialog</a></li><li><a href="#s003-6">State 6: Submitting</a></li><li><a href="#s003-7">State 7: Submitted: five-dimension status</a></li><li><a href="#s003-8">State 8: Outcome unknown after a timeout</a></li><li><a href="#s003-9">State 9: Rejected by policy</a></li></ul></nav>
+    <section class="forma-section" id="s003-1" aria-labelledby="s003-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 9 · Donor</p>
+      <h2 id="s003-1-title">Step 1: charity selected</h2>
+      <p>Demonstrates: Step 1 binds the charity chosen in S-002</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-wizard class="forma-component-tag"><section class="forma-wizard" aria-labelledby="s003-1-wt">
+  <header class="forma-wizard__header">
+    <div><span class="forma-wizard__position">Step 1 of 4</span><h3 id="s003-1-wt">Charity</h3></div>
+    <progress value="1" max="4" aria-label="Grant recommendation progress">1 of 4</progress>
+  </header>
+  <ol class="forma-wizard__steps" aria-label="Grant recommendation steps">
+    <li data-state="current" aria-current="step"><span>1</span>Charity</li><li><span>2</span>Amount</li><li><span>3</span>Purpose and acknowledgements</li><li><span>4</span>Review and submit</li>
+  </ol>
+  <div class="forma-wizard__body"><dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span><p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><form class="forma-form" id="s003-1-f" aria-labelledby="s003-1-wt"><dl class="forma-key-value-list"><div><dt>Selected charity</dt><dd>Riverside Food Bank, EIN <span class="forma-identifier">00-0000103</span>, Springfield, IL</dd></div><div><dt>Platform eligibility</dt><dd><span class="forma-status-lozenge" data-state="ok">Eligible</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-30">30 Nov 2026</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><p><a href="S-002-charity-search.html">Choose a different charity</a></p></form></div>
+  <footer class="forma-wizard__actions"><button type="button">Back</button><button type="button">Save draft</button><button type="submit" form="s003-1-f">Continue</button></footer>
+</section></forma-wizard>
+</section>
+<section class="forma-section" id="s003-2" aria-labelledby="s003-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 9 · Donor on a phone</p>
+      <h2 id="s003-2-title">Step 2: amount (normal)</h2>
+      <p>Demonstrates: Fixed amount or percentage with base and fixing point; optional recurring schedule (UNB-UI-G-017)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-wizard class="forma-component-tag"><section class="forma-wizard" aria-labelledby="s003-2-wt">
+  <header class="forma-wizard__header">
+    <div><span class="forma-wizard__position">Step 2 of 4</span><h3 id="s003-2-wt">Amount</h3></div>
+    <progress value="2" max="4" aria-label="Grant recommendation progress">2 of 4</progress>
+  </header>
+  <ol class="forma-wizard__steps" aria-label="Grant recommendation steps">
+    <li data-state="complete"><span>1</span>Charity</li><li data-state="current" aria-current="step"><span>2</span>Amount</li><li><span>3</span>Purpose and acknowledgements</li><li><span>4</span>Review and submit</li>
+  </ol>
+  <div class="forma-wizard__body"><dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span><p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><form class="forma-form" id="s003-2-f" aria-labelledby="s003-2-wt" novalidate>
+
+<forma-choice-group class="forma-component-tag"><fieldset class="forma-choice-group">
+  <legend class="forma-choice-group__legend">How do you want to give?</legend>
+  <label class="forma-choice">
+    <input type="radio" name="s003-2-kind" value="fixed" checked>
+    <span class="forma-choice__content"><strong>Fixed amount</strong><span>A dollar amount, for example $5,000.00.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s003-2-kind" value="percent">
+    <span class="forma-choice__content"><strong>Percentage of fund value</strong><span>A percentage fixed at a point you choose.</span></span>
+  </label>
+</fieldset></forma-choice-group>
+<div class="forma-field">
+  <label class="forma-field__label" for="s003-2-amt">Grant amount in US dollars (required)</label>
+  <span class="forma-field__description" id="s003-2-amt-description">Minimum $50.00. You can recommend up to your Available to grant.</span>
+  <input id="s003-2-amt" name="s003-2-amt" type="text" value="5,000.00" aria-describedby="s003-2-amt-description" inputmode="decimal" required>
+  
+</div>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s003-2-pct">Percentage (percentage grants only)</label>
+  <span class="forma-field__description" id="s003-2-pct-description">For example 10.</span>
+  <input id="s003-2-pct" name="s003-2-pct" type="text" aria-describedby="s003-2-pct-description" inputmode="decimal">
+  
+</div>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Percentage of</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-2-base" name="s003-2-base">
+      <option value="fund-value" selected>Fund value (market value)</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Amount is fixed</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-2-fix" name="s003-2-fix">
+      <option value="approval" selected>When your sponsor approves</option><option value="payment">On the payment date</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+</div>
+<forma-checkbox class="forma-component-tag"><label class="forma-checkbox" data-forma-motion-weight="standard">
+  <input class="forma-checkbox__input" type="checkbox" id="s003-2-rec" name="s003-2-rec" value="yes" aria-describedby="s003-2-rec-description">
+  <span class="forma-checkbox__box" aria-hidden="true"></span>
+  <span class="forma-checkbox__text">
+    <span class="forma-checkbox__label">Make this a recurring grant</span>
+    <span class="forma-checkbox__description" id="s003-2-rec-description">Optional. Each payment is checked against Available to grant and sponsor policy.</span>
+  </span>
+</label></forma-checkbox>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Repeat</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-2-freq" name="s003-2-freq">
+      <option value="">Choose how often</option><option value="monthly">Monthly</option><option value="quarterly">Quarterly</option><option value="annually">Annually</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<forma-date-time-field class="forma-component-tag"><div class="forma-field">
+  <label class="forma-field__label" for="s003-2-start">First payment date</label>
+  <span class="forma-field__description" id="s003-2-start-description">Dates are in Central Time (America/Chicago).</span>
+  <input id="s003-2-start" name="s003-2-start" type="date" aria-describedby="s003-2-start-description">
+  
+</div></forma-date-time-field>
+</div>
+</form></div>
+  <footer class="forma-wizard__actions"><button type="button">Back</button><button type="button">Save draft</button><button type="submit" form="s003-2-f">Continue</button></footer>
+</section></forma-wizard>
+</section>
+<section class="forma-section" id="s003-3" aria-labelledby="s003-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 9 · Donor</p>
+      <h2 id="s003-3-title">Step 2: amount above Available to grant</h2>
+      <p>Demonstrates: UNB-UI-S-003 AC-1; UNB-UI-G-012 summary linked to the field, entered value kept</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-wizard class="forma-component-tag"><section class="forma-wizard" aria-labelledby="s003-3-wt">
+  <header class="forma-wizard__header">
+    <div><span class="forma-wizard__position">Step 2 of 4</span><h3 id="s003-3-wt">Amount</h3></div>
+    <progress value="2" max="4" aria-label="Grant recommendation progress">2 of 4</progress>
+  </header>
+  <ol class="forma-wizard__steps" aria-label="Grant recommendation steps">
+    <li data-state="complete"><span>1</span>Charity</li><li data-state="current" aria-current="step"><span>2</span>Amount</li><li><span>3</span>Purpose and acknowledgements</li><li><span>4</span>Review and submit</li>
+  </ol>
+  <div class="forma-wizard__body"><dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span><p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><form class="forma-form" id="s003-3-f" aria-labelledby="s003-3-wt" novalidate>
+<forma-validation-summary class="forma-component-tag"><div class="forma-validation-summary" role="alert" tabindex="-1" aria-labelledby="s003-3-vs">
+  <div class="forma-validation-summary__icon" aria-hidden="true">!</div>
+  <div>
+    <h3 class="forma-validation-summary__title" id="s003-3-vs">There is 1 problem to fix</h3>
+    <ul class="forma-validation-summary__list"><li><a href="#s003-3-amt">Enter $100,000.00 or less. Your Available to grant is $100,000.00.</a></li></ul>
+  </div>
+</div></forma-validation-summary>
+<forma-choice-group class="forma-component-tag"><fieldset class="forma-choice-group">
+  <legend class="forma-choice-group__legend">How do you want to give?</legend>
+  <label class="forma-choice">
+    <input type="radio" name="s003-3-kind" value="fixed" checked>
+    <span class="forma-choice__content"><strong>Fixed amount</strong><span>A dollar amount, for example $5,000.00.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s003-3-kind" value="percent">
+    <span class="forma-choice__content"><strong>Percentage of fund value</strong><span>A percentage fixed at a point you choose.</span></span>
+  </label>
+</fieldset></forma-choice-group>
+<div class="forma-field">
+  <label class="forma-field__label" for="s003-3-amt">Grant amount in US dollars (required)</label>
+  <span class="forma-field__description" id="s003-3-amt-description">Minimum $50.00. You can recommend up to your Available to grant.</span>
+  <input id="s003-3-amt" name="s003-3-amt" type="text" value="150,000.00" aria-describedby="s003-3-amt-description s003-3-amt-error" aria-invalid="true" inputmode="decimal" required>
+  <p class="forma-validation-message" id="s003-3-amt-error"><span class="forma-validation-message__mark" aria-hidden="true">!</span>Enter $100,000.00 or less. Your Available to grant is $100,000.00.</p>
+</div>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<div class="forma-field">
+  <label class="forma-field__label" for="s003-3-pct">Percentage (percentage grants only)</label>
+  <span class="forma-field__description" id="s003-3-pct-description">For example 10.</span>
+  <input id="s003-3-pct" name="s003-3-pct" type="text" aria-describedby="s003-3-pct-description" inputmode="decimal">
+  
+</div>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Percentage of</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-3-base" name="s003-3-base">
+      <option value="fund-value" selected>Fund value (market value)</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Amount is fixed</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-3-fix" name="s003-3-fix">
+      <option value="approval" selected>When your sponsor approves</option><option value="payment">On the payment date</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+</div>
+<forma-checkbox class="forma-component-tag"><label class="forma-checkbox" data-forma-motion-weight="standard">
+  <input class="forma-checkbox__input" type="checkbox" id="s003-3-rec" name="s003-3-rec" value="yes" aria-describedby="s003-3-rec-description">
+  <span class="forma-checkbox__box" aria-hidden="true"></span>
+  <span class="forma-checkbox__text">
+    <span class="forma-checkbox__label">Make this a recurring grant</span>
+    <span class="forma-checkbox__description" id="s003-3-rec-description">Optional. Each payment is checked against Available to grant and sponsor policy.</span>
+  </span>
+</label></forma-checkbox>
+<div class="forma-form-row" data-forma-form-layout="grid">
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Repeat</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s003-3-freq" name="s003-3-freq">
+      <option value="">Choose how often</option><option value="monthly">Monthly</option><option value="quarterly">Quarterly</option><option value="annually">Annually</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+<forma-date-time-field class="forma-component-tag"><div class="forma-field">
+  <label class="forma-field__label" for="s003-3-start">First payment date</label>
+  <span class="forma-field__description" id="s003-3-start-description">Dates are in Central Time (America/Chicago).</span>
+  <input id="s003-3-start" name="s003-3-start" type="date" aria-describedby="s003-3-start-description">
+  
+</div></forma-date-time-field>
+</div>
+</form></div>
+  <footer class="forma-wizard__actions"><button type="button">Back</button><button type="button">Save draft</button><button type="submit" form="s003-3-f">Continue</button></footer>
+</section></forma-wizard>
+</section>
+<section class="forma-section" id="s003-4" aria-labelledby="s003-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 9 · Donor, sponsor pledge policy Prohibited</p>
+      <h2 id="s003-4-title">Step 3: purpose, recognition and a pledge answered Yes</h2>
+      <p>Demonstrates: UNB-UI-S-003 AC-2 (required pledge question; Yes blocks submission with an explanation); sponsor affirmations verbatim</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-wizard class="forma-component-tag"><section class="forma-wizard" aria-labelledby="s003-4-wt">
+  <header class="forma-wizard__header">
+    <div><span class="forma-wizard__position">Step 3 of 4</span><h3 id="s003-4-wt">Purpose and acknowledgements</h3></div>
+    <progress value="3" max="4" aria-label="Grant recommendation progress">3 of 4</progress>
+  </header>
+  <ol class="forma-wizard__steps" aria-label="Grant recommendation steps">
+    <li data-state="complete"><span>1</span>Charity</li><li data-state="complete"><span>2</span>Amount</li><li data-state="current" aria-current="step"><span>3</span>Purpose and acknowledgements</li><li><span>4</span>Review and submit</li>
+  </ol>
+  <div class="forma-wizard__body"><dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span><p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><form class="forma-form" id="s003-4-f" aria-labelledby="s003-4-wt">
+<div class="forma-field">
+  <label class="forma-field__label" for="s003-4-purpose">Purpose (required)</label>
+  <span class="forma-field__description" id="s003-4-purpose-description">Shown to the charity on the remittance. Up to 200 characters.</span>
+  <textarea id="s003-4-purpose" name="s003-4-purpose" rows="3" aria-describedby="s003-4-purpose-description" maxlength="200" required>General operating support</textarea>
+  
+</div>
+<forma-choice-group class="forma-component-tag"><fieldset class="forma-choice-group">
+  <legend class="forma-choice-group__legend">How should the charity recognize this grant?</legend>
+  <label class="forma-choice">
+    <input type="radio" name="s003-4-recog" value="name" checked>
+    <span class="forma-choice__content"><strong>Use my name</strong><span>Avery Lindqvist</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s003-4-recog" value="anon">
+    <span class="forma-choice__content"><strong>Anonymous</strong><span>The charity sees “Anonymous donor via Example Charitable Foundation”.</span></span>
+  </label><label class="forma-choice">
+    <input type="radio" name="s003-4-recog" value="custom">
+    <span class="forma-choice__content"><strong>Custom name</strong><span>For example “The Lindqvist Family”.</span></span>
+  </label>
+</fieldset></forma-choice-group>
+<fieldset class="forma-stack"><legend>Required affirmations from Example Charitable Foundation</legend>
+<forma-checkbox class="forma-component-tag"><label class="forma-checkbox" data-forma-motion-weight="standard">
+  <input class="forma-checkbox__input" type="checkbox" id="s003-4-a1" name="s003-4-a1" value="yes" checked required>
+  <span class="forma-checkbox__box" aria-hidden="true"></span>
+  <span class="forma-checkbox__text">
+    <span class="forma-checkbox__label">I and my family will receive no goods, services or other benefit in return for this grant, including tickets, dinners or memberships.</span>
+    
+  </span>
+</label></forma-checkbox>
+<forma-checkbox class="forma-component-tag"><label class="forma-checkbox" data-forma-motion-weight="standard">
+  <input class="forma-checkbox__input" type="checkbox" id="s003-4-a2" name="s003-4-a2" value="yes" checked required>
+  <span class="forma-checkbox__box" aria-hidden="true"></span>
+  <span class="forma-checkbox__text">
+    <span class="forma-checkbox__label">This grant will not be used to pay for any part of an event, membership or purchase that benefits me.</span>
+    
+  </span>
+</label></forma-checkbox>
+</fieldset>
+<forma-binary-choice class="forma-component-tag"><fieldset class="forma-binary-choice" aria-describedby="s003-4-pledge-error">
+  <legend class="forma-binary-choice__legend">Does this grant fulfil a pledge? (required)</legend>
+  <p class="forma-field__description">A pledge is a promise you made to the charity to give a specific amount.</p>
+  <div class="forma-binary-choice__options">
+    <label class="forma-binary-option"><input type="radio" name="s003-4-pledge" value="yes" checked required><span>Yes</span></label>
+    <label class="forma-binary-option"><input type="radio" name="s003-4-pledge" value="no"><span>No</span></label>
+  </div>
+  <p class="forma-validation-message" id="s003-4-pledge-error"><span class="forma-validation-message__mark" aria-hidden="true">!</span>This grant cannot be submitted. Example Charitable Foundation does not allow grants that fulfil a personal pledge. You can pay the pledge personally, or answer No if this grant is not tied to a pledge.</p>
+</fieldset></forma-binary-choice>
+</form></div>
+  <footer class="forma-wizard__actions"><button type="button">Back</button><button type="button">Save draft</button><button type="submit" form="s003-4-f" disabled aria-describedby="s003-4-pledge-error">Continue</button></footer>
+</section></forma-wizard>
+</section>
+<section class="forma-section" id="s003-5" aria-labelledby="s003-5-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 5 of 9 · Donor</p>
+      <h2 id="s003-5-title">Step 4: review and confirmation dialog</h2>
+      <p>Demonstrates: UNB-UI-G-005 AC-1 (dialog lists amount, charity, fund, reversibility, who acts next; confirm reads 'Submit grant recommendation')</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-wizard class="forma-component-tag"><section class="forma-wizard" aria-labelledby="s003-5-wt">
+  <header class="forma-wizard__header">
+    <div><span class="forma-wizard__position">Step 4 of 4</span><h3 id="s003-5-wt">Review and submit</h3></div>
+    <progress value="4" max="4" aria-label="Grant recommendation progress">4 of 4</progress>
+  </header>
+  <ol class="forma-wizard__steps" aria-label="Grant recommendation steps">
+    <li data-state="complete"><span>1</span>Charity</li><li data-state="complete"><span>2</span>Amount</li><li data-state="complete"><span>3</span>Purpose and acknowledgements</li><li data-state="current" aria-current="step"><span>4</span>Review and submit</li>
+  </ol>
+  <div class="forma-wizard__body"><dl class="forma-key-value-list"><div><dt>Available to grant</dt><dd><span class="forma-critical-value">$100,000.00</span><p class="forma-freshness"><span class="forma-freshness__label">Calculated</span> <time datetime="2026-12-01T16:58:00-06:00">1 Dec 2026, 4:58 PM CT</time> <span class="forma-freshness__state">Current</span></p></dd></div></dl><dl class="forma-key-value-list"><div><dt>Charity</dt><dd>Riverside Food Bank, EIN <span class="forma-identifier">00-0000103</span></dd></div><div><dt>Amount</dt><dd><span class="forma-critical-value">$5,000.00</span></dd></div><div><dt>Schedule</dt><dd>One time</dd></div><div><dt>Purpose</dt><dd>General operating support</dd></div><div><dt>Recognition</dt><dd>Use my name: Avery Lindqvist</dd></div><div><dt>Fulfils a pledge?</dt><dd>No</dd></div></dl></div>
+  <footer class="forma-wizard__actions"><button type="button">Back</button><button type="button">Save draft</button><forma-dialog class="forma-component-tag"><button type="button" commandfor="s003-5-confirm" command="show-modal">Submit…</button>
+<dialog class="forma-dialog" id="s003-5-confirm" data-forma-motion-weight="heavy" aria-labelledby="s003-5-confirm-title" aria-describedby="s003-5-confirm-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s003-5-confirm-title">Submit grant recommendation?</h2>
+      <p id="s003-5-confirm-description">Your sponsor approves this grant; you can withdraw until approval.</p>
+      <dl class="forma-key-value-list"><div><dt>Amount</dt><dd><span class="forma-critical-value" data-forma-verify="true">$5,000.00</span></dd></div><div><dt>Charity</dt><dd>Riverside Food Bank, EIN <span class="forma-identifier">00-0000103</span>, Springfield, IL</dd></div><div><dt>From fund</dt><dd>Lindqvist Family Fund <span class="forma-identifier">F-2026-000418</span></dd></div><div><dt>What changes</dt><dd>$5,000.00 is reserved from Available to grant, which becomes $95,000.00</dd></div><div><dt>Can it be undone?</dt><dd>Yes. You can withdraw the recommendation until Example Charitable Foundation approves it</dd></div><div><dt>Who acts next</dt><dd>Example Charitable Foundation grants team checks eligibility and approves or declines</dd></div><div><dt>Expected next step</dt><dd>Decision usually within 2 business days; payment within 5 business days of approval</dd></div></dl>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Go back and edit</button><button type="submit" value="submit">Submit grant recommendation</button></div>
+  </form>
+</dialog></forma-dialog></footer>
+</section></forma-wizard>
+</section>
+<section class="forma-section" id="s003-6" aria-labelledby="s003-6-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 6 of 9 · Donor</p>
+      <h2 id="s003-6-title">Submitting</h2>
+      <p>Demonstrates: Pending submission: busy confirm button, fieldset disabled (no double submission)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><form class="forma-form" aria-busy="true" aria-labelledby="s003-6-sub-title"><h3 id="s003-6-sub-title">Review and submit</h3><fieldset disabled class="forma-stack"><legend>Grant recommendation</legend><dl class="forma-key-value-list"><div><dt>Charity</dt><dd>Riverside Food Bank, EIN <span class="forma-identifier">00-0000103</span></dd></div><div><dt>Amount</dt><dd><span class="forma-critical-value">$5,000.00</span></dd></div><div><dt>Schedule</dt><dd>One time</dd></div><div><dt>Purpose</dt><dd>General operating support</dd></div><div><dt>Recognition</dt><dd>Use my name: Avery Lindqvist</dd></div><div><dt>Fulfils a pledge?</dt><dd>No</dd></div></dl><div class="forma-actions"><button type="button">Back</button><button type="submit" aria-busy="true">Submitting grant recommendation</button></div></fieldset></form>
+</section>
+<section class="forma-section" id="s003-7" aria-labelledby="s003-7-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 7 of 9 · Donor</p>
+      <h2 id="s003-7-title">Submitted: five-dimension status</h2>
+      <p>Demonstrates: UNB-UI-G-002 (five ordered dimensions, each with label and as-of time; derived headline)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s003-7-ok">
+  <div class="forma-operation-status__symbol" aria-hidden="true">!</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="attention">Eligibility check in progress</span>
+    <h3 id="s003-7-ok">Recommendation received: grant 2026-004817</h3>
+    <p>We reserved $5,000.00. Example Charitable Foundation checks the charity's eligibility next.</p>
+  </div>
+  <div class="forma-operation-status__actions"><a class="forma-button" href="S-004-grant-detail.html">View grant 2026-004817</a></div>
+</section></forma-operation-status><forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Grant progress by dimension" id="s003-7-gp">
+  <li><div class="forma-stack"><p><strong>Recommendation</strong></p><span class="forma-status-lozenge" data-state="ok">Submitted</span><p>As of <time datetime="2026-12-01T17:02:00-06:00">1 Dec 2026, 5:02 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Eligibility</strong></p><span class="forma-status-lozenge" data-state="attention">Checking</span><p>As of <time datetime="2026-12-01T17:02:00-06:00">1 Dec 2026, 5:02 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Approval</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+  <li><div class="forma-stack"><p><strong>Funding</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+  <li><div class="forma-stack"><p><strong>Payment</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+</ol></forma-steps>
+</section>
+<section class="forma-section" id="s003-8" aria-labelledby="s003-8-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 8 of 9 · Donor</p>
+      <h2 id="s003-8-title">Outcome unknown after a timeout</h2>
+      <p>Demonstrates: UNB-UI-S-003 AC-3 and UNB-UI-G-006 AC-1 (unknown, Check status by idempotency key, no retry, no success or failure shown)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s003-8-unk">
+  <div class="forma-operation-status__symbol" aria-hidden="true">↻</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="unknown">Outcome unknown</span>
+    <h3 id="s003-8-unk">We cannot confirm your recommendation was received</h3>
+    <p>The connection ended before Example Charitable Foundation replied. Do not submit again: that could create a second grant. Check status asks for the recorded outcome of this exact request.</p><dl class="forma-key-value-list"><div><dt>Request reference</dt><dd><span class="forma-identifier">IDK-7f3a-91c2-4d0e</span></dd></div><div><dt>Amount</dt><dd><span class="forma-identifier">$5,000.00</span></dd></div><div><dt>Charity</dt><dd>Riverside Food Bank</dd></div></dl>
+  </div>
+  <div class="forma-operation-status__actions"><button type="button">Check status</button><a class="forma-button" href="S-001-giving-home.html">Return to giving home</a></div>
+</section></forma-operation-status>
+</section>
+<section class="forma-section" id="s003-9" aria-labelledby="s003-9-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 9 of 9 · Donor</p>
+      <h2 id="s003-9-title">Rejected by policy</h2>
+      <p>Demonstrates: Policy rejection with reason (UNB-UI-G-001 blocked)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Recommend a grant</li></ol></nav></forma-scope-trail><forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s003-9-rej">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Rejected by policy</span>
+    <h3 id="s003-9-rej">This recommendation was not accepted</h3>
+    <p>Example Charitable Foundation's policy sets a minimum grant of $50.00; you entered $25.00. Nothing was reserved. Change the amount to continue.</p>
+  </div>
+  <div class="forma-operation-status__actions"><button type="button">Change amount</button></div>
+</section></forma-operation-status>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

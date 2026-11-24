@@ -7,6 +7,7 @@ Unbound SHALL accommodate sponsor-approved segregated custody accounts, omnibus 
 ## Account structure requirements
 - **UNB-INV-001:** Model legal sponsor, legal account holder, custodian, custody account, portfolio, investment pool, internal DAF fund, subfund position, investment mandate and manager as distinct identities with effective-dated relationships.
 - **UNB-INV-002:** Support a DAF mapped to one or many segregated custody accounts, and one custody account supporting multiple DAFs via explicitly governed omnibus allocation.
+> Adopted 2026-11-23: refined by `RR-UNB-INV-002-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-INV-003:** Support pooled investment vehicles with fund-level units/shares, valuation dates, unit prices, subscriptions, redemptions, rounding, cash buffers and participant-level holdings.
 - **UNB-INV-004:** Sponsor-wide pool totals SHALL reconcile to custody assets and fund-level units; every subscription/redemption must have balanced, append-only accounting effects.
 - **UNB-INV-005:** Support DAF allocation among approved portfolios/pools with minimums, eligibility, restrictions, target percentages, rebalancing rules and effective dates.
@@ -17,6 +18,7 @@ Unbound SHALL accommodate sponsor-approved segregated custody accounts, omnibus 
 - **UNB-INV-010:** Sponsor can configure allowable structures by partner, program, DAF type, account size, asset class, jurisdiction and legal/contractual eligibility.
 - **UNB-INV-011:** Do not infer that a donor-specific custody account is legally donor-owned or that pooled units are legally transferable securities; document actual legal and accounting classification.
 - **UNB-INV-012:** Support in-kind contribution and in-kind transfer workflows, including asset acceptance, restrictions, valuation, liquidation policy and custody settlement.
+> Adopted 2026-11-23: refined by `RR-UNB-INV-012-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 
 ## Authority, preferences and policy
 - **UNB-INV-013:** Donor/advisor investment preferences SHALL be modeled as recommendations or policy-permitted elections, not automatically as trade authority.
@@ -99,3 +101,76 @@ INV-ADR-008: Strata integration, event ordering, projections, isolation and dete
 - Investment API contract catalog and accounting posting crosswalk.
 
 Traceability: UNB-CUST-001..028; UNB-ACC-001..036; ACC-MDL-001..012; UNB-SUCC-001..014; UNB-TEN-001..020. All examples are design candidates, not proof of vendor entitlement or legal/accounting compliance.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-INV-002-r1 (refines `UNB-INV-002`) — adopted-provisional
+- **Original:** `requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:9` @ `777a70d` (kept verbatim) · **Decisions:** RCD-020
+- **Requirement:** Each custody account that supports more than one DAF MUST declare one attribution method, either PerFundLotSubAccounting (every position lot carries exactly one fund owner) or Unitized (governed by UNB-NAV rules). For PerFundLotSubAccounting, income, corporate actions and realized results MUST follow lot ownership, and the sum of fund-owned lots MUST equal the custodian position after known in-transit items.
+- **Validation still required:** RCD-020: Controller
+- **Acceptance criteria:**
+  - AC-1: Given an omnibus account with lot sub-accounting holding 100 shares split 60/40; when a $1.00/share dividend is received; then funds receive $60 and $40.
+  - AC-2: Given an account with no declared method; when a second fund allocation is attempted; then it is rejected.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-INV-002-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### RR-UNB-INV-012-r1 (refines `UNB-INV-012`) — adopted-provisional
+- **Original:** `requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md:19` @ `777a70d` (kept verbatim) · **Decisions:** RCD-014, RCD-019
+- **Requirement:** In-kind contribution workflows MUST, before acceptance of a non-publicly-traded or complex asset, record: asset classification, completed-gift rule, gift-acceptance decision, excess-business-holdings test result (UNB-RCN-FIN-004), Form 8283 Section B donee-signature task where requested, and liquidation policy. Any disposition of property for which the sponsor signed a Form 8283 Section B MUST create a Form 8282 obligation record with deadline unless a counsel-approved exception applies.
+- **Validation still required:** RCD-014: Counsel Q3, Q4; RCD-019: CPA on completed-gift rule table
+- **Acceptance criteria:**
+  - AC-1: Given closely held shares accepted with sponsor-signed 8283 Section B; when the shares are sold 14 months later; then an 8282 obligation is created with a due date per the counsel rule table.
+  - AC-2: Given a gift of business interest where donor relatives hold related interests; when acceptance is attempted without an EBH test; then acceptance is blocked.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-INV-012-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-FIN-002 (P1, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-FIN-003 · **Parent:** UNB-GAP-012 · **Decisions:** —
+- **Requirement:** When the sponsor signs a donor's Form 8283 Section B, Unbound MUST record the signature event, the property description, the lot identifiers, and the date of receipt, and MUST record that the signature acknowledges receipt and not value.
+- **Acceptance criteria:**
+  - AC-1: Given a donor requests a Section B signature; when the authorized signer signs; then a Form8283Signed record links to the custody lots and states receipt-only.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-002); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-003 (P0, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-FIN-003 · **Parent:** UNB-INV-012 · **Decisions:** —
+- **Requirement:** Any sale, exchange or other disposition of a lot linked to a Form8283Signed record within the counsel-configured reporting window MUST create a Form8282Obligation with due date, owner and donor-copy task, unless a counsel-approved exception rule applies; obligations MUST be tracked to filing-receipt evidence and escalate before the due date.
+- **Acceptance criteria:**
+  - AC-1: Given a signed Section B lot sold within the window; when the sale settles; then a Form8282Obligation with due date is created.
+  - AC-2: Given an obligation 10 days before due with no filing receipt; when the daily check runs; then an escalation is raised to tax compliance.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-003); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-004 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-005 · **Parent:** REQ-X-059 · **Decisions:** RCD-014
+- **Requirement:** Unbound MUST maintain business-enterprise identities and related-person holdings declared at gift acceptance, MUST compute combined holdings for each fund and its donors/advisors/related persons per counsel-configured rules before accepting a business interest and on each later related transaction, and MUST track any disposal period with escalation.
+- **Validation still required:** RCD-014: Counsel Q3, Q4
+- **Acceptance criteria:**
+  - AC-1: Given a gift of business interest with related-person holdings above the configured permitted level; when acceptance is attempted; then acceptance is held for counsel decision with a disposal-period plan.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-004); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-007 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-016 · **Parent:** UNB-INV-002 · **Decisions:** RCD-020
+- **Requirement:** Every multi-fund custody account MUST declare one attribution method (PerFundLotSubAccounting or Unitized); undeclared accounts MUST NOT accept multi-fund allocations; lot-owned positions MUST reconcile per security to custodian positions.
+- **Validation still required:** RCD-020: Controller
+- **Acceptance criteria:**
+  - AC-1: Given lot sub-accounting with 60/40 ownership; when a dividend arrives; then income splits 60/40 by record-date lots.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-007); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-010 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-006 · **Parent:** UNB-INV-006 · **Decisions:** RCD-021
+- **Requirement:** Before any advisor or manager compensation accrues from DAF assets, Unbound MUST record the counsel-approved classification of the advisor's relationship to the fund's donors/advisors and the applicable compensation policy, and MUST hold accrual when the classification is missing or indicates a donor-advisor relationship pending counsel decision.
+- **Validation still required:** RCD-021: Counsel Q-advisor (§4958)
+- **Acceptance criteria:**
+  - AC-1: Given an advisor flagged as the donor's personal investment adviser; when the first fee accrual runs; then accrual is held pending counsel decision.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-010); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-FIN-012 (P1, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-FIN-007 · **Parent:** UNB-ACC-006 · **Decisions:** RCD-019
+- **Requirement:** Unbound MUST determine the completed-gift date from a versioned, counsel-approved rule table keyed by asset type and rail (e.g., DTC transfer, physical certificate, check, ACH, card, wire, crypto, real property), and MUST hold the contribution when evidence required by the rule is missing.
+- **Validation still required:** RCD-019: CPA on completed-gift rule table
+- **Acceptance criteria:**
+  - AC-1: Given a mailed check dated December 31 received January 3; when completed-gift determination runs; then the date follows the configured rule and records the rule version.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-FIN-012); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

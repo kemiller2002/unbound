@@ -23,7 +23,7 @@ DOMAINS = ("GRT", "FIN", "PLT", "ENT", "REG", "ARC")
 
 
 def cell(text: str, limit: int = 220) -> str:
-    t = re.sub(r"\s+", " ", str(text or "")).replace("|", "\\|").strip()
+    t = re.sub(r"(?<!\\)\|", r"\\|", re.sub(r"\s+", " ", str(text or ""))).strip()  # idempotent pipe escape
     return t if len(t) <= limit else t[: limit - 1].rstrip() + "…"
 
 
@@ -42,7 +42,12 @@ def load(data: Path):
     cv = lambda p: tuple(csv.DictReader((data / p).open(encoding="utf-8")))
     return dict(F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 E=cv("trace-edges.csv"), Q=cv("requirements-quality.csv"), R=jl("refinements.jsonl"),
-                G=jl("gap-requirements.jsonl"), V=json.loads((data / "validation-report.json").read_text()))
+                G=jl("gap-requirements.jsonl"), U=jl("ui-requirements.jsonl") if (data / "ui-requirements.jsonl").exists() else (),
+                UG=cv("ui-component-gaps.csv") if (data / "ui-component-gaps.csv").exists() else (), W=tuple(json.loads(p.read_text(encoding="utf-8")) for p in sorted((data.parent / "workflows").glob("WFM-*.json"))),
+                IA=cv("surface-ia.csv") if (data / "surface-ia.csv").exists() else (),
+                UM=cv("ui-state-matrix.csv") if (data / "ui-state-matrix.csv").exists() else (),
+                UC=cv("ui-scenario-coverage.csv") if (data / "ui-scenario-coverage.csv").exists() else (),
+                UT=cv("ui-refinement-trace.csv") if (data / "ui-refinement-trace.csv").exists() else (), K=cv("counsel-positions.csv") if (data / "counsel-positions.csv").exists() else (), V=json.loads((data / "validation-report.json").read_text()))
 
 
 def g_findings_matrix(d) -> str:
@@ -160,9 +165,14 @@ def g_scenario_counts(d) -> str:
 
 
 def g_decisions(d) -> str:
-    return table(("ID", "Type", "Decision required", "Owner", "Recommendation", "Blocks impl.", "Linked records"),
-                 ((x["decision_id"], x["type"], x["question"], x["decision_owner"], cell(x["recommendation"], 260),
-                   x["blocks_implementation"], cell(x["affected_ids"], 140)) for x in d["D"]))
+    return table(("ID", "Type", "Decision", "Status", "Decided option", "Validation still required", "Owner to confirm", "Linked records"),
+                 ((x["decision_id"], x["type"], x["question"], x.get("status", ""), cell(x.get("decided_option", x["recommendation"]), 420),
+                   x.get("validation_required", ""), x["decision_owner"], cell(x["affected_ids"], 120)) for x in d["D"]))
+
+
+def g_counsel(d) -> str:
+    return table(("Question", "Topic", "Provisional working position", "Status"),
+                 ((q["question_id"], q["topic"], q["provisional_position"], q["status"]) for q in d["K"]))
 
 
 def g_validation(d) -> str:
@@ -171,14 +181,87 @@ def g_validation(d) -> str:
     return table(("Record set / result", "Count"), rows)
 
 
+def g_ui_index(d) -> str:
+    return table(("ID", "Kind", "Title", "Forma components", "Folio elements", "Capability gaps", "ACs"),
+                 ((u["id"], u["kind"], u["title"], cell(", ".join(u["forma_components"]), 160), cell(", ".join(u["folio_elements"]), 120),
+                   ", ".join(u["capability_gaps"]) or "—", len(u["acceptance_criteria"])) for u in d["U"]))
+
+
+def g_ui_records(d) -> str:
+    def one(u) -> str:
+        acs = "\n".join(f"  - **{a['id']}** Given {a['given']}; when {a['when']}; then {a['then']}." for a in u["acceptance_criteria"])
+        rows = [f"### {u['id']} — {u['title']} ({u['kind']})", f"- **Requirement:** {u['statement']}",
+                f"- **Traces to:** {', '.join(u['traces'])}"]
+        rows += [f"- **Actors:** {', '.join(u['actors'])}"] if u["actors"] else []
+        rows += [f"- **Forma components:** {', '.join(f'`{c}`' for c in u['forma_components'])}"] if u["forma_components"] else []
+        rows += [f"- **Folio elements:** {', '.join(f'`{c}`' for c in u['folio_elements'])}"] if u["folio_elements"] else []
+        rows += [f"- **States:** {'; '.join(u['states'])}"] if u["states"] else []
+        rows += [f"- **Actions:** {'; '.join(u['actions'])}"] if u["actions"] else []
+        rows += [f"- **Responsive:** {u['responsive']}"] if u["responsive"] else []
+        rows += [f"- **Capability gaps:** {', '.join(u['capability_gaps'])}"] if u["capability_gaps"] else []
+        return "\n".join(rows + ["- **Acceptance criteria:**", acs, ""])
+    return "\n".join(one(u) for u in d["U"])
+
+
+def g_ui_gaps(d) -> str:
+    return table(("Gap", "Component", "Owner", "Filed as", "Need", "Release-1 workaround", "Acceptance"),
+                 ((g["gap_id"], g["component"], g["owner"], g.get("filed_as", ""), cell(g["need"], 200), cell(g["workaround_r1"], 220), cell(g["acceptance"], 200)) for g in d["UG"]))
+
+
+def g_workflows(d) -> str:
+    rows = []
+    for w in d["W"]:
+        tr = w["transitions"]
+        rows.append((w["workflow_id"], w["name"], len(w["states"]), len(tr),
+                     sum(1 for t in tr if t.get("actor_type") == "human"), sum(1 for t in tr if t.get("actor_type") in ("deterministic", "timer")),
+                     sum(1 for t in tr if t.get("actor_type") == "external"), sum(1 for t in tr if t.get("actor_type") == "ai"),
+                     sum(1 for t in tr if t.get("scenario_ids"))))
+    return table(("Workflow", "Name", "States", "Transitions", "Human", "Deterministic/timer", "External", "AI", "With scenario"), rows)
+
+
+def g_ia(d) -> str:
+    by = {}
+    for r in d["IA"]:
+        by.setdefault((r["workspace_id"], r["workspace"], r["audience"], r["responsive"]), []).append(r)
+    return table(("Workspace", "Name", "Audience", "Responsive", "Views and panels (surface → transitions, max authority)"),
+                 ((k[0], k[1], k[2], k[3], "; ".join(f"{r['panel_or_view']} ({r['transitions']}, {r['max_authority']})" for r in v)) for k, v in sorted(by.items())))
+
+
+UIQ_FAMILIES = ("UNB-UI-DS-", "UNB-UI-N-", "UNB-UI-F-", "UNB-UI-R-", "UNB-UI-A-", "UNB-UI-V-")
+
+
+def g_uiq_requirements(d) -> str:
+    return table(("ID", "Kind", "Title", "Traces (inbound and governing)", "Gaps", "ACs"),
+                 ((u["id"], u["kind"], u["title"], cell(", ".join(u["traces"]), 120), ", ".join(u["capability_gaps"]) or "—", len(u["acceptance_criteria"]))
+                  for u in d["U"] if u["id"].startswith(UIQ_FAMILIES)))
+
+
+def g_uiq_coverage(d) -> str:
+    return table(("Required scenario", "v2 states (passing all checks)", "Count"), ((c["scenario"], c["covered_by"].replace(";", ", "), c["count"]) for c in d["UC"]))
+
+
+def g_uiq_states(d) -> str:
+    v2 = [r for r in d["UM"] if r["version"] == "v2"]
+    return table(("Screen", "State", "Title", "Persona", "Scenarios", "Verified"),
+                 ((r["screen"], r["state_id"], r["state_title"], r["persona"], r["scenario_tags"].replace(";", ", "), r["verification"]) for r in v2))
+
+
+def g_uiq_trace(d) -> str:
+    return table(("UIR", "Refined requirement", "Defects", "Original inbound", "Status", "Tested by"),
+                 ((t["refinement_id"], t["refined_requirement"], t["defects"].replace(";", ", "), cell(t["original_inbound"].replace(";", ", "), 120), t["status"], t["tested_by"].replace(";", ", ") or "—") for t in d["UT"]))
+
+
 GENERATORS: Dict[str, Callable] = {
+    "uiq-requirements": g_uiq_requirements, "uiq-coverage": g_uiq_coverage, "uiq-states": g_uiq_states, "uiq-trace": g_uiq_trace,
+    "workflows": g_workflows, "ia": g_ia,
+    "ui-index": g_ui_index, "ui-records": g_ui_records, "ui-gaps": g_ui_gaps,
     "findings-matrix": g_findings_matrix, "findings-dimension": g_findings_dimension,
     "findings-severe": g_findings_severe, "findings-other": g_findings_other,
     "conflicts": g_conflicts, "gaps": g_gaps, "gap-counts": g_gap_counts,
     "refinement-index": g_refinement_index, "refinement-records": g_refinement_records,
     "trace-summary": g_trace_summary, "trace-coverage": g_trace_coverage,
     "scenarios": g_scenarios, "scenario-counts": g_scenario_counts,
-    "decisions": g_decisions, "validation": g_validation,
+    "decisions": g_decisions, "counsel": g_counsel, "validation": g_validation,
 }
 BLOCK = re.compile(r"(<!-- BEGIN GENERATED: ([a-z-]+) -->)(.*?)(<!-- END GENERATED: \2 -->)", re.S)
 

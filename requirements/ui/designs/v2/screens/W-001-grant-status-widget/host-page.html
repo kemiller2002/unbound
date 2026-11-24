@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your giving · Fairway Wealth Partners (fictional partner host)</title>
+<style>
+:root{--h-ink:#14202e;--h-muted:#4a5868;--h-navy:#12324a;--h-line:#d5dde5;--h-bg:#f4f7f9;--h-accent:#00695c}
+*{box-sizing:border-box}
+body{margin:0;font-family:Georgia,"Times New Roman",serif;color:var(--h-ink);background:var(--h-bg);line-height:1.5}
+a{color:var(--h-accent)}
+:focus-visible{outline:3px solid #b3541e;outline-offset:2px}
+.h-bar{display:flex;flex-wrap:wrap;align-items:center;gap:8px 24px;padding:12px clamp(16px,4vw,48px);background:var(--h-navy);color:#fff}
+.h-bar strong{font-size:1.2rem;letter-spacing:.02em}
+.h-bar nav ul{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0;padding:0;list-style:none}
+.h-bar nav a{color:#fff;display:inline-block;padding:6px 0;font-family:system-ui,sans-serif;font-size:.9375rem}
+.h-main{max-width:1180px;margin:0 auto;padding:24px clamp(16px,4vw,48px) 48px;display:grid;gap:24px}
+h1{margin:0;font-size:clamp(1.6rem,1.3rem + 1vw,2.2rem);font-weight:400}
+h2{margin:0 0 8px;font-size:1.15rem;font-family:system-ui,sans-serif}
+.h-lead{margin:0;color:var(--h-muted);font-family:system-ui,sans-serif;max-width:60ch}
+.h-grid{display:grid;gap:24px;align-items:start;grid-template-columns:minmax(0,1fr)}
+@media (min-width:1060px){.h-grid{grid-template-columns:minmax(0,634px) 394px;justify-content:space-between}}
+.h-slot{background:#fff;border:1px solid var(--h-line);border-radius:2px;padding:16px;min-width:0}
+.h-slot p{margin:0 0 12px;font-family:system-ui,sans-serif;font-size:.875rem;color:var(--h-muted)}
+.h-slot iframe{display:block;border:0;width:100%;max-width:100%}
+.h-slot--narrow iframe{width:360px}
+.h-slot--wide iframe{width:600px;height:416px}
+.h-slot--narrow iframe{height:464px}
+/* No resize messages in this prototype: the host reserves enough height per slot width. */
+@media (max-width:479px){.h-slot iframe{height:560px!important}}
+.h-foot{font-family:system-ui,sans-serif;font-size:.8125rem;color:var(--h-muted);border-top:1px solid var(--h-line);padding-top:16px}
+</style>
+</head>
+<body>
+<header class="h-bar"><strong>Fairway Wealth Partners</strong><nav aria-label="Client portal"><ul><li><a href="#accounts">Accounts</a></li><li><a href="#giving" aria-current="page">Giving</a></li><li><a href="#documents">Documents</a></li></ul></nav></header>
+<main class="h-main" id="main">
+<div><h1>Your charitable giving</h1><p class="h-lead">Your donor-advised fund is held by your giving sponsor. The cards below come straight from the sponsor and update on their own.</p></div>
+<div class="h-grid">
+<section class="h-slot h-slot--wide" aria-labelledby="wide-t"><h2 id="wide-t">Latest grant</h2><p>Wide slot, 600 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (wide)" tabindex="-1"></iframe></section>
+<section class="h-slot h-slot--narrow" aria-labelledby="narrow-t"><h2 id="narrow-t">Grant status</h2><p>Sidebar slot, 360 px.</p><iframe src="widget.html" title="Grant status from Unbound Giving (sidebar)" tabindex="-1"></iframe></section>
+</div>
+<p class="h-foot">Fairway Wealth Partners does not hold or control your donor-advised fund. Grant information is provided read-only by your sponsor.</p>
+</main>
+</body>
+</html>

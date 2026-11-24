@@ -26,16 +26,16 @@ Bidirectionality: every edge can be queried from either end. For example, "which
 <!-- BEGIN GENERATED: trace-summary -->
 | Relationship | Edges |
 |---|---|
-| affects | 822 |
-| derived_from | 401 |
-| tested_by | 307 |
-| depends_on | 306 |
-| decided_by | 141 |
+| derived_from | 1544 |
+| affects | 842 |
+| depends_on | 647 |
+| tested_by | 351 |
+| decided_by | 213 |
 | duplicates | 97 |
 | conflicts_with | 56 |
 | refines | 39 |
 | supersedes | 7 |
-| **Total** | 2176 |
+| **Total** | 3796 |
 <!-- END GENERATED: trace-summary -->
 
 ## 3. Coverage (denominators stated)
@@ -44,11 +44,11 @@ Bidirectionality: every edge can be queried from either end. For example, "which
 | Measure | Count | Share |
 |---|---|---|
 | Baseline canonical requirements (denominator) | 1148 |  |
-| … affected by at least one finding | 409 | 35.6% |
+| … affected by at least one finding | 411 | 35.8% |
 | … with a refinement record | 46 | 4.0% |
 | … tested_by at least one scenario (baseline + reconciliation scenarios) | 96 | 8.4% |
-| Reconciliation refinements + gap requirements (denominator) | 113 |  |
-| … tested_by at least one scenario | 84 | 74.3% |
+| Reconciliation refinements + gap requirements (denominator) | 143 |  |
+| … tested_by at least one scenario | 84 | 58.7% |
 <!-- END GENERATED: trace-coverage -->
 
 Reading the coverage numbers:
@@ -61,14 +61,15 @@ Reading the coverage numbers:
 | Record set / result | Count |
 |---|---|
 | refinements | 46 |
-| gaps | 67 |
-| findings | 175 |
+| gaps | 97 |
+| findings | 178 |
 | conflicts | 39 |
-| scenarios | 124 |
-| decisions | 31 |
-| trace edges | 2176 |
+| scenarios | 144 |
+| decisions | 53 |
+| ui | 147 |
+| trace edges | 3796 |
 | **errors** |  |
-| warnings | 30 |
+| warnings | 60 |
 <!-- END GENERATED: validation -->
 
 Warnings are kept visible on purpose:

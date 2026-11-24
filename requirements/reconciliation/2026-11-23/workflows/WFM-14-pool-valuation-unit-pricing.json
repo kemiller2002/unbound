@@ -1,0 +1,689 @@
+{
+  "workflow_id": "WFM-14",
+  "name": "Pool valuation and unit pricing",
+  "release": "R1",
+  "outcome": "Each pool's NAV is struck from validated inputs, independently approved, published once, monitored for liquidity and corrected only by linked restatement",
+  "aggregate": "PoolValuationRun",
+  "sources": [
+    "UNB-NAV-005",
+    "UNB-NAV-038",
+    "UNB-RCN-FIN-007",
+    "RCD-017",
+    "RR-UNB-ACC-018-r1"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-011"
+  ],
+  "states": [
+    {
+      "id": "NavRunScheduled",
+      "kind": "initial",
+      "user_label": "Scheduled",
+      "lozenge": "neutral",
+      "description": "Valuation run for one pool and valuation date, created from the approved calendar."
+    },
+    {
+      "id": "NavInputsPending",
+      "kind": "intermediate",
+      "user_label": "Awaiting inputs",
+      "lozenge": "attention",
+      "description": "Waiting for custodian positions and cash, prices, accruals and the cutoff."
+    },
+    {
+      "id": "NavInputException",
+      "kind": "intermediate",
+      "user_label": "Input exception",
+      "lozenge": "unknown",
+      "description": "Feed missing at cutoff, or price stale, missing, conflicting or outlier; never forward-filled."
+    },
+    {
+      "id": "NavInputsValidated",
+      "kind": "intermediate",
+      "user_label": "Inputs validated",
+      "lozenge": "attention",
+      "description": "Positions, cash, identifiers, corporate actions and accruals validated against high-water marks."
+    },
+    {
+      "id": "NavCalculated",
+      "kind": "intermediate",
+      "user_label": "Calculated",
+      "lozenge": "attention",
+      "description": "Deterministic NAV and unit price computed in fixed-precision decimal."
+    },
+    {
+      "id": "NavExceptionHold",
+      "kind": "intermediate",
+      "user_label": "Exception hold",
+      "lozenge": "blocked",
+      "description": "Tolerance breach or material reconciliation break for the pool; publication blocked."
+    },
+    {
+      "id": "NavReadyForApproval",
+      "kind": "intermediate",
+      "user_label": "Awaiting approval",
+      "lozenge": "attention",
+      "description": "Within tolerance; awaiting independent checker."
+    },
+    {
+      "id": "NavApproved",
+      "kind": "intermediate",
+      "user_label": "Approved",
+      "lozenge": "ok",
+      "description": "Independently approved; not yet published."
+    },
+    {
+      "id": "NavPublished",
+      "kind": "intermediate",
+      "user_label": "Published",
+      "lozenge": "ok",
+      "description": "Published NAV; unit transactions strike at this price (forward pricing)."
+    },
+    {
+      "id": "NavLiquidityBufferLow",
+      "kind": "intermediate",
+      "user_label": "Liquidity buffer below floor",
+      "lozenge": "attention",
+      "description": "Pool cash below the sponsor-set buffer; replenishment decision pending."
+    },
+    {
+      "id": "NavCycleComplete",
+      "kind": "terminal",
+      "user_label": "Cycle complete",
+      "lozenge": "ok",
+      "description": "Published and liquidity checked."
+    },
+    {
+      "id": "NavRunSkipped",
+      "kind": "terminal",
+      "user_label": "No valuation (calendar)",
+      "lozenge": "neutral",
+      "description": "Market holiday or non-valuation day."
+    },
+    {
+      "id": "NavRunSuspended",
+      "kind": "terminal",
+      "user_label": "Valuation suspended",
+      "lozenge": "blocked",
+      "description": "Valuation suspended (market halt, custodian outage); unit transactions gated."
+    },
+    {
+      "id": "NavCorrectionOpened",
+      "kind": "correction",
+      "user_label": "Correction opened",
+      "lozenge": "attention",
+      "description": "Linked correction child of a published NAV, after a back-dated source correction."
+    },
+    {
+      "id": "NavCorrectionAssessed",
+      "kind": "correction",
+      "user_label": "Impact assessed",
+      "lozenge": "attention",
+      "description": "Counterfactual NAV, units and money impacts per fund, transaction, grant, fee and statement computed."
+    },
+    {
+      "id": "NavCorrectionBelowMateriality",
+      "kind": "correction",
+      "user_label": "Correction below materiality",
+      "lozenge": "neutral",
+      "description": "Below the sponsor materiality policy: no restatement; forward adjustment with evidence."
+    },
+    {
+      "id": "NavRestated",
+      "kind": "correction",
+      "user_label": "Restated",
+      "lozenge": "ok",
+      "description": "New approved publication linked to the original; remediation executed; original preserved."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-14-T01",
+      "from": "NavRunScheduled",
+      "to": "NavInputsPending",
+      "trigger": "timer",
+      "name": "OpenValuationRun",
+      "actor_type": "timer",
+      "actor_role": "Valuation calendar",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-run"
+      ],
+      "idempotency_key": "(poolId, valuationDate)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-009",
+        "UNB-NAV-001"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-14-T02",
+      "from": "NavRunScheduled",
+      "to": "NavRunSkipped",
+      "trigger": "timer",
+      "name": "SkipNonValuationDay",
+      "actor_type": "timer",
+      "actor_role": "Valuation calendar",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-run"
+      ],
+      "idempotency_key": "(poolId, valuationDate)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-009"
+      ],
+      "scenario_ids": [
+        "TVS-044"
+      ]
+    },
+    {
+      "id": "WFM-14-T03",
+      "from": "NavInputsPending",
+      "to": "NavInputsValidated",
+      "trigger": "event",
+      "name": "IngestAndValidateInputs",
+      "actor_type": "external",
+      "actor_role": "Custodian feed and price vendors (via adapters)",
+      "authority": "A3",
+      "guards": [
+        "cutoff-respected",
+        "source-high-water-marks-recorded",
+        "attribution-method-declared"
+      ],
+      "effects": [
+        "record-observations"
+      ],
+      "idempotency_key": "(poolId, valuationDate, sourceHighWaterMark)",
+      "failure": [
+        {
+          "condition": "TimeoutCustodianFeedMissing",
+          "to_state": "NavInputException"
+        },
+        {
+          "condition": "UnknownPriceStaleOrConflicting",
+          "to_state": "NavInputException"
+        },
+        {
+          "condition": "MaterialReconciliationBreak",
+          "to_state": "NavExceptionHold"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-NAV-007",
+        "UNB-NAV-006",
+        "UNB-NAV-019",
+        "UNB-RCN-FIN-007",
+        "RR-UNB-ACC-018-r1"
+      ],
+      "scenario_ids": [
+        "ADV-435",
+        "ADV-436",
+        "DKS-FIN-020",
+        "ADV-545"
+      ]
+    },
+    {
+      "id": "WFM-14-T04",
+      "from": "NavInputException",
+      "to": "NavInputsValidated",
+      "trigger": "event",
+      "name": "LateFeedArrives",
+      "actor_type": "external",
+      "actor_role": "Custodian feed",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-observations"
+      ],
+      "idempotency_key": "(poolId, valuationDate, sourceHighWaterMark)",
+      "failure": [
+        {
+          "condition": "TimeoutStillMissing",
+          "to_state": "NavInputException"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-NAV-046",
+        "UNB-NAV-053"
+      ],
+      "scenario_ids": [
+        "ADV-435"
+      ]
+    },
+    {
+      "id": "WFM-14-T05",
+      "from": "NavInputException",
+      "to": "NavInputsValidated",
+      "trigger": "command",
+      "name": "ApproveFallbackPrice",
+      "actor_type": "human",
+      "actor_role": "Pricing reviewer (independent of preparer)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "fallback-in-pricing-hierarchy"
+      ],
+      "effects": [
+        "record-observations"
+      ],
+      "idempotency_key": "(poolId, valuationDate, securityId, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-013",
+        "UNB-NAV-015",
+        "UNB-NAV-008"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-006",
+        "ADV-436"
+      ],
+      "ui_surface": "NEW:Price exception review"
+    },
+    {
+      "id": "WFM-14-T06",
+      "from": [
+        "NavInputsPending",
+        "NavInputException"
+      ],
+      "to": "NavRunSuspended",
+      "trigger": "command",
+      "name": "SuspendValuation",
+      "actor_type": "human",
+      "actor_role": "Pool valuation committee delegate",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "gate-unit-transactions",
+        "notify"
+      ],
+      "idempotency_key": "(poolId, valuationDate)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-004",
+        "UNB-NAV-046",
+        "UNB-INV-018"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-011"
+      ],
+      "ui_surface": "NEW:NAV review and approval"
+    },
+    {
+      "id": "WFM-14-T07",
+      "from": "NavInputsValidated",
+      "to": "NavCalculated",
+      "trigger": "event",
+      "name": "CalculateNav",
+      "actor_type": "deterministic",
+      "actor_role": "NAV engine",
+      "authority": "A3",
+      "guards": [
+        "fees-accrued-before-strike",
+        "pending-subscriptions-excluded"
+      ],
+      "effects": [
+        "record-nav-calculation"
+      ],
+      "idempotency_key": "(poolId, valuationDate, inputsHash, ruleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-003",
+        "UNB-NAV-004",
+        "UNB-NAV-022",
+        "UNB-NAV-025",
+        "UNB-NAV-033"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-007",
+        "ADV-118"
+      ]
+    },
+    {
+      "id": "WFM-14-T08",
+      "from": "NavCalculated",
+      "to": "NavReadyForApproval",
+      "trigger": "event",
+      "name": "ApplyToleranceChecks",
+      "actor_type": "deterministic",
+      "actor_role": "NAV tolerance policy",
+      "authority": "A3",
+      "guards": [
+        "within-day-over-day-tolerance",
+        "no-material-break-in-scope",
+        "units-reconcile"
+      ],
+      "effects": [
+        "record-checks"
+      ],
+      "idempotency_key": "(poolId, valuationDate, calculationId)",
+      "failure": [
+        {
+          "condition": "ToleranceBreach",
+          "to_state": "NavExceptionHold"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-NAV-007",
+        "RR-UNB-ACC-018-r1",
+        "UNB-NAV-012"
+      ],
+      "scenario_ids": [
+        "ADV-438",
+        "SIM-016"
+      ]
+    },
+    {
+      "id": "WFM-14-T09",
+      "from": "NavExceptionHold",
+      "to": "NavInputsPending",
+      "trigger": "command",
+      "name": "ResolveNavException",
+      "actor_type": "human",
+      "actor_role": "Fund accountant (pool)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(poolId, valuationDate, exceptionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-007",
+        "UNB-NAV-008",
+        "RR-UNB-ACC-018-r1"
+      ],
+      "scenario_ids": [
+        "ADV-438",
+        "DKS-PLT-009"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "Corrected inputs re-enter validation; AI may propose a resolution (A1) but cannot approve it."
+    },
+    {
+      "id": "WFM-14-T10",
+      "from": "NavExceptionHold",
+      "to": "NavReadyForApproval",
+      "trigger": "command",
+      "name": "OverrideTolerance",
+      "actor_type": "human",
+      "actor_role": "Pool valuation committee delegate (second approver required)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "second-approver",
+        "explained-market-move"
+      ],
+      "effects": [
+        "record-override"
+      ],
+      "idempotency_key": "(poolId, valuationDate, overrideId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-008",
+        "RR-UNB-ACC-018-r1"
+      ],
+      "scenario_ids": [
+        "ADV-467"
+      ],
+      "ui_surface": "NEW:NAV review and approval"
+    },
+    {
+      "id": "WFM-14-T11",
+      "from": "NavReadyForApproval",
+      "to": "NavApproved",
+      "trigger": "command",
+      "name": "ApproveNav",
+      "actor_type": "human",
+      "actor_role": "Independent NAV checker",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "no-material-break-in-scope"
+      ],
+      "effects": [
+        "record-approval"
+      ],
+      "idempotency_key": "(poolId, valuationDate, calculationId)",
+      "failure": [
+        {
+          "condition": "CheckerRejects",
+          "to_state": "NavExceptionHold"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-NAV-008",
+        "UNB-NAV-005",
+        "UNB-NAV-011"
+      ],
+      "scenario_ids": [
+        "ADV-856",
+        "DKS-PLT-008"
+      ],
+      "ui_surface": "NEW:NAV review and approval",
+      "notes": "GAP/decision: UNB-NAV-008 requires maker-checker for every published NAV; no decision delegates routine in-tolerance NAV approval to a deterministic policy (contrast RCD-005, RCD-020)."
+    },
+    {
+      "id": "WFM-14-T12",
+      "from": "NavApproved",
+      "to": "NavPublished",
+      "trigger": "event",
+      "name": "PublishNav",
+      "actor_type": "deterministic",
+      "actor_role": "NAV publication service",
+      "authority": "A3",
+      "guards": [
+        "approval-recorded"
+      ],
+      "effects": [
+        "publish-nav",
+        "strike-unit-transactions",
+        "ledger"
+      ],
+      "idempotency_key": "(poolId, valuationDate, approvalId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-005",
+        "UNB-NAV-011",
+        "UNB-NAV-021",
+        "UNB-NAV-023",
+        "UNB-NAV-024"
+      ],
+      "scenario_ids": [
+        "ADV-119",
+        "ADV-118"
+      ]
+    },
+    {
+      "id": "WFM-14-T13",
+      "from": "NavPublished",
+      "to": "NavCycleComplete",
+      "trigger": "event",
+      "name": "EvaluateLiquidityBuffer",
+      "actor_type": "deterministic",
+      "actor_role": "Pool liquidity monitor (RCD-017 buffer, default 2%)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-buffer-measure"
+      ],
+      "idempotency_key": "(poolId, valuationDate)",
+      "failure": [
+        {
+          "condition": "BufferBelowFloor",
+          "to_state": "NavLiquidityBufferLow"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-017",
+        "UNB-NAV-036",
+        "UNB-NAV-035"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-010",
+        "DKS-FIN-011"
+      ]
+    },
+    {
+      "id": "WFM-14-T14",
+      "from": "NavLiquidityBufferLow",
+      "to": "NavCycleComplete",
+      "trigger": "command",
+      "name": "ApproveBufferReplenishment",
+      "actor_type": "human",
+      "actor_role": "Sponsor investment operations (treasury)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "mandate-boundaries"
+      ],
+      "effects": [
+        "rebalance-instruction"
+      ],
+      "idempotency_key": "(poolId, valuationDate, instructionId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-017",
+        "UNB-INV-015",
+        "UNB-NAV-036"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-010"
+      ],
+      "ui_surface": "NEW:Pool liquidity buffer",
+      "notes": "While below floor, grants that cannot fund from cash enter ApprovedPendingLiquidity (RR-REQ-X-002-r1); no NAV change."
+    },
+    {
+      "id": "WFM-14-T15",
+      "from": "NavCycleComplete",
+      "to": "NavCorrectionOpened",
+      "trigger": "event",
+      "name": "ReceiveBackdatedSourceCorrection",
+      "actor_type": "external",
+      "actor_role": "Custodian / price vendor correction feed",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "record-observations"
+      ],
+      "idempotency_key": "(source, correctionRef)",
+      "failure": [
+        {
+          "condition": "UnknownCorrectionScope",
+          "to_state": "NavCorrectionOpened"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-NAV-038",
+        "UNB-NAV-039",
+        "UNB-NAV-002"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-013",
+        "TVS-093",
+        "TVS-345"
+      ],
+      "notes": "A duplicate correction is idempotent (TVS-345)."
+    },
+    {
+      "id": "WFM-14-T16",
+      "from": "NavCorrectionOpened",
+      "to": "NavCorrectionAssessed",
+      "trigger": "event",
+      "name": "AssessCorrectionImpact",
+      "actor_type": "deterministic",
+      "actor_role": "NAV correction engine",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "impact-report"
+      ],
+      "idempotency_key": "(correctionId, ruleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-018",
+        "UNB-NAV-040",
+        "UNB-NAV-045"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-013",
+        "TVS-094"
+      ]
+    },
+    {
+      "id": "WFM-14-T17",
+      "from": "NavCorrectionAssessed",
+      "to": "NavCorrectionBelowMateriality",
+      "trigger": "event",
+      "name": "ApplyBelowMaterialityPolicy",
+      "actor_type": "deterministic",
+      "actor_role": "Sponsor NAV materiality policy",
+      "authority": "A3",
+      "guards": [
+        "below-materiality"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(correctionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-041",
+        "UNB-NAV-042"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-013"
+      ]
+    },
+    {
+      "id": "WFM-14-T18",
+      "from": "NavCorrectionAssessed",
+      "to": "NavRestated",
+      "trigger": "command",
+      "name": "ApproveNavRestatement",
+      "actor_type": "human",
+      "actor_role": "Pool valuation committee delegate (responsible reviewer)",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "close-restatement-authority-if-period-closed"
+      ],
+      "effects": [
+        "publish-nav",
+        "ledger",
+        "corrective-unit-events",
+        "fee-recompute",
+        "statement-correction-request"
+      ],
+      "idempotency_key": "(correctionId, approvalId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-NAV-038",
+        "UNB-NAV-041",
+        "UNB-NAV-043",
+        "UNB-NAV-010",
+        "RR-UNB-GFUND-013-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-013",
+        "TVS-339",
+        "ADV-125",
+        "TVS-340"
+      ],
+      "ui_surface": "NEW:NAV review and approval",
+      "notes": "Fixed grant amounts are not re-fixed; settled transfers not overwritten (UNB-NAV-042). Closed periods need WFM-16 restatement authority."
+    }
+  ],
+  "invariants": [
+    "No NAV is published without an approval by a principal other than the preparer (UNB-NAV-008).",
+    "Missing or stale inputs never produce a NAV; the run stays in exception or is suspended (UNB-NAV-046).",
+    "A published NAV is never updated; corrections are linked restatements (UNB-NAV-038, UNB-NAV-042).",
+    "Unit transactions strike only at a published NAV after their cutoff (forward pricing, UNB-NAV-021)."
+  ]
+}

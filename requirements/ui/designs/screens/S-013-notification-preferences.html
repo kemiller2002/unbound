@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-013 Notification preferences | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-013. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html" aria-current="page">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html" aria-current="page">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-013</p>
+        <h1>Notification preferences</h1>
+        <p class="forma-lead">Switch optional notifications on or off per channel. Required legal and security notices are always on, with the reason.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s013-1">State 1: Preferences with required classes locked on</a></li></ul></nav>
+    <section class="forma-section" id="s013-1" aria-labelledby="s013-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 1 · Donor</p>
+      <h2 id="s013-1-title">Preferences with required classes locked on</h2>
+      <p>Demonstrates: UNB-UI-S-013 AC-1 (acknowledgment switch on and disabled with 'Required: tax acknowledgment')</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Avery Lindqvist</a></li><li aria-current="page">Notifications</li></ol></nav></forma-scope-trail><form class="forma-form" id="s013-1-f" aria-labelledby="s013-1-ft"><h3 id="s013-1-ft">How we contact you</h3>
+<fieldset class="forma-stack"><legend><strong>Contribution acknowledgments</strong></legend><p>Your tax receipt for each contribution.</p>
+<div class="forma-form-row"><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-ack-email" name="s013-1-ack-email" value="on" checked disabled aria-describedby="s013-1-ack-email-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Email</span><span class="forma-switch__description" id="s013-1-ack-email-description">Required: tax acknowledgment</span></span>
+</label></forma-switch><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-ack-app" name="s013-1-ack-app" value="on" checked disabled aria-describedby="s013-1-ack-app-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">In-app</span><span class="forma-switch__description" id="s013-1-ack-app-description">Required: tax acknowledgment</span></span>
+</label></forma-switch></div></fieldset>
+<fieldset class="forma-stack"><legend><strong>Security alerts</strong></legend><p>Sign-ins from a new device and changes to who can access your fund.</p>
+<div class="forma-form-row"><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-sec-email" name="s013-1-sec-email" value="on" checked disabled aria-describedby="s013-1-sec-email-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Email</span><span class="forma-switch__description" id="s013-1-sec-email-description">Required: account security</span></span>
+</label></forma-switch><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-sec-sms" name="s013-1-sec-sms" value="on" checked disabled aria-describedby="s013-1-sec-sms-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Text message</span><span class="forma-switch__description" id="s013-1-sec-sms-description">Required: account security</span></span>
+</label></forma-switch></div></fieldset>
+<fieldset class="forma-stack"><legend><strong>Grant updates</strong></legend><p>Approved, paid, held or returned grants. These always appear in your activity list.</p>
+<div class="forma-form-row"><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-grant-email" name="s013-1-grant-email" value="on" checked aria-describedby="s013-1-grant-email-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Email</span><span class="forma-switch__description" id="s013-1-grant-email-description">Optional</span></span>
+</label></forma-switch><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-grant-sms" name="s013-1-grant-sms" value="on" aria-describedby="s013-1-grant-sms-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Text message</span><span class="forma-switch__description" id="s013-1-grant-sms-description">Optional</span></span>
+</label></forma-switch></div></fieldset>
+<fieldset class="forma-stack"><legend><strong>Program news</strong></legend><p>Occasional news from Harbor Giving.</p>
+<div class="forma-form-row"><forma-switch class="forma-component-tag"><label class="forma-switch" data-forma-motion-weight="standard">
+  <input class="forma-switch__input" type="checkbox" role="switch" id="s013-1-news-email" name="s013-1-news-email" value="on" aria-describedby="s013-1-news-email-description">
+  <span class="forma-switch__track" aria-hidden="true"></span>
+  <span class="forma-switch__text"><span class="forma-switch__label">Email</span><span class="forma-switch__description" id="s013-1-news-email-description">Optional</span></span>
+</label></forma-switch></div></fieldset>
+<forma-callout class="forma-component-tag"><aside class="forma-callout" data-forma-callout="note" aria-labelledby="s013-1-why"><p class="forma-callout__label" id="s013-1-why">Why some notices cannot be turned off</p><p>Example Charitable Foundation must send tax acknowledgments and security alerts. You can still choose optional channels for everything else.</p></aside></forma-callout>
+<div class="forma-actions"><button type="submit">Save preferences</button></div>
+<p class="forma-form__outcome" id="s013-1-saved" role="status" aria-label="Save status">Preferences saved.</p>
+</form>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

@@ -56,15 +56,15 @@ This is a **first conversion pass**, not an exhaustive review of the 1,900-entry
 - UNB-CTL-006: Model year-end surge, custodian outage, liquidity stress, vendor data restrictions and correlated AI failures.
 
 ## Outstanding research converted into explicit validation blockers
-- UNB-GAP-001: Sponsor grant-history shadow replay to measure exception rates, human minutes and errors (source OUTSTANDING C1).
-- UNB-GAP-002: Independent reconciliation break-frequency and handling-cost measurement (C2).
-- UNB-GAP-003: Verify sponsor/vendor API access, export and usage rights in actual agreements (C3).
-- UNB-GAP-004: Counsel review of instruction-only provider status and inter-sponsor determination reuse (C4).
-- UNB-GAP-005: Customer willingness to pay, partner sponsor terms and donor acceptance of execution windows (C5).
-- UNB-GAP-006: Verify restricted custodian/bank and identity-provider integrations rather than assuming availability (C6–C7).
-- UNB-GAP-007: Charity identity, sanctions matching, fairness and tax-filing extraction evaluations (B5–B8).
-- UNB-GAP-008: Resolve legal-to-control mapping, agent naming, workflow ID reconciliation and proposed event/API catalog decisions (A1–A6).
-- UNB-GAP-009: Reproduce and extend adversarial experiments for poisoned data, adaptive fraud, correlated misses, reviewer automation bias and registry compromise (B3).
+- UNB-LSGAP-001: Sponsor grant-history shadow replay to measure exception rates, human minutes and errors (source OUTSTANDING C1).
+- UNB-LSGAP-002: Independent reconciliation break-frequency and handling-cost measurement (C2).
+- UNB-LSGAP-003: Verify sponsor/vendor API access, export and usage rights in actual agreements (C3).
+- UNB-LSGAP-004: Counsel review of instruction-only provider status and inter-sponsor determination reuse (C4).
+- UNB-LSGAP-005: Customer willingness to pay, partner sponsor terms and donor acceptance of execution windows (C5).
+- UNB-LSGAP-006: Verify restricted custodian/bank and identity-provider integrations rather than assuming availability (C6–C7).
+- UNB-LSGAP-007: Charity identity, sanctions matching, fairness and tax-filing extraction evaluations (B5–B8).
+- UNB-LSGAP-008: Resolve legal-to-control mapping, agent naming, workflow ID reconciliation and proposed event/API catalog decisions (A1–A6).
+- UNB-LSGAP-009: Reproduce and extend adversarial experiments for poisoned data, adaptive fraud, correlated misses, reviewer automation bias and registry compromise (B3).
 
 ## Conversion method for next wave
 For every source capability, workflow, API, agent, event, research conclusion and proposed innovation:
@@ -85,3 +85,18 @@ For every source capability, workflow, API, agent, event, research conclusion an
 - Workflow innovation design catalog, adversarial verdicts and experiment results
 - Charity-vetting AI evidence and evaluation results
 - Commercial opportunity and market research workstreams
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### UNB-RCN-ENT-013 (P2, origin: gap-analysis) — adopted
+- **Exposed by:** RCF-ENT-028 · **Parent:** UNB-HYP-007 · **Decisions:** —
+- **Requirement:** An advisory-privilege holder MUST be able to export the fund's grant, contribution and statement history in a documented machine-readable format, limited to data they are authorized to see.
+- **Acceptance criteria:**
+  - AC-1: Given a co-advisor with a restricted view; when it exports; then the export excludes other participants' private contribution data.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-ENT-013); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

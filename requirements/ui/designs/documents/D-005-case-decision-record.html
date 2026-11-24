@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UNB-UI-D-005 prototype: sanctions case decision record, composed only from Folio 0.4.2 primitives.">
+  <title>Case decision record 2026-000731</title>
+  <link rel="stylesheet" href="../vendor/folio-0.4.2/src/styles/print.css">
+  <script type="module" src="../vendor/folio-0.4.2/src/components/register.js"></script>
+</head>
+<body>
+<ef-print-document data-document-kind="case-decision-record" data-requirement="UNB-UI-D-005">
+  <ef-print-header repeat="page">
+    <span slot="left">Example Charitable Foundation</span>
+    <span slot="center">Case decision record (internal, audit evidence)</span>
+    <span slot="right">Reference 2026-000731</span>
+  </ef-print-header>
+  <main class="ef-dense">
+    <ef-print-section>
+      <h1>Case decision record: sanctions screening match</h1>
+      <dl class="ef-meta-list">
+        <div><dt>Case reference</dt><dd>2026-000731</dd></div>
+        <div><dt>Raised by rule</dt><dd>SAN-OFAC-001 version 3: payee name and address match against the OFAC SDN list, score 0.92 or higher</dd></div>
+        <div><dt>Subject</dt><dd>Grant 2026-004903 to payee Meridian Relief Collective (fictional)</dd></div>
+        <div><dt>Case opened</dt><dd>19 Nov 2026 07:22 America/Chicago (2026-11-19T13:22:45Z UTC)</dd></div>
+        <div><dt>Decision recorded</dt><dd>20 Nov 2026 10:41 America/Chicago (2026-11-20T16:41:09Z UTC)</dd></div>
+        <div><dt>Prepared by</dt><dd>Analyst Dana Whitfield (user 4471), compliance operations</dd></div>
+        <div><dt>Decided by</dt><dd>Marcus Lee (user 1093), Chief Compliance Officer</dd></div>
+      </dl>
+      <ef-print-callout>
+        <p><strong>OFAC report due 4 Dec 2026.</strong> Blocked property report due within 10 business days of blocking (blocked 20 Nov 2026).</p>
+      </ef-print-callout>
+    </ef-print-section>
+    <ef-print-section>
+      <h2>Evidence</h2>
+      <ef-print-table>
+        <table>
+          <caption>Evidence considered, with source and freshness</caption>
+          <thead><tr><th scope="col">Item</th><th scope="col">Evidence</th><th scope="col">Source</th><th scope="col">Retrieved</th><th scope="col">Freshness</th><th scope="col">SHA-256</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">EV-1</th><td>OFAC SDN list entry (fictional)</td><td>Treasury OFAC SDN feed</td><td>19 Nov 2026 (2026-11-19T06:00:00Z UTC)</td><td>Same day</td><td><code>a844e64346d49b562fe207865d7326576faef58f7e7de614dc72df765ab37a52</code></td></tr>
+            <tr><th scope="row">EV-2</th><td>Payee registration record</td><td>Unbound charity registry</td><td>19 Nov 2026 (2026-11-19T13:22:41Z UTC)</td><td>Same day</td><td><code>ff2613a0d47bf83282ba558397ad694f9b1abe6eb718a1d397205833c7991eb8</code></td></tr>
+            <tr><th scope="row">EV-3</th><td>IRS Pub. 78 / EO BMF lookup</td><td>IRS EO BMF monthly file</td><td>12 Nov 2026 (2026-11-12T00:00:00Z UTC)</td><td>7 days</td><td><code>51d07f0555017aef9f677766f43bf3bdb82a8f476692d652337f1e52ca459e86</code></td></tr>
+            <tr><th scope="row">EV-4</th><td>Bank account ownership attestation</td><td>Payee upload</td><td>19 Nov 2026 (2026-11-19T15:03:10Z UTC)</td><td>Same day</td><td><code>0cf872707aaf25fc5ae0398ed4e8cc0f8643f413ec80ad10d07b5306e41f7155</code></td></tr>
+            <tr><th scope="row">EV-5</th><td>Screening engine match explanation</td><td>Sanctions screening service</td><td>19 Nov 2026 (2026-11-19T13:22:45Z UTC)</td><td>Same day</td><td><code>db1103a6350824cc58fec3188236d473433fd895da2e734394c5bed36355ab01</code></td></tr>
+          </tbody>
+        </table>
+      </ef-print-table>
+    </ef-print-section>
+    <ef-print-section>
+      <h2>Decision</h2>
+      <ef-print-finding>
+        <dl>
+          <div><dt>Observation</dt><dd>Payee name, street address and bank country match SDN entry (fictional) on three of three identifying attributes (EV-1, EV-2, EV-5).</dd></div>
+          <div><dt>Decision</dt><dd>Confirmed match. Grant 2026-004903 payment blocked; funds moved to a blocked interest-bearing account.</dd></div>
+          <div><dt>Rationale</dt><dd>Attribute agreement exceeds the confirmation threshold; payee attestation (EV-4) names the same beneficial owner. No contrary evidence.</dd></div>
+          <div><dt>Follow-up</dt><dd>File blocked property report with OFAC by 4 Dec 2026; notify the fund advisor that the grant cannot be paid, without disclosing the screening reason.</dd></div>
+        </dl>
+      </ef-print-finding>
+      <ef-print-note role="note"><p>Separation of duties: the preparer and the decider are different people (user 4471 and user 1093).</p></ef-print-note>
+    </ef-print-section>
+  </main>
+  <ef-print-footer repeat="page">
+    <span slot="left">Reference 2026-000731</span>
+    <span slot="center">Verify at https://verify.harborgiving.example/d/2026-000731 &middot; code 8DKS-5RWA-1MPH</span>
+    <span slot="right"><ef-print-page-number format="page-of-pages">Page numbers: renderer-supplied (P1/P2)</ef-print-page-number></span>
+  </ef-print-footer>
+</ef-print-document>
+</body>
+</html>

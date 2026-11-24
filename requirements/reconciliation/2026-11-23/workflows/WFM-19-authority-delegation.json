@@ -1,0 +1,799 @@
+{
+  "workflow_id": "WFM-19",
+  "name": "Delegated authority: grant, change scope, revalidate, revoke and expire",
+  "release": "R1",
+  "outcome": "Every advisor, legal representative and delegated agent principal acts only through an explicit, scoped, effective-dated role grant whose revocation or expiry takes effect at the next authorization check and holds pending work it produced",
+  "aggregate": "RoleGrant",
+  "sources": [
+    "RR-UNB-ADV-001-r1",
+    "RR-UNB-PART-003-r1",
+    "UNB-RCN-PLT-005",
+    "UNB-RCN-ENT-010",
+    "GOV-AUTH-015",
+    "TX-25",
+    "06-state-models/state-models.md#7 (AUTH-I1, AUTH-I2, AUTH-I3, AUTH-I7)",
+    "E2E-WF-18"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-006",
+    "UNB-UI-S-001"
+  ],
+  "states": [
+    {
+      "id": "DelegationRequested",
+      "kind": "initial",
+      "user_label": "Requested",
+      "lozenge": "attention",
+      "description": "Grantor (advisory-privilege holder, representative principal or sponsor) requested a role grant for an advisor, legal representative or agent principal with scope (fund set, command set, amount limits) and effective dates."
+    },
+    {
+      "id": "DelegationEvidencePending",
+      "kind": "intermediate",
+      "user_label": "Awaiting documents",
+      "lozenge": "attention",
+      "description": "Legal-representative subtype requires an instrument (power of attorney, guardianship order, letters testamentary, trust certificate, entity resolution)."
+    },
+    {
+      "id": "DelegationEvidenceReview",
+      "kind": "intermediate",
+      "user_label": "Documents in review",
+      "lozenge": "attention",
+      "description": "Sponsor reviewer verifies the instrument, its scope and its expiry."
+    },
+    {
+      "id": "DelegateVerifying",
+      "kind": "intermediate",
+      "user_label": "Verifying delegate",
+      "lozenge": "attention",
+      "description": "Delegate acceptance, identity proofing where the regime register requires it, and sanctions screening."
+    },
+    {
+      "id": "DelegateVerificationUnknown",
+      "kind": "intermediate",
+      "user_label": "Verification result unknown",
+      "lozenge": "unknown",
+      "description": "Identity or sanctions provider returned no definite result; grant not active."
+    },
+    {
+      "id": "DelegatePotentialMatch",
+      "kind": "intermediate",
+      "user_label": "Delegate under review",
+      "lozenge": "blocked",
+      "description": "Potential sanctions match or identity conflict held for compliance disposition."
+    },
+    {
+      "id": "DelegationActive",
+      "kind": "intermediate",
+      "user_label": "Active",
+      "lozenge": "ok",
+      "description": "Grant in force with an authority version; every command is checked against it."
+    },
+    {
+      "id": "DelegationScopeChangePending",
+      "kind": "intermediate",
+      "user_label": "Scope change pending",
+      "lozenge": "attention",
+      "description": "Grantor asked to widen scope; step-up and re-verification apply before the wider scope takes effect."
+    },
+    {
+      "id": "DelegationRevalidating",
+      "kind": "intermediate",
+      "user_label": "Rechecking access",
+      "lozenge": "attention",
+      "description": "An event (grantor protective hold, role change, sanctions list update, instrument expiry, credential change, partner termination) requires revalidation."
+    },
+    {
+      "id": "DelegationSuspended",
+      "kind": "intermediate",
+      "user_label": "Suspended",
+      "lozenge": "blocked",
+      "description": "Grant suspended (parent authority held or revalidation failed); commands denied and pending items held."
+    },
+    {
+      "id": "DelegationRevoked",
+      "kind": "terminal",
+      "user_label": "Revoked",
+      "lozenge": "neutral",
+      "description": "Grant ended by grantor or sponsor, or because its parent authority ended."
+    },
+    {
+      "id": "DelegationExpired",
+      "kind": "terminal",
+      "user_label": "Expired",
+      "lozenge": "neutral",
+      "description": "Grant reached its effective end date."
+    },
+    {
+      "id": "DelegationRejected",
+      "kind": "terminal",
+      "user_label": "Not approved",
+      "lozenge": "blocked",
+      "description": "Evidence rejected, scope exceeded grantor's, identity failed or sanctions match confirmed."
+    },
+    {
+      "id": "DelegationRequestClosed",
+      "kind": "terminal",
+      "user_label": "Request closed",
+      "lozenge": "neutral",
+      "description": "Request withdrawn by the grantor, declined by the delegate or lapsed waiting for documents."
+    },
+    {
+      "id": "DelegationActionsReview",
+      "kind": "correction",
+      "user_label": "Actions under review",
+      "lozenge": "neutral",
+      "description": "Linked review of actions taken under a grant later found invalid (forged instrument, undisclosed death of principal); no automatic reversal."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-19-T01",
+      "from": "DelegationRequested",
+      "to": "DelegateVerifying",
+      "trigger": "command",
+      "name": "SubmitDelegationGrant",
+      "actor_type": "human",
+      "actor_role": "Grantor (advisory-privilege holder or representative principal)",
+      "authority": "A2",
+      "guards": [
+        "grantor-holds-delegable-right",
+        "scope-within-grantor-scope",
+        "grantor-not-grantee",
+        "role-type-not-representative",
+        "step-up-authentication"
+      ],
+      "effects": [
+        "notify-delegate"
+      ],
+      "idempotency_key": "(fundId, granteeId, role, scopeHash, effectiveFrom)",
+      "failure": [
+        {
+          "condition": "ScopeExceedsGrantor",
+          "to_state": "DelegationRejected"
+        },
+        {
+          "condition": "GrantorUnderProtectiveHold",
+          "to_state": "DelegationRejected"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "RR-UNB-PART-003-r1",
+        "ADM-005",
+        "GOV-AUTH-003",
+        "UNB-UI-S-006"
+      ],
+      "scenario_ids": [
+        "TVS-430"
+      ],
+      "ui_surface": "UNB-UI-S-006",
+      "notes": "Covers professional advisors, additional advisory-privilege holders, authorized viewers and delegated agent principals. An agent principal's scope includes caps and confirmation thresholds (UNB-WF-011)."
+    },
+    {
+      "id": "WFM-19-T02",
+      "from": "DelegationRequested",
+      "to": "DelegationEvidencePending",
+      "trigger": "event",
+      "name": "RequireRepresentativeInstrument",
+      "actor_type": "deterministic",
+      "actor_role": "Role catalogue policy",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "request-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-010",
+        "RR-UNB-PART-003-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-19-T03",
+      "from": "DelegationEvidencePending",
+      "to": "DelegationEvidenceReview",
+      "trigger": "command",
+      "name": "SubmitRepresentativeInstrument",
+      "actor_type": "human",
+      "actor_role": "Legal representative (agent under POA, guardian, executor, trustee, entity signatory)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "store-evidence"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-010",
+        "RR-UNB-PART-003-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Representative evidence upload"
+    },
+    {
+      "id": "WFM-19-T04",
+      "from": "DelegationEvidenceReview",
+      "to": "DelegateVerifying",
+      "trigger": "command",
+      "name": "ApproveRepresentativeInstrument",
+      "actor_type": "human",
+      "actor_role": "Sponsor representative-authority reviewer",
+      "authority": "A4",
+      "guards": [
+        "instrument-authentic",
+        "scope-matches-instrument",
+        "instrument-expiry-recorded",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "InstrumentInsufficient",
+          "to_state": "DelegationEvidencePending"
+        },
+        {
+          "condition": "InstrumentRejected",
+          "to_state": "DelegationRejected"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-ENT-010",
+        "RR-UNB-PART-003-r1",
+        "GOV-AUTH-009"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "An agent-under-POA grant ends on revocation or death of the principal (RR-UNB-PART-003-r1 AC-1)."
+    },
+    {
+      "id": "WFM-19-T05",
+      "from": "DelegationEvidencePending",
+      "to": "DelegationRequestClosed",
+      "trigger": "timer",
+      "name": "LapseEvidenceRequest",
+      "actor_type": "timer",
+      "actor_role": "Evidence request timer",
+      "authority": "A2",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-010"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-19-T06",
+      "from": [
+        "DelegationRequested",
+        "DelegationEvidencePending",
+        "DelegationEvidenceReview",
+        "DelegateVerifying",
+        "DelegateVerificationUnknown"
+      ],
+      "to": "DelegationRequestClosed",
+      "trigger": "command",
+      "name": "WithdrawOrDeclineDelegation",
+      "actor_type": "human",
+      "actor_role": "Grantor (withdraw) or delegate (decline)",
+      "authority": "A1",
+      "guards": [],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-PART-007",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "NEW:Invitation acceptance"
+    },
+    {
+      "id": "WFM-19-T07",
+      "from": "DelegateVerifying",
+      "to": "DelegationActive",
+      "trigger": "event",
+      "name": "DelegateVerifiedActivateGrant",
+      "actor_type": "external",
+      "actor_role": "Identity proofing provider and sanctions screening service",
+      "authority": "A3",
+      "guards": [
+        "delegate-accepted-terms",
+        "assurance-level-met-if-required",
+        "sanctions-clear",
+        "grantor-authority-current"
+      ],
+      "effects": [
+        "external-call",
+        "activate-grant",
+        "authority-version-increment",
+        "notify-grantor"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "TimeoutOrUnknownProviderResult",
+          "to_state": "DelegateVerificationUnknown"
+        },
+        {
+          "condition": "PotentialMatchOrIdentityConflict",
+          "to_state": "DelegatePotentialMatch"
+        },
+        {
+          "condition": "IdentityProofingFailed",
+          "to_state": "DelegationRejected"
+        },
+        {
+          "condition": "GrantorAuthorityEnded",
+          "to_state": "DelegationRevoked"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "RR-UNB-PART-007-r1",
+        "RCD-023",
+        "RCD-015",
+        "UNB-PART-004"
+      ],
+      "scenario_ids": [
+        "TVS-056"
+      ]
+    },
+    {
+      "id": "WFM-19-T08",
+      "from": "DelegateVerificationUnknown",
+      "to": "DelegateVerifying",
+      "trigger": "command",
+      "name": "RequeryDelegateChecks",
+      "actor_type": "deterministic",
+      "actor_role": "Identity regime orchestrator",
+      "authority": "A2",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "UnknownPersistsBeyondSla",
+          "to_state": "DelegateVerificationUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-PART-007-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-19-T09",
+      "from": "DelegatePotentialMatch",
+      "to": "DelegateVerifying",
+      "trigger": "command",
+      "name": "DispositionDelegateFalsePositive",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-LEG-004"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-19-T10",
+      "from": "DelegatePotentialMatch",
+      "to": "DelegationRejected",
+      "trigger": "command",
+      "name": "ConfirmDelegateMatch",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "decision-record",
+        "ofac-report-case-if-true-match"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "UNB-RCN-REG-003"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-19-T11",
+      "from": "DelegationActive",
+      "to": "DelegationActive",
+      "trigger": "command",
+      "name": "NarrowDelegationScope",
+      "actor_type": "human",
+      "actor_role": "Grantor (advisory-privilege holder or representative principal)",
+      "authority": "A2",
+      "guards": [
+        "grantor-holds-delegable-right"
+      ],
+      "effects": [
+        "authority-version-increment",
+        "revalidate-pending-items",
+        "invalidate-sessions-outside-scope"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "ADM-021",
+        "UNB-UI-S-006"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-006",
+      "notes": "Narrowing is effective at the next authorization check; pending recommendations outside the new scope are Held and the grantor notified."
+    },
+    {
+      "id": "WFM-19-T12",
+      "from": "DelegationActive",
+      "to": "DelegationScopeChangePending",
+      "trigger": "command",
+      "name": "RequestScopeExpansion",
+      "actor_type": "human",
+      "actor_role": "Grantor (advisory-privilege holder or representative principal)",
+      "authority": "A2",
+      "guards": [
+        "step-up-authentication"
+      ],
+      "effects": [],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "ADM-021"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-006"
+    },
+    {
+      "id": "WFM-19-T13",
+      "from": "DelegationScopeChangePending",
+      "to": "DelegationActive",
+      "trigger": "event",
+      "name": "ApplyScopeExpansion",
+      "actor_type": "deterministic",
+      "actor_role": "Authorization policy",
+      "authority": "A3",
+      "guards": [
+        "scope-within-grantor-scope",
+        "cooling-off-elapsed-for-sensitive-scope",
+        "delegate-reverified-if-required"
+      ],
+      "effects": [
+        "authority-version-increment",
+        "notify-grantor-prior-channel"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [
+        {
+          "condition": "ScopeExceedsGrantor",
+          "to_state": "DelegationActive"
+        },
+        {
+          "condition": "GrantorAuthorityChanged",
+          "to_state": "DelegationRevalidating"
+        }
+      ],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "GOV-AUTH-008",
+        "GOV-AUTH-006"
+      ],
+      "scenario_ids": [],
+      "notes": "AUTH-I7: authority-relevant changes need step-up, cooling-off and notice to the prior channel."
+    },
+    {
+      "id": "WFM-19-T14",
+      "from": [
+        "DelegationActive",
+        "DelegationScopeChangePending",
+        "DelegationRevalidating",
+        "DelegationSuspended"
+      ],
+      "to": "DelegationRevoked",
+      "trigger": "command",
+      "name": "RevokeDelegationByGrantor",
+      "actor_type": "human",
+      "actor_role": "Grantor (advisory-privilege holder or representative principal)",
+      "authority": "A2",
+      "guards": [
+        "grantor-holds-delegable-right"
+      ],
+      "effects": [
+        "authority-version-increment",
+        "invalidate-sessions-tokens-widgets",
+        "end-child-grants",
+        "hold-pending-recommendations",
+        "notify-grantor",
+        "revoke-third-party-authorizations"
+      ],
+      "idempotency_key": "(grantId, revocationId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "GOV-AUTH-015",
+        "UNB-UI-S-006",
+        "ADM-021"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-023",
+        "TVS-059",
+        "DKS-PLT-004",
+        "DKS-PLT-026",
+        "SIM-019"
+      ],
+      "ui_surface": "UNB-UI-S-006",
+      "notes": "Revocation is immediate (UNB-UI-S-006 'Revoke access (A2, immediate)') with a G-005 confirmation. Pending recommendations created by the grantee are Held, not withdrawn; approved grants are not reversed but re-check authority at release (SM-6). Third-party registers (custodian trading authorization) are revoked under AUTH-I6."
+    },
+    {
+      "id": "WFM-19-T15",
+      "from": [
+        "DelegationActive",
+        "DelegationScopeChangePending",
+        "DelegationRevalidating",
+        "DelegationSuspended"
+      ],
+      "to": "DelegationRevoked",
+      "trigger": "command",
+      "name": "RevokeDelegationBySponsor",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized staff",
+      "authority": "A4",
+      "guards": [
+        "reason-recorded"
+      ],
+      "effects": [
+        "authority-version-increment",
+        "invalidate-sessions-tokens-widgets",
+        "end-child-grants",
+        "hold-pending-recommendations",
+        "notify-grantor",
+        "revoke-third-party-authorizations"
+      ],
+      "idempotency_key": "(grantId, revocationId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "GOV-AUTH-015",
+        "GOV-AUTH-025",
+        "UNB-LEG-002"
+      ],
+      "scenario_ids": [
+        "TVS-341",
+        "TVS-647"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-19-T16",
+      "from": "DelegationActive",
+      "to": "DelegationRevalidating",
+      "trigger": "event",
+      "name": "RevalidateOnAuthorityEvent",
+      "actor_type": "deterministic",
+      "actor_role": "Authority revalidation service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "pause-new-commands-for-grant"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "GOV-AUTH-025",
+        "RR-UNB-SUCC-008-r1",
+        "UNB-RCN-GRT-007",
+        "RR-UNB-PART-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-XD-009",
+        "TVS-415",
+        "TVS-551"
+      ],
+      "notes": "Triggers: grantor protective hold or verified death (WFM-20), grantor scope change, sanctions list update, representative instrument expiry, credential/recovery-factor change, partner termination or SCIM change."
+    },
+    {
+      "id": "WFM-19-T17",
+      "from": "DelegationRevalidating",
+      "to": "DelegationActive",
+      "trigger": "event",
+      "name": "RevalidationPassed",
+      "actor_type": "deterministic",
+      "actor_role": "Authority revalidation service",
+      "authority": "A3",
+      "guards": [
+        "grantor-authority-current",
+        "sanctions-clear",
+        "instrument-current"
+      ],
+      "effects": [
+        "authority-version-increment"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "GOV-AUTH-025",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-19-T18",
+      "from": "DelegationRevalidating",
+      "to": "DelegationSuspended",
+      "trigger": "event",
+      "name": "RevalidationFailedOrParentHeld",
+      "actor_type": "deterministic",
+      "actor_role": "Authority revalidation service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "deny-commands",
+        "hold-pending-recommendations",
+        "invalidate-sessions-tokens-widgets",
+        "notify-grantor"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-RCN-ENT-004",
+        "RR-UNB-ADV-001-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-001",
+        "DKS-XD-001",
+        "TVS-434"
+      ]
+    },
+    {
+      "id": "WFM-19-T19",
+      "from": "DelegationSuspended",
+      "to": "DelegationActive",
+      "trigger": "command",
+      "name": "ReinstateDelegation",
+      "actor_type": "human",
+      "actor_role": "Sponsor authorized staff",
+      "authority": "A4",
+      "guards": [
+        "grantor-authority-current",
+        "reason-recorded",
+        "preparer-not-decider"
+      ],
+      "effects": [
+        "authority-version-increment",
+        "release-held-items-for-recheck"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "GOV-AUTH-015"
+      ],
+      "scenario_ids": [
+        "TVS-546"
+      ],
+      "ui_surface": "UNB-UI-S-009",
+      "notes": "E.g. a false death notice is cleared (RightsReinstated in WFM-20)."
+    },
+    {
+      "id": "WFM-19-T20",
+      "from": "DelegationSuspended",
+      "to": "DelegationRevoked",
+      "trigger": "event",
+      "name": "ParentAuthorityEnded",
+      "actor_type": "deterministic",
+      "actor_role": "Authority revalidation service",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "end-child-grants",
+        "authority-version-increment"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-SUCC-008-r1",
+        "UNB-RCN-ENT-004",
+        "RR-UNB-PART-003-r1"
+      ],
+      "scenario_ids": [
+        "DKS-ENT-002",
+        "DKS-XD-001"
+      ],
+      "notes": "AUTH-I2: children end at the parent's effective end time."
+    },
+    {
+      "id": "WFM-19-T21",
+      "from": "DelegationActive",
+      "to": "DelegationExpired",
+      "trigger": "timer",
+      "name": "ExpireDelegation",
+      "actor_type": "timer",
+      "actor_role": "Effective-date monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "authority-version-increment",
+        "invalidate-sessions-tokens-widgets",
+        "end-child-grants",
+        "hold-pending-recommendations",
+        "notify-grantor"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-UNB-ADV-001-r1",
+        "RR-UNB-PART-003-r1",
+        "GOV-AUTH-015"
+      ],
+      "scenario_ids": [
+        "ADV-579"
+      ],
+      "notes": "A pre-expiry reminder is sent per the notification catalog; renewal is a new SubmitDelegationGrant."
+    },
+    {
+      "id": "WFM-19-T22",
+      "from": [
+        "DelegationRevoked",
+        "DelegationExpired"
+      ],
+      "to": "DelegationActionsReview",
+      "trigger": "command",
+      "name": "FlagActionsUnderInvalidAuthority",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance officer",
+      "authority": "A4",
+      "guards": [],
+      "effects": [
+        "linked-correction-record",
+        "flag-actions-for-review"
+      ],
+      "idempotency_key": "(aggregateId, commandId)",
+      "failure": [],
+      "requirement_ids": [
+        "GOV-AUTH-012",
+        "UNB-SUCC-012"
+      ],
+      "scenario_ids": [
+        "TVS-435",
+        "TVS-267"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "A grant's scope never exceeds the grantor's own scope; a grantee never grants itself authority (GOV-AUTH-003)",
+    "Advisory privileges never confer trading, payment or approval authority (UNB-LEG-002)",
+    "Revocation or expiry takes effect at the next authorization check, within the policy-defined propagation bound, for sessions, tokens, widgets and agent principals",
+    "When a parent grant ends, every child grant ends at the same effective time (AUTH-I2)",
+    "A revoked or suspended grantee's pending recommendations are Held and the grantor is notified (RR-UNB-ADV-001-r1 AC-2)",
+    "Actions taken under a grant later found invalid are flagged for review, never auto-reversed (AUTH-I3)"
+  ]
+}

@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-006 People, delegation and successors | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-006, UNB-UI-G-005. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html" aria-current="page">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html" aria-current="page">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-006 · UNB-UI-G-005</p>
+        <h1>People, delegation and successors</h1>
+        <p class="forma-lead">Who can act on this fund, in what role and scope, and who succeeds you.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s006-1">State 1: Participants and revoke confirmation</a></li><li><a href="#s006-2">State 2: Successors: allocations do not total 100%</a></li><li><a href="#s006-3">State 3: Successors designated, with the text equivalent</a></li><li><a href="#s006-4">State 4: Fund suspended: successor activation</a></li></ul></nav>
+    <section class="forma-section" id="s006-1" aria-labelledby="s006-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 4 · Primary donor</p>
+      <h2 id="s006-1-title">Participants and revoke confirmation</h2>
+      <p>Demonstrates: Role, scope, effective dates and status per participant; invite; revoke (A2, immediate) with G-005 dialog</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">People</li></ol></nav></forma-scope-trail><div class="forma-actions"><forma-dialog class="forma-component-tag"><button type="button" commandfor="s006-1-invite" command="show-modal">Invite participant…</button>
+<dialog class="forma-dialog" id="s006-1-invite" data-forma-motion-weight="heavy" aria-labelledby="s006-1-invite-title" aria-describedby="s006-1-invite-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s006-1-invite-title">Invite someone to this fund</h2>
+      <p id="s006-1-invite-description">They receive an email invitation that expires in 7 days.</p>
+      <div class="forma-field">
+  <label class="forma-field__label" for="s006-1-email">Email address (required)</label>
+  
+  <input id="s006-1-email" name="s006-1-email" type="email" required autocomplete="off">
+  
+</div>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Role</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s006-1-role" name="s006-1-role" aria-describedby="s006-1-role-description">
+      <option value="advisor" selected>Advisor: view and recommend grants</option><option value="viewer">Viewer: view only</option><option value="co-donor">Co-donor</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  <span class="forma-field__description" id="s006-1-role-description">Roles come from Example Charitable Foundation's role catalogue.</span>
+</label></forma-select>
+<forma-select class="forma-component-tag"><label class="forma-select-field">
+  <span class="forma-field__label">Scope</span>
+  <span class="forma-select" data-forma-motion-weight="standard">
+    <select class="forma-select__input" id="s006-1-scope" name="s006-1-scope">
+      <option value="fund" selected>This fund only</option>
+    </select>
+    <span class="forma-select__indicator" aria-hidden="true"></span>
+  </span>
+  
+</label></forma-select>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel">Cancel</button><button type="submit" value="invite">Send invitation</button></div>
+  </form>
+</dialog></forma-dialog></div><forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Participants">
+  <table>
+    <caption class="forma-visually-hidden">Participants</caption>
+    <thead><tr><th scope="col"><button type="button">Name</button></th><th scope="col"><button type="button">Role</button></th><th scope="col"><button type="button">Scope</button></th><th scope="col"><button type="button">Effective</button></th><th scope="col"><button type="button">Status</button></th><th scope="col"><span class="forma-visually-hidden">Actions</span></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Name">Avery Lindqvist</td><td data-label="Role">Primary donor</td><td data-label="Scope">Fund F-2026-000418</td><td data-label="Effective">Since 3 Feb 2025</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Active</span></td><td data-label="Actions">—</td></tr>
+      <tr><td data-label="Name">Jordan Pike, Pike Wealth Partners</td><td data-label="Role">Advisor</td><td data-label="Scope">Fund F-2026-000418</td><td data-label="Effective">Since 12 Mar 2025</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Active</span></td><td data-label="Actions"><span class="forma-cluster"><button type="button" aria-label="Change scope for Jordan Pike">Change scope</button><forma-dialog class="forma-component-tag"><button type="button" commandfor="s006-1-revoke" command="show-modal" aria-label="Revoke access for Jordan Pike">Revoke…</button>
+<dialog class="forma-dialog" id="s006-1-revoke" data-forma-motion-weight="heavy" aria-labelledby="s006-1-revoke-title" aria-describedby="s006-1-revoke-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s006-1-revoke-title">Revoke Jordan Pike's access now?</h2>
+      <p id="s006-1-revoke-description">Jordan Pike loses access to this fund immediately, including any session that is open now.</p>
+      <dl class="forma-key-value-list"><div><dt>What changes</dt><dd>Advisor access (view and recommend grants) ends at once; drafts Jordan started are closed</dd></div><div><dt>Can it be undone?</dt><dd>No. To restore access you must invite Jordan again</dd></div><div><dt>Who acts next</dt><dd>No one. Example Charitable Foundation is notified for its records</dd></div><div><dt>Grants already submitted</dt><dd>Unaffected; they continue through approval</dd></div></dl>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Keep access</button><button type="submit" value="revoke">Revoke Jordan Pike's access</button></div>
+  </form>
+</dialog></forma-dialog></span></td></tr>
+      <tr><td data-label="Name">Sam Okafor</td><td data-label="Role">Viewer</td><td data-label="Scope">Fund F-2026-000418</td><td data-label="Effective">Invited 28 Nov 2026</td><td data-label="Status"><span class="forma-status-lozenge" data-state="attention">Invited: waiting on Sam</span></td><td data-label="Actions"><button type="button" aria-label="Cancel invitation for Sam Okafor">Cancel invitation</button></td></tr>
+      <tr><td data-label="Name">Morgan Hale</td><td data-label="Role">Advisor</td><td data-label="Scope">Fund F-2026-000418</td><td data-label="Effective">12 Mar 2025 to 30 Sep 2026</td><td data-label="Status"><span class="forma-status-lozenge" data-state="blocked">Revoked</span></td><td data-label="Actions">—</td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+</section>
+<section class="forma-section" id="s006-2" aria-labelledby="s006-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 4 · Primary donor</p>
+      <h2 id="s006-2-title">Successors: allocations do not total 100%</h2>
+      <p>Demonstrates: UNB-UI-S-006 AC-1 (validation blocks saving and states the 10% remainder)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">People</li></ol></nav></forma-scope-trail><form class="forma-form" id="s006-2-f" aria-labelledby="s006-2-ft"><h3 id="s006-2-ft">Designate successors</h3>
+<forma-validation-summary class="forma-component-tag"><div class="forma-validation-summary" role="alert" tabindex="-1" aria-labelledby="s006-2-vs">
+  <div class="forma-validation-summary__icon" aria-hidden="true">!</div>
+  <div>
+    <h3 class="forma-validation-summary__title" id="s006-2-vs">The plan cannot be saved yet</h3>
+    <ul class="forma-validation-summary__list"><li><a href="#s006-2-riley">Allocations total 90%. Assign the remaining 10% before saving.</a></li></ul>
+  </div>
+</div></forma-validation-summary>
+<forma-allocation class="forma-component-tag"><fieldset class="forma-allocation" aria-describedby="s006-2-alloc-help s006-2-alloc-error">
+  <legend class="forma-allocation__legend">Divide 100% of the fund between your successors</legend>
+  <div class="forma-allocation__items">
+    <label class="forma-allocation__item"><span>Riley Lindqvist (successor advisor, new fund)</span><input type="number" name="s006-2-riley" min="0" max="100" step="1" value="60" inputmode="numeric" id="s006-2-riley" aria-invalid="true"></label>
+    <label class="forma-allocation__item"><span>Hope Foundation, EIN 00-0000101 (charity beneficiary)</span><input type="number" name="s006-2-hope" min="0" max="100" step="1" value="30" inputmode="numeric" aria-invalid="true"></label>
+  </div>
+  <div class="forma-allocation__total" data-forma-state="invalid" aria-live="polite" aria-atomic="true"><span>Total</span><output>90% of 100%</output></div>
+  <p class="forma-field__description" id="s006-2-alloc-help">Percentages must total exactly 100%.</p>
+  <p class="forma-validation-message" id="s006-2-alloc-error"><span class="forma-validation-message__mark" aria-hidden="true">!</span>Allocations total 90%. Assign the remaining 10% before saving.</p>
+</fieldset></forma-allocation>
+<div class="forma-actions"><button type="submit">Save successor plan</button><button type="button">Cancel</button></div></form>
+</section>
+<section class="forma-section" id="s006-3" aria-labelledby="s006-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 4 · Primary donor</p>
+      <h2 id="s006-3-title">Successors designated, with the text equivalent</h2>
+      <p>Demonstrates: Successor plan shown as text, not only a diagram</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">People</li></ol></nav></forma-scope-trail><forma-allocation class="forma-component-tag"><fieldset class="forma-allocation" aria-describedby="s006-3-alloc-help">
+  <legend class="forma-allocation__legend">Divide 100% of the fund between your successors</legend>
+  <div class="forma-allocation__items">
+    <label class="forma-allocation__item"><span>Riley Lindqvist (successor advisor, new fund)</span><input type="number" name="s006-3-riley" min="0" max="100" step="1" value="60" inputmode="numeric" id="s006-3-riley"></label>
+    <label class="forma-allocation__item"><span>Hope Foundation, EIN 00-0000101 (charity beneficiary)</span><input type="number" name="s006-3-hope" min="0" max="100" step="1" value="40" inputmode="numeric"></label>
+  </div>
+  <div class="forma-allocation__total" data-forma-state="valid" aria-live="polite" aria-atomic="true"><span>Total</span><output>100% of 100%</output></div>
+  <p class="forma-field__description" id="s006-3-alloc-help">Percentages must total exactly 100%.</p>
+  
+</fieldset></forma-allocation><section class="forma-stack" aria-labelledby="s006-3-plan"><h3 id="s006-3-plan">Successor plan in words</h3>
+<p>When Example Charitable Foundation verifies the death of Avery Lindqvist, the fund is suspended and then divided:</p>
+<ol>
+  <li>60% goes to a new fund advised by Riley Lindqvist (successor advisor).</li>
+  <li>40% is granted to Hope Foundation, EIN <span class="forma-identifier">00-0000101</span>, Springfield, IL.</li>
+</ol>
+<p>Plan version 3, saved 14 Oct 2026. Example Charitable Foundation must approve the plan when it takes effect.</p></section>
+</section>
+<section class="forma-section" id="s006-4" aria-labelledby="s006-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 4 · Sponsor staff</p>
+      <h2 id="s006-4-title">Fund suspended: successor activation</h2>
+      <p>Demonstrates: Suspended (verified death), Successor designated, Successor active statuses</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">People</li></ol></nav></forma-scope-trail><forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s006-4-s">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Suspended: verified death</span>
+    <h3 id="s006-4-s">Fund suspended on 18 Nov 2026</h3>
+    <p>Grants and contributions are stopped until the successor plan is activated.</p>
+  </div>
+  
+</section></forma-operation-status>
+<forma-data-grid class="forma-component-tag"><div class="forma-data-grid" role="region" tabindex="0" aria-label="Successors">
+  <table>
+    <caption class="forma-visually-hidden">Successors</caption>
+    <thead><tr><th scope="col"><button type="button">Successor</button></th><th scope="col"><button type="button">Share</button></th><th scope="col"><button type="button">Status</button></th></tr></thead>
+    <tbody>
+      <tr><td data-label="Successor">Riley Lindqvist</td><td data-label="Share">60%</td><td data-label="Status"><span class="forma-status-lozenge" data-state="attention">Successor designated: invitation sent</span></td></tr>
+      <tr><td data-label="Successor">Hope Foundation, EIN 00-0000101</td><td data-label="Share">40%</td><td data-label="Status"><span class="forma-status-lozenge" data-state="ok">Successor active: grant approved</span></td></tr>
+    </tbody>
+  </table>
+</div></forma-data-grid>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

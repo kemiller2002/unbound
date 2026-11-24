@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="en" data-forma-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S-004 Grant detail | Harbor Giving design prototype</title>
+<meta name="description" content="Static Forma 1.0.2 design prototype for UNB-UI-S-004, UNB-UI-G-002, UNB-UI-G-016, UNB-UI-G-017, UNB-UI-G-018. Synthetic data; no application behaviour.">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/all.css">
+<link rel="stylesheet" href="../vendor/forma-1.0.2/brands/example-harbor.css">
+</head>
+<body class="forma-site" data-forma-brand="example-harbor">
+<forma-skip-link class="forma-component-tag"><a class="forma-skip-link" href="#main-content">Skip to main content</a></forma-skip-link>
+<header class="forma-site-header">
+  <div class="forma-site-header__inner">
+    <div class="forma-site-header__identity">
+      <forma-app-identity class="forma-component-tag"><a class="forma-app-identity" href="S-001-giving-home.html">
+  <span class="forma-app-identity__mark">
+    <svg viewBox="0 0 32 32" aria-hidden="true" focusable="false"><path fill="currentColor" fill-rule="evenodd" d="M6 0h20a6 6 0 0 1 6 6v20a6 6 0 0 1-6 6H6a6 6 0 0 1-6-6V6a6 6 0 0 1 6-6Zm10 8-8 14h16Z"/></svg>
+  </span>
+  <span class="forma-app-identity__name">Harbor Giving</span>
+</a></forma-app-identity>
+    </div>
+  </div>
+</header>
+<main class="forma-site__main" id="main-content" tabindex="-1">
+<forma-navigation-shell class="forma-component-tag"><div class="forma-navigation-shell">
+  <details class="forma-navigation-shell__compact">
+    <summary>Navigation</summary>
+    <nav aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html" aria-current="page">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  </details>
+  <nav class="forma-navigation-shell__persistent" aria-label="Primary"><a href="S-001-giving-home.html">Giving home</a><a href="S-003-grant-recommendation.html">Recommend a grant</a><a href="S-004-grant-detail.html" aria-current="page">Grants</a><a href="S-005-add-money.html">Add money</a><a href="S-006-participants-successors.html">People</a><a href="S-007-document-center.html">Documents</a><a href="S-013-notification-preferences.html">Notifications</a></nav>
+  <div class="forma-navigation-shell__content">
+    <header class="forma-section-heading">
+      <div class="forma-section-heading__text">
+        <p class="forma-eyebrow">Design prototype · UNB-UI-S-004 · UNB-UI-G-002 · UNB-UI-G-016 · UNB-UI-G-017 · UNB-UI-G-018</p>
+        <h1>Grant detail</h1>
+        <p class="forma-lead">One grant: headline status, five-dimension progress, charity snapshot, amount, timeline, documents and only the actions allowed in its current state.</p>
+      </div>
+    </header>
+    <nav aria-label="Design states on this page"><ul><li><a href="#s004-1">State 1: Approved, funding in progress</a></li><li><a href="#s004-2">State 2: Awaiting approval (withdraw allowed)</a></li><li><a href="#s004-3">State 3: Payment outcome unknown</a></li><li><a href="#s004-4">State 4: Check voided after 180 days and re-credited</a></li><li><a href="#s004-5">State 5: Returned by the charity's bank</a></li><li><a href="#s004-6">State 6: Blocked by a confirmed sanctions match</a></li></ul></nav>
+    <section class="forma-section" id="s004-1" aria-labelledby="s004-1-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 1 of 6 · Donor</p>
+      <h2 id="s004-1-title">Approved, funding in progress</h2>
+      <p>Demonstrates: UNB-UI-G-002 AC-1 (headline 'Funding in progress'), G-017 AC-1 percentage display, G-016 reference with copy, Request cancellation dialog</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-004817</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">Funding in progress</span>
+    </div>
+    <p>Riverside Food Bank · 10% of fund value, fixed at $12,345.67<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-004817</span> <button type="button" aria-label="Copy grant reference 2026-004817">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    <forma-dialog class="forma-component-tag"><button type="button" commandfor="s004-1-cancel" command="show-modal">Request cancellation…</button>
+<dialog class="forma-dialog" id="s004-1-cancel" data-forma-motion-weight="heavy" aria-labelledby="s004-1-cancel-title" aria-describedby="s004-1-cancel-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s004-1-cancel-title">Request cancellation of grant 2026-004817?</h2>
+      <p id="s004-1-cancel-description">Payment may already be in progress. Example Charitable Foundation will try to stop it, but cannot guarantee it.</p>
+      <dl class="forma-key-value-list"><div><dt>What changes</dt><dd>Your sponsor receives a cancellation request; the grant stays Approved until they act</dd></div><div><dt>Can it be undone?</dt><dd>You can withdraw this request until your sponsor acts on it</dd></div><div><dt>Who acts next</dt><dd>Example Charitable Foundation grants team</dd></div><div><dt>Expected next step</dt><dd>Decision within 1 business day. If payment was already sent, the grant cannot be cancelled</dd></div></dl><div class="forma-field">
+  <label class="forma-field__label" for="s004-1-reason">Reason (optional)</label>
+  <span class="forma-field__description" id="s004-1-reason-description">Shared with your sponsor only.</span>
+  <textarea id="s004-1-reason" name="s004-1-reason" rows="3" aria-describedby="s004-1-reason-description"></textarea>
+  
+</div>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Keep the grant</button><button type="submit" value="request">Request cancellation</button></div>
+  </form>
+</dialog></forma-dialog>
+    <details><summary>More</summary><div class="forma-record-header__menu"><button type="button">Download confirmation</button></div></details>
+  </div>
+</header></forma-record-header>
+<forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Grant progress by dimension" id="s004-1-gp">
+  <li><div class="forma-stack"><p><strong>Recommendation</strong></p><span class="forma-status-lozenge" data-state="ok">Submitted</span><p>As of <time datetime="2026-11-20T10:02:00-06:00">20 Nov 2026, 10:02 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Eligibility</strong></p><span class="forma-status-lozenge" data-state="ok">Eligible</span><p>As of <time datetime="2026-11-20T10:05:00-06:00">20 Nov 2026, 10:05 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Approval</strong></p><span class="forma-status-lozenge" data-state="ok">Approved</span><p>As of <time datetime="2026-11-24T09:30:00-06:00">24 Nov 2026, 9:30 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Funding</strong></p><span class="forma-status-lozenge" data-state="attention">Funding planned</span><p>As of <time datetime="2026-11-24T09:31:00-06:00">24 Nov 2026, 9:31 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Payment</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+</ol></forma-steps>
+<section class="forma-stack" aria-labelledby="s004-1-ch"><h4 id="s004-1-ch">Charity and eligibility snapshot</h4><dl class="forma-key-value-list"><div><dt>Charity</dt><dd>Riverside Food Bank</dd></div><div><dt>EIN</dt><dd><span class="forma-identifier">00-0000103</span></dd></div><div><dt>Address</dt><dd>410 River Road, Springfield, IL</dd></div><div><dt>Eligibility at approval</dt><dd><span class="forma-status-lozenge" data-state="ok">Eligible: public charity</span><p class="forma-freshness"><span class="forma-freshness__label">IRS data as of</span> <time datetime="2026-11-23">23 Nov 2026</time> <span class="forma-freshness__state">Current at approval</span></p></dd></div></dl></section><section class="forma-stack" aria-labelledby="s004-1-am"><h4 id="s004-1-am">Amount, purpose and recognition</h4><dl class="forma-key-value-list"><div><dt>Amount</dt><dd>10% of fund value at approval → <span class="forma-critical-value">$12,345.67</span> (fixed <time datetime="2026-11-24">24 Nov 2026</time>)</dd></div><div><dt>Fund value used</dt><dd><span class="forma-identifier">$123,456.70</span> at 24 Nov 2026, 9:30 AM CT (UTC 15:30)</dd></div><div><dt>Purpose</dt><dd>General operating support</dd></div><div><dt>Recognition</dt><dd>Use my name: Avery Lindqvist</dd></div></dl></section>
+<section class="forma-stack" aria-labelledby="s004-1-tl"><h4 id="s004-1-tl">Timeline</h4><forma-timeline class="forma-component-tag"><ol class="forma-timeline" aria-label="Grant 2026-004817 history">
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-24T09:31:00-06:00">24 Nov 2026, 9:31 AM CT</time><span class="forma-status-lozenge" data-state="attention">Funding planned</span></div>
+      <h4>Sale of $12,345.67 from the Balanced Pool scheduled</h4>
+      
+      <small>Source: investment operations</small>
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-24T09:30:00-06:00">24 Nov 2026, 9:30 AM CT</time><span class="forma-status-lozenge" data-state="ok">Approved</span></div>
+      <h4>Approved by Example Charitable Foundation</h4>
+      <p>Amount fixed at $12,345.67 (10% of $123,456.70).</p>
+      <small>Source: grants approval</small>
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-20T10:05:00-06:00">20 Nov 2026, 10:05 AM CT</time><span class="forma-status-lozenge" data-state="ok">Eligible</span></div>
+      <h4>Charity eligibility confirmed</h4>
+      
+      <small>Source: IRS Business Master File, 18 Nov 2026</small>
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-20T10:02:00-06:00">20 Nov 2026, 10:02 AM CT</time><span class="forma-status-lozenge" data-state="ok">Submitted</span></div>
+      <h4>Recommendation submitted by Avery Lindqvist</h4>
+      
+      
+    </div>
+  </li>
+</ol></forma-timeline></section><section class="forma-stack" aria-labelledby="s004-1-docs"><h4 id="s004-1-docs">Documents</h4><dl class="forma-key-value-list"><div><dt>Grant confirmation</dt><dd><a href="S-007-document-center.html">Open grant confirmation <span class="forma-identifier">DOC-2026-018833</span></a> · <a href="#pdf">Download PDF</a></dd></div><div><dt>Remittance advice</dt><dd>Issued when payment is sent</dd></div></dl></section>
+</section>
+<section class="forma-section" id="s004-2" aria-labelledby="s004-2-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 2 of 6 · Donor</p>
+      <h2 id="s004-2-title">Awaiting approval (withdraw allowed)</h2>
+      <p>Demonstrates: Actions allowed in the current state only: Withdraw before approval, with G-005 dialog</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-004821</h3></div>
+      <span class="forma-status-lozenge" data-state="attention">Waiting on sponsor approval</span>
+    </div>
+    <p>Hope Foundation, Springfield, IL · $5,000.00<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-004821</span> <button type="button" aria-label="Copy grant reference 2026-004821">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    <forma-dialog class="forma-component-tag"><button type="button" commandfor="s004-2-withdraw" command="show-modal">Withdraw recommendation…</button>
+<dialog class="forma-dialog" id="s004-2-withdraw" data-forma-motion-weight="heavy" aria-labelledby="s004-2-withdraw-title" aria-describedby="s004-2-withdraw-description">
+  <form method="dialog">
+    <div class="forma-dialog__body">
+      <h2 id="s004-2-withdraw-title">Withdraw grant recommendation 2026-004821?</h2>
+      <p id="s004-2-withdraw-description">The $5,000.00 reserved for this grant returns to Available to grant. This cannot be undone; you can recommend the grant again later.</p>
+      <dl class="forma-key-value-list"><div><dt>Who acts next</dt><dd>No one. The recommendation is closed immediately</dd></div><div><dt>Charity</dt><dd>Hope Foundation, EIN 00-0000101</dd></div></dl>
+    </div>
+    <div class="forma-dialog__actions"><button type="submit" value="cancel" autofocus>Keep the recommendation</button><button type="submit" value="withdraw">Withdraw recommendation</button></div>
+  </form>
+</dialog></forma-dialog>
+    <details><summary>More</summary><div class="forma-record-header__menu"><button type="button">Download confirmation</button></div></details>
+  </div>
+</header></forma-record-header>
+<forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Grant progress by dimension" id="s004-2-gp">
+  <li><div class="forma-stack"><p><strong>Recommendation</strong></p><span class="forma-status-lozenge" data-state="ok">Submitted</span><p>As of <time datetime="2026-12-01T17:02:00-06:00">1 Dec 2026, 5:02 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Eligibility</strong></p><span class="forma-status-lozenge" data-state="ok">Eligible</span><p>As of <time datetime="2026-12-01T17:03:00-06:00">1 Dec 2026, 5:03 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Approval</strong></p><span class="forma-status-lozenge" data-state="attention">Waiting on sponsor</span><p>As of <time datetime="2026-12-01T17:03:00-06:00">1 Dec 2026, 5:03 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Funding</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+  <li><div class="forma-stack"><p><strong>Payment</strong></p><span class="forma-status-lozenge">Not started</span><p>No activity yet</p></div></li>
+</ol></forma-steps>
+</section>
+<section class="forma-section" id="s004-3" aria-labelledby="s004-3-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 3 of 6 · Donor</p>
+      <h2 id="s004-3-title">Payment outcome unknown</h2>
+      <p>Demonstrates: UNB-UI-G-002 AC-2 and UNB-UI-G-001 AC-1 (headline 'Payment outcome unknown'; 'Paid' shown nowhere)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-004817</h3></div>
+      <span class="forma-status-lozenge" data-state="unknown">Payment outcome unknown</span>
+    </div>
+    <p>Riverside Food Bank · 10% of fund value, fixed at $12,345.67<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-004817</span> <button type="button" aria-label="Copy grant reference 2026-004817">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    <details><summary>More</summary><div class="forma-record-header__menu"><button type="button">Download confirmation</button></div></details>
+  </div>
+</header></forma-record-header>
+<forma-steps class="forma-component-tag"><ol class="forma-steps" role="list" aria-label="Grant progress by dimension" id="s004-3-gp">
+  <li><div class="forma-stack"><p><strong>Recommendation</strong></p><span class="forma-status-lozenge" data-state="ok">Submitted</span><p>As of <time datetime="2026-11-20T10:02:00-06:00">20 Nov 2026, 10:02 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Eligibility</strong></p><span class="forma-status-lozenge" data-state="ok">Eligible</span><p>As of <time datetime="2026-11-20T10:05:00-06:00">20 Nov 2026, 10:05 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Approval</strong></p><span class="forma-status-lozenge" data-state="ok">Approved</span><p>As of <time datetime="2026-11-24T09:30:00-06:00">24 Nov 2026, 9:30 AM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Funding</strong></p><span class="forma-status-lozenge" data-state="ok">Funded</span><p>As of <time datetime="2026-11-25T15:00:00-06:00">25 Nov 2026, 3:00 PM CT</time></p></div></li>
+  <li><div class="forma-stack"><p><strong>Payment</strong></p><span class="forma-status-lozenge" data-state="unknown">Payment outcome unknown</span><p>As of <time datetime="2026-11-27T11:40:00-06:00">27 Nov 2026, 11:40 AM CT</time></p></div></li>
+</ol></forma-steps>
+<forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s004-3-pu">
+  <div class="forma-operation-status__symbol" aria-hidden="true">↻</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="unknown">Payment outcome unknown</span>
+    <h3 id="s004-3-pu">The bank has not confirmed this payment</h3>
+    <p>The ACH payment was sent to the bank on 27 Nov 2026 but no confirmation or return has been received. Example Charitable Foundation is reconciling with the bank. No action is needed from you; it will not be sent twice.</p>
+  </div>
+  
+</section></forma-operation-status>
+</section>
+<section class="forma-section" id="s004-4" aria-labelledby="s004-4-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 4 of 6 · Donor</p>
+      <h2 id="s004-4-title">Check voided after 180 days and re-credited</h2>
+      <p>Demonstrates: UNB-UI-S-004 AC-1 (timeline Issued → Outstanding → Voided → Re-credited with dates and amounts)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-001204</h3></div>
+      <span class="forma-status-lozenge" data-state="blocked">Check voided; amount re-credited</span>
+    </div>
+    <p>Northgate Youth Orchestra · $1,000.00 by check<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-001204</span> <button type="button" aria-label="Copy grant reference 2026-001204">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    <details><summary>More</summary><div class="forma-record-header__menu"><button type="button">Download confirmation</button></div></details>
+  </div>
+</header></forma-record-header>
+<forma-timeline class="forma-component-tag"><ol class="forma-timeline" aria-label="Grant 2026-001204 payment history">
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-30T08:00:00-06:00">30 Nov 2026</time><span class="forma-status-lozenge" data-state="ok">Re-credited</span></div>
+      <h4>$1,000.00 re-credited to Available to grant</h4>
+      
+      <small>Source: general ledger entry JE-2026-118204</small>
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-11-29T08:00:00-06:00">29 Nov 2026</time><span class="forma-status-lozenge" data-state="blocked">Voided</span></div>
+      <h4>Check 004417 for $1,000.00 voided</h4>
+      <p>Not cashed within 180 days of issue.</p>
+      
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-06-02T08:00:00-06:00">2 Jun 2026</time><span class="forma-status-lozenge" data-state="attention">Outstanding</span></div>
+      <h4>Check 004417 for $1,000.00 outstanding</h4>
+      <p>Mailed to the charity; not yet cashed.</p>
+      
+    </div>
+  </li>
+  <li class="forma-timeline__item">
+    <div class="forma-timeline__marker" aria-hidden="true"></div>
+    <div class="forma-timeline__content">
+      <div class="forma-timeline__meta"><time datetime="2026-06-01T08:00:00-06:00">1 Jun 2026</time><span class="forma-status-lozenge" data-state="ok">Issued</span></div>
+      <h4>Check 004417 for $1,000.00 issued</h4>
+      
+      
+    </div>
+  </li>
+</ol></forma-timeline>
+</section>
+<section class="forma-section" id="s004-5" aria-labelledby="s004-5-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 5 of 6 · Donor</p>
+      <h2 id="s004-5-title">Returned by the charity's bank</h2>
+      <p>Demonstrates: Returned payment state with reason and next step</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-003377</h3></div>
+      <span class="forma-status-lozenge" data-state="blocked">Payment returned</span>
+    </div>
+    <p>Lakeview Arts Collective · $750.00 by ACH<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-003377</span> <button type="button" aria-label="Copy grant reference 2026-003377">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    <details><summary>More</summary><div class="forma-record-header__menu"><button type="button">Download confirmation</button></div></details>
+  </div>
+</header></forma-record-header>
+<forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s004-5-ret">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Payment returned</span>
+    <h3 id="s004-5-ret">The charity's bank returned this payment</h3>
+    <p>Returned on 18 Nov 2026: account closed. $750.00 was re-credited to Available to grant on 19 Nov 2026. Example Charitable Foundation is asking the charity for a verified new account.</p>
+  </div>
+  
+</section></forma-operation-status>
+</section>
+<section class="forma-section" id="s004-6" aria-labelledby="s004-6-title">
+  <header class="forma-section-heading">
+    <div class="forma-section-heading__text">
+      <p class="forma-eyebrow">Design state 6 of 6 · Donor</p>
+      <h2 id="s004-6-title">Blocked by a confirmed sanctions match</h2>
+      <p>Demonstrates: UNB-UI-S-004 AC-2 ('This grant cannot be paid', blocked, no screening details)</p>
+    </div>
+  </header>
+  <forma-scope-trail class="forma-component-tag"><nav class="forma-scope-trail" aria-label="Current scope"><ol><li><a href="#scope-0">Example Charitable Foundation</a></li><li><a href="#scope-1">Harbor Giving donor-advised funds</a></li><li><a href="#scope-2">Lindqvist Family Fund (F-2026-000418)</a></li><li aria-current="page">Grant 2026-004817</li></ol></nav></forma-scope-trail><forma-record-header class="forma-component-tag"><header class="forma-record-header">
+  <div class="forma-record-header__main">
+    <nav aria-label="Breadcrumb"><a href="S-001-giving-home.html">Giving home</a> <span aria-hidden="true">/</span> <a href="#grants">Grants</a></nav>
+    <div class="forma-record-header__title">
+      <div><span class="forma-record-header__type">Grant</span><h3>Grant 2026-004102</h3></div>
+      <span class="forma-status-lozenge" data-state="blocked">Cannot be paid</span>
+    </div>
+    <p>Recipient organization · $2,000.00<br>Reference <span class="forma-cluster"><span class="forma-identifier">2026-004102</span> <button type="button" aria-label="Copy grant reference 2026-004102">Copy</button></span></p>
+  </div>
+  <div class="forma-record-header__actions">
+    
+    
+  </div>
+</header></forma-record-header>
+<forma-operation-status class="forma-component-tag"><section class="forma-operation-status" aria-labelledby="s004-6-blk">
+  <div class="forma-operation-status__symbol" aria-hidden="true">×</div>
+  <div>
+    <span class="forma-status-lozenge" data-state="blocked">Cannot be paid</span>
+    <h3 id="s004-6-blk">This grant cannot be paid</h3>
+    <p>Example Charitable Foundation cannot pay this grant under its compliance obligations. The amount remains reserved while your sponsor completes its process; they will contact you about returning it to Available to grant.</p>
+  </div>
+  <div class="forma-operation-status__actions"><button type="button">Contact your sponsor</button></div>
+</section></forma-operation-status>
+</section>
+  </div>
+</div></forma-navigation-shell>
+</main>
+<forma-site-footer class="forma-component-tag"><footer class="forma-site-footer" data-forma-tone="surface">
+  <div class="forma-site-footer__inner">
+    <div class="forma-site-footer__main">
+      <div>
+        <p class="forma-eyebrow">Legal sponsor disclosure</p>
+        <p>Harbor Giving is a donor-advised fund program of Example Charitable Foundation, EIN 00-0000000, a public charity. Example Charitable Foundation holds exclusive legal control over all contributed assets. Grant recommendations are advisory and are approved or declined by Example Charitable Foundation.</p>
+      </div>
+    </div>
+    <nav class="forma-site-footer__nav" aria-label="Footer"><ul><li><a href="#program-terms">Program terms</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#accessibility">Accessibility</a></li></ul></nav>
+    <p class="forma-site-footer__note"><span>Example Charitable Foundation · EIN 00-0000000</span><span>Design prototype · synthetic data</span></p>
+  </div>
+</footer></forma-site-footer>
+</body>
+</html>

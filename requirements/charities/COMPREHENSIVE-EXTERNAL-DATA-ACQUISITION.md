@@ -9,6 +9,7 @@ Date: 2026-11-21 | Status: requirements and research inventory, no ingestion imp
 - **UNB-EXT-002:** State charity solicitation registration, secretary of state corporate status, attorney general charity enforcement, nonprofit annual reports and relevant state licensing, with per-state coverage maps.
 - **UNB-EXT-003:** Federal and state grants, contracts, awards and spending sources (e.g., USAspending.gov, SAM.gov where relevant), distinguishing nonprofit recipient identity from legal grant eligibility.
 - **UNB-EXT-004:** OFAC and other legally applicable sanctions/debarment/exclusion lists, with source freshness and exact legal screening applicability; do not equate name similarity with a sanctions match.
+> Adopted 2026-11-23: refined by `RR-UNB-EXT-004-r1` (adopted-provisional); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-EXT-005:** Federal/state court dockets, bankruptcy and public enforcement actions where lawfully accessible, distinguishing allegation, pending matter, disposition and appeal.
 - **UNB-EXT-006:** Charity official websites, annual reports, audited statements, program descriptions, leadership, contact details, service areas, public grant reports and impact claims, subject to website terms and robots/access constraints.
 - **UNB-EXT-007:** Direct charity submissions and attestations, uploaded financials, identity documents and grant-use reporting, treated as claims pending verification.
@@ -81,3 +82,37 @@ EXT-T16: 10 million source observations replay deterministically within an archi
 
 ## Architectural boundary
 This is first-party charity intelligence, not a mandate to indiscriminately collect every available personal record. Maximize useful evidence coverage while honoring privacy, lawful access, rights, accuracy, cost and sponsor authority. No acquisition, source verification, legal review, commercial license or implementation is claimed.
+
+<!-- BEGIN ADOPTED: reconciliation-2026-11-23 -->
+
+## Adopted reconciliation requirements (2026-11-23)
+
+Adopted on owner instruction (2026-11-23). Original requirements above are unchanged; each is annotated where a record below refines or supersedes it. `adopted-provisional` records are binding for design but need the named validation before production. Source of truth for every field: the reconciliation data files.
+
+### RR-UNB-EXT-004-r1 (refines `UNB-EXT-004`) — adopted-provisional
+- **Original:** `requirements/charities/COMPREHENSIVE-EXTERNAL-DATA-ACQUISITION.md:11` @ `777a70d` (kept verbatim) · **Decisions:** RCD-015
+- **Requirement:** Sanctions screening MUST follow the counsel-approved ScreeningScope matrix (subjects, lists, triggers, match rules, owners). It MUST run at onboarding, approval and release, and on every list update for all unreleased payment chains and outstanding checks. Name similarity alone MUST NOT cause an adverse determination, and an unresolved potential match MUST hold release. A true match MUST lead to Blocked handling.
+- **Validation still required:** RCD-015: Counsel review of ScreeningScope matrix
+- **Acceptance criteria:**
+  - AC-1: Given a list update naming a fiscal sponsor; when it is ingested; then unreleased grants to its projects are held.
+- Full record: `requirements/reconciliation/2026-11-23/data/refinements.jsonl` (RR-UNB-EXT-004-r1); report `requirements/reconciliation/2026-11-23/07-REFINEMENT-RECORDS.md`.
+
+### UNB-RCN-GRT-006 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-GRT-013 · **Parent:** REQ-X-083 · **Decisions:** RCD-006, RCD-015
+- **Requirement:** The payment model MUST include Blocked in the provider-knowledge and settlement dimensions, and the ledger MUST include a BlockedProperty classification. A sponsor-side true match, or an intermediary or provider blocking notice, MUST move the payment to Blocked, stop retry, reissue and capacity restoration, open a sanctions case with reporting deadlines, and record report evidence. Release requires license or delisting evidence and independent compliance authority. AI and non-compliance roles cannot release.
+- **Validation still required:** RCD-006: Counsel Q2; RCD-015: Counsel review of ScreeningScope matrix
+- **Acceptance criteria:**
+  - AC-1: Given an intermediary bank blocks an international payout; when the notice arrives; then the payment is Blocked, the grant reservation is not restored, and a sanctions case is opened.
+  - AC-2: Given a Blocked payment; when an operator requests reissue to another charity; then the request is rejected.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-006); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+### UNB-RCN-GRT-007 (P0, origin: gap-analysis) — adopted-provisional
+- **Exposed by:** RCF-GRT-014 · **Parent:** UNB-EXT-004 · **Decisions:** RCD-006, RCD-015
+- **Requirement:** The system MUST maintain a counsel-approved ScreeningScope matrix (subject type x list x trigger x match rule x owner). Subjects cover at least: recipient legal entity, fiscal sponsor and project, payee account holder, intermediary and beneficiary banks for cross-border payments, destination country, donor and advisor. Triggers are onboarding, approval, release, and any list update. A list update MUST rescreen every unreleased payment chain and every Outstanding check before its next transition.
+- **Validation still required:** RCD-006: Counsel Q2; RCD-015: Counsel review of ScreeningScope matrix
+- **Acceptance criteria:**
+  - AC-1: Given a list update adding a recipient's officer; when the update is ingested; then every approved-but-unreleased grant to that recipient is rescreened and held under the match rule.
+  - AC-2: Given a fiscal-sponsored project whose fiscal sponsor is listed; when a grant is evaluated; then it is held even though the project name does not match.
+- Full record: `requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl` (UNB-RCN-GRT-007); report `requirements/reconciliation/2026-11-23/04-MISSING-REQUIREMENTS-REGISTER.md`.
+
+<!-- END ADOPTED: reconciliation-2026-11-23 -->

@@ -1,0 +1,315 @@
+/*
+ * Proposed components for S-008 work queue, S-011 sponsor overview, S-012 charity view
+ * and W-001 embedded grant-status widget (v2). DESIGN PROTOTYPE.
+ *
+ * Discipline (same as ../unbound-app.css): reads only --forma-* and --unb-* tokens,
+ * declares only --unb-x-* properties, every rule scoped under .unb-app or .unb-widget,
+ * no brand selectors. Each block names the proposed reusable component.
+ */
+@layer unbound.proto {
+  /* ===== Proposed: unb-x-ref (copyable staff reference) =====================
+     Closest Forma: identifier. Gap: no copy affordance, no target size. */
+  :is(.unb-app, .unb-widget) :is(.unb-x-mono, .unb-x-ref code) { font-family: var(--forma-type-family-mono); font-size: 0.875em; }
+  .unb-app .unb-x-ref code { white-space: nowrap; }
+  .unb-app .unb-x-ref { display: inline-flex; flex-wrap: wrap; justify-content: end; align-items: center; gap: var(--forma-space-1); }
+  .unb-app .unb-x-ref__copy {
+    display: inline-grid; place-items: center; inline-size: 2rem; block-size: 2rem; padding: 0;
+    border: 1px solid var(--unb-rule); border-radius: var(--unb-radius-control); background: var(--unb-raised);
+    color: var(--forma-color-text-heading); cursor: pointer;
+  }
+  .unb-app .unb-x-ref__copy:hover { background: var(--unb-sunken); }
+  .unb-app .unb-x-ref__copy svg { inline-size: 1rem; block-size: 1rem; }
+
+  /* ===== Proposed: unb-x-metrics (metric strip) ==============================
+     Closest Forma: metric-card in dashboard-grid. Gap: cards are marketing-sized;
+     a staff strip needs four compact figures in one row that reflow to 2x2. */
+  .unb-app .unb-x-metrics {
+    list-style: none; margin: 0; padding: 0; display: grid; gap: var(--forma-space-3);
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  }
+  .unb-app .unb-x-metric {
+    display: grid; gap: 2px; align-content: start; padding: var(--forma-space-3) var(--forma-space-4);
+    background: var(--unb-raised); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-container);
+    border-block-start: 3px solid var(--unb-rule); container-type: inline-size;
+  }
+  .unb-app .unb-x-metric[data-state="blocked"] { border-block-start-color: var(--unb-danger); }
+  .unb-app .unb-x-metric[data-state="attention"] { border-block-start-color: var(--unb-warn); }
+  .unb-app .unb-x-metric[data-state="unknown"] { border-block-start-color: var(--unb-info); border-block-start-style: dashed; }
+  .unb-app .unb-x-metric__label { font-size: var(--unb-type-small); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-metric__value {
+    font-family: var(--forma-type-family-display); font-size: clamp(1rem, 12cqi, 1.75rem); line-height: 1.15; font-weight: 550;
+    color: var(--forma-color-text-heading); font-variant-numeric: tabular-nums; white-space: nowrap;
+  }
+  .unb-app .unb-x-metric__value .unb-chip { font-family: var(--forma-type-family-body); font-size: var(--unb-type-small); vertical-align: middle; }
+  .unb-app .unb-x-metric__context { font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-toolbar / unb-x-filter (queue filters) =============
+     Closest Forma: collection-toolbar + active-filter-summary. Gap: viewport-based
+     collapse (FORMA-GAP-15) and no count-per-type toggle. */
+  .unb-app .unb-x-toolbar { display: flex; flex-wrap: wrap; gap: var(--forma-space-3) var(--forma-space-5); align-items: end; justify-content: space-between; }
+  .unb-app .unb-x-filters { display: flex; flex-wrap: wrap; gap: var(--forma-space-2); }
+  .unb-app .unb-x-filter {
+    display: inline-flex; align-items: center; gap: var(--forma-space-2); min-block-size: 2.25rem; padding: 0 var(--forma-space-3);
+    border: 1px solid var(--unb-rule); border-radius: 999px; background: var(--unb-raised);
+    font: inherit; font-size: var(--unb-type-small); font-weight: 600; color: var(--forma-color-text-heading); cursor: pointer;
+  }
+  .unb-app .unb-x-filter .unb-num { color: var(--forma-color-text-secondary); font-weight: 700; }
+  .unb-app .unb-x-filter[aria-pressed="true"] { background: var(--forma-color-text-heading); border-color: var(--forma-color-text-heading); color: var(--unb-raised); }
+  .unb-app .unb-x-filter[aria-pressed="true"] .unb-num { color: inherit; }
+  .unb-app .unb-x-filter:hover:not([aria-pressed="true"]) { background: var(--unb-sunken); }
+  .unb-app .unb-x-toolbar__end { display: flex; flex-wrap: wrap; gap: var(--forma-space-3); }
+
+  /* ===== Proposed: unb-x-field (labelled select / textarea / checkbox) =======
+     Closest Forma: field + select. Gap: Forma select is a custom listbox; staff
+     filters need a compact native select that inherits the brand. */
+  .unb-app .unb-x-field { display: grid; gap: 2px; min-inline-size: 0; }
+  .unb-app .unb-x-field label { font-size: var(--unb-type-micro); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-field :is(select, textarea) {
+    min-block-size: 2.25rem; padding: 0 var(--forma-space-3); max-inline-size: 100%;
+    border: 1px solid var(--forma-color-border-functional); border-radius: var(--unb-radius-control);
+    background: var(--unb-raised); color: var(--forma-color-text-primary); font: inherit; font-size: var(--unb-type-small);
+  }
+  .unb-app .unb-x-field textarea { padding: var(--forma-space-2) var(--forma-space-3); min-block-size: 5rem; inline-size: 100%; box-sizing: border-box; resize: vertical; }
+  .unb-app .unb-x-field__hint { font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-queue (dense, sortable work-queue table) ============
+     Closest Forma: data-grid / dense-ledger. Gap: no container-query record layout
+     for phones (FORMA-GAP-15) and no money column contract (FORMA-GAP-08). */
+  .unb-app .unb-x-queue { inline-size: 100%; border-collapse: collapse; font-size: var(--unb-type-small); }
+  .unb-app .unb-x-queue th {
+    text-align: start; padding: 0 var(--forma-space-3) var(--forma-space-1) 0; border-block-end: 1px solid var(--unb-rule);
+    font-size: var(--unb-type-micro); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); white-space: nowrap;
+  }
+  .unb-app .unb-x-queue td { padding: var(--forma-space-3) var(--forma-space-3) var(--forma-space-3) 0; border-block-end: 1px solid var(--unb-rule-soft); vertical-align: top; }
+  .unb-app .unb-x-queue :is(th, td):last-child { padding-inline-end: 0; }
+  .unb-app .unb-x-queue [data-col="amount"] { text-align: end; white-space: nowrap; }
+  .unb-app .unb-x-queue th[data-col="amount"] .unb-x-sort { margin-inline-start: auto; }
+  .unb-app .unb-x-queue [data-col="age"] { white-space: nowrap; }
+  .unb-app .unb-x-queue tr[data-mine] td:first-child { box-shadow: inset 3px 0 0 var(--unb-accent); padding-inline-start: var(--forma-space-2); }
+  .unb-app .unb-x-queue th:first-child { padding-inline-start: var(--forma-space-2); }
+  .unb-app .unb-x-queue__title { display: inline-block; padding-block: 2px; font-weight: 650; font-size: var(--unb-type-body); color: var(--forma-color-text-heading); text-underline-offset: 0.2em; }
+  .unb-app .unb-x-queue__sub { display: block; color: var(--forma-color-text-secondary); font-size: var(--unb-type-micro); margin-block-start: 2px; }
+  .unb-app .unb-x-sort {
+    display: inline-flex; align-items: center; gap: 4px; min-block-size: 1.75rem; padding: 0; border: 0; background: none;
+    font: inherit; color: inherit; cursor: pointer;
+  }
+  .unb-app .unb-x-sort svg { inline-size: 0.9rem; block-size: 0.9rem; opacity: 0.55; }
+  .unb-app [aria-sort] > .unb-x-sort { color: var(--forma-color-text-heading); }
+  .unb-app [aria-sort] > .unb-x-sort svg { opacity: 1; }
+  /* Narrow containers: each row becomes a record; title and amount stay on the first line. */
+  @container (max-width: 44rem) {
+    /* Sorting moves to the "Sort by" select; hidden header buttons must not take focus. */
+    .unb-app .unb-x-queue thead { display: none; }
+    .unb-app .unb-x-queue tr { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--forma-space-1) var(--forma-space-3); padding: var(--forma-space-3) 0; border-block-end: 1px solid var(--unb-rule-soft); }
+    .unb-app .unb-x-queue tr[data-mine] { box-shadow: inset 3px 0 0 var(--unb-accent); padding-inline-start: var(--forma-space-3); }
+    .unb-app .unb-x-queue tr[data-mine] td:first-child { box-shadow: none; padding-inline-start: 0; }
+    .unb-app .unb-x-queue td { display: block; padding: 0; border: 0; }
+    .unb-app .unb-x-queue [data-col="item"] { grid-column: 1; grid-row: 1; }
+    .unb-app .unb-x-queue [data-col="amount"] { grid-column: 2; grid-row: 1; font-weight: 650; }
+    .unb-app .unb-x-queue [data-col="sla"] { grid-column: 1 / -1; grid-row: 2; display: flex; flex-wrap: wrap; gap: var(--forma-space-2); align-items: center; }
+    .unb-app .unb-x-queue [data-col="sla"] .unb-x-queue__sub { margin: 0; }
+    .unb-app .unb-x-queue [data-col="type"] { grid-column: 1; grid-row: 3; color: var(--forma-color-text-secondary); }
+    .unb-app .unb-x-queue [data-col="owner"] { grid-column: 1; grid-row: 4; color: var(--forma-color-text-secondary); }
+    .unb-app .unb-x-queue [data-col="owner"]::before { content: "Owner: "; }
+    .unb-app .unb-x-queue [data-col="age"] { grid-column: 2; grid-row: 3 / span 2; text-align: end; align-self: end; color: var(--forma-color-text-secondary); }
+    .unb-app .unb-x-queue [data-col="age"]::before { content: "Age "; }
+  }
+
+  /* ===== Proposed: unb-x-detail (record detail: main column + facts rail) ===
+     Closest Forma: master-detail. Gap: viewport-driven and assumes a list pane;
+     the queue item opens as its own page with "Item n of N" instead. */
+  .unb-app .unb-x-detail { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .unb-app .unb-x-detail__main, .unb-app .unb-x-detail__side { display: grid; gap: var(--forma-space-5); min-inline-size: 0; }
+  @media (min-width: 64rem) { .unb-app .unb-x-detail { grid-template-columns: minmax(0, 1.65fr) minmax(16rem, 1fr); } }
+  /* Facts in the side rail: the term keeps a readable minimum width. */
+  .unb-app .unb-x-facts > div { grid-template-columns: minmax(0, 7rem) minmax(0, 1fr); }
+  .unb-app .unb-x-headmeta { display: inline-flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-1) var(--forma-space-3); }
+  .unb-app .unb-x-actions { display: flex; flex-wrap: wrap; gap: var(--forma-space-3); }
+  .unb-app .unb-x-actions .forma-button { white-space: normal; text-align: center; padding-block: var(--forma-space-2); }
+  .unb-app .unb-pagehead__actions .unb-btn-quiet { justify-self: start; }
+
+  /* ===== Proposed: unb-x-compare (side-by-side evidence comparison) =========
+     Closest Forma: comparison-pairs / comparison-grid. Gap: no "difference" summary
+     row and no money alignment; columns must stack in narrow containers. */
+  .unb-app .unb-x-compare { display: grid; gap: var(--forma-space-3); grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr)); }
+  .unb-app .unb-x-compare__side { display: grid; gap: var(--forma-space-2); align-content: start; padding: var(--forma-space-4); background: var(--unb-canvas); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-control); }
+  .unb-app .unb-x-compare__side h3 { display: flex; align-items: center; gap: var(--forma-space-2); }
+  .unb-app .unb-x-compare__side h3 svg { inline-size: 1.1rem; block-size: 1.1rem; color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-compare__diff {
+    grid-column: 1 / -1; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px var(--forma-space-4); align-items: baseline;
+    padding: var(--forma-space-3) var(--forma-space-4); border: 1px solid var(--unb-rule); border-inline-start: 4px solid var(--unb-danger);
+    border-radius: var(--unb-radius-control); max-inline-size: none;
+  }
+  .unb-app .unb-x-compare__diff > span:first-child { font-weight: 700; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-compare__diff > .unb-money { font-weight: 700; font-size: 1.125rem; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-compare__diff > .unb-small { grid-column: 1 / -1; color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-choices (rich radio choices) =======================
+     Closest Forma: choice-group. Gap: needs a status lozenge and supporting text
+     per option, with a 24px control. */
+  .unb-app .unb-x-choices { margin: 0; padding: 0; border: 0; display: grid; gap: var(--forma-space-2); min-inline-size: 0; }
+  .unb-app .unb-x-choices legend { padding: 0; margin-block-end: var(--forma-space-2); font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-choice { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--forma-space-3); padding: var(--forma-space-3); border: 1px solid var(--unb-rule-soft); border-radius: var(--unb-radius-control); }
+  .unb-app .unb-x-choice:has(input:checked) { border-color: var(--forma-color-text-heading); box-shadow: inset 0 0 0 1px var(--forma-color-text-heading); }
+  .unb-app .unb-x-choice input { inline-size: 1.5rem; block-size: 1.5rem; margin: 0; accent-color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-choice label { display: flex; flex-wrap: wrap; gap: var(--forma-space-1) var(--forma-space-3); align-items: center; cursor: pointer; }
+  .unb-app .unb-x-choice__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-choice__text { flex-basis: 100%; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-choices:disabled .unb-x-choice:not(:has(input:checked)) { opacity: 0.75; }
+
+  /* ===== Proposed: unb-x-duties (segregation-of-duties steps) ===============
+     Closest Forma: handoff-summary / obligation-panel. Gap: neither shows two
+     distinct people for two duties with "you" marked and the current step. */
+  .unb-app .unb-x-duties { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 12rem), 1fr)); gap: var(--forma-space-2); }
+  .unb-app .unb-x-duties li { display: grid; gap: 2px; align-content: start; padding: var(--forma-space-3); border: 1px solid var(--unb-rule-soft); border-block-start: 4px solid var(--unb-rule-soft); border-radius: var(--unb-radius-control); }
+  .unb-app .unb-x-duties li[data-step="current"] { border-block-start-color: var(--unb-accent); }
+  .unb-app .unb-x-duties li[data-step="done"] { border-block-start-color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-duties__role { font-size: var(--unb-type-micro); font-weight: 700; color: var(--forma-color-text-on-secondary-surface); }
+  .unb-app .unb-x-duties li[data-step="done"] .unb-x-duties__role::after { content: " · done"; }
+  .unb-app .unb-x-duties li[data-step="current"] .unb-x-duties__role::after { content: " · now"; }
+  .unb-app .unb-x-duties__who { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-duties__note { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-options (allowed resolutions with authority) =======
+     Closest Forma: key-value-list. Gap: option + authority lozenge + effect text. */
+  .unb-app .unb-x-options { display: grid; }
+  .unb-app .unb-x-option { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-1) var(--forma-space-3); padding: var(--forma-space-3) 0; border-block-start: 1px solid var(--unb-rule-soft); }
+  .unb-app .unb-x-option:first-child { border-block-start: 0; }
+  .unb-app .unb-x-option__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-option__text { flex-basis: 100%; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-empty / unb-x-closed (calm empty queue) ============
+     Closest Forma: empty-state + feed-item. Gap: the "checked at" freshness and
+     auto-closed reasons are not part of empty-state. */
+  .unb-app .unb-x-empty { display: grid; justify-items: center; text-align: center; gap: var(--forma-space-2); padding: var(--forma-space-6) var(--forma-space-3); }
+  .unb-app .unb-x-empty > svg { inline-size: 2.5rem; block-size: 2.5rem; color: var(--unb-ok); }
+  .unb-app .unb-x-empty__title { font-size: var(--unb-type-section); font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-closed { list-style: none; margin: 0; padding: 0; display: grid; }
+  .unb-app .unb-x-closed li { display: flex; flex-wrap: wrap; align-items: center; gap: var(--forma-space-1) var(--forma-space-3); padding: var(--forma-space-3) 0; border-block-start: 1px solid var(--unb-rule-soft); }
+  .unb-app .unb-x-closed li:first-child { border-block-start: 0; padding-block-start: 0; }
+  .unb-app .unb-x-closed__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-closed li > .unb-small { flex-basis: 100%; }
+
+  /* ===== Proposed: unb-x-chart (accessible horizontal bar chart) ============
+     Closest Forma: none (FORMA-GAP-05: charts deferred). Text sizes stay in CSS px
+     at every width because the SVG has no viewBox; bar lengths are percentages.
+     The data table in the disclosure is the source of truth. */
+  .unb-app .unb-x-chart { display: grid; gap: var(--forma-space-3); margin: 0; }
+  .unb-app .unb-x-chart svg { display: block; inline-size: 100%; overflow: visible; }
+  .unb-app .unb-x-chart__bar { fill: var(--unb-accent); }
+  .unb-app .unb-x-chart__track { fill: var(--unb-sunken); }
+  .unb-app .unb-x-chart__part { fill: url(#unb-x-hatch); stroke: var(--forma-color-text-heading); stroke-width: 1; }
+  .unb-app .unb-x-chart__hatch-line { stroke: var(--forma-color-text-heading); stroke-width: 1.5; }
+  .unb-app .unb-x-chart text { font-family: var(--forma-type-family-body); font-size: 12px; fill: var(--forma-color-text-primary); font-variant-numeric: tabular-nums; }
+  .unb-app .unb-x-chart .unb-x-chart__month { fill: var(--forma-color-text-secondary); }
+  .unb-app .unb-x-chart .unb-x-chart__value { font-weight: 650; fill: var(--forma-color-text-heading); }
+  .unb-app .unb-x-chart__legend { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--forma-space-2) var(--forma-space-5); font-size: var(--unb-type-small); }
+  .unb-app .unb-x-chart__legend li { display: inline-flex; align-items: center; gap: var(--forma-space-2); }
+  .unb-app .unb-x-chart__key { inline-size: 1rem; block-size: 0.75rem; border-radius: 2px; background: var(--unb-accent); }
+  .unb-app .unb-x-chart__key[data-part="unconfirmed"] { background: repeating-linear-gradient(135deg, var(--forma-color-text-heading) 0 1.5px, transparent 1.5px 4px); border: 1px solid var(--forma-color-text-heading); }
+
+  /* ===== Proposed: unb-x-disclosure (show data / more detail) ===============
+     Closest Forma: disclosure. Gap: Forma disclosure styles assume the marketing
+     frame; this one sits inside a panel with a 44px summary target. */
+  .unb-app .unb-x-disclosure { border-block-start: 1px solid var(--unb-rule-soft); padding-block-start: var(--forma-space-2); }
+  .unb-app .unb-x-disclosure > summary {
+    display: inline-flex; align-items: center; gap: var(--forma-space-2); min-block-size: var(--unb-target);
+    font-weight: 650; color: var(--forma-color-text-heading); cursor: pointer; list-style: none;
+    text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 0.2em;
+  }
+  .unb-app .unb-x-disclosure > summary::-webkit-details-marker { display: none; }
+  .unb-app .unb-x-disclosure > summary svg { inline-size: 1rem; block-size: 1rem; transition: none; }
+  .unb-app .unb-x-disclosure[open] > summary svg { transform: rotate(180deg); }
+  .unb-app .unb-x-disclosure > :not(summary) { margin-block-start: var(--forma-space-3); }
+
+  /* ===== Proposed: unb-x-table (plain numeric table) =========================
+     Closest Forma: data-grid. Gap: money column contract (FORMA-GAP-08). */
+  .unb-app .unb-x-table { inline-size: 100%; border-collapse: collapse; font-size: var(--unb-type-small); }
+  .unb-app .unb-x-table caption { text-align: start; }
+  .unb-app .unb-x-table th, .unb-app .unb-x-table td { padding: var(--forma-space-2) var(--forma-space-3) var(--forma-space-2) 0; border-block-end: 1px solid var(--unb-rule-soft); text-align: start; vertical-align: top; }
+  .unb-app .unb-x-table thead th { font-size: var(--unb-type-micro); font-weight: 650; color: var(--forma-color-text-on-secondary-surface); border-block-end-color: var(--unb-rule); }
+  .unb-app .unb-x-table tbody th { font-weight: 500; }
+  .unb-app .unb-x-table :is(th, td):last-child { padding-inline-end: 0; }
+  .unb-app .unb-x-table [data-col="num"] { text-align: end; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .unb-app .unb-x-table thead [data-col="num"] { white-space: normal; }
+  .unb-app .unb-x-table tfoot :is(th, td) { font-weight: 700; border-block-end: 0; border-block-start: 1px solid var(--unb-rule); }
+
+  /* ===== Proposed: unb-x-overview (dashboard layout) =========================
+     Closest Forma: dashboard-grid. Gap: viewport-only columns. */
+  .unb-app .unb-x-overview { display: grid; gap: var(--forma-space-5); grid-template-columns: minmax(0, 1fr); align-items: start; }
+  .unb-app .unb-x-overview > div { display: grid; gap: var(--forma-space-5); min-inline-size: 0; }
+  @media (min-width: 64rem) { .unb-app .unb-x-overview { grid-template-columns: minmax(0, 1.5fr) minmax(17rem, 1fr); } }
+
+  /* ===== Proposed: unb-x-record (charity grant record list) ==================
+     Closest Forma: data-grid. Gap: phone-complete record layout with the amount
+     pinned to the first line and status as words. */
+  .unb-app .unb-x-records { list-style: none; margin: 0; padding: 0; display: grid; }
+  .unb-app .unb-x-record {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--forma-space-1) var(--forma-space-4);
+    padding: var(--forma-space-4) 0; border-block-start: 1px solid var(--unb-rule-soft);
+  }
+  .unb-app .unb-x-record:first-child { border-block-start: 0; padding-block-start: 0; }
+  .unb-app .unb-x-record:last-child { padding-block-end: 0; }
+  .unb-app .unb-x-record__title { font-weight: 650; color: var(--forma-color-text-heading); }
+  .unb-app .unb-x-record__title a { color: inherit; text-underline-offset: 0.2em; display: inline-block; padding-block: 2px; }
+  .unb-app .unb-x-record__title .unb-small { font-weight: 400; }
+  .unb-app .unb-x-record > .unb-money { font-weight: 650; text-align: end; }
+  .unb-app .unb-x-record__meta { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: var(--forma-space-1) var(--forma-space-3); align-items: center; font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+
+  /* ===== Proposed: unb-x-amount (record headline amount) =====================
+     Closest Forma: identifier & critical value. Gap: display-size money. */
+  .unb-app .unb-x-amount { font-family: var(--forma-type-family-display); font-size: var(--unb-type-display); line-height: 1.05; font-weight: 500; color: var(--forma-color-text-heading); letter-spacing: -0.02em; }
+  .unb-app .unb-x-check { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--forma-space-3); align-items: start; font-size: var(--unb-type-small); }
+  .unb-app .unb-x-check input { inline-size: 1.5rem; block-size: 1.5rem; margin: 0; accent-color: var(--unb-accent); }
+
+  /* ===== Proposed: unb-x-wcard (embedded grant-status widget card) ==========
+     Extends unb-widget__card (UNB-GAP-W-01). Closest Forma: surface. Gap: an
+     iframe document needs its own brand strip, a self-contained headline status
+     and a powered-by disclosure, with no navigation and no actions. */
+  body.unb-widget { padding: var(--forma-space-2); line-height: 1.5; background: transparent; }
+  .unb-widget .unb-x-wcard { max-inline-size: 40rem; margin-inline: auto; gap: var(--forma-space-3); padding: 0; overflow: hidden; box-shadow: var(--unb-elev-1); }
+  .unb-widget .unb-x-wcard__brand {
+    display: flex; align-items: center; gap: var(--forma-space-2); padding: var(--forma-space-2) var(--forma-space-4);
+    background: var(--unb-chrome); color: var(--unb-on-chrome); border-block-end: 3px solid var(--unb-accent);
+    font-weight: 700; font-size: var(--unb-type-small);
+  }
+  .unb-widget .unb-x-wcard__mark { inline-size: 1.5rem; block-size: 1.5rem; border-radius: var(--unb-radius-control); display: grid; place-items: center; background: var(--unb-on-chrome); color: var(--unb-chrome); }
+  .unb-widget .unb-x-wcard__mark svg { inline-size: 1rem; block-size: 1rem; }
+  .unb-widget .unb-x-wcard__name { white-space: nowrap; }
+  .unb-widget .unb-x-wcard__brand span:last-child { margin-inline-start: auto; font-weight: 500; font-size: var(--unb-type-micro); white-space: nowrap; }
+  /* Inside a short host iframe the card fills the frame so the disclosure sits at the bottom edge. */
+  @media (max-height: 36rem) { .unb-widget .unb-x-wcard { min-block-size: calc(100vh - 2 * var(--forma-space-2)); box-sizing: border-box; grid-template-rows: auto 1fr auto; } }
+  .unb-widget .unb-x-wcard__body { display: grid; gap: var(--forma-space-3); padding: 0 var(--forma-space-4); }
+  .unb-widget h1 { margin: 0; font-size: var(--unb-type-section); line-height: 1.3; font-weight: 650; color: var(--forma-color-text-heading); max-inline-size: none; font-family: var(--forma-type-family-body); letter-spacing: 0; }
+  .unb-widget p { margin: 0; }
+  .unb-widget .unb-x-wcard__amount { font-family: var(--forma-type-family-display); font-size: 2rem; line-height: 1.1; color: var(--forma-color-text-heading); }
+  .unb-widget .unb-x-wcard__status { display: grid; gap: var(--forma-space-1); }
+  .unb-widget .unb-x-wcard__status p { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  .unb-widget .unb-x-wcard__foot { display: grid; gap: 2px; padding: var(--forma-space-3) var(--forma-space-4); border-block-start: 1px solid var(--unb-rule-soft); background: var(--unb-canvas); font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+  .unb-widget .unb-x-wcard__foot strong { color: var(--forma-color-text-primary); }
+  .unb-widget .unb-x-wcard__error { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: var(--forma-space-1) var(--forma-space-3); }
+  .unb-widget .unb-x-wcard__error > svg { inline-size: 1.5rem; block-size: 1.5rem; color: var(--unb-info); grid-row: span 2; }
+  .unb-widget .unb-x-wcard__error p { font-size: var(--unb-type-small); color: var(--forma-color-text-secondary); }
+  /* Widget reuses the app chip, steps, dl and money rules outside .unb-app. */
+  .unb-widget .unb-chip { display: inline-flex; align-items: center; gap: 0.3rem; justify-self: start; padding: 0.125rem 0.5rem 0.125rem 0.375rem; border-radius: 999px; border: 1px solid currentColor; background: var(--unb-raised); font-size: var(--unb-type-small); font-weight: 650; line-height: 1.35; white-space: nowrap; }
+  .unb-widget .unb-chip svg { inline-size: 1rem; block-size: 1rem; }
+  .unb-widget .unb-chip[data-state="ok"] { color: var(--unb-ok); }
+  .unb-widget .unb-chip[data-state="attention"] { color: var(--unb-warn); }
+  .unb-widget .unb-chip[data-state="blocked"] { color: var(--unb-danger); }
+  .unb-widget .unb-chip[data-state="unknown"], .unb-widget .unb-chip[data-state="info"] { color: var(--unb-info); }
+  .unb-widget .unb-dl { display: grid; gap: var(--forma-space-2); margin: 0; }
+  .unb-widget .unb-dl > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--forma-space-3); align-items: baseline; }
+  .unb-widget .unb-dl dt { color: var(--forma-color-text-secondary); font-size: var(--unb-type-small); }
+  .unb-widget .unb-dl dd { margin: 0; text-align: end; font-weight: 600; font-size: var(--unb-type-small); }
+  .unb-widget .unb-steps { list-style: none; margin: 0; padding: 0; display: flex; gap: var(--forma-space-1); }
+  .unb-widget .unb-steps li { flex: 1; display: grid; gap: 4px; font-size: var(--unb-type-micro); color: var(--forma-color-text-secondary); }
+  .unb-widget .unb-steps li::before { content: ""; block-size: 4px; border-radius: 2px; background: var(--unb-rule-soft); }
+  .unb-widget .unb-steps li[data-step="done"]::before { background: var(--forma-color-text-on-secondary-surface); }
+  .unb-widget .unb-steps li[data-step="current"]::before { background: var(--unb-accent); }
+  .unb-widget .unb-steps li[data-step="current"] { color: var(--forma-color-text-heading); font-weight: 700; }
+  @media (forced-colors: active) {
+    .unb-widget .unb-chip, .unb-widget .unb-x-wcard { border-color: CanvasText; }
+    .unb-app .unb-x-chart__bar { fill: CanvasText; }
+    .unb-app .unb-x-filter[aria-pressed="true"] { outline: 2px solid CanvasText; }
+  }
+}

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="UNB-UI-D-001 prototype (cash) composed only from Folio 0.4.2 primitives.">
+  <title>Contribution acknowledgment 2026-101942</title>
+  <link rel="stylesheet" href="../vendor/folio-0.4.2/src/styles/print.css">
+  <script type="module" src="../vendor/folio-0.4.2/src/components/register.js"></script>
+</head>
+<body>
+<ef-print-document data-document-kind="contribution-acknowledgment" data-requirement="UNB-UI-D-001">
+  <ef-print-header repeat="page">
+    <span slot="left">Harbor Giving</span>
+    <span slot="center">Contribution acknowledgment</span>
+    <span slot="right">Reference 2026-880114</span>
+  </ef-print-header>
+  <main class="ef-dense">
+    <ef-print-section>
+      <div class="ef-identity">
+        <p><strong>Harbor Giving</strong><br>Example Charitable Foundation</p>
+        <address>
+          <span>1200 Example Avenue, Suite 400</span>
+          <span>Springfield, IL 62701</span>
+          <span>EIN 00-0000000</span>
+        </address>
+      </div>
+      <p>20 Nov 2026</p>
+      <address>
+        <span>Ms. Elena Rivera</span><br>
+        <span>48 Lakeview Terrace</span><br>
+        <span>Madison, WI 53703</span>
+      </address>
+      <h1>Contribution acknowledgment</h1>
+      <p>Dear Ms. Rivera,</p>
+      <p>Thank you for your contribution to Harbor Giving, received by Example Charitable Foundation (EIN 00-0000000) for The Rivera Family Fund (fund 100482).</p>
+      <ef-print-table>
+        <table>
+          <caption>Contribution received</caption>
+          <thead><tr><th scope="col">Contribution reference</th><th scope="col">Date of gift</th><th scope="col">Method</th><th scope="col" data-align="number">Amount</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">2026-101942</th><td>16 Nov 2026</td><td>ACH transfer</td><td data-align="number">$25,000.00</td></tr>
+          </tbody>
+        </table>
+      </ef-print-table>
+      <ef-print-callout variant="plain">
+        <p data-protected-text="goods-or-services">No goods or services were provided in exchange for this contribution.</p>
+        <p data-protected-text="exclusive-legal-control">Example Charitable Foundation, as sponsoring organization of this donor advised fund, has exclusive legal control over the contributed assets.</p>
+      </ef-print-callout>
+      <p>Sincerely,</p>
+      <p>Jordan Okafor<br>Director of Donor Services, Example Charitable Foundation</p>
+    </ef-print-section>
+  </main>
+  <ef-print-footer repeat="page">
+    <span slot="left">Reference 2026-880114</span>
+    <span slot="center">Verify at https://verify.harborgiving.example/d/2026-880114 &middot; code 7K4P-9QX2-M3RT</span>
+    <span slot="right"><ef-print-page-number format="page-of-pages">Page numbers: renderer-supplied (P1/P2)</ef-print-page-number></span>
+    <p>Harbor Giving is a donor advised fund program of Example Charitable Foundation (EIN 00-0000000), the legal sponsor. Example Charitable Foundation holds exclusive legal control over all contributed assets.</p>
+  </ef-print-footer>
+</ef-print-document>
+</body>
+</html>

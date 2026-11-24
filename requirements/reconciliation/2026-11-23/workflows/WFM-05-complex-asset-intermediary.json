@@ -1,0 +1,717 @@
+{
+  "workflow_id": "WFM-05",
+  "name": "Complex asset via partner intermediary (cash delivered)",
+  "release": "R1",
+  "outcome": "A complex asset is screened (including §4943), handed to the partner intermediary, and only its final cash proceeds ever become grantable",
+  "aggregate": "ComplexGiftReferral",
+  "sources": [
+    "RCD-013",
+    "RCD-011",
+    "UNB-RCN-FIN-004",
+    "RR-UNB-INV-012-r1",
+    "REQ-X-059",
+    "TX-06",
+    "TX-07",
+    "TX-08",
+    "TX-09"
+  ],
+  "observer_surfaces": [
+    "UNB-UI-S-005",
+    "UNB-UI-S-001"
+  ],
+  "states": [
+    {
+      "id": "ComplexGiftInquiry",
+      "kind": "initial",
+      "user_label": "Inquiry",
+      "lozenge": "neutral",
+      "description": "Donor indicates a complex asset (private stock, LP interest, real estate, crypto)."
+    },
+    {
+      "id": "ComplexGiftScreening",
+      "kind": "intermediate",
+      "user_label": "Sponsor screening",
+      "lozenge": "attention",
+      "description": "Asset classification, sanctions, source-of-funds and §4943 combined-holdings test."
+    },
+    {
+      "id": "ComplexGiftScreeningHold",
+      "kind": "intermediate",
+      "user_label": "Held for review",
+      "lozenge": "blocked",
+      "description": "Potential sanctions match, source-of-funds review, or missing related-person holdings data."
+    },
+    {
+      "id": "ComplexGiftEbhReview",
+      "kind": "intermediate",
+      "user_label": "Excess business holdings review",
+      "lozenge": "blocked",
+      "description": "Combined holdings of fund, donors, advisors and related persons exceed or cannot be computed against counsel-configured limits."
+    },
+    {
+      "id": "ComplexGiftClearedForReferral",
+      "kind": "intermediate",
+      "user_label": "Cleared for referral",
+      "lozenge": "attention",
+      "description": "Sponsor screening passed; referral may be sent."
+    },
+    {
+      "id": "ComplexGiftReferred",
+      "kind": "intermediate",
+      "user_label": "Referred to intermediary",
+      "lozenge": "attention",
+      "description": "Referral sent to the partner intermediary; awaiting its decision."
+    },
+    {
+      "id": "ComplexGiftReferralUnknown",
+      "kind": "intermediate",
+      "user_label": "Referral status unknown",
+      "lozenge": "unknown",
+      "description": "Intermediary did not confirm receipt of the referral or did not answer in time."
+    },
+    {
+      "id": "ComplexGiftIntermediaryAccepted",
+      "kind": "intermediate",
+      "user_label": "Intermediary accepted",
+      "lozenge": "attention",
+      "description": "Intermediary accepted the asset under its own gift acceptance; asset not yet transferred."
+    },
+    {
+      "id": "ComplexGiftLiquidating",
+      "kind": "intermediate",
+      "user_label": "Intermediary liquidating",
+      "lozenge": "attention",
+      "description": "Asset transferred to the intermediary; sale in progress. No sponsor capacity."
+    },
+    {
+      "id": "ComplexGiftProceedsOverdue",
+      "kind": "intermediate",
+      "user_label": "Proceeds overdue",
+      "lozenge": "unknown",
+      "description": "Expected proceeds not received within the agreed period."
+    },
+    {
+      "id": "ComplexGiftProceedsReceived",
+      "kind": "intermediate",
+      "user_label": "Proceeds received",
+      "lozenge": "attention",
+      "description": "Cash from the intermediary received and matched to the referral; clearing entry posted."
+    },
+    {
+      "id": "ComplexGiftProceedsFinal",
+      "kind": "intermediate",
+      "user_label": "Proceeds final",
+      "lozenge": "ok",
+      "description": "Proceeds final (wire) and credited to grantable capacity."
+    },
+    {
+      "id": "ComplexGiftComplete",
+      "kind": "terminal",
+      "user_label": "Complete",
+      "lozenge": "ok",
+      "description": "Proceeds credited; acknowledgment issued or inbound charitable transfer recorded per structure."
+    },
+    {
+      "id": "ComplexGiftDeclinedBySponsor",
+      "kind": "terminal",
+      "user_label": "Declined by sponsor",
+      "lozenge": "blocked",
+      "description": "Sponsor declined (e.g. excess business holdings, source of funds)."
+    },
+    {
+      "id": "ComplexGiftDeclinedByIntermediary",
+      "kind": "terminal",
+      "user_label": "Declined by intermediary",
+      "lozenge": "neutral",
+      "description": "Intermediary declined the asset."
+    },
+    {
+      "id": "ComplexGiftBlocked",
+      "kind": "terminal",
+      "user_label": "Blocked (sanctions)",
+      "lozenge": "blocked",
+      "description": "Confirmed sanctions match on a party."
+    },
+    {
+      "id": "ComplexGiftWithdrawn",
+      "kind": "terminal",
+      "user_label": "Withdrawn",
+      "lozenge": "neutral",
+      "description": "Donor withdrew before transferring the asset."
+    },
+    {
+      "id": "ComplexGiftAbandoned",
+      "kind": "terminal",
+      "user_label": "Abandoned",
+      "lozenge": "neutral",
+      "description": "Intermediary could not sell; asset disposed of under the intermediary's terms; no proceeds."
+    },
+    {
+      "id": "ComplexGiftCorrected",
+      "kind": "correction",
+      "user_label": "Corrected",
+      "lozenge": "neutral",
+      "description": "Linked correction (intermediary restates proceeds or fees); original preserved."
+    }
+  ],
+  "transitions": [
+    {
+      "id": "WFM-05-T01",
+      "from": "ComplexGiftInquiry",
+      "to": "ComplexGiftScreening",
+      "trigger": "command",
+      "name": "SubmitComplexGiftReferral",
+      "actor_type": "human",
+      "actor_role": "Donor or advisor",
+      "authority": "A1",
+      "guards": [
+        "fund-accepts-contributions"
+      ],
+      "effects": [
+        "record-intent"
+      ],
+      "idempotency_key": "(fundId, clientRequestKey)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-013",
+        "UNB-UI-S-005",
+        "REQ-X-059"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-005"
+      ],
+      "ui_surface": "UNB-UI-S-005",
+      "notes": "S-005 shows the partner intermediary hand-off only; asset facts and related-person holdings captured here."
+    },
+    {
+      "id": "WFM-05-T02",
+      "from": "ComplexGiftScreening",
+      "to": "ComplexGiftClearedForReferral",
+      "trigger": "event",
+      "name": "ScreenComplexGift",
+      "actor_type": "deterministic",
+      "actor_role": "Gift acceptance policy (sponsor)",
+      "authority": "A3",
+      "guards": [
+        "sanctions-clear",
+        "asset-class-permitted",
+        "combined-holdings-within-limit",
+        "source-of-funds-cleared"
+      ],
+      "effects": [
+        "record-ebh-test"
+      ],
+      "idempotency_key": "(referralId, policyVersion)",
+      "failure": [
+        {
+          "condition": "CombinedHoldingsExceededOrUnknown",
+          "to_state": "ComplexGiftEbhReview"
+        },
+        {
+          "condition": "SanctionsOrSourceOfFundsReview",
+          "to_state": "ComplexGiftScreeningHold"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-004",
+        "RCD-023",
+        "RCD-015",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-005"
+      ]
+    },
+    {
+      "id": "WFM-05-T03",
+      "from": "ComplexGiftScreeningHold",
+      "to": "ComplexGiftScreening",
+      "trigger": "command",
+      "name": "ReleaseScreeningHold",
+      "actor_type": "human",
+      "actor_role": "Sponsor compliance reviewer",
+      "authority": "A4",
+      "guards": [
+        "hold-reason-dispositioned",
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(referralId, holdId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-015",
+        "RCD-023"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-05-T04",
+      "from": "ComplexGiftScreeningHold",
+      "to": "ComplexGiftBlocked",
+      "trigger": "command",
+      "name": "ConfirmSanctionsTrueMatch",
+      "actor_type": "human",
+      "actor_role": "Sanctions compliance officer",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "ofac-report"
+      ],
+      "idempotency_key": "(screeningCaseId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-REG-003",
+        "RCD-015"
+      ],
+      "scenario_ids": [
+        "DKS-REG-003"
+      ],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-05-T05",
+      "from": [
+        "ComplexGiftScreeningHold",
+        "ComplexGiftEbhReview"
+      ],
+      "to": "ComplexGiftDeclinedBySponsor",
+      "trigger": "command",
+      "name": "DeclineComplexGift",
+      "actor_type": "human",
+      "actor_role": "Sponsor gift acceptance committee member",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties"
+      ],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(referralId, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-004",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-005"
+      ],
+      "ui_surface": "NEW:Gift acceptance decision"
+    },
+    {
+      "id": "WFM-05-T06",
+      "from": "ComplexGiftEbhReview",
+      "to": "ComplexGiftClearedForReferral",
+      "trigger": "command",
+      "name": "ApproveWithinHoldingsPlan",
+      "actor_type": "human",
+      "actor_role": "Sponsor gift acceptance committee member",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "disposal-period-plan-recorded"
+      ],
+      "effects": [
+        "record-ebh-test",
+        "work-item"
+      ],
+      "idempotency_key": "(referralId, decisionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-FIN-004",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-005"
+      ],
+      "ui_surface": "NEW:Gift acceptance decision",
+      "notes": "Only meaningful where the structure makes the sponsor the holder (agent structure); otherwise decline."
+    },
+    {
+      "id": "WFM-05-T07",
+      "from": "ComplexGiftClearedForReferral",
+      "to": "ComplexGiftReferred",
+      "trigger": "command",
+      "name": "SendReferralToIntermediary",
+      "actor_type": "deterministic",
+      "actor_role": "Intermediary adapter",
+      "authority": "A3",
+      "guards": [
+        "intermediary-agreement-active"
+      ],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(referralId)",
+      "failure": [
+        {
+          "condition": "UnknownIntermediaryAck",
+          "to_state": "ComplexGiftReferralUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013",
+        "RCD-011"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T08",
+      "from": "ComplexGiftReferralUnknown",
+      "to": "ComplexGiftReferred",
+      "trigger": "event",
+      "name": "ResolveReferralUnknown",
+      "actor_type": "deterministic",
+      "actor_role": "Intermediary adapter (status query by referral id)",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "external-call"
+      ],
+      "idempotency_key": "(referralId)",
+      "failure": [
+        {
+          "condition": "UnknownStillUnresolved",
+          "to_state": "ComplexGiftReferralUnknown"
+        },
+        {
+          "condition": "IntermediaryHasNoRecord",
+          "to_state": "ComplexGiftClearedForReferral"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013",
+        "RR-REQ-X-004-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T09",
+      "from": "ComplexGiftReferred",
+      "to": "ComplexGiftIntermediaryAccepted",
+      "trigger": "event",
+      "name": "IntermediaryAccepts",
+      "actor_type": "external",
+      "actor_role": "Partner intermediary",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(intermediary, eventId)",
+      "failure": [
+        {
+          "condition": "TimeoutNoDecision",
+          "to_state": "ComplexGiftReferralUnknown"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T10",
+      "from": "ComplexGiftReferred",
+      "to": "ComplexGiftDeclinedByIntermediary",
+      "trigger": "event",
+      "name": "IntermediaryDeclines",
+      "actor_type": "external",
+      "actor_role": "Partner intermediary",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(intermediary, eventId)",
+      "failure": [
+        {
+          "condition": "UnknownDeclineReason"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T11",
+      "from": "ComplexGiftIntermediaryAccepted",
+      "to": "ComplexGiftLiquidating",
+      "trigger": "event",
+      "name": "IntermediaryConfirmsAssetTransfer",
+      "actor_type": "external",
+      "actor_role": "Partner intermediary",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(intermediary, eventId)",
+      "failure": [
+        {
+          "condition": "UnknownTransferStatus"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [],
+      "notes": "Under an agent structure this is the completed-gift event for the sponsor and may trigger Form 8283 signature (UNB-RCN-FIN-002); under a donee structure it is the intermediary's gift. Structure needs a decision (report)."
+    },
+    {
+      "id": "WFM-05-T12",
+      "from": [
+        "ComplexGiftScreening",
+        "ComplexGiftClearedForReferral",
+        "ComplexGiftReferred",
+        "ComplexGiftIntermediaryAccepted"
+      ],
+      "to": "ComplexGiftWithdrawn",
+      "trigger": "command",
+      "name": "WithdrawComplexGift",
+      "actor_type": "human",
+      "actor_role": "Donor or advisor",
+      "authority": "A1",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(referralId)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-013",
+        "UNB-UI-S-005"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-005"
+    },
+    {
+      "id": "WFM-05-T13",
+      "from": "ComplexGiftLiquidating",
+      "to": "ComplexGiftAbandoned",
+      "trigger": "event",
+      "name": "IntermediaryAbandonsSale",
+      "actor_type": "external",
+      "actor_role": "Partner intermediary",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "notify"
+      ],
+      "idempotency_key": "(intermediary, eventId)",
+      "failure": [
+        {
+          "condition": "UnknownAssetDisposition"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T14",
+      "from": "ComplexGiftLiquidating",
+      "to": "ComplexGiftProceedsOverdue",
+      "trigger": "timer",
+      "name": "ProceedsOverdue",
+      "actor_type": "timer",
+      "actor_role": "Contribution aging monitor",
+      "authority": "A3",
+      "guards": [],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(referralId, agingTier)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-013",
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T15",
+      "from": "ComplexGiftProceedsOverdue",
+      "to": "ComplexGiftLiquidating",
+      "trigger": "command",
+      "name": "RecordIntermediaryStatus",
+      "actor_type": "human",
+      "actor_role": "Contribution operations specialist",
+      "authority": "A2",
+      "guards": [
+        "intermediary-evidence-attached"
+      ],
+      "effects": [
+        "work-item"
+      ],
+      "idempotency_key": "(referralId, statusEvidenceId)",
+      "failure": [],
+      "requirement_ids": [
+        "RR-REQ-X-048-r1"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    },
+    {
+      "id": "WFM-05-T16",
+      "from": [
+        "ComplexGiftLiquidating",
+        "ComplexGiftProceedsOverdue"
+      ],
+      "to": "ComplexGiftProceedsReceived",
+      "trigger": "event",
+      "name": "RecordProceedsReceipt",
+      "actor_type": "external",
+      "actor_role": "Sponsor bank feed (wire from intermediary)",
+      "authority": "A3",
+      "guards": [
+        "receipt-evidence-authenticated",
+        "intermediary-reference-matched"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(bankTransactionRef)",
+      "failure": [
+        {
+          "condition": "UnknownMatch"
+        }
+      ],
+      "requirement_ids": [
+        "RCD-013",
+        "RR-UNB-ACC-006-r1",
+        "UNB-RCN-FIN-012"
+      ],
+      "scenario_ids": [
+        "TVS-325"
+      ],
+      "notes": "Settlement statement from the intermediary records gross sale, fees and net proceeds; net proceeds is the cash credited."
+    },
+    {
+      "id": "WFM-05-T17",
+      "from": "ComplexGiftProceedsReceived",
+      "to": "ComplexGiftProceedsFinal",
+      "trigger": "event",
+      "name": "FinalizeProceeds",
+      "actor_type": "deterministic",
+      "actor_role": "Contribution finality rule (wire final on receipt)",
+      "authority": "A3",
+      "guards": [
+        "contribution-final",
+        "sanctions-clear"
+      ],
+      "effects": [
+        "credit-grantable",
+        "ledger"
+      ],
+      "idempotency_key": "(referralId, finalityRuleVersion)",
+      "failure": [],
+      "requirement_ids": [
+        "RCD-019",
+        "RCD-013",
+        "RR-UNB-ACC-006-r1"
+      ],
+      "scenario_ids": []
+    },
+    {
+      "id": "WFM-05-T18",
+      "from": "ComplexGiftProceedsFinal",
+      "to": "ComplexGiftComplete",
+      "trigger": "command",
+      "name": "AcknowledgeAsDonee",
+      "actor_type": "deterministic",
+      "actor_role": "Acknowledgment service (agent structure only)",
+      "authority": "A3",
+      "guards": [
+        "completed-gift-determined",
+        "sponsor-accepted",
+        "template-complete",
+        "structure-is-agent"
+      ],
+      "effects": [
+        "issue-acknowledgment",
+        "document-issue",
+        "form8282-obligation-check"
+      ],
+      "idempotency_key": "(referralId, ackTemplateVersion)",
+      "failure": [
+        {
+          "condition": "AcknowledgmentTemplateIncomplete",
+          "to_state": "ComplexGiftProceedsFinal"
+        }
+      ],
+      "requirement_ids": [
+        "UNB-RCN-FIN-001",
+        "RCD-019",
+        "RR-UNB-INV-012-r1"
+      ],
+      "scenario_ids": [
+        "DKS-FIN-003"
+      ],
+      "notes": "Describes the original property, no value. If the sponsor signed Form 8283, the intermediary's sale is a disposition: Form 8282 obligation (UNB-RCN-FIN-003)."
+    },
+    {
+      "id": "WFM-05-T19",
+      "from": "ComplexGiftProceedsFinal",
+      "to": "ComplexGiftComplete",
+      "trigger": "event",
+      "name": "RecordInboundCharitableTransfer",
+      "actor_type": "deterministic",
+      "actor_role": "Inbound transfer classification rule (intermediary is donee)",
+      "authority": "A3",
+      "guards": [
+        "structure-is-donee"
+      ],
+      "effects": [
+        "ledger"
+      ],
+      "idempotency_key": "(referralId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-RCN-ENT-007",
+        "RCD-013"
+      ],
+      "scenario_ids": [],
+      "notes": "No sponsor acknowledgment to the donor; the intermediary acknowledges its own gift. Contributor of record is the intermediary."
+    },
+    {
+      "id": "WFM-05-T20",
+      "from": "ComplexGiftComplete",
+      "to": "ComplexGiftCorrected",
+      "trigger": "command",
+      "name": "CorrectProceeds",
+      "actor_type": "human",
+      "actor_role": "Controller",
+      "authority": "A4",
+      "guards": [
+        "segregation-of-duties",
+        "capacity-in-transaction"
+      ],
+      "effects": [
+        "ledger",
+        "reserve-capacity"
+      ],
+      "idempotency_key": "(referralId, correctionId)",
+      "failure": [],
+      "requirement_ids": [
+        "UNB-ACC-003",
+        "RCD-013"
+      ],
+      "scenario_ids": [],
+      "ui_surface": "UNB-UI-S-009"
+    }
+  ],
+  "invariants": [
+    "The sponsor never holds custody of a complex asset at release 1; only cash proceeds from the intermediary are recorded as received (RCD-013, RCD-011).",
+    "No grantable capacity before proceeds are Final.",
+    "The §4943 combined-holdings test is recorded before referral and re-run on any related transaction (UNB-RCN-FIN-004).",
+    "Exactly one of AcknowledgeAsDonee or RecordInboundCharitableTransfer applies, determined by the counsel-approved structure of the intermediary arrangement."
+  ]
+}
