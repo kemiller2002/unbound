@@ -4,8 +4,13 @@
 
 **Baseline.** Originals are pinned at `777a70d`, the revision every RR record quotes. The reconciliation at `940b067` is read-only.
 
+**Original requirement files: additions only (adoption, 2026-11-24).** At the owner's direction, the 46 decision-translated records were adopted into the domain files (RCD-001 step):
+- 38 records as dated `<!-- BEGIN ADOPTED: cross-industry-discovery -->` sections;
+- 8 as inline "Refined … by RR-…" annotations under the originals they refine.
+
+No original line was changed or removed (`git diff --numstat 777a70d` shows zero deletions in those files), and gate G4 still quotes every original at `777a70d`. Files touched: `requirements/FULL-ACCOUNTING-SYSTEM.md`, `requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md`, `requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md`, `requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md`, `requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md`, `requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md`, `requirements/PARTNER-SEGREGATION-AND-TENANCY.md`, `requirements/DAF-LANDSCAPE-CONVERSION-WAVE-03.md` and `research/…/19-questions/PROPOSED-CANONICAL-REQUIREMENTS-AND-ACCEPTANCE-2026-11-22.md`.
+
 **Files not modified:**
-- original requirement files (gate G4 quotes them at `777a70d`; `git diff 777a70d -- requirements/*.md requirements/*/ architecture research` shows no change outside this directory);
 - `requirements/reconciliation/`;
 - `daf-landscape` (gate D8 checks its working tree is clean);
 - other Echelon repositories.
@@ -42,6 +47,7 @@ python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must st
 | 10 | Adversarial, independent brief | §16: assume failure; priorities; contradictions; legal spot-checks; arithmetic | XIF-ADV, XIC-ADV, XID-ADV, XRJ-ADV, UNB-XIN-ADV, priority-challenges.jsonl |
 | 11 | Integrator | Applied the adversarial revisions; wrote 10, 14 and this ledger | §4 below |
 | 12 | Integrator, at the owner's direction (2026-11-24) | Decided the 41 legal and accounting questions after reading the accounting rules; verified §4966(c)(2), §4962, 47 CFR 64.1200, FINRA 2165 and Rev. Proc. 2017-53 | `data/decision-outcomes.jsonl`, report 16, gate D10 |
+| 14 | Integrator, at the owner's direction (2026-11-24) | Adopted the 46 decision-translated records into 9 domain files (additions only); records carry `adoption_status`, `adopted_into` and `adopted_on` | domain files listed in the header |
 | 13 | Integrator, at the owner's direction (2026-11-24) | Translated the 41 decisions into requirement text: 45 records revised (`statement_as_proposed`, `decisions_applied`, `AC-D*` criteria); RR-REQ-X-069-r1 added; scenarios XDS-DEC-001..006 | `gap-requirements.jsonl`, `refinements.jsonl`, `scenarios.csv` |
 
 ## 3. Integrator fixups applied to research-pass output
@@ -110,5 +116,5 @@ The harness does not report the integrating session's own token use, and it is n
 - **No measured operating data.** Every cost and volume figure without a source is Illustrative or `[A]`.
 - **Nothing executed.** There is no implementation, the scenarios have not been run, and no PostgreSQL benchmark exists.
 - **No review by counsel or a CPA.** The 41 legal (29) and accounting (12) decisions are `decided-provisional`: owner-directed defaults with recorded confirmations, not opinions. Since report 16, `data/` is maintained directly; the merge is not re-run.
-- **Prior blockers unchanged.** The Conditor bootstrap (RCD-002) is still not done. The records have not yet been adopted into the domain files (RCD-001).
+- **Prior blockers unchanged.** The Conditor bootstrap (RCD-002) is still not done. Only the 46 decision-translated records have been adopted into the domain files. The other new requirements and refinements await adoption (RCD-001).
 - **Not reviewed by the adversarial pass.** Five industry reports (bnk, inv, svc, erp, grt) were assessed only through their data files.

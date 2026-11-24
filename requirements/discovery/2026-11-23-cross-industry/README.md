@@ -6,11 +6,11 @@
 
 This is requirements engineering only. No application code was written. All data is synthetic.
 
-**Where this sits.** `kemiller2002/unbound` is the canonical inbound requirements repository. The product and enterprise are named **Unbound** (`UNB-EXP-002`). The mission builds on the baseline revision `777a70d` and on the reconciliation in [`../../reconciliation/2026-11-23/`](../../reconciliation/2026-11-23/README.md). Neither is modified.
+**Where this sits.** `kemiller2002/unbound` is the canonical inbound requirements repository. The product and enterprise are named **Unbound** (`UNB-EXP-002`). The mission builds on the baseline revision `777a70d` and on the reconciliation in [`../../reconciliation/2026-11-23/`](../../reconciliation/2026-11-23/README.md). The reconciliation is not modified. The originals were not modified until 2026-11-24, when the 46 decision-translated records were adopted into the domain files at the owner's direction. That adoption only added text; see [LEDGER](LEDGER.md).
 - Every refinement quotes its original verbatim at `777a70d` and links to it by ID, path and line.
 - New requirements carry discovery provenance: industry, source and finding.
 - `daf-landscape` was read only, and the validator checks it has no working-tree changes (gate D8).
-- Adopting these records into the domain files is an owner decision ([RCD-001](../../reconciliation/2026-11-23/14-OPEN-DECISIONS.md)).
+- Adopting these records into the domain files is an owner decision ([RCD-001](../../reconciliation/2026-11-23/14-OPEN-DECISIONS.md)). On 2026-11-24 the owner directed adoption of the 46 records that apply the legal and accounting decisions ([16](16-LEGAL-AND-ACCOUNTING-DECISIONS.md)); the rest remain proposed.
 
 ## Start here
 

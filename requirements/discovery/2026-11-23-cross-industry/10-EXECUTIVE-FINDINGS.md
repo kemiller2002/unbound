@@ -159,4 +159,4 @@ Neither is a missing feature, and both now have requirements and open decisions.
 - the PostgreSQL benchmark;
 - bank and custodian specifications;
 - owner decisions (86 open);
-- adoption of these records into the domain files (RCD-001).
+- adoption of the remaining records into the domain files (RCD-001). The 46 records that apply the legal and accounting decisions were adopted on 2026-11-24.

@@ -73,7 +73,11 @@ Six new scenarios (XDS-DEC-001..006) exercise the most consequential changes:
 - late errors after issuance;
 - gated features staying off.
 
-Baseline originals are still unedited. Moving all of this into the domain files remains the adoption step (RCD-001). Because each change is provisional, its confirmation in the table above is still required before production.
+**Adopted (2026-11-24).** At the owner's direction, these 46 records were adopted into the domain files:
+- 38 as dated "Adopted requirements" sections in the owning file;
+- 8 as inline "Refined … by RR-…" annotations under the originals.
+
+The original text was kept everywhere, and each record now carries `adoption_status: adopted` and `adopted_into`. Because each change is provisional, its confirmation in the table above is still required before production.
 
 ## Requirements as revised
 

@@ -75,3 +75,29 @@ These are **proposed extensions**, not already present in the 58-event source ca
 Expands UNB-WF-013 (death and succession), UNB-WF-015 (dormancy), UNB-PART/UNB-SUCC above, UNB-DATA-001..012 (append-only), UNB-ADV-001..002 (delegated authority), UNB-LEG-002..003 (sponsor control), source DAF landscape WF-13, C1.1/C1.2, and the canonical Party/Relationship/Account/PrivilegeGrant model.
 
 **Implementation gate:** requirements and conceptual design only. Conditor installation, current EF system discovery, legal review and acceptance validation remain prerequisites for application development.
+
+<!-- BEGIN ADOPTED: cross-industry-discovery -->
+## Adopted requirements: cross-industry discovery (2026-11-24)
+
+Status: adopted at the product owner's direction from [requirements/discovery/2026-11-23-cross-industry](../requirements/discovery/2026-11-23-cross-industry/README.md) (RCD-001 adoption step). Each requirement applies one or more decided-provisional legal or accounting decisions; it is binding for design but each listed confirmation (counsel, CPA or auditor) is still required before production use. Earlier requirements in this file are unchanged.
+
+- **UNB-XIN-CRM-002:** Onboarding of every advisory-privilege holder and annual attestation MUST capture declared affiliations (officer, director, employee, substantial contributor) with charities and other entities, as capacity edges with evidence and effective dates. When the contributor or advisory-privilege holder of a fund is itself a charity, the fund MUST carry a counsel-approved account-type classification (UNB-RCN-ENT-011) and grants to that charity or its affiliates MUST follow the classification's rule. Any recommendation whose recipient matches a declared or detected affiliation MUST be routed to TVCTL-14 review. A fund where a charity names itself beneficiary is classified designated/agency (UNB-XIN-ACC-001); if an organization-advised fund is a DAF, grants to the advising organization are permitted when it is a §170(b)(1)(A) organization other than a disqualified supporting organization, with the affiliation recorded (XID-CRM-004).
+  - Provenance: [UNB-XIN-CRM-002](../requirements/discovery/2026-11-23-cross-industry/README.md); decisions XID-CRM-004 (decided-provisional; confirmations in report 16).
+  - Acceptance:
+    - AC-1: Given Advisor declares she is a director of charity C; when she recommends a grant to C; then the grant is held in TVCTL-14 review.
+    - AC-2: Given A church holds an organization-advised fund; when account classification missing; then fund activation is blocked.
+    - AC-3: Given Annual attestation not completed within the grace period; when a new recommendation is submitted; then it is accepted as draft but held pending attestation per sponsor policy.
+    - AC-D1: Given an organization-advised DAF recommending a grant to its own §170(b)(1)(A) advising charity; when the recommendation is screened; then it proceeds with the affiliation recorded and no TVCTL-14 block unless an individual benefit is detected.
+- **UNB-XIN-CRM-006:** Each fund MUST record its referral attribution (referring party and capacity, channel, date) as an immutable informational fact. Unbound MUST NOT compute, accrue or export any referral compensation based on contributions, balances or grants unless a counsel-approved compensation rule for that referral arrangement and jurisdiction set is recorded; until then attribution MUST be usable only for reporting. Decided rule (XID-CRM-002): referral compensation MUST NEVER be paid from fund assets; flat fair-market-value fees from sponsor operating funds are permitted only under a written agreement, only to persons who are not advisors or related parties of the referred fund, only in states recorded as satisfying paid-solicitor rules, and never per grant or per dollar granted.
+  - Provenance: [UNB-XIN-CRM-006](../requirements/discovery/2026-11-23-cross-industry/README.md); decisions XID-CRM-002 (decided-provisional; confirmations in report 16).
+  - Acceptance:
+    - AC-1: Given A referral without counsel rule; when month end; then no compensation accrual or export exists.
+    - AC-2: Given Attribution recorded; when corrected later; then a superseding fact is appended, original retained.
+    - AC-D1: Given a referral agreement priced at 0.10% of contributions; when it is activated; then activation fails with REFERRAL_COMPENSATION_FORM_NOT_PERMITTED.
+- **UNB-XIN-TRS-004:** A legal representative MUST NOT exercise advisory privileges on behalf of a principal unless (a) the instrument's verified scope covers charitable recommendations or the principal's DAF advisory privileges and (b) sponsor policy permits representative exercise; otherwise the representative receives view-only access where policy allows. Restoration of a principal's authority after incapacity MUST require verified evidence of capacity and MUST end representative grants derived from the incapacity at the same effective time. A power of attorney qualifies only if it expressly grants authority to make gifts or charitable donations; guardians and conservators act only under a court order covering charitable gifts (XID-TRS-001).
+  - Provenance: [UNB-XIN-TRS-004](../requirements/discovery/2026-11-23-cross-industry/README.md); decisions XID-TRS-001 (decided-provisional; confirmations in report 16).
+  - Acceptance:
+    - AC-1: Given POA instrument silent on charitable acts; when agent recommends grant; then rejected with REPRESENTATIVE_SCOPE.
+    - AC-2: Given Donor recovers; when evidence verified; then donor authority restored; agent grant ended.
+    - AC-D1: Given a verified durable power of attorney with general financial powers but no express gift authority; when the agent submits a grant recommendation; then it is denied with REPRESENTATIVE_SCOPE_INSUFFICIENT.
+<!-- END ADOPTED: cross-industry-discovery -->

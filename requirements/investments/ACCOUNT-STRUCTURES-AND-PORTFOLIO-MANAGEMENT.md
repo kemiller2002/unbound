@@ -26,6 +26,7 @@ Unbound SHALL accommodate sponsor-approved segregated custody accounts, omnibus 
 - **UNB-INV-017:** Multiple participants with conflicting preferences SHALL follow a documented fund governance rule; no last-write-wins overwrite of approved policy.
 - **UNB-INV-018:** Sponsor can freeze trading or allocation changes for compliance holds, donor death/incapacity, disputed succession, valuation uncertainty, liquidity stress or custodian outage.
 - **UNB-INV-019:** AI may recommend portfolios, risk checks, liquidity plans and rebalancing, but may not bypass sponsor approval, mandate boundaries, suitability review where applicable, or execution controls.
+  - *Refined 2026-11-24 by RR-UNB-INV-019-r1 (adopted; see `requirements/discovery/2026-11-23-cross-industry`, decisions XID-INV-004, decided-provisional):* AI or rule-based features MAY compute drift, risk metrics, liquidity forecasts and conformity to sponsor-approved models, and MAY propose actions that implement a sponsor-approved model or committee-approved parameter. They MUST NOT generate individualized securities selections or allocation advice for a donor, advisor or sponsor beyond approved models unless counsel has recorded the Advisers Act status of the party providing it (sponsor personnel acting under §203(b)(4), a registered adviser under mandate, or another basis). Every proposal MUST name the approved model/parameter it implements and MUST pass deterministic mandate and pre-trade checks before any human approval. The operator MUST NOT provide individualized investment recommendations, and operator compensation MUST NOT vary with assets or trades (XID-INV-004). The text above is retained as originally written.
 - **UNB-INV-020:** Investment policies and exceptions SHALL be versioned, effective-dated and linked to event, decision, account and reporting evidence.
 
 ## Valuation, unitization and accounting
@@ -99,3 +100,16 @@ INV-ADR-008: Strata integration, event ordering, projections, isolation and dete
 - Investment API contract catalog and accounting posting crosswalk.
 
 Traceability: UNB-CUST-001..028; UNB-ACC-001..036; ACC-MDL-001..012; UNB-SUCC-001..014; UNB-TEN-001..020. All examples are design candidates, not proof of vendor entitlement or legal/accounting compliance.
+
+<!-- BEGIN ADOPTED: cross-industry-discovery -->
+## Adopted requirements: cross-industry discovery (2026-11-24)
+
+Status: adopted at the product owner's direction from [requirements/discovery/2026-11-23-cross-industry](../../requirements/discovery/2026-11-23-cross-industry/README.md) (RCD-001 adoption step). Each requirement applies one or more decided-provisional legal or accounting decisions; it is binding for design but each listed confirmation (counsel, CPA or auditor) is still required before production use. Earlier requirements in this file are unchanged.
+
+- **UNB-XIN-INV-002:** Every investment pool MUST record a counsel-approved LegalBasis (statutory exclusion or registration relied upon), the charitable organization that maintains it, its trustee/administrator and the sponsors whose assets it may hold. Unbound MUST reject subscriptions from a fund of a sponsor not listed, MUST reject creating a pool whose maintainer is not a charitable organization unless the LegalBasis cites a different counsel-approved basis, and MUST re-require approval when the maintainer or sponsor list changes. For release 1 only single-sponsor pools maintained by the sponsor itself under the charitable-organization exclusion are permitted; multi-sponsor pools and pools maintained by the operator MUST be rejected, and donors MUST receive the pool's written disclosure before first allocation (XID-INV-003).
+  - Provenance: [UNB-XIN-INV-002](../../requirements/discovery/2026-11-23-cross-industry/README.md); decisions XID-INV-003 (decided-provisional; confirmations in report 16).
+  - Acceptance:
+    - AC-1: Given pool P maintained by Sponsor A; when a fund of Sponsor B subscribes; then the subscription is rejected with SponsorNotEligibleForPool.
+    - AC-2: Given a pool configured with maintainer = platform operator and no alternative basis; when activation is requested; then activation is rejected.
+    - AC-D1: Given a pool definition listing two sponsors; when it is created; then creation is rejected with MULTI_SPONSOR_POOL_NOT_PERMITTED.
+<!-- END ADOPTED: cross-industry-discovery -->
