@@ -1,12 +1,12 @@
 {
   "records": {
     "refinements": 40,
-    "gaps": 13,
-    "findings": 156,
+    "gaps": 15,
+    "findings": 157,
     "conflicts": 0,
-    "scenarios": 73,
+    "scenarios": 76,
     "decisions": 58,
-    "rejected": 64,
+    "rejected": 65,
     "work": 143,
     "metrics": 84,
     "config": 120,
@@ -16,7 +16,7 @@
     "roles": 24
   },
   "register_rows": 1487,
-  "trace_edges": 1490,
+  "trace_edges": 1519,
   "errors": 0,
   "warnings": 3,
   "errors_by_gate": {}

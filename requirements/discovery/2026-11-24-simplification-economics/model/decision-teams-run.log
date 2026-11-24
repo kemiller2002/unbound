@@ -1,0 +1,26 @@
+OM1|1000 pooled_v1_baseline P50 4761.65 | operator_dedicated P50 4811.64 | self_staffed P50 4811.64 | sponsors 1
+OM1|10000 pooled_v1_baseline P50 869.35 | operator_dedicated P50 858.03 | self_staffed P50 858.03 | sponsors 1
+OM1|100000 pooled_v1_baseline P50 388.22 | operator_dedicated P50 387.04 | self_staffed P50 387.04 | sponsors 1
+OM1|1000000 pooled_v1_baseline P50 328.27 | operator_dedicated P50 328.09 | self_staffed P50 328.09 | sponsors 1
+OM1|5000000 pooled_v1_baseline P50 319.22 | operator_dedicated P50 319.19 | self_staffed P50 319.19 | sponsors 1
+OM2|1000 pooled_v1_baseline P50 4672.27 | operator_dedicated P50 4775.33 | self_staffed P50 4775.33 | sponsors 1
+OM2|10000 pooled_v1_baseline P50 651.99 | operator_dedicated P50 642.10 | self_staffed P50 642.10 | sponsors 1
+OM2|100000 pooled_v1_baseline P50 179.61 | operator_dedicated P50 178.86 | self_staffed P50 178.86 | sponsors 1
+OM2|1000000 pooled_v1_baseline P50 113.93 | operator_dedicated P50 113.79 | self_staffed P50 113.79 | sponsors 1
+OM2|5000000 pooled_v1_baseline P50 109.51 | operator_dedicated P50 109.48 | self_staffed P50 109.48 | sponsors 1
+OM3|1000 pooled_v1_baseline P50 4739.15 | operator_dedicated P50 4900.26 | self_staffed P50 4879.86 | sponsors 1
+OM3|10000 pooled_v1_baseline P50 671.35 | operator_dedicated P50 704.00 | self_staffed P50 702.41 | sponsors 2
+OM3|100000 pooled_v1_baseline P50 191.68 | operator_dedicated P50 213.67 | self_staffed P50 210.71 | sponsors 12
+OM3|1000000 pooled_v1_baseline P50 124.61 | operator_dedicated P50 146.91 | self_staffed P50 142.26 | sponsors 112
+OM3|5000000 pooled_v1_baseline P50 120.85 | operator_dedicated P50 147.56 | self_staffed P50 142.91 | sponsors 608
+OM4|1000 pooled_v1_baseline P50 4638.23 | operator_dedicated P50 4826.49 | self_staffed P50 4791.51 | sponsors 1
+OM4|10000 pooled_v1_baseline P50 581.78 | operator_dedicated P50 601.04 | self_staffed P50 600.64 | sponsors 1
+OM4|100000 pooled_v1_baseline P50 94.59 | operator_dedicated P50 105.61 | self_staffed P50 104.28 | sponsors 3
+OM4|1000000 pooled_v1_baseline P50 29.43 | operator_dedicated P50 38.62 | self_staffed P50 37.71 | sponsors 25
+OM4|5000000 pooled_v1_baseline P50 23.00 | operator_dedicated P50 32.10 | self_staffed P50 31.72 | sponsors 124
+OM5|1000 pooled_v1_baseline P50 4670.39 | operator_dedicated P50 4844.70 | self_staffed P50 4825.30 | sponsors 1
+OM5|10000 pooled_v1_baseline P50 606.11 | operator_dedicated P50 625.33 | self_staffed P50 622.83 | sponsors 1
+OM5|100000 pooled_v1_baseline P50 84.33 | operator_dedicated P50 84.52 | self_staffed P50 84.02 | sponsors 1
+OM5|1000000 pooled_v1_baseline P50 19.92 | operator_dedicated P50 22.57 | self_staffed P50 22.33 | sponsors 10
+OM5|5000000 pooled_v1_baseline P50 13.75 | operator_dedicated P50 16.50 | self_staffed P50 16.35 | sponsors 50
+targets {"258": {"OM1": {"pooled_v1_baseline": 100000, "operator_dedicated": 100000, "self_staffed": 100000}, "OM2": {"pooled_v1_baseline": 30000, "operator_dedicated": 30000, "self_staffed": 30000}, "OM3": {"pooled_v1_baseline": 100000, "operator_dedicated": 100000, "self_staffed": 100000}, "OM4": {"pooled_v1_baseline": 30000, "operator_dedicated": 30000, "self_staffed": 30000}, "OM5": {"pooled_v1_baseline": 30000, "operator_dedicated": 30000, "self_staffed": 30000}}, "100": {"OM1": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM2": {"pooled_v1_baseline": 300000, "operator_dedicated": 300000, "self_staffed": 300000}, "OM3": {"pooled_v1_baseline": 1000000, "operator_dedicated": null, "self_staffed": null}, "OM4": {"pooled_v1_baseline": 100000, "operator_dedicated": 300000, "self_staffed": 100000}, "OM5": {"pooled_v1_baseline": 100000, "operator_dedicated": 100000, "self_staffed": 100000}}, "50": {"OM1": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM2": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM3": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM4": {"pooled_v1_baseline": 300000, "operator_dedicated": 1000000, "self_staffed": 1000000}, "OM5": {"pooled_v1_baseline": 300000, "operator_dedicated": 300000, "self_staffed": 300000}}, "25": {"OM1": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM2": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM3": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM4": {"pooled_v1_baseline": 1000000, "operator_dedicated": null, "self_staffed": null}, "OM5": {"pooled_v1_baseline": 1000000, "operator_dedicated": 1000000, "self_staffed": 1000000}}, "10": {"OM1": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM2": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM3": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM4": {"pooled_v1_baseline": null, "operator_dedicated": null, "self_staffed": null}, "OM5": {"pooled_v1_baseline": 10000000, "operator_dedicated": null, "self_staffed": null}}}

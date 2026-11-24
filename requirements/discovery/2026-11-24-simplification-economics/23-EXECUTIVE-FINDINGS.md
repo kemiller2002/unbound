@@ -7,6 +7,22 @@
 - The economics come from an **executed, reproducible theoretical model**. Its outputs are not observations. About 60 of its 73 parameters are assumptions.
 - The requirements gate remains **FAIL**.
 
+## Update after the mission: SPD-ADV-001 decided
+
+On 2026-11-24 the product owner decided SPD-ADV-001 (report 24):
+- No team may exercise legally reserved authority for more than one sponsor.
+- Every sponsor has its own decision team. It is either staffed by the sponsor or supplied by the operator and dedicated to that sponsor alone.
+- Pricing carries a per-sponsor decision-team component that depends on which mode the sponsor chooses.
+
+The executed re-run (`model/decision_teams.py`) changes the platform figures below:
+- OM3@1M median: $125 → $147 per account.
+- OM4@1M median: $29 → $39 per account.
+- $100 is no longer reached by the full-service shared platform (OM3) at any modelled scale.
+- $25 is no longer reached by the digital-minimal class (OM4).
+- The two modes cost the enterprise about the same. They differ in who pays.
+
+Where this report and reports 06–10 quote pooled OM3–OM5 figures, report 24 supersedes them.
+
 ## Bottom line
 
 **What holds up**
@@ -19,10 +35,10 @@
 **What does not hold up**
 - **The economic targets are only partly reachable.**
   - $258 per account per year is reachable by a lean sponsor at about 100k accounts.
-  - $100 is not reachable by any full-service model up to 5 million accounts.
-  - $25–50 is reachable only by a digital-minimal account class at very large scale.
+  - $100 is not reachable by any full-service model up to 5 million accounts. With per-sponsor decision teams (report 24), the shared platform does not reach it up to 10 million.
+  - $25–50 is reachable only by a digital-minimal account class at very large scale. With per-sponsor teams, OM4 reaches $50 at 1M and no longer reaches $25.
   - $10 is not reachable at all in the modelled range.
-- **The adversarial review weakened the best cases further.** Some of the strongest economic results depended on pooling legally reserved decision-makers across sponsors, which the governance work forbids.
+- **The adversarial review weakened the best cases further.** Some of the strongest economic results depended on pooling legally reserved decision-makers across sponsors. The owner has since ruled that out (SPD-ADV-001, report 24).
 
 ## Answers to the twelve strategic questions
 
@@ -95,7 +111,9 @@ Fully allocated, a lean full-service model reaches about $110–121 per account 
 **6. What prevents us from reaching that cost?**
 - **Sponsor fragmentation.** Accounts per sponsor is the largest swing factor in platform models: at 5,000 accounts per sponsor, sponsor-level cost is about $19 per account.
 - **Irreducible exceptions.** Non-standard grants and complex gifts remain.
-- **Per-sponsor decision authority.** Legally reserved decisions cannot be pooled across sponsors without counsel's answer to SPD-ADV-001.
+- **Per-sponsor decision authority.** Decided: legally reserved decisions are never pooled across sponsors (SPD-ADV-001).
+  - Each sponsor carries a decision-team floor (2.5 FTE [A]). It binds below about 14,500 accounts per sponsor.
+  - Small sponsors are therefore only economic if they staff the team themselves (report 24).
 - **Acquisition.** About $60 per account, outside every target.
 - **Service level.** Base figures assume about 80% SLA attainment.
 - **Unmeasured inputs.** The two specialist pools, exception rates and minutes, and complex-gift hours have never been measured.
@@ -105,7 +123,7 @@ Fully allocated, a lean full-service model reaches about $110–121 per account 
 - **Acquisition breaks the case.** Its cost (about $60) is not covered by $9–30 of revenue.
 - **A $12 employer fee alone never breaks even** in the model.
 - **Tax law works against it.** The 2025 non-itemizer deduction excludes DAF gifts, so much small-balance growth would take share rather than expand the market (SPF-CMP-002).
-- **Answer:** not as a standalone direct-to-consumer business. Possibly as a subsidised or embedded channel (employer or advisor) with explicit cross-subsidy. That is decision SPD-ADV-001 / XID-ADV-002.
+- **Answer:** not as a standalone direct-to-consumer business. Possibly as a subsidised or embedded channel (employer or advisor) with explicit cross-subsidy. That is decision XID-ADV-002.
 
 **8. Can we improve customer experience while reducing administrative costs?** Yes, where the improvement comes from not asking:
 - prefilled, event-driven confirmations;
@@ -163,7 +181,7 @@ The highest-value changes:
 
 **12. What evidence would demonstrate that our entire proposed business model is wrong?**
 - **Shadow replay of a real sponsor's grant history.** It would show exception share × minutes well above the model's lean assumptions (e·m above about 3.6, the baseline). That would put staffing at 100k near 69 FTE and remove the cost advantage (UNB-LSGAP-001).
-- **Counsel answers.** Decisions reserved to the sponsor cannot be delegated to a platform or pooled (SPD-ADV-001), and Tier-1 policy approval is not permitted (RCD-005 Q1). Minimum-touch then collapses toward conventional staffing.
+- **Counsel answers.** Tier-1 policy approval is not permitted (RCD-005 Q1), or operator-dedicated principals cannot be appointed in any workable form (SPD-ORG-002). Minimum-touch then collapses toward conventional staffing. Pooling reserved decisions across sponsors is already ruled out by the owner (SPD-ADV-001).
 - **No small-balance channel.** No channel covers acquisition plus about $25–53 of servicing cost per account.
 - **Competitor parity.** A competitor with distribution reaches the same technology. The analysis finds nothing inherent to defend.
 - **Measured database performance.** Production-like storage falsifies the architecture's falsification criteria. Measured headroom is currently 10–20×, so this is the least likely failure.
@@ -177,7 +195,7 @@ Applied (report 22):
 - **Automatic policy-pack updates** are limited to strictly tightening changes (SPR-ADV-001).
 - **Duplicate $258 findings** are merged.
 - **This mission's own additions are flagged for cuts:** 13 new requirements down to 7, about 15 fewer decisions, and release-1 metrics limited to the adopted six-metric catalog.
-- **Platform cost bands** are marked not decision-grade until SPD-ADV-001 is decided.
+- **Platform cost bands** were marked not decision-grade until SPD-ADV-001 was decided. It is now decided, and report 24 gives the re-run figures.
 
 ## Corrections to earlier work
 
@@ -187,7 +205,7 @@ Applied (report 22):
 
 ## Decisions needed first
 
-1. **SPD-ADV-001:** may legally reserved decisions be pooled across sponsors on a shared platform? This governs all platform economics.
+1. **SPD-ADV-001:** decided-provisional on 2026-11-24. Reserved decisions are never pooled; each sponsor has an operator-dedicated or self-staffed team. SPD-ECN-003 (per-sponsor pricing component) followed. Next comes setting the price levels and margin for components A, B, C1 and C2 (CFO and commercial lead, report 24).
 2. **SPD-ECN-001 / XID-ADV-002:** target segment and the small-balance channel (employer, advisor or none).
 3. **SPD-PLT-001:** is a SOC 2 report needed at release 1?
 4. **SPD-ORG-001 / -002:** may the automated release gate count as a segregation-of-duties actor, and may fractional or contracted people hold reserved authority?

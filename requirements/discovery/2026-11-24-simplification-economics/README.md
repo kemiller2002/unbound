@@ -11,6 +11,7 @@
 **Start here:**
 1. [23-EXECUTIVE-FINDINGS.md](23-EXECUTIVE-FINDINGS.md) answers the twelve strategic questions.
 2. [22-ADVERSARIAL-REVIEW.md](22-ADVERSARIAL-REVIEW.md) covers passes A–H and the revisions they forced.
+3. [24-DECISION-TEAMS-AND-PRICING.md](24-DECISION-TEAMS-AND-PRICING.md) applies the owner's decision on SPD-ADV-001. Its figures supersede the pooled shared-platform (OM3–OM5) figures in reports 06–10 and 23.
 3. [00-MISSION-AND-SOURCE-BASELINE.md](00-MISSION-AND-SOURCE-BASELINE.md) records the sources, revisions and the 1,487-record review universe.
 
 ## Deliverables
@@ -41,6 +42,7 @@
 | 21 | [Research transfer candidates](21-RESEARCH-TRANSFER-CANDIDATES.md) | `transfer.jsonl` |
 | 22 | [Adversarial review](22-ADVERSARIAL-REVIEW.md) | `disposition-challenges.jsonl` |
 | 23 | [Executive findings](23-EXECUTIVE-FINDINGS.md) | — |
+| 24 | [Per-sponsor decision teams and pricing](24-DECISION-TEAMS-AND-PRICING.md): owner decision SPD-ADV-001 applied | `model/decision_teams.py`, `model/decision-teams-results.json` |
 | — | [Ledger](LEDGER.md) | `validation-report.json` |
 
 Reports 01–22 are **generated** by `tools/reqaudit/assemble_simplification.py` from `data/`. Never edit them by hand.

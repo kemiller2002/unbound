@@ -208,6 +208,36 @@ Every item below is **proposed**. Nothing here is accepted until the owner decid
   - **AC-2** Given XID-BNK-006 superseded after counsel review; when the supersession is recorded; then every active version relying on it is listed with affected sponsors and a change case is opened for each.
   - **AC-3** Given the same element in a synthetic-data environment; when activation is attempted; then activation succeeds and the environment is labelled non-production.
 
+### UNB-SMP-ORG-003 (P0, proposed)
+
+- **Statement:** For each sponsor, every principal holding an active delegation-of-authority entry at level A3 or above (UNB-XIN-ERP-005; UNB-RCN-PLT-005) MUST be a member of that sponsor's DecisionTeam. The platform MUST reject creating or activating an A3+ entry for a principal who holds an active A3+ entry for any other sponsor. Each sponsor MUST record exactly one DecisionTeamMode: OperatorDedicated (principals employed by the operator, appointed by that sponsor's board resolution and assigned to no other sponsor's reserved work) or SelfStaffed (principals employed or appointed by the sponsor). Work items of reserved decision classes MUST be routed only to principals of the owning sponsor's DecisionTeam; no queue, assignment pool, delegate list or AI agent may route a reserved item to a principal of another sponsor. Non-reserved work (service, operations, evidence assembly, AI-prepared dossiers) MAY be pooled across sponsors.
+- **Business rationale:** Implements the owner decision as a checkable invariant at the DoA register and the router, the two places where cross-sponsor authority could arise.
+- **Why no existing requirement suffices:** UNB-XIN-CLM-008 bars vendor staff without appointment from A3+, and UNB-XIN-ERP-005 keeps the DoA register, but nothing forbids one appointed person or team from holding A3+ authority for several sponsors, and nothing records who staffs a sponsor's team.
+- **Original references:** UNB-RCN-PLT-005, UNB-XIN-ERP-005, UNB-XIN-CLM-008, UNB-SMP-ORG-002, UNB-SMP-ECN-004, SPD-ADV-001, SPD-ORG-002; parent UNB-RCN-PLT-005
+- **Discovery evidence:** SPD-ADV-001, SPF-ADV-001, SPF-ECN-015, unbound:requirements/discovery/2026-11-24-simplification-economics/data/rejected.jsonl (SPR-ORG-004, SPR-ADV-008) (finding SPF-ECN-015)
+- **Preconditions / expected / exception behavior:** Platform-wide principal identity; DoA register. / Cross-sponsor A3+ authority cannot exist. / If the uniqueness check is unavailable, A3+ entry activation is held, not allowed.
+- **Security / accessibility / financial:** Cross-sponsor uniqueness check needs a platform-wide principal identity; expose only a pass/fail result to each sponsor, not the other sponsor's roster. / Roster and rejection messages available as text tables. / Sets the per-sponsor decision-team floor used in report 24.
+- **Dependencies:** DoA register keyed by principal across sponsors, Router aware of reserved decision classes · **Validation scenarios:** SPS-ORG-008, SPS-ORG-009 · **Confidence:** high
+- **Acceptance criteria:**
+  - **AC-1** Given Principal P holds an active A4 entry for sponsor S1; when an administrator submits an A3 entry for P at sponsor S2; then the entry is rejected with reason CrossSponsorAuthority and an audit event; S1's entry is unchanged.
+  - **AC-2** Given Sponsors S1 and S2 each have a DecisionTeam; S1's team is fully absent; when an S1 exception grant reaches the reserved queue; then it is not offered to S2's principals; it waits and a CoverageGap item opens (UNB-SMP-ORG-002).
+  - **AC-3** Given P's A4 entry at S1 is end-dated; when an A3 entry for P at S2 is submitted after the end date; then it is accepted, and the history shows no overlap.
+
+### UNB-SMP-ECN-004 (P1, proposed)
+
+- **Statement:** Sponsor commercial terms SHALL be computed from three separately itemized components: (A) a per-account platform fee by ServicingClass; (B) a per-sponsor annual service fee; and (C) a decision-team component set by the sponsor's DecisionTeamMode (UNB-SMP-ORG-003): C1 OperatorDedicated, a per-sponsor fee priced on the dedicated team's FTE (floor configurable, default 2.5 FTE); or C2 SelfStaffed, a per-sponsor support fee with no operator staff charge. Quotes, invoices and cost-to-serve reports SHALL show A, B and C separately for each sponsor and SHALL NOT spread component C across other sponsors. A change of DecisionTeamMode SHALL take effect only on a recorded effective date after the incoming team's A3+ DoA entries are active and AuthorityCoverage (UNB-SMP-ORG-002) has passed for 20 consecutive business days; until then the outgoing team continues and is charged. DecisionTeamMode and the fee components SHALL NOT be inputs to eligibility, sanctions, approval, grant priority or payment timing.
+- **Business rationale:** Makes the decided structure visible in price so sponsors choose with the cost in view.
+- **Why no existing requirement suffices:** UNB-XIN-ECO-012 and UNB-XIN-SAS-009 price per account; no record prices a per-sponsor decision team or lets a sponsor supply its own.
+- **Original references:** UNB-XIN-ECO-012, UNB-XIN-SAS-009, UNB-SMP-ORG-003, UNB-SMP-ORG-002, UNB-SMP-ECN-003, SPD-ECN-003, SPD-ADV-001; parent UNB-XIN-ECO-012
+- **Discovery evidence:** SPD-ECN-003, SPF-ECN-015, unbound:requirements/discovery/2026-11-24-simplification-economics/model/decision-teams-results.json (finding SPF-ECN-015)
+- **Preconditions / expected / exception behavior:** UNB-SMP-ORG-003 in place. / Each sponsor pays for its own decision team or for support of the team it staffs. / If coverage fails during a mode change, the change is postponed and the outgoing team remains.
+- **Security / accessibility / financial:** Commercial terms visible to the operator's finance staff and to the sponsor only. / Quote comparison available as an accessible table. / Recovers the per-sponsor team floor directly from the sponsor that uses it (report 24).
+- **Dependencies:** DecisionTeamMode on sponsor record, Cost-to-serve attribution by sponsor · **Validation scenarios:** SPS-ECN-007, SPS-ORG-009 · **Confidence:** medium
+- **Acceptance criteria:**
+  - **AC-1** Given Sponsor S1 OperatorDedicated (2.5 FTE) and S2 SelfStaffed, both 5,000 accounts; when annual invoices are produced; then both show identical A and B lines; S1 shows C1 for 2.5 FTE, S2 shows C2 only.
+  - **AC-2** Given S2 requests a change to OperatorDedicated; when the operator team's DoA entries are active but coverage has passed for 12 business days; then the mode is unchanged and S2's own team still decides; the change activates on day 20 and C1 starts from the effective date.
+  - **AC-3** Given Two sponsors differ only in mode; when the same exception grant is evaluated; then eligibility, approval path and payment timing are identical.
+
 
 ## Refinements of original requirements
 
@@ -771,6 +801,9 @@ Every item below is **proposed**. Nothing here is accepted until the owner decid
 | SPS-ADV-010 | DigitalMinimal workplace program passes the marginal-cost gate but loses money once acquisition is paid | UNB-SMP-ECN-003;SPD-ECN-002 | Sponsor publishes program configuration. | Gate requires declared acquisition bearer and amount; with acquisition $60/acct unpaid by any declared source, publication rejected unless subsidy source recorded. |
 | SPS-ADV-011 | Successor split leaves a fractional unit residual | UNB-NAV-030;UNB-ACC-011 | Split executed. | Total units preserved exactly; residual allocated by the sponsor's explicit rounding policy; restrictions and commitments carried to each successor. |
 | SPS-ADV-012 | Sponsor statement default under conflicting cadence decisions | RR-REQ-X-032-r1;SPD-ENT-003;SPD-CFG-002 | First period close certified. | One merged default applies: statement generated every period from certified snapshot; notification quarterly digest plus immediate correction notices; monthly notification on donor opt-in. |
+| SPS-ORG-008 | Cross-sponsor A3+ authority is refused and reserved work never crosses sponsors | UNB-SMP-ORG-003;UNB-SMP-ORG-002 | Administrator submits an A3 entry for P1 at S2; later all S1 principals are absent while an S1 exception grant arrives. | Entry rejected CrossSponsorAuthority; S1 item waits in S1's reserved queue, CoverageGap item opens for S1's accountable executive; Q1 and Q2 never see it. |
+| SPS-ORG-009 | Sponsor switches from operator-dedicated to self-staffed decision team | UNB-SMP-ORG-003;UNB-SMP-ECN-004;UNB-SMP-ORG-002 | S1 requests SelfStaffed effective in 30 business days. | New entries active; coverage passes 20 consecutive business days; mode flips on the effective date; operator principals' S1 entries end-dated that day; C1 stops and C2 starts. |
+| SPS-ECN-007 | Three-part invoice for sponsors in each decision-team mode | UNB-SMP-ECN-004;UNB-SMP-ORG-003 | Annual invoicing run. | Identical A and B lines; S1 has C1 for its team; S2 has C2 support fee only; cost-to-serve report flags S1 as floor-binding. |
 
 ## Findings behind the refinements
 
@@ -932,3 +965,4 @@ Every item below is **proposed**. Nothing here is accepted until the owner decid
 | SPF-ADV-026 | medium | legal | AI-assisted QA and after-the-fact sampling lack a check on cases where AI and the original outcome agree. | RR-CTL-040-r1;UNB-XIN-CLM-005;SPF-CLR-005 | Require a random human-reviewed share of AI-agreeing cases and a sample size per stratum that detects a stated error rate at stated confidence; budget the hours. |
 | SPF-ADV-027 | low | consistency | The $258 explanation is a reconstruction that matches to the dollar, not a documented derivation. | SPF-ECN-001;SPF-CLR-001 | Label the midpoint explanation [H] and keep a single finding (SPF-ECN-001). |
 | SPF-ADV-028 | low | consistency | Economics and organisation passes use different agent-ownership headcounts. | TVA-021 | Use one value with its label. |
+| SPF-ECN-015 | high | economics | Per-sponsor decision teams raise shared-platform cost and make small sponsors expensive to serve | SPD-ADV-001;SPD-ECN-003;SPD-ECN-001;SPD-CMP-001;UNB-SMP-ORG-003;UNB-SMP-ECN-004;RR-UNB-ECO-003-r1 | Adopt a three-part tariff with a per-sponsor decision-team component (UNB-SMP-ECN-004). Offer the self-staffed mode to small sponsors that already employ two authorised principals; their marginal cost is the time used,… |

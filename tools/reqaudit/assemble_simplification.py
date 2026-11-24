@@ -233,8 +233,8 @@ def t_rejected(d) -> str:
 
 
 def t_decisions(d) -> str:
-    c = Counter(x.get("type") for x in d["D"])
-    return table(("Type", "Open decisions"), sorted(c.items(), key=lambda kv: -kv[1])) + "\n\n" + table(
+    c = Counter((x.get("type"), x["status"]) for x in d["D"])
+    return table(("Type", "Status", "Decisions"), [(t, s, n) for (t, s), n in sorted(c.items(), key=lambda kv: -kv[1])]) + "\n\n" + table(
         ("Decision", "Type", "Question", "Owner", "Recommendation", "Blocks", "Status"),
         [(x["decision_id"], x.get("type"), x["question"], x["decision_owner"], x["recommendation"], x.get("blocks_implementation"), x["status"]) for x in d["D"]], 220)
 
@@ -412,7 +412,7 @@ def r19(d):
 
 @report("20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md")
 def r20(d):
-    return doc("20 — Open decisions and evidence gaps", "Every decision here needs authorized human judgment. The mission did not decide any of them. Recommendations are advisory.",
+    return doc("20 — Open decisions and evidence gaps", "Every decision here needs authorized human judgment. The mission decided none of them; recommendations on open decisions are advisory. Decisions with status `decided-provisional` were made by the product owner after the mission and record that decision in the Recommendation column.",
                ["## Open decisions\n\n" + t_decisions(d),
                 "## Evidence gaps\n\n" + "\n\n".join(sections(d, g, ("Evidence gaps",), level=3) for g in ("revA", "revB", "revC", "revD"))])
 
