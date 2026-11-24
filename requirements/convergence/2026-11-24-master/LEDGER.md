@@ -31,6 +31,7 @@ Answers are recorded only by appending events to `requirements/questions/resolut
 | Date | Batch | Result |
 |---|---|---|
 | 2026-11-24 | Phase 0 | Counts verified (143/101/72 = 316); all 11 review artifacts mapped with zero orphans; generator defect reproduced and fixed with event-sourced log (845 seed events), validator and 7 regression tests. Phase 1 research launched in 7 domain batches (A charitable tax, B accounting, C payments, D financial regulation, E governance and succession, F privacy, communications and sanctions, G assurance and delegated authority) plus a read-only Echelon inventory. |
+| 2026-11-24 | Phases 3–5.7 drafts, Phase 1 partial | Enterprise economics model (5 enterprises × 5 approaches, MC, sensitivity, stress; byte-identical reruns); reports 04, 05, 05a; Echelon inventory (report 07, `data/echelon-inventory.jsonl`); dossier integration tool; batches B, C, E, F integrated (56 dossiers, 139 sources, 109 fetched). Register guard corrected to flag only answers never recorded in the log. |
 
 ## Rules carried forward
 
@@ -38,4 +39,3 @@ Answers are recorded only by appending events to `requirements/questions/resolut
 - Proposed regulations are not effective law.
 - Agreement between AI passes is not independent evidence.
 - Transfers of cost between parties are not savings.
-| 2026-11-24 | Phases 3–5.7 drafts, Phase 1 partial | Enterprise economics model (5 enterprises × 5 approaches, MC, sensitivity, stress; byte-identical reruns); reports 04, 05, 05a; Echelon inventory (report 07, `data/echelon-inventory.jsonl`); dossier integration tool; batches B, C, E, F integrated (56 dossiers, 139 sources, 109 fetched). Register guard corrected to flag only answers never recorded in the log. |

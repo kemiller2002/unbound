@@ -8,14 +8,35 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 
 ## Coverage
 
-- Dossiers: 56 (by disposition: {"business-policy-decision": 20, "empirical-validation-required": 2, "established-by-authoritative-evidence": 10, "reasoned-interpretation": 24})
-- Evidence sources: 139 (109 fetched)
-- Externally gated confirmations without a dossier: RCD-005, RCD-014, RCD-016, RCD-021, RCD-023, RCD-030, RCD-034, XID-CRM-002, XID-CRM-004, XID-ECO-002, XID-INV-003, XID-INV-004, XID-NPG-001, XID-NPG-002, XID-NPG-005, XID-NPG-007, XID-REG-001, XID-REG-002, XID-SAS-005
+- Dossiers: 106 (by disposition: {"business-policy-decision": 32, "empirical-validation-required": 3, "established-by-authoritative-evidence": 20, "external-authorization-required": 14, "reasoned-interpretation": 37})
+- Evidence sources: 252 (207 fetched)
+- Externally gated confirmations without a dossier: none
 
 ## Summary
 
 | Question | Batch | Disposition | Confidence | Recommended answer (short) |
 |---|---|---|---|---|
+| RCD-005 | A | external-authorization-required | medium | Yes, with conditions. A board resolution (or bylaw-authorized committee act) may (1) adopt the version-pinned policy, (2) delegate final approval of grants that satisfy it to a named officer or committee, and (3) name w… |
+| RCD-014 | A | established-by-authoritative-evidence | high | Confirm the release-1 scope with three corrections: (1) label private operating foundations and §170(b)(1)(F) conduit foundations as 'legally excepted, unsupported in R1' rather than as ER-required private foundations; … |
+| RCD-016 | A | established-by-authoritative-evidence | high | Pledge handling remains a sponsor policy (Prohibited / NonBindingOnly / NoticeConditions). Notice 2017-73 §7 reliance is verified as still in effect (no superseding guidance as of 2026-11-24), so NoticeConditions is a l… |
+| RCD-021 | A | reasoned-interpretation | medium | Keep the release-1 block, restated: no compensation from a fund to any person who is a donor-advisor of that fund under §4966(d)(2)(A)(iii) (including an advisor the donor designated with investment privileges) or to th… |
+| RCD-030 | A | business-policy-decision | high | Confirm: no individualized tax advice. Disclosure text can be built directly from verified authority without paid review: (a) DAF contributions do not qualify for the §170(p) nonitemizer deduction (IR-2026-135); (b) ite… |
+| RCD-034 | A | reasoned-interpretation | medium | Do not rely on the 'donee model' as a way to keep tax duties out of release 1 when the donor expects DAF credit. Use the agent model: the sponsor is donee of record (acknowledgment, Form 8283 Part V, Form 8282, §4943 ho… |
+| RR-UNB-GRANT-024-r1#Q1 | A | business-policy-decision | medium | Put in Tier 2 (non-ER) grants with any of: (1) donor/advisor/family affiliation with the recipient or benefit signals (events, memberships, tuition, naming beyond recognition, pledges outside sponsor policy); (2) Type I… |
+| SPD-ECN-005 | A | business-policy-decision | medium | Yes, the vendor fee may be charged to the fund as a disclosed, reasonable (cost-based) contribution cost, netted from proceeds, provided the vendor is not the donor, advisor, family member or 35% entity. It is not an op… |
+| SPD-GRT-005 | A | empirical-validation-required | medium | Defer the 50-state build, but do not defer California: ingest the California AG Registry status (and FTB/IRS status) as a recipient attribute, display it, and let sponsor policy choose hold versus warn. Also determine w… |
+| UNB-XIN-NPG-001#Q2 | A | established-by-authoritative-evidence | high | As of 2026-11-24 the NPRM is neither final nor withdrawn. As proposed, 'procedures similar to §53.4945-5(a)(5)' would not change currency for DAFs: it imports the same rule (law unchanged; facts from the grantee's curre… |
+| UNB-XIN-NPG-003#Q1 | A | business-policy-decision | medium | No arrangement type legally requires an agreement copy when the payee is the §170(b)(1)(A) fiscal sponsor and it retains discretion and control. Accept without agreement copy: (a) comprehensive/internal projects evidenc… |
+| UNB-XIN-NPG-004#Q1 | A | established-by-authoritative-evidence | high | Use the IRS phrasing: cash payment; money order; electronic fund or wire transfer (ACH maps here); check; other charges against funds on deposit at a financial institution; other — multiple allowed per recipient. Versio… |
+| UNB-XIN-NPG-006#Q1 | A | business-policy-decision | medium | Yes, permit indictment- or official-investigation-triggered holds when the board-approved policy lists the criterion, the hold is scoped and time-limited, and renewal requires new evidence. Allegations from media alone … |
+| UNB-XIN-NPG-007#Q1 | A | reasoned-interpretation | low | Likely no §4967 tax where the class is the Treasury-accepted broad class and relatives benefit only as members (reasoned by PF incidental-benefit analogy). Gate: reject classes defined by family; route to review classes… |
+| XID-CRM-004 | A | reasoned-interpretation | medium | Revise: (1) a fund whose only beneficiary is the contributing charity is a single-identified-organization (designated/agency) fund, not a DAF, if distributions go only to that charity for its own activities; (2) a fund … |
+| XID-ECO-002 | A | business-policy-decision | medium | Confirm with corrections: service charges are allowed when listed in the disclosed schedule, reasonable (cost-based is the evidence), and never paid directly or indirectly to a donor, advisor, family member or 35% entit… |
+| XID-NPG-001 | A | established-by-authoritative-evidence | high | Revise: the routine (non-ER) path is allowed only when the sponsor has current written advice received from a qualified tax practitioner (directly or via a repository whose practitioner issues the advice or an express r… |
+| XID-NPG-002 | A | reasoned-interpretation | medium | Confirm the decision with one clarification: outbound wording may name the intermediary's program, country or cause; it must not name any specific foreign organization, even as a non-binding suggestion, and no side agre… |
+| XID-NPG-004 | A | business-policy-decision | medium | Board-approved criteria: adjudicated findings, regulator actions, and official pending matters (indictment, AG or IRS action, government investigation the sponsor is informed of); media allegations only with elevated ap… |
+| XID-NPG-005 | A | business-policy-decision | medium | Confirm as a sponsor policy: substitution to a verified legal successor that independently passes eligibility (own EIN, TEOS listing, same recipient class) with sponsor approval and donor notice; recurring grants should… |
+| XID-NPG-007 | A | established-by-authoritative-evidence | high | The original answer is legally supported (abatement is available under §4962 for §4966/§4967 first tier taxes), and the review answer 'do not assert abatement' is too cautious. State it as: abatement may be requested on… |
 | RCD-017 | B | business-policy-decision | medium | Keep atomic reservation in the same transaction and Reserved -> FundingPlanned -> Funded. Replace the fixed 2% default with a sponsor-set buffer per pool calibrated from a stress model (e.g. high-percentile net outflow … |
 | RCD-018 | B | business-policy-decision | medium | Version the fee basis per schedule (end-of-day market value default; average-balance and periodic-balance options), day count, accrual and settlement cadence, minimum, and payer source. Exclude grants already recognized… |
 | RCD-019 | B | reasoned-interpretation | medium | Store separately: GiftCompletionDate (tax: check=mailing/postmark date if cleared; certificate=delivery/mailing; broker/DTC=date credited to sponsor account; card=charge date; ACH=settlement date with initiation date re… |
@@ -47,6 +68,13 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 | XID-ERP-001 | C | business-policy-decision | high | Confirm daily computation with periodic posting, but support basis per fee schedule version (average daily, period-end, quarter-average). Per the adversarial review, do not prorate or impose a closing minimum fee unless… |
 | XID-ERP-002 | C | reasoned-interpretation | medium | Confirm, and prefer the alternative design: rather than an external 'membership fee', let the donor make an additional contribution to the fund (deductible, acknowledged) and charge the disclosed fee against the fund. I… |
 | XID-EVA-003 | C | business-policy-decision | high | Confirm. Add: send domestic wires with no-deduction instructions; international wires default OUR where available; record fee type and cause. |
+| RCD-023 | D | established-by-authoritative-evidence | medium-high | Confirm: CIP/AML program law does not apply to a 501(c)(3) sponsor or to a non-MSB software administrator (CIP is a bank/BD/fund rule; MSB AML applies only to MSBs). Policy controls: risk-based identity proofing for adv… |
+| XID-CRM-002 | D | reasoned-interpretation | medium | Confirm with tightening: (1) never pay any referral or compensation from DAF assets to anyone who is a donor, donor-advisor, their family, 35% entity, or a sponsor-compensated investment advisor of that fund (§4958(c)(2… |
+| XID-INV-003 | D | established-by-authoritative-evidence | high | Legal basis per pool: ICA §3(c)(10)(B) (exclusion), Securities Act §3(a)(4) (exempt security), Exchange Act §3(e) (sponsor not a broker/dealer, subject to §3(e)(2)), Advisers Act §203(b)(4) (sponsor personnel advice) pl… |
+| XID-INV-004 | D | reasoned-interpretation | medium-high | Yes, any feature that produces operator-authored, fund- or donor-specific recommendations on securities or allocations would likely make the operator an adviser (compensation via SaaS fee suffices). Confirm the decision… |
+| XID-REG-001 | D | reasoned-interpretation | medium-high | Confirm the architecture rule, with a sharper test: the operator stays outside federal MSB and state money-transmission definitions if (a) it never receives or holds donor/grant money (no operator, FBO, or pooled accoun… |
+| XID-REG-002 | D | reasoned-interpretation | medium | Confirm with refinements. Disabled unless an external registration path is chosen: (1) operator-authored recommendations, allocations, model construction, manager/fund selection, or ratings for a particular sponsor or d… |
+| XID-SAS-005 | D | external-authorization-required | medium | Revise: (1) Sponsor-direct deployments where charity listings are visible only to advisory-privileged users and the experience is the sponsor's own branded platform: launch in CA with records showing sponsor ownership/b… |
 | RCD-006 | E | established-by-authoritative-evidence | high | Confirm with clarification: status check at approval and at release against the latest published TEOS/Pub 78, EO BMF and Auto-Revocation releases (record posting date; retrieval within 24h is an operational target, not … |
 | RCD-022 | E | business-policy-decision | high | Confirm with corrections: (a) Hold on credible notice applies to new advisor-initiated actions; on verified death suspend only the deceased person's privileges; the fund moves to succession only when no living account h… |
 | RCD-029 | E | reasoned-interpretation | medium | Confirm: propagate (a) holds that derive from verified public facts (IRS revocation/auto-revocation, Pub 78 removal, OFAC SDN match, published court judgments) with source and retrieval timestamp, re-verified by the pla… |
@@ -72,8 +100,1228 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 | XID-CRM-001 | F | reasoned-interpretation | high | Confirm with corrections. Classify each template as commercial, transactional/relationship or other (316.3) before activation. Promotional DAF emails get commercial controls. Statements, grant confirmations and term-cha… |
 | XID-REG-003 | F | reasoned-interpretation | high | Confirm with hardening. (1) Capture consent at onboarding in a form that meets prior express written consent (signed e-consent naming the sponsor, stating it is not a condition of service) for every automated/prerecorde… |
 | XID-SVC-002 | F | established-by-authoritative-evidence | high | Confirm: no call recording or machine transcription at R1. When enabling: (1) disclose at the outset to every party, including parties added later; (2) require affirmative consent (DTMF or verbal yes); (3) provide a no-… |
+| RCD-005 | G | external-authorization-required | medium | Confirm the provisional decision. Delegation to a policy executed under a named officer/committee is permissible in sampled states once the board adopts it; fund managers are the sponsor's officers/directors/trustees an… |
+| RCD-031 | G | established-by-authoritative-evidence | high | Confirm with clarification: design for SOC 1 (AT-C 320; ledger/ICFR objectives) and SOC 2 (AT-C 105/205 with TSP 100 2017 TSC, revised points of focus 2022). Type 2 requires an observation period (commonly 6-12 months) … |
+| RR-ADM-003-r1#Q1 | G | external-authorization-required | medium | Yes in the sampled states, subject to the sponsor's articles and bylaws: the board may adopt the acceptance policy and delegate its execution to a named officer or board committee under its ultimate direction. Build det… |
+| RR-OPS-004-r1#Q1 | G | external-authorization-required | medium | Continuous control evidence is acceptable in principle; no auditing or COSO source located requires an independent reviewer for every control. Keep independent review for Key and Manual controls as designed; replace man… |
+| RR-REQ-X-032-r1#Q1 | G | established-by-authoritative-evidence | medium | No federal law requires periodic DAF statements; none found at state level (sample, not exhaustive). Program terms create the duty (Vanguard and NPT promise quarterly). Make delivery obligations configurable per sponsor… |
+| RR-REQ-X-073-r1#Q1 | G | reasoned-interpretation | medium | Keep 3-month bridge request and 12-month stale-report alert as configurable monitoring defaults, labelled practice not standard. Compute the gap against each relying party's fiscal year-end/reliance date. Never treat a … |
+| RR-SOC2-024-r1#Q1 | G | external-authorization-required | medium | Machine-evaluated controls without periodic owner attestation are consistent with how auditors rely on automated controls (effective ITGCs plus single-instance or baseline testing). Retain owner action on every Fail/Ins… |
+| RR-UNB-ACC-017-r1#Q1 | G | reasoned-interpretation | medium | Approve: replace manual close checklists with generated close certification when the auditor accepts it; build IPE support (query definition, parameters, population counts, hash, run log) into every generated report; ke… |
+| RR-UNB-GOV-002-r1#Q1 | G | external-authorization-required | medium | Adopt the hold resolution: independent approval for any material change to financial controls, eligibility, permissions or customer rights regardless of direction; streamlined path only inside an independently approved … |
+| SPD-ADV-003 | G | external-authorization-required | medium | Before live reliance, obtain the sponsor auditor's planned approach. Contract: right-to-audit, evidence pack, and named cost bearer (default: sponsor bears its auditor fees; Unbound bears its own staff time and any SOC … |
+| SPD-ENT-003 | G | business-policy-decision | medium | Generate every configured period; default notification a quarterly digest plus correction alerts (matching Vanguard/NPT quarterly practice); monthly opt-in; paper on request or absent e-consent; any cadence promised in … |
+| SPD-ENT-006 | G | external-authorization-required | medium | Delegation permissible in sampled states via board resolution to an accountable officer/committee; keep AcceptRecommended until recorded. Allow prefill from verified held facts, marked as prefill, with donor confirmatio… |
+| SPD-ORG-001 | G | external-authorization-required | medium | Interpretation: yes, conditionally. The gate may count as the releaser if it is a published, independently approved policy version, the two humans have no authoring, publishing, deployment or admin rights over it, and I… |
+| SPD-ORG-002 | G | external-authorization-required | high | Yes. Contracted/fractional individuals may hold A4 authority if appointed by sponsor board resolution as officers (or authorised agents) with defined scope, expiry, conflict attestation, D&O coverage, and acknowledgemen… |
+| SPD-ORG-006 | G | business-policy-decision | high | Either is acceptable; choose by cost. Daily automated matching, exceptions reviewed promptly by someone outside the payment chain, and at least monthly independent review; no fixed FTE cutoff. |
+| SPD-PLT-001 | G | external-authorization-required | high | No report is legally required. Keep evidence engineering from inception. Make SOC 2 description/CUEC/audit-period work conditional on (a) a contract or counterparty demanding a report, or (b) a second user entity. Befor… |
+| SPD-PLT-004 | G | reasoned-interpretation | medium | Adopt: engine-enforced SoD; reconciliation outside the payment chain; enforced leave where at least 2 trained staff, anomaly analytics otherwise; CISO direct access to the audit and risk committee; independent reviewer … |
+| UNB-SMP-CLR-001#Q1 | G | external-authorization-required | medium | Roles may be held by outsourced principals when appointed by sponsor board resolution as officers/agents with scope, expiry, independence and conflict attestations; never by Unbound vendor staff for A3+. |
+| UNB-SMP-ORG-003#Q2 | G | external-authorization-required | medium | Appointment form: sponsor board resolution naming the individual, office/agency, scope by decision class and limit, start/expiry, independence and conflict attestations, D&O/indemnification confirmation, and acknowledge… |
+| XID-INV-008 | G | reasoned-interpretation | medium | No. There is no universal rule. Offer each outsourced sponsor contractually: right-to-audit and direct-testing support from day one, and a SOC 1 type 2 covering the first full period once any user auditor plans to rely … |
+| XID-SVC-003 | G | business-policy-decision | medium | Dissatisfaction-based definition (whether justified or not). Acknowledge within 2 business days; substantive response target 15 business days; outer limit 60 calendar days with a holding response; regulator-originated c… |
+| XID-TRS-003 | G | business-policy-decision | high | Default 90 days after documented notice, configurable 90-365 days; at least three contact attempts through every verified channel; accessible formats; disposition per the program terms in force. |
 
 ## Dossiers
+
+### RCD-005 — Confirm provisional decision: May a sponsor board delegate routine grant approval to a version-pinned deterministic policy, and who is the fund manager for §4966/§4967?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US federal (IRC §4966) plus sponsor's state of incorporation (nonprofit corporation law) · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Build the deterministic approval tier. Until counsel and the sponsor board approve delegation, its outcome is 'ApproveRecommended', which a human approves in one-click batches (A4). After approval the same rule outcome becomes the A3 approval itself, with no code change, only an authority-flag change.
+
+**Relevant requirements.** RCF-REG-002, RCF-PLT-020, RCF-GRT-023, RCC-GRT-001, RCC-GRT-002, OD-01, TVC-003, AIN-003, REQ-X-017, requirements/reconciliation/2026-11-23/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — A fund manager is an officer, director or trustee of the sponsor (or person with similar powers) and, for any act or failure to act, an employee having authority or responsibility for it. [EV-A-001, §4966(d)(3)]
+- *established* — The 5% fund-manager tax applies only to a fund manager who agreed to the distribution knowing it was taxable; the 20% sponsor tax applies without a knowledge element. [EV-A-001, §4966(a)(1)-(2)]
+- *established* — Proposed rule (not effective, reliance permitted): a person delegated final authority by an officer/director/trustee or the governing body has officer-like authority and is a fund manager; a person merely implementing a superior's decision is not; 'agreement' is any manifestation of approval sufficient to exercise authority to approve or to recommend approval. [EV-A-009, Prop. §53.4966-1(i)(1)-(2); §53.4966-2(c)(2)]
+- *established* — Proposed knowledge standard: no negligent failure to ascertain where the distributee is listed on Tax Exempt Organization Search as a §170(b)(1)(A) organization other than a supporting organization. [EV-A-009, Preamble, fund manager discussion (88 FR 77933); Prop. §53.4966-2(c)(3)]
+- *established* — State corporate law example: business and affairs are managed by or under the direction of the board, which may designate committees exercising board powers. [EV-A-030, 8 Del. C. §141(a), (c)(2)]
+- *interpretation* — No federal statute or regulation requires a human to approve each grant individually; the requirement is that the sponsor own and control the fund and have exclusive legal control. [EV-A-001, §4966(d)(2)(A)(ii); see also §170(f)(18) (EV-A-006)]
+
+**Supporting interpretation.** A board may adopt a versioned deterministic grant policy and delegate final approval authority for grants that satisfy it to a named officer or committee (or adopt it as a board/committee act). The rule engine is not a 'person'; fund-manager status attaches to the humans who hold the delegated authority (and to those who approve the policy or its exceptions). Because §4966 taxable-distribution status for routine grants to §170(b)(1)(A) recipients is avoided by the statutory exception, delegated automated approval for that class carries low tax exposure if eligibility data is reliable (TEOS reliance under Rev. Proc. 2018-32).
+
+**Competing interpretation.** Some counsel may say each grant must have a documented human 'manifestation of approval' so that responsibility is identifiable, and that a standing delegation to a rule makes every member of the approving body a potential 'agreeing' fund manager for each rule output. Under the proposed rule's broad 'agreement' definition, approving the policy could be treated as agreement to each resulting distribution.
+
+**Applicability to Unbound.** Unbound supplies the rule engine; the sponsor supplies the authority. Unbound must record which named officer/committee holds the delegated authority for each policy version, so that the accountable fund managers are identifiable for Form 4720 purposes.
+
+**Business assumptions.**
+
+- Sponsor is a nonprofit corporation whose bylaws permit delegation to officers/committees
+- Automated tier limited to §170(b)(1)(A) non-supporting-organization recipients with TEOS/BMF evidence
+- AI never approves (CAP-41)
+
+**Recommended answer.** Yes, with conditions. A board resolution (or bylaw-authorized committee act) may (1) adopt the version-pinned policy, (2) delegate final approval of grants that satisfy it to a named officer or committee, and (3) name who reviews exceptions. The fund managers for §4966/§4967 are the sponsor's officers, directors and trustees, plus the delegated officer/committee members and any employee with final authority over the act or failure to act. Keep the build as decided ('ApproveRecommended' until the authority flag is set), but the trigger to flip the flag is the board resolution, not a counsel opinion. Restrict auto-approval to §170(b)(1)(A) non-supporting-organization recipients verified on TEOS.
+
+**Remaining uncertainty.** Whether the IRS would treat policy approval as 'agreement' to every resulting distribution (proposed rule only); state-specific limits on delegation for the sponsor's state; proposed rules not final.
+
+**Consequences if wrong.** If a taxable distribution occurs, the sponsor owes 20% regardless; delegated approvers could owe 5% (max $10,000 per distribution) if knowledge is shown. Governance criticism if delegation is not documented.
+
+**Conservative fallback.** Human one-click batch approval of rule-recommended grants by a named delegated officer (A4), which still produces an identifiable 'agreeing' manager per batch.
+
+**Alternative business or architecture design.** Delegate to a named officer who approves rule outputs in daily batches with sampling (cost: minutes/day; friction: low; exposure: same as full automation but clearer accountability; lost opportunity: small latency). Versus full automation under board resolution (lowest cost; same tax exposure for exempt classes; needs documented delegation).
+
+**External authorization required.** Sponsor board resolution (or bylaw-authorized committee resolution) adopting the versioned grant policy and delegating final approval authority to named officer(s)/committee, recorded with effective dates.
+
+**Acceptance criteria.**
+
+- Given a policy version without a recorded board resolution reference and delegate, When the rule outputs Approve, Then the outcome is ApproveRecommended and requires human approval.
+- Given a recorded board resolution delegating authority to officer X for policy version V, When a grant satisfies V, Then the approval record names X as accountable approver and V as the authority.
+- Given a recipient not listed on TEOS as §170(b)(1)(A) (or a supporting organization), When evaluated, Then automated approval is unavailable.
+- Given any grant, When approved, Then the record retains the identity of every person holding approval authority for Form 4720 fund-manager reporting.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations or withdrawal of REG-142338-07
+- IRS guidance on automated grant approval
+- Sponsor bylaw change
+- Any incident where an auto-approved grant is a taxable distribution
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-005 (decisions.csv) validation_required 'Counsel Q1 + sponsor board resolution': Treats a counsel opinion as a legal precondition; no statute or regulation requires one. → The legally necessary authorization is the board (or committee) delegation; counsel review is optional assurance. Fund manager definition is established by §4966(d)(3).
+
+### RCD-014 — Confirm provisional decision: What do grant-recipient classes, related-party payee blocks and expenditure responsibility require?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Release 1 permits grants only to excepted recipients (see RCD-013), with a donor-control certification for supporting organizations and the related-party payee block always on. Expenditure-responsibility, private-foundation, non-functionally-integrated Type III, foreign and individual recipients are rejected with an explanation.
+
+**Relevant requirements.** RCF-GRT-005, RCF-GRT-006, RCF-GRT-034, RCF-REG-005, RCF-ENT-018, RCF-FIN-005, RCF-REG-010, UNB-RCN-GRT-001, UNB-RCN-GRT-002, UNB-RCN-GRT-003, UNB-RCN-REG-002, requirements/reconciliation/2026-11-23/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — Any DAF distribution to a natural person is a taxable distribution; no expenditure-responsibility cure exists for natural persons. [EV-A-001, §4966(c)(1)(A)]
+- *established* — Distributions to other persons are taxable unless for a §170(c)(2)(B) purpose and the sponsor exercises expenditure responsibility under §4945(h). [EV-A-001, §4966(c)(1)(B)]
+- *established* — Not taxable: distributions to §170(b)(1)(A) organizations other than disqualified supporting organizations, to the sponsor, or to another DAF. [EV-A-001, §4966(c)(2)]
+- *established* — Disqualified supporting organizations: non-functionally-integrated Type III, and other supporting organizations whose supported organization is controlled by the donor/advisor and related persons. [EV-A-001, §4966(d)(4)]
+- *interpretation* — Private operating foundations and certain conduit foundations are §170(b)(1)(A)(vii) organizations, so DAF grants to them fall within the statutory exception. [EV-A-006, §170(b)(1)(A)(vii), (F)]
+- *established* — Any grant, loan, compensation or similar payment from a DAF to a donor, donor-advisor, family member (incl. siblings) or 35%-controlled entity is an excess benefit in full. [EV-A-005, §4958(c)(2), (f)(4), (f)(7)]
+- *established* — ER requires pre-grant inquiry, signed grantee commitment (repay unused funds, annual reports, records, no lobbying/electioneering/non-charitable use), reports; the proposed rule substitutes no grants to natural persons or to donors/related persons. [EV-A-012, §53.4945-5(b)(1)-(3), (c); EV-A-009 preamble C.ii]
+- *established* — Grantors may rely on TEOS/EO BMF public-charity classification (including for §4966 grants) absent knowledge or responsibility. [EV-A-016, §§1-2, 5.01, 6]
+
+**Supporting interpretation.** The provisional decision is a lawful product scope narrower than the law. Unsupported classes (ER grants, non-operating private foundations, NFI Type III, foreign without ED, individuals) are not prohibited by law except grants to natural persons, which are always taxable.
+
+**Competing interpretation.** Some sponsors (e.g., Fidelity Charitable) treat private operating foundations and governmental units as eligible; excluding them may lose demand. Foreign grantees with a current ED are treated as §170(b)(1)(A) under existing guidance.
+
+**Applicability to Unbound.** Recipient-class engine must distinguish 'unsupported by product' from 'taxable by statute' in explanations.
+
+**Business assumptions.**
+
+- Release 1 has no ER workflow
+- Donor-control certification captured at recommendation time
+
+**Recommended answer.** Confirm the release-1 scope with three corrections: (1) label private operating foundations and §170(b)(1)(F) conduit foundations as 'legally excepted, unsupported in R1' rather than as ER-required private foundations; (2) governmental units (§170(c)(1)) for exclusively public purposes are excepted and may be enabled by sponsor policy; (3) only natural-person grants are taxable without cure, so the rejection explanation for other classes must say 'not supported by this sponsor/release', not 'prohibited by law'. Keep the related-party payee block always on (§4958(c)(2) is automatic, whole-amount). Keep the supporting-organization donor-control certification.
+
+**Remaining uncertainty.** Product demand for ER/foreign classes; proposed-rule details on supporting organization certifications are not final. No statute or proposed rule provides a donor-certification safe harbor for supporting-organization control; the certification is a sponsor evidence practice (the proposed certification rule in Prop. §53.4966-4(a)(4)(ii) concerns single-identified-organization funds).
+
+**Consequences if wrong.** Mis-labeling causes donor confusion; enabling unsupported classes without ER would create 20% sponsor tax.
+
+**Conservative fallback.** Current provisional scope.
+
+**Alternative business or architecture design.** Route excluded classes to a partner sponsor or a domestic intermediary (catalogued) instead of rejecting outright: low cost, retains donor intent, no ER burden.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a recipient that is a natural person, When a grant is recommended, Then it is rejected with reason STATUTORY_NATURAL_PERSON.
+- Given a private operating foundation, When recommended in R1, Then the explanation states 'legally excepted under §170(b)(1)(A)(vii); not supported in release 1'.
+- Given a Type I/II supporting organization, When recommended without donor-control certification, Then the grant is held.
+- Given a payee matching a donor, advisor, family member (incl. siblings) or 35% entity, When evaluated, Then the grant is blocked.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations
+- Sponsor demand for ER grants
+- Expansion to foreign grantmaking
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-014 decided_option: Groups 'private-foundation' recipients with ER-required classes. → Private operating foundations and §170(b)(1)(F)(ii)/(iii) foundations are §170(b)(1)(A)(vii) organizations and excepted from §4966 taxable distributions; only non-operating private foundations need ER.
+- RCD-014 rationale '§4966/§4958 hard prohibitions': §4966 does not prohibit; it taxes. Only natural-person distributions are taxable without cure. → Describe as excise-tax exposure and product scope.
+
+### RCD-016 — Confirm provisional decision: Pledges: platform-wide prohibition or sponsor policy under Notice 2017-73?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Pledge handling is sponsor policy. Platform default is 'NoticeConditions' (grants that satisfy Notice 2017-73 are allowed; the sponsor never references the pledge; remittance metadata strips pledge references). Sponsors may choose 'Prohibited'.
+
+**Relevant requirements.** RCF-GRT-007, RCF-GRT-008, RCC-GRT-008, UNB-RCN-GRT-009, requirements/reconciliation/2026-11-23/data/decisions.csv, requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Treasury/IRS stated that a DAF distribution to a charity to which a donor/advisor has pledged (enforceable or not) would not be a more-than-incidental §4967 benefit if (1) the sponsor makes no reference to the pledge, (2) no other more-than-incidental benefit, (3) no deduction claimed for the distribution. [EV-A-008, Notice 2017-73 §4]
+- *established* — 'Taxpayers may rely on the rules described in section 4 until additional guidance is issued.' [EV-A-008, Notice 2017-73 §7]
+- *established* — The rule applies for §4967 only. [EV-A-008, §4 final paragraph]
+- *established* — The 2023 NPRM only recites Notice 2017-73 as background and does not finalize or withdraw the pledge rule; no final §4966/§4967 regulations or withdrawal appear in the Federal Register as of 2026-11-24. [EV-A-009, Preamble Background; EV-A-010 search results]
+- *established* — 2026-27 Priority Guidance Plan lists further guidance on certain DAF arrangements without timetable. [EV-A-011, EO item 4]
+- *established* — Fidelity Charitable permits grants satisfying non-legally binding pledges but not enforceable pledges. [EV-A-026, Pledge help text]
+
+**Supporting interpretation.** Notice 2017-73 §4 remains current reliance guidance; 'additional guidance' has not been issued. A sponsor following the three conditions has a reliance position on §4967. Because the proposed §4966 rule would make any use conferring more-than-incidental benefit a deemed distribution, the Notice conditions also limit that (proposed) exposure.
+
+**Competing interpretation.** Conservative sponsors restrict to non-binding pledges because paying an enforceable personal obligation is a classic self-dealing benefit in the private-foundation context, and the Notice describes regulations under consideration rather than final law.
+
+**Applicability to Unbound.** Platform must support three sponsor policy values and suppress pledge references in all sponsor-issued artifacts; the third condition (no deduction) is the donor's obligation, supported by remittance and summary language.
+
+**Business assumptions.**
+
+- Sponsors differ in risk appetite
+- Recipients may still record the grant against a pledge internally
+
+**Recommended answer.** Pledge handling remains a sponsor policy (Prohibited / NonBindingOnly / NoticeConditions). Notice 2017-73 §7 reliance is verified as still in effect (no superseding guidance as of 2026-11-24), so NoticeConditions is a lawful option. Platform default at onboarding: require the sponsor to choose explicitly; if a default is needed, use NonBindingOnly (market-leader practice, low friction), with NoticeConditions selectable. The reviewed answer's 'prohibit until reliance verified' is resolved: reliance is verified.
+
+**Remaining uncertainty.** Future §4967 proposed regulations could change conditions; reliance ends when additional guidance is issued.
+
+**Consequences if wrong.** 125% §4967 tax on advisor/recipient and 10% on knowing managers if a distribution is held to confer more-than-incidental benefit.
+
+**Conservative fallback.** NonBindingOnly default; Prohibited selectable.
+
+**Alternative business or architecture design.** Never accept pledge data at all (no capture): avoids reference risk but loses donor convenience and recipient matching; versus capturing pledge data internally with outbound suppression (current design).
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given policy NoticeConditions and a recommendation flagged as pledge payment, When the grant is remitted, Then no outbound artifact (check memo, ACH addenda, remittance, portal, webhook) contains pledge identifiers or vocabulary.
+- Given any pledge-flagged grant, When evaluated, Then the other-benefit gate runs and the donor summary states no deduction may be claimed for the distribution.
+- Given IRS publishes guidance superseding Notice 2017-73 §4, When recorded in the watch list, Then pledge policy NoticeConditions is suspended pending review.
+
+**Reconsideration triggers.**
+
+- Proposed or final §4967 regulations
+- Any IRS guidance referencing Notice 2017-73 §4
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-016 confirmation_review_answer: Required default prohibition until reliance guidance verified. → Reliance verified 2026-11-24: Notice 2017-73 §7 reliance continues; no superseding guidance published.
+
+### RCD-021 — Confirm provisional decision: Advisor compensation from fund assets and the §4958 / proposed-regulation exposure.
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Release 1 does not pay advisors with a personal relationship to the donor from DAF assets. Investment managers engaged by the sponsor under sponsor contract are allowed. Watch item on REG-142338-07.
+
+**Relevant requirements.** RCF-ENT-023, RCF-FIN-006, REQ-X-062, UNB-RCN-FIN-010, UNB-RCN-ENT-015, UNB-RCN-REG-001, requirements/reconciliation/2026-11-23/data/decisions.csv, requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — A donor-advisor includes any person appointed or designated by the donor who has or expects advisory privileges over the distribution or investment of amounts in the fund. [EV-A-001, §4966(d)(2)(A)(iii)]
+- *established* — Any compensation or similar payment from a DAF to a §4958(f)(7) person (donor, donor-advisor, family, 35% entity) is an excess benefit transaction in its entire amount; 25% tax on recipient, 10% on knowing managers. [EV-A-005, §4958(a), (c)(2), (f)(7)]
+- *established* — Investment advisors compensated by the sponsor for managing DAF assets are disqualified persons with respect to the sponsor (ordinary excess-over-value test). [EV-A-005, §4958(f)(1)(F), (f)(8)]
+- *established* — Proposed rule: a §4958(f)(8)(B) investment advisor managing both the DAF and the donor's personal assets is a donor-advisor while in that dual capacity, whether or not appointed by the donor, unless properly viewed as serving the sponsor as a whole (e.g., fees charged uniformly across all DAFs). [EV-A-009, Prop. §53.4966-1(h)(3)(i)-(ii); preamble C]
+- *established* — REG-142338-07 is neither finalized nor withdrawn as of 2026-11-24; PGP 2026-27 lists guidance on certain DAF arrangements. [EV-A-010, Federal Register search; EV-A-011 EO item 4]
+
+**Supporting interpretation.** The exposure is not only proposed-regulation exposure: under the statute, an advisor the donor designates with investment advisory privileges over the fund is a donor-advisor, so any compensation paid from that fund to the advisor is an automatic excess benefit. Sponsor-engaged managers paid under a sponsor program with uniform fee terms, who hold no donor-designated advisory privilege, fall under ordinary §4958 reasonableness.
+
+**Competing interpretation.** Industry advisor-managed DAF programs treat the advisor as the sponsor's engaged manager even when the donor recommended them; commenters argued regulated advisors pose little risk. Until final rules, many sponsors continue paying such advisors from fund assets.
+
+**Applicability to Unbound.** Unbound must classify the advisor-fund relationship and block fee accrual where the payee is a donor-advisor of that fund.
+
+**Business assumptions.**
+
+- Release 1 has no advisor-managed DAF program
+- Sponsor contracts directly with any investment manager
+
+**Recommended answer.** Keep the release-1 block, restated: no compensation from a fund to any person who is a donor-advisor of that fund under §4966(d)(2)(A)(iii) (including an advisor the donor designated with investment privileges) or to the donor's family/35% entities. Allow sponsor-engaged managers whose fees are set by sponsor contract and charged uniformly or ratably across a program and who were not designated by the donor for that fund. Treat the dual-capacity 'personal investment advisor' rule as a reliance-eligible proposal that sponsors may choose to follow; keep REG-142338-07 on the watch list.
+
+**Remaining uncertainty.** Whether a donor 'recommendation' of an advisor who is then engaged by the sponsor counts as 'appointed or designated'; final rule content.
+
+**Consequences if wrong.** Full amount of fees is an excess benefit (25% on advisor, 200% second tier if uncorrected; 10% on knowing managers); correction cannot be repaid into any DAF.
+
+**Conservative fallback.** No advisor compensation from DAF assets at all in release 1; investment management only through sponsor-wide pools.
+
+**Alternative business or architecture design.** Sponsor-level pools with a single sponsor-paid manager (fee in NAV), donors choose pools only: no advisor fees from individual funds; lost opportunity: advisor-channel distribution.
+
+**External authorization required.** Executed sponsor investment-management agreement stating the manager serves the sponsor's program as a whole, with fee terms uniform across participating funds.
+
+**Acceptance criteria.**
+
+- Given an advisor recorded as designated by the donor with investment privileges for fund F, When a fee accrual from F to that advisor is attempted, Then it is blocked with reason DONOR_ADVISOR_COMPENSATION.
+- Given a sponsor-contracted manager with a uniform program fee schedule and no donor designation, When fees accrue, Then accrual proceeds and the classification record is cited.
+- Given final §4966 regulations are published, When recorded, Then all advisor classifications are queued for review.
+
+**Reconsideration triggers.**
+
+- Final or withdrawn REG-142338-07
+- New PGP guidance on DAF arrangements
+- Launch of an advisor-managed program
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-021 decision_basis 'Conservative pending §4958 and proposed-regulation analysis': Frames exposure as arising mainly from proposed regulations. → Statute already makes donor-designated advisors with investment privileges donor-advisors (§4966(d)(2)(A)(iii)); compensation to them from the fund is an automatic excess benefit under §4958(c)(2).
+
+### RCD-030 — Confirm provisional decision: Tax-fit guidance and donor annual summaries.
+
+**Disposition:** business-policy-decision · **Confidence:** high · **Jurisdiction:** US federal (IRC §170); state law on professional advice not researched · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** No individualized tax advice. Donor summaries and assistant answers use counsel-approved disclosures, including that DAF contributions do not qualify for the nonitemizer deduction (IR-2026-135). Bunching calculators are excluded from release 1.
+
+**Relevant requirements.** RCF-ENT-037, RCF-FIN-036, REQ-X-066, requirements/reconciliation/2026-11-23/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — Nonitemizer deduction excludes contributions to supporting organizations and for establishing or maintaining a DAF. [EV-A-006, §170(p)(2)]
+- *established* — IRS: 'Cash contributions made either to supporting organizations or to establish or maintain a donor advised fund do not qualify.' [EV-A-020, IR-2026-135]
+- *established* — Itemized charitable deductions are allowed only above 0.5% of the contribution base (taxable years after 2025). [EV-A-006, §170(b)(1)(I)]
+- *established* — A DAF contribution deduction requires a contemporaneous written acknowledgment that the sponsor has exclusive legal control over the contributed assets. [EV-A-006, §170(f)(18)(B)]
+- *interpretation* — No federal rule prohibits a charity from giving general, non-individualized tax information; whether individualized output is 'advice' is a liability and conflict question. [EV-A-006, n/a]
+
+**Supporting interpretation.** General educational content and statutory facts (nonitemizer exclusion, 0.5% floor, acknowledgment content) can be stated without counsel because they restate statute and IRS releases. Personalized projections (bunching calculators) would apply law to the donor's facts and create reliance and conflict risk for a sponsor that benefits from contributions.
+
+**Competing interpretation.** Many sponsors publish bunching illustrations; a calculator using user-entered hypothetical inputs with clear disclaimers is generally treated as education, not advice.
+
+**Applicability to Unbound.** Donor summaries and assistant answers can quote approved statements built from statute/IRS text; versioned by tax year.
+
+**Business assumptions.**
+
+- Sponsor does not employ credentialed tax preparers for donors
+- Assistant answers are reviewed templates
+
+**Recommended answer.** Confirm: no individualized tax advice. Disclosure text can be built directly from verified authority without paid review: (a) DAF contributions do not qualify for the §170(p) nonitemizer deduction (IR-2026-135); (b) itemized charitable deductions are subject to a 0.5% floor from 2026; (c) the acknowledgment states the sponsor's exclusive legal control and whether goods or services were provided; (d) grants from the fund are not deductible by the donor. Bunching calculators remain excluded from R1 as a business decision; a generic illustration with fixed hypothetical numbers is a lower-risk alternative.
+
+**Remaining uncertainty.** Whether the sponsor's counsel wants extra disclaimers; tax-year changes.
+
+**Consequences if wrong.** Donor reliance claims and reputational harm if summaries misstate deductibility.
+
+**Conservative fallback.** Statute-quoted disclosures only; link to IRS Publication 526/6196.
+
+**Alternative business or architecture design.** Static, fixed-number illustration instead of interactive calculator: low cost, minimal reliance risk, retains educational value.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a donor annual summary for tax year 2026+, When generated, Then it contains the approved nonitemizer-exclusion statement and the 0.5% floor statement versioned to the tax year.
+- Given an assistant question asking how much the donor will save, When answered, Then the assistant gives general rules and declines a personalized computation.
+- Given a DAF contribution acknowledgment, When issued, Then it states exclusive legal control per §170(f)(18).
+
+**Reconsideration triggers.**
+
+- Change to §170(p) or (b)(1)(I)
+- IRS publication updates
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### RCD-034 — Confirm provisional decision: Is a complex-asset intermediary an agent of the sponsor or the donee?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Donee model for release 1: the intermediary charity is donee of record; it acknowledges the asset and handles 8283/8282 and §4943; the DAF later receives cash from it.
+
+**Relevant requirements.** UNB-RCN-WF-005, RCF-WF-001, requirements/reconciliation/2026-11-23/data/decisions.csv, requirements/reconciliation/2026-11-23/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — The donee organization that received the property signs Form 8283 Section B Part V. [EV-A-021, Part V instructions]
+- *established* — Donee organizations report dispositions within three years on Form 8282. [EV-A-022, Purpose statement]
+- *established* — A deduction for a contribution to a DAF requires the sponsor's written acknowledgment of exclusive legal control. [EV-A-006, §170(f)(18)]
+- *established* — IRS position: a donation to a US charity that is merely a conduit or is earmarked for another recipient is treated by reference to the ultimate recipient. [EV-A-023, IRS info letter 2024-0007 (non-precedential)]
+- *interpretation* — Rev. Rul. 63-252 conduit principle: control and discretion of the intermediate charity determine the true donee. [EV-A-024, not fetched]
+- *established* — Market example: Fidelity Charitable receives complex assets itself and allocates review, holding and sale costs to the giving account (sponsor-as-donee with service providers). [EV-A-025, Contributions; Costs associated with contributions]
+
+**Supporting interpretation.** If the intermediary is contractually bound to sell the asset and remit proceeds for credit to the donor's DAF, it is acting as a conduit, so the sponsor is likely the true donee. Then the sponsor (not the intermediary) must give the §170(f)(18) acknowledgment, sign Form 8283 Part V and file Form 8282, and the DAF holds the asset for §4943 purposes. A genuine donee model requires the intermediary to have discretion over the proceeds, which defeats the donor's expectation of DAF credit and makes the later transfer the intermediary's own grant.
+
+**Competing interpretation.** Some practitioners use an affiliated charity or supporting organization as donee that later makes a discretionary grant to the sponsor; when that charity is a separate public charity with real discretion, it is the donee and the donor's deduction is for a gift to it, not to the DAF.
+
+**Applicability to Unbound.** The intermediary-agreement record must capture which entity has legal control, and the donor-facing acknowledgment must come from that entity.
+
+**Business assumptions.**
+
+- Release 1 does not hold complex assets
+- Donors expect DAF credit for complex-asset gifts
+
+**Recommended answer.** Do not rely on the 'donee model' as a way to keep tax duties out of release 1 when the donor expects DAF credit. Use the agent model: the sponsor is donee of record (acknowledgment, Form 8283 Part V, Form 8282, §4943 holding) and the intermediary or vendor is the sponsor's contracted agent for receipt, custody and sale. Allow the donee model only where the intermediary agreement gives the intermediary discretion over proceeds and the donor is told the deduction is for a gift to the intermediary, with any later transfer to the sponsor being the intermediary's grant. If neither is acceptable for R1, exclude complex assets from R1.
+
+**Remaining uncertainty.** Rev. Rul. 63-252 full text not fetched; no authority addresses DAF complex-asset intermediaries directly; §4943(e) application not verified in this pass.
+
+**Consequences if wrong.** Donor deduction denied for lack of a valid §170(f)(18) acknowledgment from the true donee; missing 8283/8282 filings; penalties; reputational harm.
+
+**Conservative fallback.** Exclude complex assets from release 1.
+
+**Alternative business or architecture design.** Agent model with a specialist vendor under sponsor contract (fee per transaction charged to the fund as a disclosed cost): moderate cost, sponsor bears filings, preserves complex-asset demand.
+
+**External authorization required.** Executed intermediary/vendor agreement stating which entity takes legal title and control (agent agreement for the agent model).
+
+**Acceptance criteria.**
+
+- Given an intermediary agreement without a recorded legal-control structure, When a complex-asset gift is initiated, Then the workflow is blocked.
+- Given agent model, When the asset is received, Then the sponsor issues the acknowledgment and the Form 8283 Part V signing task is assigned to the sponsor's authorized signer.
+- Given donee model, When the donor confirms, Then the donor-facing text states the gift is to the intermediary and DAF credit is not guaranteed.
+
+**Reconsideration triggers.**
+
+- Counsel or IRS guidance on DAF intermediaries
+- Sponsor launches complex-asset program
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-034 / UNB-RCN-WF-005: Assumes the donee model keeps 8283/8282/§4943 duties out of release 1 while the DAF later receives the cash. → If the intermediary is bound to pass proceeds to the donor's DAF, the conduit doctrine and §170(f)(18) point to the sponsor as donee. The donee model works only with real intermediary discretion.
+
+### RR-UNB-GRANT-024-r1#Q1 — Which non-ER cases does counsel want in Tier 2?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded; requirement text, truncated in register:) Each grant MUST be assigned one GrantTermsTier by a counsel-approved deterministic rule: Tier 0 (routine grant to a Permitted recipient with no conditions) — no agreement; sponsor-standard award terms (charitable use, no goods or services to donor, return if not used for charitable purposes or if recipient status is lost before use) printed in remittance; Tier 1 (sponsor-imposed restriction, condi
+
+**Relevant requirements.** RR-UNB-GRANT-024-r1, requirements/discovery/2026-11-23-cross-industry/data/refinements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Even when no ER is needed, §4967 (more-than-incidental benefit) and §4958(c)(2) (payments to donor-related persons) still apply. [EV-A-002, §4967(a); EV-A-005 §4958(c)(2)]
+- *established* — Notice 2017-73 identifies event tickets/participation and pledges as benefit risk areas. [EV-A-008, §§3-4]
+- *established* — Supporting organizations are excepted only if not disqualified (donor control of a supported organization). [EV-A-001, §4966(d)(4)]
+- *established* — Proposed anti-abuse rule for plans routed through intermediaries; deemed distributions for uses conferring more-than-incidental benefit. [EV-A-009, Preamble, Distributions]
+- *interpretation* — TEOS reliance is lost where the grantor is responsible for or aware of the change in status (e.g., grants large enough to tip public support). [EV-A-016, §§2, 5, 7]
+
+**Supporting interpretation.** Tier 2 is a business control; authority identifies where non-ER grants still carry excise-tax risk.
+
+**Competing interpretation.** More Tier-2 cases increase cost; sponsors may accept certifications instead.
+
+**Applicability to Unbound.** Deterministic triggers.
+
+**Business assumptions.**
+
+- Tier 2 = written terms plus reviewer
+
+**Recommended answer.** Put in Tier 2 (non-ER) grants with any of: (1) donor/advisor/family affiliation with the recipient or benefit signals (events, memberships, tuition, naming beyond recognition, pledges outside sponsor policy); (2) Type I/II supporting organizations; (3) fiscally sponsored projects that are separate entities; (4) intermediaries with a stated program/country preference; (5) ED-based foreign recipients; (6) governmental units; (7) grant amount large relative to recipient revenue (public-support tipping); (8) restricted or conditional grants (challenge, matching, multi-year). Counsel can trim the list; none is legally mandated.
+
+**Remaining uncertainty.** Sponsor's review capacity and risk appetite.
+
+**Consequences if wrong.** Missed benefit-risk grants (125%/10% §4967; §4958 full amount).
+
+**Conservative fallback.** Tier 2 for all non-standard grants.
+
+**Alternative business or architecture design.** Donor certification at recommendation time for benefit questions with sampling review.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a recommendation with a declared donor affiliation to the recipient, Then GrantTermsTier = 2.
+- Given a grant >X% of recipient's latest reported revenue, Then Tier 2.
+
+**Reconsideration triggers.**
+
+- §4967 regulations
+- Incident trend
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ECN-005 — When complex-asset processing is outsourced, may the vendor fee be charged to the fund, and is that a saving?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal; sponsor state fiduciary law · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Recommendation: Charge to fund only as a disclosed, donor-affirmed, cost-based service charge; never report the bearer shift as an operating saving.
+
+**Relevant requirements.** UNB-XIN-ECO-018, RCD-034, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md
+
+**Authoritative findings.**
+
+- *established* — Proposed rule: reasonable grant-related/investment fees are not distributions; fund-specific expenses may be reasonable; fund-specific expenses paid to donor/advisor/related persons are deemed distributions. [EV-A-009, Preamble 'Distributions'; Prop. §53.4966-1(e)]
+- *established* — Market: Fidelity Charitable allocates costs of reviewing, receiving, holding and selling contributed property to the giving account and credits net proceeds. [EV-A-025, Costs associated with contributions; Contribution processing]
+- *established* — Payments to donor-related persons from a DAF are automatic excess benefits. [EV-A-005, §4958(c)(2)]
+
+**Supporting interpretation.** Charging an outsourced complex-asset vendor's reasonable fee to the fund (net-proceeds treatment) is consistent with market practice and the proposed reasonableness standard, if disclosed and the vendor is not donor-related. It is a change in who bears cost, not an operating saving.
+
+**Competing interpretation.** If the sponsor previously absorbed these costs in its uniform fee, shifting them reduces charitable assets of affected funds; disclosure and reasonableness matter.
+
+**Applicability to Unbound.** Economic reporting must not count bearer shift as saving.
+
+**Business assumptions.**
+
+- Vendor fee is arm's-length
+
+**Recommended answer.** Yes, the vendor fee may be charged to the fund as a disclosed, reasonable (cost-based) contribution cost, netted from proceeds, provided the vendor is not the donor, advisor, family member or 35% entity. It is not an operating saving; report it as a bearer shift.
+
+**Remaining uncertainty.** Final rule wording; state cost standard text unverified.
+
+**Consequences if wrong.** Unreasonable fee: deemed distribution (proposed); state AG scrutiny.
+
+**Conservative fallback.** Sponsor absorbs vendor fees.
+
+**Alternative business or architecture design.** Charge via uniform complex-asset program fee schedule.
+
+**External authorization required.** Sponsor fee schedule disclosure in program guidelines.
+
+**Acceptance criteria.**
+
+- Given a vendor related to the donor, When fee is charged to the fund, Then blocked.
+- Given economics report, Then vendor fees charged to funds are excluded from operating savings.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-GRT-005 — Defer 50-state charity registration/standing acquisition and state-rule tracking until a decision consumes them?
+
+**Disposition:** empirical-validation-required · **Confidence:** medium · **Jurisdiction:** US federal; California; other states (not surveyed) · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Recommendation: Defer; grantee state standing is not a grantor obligation (XRA-015) and was rejected as a gate (XRJ-NPG-002).
+
+**Relevant requirements.** XRA-015, XRJ-NPG-002, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md
+
+**Authoritative findings.**
+
+- *established* — Federal §4966 exception and TEOS reliance turn on federal classification, not state registration. [EV-A-001, §4966(c)(2)(A); EV-A-016]
+- *established* — California: an organization not in good standing with the Registry (delinquent, suspended, revoked) may not operate or solicit donations in California, including through charitable fundraising platforms. [EV-A-028, Intro citing 11 CCR §312; FAQ 6]
+- *interpretation* — California charitable fundraising platform rules require platforms that list/recommend charities by name or provide giving software to confirm IRS, FTB and AG good standing for each recipient. [EV-A-029, Types A-E; good standing]
+- *interpretation* — Reported: delinquent or suspended registrants may not disburse charitable funds (11 CCR §999.9.4). [EV-A-032, not fetched]
+- *established* — Market: Fidelity Charitable requires Eligible Grant Recipients to be 'in good standing under both applicable federal and state laws'. [EV-A-025, Eligible Grant Recipients, Regulatory]
+
+**Supporting interpretation.** For most states, grantee registration status is not a grantor obligation, so deferring a 50-state build is reasonable. California is an exception worth handling now: its AG registry and CFP rules may reach platforms that list or recommend charities, and Unbound's donor-facing search could be within 'Type A' or 'Type E' activity.
+
+**Competing interpretation.** DAF grantmaking by a sponsor is not solicitation, so CFP rules may not apply; coverage of DAF platforms is not addressed in the sources found.
+
+**Applicability to Unbound.** Unbound as a software platform may itself be a CFP if it lists charities to California donors; requires a scoped check.
+
+**Business assumptions.**
+
+- Some sponsors serve California donors
+
+**Recommended answer.** Defer the 50-state build, but do not defer California: ingest the California AG Registry status (and FTB/IRS status) as a recipient attribute, display it, and let sponsor policy choose hold versus warn. Also determine whether Unbound's charity search/recommendation features make it a California charitable fundraising platform. The claim that state standing is never a grantor concern should be narrowed.
+
+**Remaining uncertainty.** Whether CFP rules reach DAF sponsor platforms; exact §999.9.4 text unverified; other states not surveyed.
+
+**Consequences if wrong.** California AG enforcement against a platform; grants to delinquent charities that cannot lawfully operate in California.
+
+**Conservative fallback.** California status check as warning for all sponsors.
+
+**Alternative business or architecture design.** Do not list or recommend charities to donors (search only by EIN entered by donor): reduces CFP exposure; loses discovery value.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a recipient registered in California with status Delinquent/Suspended/Revoked, When a grant is evaluated, Then the status is shown and the sponsor-configured action (hold or warn) applies.
+
+**Reconsideration triggers.**
+
+- CA AG guidance on DAF sponsors and CFPs
+- Other states adopting platform laws
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- SPD-GRT-005 context (XRA-015): States grantee state standing is not a grantor obligation. → True under federal tax law, but California registry and CFP rules restrict operation/soliciting by non-good-standing charities and may impose verification on platforms; market leader requires state good standing.
+
+### UNB-XIN-NPG-001#Q2 — Does the NPRM's 'procedures similar to §53.4945-5(a)(5)' change currency for DAFs when finalized?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded; requirement UNB-XIN-NPG-001 encodes Rev. Proc. 2017-53 §3.03(1) currency.) For a foreign recipient without an IRS determination, the system MUST permit the routine (non-ER) path only when an EquivalencyDetermination record exists for the sponsor with: practitioner identity and type (attorney, CPA or enrolled agent) and attestation of Circular 230 standing; advice date; grantee taxable-year end; taxable year of the latest factual information relied on; public-support test period where used; law-version reference; and the advice document hash. The system MUST compute CurrentUntil deterministically per a counsel-approved rule encoding Rev. Proc. 2017-53 §3.03(1) (defaul
+
+**Relevant requirements.** UNB-XIN-NPG-001, XID-NPG-001, UNB-RCN-REG-001, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — REG-142338-07 has not been finalized or withdrawn; latest Federal Register actions are 2024 comment-extension and hearing notices. [EV-A-010, Federal Register search 2026-11-24]
+- *established* — The 2026-27 Priority Guidance Plan lists 'Guidance under §§4966 and 6033 regarding certain donor advised fund arrangements' (no final-regulation item wording, no date). [EV-A-011, EO item 4]
+- *established* — The NPRM would let a sponsor make a good faith determination for a foreign organization using procedures similar to §53.4945-5(a)(5) (current written advice from a qualified tax practitioner, reasonable good-faith reliance). [EV-A-009, Preamble 3.A (88 FR 77931-77932)]
+- *established* — §53.4945-5(a)(5) already contains the currency definition; Rev. Proc. 2017-53 already lets DAF sponsors use the guidelines 'until further guidance is issued'. [EV-A-012, §53.4945-5(a)(5)(i); EV-A-015 §2]
+- *established* — Proposed rules would apply to taxable years ending after final publication; taxpayers may rely on them before then. [EV-A-009, Proposed Applicability Date]
+
+**Supporting interpretation.** Finalization as proposed would codify the existing private-foundation currency rule for DAFs; it would not change currency. The main effect would be legal certainty (regulation rather than revenue-procedure analogy).
+
+**Competing interpretation.** Final rules could adopt different currency or practitioner rules in response to comments; the PGP reframing suggests the final package may differ.
+
+**Applicability to Unbound.** Keep the currency rule as a versioned, law-tagged parameter so a final rule can change it without code changes.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** As of 2026-11-24 the NPRM is neither final nor withdrawn. As proposed, 'procedures similar to §53.4945-5(a)(5)' would not change currency for DAFs: it imports the same rule (law unchanged; facts from the grantee's current or prior taxable year; public-support advice current for two years after the test period) that sponsors already apply via Rev. Proc. 2017-53 §2 and TD 9740. Keep the rule parameterized and on the watch list.
+
+**Remaining uncertainty.** Content of any final rule.
+
+**Consequences if wrong.** Expired advice treated as current: taxable distribution exposure.
+
+**Conservative fallback.** Apply the stricter of the regulation and any later guidance.
+
+**Alternative business or architecture design.** n/a (parameterization already avoids rework).
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a recorded law-change event for §4966 final regulations, When any ED-based grant reaches approval, Then it is held for review and the currency parameter version is checked.
+
+**Reconsideration triggers.**
+
+- Federal Register publication of a TD under §4966
+- Revision of Rev. Proc. 2017-53
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### UNB-XIN-NPG-003#Q1 — Which arrangement types does counsel accept without agreement copy?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded.) A grant naming a project hosted by a fiscal sponsor MUST record a FiscalSponsorshipEvidence item with: arrangement type (comprehensive/project-of-sponsor, pre-approved grant relationship, or other); evidence source (sponsor-published project list, signed attestation by the fiscal sponsor, or agreement copy); the fiscal sponsor's attestation that it has discretion and control over the funds; project legal form (internal project, unincorporated group, individual, for-profit entity). The payee MUST be the fiscal sponsor. Project legal form 'individual' or 'for-profit entity' MUST route to Counsel
+
+**Relevant requirements.** UNB-XIN-NPG-003, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — A grant to a §170(b)(1)(A) organization (not a disqualified SO) is not a taxable distribution; no ER and no grant agreement are required by statute. [EV-A-001, §4966(c)(2)(A)]
+- *established* — ER grants require a written commitment signed by an officer/director/trustee of the grantee with specified terms; foreign-law phrasing allowed with counsel/practitioner support. [EV-A-012, §53.4945-5(b)(3), (b)(5)]
+- *interpretation* — PF analogue: no grant to a secondary grantee where the grantee controls selection and no named earmark/agreement exists. [EV-A-012, §53.4945-5(a)(6)(i)]
+- *established* — Proposed anti-abuse rule treats planned pass-through to an individual as a distribution to that individual. [EV-A-009, Preamble, Distributions]
+- *established* — PGP 2026-27 includes §6033 reporting guidance 'including with regard to fiscal sponsorship arrangements'. [EV-A-011, EO item 5]
+
+**Supporting interpretation.** For a comprehensive (project-of-sponsor) or pre-approved-grant fiscal sponsorship where the payee is a §170(b)(1)(A) fiscal sponsor with discretion and control, the DAF grant is to the fiscal sponsor; ER and an agreement copy are not legally required. Evidence choice (published project list or signed attestation) is sponsor policy. Projects whose legal form is an individual or for-profit raise the pass-through risk.
+
+**Competing interpretation.** Some counsel ask for the fiscal sponsorship agreement to confirm the sponsor's variance power and discretion, especially for pre-approved grant (Model C) relationships where the project is a separate entity.
+
+**Applicability to Unbound.** Evidence-level configuration per arrangement type.
+
+**Business assumptions.**
+
+- Fiscal sponsors are §170(b)(1)(A) organizations
+
+**Recommended answer.** No arrangement type legally requires an agreement copy when the payee is the §170(b)(1)(A) fiscal sponsor and it retains discretion and control. Accept without agreement copy: (a) comprehensive/internal projects evidenced by the fiscal sponsor's published project list or signed attestation; (b) pre-approved grant relationships with a signed fiscal-sponsor attestation of discretion and control. Require agreement copy or review: projects that are individuals, for-profits, or foreign entities, and any arrangement where the donor or sponsor could cause selection of a downstream payee. Watch the §6033 fiscal sponsorship guidance item.
+
+**Remaining uncertainty.** Future §6033 fiscal sponsorship guidance may add reporting duties.
+
+**Consequences if wrong.** If the arrangement is a conduit to an individual/for-profit: taxable distribution (20%/5%).
+
+**Conservative fallback.** Agreement copy for every fiscal sponsorship.
+
+**Alternative business or architecture design.** Recognize only fiscal sponsors on a sponsor-curated list with annual attestation: low per-grant friction.
+
+**External authorization required.** Fiscal sponsor's signed attestation (for evidence source 'attestation').
+
+**Acceptance criteria.**
+
+- Given fiscal sponsor FS with a signed attestation of discretion and control and project P internal to FS, When a grant to P is recommended, Then payee is FS and the routine path applies without an agreement copy.
+- Given project legal form 'individual', When recommended, Then CounselReview (or sponsor review) is required.
+
+**Reconsideration triggers.**
+
+- IRS §6033 fiscal sponsorship guidance
+- Final §4966 anti-abuse rule
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### UNB-XIN-NPG-004#Q1 — Exact Schedule F manner-of-disbursement categories for current form year (instructions not re-read).
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded.) Requirement lists Schedule F manner of cash disbursement as '(wire, ACH, check, other)'. Each grant MUST carry, at approval, the attributes needed for Form 990 Schedules I and F as mapped in a CPA-approved, form-year-versioned data dictionary: recipient legal name, address, EIN (or foreign identifier), IRC section, cash amount, noncash amount and description, purpose text, and for foreign grants the Schedule F region, manner of cash disbursement (wire, ACH, check, other) and route (ED
+
+**Relevant requirements.** UNB-XIN-NPG-004, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Schedule F and its instructions are continuous-use (Rev. December 2024), updated only as needed. [EV-A-018, 'Continuous-use form and instructions']
+- *established* — Part II column (f): 'Describe the manner of cash disbursement (or, for accrual-method organizations, the intended manner), such as by cash payment, money order, electronic fund or wire transfer, check, other charges against funds on deposit at a financial institution, or other. List all that apply for each recipient.' [EV-A-018, Part II, line 1, column (f)]
+- *established* — Part II covers recipients receiving more than $5,000; columns (a) and (b) are not completed; complete (c) region, (d) purpose, (e) cash amount, (f) manner, (g) noncash FMV, (h) noncash description, (i) valuation method. [EV-A-018, Part II line 1 and TIP]
+- *established* — Part III (individuals) uses the same manner-of-disbursement list per region. [EV-A-018, Part III column (f)]
+- *established* — Regions: Antarctica; Central America and the Caribbean; East Asia and the Pacific; Europe (incl. Iceland and Greenland); Middle East and North Africa; North America (Canada and Mexico); Russia and Neighboring States; South America; South Asia; Sub-Saharan Africa. [EV-A-018, Regions]
+
+**Supporting interpretation.** ACH is an 'electronic fund transfer'; the form uses free-text description, so the data dictionary should store an enumeration mapped to the IRS phrases.
+
+**Competing interpretation.** none material
+
+**Applicability to Unbound.** Data dictionary enumeration: CashPayment, MoneyOrder, ElectronicFundOrWireTransfer, Check, OtherChargesAgainstDeposits, Other.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Use the IRS phrasing: cash payment; money order; electronic fund or wire transfer (ACH maps here); check; other charges against funds on deposit at a financial institution; other — multiple allowed per recipient. Versioned to Schedule F Rev. 12-2024 (continuous use).
+
+**Remaining uncertainty.** Future revision of the continuous-use form.
+
+**Consequences if wrong.** Inaccurate Schedule F; minor.
+
+**Conservative fallback.** Store free text plus enumeration.
+
+**Alternative business or architecture design.** n/a
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a foreign grant paid by ACH, When Schedule F extract runs, Then column (f) shows 'Electronic fund or wire transfer'.
+- Given a recipient with >$5,000 total, When extracted, Then columns (c)-(i) are populated and (a)-(b) left blank.
+
+**Reconsideration triggers.**
+
+- New Schedule F revision
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- UNB-XIN-NPG-004 statement: Lists categories '(wire, ACH, check, other)'. → Official list: cash payment, money order, electronic fund or wire transfer, check, other charges against funds on deposit, other.
+
+### UNB-XIN-NPG-006#Q1 — Should holds triggered by an indictment (allegation) be permitted at all under sponsor policy?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal; sponsor governance · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded.) Cross-industry recommendation: holds only on adjudicated findings or regulator actions; 90-day maximum review. Every sponsor discretionary hold or decline not required by law MUST cite a criterion from a board-approved, versioned DiscretionaryGrantPolicy, record the evidence class (allegation, pending matter, adjudicated finding or regulator action per UNB-EXT-005), the approving authority, scope (recipient, purpose, period) and a review date no later than the policy's maximum, and MUST produce a donor-fac
+
+**Relevant requirements.** UNB-XIN-NPG-006, XID-NPG-004, UNB-EXT-005, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Market leader treats an organization as not an Eligible Grant Recipient where 'Fidelity Charitable has been informed that the organization is currently being investigated by governmental authorities regarding potential breaches of applicable law'; trustees may decline any grant. [EV-A-025, Eligible Grant Recipients, Compliance with law; closing grant paragraph]
+- *established* — Sponsor has exclusive legal control over DAF assets; donors hold advisory privileges only. [EV-A-006, §170(f)(18); EV-A-001 §4966(d)(2)]
+- *interpretation* — No statute or regulation requires a sponsor to make, or forbids it from holding, a grant to an eligible recipient; distributions to §170(b)(1)(A) organizations are excepted from §4966 tax regardless of allegations. [EV-A-001, §4966(c)(2)]
+- *interpretation* — No federal source sets a maximum review period for discretionary holds. [EV-A-025, n/a]
+
+**Supporting interpretation.** Allegation-based holds are lawful and common at the largest sponsor; the legal risk is inconsistency or appearance of viewpoint discrimination, which a board-approved criterion, time limit and consistency report address.
+
+**Competing interpretation.** Holding on indictment alone may harm the recipient and donors without adjudication; some sponsors limit to adjudicated findings or regulator actions.
+
+**Applicability to Unbound.** Policy engine must support 'pending matter/indictment' as an evidence class.
+
+**Business assumptions.**
+
+- Sponsor board adopts DiscretionaryGrantPolicy
+
+**Recommended answer.** Yes, permit indictment- or official-investigation-triggered holds when the board-approved policy lists the criterion, the hold is scoped and time-limited, and renewal requires new evidence. Allegations from media alone should require a higher authority and shorter maximum. Market evidence (Fidelity Charitable) supports investigation-based ineligibility.
+
+**Remaining uncertainty.** State AG views on donor-intent and consistency; reputational dynamics.
+
+**Consequences if wrong.** Donor dissatisfaction or recipient complaints; no federal tax consequence.
+
+**Conservative fallback.** Adjudicated findings and regulator actions only (current recommendation).
+
+**Alternative business or architecture design.** Hold with donor choice: notify donor and offer redirect instead of indefinite hold.
+
+**External authorization required.** Sponsor board approval of the versioned DiscretionaryGrantPolicy listing permitted criteria and maximum durations.
+
+**Acceptance criteria.**
+
+- Given policy criterion 'PendingCriminalMatter', When a hold cites an indictment, Then it records evidence class 'pending matter', approver, and a review date within the policy maximum.
+- Given no renewal by review date, Then the hold releases automatically.
+
+**Reconsideration triggers.**
+
+- Litigation or AG inquiry about holds
+- Policy consistency report anomalies
+
+**Related questions.**
+
+- **XID-NPG-004**: Criteria and maximum period are a sponsor board decision; adjudicated-only is stricter than market practice; a 90-day maximum with renewal on new evidence is reasonable.
+
+**Corrections to prior records.**
+
+- XID-NPG-004 recommendation (open-questions.csv): Implies allegation-based holds are unusual. → Fidelity Charitable's 2026 guidelines treat organizations under government investigation as ineligible.
+
+### UNB-XIN-NPG-007#Q1 — Does §4967 apply if a broad geographic class happens to include the donor's grandchildren?
+
+**Disposition:** reasoned-interpretation · **Confidence:** low · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** (No answer recorded.) Requirement: BenefitAndPurposeGate rejects classes defined by reference to the donor's or advisor's family; class disabled by default. The RecipientClass rule MUST include a class 'Section530AGeneralFundingContribution', disabled by default per sponsor, mapping to Permitted only when: a Treasury acceptance agreement reference identifying the sponsor as eligible donor is recorded; the qualified or approved class definition is record
+
+**Relevant requirements.** UNB-XIN-NPG-007, XID-NPG-003, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — A DAF-funded §530A general funding contribution is not a distribution to a natural person under §4966 and is treated as exercising ER; classes are broad and defined by objective criteria (geography, birth year). [EV-A-019, Temp. Reg. §1.530A-7T(e)(2)(i)-(ii); preamble E]
+- *interpretation* — The temporary regulations do not address §4967 or §4958. [EV-A-019, whole document (no §4967 reference)]
+- *established* — §4967 applies to more-than-incidental benefits to §4958(f)(7) persons, which include family members; family includes grandchildren (and siblings under §4958(f)(4)). [EV-A-002, §4967(a), (d); EV-A-005 §4958(f)(4), (f)(7); EV-A-033 §4946(d)]
+- *interpretation* — PF analogue: a disqualified person's incidental or tenuous benefit as a member of the public or of a qualifying objective program is not self-dealing. [EV-A-013, §53.4941(d)-2(f)(2), (f)(9) Examples 1-2]
+
+**Supporting interpretation.** A grandchild who receives an allocation only as one member of a broad, objectively defined class (e.g., all children born in a county in a year) receives an incidental benefit by analogy to §53.4941(d)-2(f)(2); §4967 should not apply. The analysis changes if the class is small or chosen so relatives make up a meaningful share, or the donor shaped the class.
+
+**Competing interpretation.** §4967 has no regulations; the IRS could view any donor-advised payment whose recipients include relatives as more than incidental, especially if the donor selected the geography.
+
+**Applicability to Unbound.** Gate should compute class size and whether the donor recommended the class definition.
+
+**Business assumptions.**
+
+- Class disabled in R1 (XID-NPG-003)
+
+**Recommended answer.** Likely no §4967 tax where the class is the Treasury-accepted broad class and relatives benefit only as members (reasoned by PF incidental-benefit analogy). Gate: reject classes defined by family; route to review classes below a sponsor-set size threshold or where the donor proposed the class boundaries. Class stays disabled in R1.
+
+**Remaining uncertainty.** No §4967 regulations; temp regs silent; small-class cases untested.
+
+**Consequences if wrong.** 125% of the benefit on advisor/recipient; 10% on knowing managers.
+
+**Conservative fallback.** Keep disabled.
+
+**Alternative business or architecture design.** Sponsor-initiated (not donor-advised) general funding contributions from sponsor unrestricted funds avoid §4967 advisor element.
+
+**External authorization required.** Treasury acceptance agreement naming the sponsor as eligible donor (per temp regs) before enabling.
+
+**Acceptance criteria.**
+
+- Given a class definition referencing the donor's family, Then Reject.
+- Given a class below the size threshold, Then SponsorReview.
+
+**Reconsideration triggers.**
+
+- Final §530A regulations
+- §4967 guidance
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### XID-CRM-004 — Confirm provisional decision: May a charity that holds an organization-advised fund recommend grants to itself?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** A fund established by a charity naming itself as beneficiary is classified as a designated/agency fund, not a DAF, and distributions to that charity follow the agency terms. If an organization-advised fund qualifies as a DAF, grants to the advising organization are permitted when it is a §170(b)(1)(A) organization (not a disqualified supporting organization), with the affiliation recorded and no benefit to any individual.
+
+**Relevant requirements.** UNB-XIN-CRM-002, UNB-RCN-ENT-011, UNB-XIN-ACC-001, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — A fund that makes distributions only to a single identified organization is not a DAF. [EV-A-001, §4966(d)(2)(B)(i)]
+- *established* — Distributions from a DAF to a §170(b)(1)(A) organization (not a disqualified SO) are not taxable distributions. [EV-A-001, §4966(c)(2)(A)]
+- *established* — Any grant from a DAF to a donor or donor-advisor of that fund is an excess benefit in full; the statute does not exclude charities from 'donor'. [EV-A-005, §4958(c)(2), (f)(7)]
+- *established* — Proposed rule (reliance permitted, not final): public charities (509(a)(1)-(3), other than disqualified SOs) and governmental units are not 'donors'; a fund funded or advised only by them is not a DAF. [EV-A-009, Preamble 1.A and fn 6; Prop. §53.4966-1(f)]
+- *established* — Proposed single-identified-organization rule: distributions only for that organization's own activities, not grantmaking or DAF administration. [EV-A-009, Preamble 2.A]
+- *established* — Fidelity Charitable does not allow 501(c)(3) organizations as account holders. [EV-A-025, Account Holder]
+
+**Supporting interpretation.** If the contributing/advising charity is a non-disqualified public charity, sponsors can rely on the proposed rule to treat the fund as not a DAF, so DAF excise rules do not apply and grants to the charity follow the fund agreement. If the fund is a DAF (for example a private foundation or disqualified SO is the advisor, or the sponsor does not rely on the proposed rule), a grant to the advising organization fits the §4966 exception but is literally a grant to a 'donor' under §4958(c)(2).
+
+**Competing interpretation.** The original answer assumes grants to the advising charity are permitted if it is §170(b)(1)(A); this ignores §4958(c)(2) under a statute-only reading.
+
+**Applicability to Unbound.** Account-type classification must record the contributor/advisor type and the sponsor's choice to rely on the proposed definition.
+
+**Business assumptions.**
+
+- Most organization-advised funds at community foundations are agency or designated funds
+
+**Recommended answer.** Revise: (1) a fund whose only beneficiary is the contributing charity is a single-identified-organization (designated/agency) fund, not a DAF, if distributions go only to that charity for its own activities; (2) a fund contributed and advised only by non-disqualified public charities may be classified as not a DAF in reliance on the proposed definition (sponsor policy choice, recorded); (3) where a fund is a DAF and the advising organization is a donor/advisor, block grants to that organization or its controlled entities (§4958(c)(2)), even if it is §170(b)(1)(A). No automatic self-grant approval.
+
+**Remaining uncertainty.** Proposed rule not final; whether the IRS would apply §4958(c)(2) to a public-charity donor under current law is untested.
+
+**Consequences if wrong.** Full grant amount as excess benefit (25% on the recipient charity; 10% on knowing managers).
+
+**Conservative fallback.** Classify all charity-advised funds as non-DAF agency/designated funds with single beneficiary, or bar charities as advisors (Fidelity practice).
+
+**Alternative business or architecture design.** Offer charities an agency/designated fund product instead of advisory privileges: avoids DAF classification entirely; loses flexible grantmaking for the charity.
+
+**External authorization required.** Sponsor board-approved account-type classification policy recording whether it relies on the proposed donor definition.
+
+**Acceptance criteria.**
+
+- Given a fund whose advisory-privilege holder is a public charity and whose classification is DAF, When a grant to that charity is recommended, Then it is blocked DONOR_IS_PAYEE.
+- Given a fund classified non-DAF under the sponsor's recorded reliance on the proposed definition, When a grant to the advising charity is recommended, Then fund-agreement rules apply and the classification basis is cited.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations (donor definition)
+- Withdrawal of REG-142338-07
+
+**Related questions.**
+
+- **UNB-XIN-CRM-002#Q1**: Not automatically. If the fund is a DAF, a grant to the advising organization is a §4958(c)(2) grant to a donor (block). If the fund is a single-beneficiary or public-charity-only fund (non-DAF under the proposed definition, reliance permitted), grants follow the fund agreement.
+
+**Corrections to prior records.**
+
+- XID-CRM-004 decision / UNB-XIN-CRM-002: Permits grants to the advising organization from a DAF when it is §170(b)(1)(A). → Statute §4958(c)(2) treats grants to a donor/donor-advisor as excess benefit; the proposed rule avoids this only by treating such funds as non-DAFs.
+
+### XID-ECO-002 — Confirm provisional decision: Which service charges may be charged to DAF funds, on what cost basis and with what disclosure (and is a recovery ceiling appropriate)?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal; sponsor's state fiduciary law · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Special-request service charges to DAF funds are permitted only when (a) listed in the fee schedule disclosed before the request, (b) the donor affirms the charge, and (c) the charge is cost-based. The annual cost-recovery ratio per charge must not exceed 1.10; above that the price is reduced at the next schedule version.
+
+**Relevant requirements.** UNB-XIN-ECO-018, UNB-XIN-ECO-008, UNB-ACC-010, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — No statute or effective regulation limits DAF fees; proposed rule: reasonable investment and grant-related fees are not distributions; fees charged uniformly or ratably across DAFs are generally reasonable; a fund-specific expense (e.g., for an ER grant) may be reasonable depending on facts; any fund-specific expense paid to a donor/advisor/related person is a deemed distribution. [EV-A-009, Preamble 'Distributions' (88 FR 77931); Prop. §53.4966-1(e)(1)-(2)]
+- *established* — Payments from a DAF to donors/advisors are automatic excess benefits. [EV-A-005, §4958(c)(2)]
+- *established* — Market: Fidelity Charitable charges administrative fees, allocates contribution/selling costs and program-specific fees to giving accounts, disclosed in program guidelines. [EV-A-025, Fees and Expenses; Costs associated with contributions]
+- *interpretation* — State fiduciary cost standard: costs must be appropriate and reasonable (UPMIFA §3(c)(1)/UPIA). [EV-A-031, not fetched]
+
+**Supporting interpretation.** Fund-specific service charges are permissible if reasonable, disclosed, and not paid to donors/advisors or related persons; cost basis is good evidence of reasonableness. The 1.10 ratio is a business control, not a legal limit.
+
+**Competing interpretation.** Some argue any charge above cost is a profit on charitable assets; others note sponsors' overall fee schedules are not cost-based and are lawful if reasonable.
+
+**Applicability to Unbound.** Fee schedule versioning and payee screening.
+
+**Business assumptions.**
+
+- Grade-B cost data ±15%
+
+**Recommended answer.** Confirm with corrections: service charges are allowed when listed in the disclosed schedule, reasonable (cost-based is the evidence), and never paid directly or indirectly to a donor, advisor, family member or 35% entity. Donor affirmation is a good practice, not a legal requirement. Keep 1.10 as a review trigger (not a legal safe harbor, and not a service denial).
+
+**Remaining uncertainty.** Final rule may change the reasonableness standard; state law varies.
+
+**Consequences if wrong.** Unreasonable fund-specific fee could be a deemed (taxable) distribution under the proposed rule; state AG scrutiny.
+
+**Conservative fallback.** No special service charges in R1 (current R1 scope).
+
+**Alternative business or architecture design.** Fold special-service costs into the uniform administrative fee: lowest legal exposure (uniform fees generally reasonable), but cross-subsidizes heavy users.
+
+**External authorization required.** Sponsor-approved fee schedule (board or delegated finance committee) disclosed in program guidelines.
+
+**Acceptance criteria.**
+
+- Given a service charge whose payee is a related party of the fund's donor/advisor, When posted, Then it is blocked.
+- Given a charge not in the schedule version disclosed before the request, When posted, Then it is rejected.
+- Given annual recovery ratio >1.10, When the report runs, Then a pricing review item is created.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations
+- State AG guidance
+
+**Related questions.**
+
+- **UNB-XIN-ECO-018#Q1**: Use the 1.10 ratio as a review trigger, calibrated by class and cost basis; no legal source sets a ceiling.
+- **UNB-SMP-ECN-001#Q1**: 1.5 has no legal basis; treat as a scenario parameter. Legal test is reasonableness and no payment to donor-related persons.
+
+**Corrections to prior records.**
+
+- none
+
+### XID-NPG-001 — Confirm provisional decision: May a sponsor rely on ED written advice procured by another grantor or an ED repository, and on what contractual terms?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** A sponsor may rely on equivalency-determination written advice obtained through a repository or another grantor when the advice is current under Rev. Proc. 2017-53 §3.03(1), the practitioner or repository authorizes reliance by the sponsor in writing, and the sponsor has no contrary knowledge. Expiry is computed from the grantee's taxable year.
+
+**Relevant requirements.** UNB-XIN-NPG-001, OB-20, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — A determination is ordinarily in good faith if based on current written advice received from a qualified tax practitioner (attorney, CPA, enrolled agent under Circular 230) and reasonably relied on per §1.6664-4(c)(1). [EV-A-012, §53.4945-5(a)(5)(i)-(ii)]
+- *established* — Currency: law unchanged since the advice and facts from the grantee's current or prior taxable year; public-support advice current for two grantee taxable years after the five-year test period. [EV-A-012, §53.4945-5(a)(5)(i); EV-A-015 §3.03(1)]
+- *established* — Shared advice from another foundation may be used if reasonable under all facts and circumstances, but for the special rule the advice must be received from the qualified tax practitioner rather than from another foundation. [EV-A-014, 80 FR 57713-57714 'Reliance on Written Advice Shared by Another Foundation']
+- *established* — DAF sponsors may use the ED guidelines/regulations pending further guidance. [EV-A-015, Rev. Proc. 2017-53 §2; EV-A-014 preamble and fn 4]
+- *interpretation* — NGOsource's on-file badge reflects a determination for a specific funder during a specific period (search snippet only). [EV-A-027, badge page]
+
+**Supporting interpretation.** The decision is mostly right but the reliance condition must be tightened: to get the 'ordinarily good faith' special rule, the sponsor must receive the written advice from the qualified tax practitioner (for example a practitioner letter addressed to or extending reliance to the sponsor, as repository models do per subscriber). Authorization by a non-practitioner repository or forwarding by another grantor gives only the general facts-and-circumstances standard.
+
+**Competing interpretation.** A sponsor could rely on shared advice under the general good-faith rule when it knows the practitioner and the sharing grantor's diligence (TD 9740 preamble example).
+
+**Applicability to Unbound.** EquivalencyDetermination record must distinguish 'received from practitioner' versus 'shared by grantor/repository' and route the latter to sponsor review.
+
+**Business assumptions.**
+
+- Sponsors subscribe to a repository whose practitioners issue advice per subscriber
+
+**Recommended answer.** Revise: the routine (non-ER) path is allowed only when the sponsor has current written advice received from a qualified tax practitioner (directly or via a repository whose practitioner issues the advice or an express reliance letter to the sponsor), no contrary knowledge, and currency computed per §53.4945-5(a)(5). Advice merely forwarded by another grantor or authorized only by a non-practitioner repository goes to sponsor review under the general good-faith standard, not the automatic path. Currency is computed from the grantee's taxable year.
+
+**Remaining uncertainty.** Exact contractual form of repository reliance (not verified by fetch); final §4966 rules might change details.
+
+**Consequences if wrong.** Grant treated as to a non-§170(b)(1)(A) organization without ER: 20% sponsor tax, 5% knowing managers.
+
+**Conservative fallback.** Per-sponsor advice only.
+
+**Alternative business or architecture design.** Use a domestic intermediary (catalogued) for foreign grantees lacking practitioner-issued advice: no ED cost; donor intent preserved via non-binding preference.
+
+**External authorization required.** Repository subscription contract under which a qualified tax practitioner issues the written advice (or a reliance letter) to the sponsor.
+
+**Acceptance criteria.**
+
+- Given an ED whose source is 'shared by another grantor' without practitioner-issued reliance to the sponsor, When approval is requested, Then the routine path is refused and a SponsorReview task is created.
+- Given practitioner advice issued to the sponsor dated 2026-03-01 based on FY2025 calendar-year data, When release occurs 2027-12-30, Then release proceeds; on 2028-01-02 it is held ED_EXPIRED.
+- Given a practitioner type outside attorney/CPA/enrolled agent, When approval is requested, Then it is rejected.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations
+- Revision of Rev. Proc. 2017-53
+
+**Related questions.**
+
+- **UNB-XIN-NPG-001#Q1**: Store provenance, scope, currency and reliance rights. Automatic reliance only on advice received from a qualified tax practitioner (directly or via a repository's practitioner-issued advice/reliance letter). Shared advice goes to review under the general good-faith standard (TD 9740 preamble).
+
+**Corrections to prior records.**
+
+- XID-NPG-001 decision and UNB-XIN-NPG-001 statement: Allows reliance when 'the practitioner or repository authorizes reliance'. → For the special rule the advice must be received from the qualified tax practitioner; repository-only authorization does not suffice (80 FR 57714).
+
+### XID-NPG-002 — Confirm provisional decision: What purpose wording to an intermediary avoids an impermissible earmark for DAF grants?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Grants to US intermediaries may carry a non-binding preference ('to support [intermediary]'s work in [country/program]'). They may never name a specific foreign grantee as a required recipient or require pass-through. The intermediary must retain discretion and control. Wording is catalogued per intermediary.
+
+**Relevant requirements.** UNB-XIN-NPG-002, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Private-foundation analogue: a grant used by the grantee to pay a secondary grantee is not a grant to the secondary grantee if the grantor does not earmark it for a named secondary grantee and has no oral or written agreement to cause the selection; reason to believe is fine if the grantee controls selection independently. [EV-A-012, §53.4945-5(a)(6)(i)]
+- *established* — Proposed anti-abuse rule: a series of distributions through intermediaries under a plan inconsistent with §4966 is treated as a single distribution. [EV-A-009, Preamble, Distributions (88 FR 77931)]
+- *established* — Schedule F Part II includes grants to a domestic organization for the purpose of providing grants to a designated foreign organization. [EV-A-018, Part II scope]
+- *interpretation* — Earmarked or conduit gifts are treated by reference to the ultimate recipient (IRS info letter; Rev. Rul. 63-252 principle). [EV-A-023, info letter 2024-0007]
+- *established* — Market practice: non-binding 'special purpose' designations conveyed to the recipient, which the sponsor may modify. [EV-A-025, Special purpose designation]
+
+**Supporting interpretation.** Non-binding preferences for the intermediary's own program in a country or cause, with the intermediary retaining discretion and control, are consistent with the §53.4945-5(a)(6) analogue. Naming a specific foreign grantee (even as a preference) risks being an earmark for a named secondary grantee.
+
+**Competing interpretation.** Some intermediaries (e.g., 'friends of' organizations) accept donor-advised recommendations of specific foreign grantees and run their own ED/ER; with genuine intermediary discretion this is defensible but depends on facts.
+
+**Applicability to Unbound.** Catalogue wording and capture donor intent separately (internal evidence) from outbound wording.
+
+**Business assumptions.**
+
+- Intermediaries are §170(b)(1)(A) organizations with their own foreign grant programs
+
+**Recommended answer.** Confirm the decision with one clarification: outbound wording may name the intermediary's program, country or cause; it must not name any specific foreign organization, even as a non-binding suggestion, and no side agreement may let the donor or sponsor cause selection. Donor's original foreign recommendation is retained only as internal evidence. Report as a domestic grant; the intermediary handles Schedule F for its grants.
+
+**Remaining uncertainty.** No final §4966 earmark rule; PF analogue applied by interpretation.
+
+**Consequences if wrong.** Grant treated as made to the foreign organization: taxable distribution unless ED or ER (20%/5%).
+
+**Conservative fallback.** Unrestricted grants to intermediaries only.
+
+**Alternative business or architecture design.** Offer intermediary 'country funds' as catalogue items (pooled programs) so donors choose a program, not a grantee: low friction, low earmark risk.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given outbound purpose text containing the name of a foreign organization, When remittance is generated, Then it is blocked EARMARK_NAMED_SECONDARY_GRANTEE.
+- Given an accepted intermediary alternative, When remitted, Then purpose text equals the catalogue's approved wording and the donor's foreign recommendation is stored internally only.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations with an intermediary rule
+- IRS guidance on DAF grants via intermediaries
+
+**Related questions.**
+
+- **UNB-XIN-NPG-002#Q1**: A suggestion of a specific foreign grantee is risky even when non-binding (PF analogue §53.4945-5(a)(6)(i) refers to earmarking for 'any named secondary grantee'). Capture discretion and suggestion separately; never transmit a named foreign grantee; route ambiguous restrictions to review.
+
+**Corrections to prior records.**
+
+- none
+
+### XID-NPG-004 — What criteria and maximum review period govern discretionary holds?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** Sponsor governance; US federal background · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** Recommendation: Adjudicated findings or regulator actions only; 90-day maximum review.
+
+**Relevant requirements.** UNB-XIN-NPG-006, UNB-EXT-005, requirements/discovery/2026-11-23-cross-industry/15-OPEN-DECISIONS-AND-SCENARIOS.md
+
+**Authoritative findings.**
+
+- *established* — Market leader treats an organization as not an Eligible Grant Recipient where 'Fidelity Charitable has been informed that the organization is currently being investigated by governmental authorities regarding potential breaches of applicable law'; trustees may decline any grant. [EV-A-025, Eligible Grant Recipients, Compliance with law; closing grant paragraph]
+- *established* — Sponsor has exclusive legal control over DAF assets; donors hold advisory privileges only. [EV-A-006, §170(f)(18); EV-A-001 §4966(d)(2)]
+- *interpretation* — No statute or regulation requires a sponsor to make, or forbids it from holding, a grant to an eligible recipient; distributions to §170(b)(1)(A) organizations are excepted from §4966 tax regardless of allegations. [EV-A-001, §4966(c)(2)]
+- *interpretation* — No federal source sets a maximum review period for discretionary holds. [EV-A-025, n/a]
+
+**Supporting interpretation.** No law fixes criteria or duration; board policy controls.
+
+**Competing interpretation.** Narrow criteria reduce perceived arbitrariness; broader criteria match market practice.
+
+**Applicability to Unbound.** Platform enforces whatever criteria and maxima the board approves.
+
+**Business assumptions.**
+
+- Sponsor board approves policy annually
+
+**Recommended answer.** Board-approved criteria: adjudicated findings, regulator actions, and official pending matters (indictment, AG or IRS action, government investigation the sponsor is informed of); media allegations only with elevated approval. Maximum review period 90 days, renewable once per new evidence, with automatic release. These are policy choices, not legal requirements.
+
+**Remaining uncertainty.** Board preference.
+
+**Consequences if wrong.** Donor relations; no tax consequence.
+
+**Conservative fallback.** Adjudicated/regulator-only with 90 days.
+
+**Alternative business or architecture design.** Redirect offer instead of hold.
+
+**External authorization required.** Sponsor board resolution approving DiscretionaryGrantPolicy.
+
+**Acceptance criteria.**
+
+- Given a hold with evidence class not listed in the approved policy, When submitted, Then it is rejected.
+
+**Reconsideration triggers.**
+
+- Board policy review
+
+**Related questions.**
+
+- **UNB-XIN-NPG-006#Q1**: Indictment-triggered holds may be permitted under board policy.
+
+**Corrections to prior records.**
+
+- none
+
+### XID-NPG-005 — Confirm provisional decision: Payee substitution to a merger successor: donor reconfirmation required?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US federal; state nonprofit merger law (not researched) · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** When a grantee merges, a legal successor with the same charitable purpose and an eligible status may receive open and recurring grants with sponsor approval and notice to the donor (no reconfirmation). If the purpose or recipient class changes, or the successor is not eligible, the grant is cancelled and the donor asked to re-recommend.
+
+**Relevant requirements.** UNB-XIN-NPG-005, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — The sponsor owns and controls DAF assets; donors hold only advisory privileges; contribution deduction depends on the sponsor's exclusive legal control. [EV-A-001, §4966(d)(2)(A)(ii)-(iii); EV-A-006 §170(f)(18)]
+- *established* — TEOS/BMF reliance applies only to an organization listed under its official or recognized name and not before it is listed. [EV-A-016, Rev. Proc. 2018-32 §6.01-6.02]
+- *interpretation* — Proposed rule analogue: a single-identified-organization fund may substitute another organization upon reorganization that ends the named organization, if beyond donor control. [EV-A-009, Prop. §53.4966-4(a)(5)]
+- *established* — Market: donors have no legally enforceable right to any recommended grant; sponsor may decline. [EV-A-025, Grant section closing paragraph]
+
+**Supporting interpretation.** No federal rule requires donor reconfirmation; the sponsor makes the grant. The legal requirement is that the successor itself be an eligible recipient verified on its own EIN.
+
+**Competing interpretation.** Donor-relations and state AG donor-intent norms favor reconfirmation where the successor's program differs; some sponsors reconfirm all substitutions.
+
+**Applicability to Unbound.** Implement as sponsor policy with independent eligibility evaluation of the successor.
+
+**Business assumptions.**
+
+- Successor's charitable purpose can be compared from filings
+
+**Recommended answer.** Confirm as a sponsor policy: substitution to a verified legal successor that independently passes eligibility (own EIN, TEOS listing, same recipient class) with sponsor approval and donor notice; recurring grants should carry a notice-and-opt-out window before the next disbursement. Reconfirm when purpose, class or eligibility changes.
+
+**Remaining uncertainty.** State merger-law treatment of restricted gifts to constituent corporations not verified.
+
+**Consequences if wrong.** Donor complaints; possible grant to an ineligible successor if verification is skipped.
+
+**Conservative fallback.** Always reconfirm.
+
+**Alternative business or architecture design.** Cancel and auto-propose a re-recommendation pre-filled with the successor: one-click donor action, no unilateral substitution.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a MergerIntoSuccessor event, When open grants exist, Then grants are held until the successor passes eligibility on its own EIN and the sponsor approves.
+- Given approval, When a recurring grant next disburses, Then the donor has received notice at least N days earlier (sponsor-configured) with an opt-out.
+
+**Reconsideration triggers.**
+
+- Donor complaint trend
+- State AG guidance
+
+**Related questions.**
+
+- **UNB-XIN-NPG-005#Q1**: Permitted without reconfirmation under federal law; verify legal succession and the successor's own eligibility; sponsor policy decides notice versus reconfirmation.
+
+**Corrections to prior records.**
+
+- none
+
+### XID-NPG-007 — Confirm provisional decision: Is a §4966 taxable distribution correctable, and what is the incident reporting channel (Form 4720) for sponsor and managers?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** A (Charitable tax law)
+
+**Original provisional answer.** §4966 and §4967 first-tier taxes are 'qualified first tier taxes' under §4962 (subchapter G), so they are abatable if the event was due to reasonable cause, not wilful neglect, and is corrected within the correction period. The incident workflow therefore records reasonable-cause evidence and correction steps for every incident. Excise taxes are reported on Form 4720 by each liable person (sponsor; fund manager; donor/advisor for §4967). §4958 excess benefit is corrected within the correction period and also reported on Schedule L.
+
+**Relevant requirements.** UNB-XIN-NPG-008, requirements/discovery/2026-11-23-cross-industry/data/decisions.csv, requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Qualified first tier taxes include any first tier tax imposed by subchapter G (added 2007); subchapter G is §§4966-4967. [EV-A-003, §4962(b); 2007 amendment note; EV-A-007]
+- *established* — §§4966 and 4967 are first tier taxes and taxable events. [EV-A-004, §4963(a), (c)]
+- *established* — Abatement requires the Secretary to be satisfied of reasonable cause, no willful neglect, and correction within the correction period. [EV-A-003, §4962(a)]
+- *established* — No second tier tax exists for §§4966/4967, 'correct' is defined by the section imposing the second tier tax, and the correction period ends by reference to a second-tier deficiency notice, extended by periods the Secretary finds reasonable. [EV-A-004, §4963(b), (d)(1), (e)(1)]
+- *established* — IRS: use Form 843 to request abatement under §4962 of first tier taxes under §§4942-4945, 4955, 4958, 4966 and 4967. [EV-A-017, Instructions for Form 4720 (2025), 'Abatement']
+- *established* — Sponsor reports §4966 on Form 4720 Schedule K; fund managers and donors/advisors/related persons liable under §4967 file their own Form 4720 (Schedule L); §4958 is Schedule I; due 15th day of 5th month. [EV-A-017, Who Must File; Schedules I, K, L]
+- *established* — Correction of a §4958(c)(2) DAF excess benefit may not be repaid into any DAF. [EV-A-005, §4958(f)(6)]
+
+**Supporting interpretation.** Abatement is statutorily available for §4966 and §4967 first tier taxes, but 'correction' is undefined for them; in practice correction would mean recovering the amount and restoring it to charitable use, with the IRS setting the period. Abatement is discretionary and requested on Form 843.
+
+**Competing interpretation.** Because there is no second tier tax or statutory correction definition, the IRS could find no correction mechanism and deny abatement except on its own terms.
+
+**Applicability to Unbound.** Incident workflow records reasonable-cause evidence, recovery steps, and Form 4720/843 filing inputs for each liable person; it must not show liability as extinguished.
+
+**Business assumptions.**
+
+- Sponsor CPA prepares Form 4720
+
+**Recommended answer.** The original answer is legally supported (abatement is available under §4962 for §4966/§4967 first tier taxes), and the review answer 'do not assert abatement' is too cautious. State it as: abatement may be requested on Form 843; it is discretionary and requires reasonable cause, no willful neglect, and correction, which is undefined for these taxes. Record recovery (repayment to the sponsor, not into any DAF for §4958(c)(2) cases), reasonable-cause evidence, and filing inputs: sponsor Form 4720 Schedule K; fund managers Schedule K Part II/L Part III; donors/advisors Schedule L; §4958 on Form 4720 Schedule I and Form 990 Schedule L Part I.
+
+**Remaining uncertainty.** Meaning of 'correct' and the correction period end for §§4966/4967; IRS discretion.
+
+**Consequences if wrong.** Liability not abated; penalties for non-filing if Form 4720 is missed.
+
+**Conservative fallback.** Treat taxes as owed; pursue abatement as a claim.
+
+**Alternative business or architecture design.** Pre-disbursement controls (eligibility gates) reduce incidence; incident workflow remains for residual cases.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given an ExciseTaxIncident for §4966, When opened, Then filing inputs list Form 4720 Schedule K for the sponsor and each approving fund manager, and a Form 843 abatement task with reasonable-cause and correction evidence fields.
+- Given a §4958(c)(2) incident, When repayment is recorded, Then the repayment destination cannot be any DAF.
+- Given an incident, When displayed, Then status never shows 'abated' unless an IRS determination is recorded.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations defining correction
+- IRS guidance on §4962 for DAF taxes
+
+**Related questions.**
+
+- **UNB-XIN-NPG-008#Q1**: Yes, §4962 abatement extends to §4966/§4967 first tier taxes (subchapter G), requested on Form 843; unlike §4958 there is no statutory correction definition, so record recovery and reasonable-cause evidence and do not show relief until the IRS grants it.
+
+**Corrections to prior records.**
+
+- XID-NPG-007 confirmation_review_answer: 'Do not assert section 4962 abatement' contradicts §4962(b) and the Form 4720 instructions. → Abatement is available but discretionary; correction undefined.
+- XID-NPG-007 decision / UNB-XIN-NPG-008: '§4958 ... also reported on Schedule L' is ambiguous: Form 4720 Schedule L is §4967. → §4958 tax is on Form 4720 Schedule I; the transaction is disclosed on Form 990 Schedule L Part I.
+- UNB-XIN-NPG-008 evidence: Cites 'unverified — general industry knowledge'. → Replace with 26 U.S.C. §§4962(b), 4963 and Form 4720 instructions (EV-A-003, -004, -017).
 
 ### RCD-017 — Confirm provisional decision: Funding model: currency reservation with haircut, cash sleeve, or pool buffer; and the percentage-grant fixing point.
 
@@ -1831,6 +3079,467 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 
 - none
 
+### RCD-023 — Confirm provisional decision: Identity regimes: is KYC/CIP law for the sponsor or administrator, and what identity proofing is policy?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** medium-high · **Jurisdiction:** US federal (BSA/FinCEN, OFAC) · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** Identity proofing is required for advisory-privilege holders and successors; sanctions screening for all parties. No CIP/AML programme unless counsel says one applies. Source-of-funds review only for complex assets and for contributions over a sponsor-set threshold.
+
+**Relevant requirements.** RCF-ENT-014, RCF-REG-007 (requirements/discovery/2026-11-23-cross-industry/09-REJECTED-RECOMMENDATIONS.md), UNB-RCN-ENT-014, requirements/reconciliation/2026-11-23/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — CIP (31 CFR 1020.220) applies to banks required to have AML programs; 'customer' is the person opening a new account. [EV-D-034, 31 CFR 1020.220(a)(1); 1020.100(b)]
+- *established* — A nonprofit corporation that is a bank's legal entity customer is subject only to the control prong of beneficial ownership identification. [EV-D-035, 31 CFR 1010.230(e)(3)(ii)]
+- *established* — AML program obligations for MSBs attach only to persons meeting the §1010.100(ff) definition. [EV-D-036, 31 CFR 1022.210(a)]
+- *established* — All U.S. persons must comply with OFAC sanctions; OFAC strongly encourages a risk-based sanctions compliance program with five components; screening-software faults are a recurring root cause. [EV-D-037, OFAC FAQ 11, 13, 15; EV-D-038 p.1, p.10]
+- *interpretation* — Interpretation: a 501(c)(3) DAF sponsor is not a bank, broker-dealer, MSB or other BSA 'financial institution' category reviewed here, so CIP/AML program rules do not apply to it by their terms; the operator, absent MSB status (see XID-REG-001) or RIA status, is likewise not covered. The sponsor's bank/custodian applies CIP to the sponsor as its customer, not to donors. [EV-D-034, synthesis (31 U.S.C. 5312 list not fetched)]
+- *established* — If an operator affiliate registers as an investment adviser, FinCEN's IA AML rule would apply from January 1, 2028 (search-level). [EV-D-039, 91 FR 36]
+
+**Supporting interpretation.** No statutory CIP applies to sponsor or software administrator; identity proofing is a control justified by fraud, account-takeover, §4958/§4967 related-party controls, and OFAC strict liability.
+
+**Competing interpretation.** Banks/custodians may contractually require sponsors to perform KYC on donors for large or non-cash contributions; regulators expect nonprofits to manage terrorist-financing risk (Treasury voluntary best practices, not fetched).
+
+**Applicability to Unbound.** Platform implements identity proofing and screening as sponsor-configured controls; no CIP programme by law.
+
+**Business assumptions.**
+
+- Operator never holds funds (XID-REG-001).
+- Neither operator nor affiliate is an RIA or BD.
+
+**Recommended answer.** Confirm: CIP/AML program law does not apply to a 501(c)(3) sponsor or to a non-MSB software administrator (CIP is a bank/BD/fund rule; MSB AML applies only to MSBs). Policy controls: risk-based identity proofing for advisory-privilege holders, successors, and anyone granted payment-related authority; OFAC screening of donors, advisors, successors, grantees and payors of contributions at onboarding, on list updates, and before each grant; a written sanctions compliance program per OFAC Framework components for the sponsor, supported by platform logs. Change source-of-funds review from threshold-only to risk-based: complex assets, contributions above a sponsor threshold, AND pattern triggers below threshold (rapid in-out, third-party payors, structuring-like splits, high-risk geographies).
+
+**Remaining uncertainty.** Full BSA 'financial institution' list (31 U.S.C. 5312(a)(2)) not fetched; bank/custodian contractual KYC expectations vary.
+
+**Consequences if wrong.** If a sponsor or operator were covered, missing CIP/AML program would be a BSA violation; OFAC violations are strict liability regardless.
+
+**Conservative fallback.** Adopt CIP-equivalent identity verification (name, DOB, address, ID number, documentary/non-documentary verification) for all advisory-privilege holders and payors above threshold.
+
+**Alternative business or architecture design.** A) Risk-based identity proofing + universal OFAC screening (recommended): moderate cost (IDV vendor per check), low friction for small donors. B) Full CIP-equivalent for everyone: higher cost and abandonment. C) Rely on bank KYC only: lowest cost, leaves donors/advisors unverified and OFAC exposure on grants.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a new advisory-privilege holder or successor, When activated, Then identity proofing evidence is recorded.
+- Given any party (donor, advisor, successor, grantee, payor), When onboarded or before each grant, Then OFAC screening against the current SDN list is run and recorded with list version.
+- Given contributions below threshold, When pattern rules (third-party payor, rapid grant-out, split contributions) fire, Then a source-of-funds review case opens.
+- Given an OFAC list update, When published, Then all active parties are rescreened within the sponsor-set window.
+
+**Reconsideration triggers.**
+
+- Operator or affiliate becomes MSB, RIA or BD
+- Bank/custodian agreement imposes KYC terms
+- New FinCEN rule covering nonprofits or platforms
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RCD-023 decided_option (source-of-funds threshold-only): Confirmation review asks for pattern-based review below thresholds; threshold-only review misses structuring-like behaviour. → Make source-of-funds review risk-based including sub-threshold pattern triggers (policy, not legal mandate).
+
+### XID-CRM-002 — Confirm provisional decision: Referral compensation to advisors/affiliates from sponsor operating funds: solicitor registration and §4958 exposure.
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal tax and securities; California and New York solicitation law; other states via jurisdiction table · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** No referral compensation is ever paid from fund assets. Flat, fair-market-value fees paid from sponsor operating funds under a written agreement are permitted only to persons who are not advisors or related parties of the referred fund, only in states whose paid-solicitor rules the table records as satisfied, and never per grant or per dollar granted.
+
+**Relevant requirements.** UNB-XIN-CRM-006, UNB-XIN-CRM-006#Q1, RCD-021 (requirements/discovery/2026-11-23-cross-industry/16-LEGAL-AND-ACCOUNTING-DECISIONS.md), requirements/discovery/2026-11-24-question-resolutions-accounting-banking-economics.md
+
+**Authoritative findings.**
+
+- *established* — Any grant, loan, compensation or similar payment from a DAF to a donor, donor-advisor, family member or 35% controlled entity is an excess benefit transaction in full. [EV-D-023, 26 U.S.C. 4958(c)(2), (f)(7)]
+- *established* — A donor-advisor includes any person appointed or designated by the donor with advisory privileges. [EV-D-024, 26 U.S.C. 4966(d)(2)(A)(iii)]
+- *established* — An investment advisor compensated by the sponsor for managing or advising on DAF assets (and family/35% entities) is a disqualified person of the sponsor, so sponsor payments to it are subject to §4958 excess-benefit (fair market value) review. [EV-D-023, 26 U.S.C. 4958(f)(1)(F), (f)(8)]
+- *established* — Proposed (not effective) regulations would treat such a sponsor-compensated personal investment advisor as a donor-advisor of the DAF it manages; no finalization or withdrawal found as of late 2026. [EV-D-025, 88 FR 77926; EV-D-026]
+- *established* — If the sponsor maintains a §3(c)(10)(B) pool, its broker-dealer exemption requires that persons soliciting donations to the fund receive no commission or special compensation based on the number or value of donations. [EV-D-017, 15 U.S.C. 78c(e)(2)]
+- *established* — California: any person who for compensation solicits funds in California for charitable purposes is a commercial fundraiser and must register before soliciting (charity employees excluded). [EV-D-031, Cal. Gov. Code §12599(a)-(b)]
+- *established* — California fundraising counsel excludes an investment counselor advising a client only when giving investment/financial advice; counsel must not solicit. [EV-D-032, Cal. Gov. Code §12599.1(a)-(b)]
+- *established* — New York: any person who for compensation solicits on behalf of a charitable organization is a professional fund raiser; bona fide charity employees excluded. [EV-D-033, N.Y. Exec. Law §171-a(4)]
+- *interpretation* — Interpretation: a financial advisor paid by a sponsor for referring donors to open or fund DAFs is soliciting funds for charitable purposes for compensation, and so is a commercial fundraiser (CA) / professional fund raiser (NY) unless an exclusion applies; per-contribution or percentage fees are the clearest case. [EV-D-031, synthesis]
+
+**Supporting interpretation.** Federal tax law prohibits any compensation from the DAF itself to donor-advisors; payments from sponsor operating funds are not automatic excess benefits but are subject to FMV review if the payee is a disqualified person (including §4958(f)(8) investment advisors). State solicitation law turns on compensated solicitation, not on source of payment.
+
+**Competing interpretation.** A referral that merely introduces a client without the referrer asking for a contribution may not be 'solicitation' in some states; flat marketing-services fees unconnected to contributions may fall outside. FINRA/SEC rules may separately limit registered representatives' outside compensation (not surveyed).
+
+**Applicability to Unbound.** Unbound itself pays nothing (software only); it hosts sponsor-configured referral programs, so the platform must enforce constraints for sponsors.
+
+**Business assumptions.**
+
+- Referral payments, if any, are made by sponsors from operating funds.
+- Many referrers are wealth advisors who may also manage DAF assets for the sponsor.
+
+**Recommended answer.** Confirm with tightening: (1) never pay any referral or compensation from DAF assets to anyone who is a donor, donor-advisor, their family, 35% entity, or a sponsor-compensated investment advisor of that fund (§4958(c)(2); proposed regs would extend). (2) Sponsor operating-fund payments to disqualified persons (incl. §4958(f)(8) investment advisors) must be FMV and documented (rebuttable-presumption process). (3) No compensation based on number or value of contributions to anyone soliciting where the sponsor maintains a §3(c)(10)(B) pool (EA §3(e)(2)); recommend this as a universal rule. (4) Any paid referrer who solicits in CA must be a registered commercial fundraiser (or the arrangement redesigned so the payee does not solicit), and in NY a registered professional fund raiser; other states via jurisdiction table defaulting to 'registration required'. Release 1: referral compensation disabled; flat, non-contingent, FMV fees enabled only after the referrer's state registration evidence is recorded.
+
+**Remaining uncertainty.** State-by-state treatment of pure referrals; FINRA outside-activity rules; whether proposed §4966 regs will be finalized; FMV benchmarks.
+
+**Consequences if wrong.** §4958 excise taxes on the advisor (25%/200%) and managers (10%); loss of sponsor's §3(e) broker exemption for pooled funds; state penalties for unregistered solicitation; reputational harm.
+
+**Conservative fallback.** No referral compensation at all; advisors participate only via their client-paid advisory fees (not paid by sponsor).
+
+**Alternative business or architecture design.** A) No referral pay (recommended for release 1): zero cost, loses a distribution lever. B) Flat annual marketing/co-branding fees to firms (not individuals), not tied to contributions, FMV-documented, firm registered as commercial fundraiser where required: moderate cost, moderate exposure. C) Sponsor employs internal gift officers (employees excluded from CA/NY definitions; §3(e)(2) allows employees in overall fundraising without per-donation pay): higher fixed cost, lowest exposure. D) Advisor-managed DAF program where advisor is paid by client, not sponsor: no §4958(f)(8) status, but common industry practice of sponsor-paid advisor fees should be reviewed.
+
+**External authorization required.** State registration of each compensated referrer where it solicits (California Registry of Charities and Fundraisers commercial fundraiser registration; New York professional fund raiser registration with the Charities Bureau); sponsor board/committee approval of disqualified-person compensation.
+
+**Acceptance criteria.**
+
+- Given a payment from a DAF, When the payee is a donor, advisor, family member, 35% entity, or an investment advisor compensated for that fund, Then the payment is blocked.
+- Given a referral agreement, When the fee formula references contribution count, amount, or grant amount, Then activation is blocked.
+- Given a referrer soliciting in a state, When the jurisdiction table says registration required, Then fee payment is blocked until the referrer's registration evidence (number, expiry) is recorded.
+- Given a payee who is a disqualified person, When compensation is approved, Then FMV comparables and approval minutes are attached.
+
+**Reconsideration triggers.**
+
+- Finalization or withdrawal of proposed §4966 regulations
+- Sponsor launches a pooled fund
+- Expansion into states without table entries
+- Change in referrer business models (e.g., RIA firms receiving sponsor-paid management fees)
+
+**Related questions.**
+
+- **UNB-XIN-CRM-006#Q1**: CA (§12599) and NY (§171-a(4)) treat compensated solicitation for a charity as commercial/professional fundraising regardless of whether payment is per contribution; per-contribution pay is the clearest trigger and also breaches Exchange Act §3(e)(2) where the sponsor has a §3(c)(10)(B) pool. Other states: default registration-required in the table.
+
+**Corrections to prior records.**
+
+- XID-CRM-002 decision outcome: Does not mention Exchange Act §3(e)(2) or §4958(f)(1)(F)/(f)(8) investment advisor disqualified-person status. → Add both: per-donation compensation to solicitors jeopardizes the sponsor's broker-dealer exemption for pooled funds; sponsor-paid investment advisors of DAF assets are disqualified persons.
+- XID-CRM-002 rationale 'Payments from DAF assets to advisors or related persons are automatic excess benefit': Accurate but scoped by §4958(f)(7) (donor, donor-designated advisor, family, 35% entity); 'advisors' should be read as donor-advisors, with financial advisors covered only if donor-designated (or under proposed regs). → State the precise statutory class.
+
+### XID-INV-003 — Confirm provisional decision: What securities-law basis supports each pooled option, and may pools hold assets of more than one sponsor?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal securities law; state securities law not surveyed · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** Release 1: only single-sponsor investment pools maintained by the sponsor itself, relying on the charitable-organization exclusions added by the Philanthropy Protection Act of 1995 (Investment Company Act §3(c)(10)(B); Securities Act §3(a)(4)). Each pool records its legal basis; donors receive the written disclosure about the pool that the Act requires. Multi-sponsor pools and pools maintained by the operator are prohibited.
+
+**Relevant requirements.** UNB-XIN-INV-002, UNB-XIN-INV-002#Q1, requirements/discovery/2026-11-24-final-55-question-resolutions.md, requirements/discovery/2026-11-24-simplification-economics/data/register.jsonl
+
+**Authoritative findings.**
+
+- *established* — ICA §3(c)(10)(B) excludes a collective fund 'maintained by a charitable organization exclusively for the collective investment and reinvestment of' (among others) 'assets of the general endowment fund or other funds of one or more charitable organizations'. [EV-D-014, 15 U.S.C. 80a-3(c)(10)(B)(i)]
+- *established* — A fund is 'maintained' by a charitable organization if the organization serves as trustee or administrator, or has the power to remove the trustees or administrators and designate new ones; 'charitable organization' means a §170(c)(1)-(5) or §501(c)(3) organization. [EV-D-014, 15 U.S.C. 80a-3(c)(10)(D)(i),(iii)]
+- *established* — Each §3(c)(10)(B) fund must give each donor, at the time of donation, written information describing the material terms of the fund's operation. [EV-D-015, 15 U.S.C. 80a-7(e)]
+- *established* — Securities of a §3(c)(10)(B) fund are exempt securities under the Securities Act. [EV-D-016, 15 U.S.C. 77c(a)(4)]
+- *established* — The charity (and its personnel) acting as trustee/administrator of a §3(c)(10)(B) fund is not a broker/dealer, but only if every person soliciting donations to the fund is a volunteer or in overall fundraising and receives no commission or special compensation based on the number or value of donations. [EV-D-017, 15 U.S.C. 78c(e)(1)-(2)]
+- *established* — Charitable advisers advising such funds are exempt from registration; the exemption does not cover non-charity vendors. [EV-D-019, 15 U.S.C. 80b-3(b)(4)]
+- *interpretation* — Interpretation: a pool maintained by one 501(c)(3) sponsor holding DAF assets of several 501(c)(3) sponsors is within the text of §3(c)(10)(B)(i) ('one or more charitable organizations'); DAF assets are owned by the sponsor, so they are 'other funds' of a charitable organization. [EV-D-014, §3(c)(10)(B)(i),(D)(i)]
+- *interpretation* — Interpretation: an operator acting as 'administrator' does not by itself defeat the exclusion if a charity holds the power to remove and replace it, but the operator then performs adviser/broker-type functions without §203(b)(4)/§3(e) coverage. [EV-D-014, §3(c)(10)(D)(i); EV-D-017; EV-D-019]
+
+**Supporting interpretation.** The statutory text expressly contemplates pools for 'one or more charitable organizations', and the maintenance test is satisfied by a charity acting as trustee/administrator or holding removal power. A host-sponsor pool admitting other sponsors' DAF assets is therefore available under federal law; the release-1 restriction is a business choice, not a legal requirement.
+
+**Competing interpretation.** Participating sponsors' interests in a host-sponsor pool are themselves securities sold to other charities; Securities Act §3(a)(4) exempts them, but state securities regulators and anti-fraud rules still apply; the Philanthropy Protection Act's state-law provisions and any state opt-outs were not verified here. Whether an operator-administered pool is 'maintained' by a charity when the charity's removal power is merely contractual is untested.
+
+**Applicability to Unbound.** Unbound as multi-sponsor platform could technically offer a host-sponsor pool; operator must never be the pool's trustee/adviser for compensation tied to assets, and any paid solicitor of donations to a pooled fund would jeopardize the sponsor's §3(e) exemption.
+
+**Business assumptions.**
+
+- Each sponsor is a 501(c)(3) public charity.
+- Pool investment management is by the sponsor or an SEC-registered adviser/OCIO engaged by the sponsor.
+- Donor disclosure documents are sponsor-issued.
+
+**Recommended answer.** Legal basis per pool: ICA §3(c)(10)(B) (exclusion), Securities Act §3(a)(4) (exempt security), Exchange Act §3(e) (sponsor not a broker/dealer, subject to §3(e)(2)), Advisers Act §203(b)(4) (sponsor personnel advice) plus registered adviser for any external manager, ICA §7(e) donor disclosure. Multi-sponsor pools ARE permitted by the statute when maintained by a 501(c)(3) sponsor (host sponsor as trustee/administrator or with removal power) and holding only charitable organizations' assets. Keep release 1 single-sponsor as a business-policy choice (operational simplicity), but record multi-sponsor host-sponsor pools as a legally available release-2 option rather than prohibited. Operator-maintained pools remain prohibited as policy (operator status risk).
+
+**Remaining uncertainty.** State securities law treatment of interests sold to participating sponsors; tax/UPMIFA governance of commingling across sponsors; whether a contractual removal power suffices for 'maintained'; no SEC staff letter on DAF multi-sponsor pools was retrieved.
+
+**Consequences if wrong.** Pool could be an unregistered investment company and its interests unregistered securities; sponsor could lose §3(e) broker exemption if solicitors are paid per donation.
+
+**Conservative fallback.** Single-sponsor pools only, maintained by the sponsor as trustee, with §7(e) disclosure delivered at contribution and no transaction-based compensation to anyone soliciting contributions.
+
+**Alternative business or architecture design.** A) Single-sponsor pools (release 1): low legal cost, duplicates investment operations per sponsor, loses scale economics. B) Host-sponsor multi-sponsor pool (one 501(c)(3) as trustee/administrator; participating-sponsor agreements; §7(e) disclosure by each): moderate cost (agreements, unitization, governance), large scale benefits for small sponsors, exposure low if conditions met. C) Registered fund/collective trust via bank or registered investment company: higher cost, no exclusion reliance. D) No pools; sponsor-selected mutual funds/ETFs per fund: lowest legal exposure, less customization.
+
+**External authorization required.** Sponsor board resolution establishing the pool and its investment policy; for multi-sponsor pools, executed participating-sponsor agreements; SEC-registered adviser engagement for any non-charity manager.
+
+**Acceptance criteria.**
+
+- Given a pool record, When activated, Then it names the maintaining charitable organization, the legal-basis list (ICA 3(c)(10)(B), SA 3(a)(4), EA 3(e), IAA 203(b)(4) or external RIA) and the role (trustee/administrator/removal power).
+- Given a contribution allocated to a pool, When accepted, Then the donor's §7(e) disclosure version is delivered and recorded at the time of donation.
+- Given a pool admitting another sponsor's assets, When enabled, Then a participating-sponsor agreement and both sponsors' 501(c)(3) status are recorded; release-1 configuration rejects this.
+- Given any person compensated for soliciting contributions to a sponsor with a pool, When compensation terms are recorded, Then they are not based on number or value of donations (EA §3(e)(2)).
+
+**Reconsideration triggers.**
+
+- Sponsor demand for shared pools
+- SEC or state guidance on charitable pooled funds
+- Operator proposal to administer pools
+
+**Related questions.**
+
+- **UNB-XIN-INV-002#Q1**: Yes, under the statutory text: §3(c)(10)(B)(i) covers funds of 'one or more charitable organizations' maintained by a charitable organization, and 'maintained' includes serving as trustee/administrator or holding removal power. Conditions: only charitable-organization assets, §7(e) disclosure, §3(e)(2) compensation limit. Keep disabled in release 1 as business policy.
+
+**Corrections to prior records.**
+
+- XID-INV-003 decision outcome rationale: States 'an operator-maintained or multi-sponsor pool falls outside' §3(c)(10)(B). → Multi-sponsor pools maintained by a charitable organization fall within §3(c)(10)(B)(i) ('one or more charitable organizations'). Prohibition in release 1 is a business-policy choice, not a legal requirement.
+- XID-INV-003 authority 'Philanthropy Protection Act of 1995 (general knowledge)': Unverified citation. → Verified: Pub. L. 104-62 (Dec. 8, 1995) added ICA §3(c)(10)(B)-(D) and §7(e), Securities Act §3(a)(4) fund clause, Exchange Act §3(e), Advisers Act §203(b)(4).
+- XID-INV-003 decision record: Does not record the Exchange Act §3(e)(2) solicitor-compensation condition. → Add §3(e)(2): no commission or special compensation based on number or value of donations to anyone soliciting for a §3(c)(10)(B) fund; links to XID-CRM-002.
+
+### XID-INV-004 — Confirm provisional decision: Does any platform recommendation feature make the operator an investment adviser?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium-high · **Jurisdiction:** US federal (Advisers Act); state adviser laws not surveyed · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** The operator provides no individualized investment recommendations. AI and analytics features may only implement sponsor-approved models and display descriptive information. Operator compensation never varies with assets or trades. An affiliate RIA is out of scope unless the owner later chooses it.
+
+**Relevant requirements.** RR-UNB-INV-019-r1 (requirements/discovery/2026-11-24-simplification-economics/data/register.jsonl), UNB-XIN-REG-002, XRA-009
+
+**Authoritative findings.**
+
+- *established* — Adviser definition has three elements: compensation, being in the business, and advice/analyses/reports about securities. [EV-D-018, 15 U.S.C. 80b-2(a)(11)]
+- *established* — Specific investment advice includes recommendations about specific securities or categories (e.g., mutual funds) and recommended percentage allocations; general allocation advice among securities, insurance and tangible assets is not specific. [EV-D-020, IA-1092 pp.9-10]
+- *established* — Impersonal, regularly circulated publications are excluded; personalized advice attuned to a client's portfolio is not. [EV-D-021, Lowe v. SEC]
+- *established* — §203(b)(4) charity exemption does not cover a for-profit vendor. [EV-D-019, 15 U.S.C. 80b-3(b)(4)]
+- *established* — If the operator or an affiliate registers as an RIA, the FinCEN investment adviser AML/CFT rule applies from its delayed effective date of January 1, 2028 (search-level verification only). [EV-D-039, 91 FR 36 (Jan. 2, 2026)]
+- *interpretation* — Interpretation: recommendation features (AI-suggested allocations, fund picks, rebalancing suggestions tailored to a DAF) for which the operator is compensated, even via a flat SaaS fee, satisfy the compensation element (any economic benefit) and likely make the operator an adviser; descriptive reporting of a fund's own holdings/performance without evaluation is lower risk but not categorically outside the 'reports concerning securities' prong. [EV-D-020, synthesis]
+
+**Supporting interpretation.** Removing individualized recommendations and limiting AI to executing sponsor-approved models plus factual reporting avoids the 'advice' element; flat fees avoid transaction-based compensation indicators.
+
+**Competing interpretation.** A flat SaaS fee still counts as compensation; analytics that score, rank, or flag holdings (e.g., risk scores, ESG ratings, drift alerts with suggested trades) could be 'analyses or reports concerning securities' issued as part of a regular business.
+
+**Applicability to Unbound.** Covers AI assistant, analytics dashboards, rebalancing, model marketplace features.
+
+**Business assumptions.**
+
+- Sponsor or sponsor's RIA owns model selection.
+- Third-party data (e.g., fund factsheets) is displayed with attribution and without operator evaluation.
+
+**Recommended answer.** Yes, any feature that produces operator-authored, fund- or donor-specific recommendations on securities or allocations would likely make the operator an adviser (compensation via SaaS fee suffices). Confirm the decision: no individualized recommendations; AI may explain sponsor-approved options and execute sponsor-approved models; analytics limited to factual, non-evaluative reporting (holdings, performance vs sponsor-chosen benchmark, drift vs sponsor model) with no suggested trades except those mechanically required by the sponsor's model and approved by the sponsor. Third-party ratings may be shown only as attributed third-party content. Affiliate RIA remains a later business option.
+
+**Remaining uncertainty.** Exact boundary for descriptive analytics under the reports prong; state law; how SEC would view AI explanation of options.
+
+**Consequences if wrong.** Unregistered adviser activity; required registration, compliance program, Form ADV, fiduciary duties, AML program from 2028.
+
+**Conservative fallback.** Disable drift alerts with trade suggestions and any ranking/scoring of securities; show only sponsor-published materials.
+
+**Alternative business or architecture design.** A) Descriptive-only (recommended): low cost, limited differentiation. B) Partner RIA supplies recommendations under its registration inside the UI with clear attribution and flat fees: medium cost, preserves AI-advice value. C) Affiliate RIA: high cost (registration, CCO, AML rule from 2028), maximum product freedom.
+
+**External authorization required.** None for descriptive-only features; SEC/state investment adviser registration of operator or affiliate if recommendation features are enabled (or executed agreement with a partner RIA that provides them).
+
+**Acceptance criteria.**
+
+- Given an AI response about investments, When generated, Then it references only sponsor-approved options/models and contains no operator-originated recommendation to buy/sell/allocate (policy check logged).
+- Given an analytics view, When rendered, Then it contains factual metrics only and any rating is labelled with its third-party source.
+- Given a rebalancing action, When proposed, Then it derives mechanically from a sponsor-approved model and requires sponsor approval or sponsor standing policy.
+
+**Reconsideration triggers.**
+
+- Request for personalized AI investment suggestions
+- Introduction of scoring/ranking of funds
+- SEC guidance on AI/robo or analytics providers
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- XID-INV-004 decision record rationale '§203(b)(4) scope': Correct, now verified. → Verified 15 U.S.C. 80b-3(b)(4) text; exemption limited to charitable organizations and their personnel.
+
+### XID-REG-001 — Confirm provisional decision: Does instruction-only authority over sponsor-titled accounts keep the operator outside state money-transmission laws in target states?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium-high · **Jurisdiction:** US federal (BSA/FinCEN) and states; examples CA, NY, TX, FL; MTMA as model framework · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** Architecture rule: the operator never takes title to or possession of contribution or grant money; it holds instruction-only authority over sponsor-titled accounts. No embedded or white-label deployment that touches money goes live until a multistate money-transmission memo is on file.
+
+**Relevant requirements.** UNB-XIN-REG-001 (requirements/discovery/2026-11-23-cross-industry/16-LEGAL-AND-ACCOUNTING-DECISIONS.md), UNB-XIN-REG-001#Q1, XRA-008 (requirements/discovery/2026-11-23-cross-industry/07-REGULATORY-APPLICABILITY-MATRIX.md; data/regulatory-applicability.jsonl), XID-BNK-005, UNB-XIN-OTH-003 (host in funds flow, requirements/discovery/2026-11-23-cross-industry/13-BUSINESS-MODEL-ANALYSIS.md), requirements/discovery/2026-11-24-final-55-question-resolutions.md
+
+**Authoritative findings.**
+
+- *established* — Federal money transmission requires acceptance of funds from one person and transmission to another location or person; status is facts-and-circumstances; there is also a catch-all for 'any other person engaged in the transfer of funds'. [EV-D-001, 31 CFR 1010.100(ff)(5)(i)(A)-(B),(ii)]
+- *established* — Persons that only provide delivery, communication or network access services used by a money transmitter are excluded, and FinCEN says suppliers of software tools 'are engaged in trade and not money transmission'. [EV-D-002, FIN-2019-G001 §4.5.1(b) p.19; 31 CFR 1010.100(ff)(5)(ii)(A)]
+- *established* — FinCEN analyses intermediaries by who owns the value, where it is stored, whether the owner interacts directly with the payment system, and whether the intermediary has 'total independent control over the value'. [EV-D-002, FIN-2019-G001 §4.2 p.15]
+- *established* — FinCEN reads the exemptions strictly; a person cannot rely on one unless its activity conforms fully. [EV-D-002, FIN-2019-G001 §2 p.9]
+- *established* — An ISO that 'does not take possession or control of merchant funds at any point' is not a money transmitter; for a processor serving mostly nonprofits collecting donations FinCEN found payment-processor conditions (a),(c),(d) apparently met. [EV-D-003, FIN-2014-R009]
+- *established* — Under the MTMA model, money transmission is selling/issuing payment instruments or stored value, or receiving money for transmission; it excludes the provision solely of online or telecommunications services or network access. [EV-D-006, MTMA §2.01(q)]
+- *established* — CSBS reports 31 states have enacted the MTMA in full or part (Nov 2026); Texas enacted full MTMA effective 9/1/2023; California enacted partial provisions; New York and Florida are not listed. [EV-D-004, CSBS Aug 2026 tracker; EV-D-005 page text]
+- *established* — California: 'services' for the agent-of-payee exemption include charitable activities of 501(c)(3) organizations (10 CCR §80.126.30, eff. 10/1/2021); DFPI found a company that received donations as the NPO's written agent exempt. [EV-D-008, DFPI letter 2022-06-09 §II.A, fn 5]
+- *established* — California: 501(c)(3) public benefit nonprofits that engage in money transmission are exempt (10 CCR 80.3002(a)(2)); a charity's payment processor must meet the statutory agent-of-payee test, common-law agency alone is insufficient. [EV-D-009, FSOR PRO 07-17 pp.1-2]
+- *established* — New York: license required to receive money for transmission or transmit the same; agents allowed only as agent of licensee or payee. DFS staff: where funds go directly from payor's account to an account owned by the payee there is no receipt of money for transmission by the processor. [EV-D-010, N.Y. Banking Law §641(1); EV-D-011 letter 2007-07-09]
+- *established* — Florida: a money transmitter is an entity that receives value to act as an intermediary to transmit it, and 'includes only an intermediary that has the ability to unilaterally execute or indefinitely prevent a transaction'. [EV-D-012, Fla. Stat. §560.103(27)(a) (2026)]
+- *established* — Texas MTMA agent-of-payee exemption at Fin. Code §152.004(2) requires a written agreement, holding out, and treatment of payment as received by payee. [EV-D-013, SB 895 enrolled analysis]
+- *interpretation* — Interpretation: an operator that never receives, holds, or has independent control over contribution or grant money, and whose software only transmits the sponsor's own authorized payment instructions to the sponsor's bank or custodian (sponsor-titled accounts, sponsor-held authority), is not 'receiving money for transmission' under the MTMA, CA, NY, TX or FL definitions, nor 'accepting' funds under 31 CFR 1010.100(ff)(5); it does not need the agent-of-payee or payment-processor exemptions. [EV-D-001, synthesis of EV-D-001/002/006/010/011/012]
+- *interpretation* — Interpretation: the sponsor itself is not transmitting money for others when it grants its own funds (it owns DAF assets) and in CA is separately exempt as a 501(c)(3); consistent with prior internal REG-042. [EV-D-040, REG-042; EV-D-009]
+
+**Supporting interpretation.** Every surveyed definition (federal and state) turns on receiving/accepting money and then transmitting it, or on control of the value. Florida expressly limits transmitters to intermediaries able to unilaterally execute or indefinitely block a transaction. FinCEN treats software/tool suppliers as engaged in trade. A pure instruction-relay with no receipt, no float, no pooled or FBO account, and no unilateral execution authority sits outside these definitions without needing any exemption. In California the sponsor (and its agents when it transmits) is additionally exempt as a 501(c)(3).
+
+**Competing interpretation.** (1) The federal catch-all 'any other person engaged in the transfer of funds' and NY's 'or transmit the same' could be read to reach a party that originates transfers from another's account (e.g., via bank API credentials or ACH origination as a third-party sender) even without receipt. (2) If the operator holds credentials that let it initiate payments without contemporaneous sponsor approval, a regulator could find 'control' (FinCEN criterion d; Florida 'unilaterally execute'). (3) Embedded hosts or white-label partners that take donor money into their own accounts are themselves potential transmitters, and the operator could be seen as part of that flow. (4) Some non-MTMA states have broader definitions not surveyed here.
+
+**Applicability to Unbound.** Unbound is software only; sponsors are 501(c)(3)s that own the money in sponsor-titled bank/custody accounts. Applies to all deployment models; highest exposure in embedded (host takes payments) and D2C (operator-branded collection) models.
+
+**Business assumptions.**
+
+- Contribution and grant accounts are titled to the sponsor (or custodian for the sponsor) in every deployment.
+- No operator-owned, FBO, omnibus or settlement account ever receives donor or grant money.
+- Payment execution requires sponsor-held authorization (sponsor approval or sponsor-configured standing policy executed under sponsor credentials); operator cannot unilaterally execute or indefinitely block a sponsor payment.
+- Card/ACH contributions settle directly from donor to sponsor-owned merchant/bank account through BSA-regulated institutions.
+- Operator fees are invoiced separately and never netted from charitable funds.
+
+**Recommended answer.** Confirm the architecture rule, with a sharper test: the operator stays outside federal MSB and state money-transmission definitions if (a) it never receives or holds donor/grant money (no operator, FBO, or pooled accounts), (b) it has no ability to unilaterally execute or indefinitely prevent a payment (sponsor-held bank/custodian credentials and approval; operator software only relays sponsor-authorized instructions), and (c) donor payments settle directly into sponsor-owned accounts through BSA-regulated processors/banks. Replace the gate 'multistate memo before embedded/white-label that touches money' with: a recorded FundsFlow conformance check against tests (a)-(c) plus a jurisdiction table (federal, MTMA states, CA, NY, TX, FL, others default-conservative). External legal authorization is required only for a deployment that fails (a)-(c): then use a licensed money transmitter or bank partner, or obtain licences.
+
+**Remaining uncertainty.** No regulator ruling addresses a DAF software operator with instruction-only authority specifically. Non-MTMA, non-surveyed states may define transmission more broadly. Treatment of an operator acting as ACH third-party sender or holding API payment-initiation credentials is unsettled. Texas statute text was read only via bill analysis; California statute via mirror (official site blocked).
+
+**Consequences if wrong.** Unlicensed money transmission (state criminal and civil penalties; federal 18 U.S.C. 1960 exposure if MSB registration required and missing), forced restructuring of funds flow, bank partner termination.
+
+**Conservative fallback.** Operate only models where all money moves between donor/sponsor/grantee accounts at BSA-regulated institutions under sponsor credentials; for any embedded host, contractually prohibit the host from receiving funds (or require host to be licensed/agent-of-payee of the sponsor under a written agreement satisfying MTMA §3.01(b)/CA §2010(l)).
+
+**Alternative business or architecture design.** A) Instruction-only relay (recommended): cost low, friction moderate (sponsor approval steps, sponsor-held credentials), exposure low, lost opportunity: no operator float income, no instant cross-sponsor settlement. B) Partner with licensed processor/transmitter for donor collection (e.g., processor as agent of payee of sponsor): cost per-transaction fees, friction low, exposure shifted to licensee, lost opportunity small. C) Obtain money-transmitter licences (~multistate NMLS, bonds, net worth, audits): high cost and 12-24 months, enables float and settlement products; not justified for release 1. D) Agent-of-payee structure where operator receives funds as sponsor's agent: legally available in MTMA states and CA (charitable services covered), but NY/FL lack a clean statutory equivalent and operator would carry custody/insolvency risk; reject for release 1.
+
+**External authorization required.** None for a deployment that passes the no-receipt/no-unilateral-control tests. For any deployment where the operator or its affiliate receives or controls funds: state money-transmitter licences (via NMLS) and FinCEN MSB registration, or an executed agreement with a licensed transmitter/bank acting for the sponsor.
+
+**Acceptance criteria.**
+
+- Given any deployment, When its FundsFlow declaration is saved, Then every account holding contribution or grant money shows the sponsor (or custodian for the sponsor) as title holder and no operator/affiliate account appears; otherwise activation is blocked.
+- Given an operator service account, When it attempts to initiate a payment from a sponsor account without a sponsor approval record or sponsor-authorized standing policy, Then the request is rejected and logged.
+- Given operator billing, When fees are charged, Then they are invoiced to the sponsor and never netted from contributions or grants.
+- Given an embedded host, When the host integration is configured, Then donor payments settle directly to the sponsor's merchant/bank account and the host contract records that the host does not receive funds (or records host licence/agent-of-payee agreement).
+- Given a change to FundsFlow, When saved, Then the conformance check and jurisdiction table review re-run before activation.
+
+**Reconsideration triggers.**
+
+- Any proposal for operator-held, FBO, pooled, or settlement accounts, or netting of fees from charitable money
+- Operator obtaining payment-initiation credentials usable without sponsor approval, or acting as ACH third-party sender
+- Expansion to a state not in the jurisdiction table or whose MTMA version changes
+- New FinCEN ruling/guidance or state regulator action on software platforms or charitable payment facilitation
+- Embedded host or white-label partner that collects donor funds
+
+**Related questions.**
+
+- **UNB-XIN-REG-001#Q1**: Surveyed definitions (MTMA, CA, NY, TX, FL, federal) require receipt or control of money; instruction-only authority without receipt or unilateral execution ability is outside them. Map funds flow per deployment against those tests; only flows with operator receipt/control need licensing or a licensed partner.
+
+**Corrections to prior records.**
+
+- XRA-008 (requirements/discovery/2026-11-23-cross-industry/07-REGULATORY-APPLICABILITY-MATRIX.md): Matrix states 'FinCEN's payment-processor exemption covers payments for goods or services, and a grant is neither.' FIN-2014-R009 (cited by XRA-008) treated donation processing for nonprofits as apparently meeting condition (a), and California regulation 10 CCR §80.126.30 defines 'services' to include 501(c)(3) charitable activities. → Say instead: donation processing has been treated as within the payment-processor/agent-of-payee frameworks in some rulings; but an instruction-only operator does not need either exemption because it never accepts funds.
+- XRA-008 authority 'FIN-2014-R009': R009 is an ISO/payment-processor ruling, not an instruction-only or software ruling. → Cite FIN-2014-R009 for 'no possession or control = not a transmitter' (ISO activity) and FIN-2019-G001 §4.2 and §4.5.1(b) for control criteria and software-supplier treatment.
+- XID-REG-001 decision outcome: Gate requires a 'multistate money-transmission memo' (paid counsel) before embedded/white-label deployments, regardless of whether the funds flow has any operator receipt. → Gate on FundsFlow conformance to the no-receipt/no-unilateral-control tests; require external licensing or licensed partner only when those tests fail.
+
+### XID-REG-002 — Confirm provisional decision: Which operator features create investment-adviser or broker-dealer status?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US federal (Advisers Act, Exchange Act); state adviser/broker laws not surveyed · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** Operator features are classified as follows: investment advice or model construction for compensation (adviser risk) — disabled; compensation varying with securities transactions or custody of securities (broker-dealer risk) — prohibited, operator fees are fixed SaaS fees; hosting donor solicitations (California platform risk) — see XID-SAS-005. A feature with an unmapped status question cannot be enabled.
+
+**Relevant requirements.** UNB-XIN-REG-002 (requirements/discovery/2026-11-23-cross-industry/16-LEGAL-AND-ACCOUNTING-DECISIONS.md), OB-42 (requirements/discovery/2026-11-23-cross-industry/03-MISSING-REQUIREMENTS-REGISTER.md), XRA-009, XRA-010, XID-INV-004, RR-UNB-INV-019-r1
+
+**Authoritative findings.**
+
+- *established* — Investment adviser: any person who for compensation is in the business of advising others on securities, or who for compensation and as part of a regular business issues analyses or reports concerning securities; bona fide publishers excluded. [EV-D-018, 15 U.S.C. 80b-2(a)(11), (a)(11)(D)]
+- *established* — The charitable registration exemption covers only a charitable organization and its trustees, directors, officers, employees, volunteers; not a vendor. [EV-D-019, 15 U.S.C. 80b-3(b)(4)]
+- *established* — SEC staff: 'in the business' if holding out as adviser, receiving separate or transaction-based compensation for advice, or giving specific investment advice (including recommended percentage allocations to particular fund types) other than on rare, isolated occasions. [EV-D-020, IA-1092 §II.2 pp.8-10]
+- *established* — Impersonal publications of general and regular circulation are excluded; advice 'attuned to any specific portfolio or to any client's particular needs' is adviser activity. [EV-D-021, Lowe v. SEC, 472 U.S. 181 (1985)]
+- *established* — Broker = engaged in the business of effecting transactions in securities for the account of others; SEC staff indicators include compensation tied to transaction size/outcome, handling others' funds or securities, and operating platforms to trade securities. [EV-D-022, SEC Guide to Broker-Dealer Registration §II.A]
+- *established* — The charity broker-dealer exemption covers the charity and its personnel only and is conditioned on no commission-based compensation to solicitors of donations to §3(c)(10)(B) funds. [EV-D-017, 15 U.S.C. 78c(e)(1)-(2)]
+- *interpretation* — Interpretation: features that create adviser risk for the operator are those that, for its fee, produce security- or fund-specific recommendations, allocations, model construction, manager selection, or evaluative ratings for a particular fund/sponsor; features that create broker risk are order routing/execution for others' accounts, holding securities or cash, or any fee varying with transactions, assets traded, or liquidation proceeds. [EV-D-020, synthesis]
+
+**Supporting interpretation.** Status follows the operator's own conduct and compensation. Fixed SaaS fees that do not vary with trades or assets remove the strongest broker indicator and the 'transaction-based compensation' adviser indicator. Implementing a model selected and owned by the sponsor (or the sponsor's RIA) is acting on the client's investment decision, not advising.
+
+**Competing interpretation.** The second prong of §202(a)(11) ('issues or promulgates analyses or reports concerning securities' as part of a regular business for compensation) can reach software that generates analytics about securities even without recommendations; staff and states have treated some technology/model providers as advisers. Generating and transmitting orders to a broker for a sponsor's account could be viewed as 'effecting transactions' by the operator if it, not the sponsor's custodian/broker, routes orders.
+
+**Applicability to Unbound.** Applies to investment-centric, advisor-distribution, white-label and HNW models (XRA-009/010). The operator has no §203(b)(4) or §3(e) coverage; the sponsor does.
+
+**Business assumptions.**
+
+- Operator fees are flat or tiered SaaS fees not tied to AUM, trades, or liquidation proceeds.
+- Sponsors (or their RIAs/OCIOs) select and own investment menus and model portfolios.
+- Orders are executed by the sponsor's broker/custodian; operator never holds securities or cash.
+
+**Recommended answer.** Confirm with refinements. Disabled unless an external registration path is chosen: (1) operator-authored recommendations, allocations, model construction, manager/fund selection, or ratings for a particular sponsor or donor; (2) operator order routing/execution where the operator is the party sending orders to market for others' accounts; (3) any operator compensation varying with AUM, trades, or liquidations; (4) operator custody of securities or cash. Permitted: implementing sponsor-selected models (sponsor approval recorded), producing order files or instructions that the sponsor's broker/custodian executes, factual/descriptive reporting of a fund's own holdings and performance without evaluative recommendation, generic educational content of general circulation. Each feature carries a status code in the OperatorStatusRegister; unmapped features stay disabled.
+
+**Remaining uncertainty.** No SEC statement specific to DAF platforms; boundary of the 'analyses or reports concerning securities' prong for descriptive analytics; state adviser definitions (Uniform Securities Act variants) not surveyed; staff positions on order-management software vendors not fetched.
+
+**Consequences if wrong.** Unregistered adviser or broker-dealer activity (SEC/state enforcement, rescission risk, FINRA membership needed for broker), plus loss of sponsor exemptions if operator compensation taints §3(e)(2).
+
+**Conservative fallback.** Ship release 1 with only sponsor-selected menus and descriptive reporting; no rebalancing automation that sends orders; order files exported to the sponsor's custodian for sponsor-initiated execution.
+
+**Alternative business or architecture design.** A) Software-only with sponsor/RIA decision ownership (recommended): low cost, moderate friction (sponsor approves models), low exposure, loses advisory revenue. B) Affiliate SEC-registered RIA providing models/advice to sponsors: high cost (registration, compliance program, FinCEN IA AML rule from 2028-01-01), enables AI recommendations and model revenue. C) Partner OCIO/RIA embedded under its own registration: medium cost via revenue share (must avoid transaction-based pay), low exposure. D) Broker-dealer partnership for execution: execution stays with registered BD; operator receives flat fees only.
+
+**External authorization required.** Only if disabled features are enabled: SEC (or state) investment adviser registration for the operator/affiliate, or broker-dealer registration and FINRA membership; otherwise none.
+
+**Acceptance criteria.**
+
+- Given a feature flagged adviser-risk or broker-risk in the OperatorStatusRegister, When a tenant enables it, Then activation fails unless a recorded registration path (affiliate RIA/BD or partner) is attached.
+- Given any model portfolio, When it is used for rebalancing, Then a sponsor approval record naming the model owner exists.
+- Given the operator's fee schedule, When computed, Then no fee component references AUM, trade count, trade value or liquidation proceeds.
+- Given an order generated by the platform, When released, Then it is executed by the sponsor's broker/custodian under sponsor authority, not submitted by an operator account.
+
+**Reconsideration triggers.**
+
+- Product request for AI-generated recommendations or allocations to donors or sponsors
+- Pricing proposal with AUM or transaction components
+- Operator direct broker connectivity sending orders
+- SEC or state guidance on model-portfolio or analytics providers
+
+**Related questions.**
+
+- **UNB-XIN-REG-002#Q1**: A vendor that only executes sponsor-selected model portfolios, under sponsor approval, with flat fees and no recommendations, is not giving advice about securities to others for compensation (interpretation); keep execution with the sponsor's broker/custodian to avoid broker status.
+- **XID-INV-004**: See XID-INV-004 dossier: no individualized recommendations; descriptive analytics limited to factual reporting; flat fees.
+
+**Corrections to prior records.**
+
+- XID-REG-002 decision record rationale: States 'Philanthropy Protection Act exemptions are for charities' without citation. → Correct and now verified: 15 U.S.C. 80b-3(b)(4) and 78c(e)(1) cover charitable organizations and their trustees/officers/employees/volunteers only.
+- UNB-XIN-REG-002 (c): Maps 'donation pages soliciting for multiple charities' to California platform registration; Type E (SaaS for a charity soliciting for itself) is not captured. → Add Type E (customizable SaaS/white-label for a charity) to the register; see XID-SAS-005 dossier.
+
+### XID-SAS-005 — Confirm provisional decision: Which operating models make the platform company a California charitable fundraising platform (Type A/E) and what registration/disclosure follows?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US-CA · **Batch:** D (Financial regulation)
+
+**Original provisional answer.** Assume the sponsor's California exclusion does not cover the platform company. D2C own-brand apps and charity-side giving buttons are not launched to California users until a California opinion is on file; other models may launch.
+
+**Relevant requirements.** OB-38 (requirements/discovery/2026-11-23-cross-industry/industry/sas.md, industry/grt.md), REQ-X-063, REQ-X-064, UNB-XIN-SAS-001, UNB-XIN-REG-002(c), requirements/discovery/2026-11-23-cross-industry/13-BUSINESS-MODEL-ANALYSIS.md (D2C Type A; white-label and embedded Type E), requirements/discovery/2026-11-23-cross-industry/07-REGULATORY-APPLICABILITY-MATRIX.md
+
+**Authoritative findings.**
+
+- *established* — A charitable fundraising platform (CFP) is any person or entity that uses the internet to provide a website, service or platform to persons in California and performs, permits or enables listed acts, including (A) listing or referencing recipient charities by name to receive donations or recommended grants and (E) providing charities a customizable website/SaaS/platform to solicit or receive donations (not the charity's own platform, though it may integrate with it). [EV-D-027, Gov. Code §12599.9(a)(1)(A),(E)]
+- *established* — Excluded: a charity's own platform soliciting only for itself; a vendor that solely provides technical or supportive services (hosting, development, digital payment processing) to a CFP, unless it enables solicitation on its own platform; a DAF sponsor that solicits DAF accounts and receives grant recommendations and does not list recipient charities by name for persons without advisory privileges. [EV-D-027, §12599.9(a)(2)(A)-(C), (a)(6)]
+- *established* — Solicitation types A-E in 11 CCR §314(m)-(q) track §12599.9(a)(1)(A)-(E); type E references private-labeled or customizable platforms and SaaS licence agreements; in type E a charity uses the CFP to solicit or receive donations for itself. [EV-D-028, ISOR pp.9-10; EV-D-029 FSOR Att. A resp. ~p.12]
+- *established* — CFP definition applies regardless of whether operated by charities or for-profits. [EV-D-029, FSOR Att. A response (§314 comment)]
+- *established* — Obligations: register before soliciting/permitting/enabling solicitations, annual sworn reports, good-standing checks of charities (may rely on IRS/FTB/AG lists), conspicuous disclosures for types A-C, charity consent rules, prompt receipts for A/B; regs §§318-322 effective January 1, 2025. [EV-D-027, §12599.9(b)-(g); EV-D-030]
+- *interpretation* — Interpretation: the DAF-sponsor exclusion in (a)(2)(C) covers the sponsoring organization only; it does not exclude the operator. [EV-D-027, §12599.9(a)(2)(C)]
+- *interpretation* — Interpretation: a white-label or embedded deployment where the operator provides a customizable SaaS through which a sponsor solicits DAF contributions is within type E unless it qualifies as the sponsor's 'own platform'; the (a)(2)(B) vendor exclusion literally applies to vendors of a CFP, and an excluded DAF sponsor is not a CFP, so reliance on it is uncertain. [EV-D-027, §12599.9(a)(1)(E), (a)(2)(B)]
+- *interpretation* — Interpretation: a D2C own-brand app that lists charities by name for grant recommendations, or a charity-side giving button network listing charities by name, is type A for the operator. [EV-D-027, §12599.9(a)(1)(A)]
+
+**Supporting interpretation.** Statute is broad and expressly targets SaaS/white-label (type E) and charity listings (type A); for-profits are covered; the DAF exclusion is entity-specific.
+
+**Competing interpretation.** A sponsor-licensed, sponsor-branded deployment on sponsor domains could be argued to be the sponsor's 'own platform' (excluded) with Unbound a technical vendor; and DAF account-holders recommending grants arguably are not 'donations solicited' by the platform when only advisory-privileged users see charity listings.
+
+**Applicability to Unbound.** D2C (type A, likely), charity-side buttons (type A/E), white-label and embedded (type E possible), sponsor-hosted portal on sponsor domain (lowest risk).
+
+**Business assumptions.**
+
+- California users will be served.
+- Charity directory/search shown only to authenticated advisory-privileged users in sponsor deployments.
+
+**Recommended answer.** Revise: (1) Sponsor-direct deployments where charity listings are visible only to advisory-privileged users and the experience is the sponsor's own branded platform: launch in CA with records showing sponsor ownership/branding (interpretation: excluded; moderate confidence). (2) White-label and embedded models: treat as potential type E. (3) D2C own-brand app and charity-side buttons: treat as type A. For (2) and (3), rather than block California indefinitely, register the operator with the Attorney General's Registry as a charitable fundraising platform before enabling, and implement §12599.9 duties (annual PL-4 report, good-standing checks via IRS/FTB/AG lists, type A-C disclosures, consent/removal handling, receipts where applicable). Registration is a filing, not a discretionary approval, so it removes the need for a paid opinion.
+
+**Remaining uncertainty.** Whether white-label on sponsor domain is the sponsor's 'own platform'; fees and exact form numbers; how DOJ applies type E to DAF sponsors' contribution solicitation; vendor exclusion scope.
+
+**Consequences if wrong.** Unregistered CFP operation: AG enforcement, penalties, cease-and-desist (placement on May Not Operate list), sponsor reputational harm.
+
+**Conservative fallback.** Register the operator as a CFP before any California deployment of any model and comply with type-A/E obligations; costs are filing fees and reporting.
+
+**Alternative business or architecture design.** A) Register as CFP and comply (recommended for D2C/buttons/white-label): low-moderate cost (filing, annual report, disclosure UI, good-standing feed), no lost market. B) Block CA for those models (prior decision): zero compliance cost, loses the largest US state market. C) Restrict to sponsor-owned platform pattern (sponsor domain, sponsor branding, listings only for advisory-privileged users): low cost, loses D2C brand. D) Seek written opinion: paid, excluded by zero-consultation budget.
+
+**External authorization required.** Registration of the operator with the California Attorney General's Registry of Charities and Fundraisers as a charitable fundraising platform (initial registration form and annual renewal/report under §12599.9(b)-(c) and 11 CCR §315) before enabling type A or E solicitation for California users.
+
+**Acceptance criteria.**
+
+- Given a deployment serving California users, When its model is D2C, charity-side button, white-label or embedded, Then activation requires a recorded CFP registration number and current renewal, or a recorded sponsor-own-platform determination.
+- Given a type A-C solicitation surface, When shown to a CA user, Then §12599.9(e) disclosures are displayed before donation/recommendation.
+- Given a recipient charity, When listed or granted to through a CFP surface, Then good-standing status (IRS, FTB, AG) is checked and recorded.
+- Given a charity's verified removal request, When received, Then its name is removed within three business days.
+
+**Reconsideration triggers.**
+
+- AG guidance or enforcement involving DAF software vendors
+- Amendment of §12599.9 or 11 CCR §§314-322
+- Launch of public (non-advisory) charity listings
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- XID-SAS-005 decision outcome ('other models may launch'): Allows white-label and embedded to launch in CA without review, but the same record set (requirements/discovery/2026-11-23-cross-industry/13-BUSINESS-MODEL-ANALYSIS.md) flags CA Type E exposure for white-label and embedded, and §12599.9(a)(1)(E) expressly covers SaaS/customizable platforms for charities. → Gate white-label and embedded the same way as D2C (registration or recorded sponsor-own-platform determination).
+- XID-SAS-005 authority 'Cal. Gov. Code §12599.9 (search results only)': Previously unverified. → Text verified via public.law mirror and AG rulemaking record (EV-D-027 to EV-D-030).
+- XID-SAS-005 'Type A/E' terminology: Not defined in records. → Types A-E are 11 CCR §314(m)-(q) solicitation types mapping to Gov. Code §12599.9(a)(1)(A)-(E).
+
 ### RCD-006 — Confirm provisional decision: What charity-status freshness and deep-review intervals apply, and can cross-sponsor evidence be relied on?
 
 **Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US federal · **Batch:** E (Governance, succession and delegated authority)
@@ -3295,10 +5004,1276 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 
 - none
 
+### RCD-005 — Confirm provisional decision: May a sponsor board delegate routine grant approval to a version-pinned deterministic policy, and who is the fund manager for §4966/§4967?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US federal (§4966) and US states (sampled) · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Decided: Build the deterministic approval tier. Until counsel and the sponsor board approve delegation, its outcome is 'ApproveRecommended', which a human approves in one-click batches (A4). After approval the same rule outcome becomes the A3 approval itself, with no code change, only an authority-flag change. \| confirmation_answer: Deterministic recommendation until board delegation and counsel identify accountable fund managers.
+
+**Relevant requirements.** RCD-005, requirements/reconciliation/2026-11-23/14-OPEN-DECISIONS.md:34, requirements/reconciliation/2026-11-23/06-REGULATORY-ASSUMPTION-REGISTER.md:56, requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md:346, SPD-CLR-004
+
+**Authoritative findings.**
+
+- *established* — Corporate powers exercised by or under the direction of the board; board may delegate management of activities to any person, management company or committee if activities remain under the board's ultimate direction. [EV-G-017, §5210]
+- *established* — Board committees may exercise board authority except eight listed matters; grant approval and fund acceptance are not listed. [EV-G-018, §5212(a)(1)-(8)]
+- *established* — Board committees need 3+ directors; committees of the corporation cannot bind the board. [EV-G-021, §712]
+- *established* — Corporation managed by its board except as certificate provides. [EV-G-020, §701(a)]
+- *established* — Business and affairs managed by or under the direction of the board; committees per resolution/bylaws; applies to nonstock corporations. [EV-G-016, §141(a),(c)(2),(j)]
+- *established* — Powers exercised by or under the authority of the board; officers' duties per bylaws or board resolution; committees may not authorize distributions or fundamental transactions. [EV-G-023, §§8.01(b), 8.25(e), 8.41]
+- *established* — Fund manager = officers, directors, trustees (or individuals with similar powers) and, for any act, employees having authority or responsibility for it; 5% tax on fund manager agreement knowing distribution is taxable, capped at $10,000 per distribution, joint and several. [EV-G-025, §4966(a)(2),(b),(d)(3)]
+- *established* — 2023 proposed §4966 regulations not finalized as of May 2026. [EV-G-029, status]
+
+**Supporting interpretation.** Nonprofit statutes in the sampled states (CA, NY, DE, Model-Act state VT) let boards act 'by or under the direction of' the board and delegate to officers, committees or agents while retaining oversight; fund acceptance and grant approval are not on any non-delegable list found. A deterministic policy is not a legal person: the lawful structure is a board resolution adopting the policy and delegating its execution to a named officer or committee who remains accountable, with board oversight reporting. 'Committee' authority limits (director-only membership, 2+ in CA, 3+ in NY) apply only when a board committee is used. California's 'distributions' bar for committees (VT §8.25(e)) concerns distributions to members, not charitable grants (interpretation). Fund managers under §4966(d)(3): the sponsor's officers, directors and trustees always; for a specific distribution also employees with authority or responsibility for it. A deterministic rule does not remove fund managers; those who adopted the policy and the officer to whom execution is delegated are the accountable persons. Tax attaches only to agreement 'knowing' the distribution is taxable, so a sound, tested policy reduces exposure. Unbound staff are not sponsor employees; they would be fund managers only if given officer-like powers (see SPD-ORG-002).
+
+**Competing interpretation.** Some counsel may say grant approval is a core board function requiring human review of each grant; statutes sampled do not say so.
+
+**Applicability to Unbound.** Grant approval tier and ExciseTaxIncident party records.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Confirm the provisional decision. Delegation to a policy executed under a named officer/committee is permissible in sampled states once the board adopts it; fund managers are the sponsor's officers/directors/trustees and responsible employees (incl. the delegate officer). Record them per policy version. Proposed §4966 regs are not final; do not rely on them.
+
+**Remaining uncertainty.** Bylaws; unsampled states; final §4966 regulations.
+
+**Consequences if wrong.** Fund manager excise tax exposure up to $10,000 per distribution; governance finding.
+
+**Conservative fallback.** ApproveRecommended with one-click human batch (A4).
+
+**Alternative business or architecture design.** Batch human approval (minutes/day; lost automation benefit small at low volume).
+
+**External authorization required.** Sponsor board resolution adopting the grant-approval policy and naming the delegate; counsel sign-off on bylaws.
+
+**Acceptance criteria.**
+
+- Given an auto-approved grant, when recorded, then the policy version, adopting resolution and delegate officer are stored as accountable fund managers.
+
+**Reconsideration triggers.**
+
+- Final §4966 regulations published.
+- State law change.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### RCD-031 — Confirm provisional decision: SOC 1 versus SOC 2 scope.
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** high · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Decided: Design for SOC 1 Type II (fund-accounting controls) and SOC 2 Type II (platform security). Readiness only; no attestation claimed. \| confirmation_answer: SOC1/2 readiness from inception; actual attestation scope and timing based on reliance.
+
+**Relevant requirements.** RCD-031, requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:118, requirements/discovery/2026-11-24-simplification-economics/02-REQUIREMENT-SIMPLIFICATION-MATRIX.md, requirements/discovery/2026-11-24-confirmation-question-review.md
+
+**Authoritative findings.**
+
+- *established* — A SOC 1 report addresses controls at a service organization relevant to user entities' ICFR; criteria are in AT-C 320 .15-.17; its intended users are service-org management, user entities and their auditors; a type 2 may provide evidence of operating effectiveness. [EV-G-004, pp.1-3 rows 'criteria' and 'purpose']
+- *established* — SOC 2 covers security, availability, processing integrity, confidentiality or privacy using DC 200 and TSP 100 (2017 TSC with revised points of focus 2022). [EV-G-004, p.2 row 'criteria']
+- *established* — Type 1 = design as of a date; type 2 = design and operating effectiveness throughout a period, with tests and results. [EV-G-005, SOC 1 section]
+- *established* — The 2022 revision changed points of focus and implementation guidance, not the TSC criteria or SOC 2 description criteria. [EV-G-007, p.1]
+
+**Supporting interpretation.** Splitting scope is consistent with the AICPA framework: SOC 1 for fund-ledger, contribution, grant and reconciliation control objectives relevant to sponsors' financial statements; SOC 2 (Security mandatory, plus Availability, Processing Integrity, Confidentiality as committed) for platform trust. 'Readiness only' is correct: no attestation exists until a CPA firm issues a report.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Design control register tags SOC1/SOC2 per control; readiness only.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Confirm with clarification: design for SOC 1 (AT-C 320; ledger/ICFR objectives) and SOC 2 (AT-C 105/205 with TSP 100 2017 TSC, revised points of focus 2022). Type 2 requires an observation period (commonly 6-12 months) so readiness evidence must exist from the period start. Actual report scope and timing follow auditor and contract reliance (see SPD-PLT-001).
+
+**Remaining uncertainty.** AT-C 205/AT-C 320 primary texts not fetched (gated); relied on AICPA-derived comparison.
+
+**Consequences if wrong.** Mis-scoped controls create gaps in the first report period.
+
+**Conservative fallback.** Tag controls for both reports where in doubt.
+
+**Alternative business or architecture design.** SOC 2 with Processing Integrity only (no SOC 1) is cheaper but user auditors generally need SOC 1 for ICFR reliance; keep both in readiness.
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given the control register, when viewed, then each control lists the report(s) it supports and no marketing text claims attestation.
+
+**Reconsideration triggers.**
+
+- AICPA issues new TSC or SOC 1 guide revisions.
+
+**Related questions.**
+
+- **SPD-PLT-001**: Timing by reliance and contract.
+
+**Corrections to prior records.**
+
+- RCD-031 decision text: Does not cite the governing standards or the observation-period implication of Type II. → Name AT-C 320 (SOC 1) and AT-C 205 + TSP 100 2017 TSC (PoF 2022) for SOC 2; note Type 2 needs evidence from the start of the examination period.
+
+### RR-ADM-003-r1#Q1 — Does the sponsor's state nonprofit law permit board delegation of fund acceptance?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US states (sampled: CA, NY, DE, VT/Model Act) · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: The fund lifecycle MUST record Drafted, Accepted, Created and InvestmentActive as distinct states. Acceptance MUST be evaluated by a versioned deterministic sponsor rule: standard fund type in the account-type register (UNB-RCN-ENT-011); all participant checks required by RR-UNB-PART-007-r1 passed; sanctions clear; current agreement version accepted; no policy-defined risk signal. Where the sponso \| proposed_answer: Build deterministic acceptance with human fallback; activate only after lawful delegation.
+
+**Relevant requirements.** RR-ADM-003-r1, RR-ADM-002-r1, UNB-RCN-ENT-011, RR-UNB-PART-007-r1, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl
+
+**Authoritative findings.**
+
+- *established* — Corporate powers exercised by or under the direction of the board; board may delegate management of activities to any person, management company or committee if activities remain under the board's ultimate direction. [EV-G-017, §5210]
+- *established* — Board committees may exercise board authority except eight listed matters; grant approval and fund acceptance are not listed. [EV-G-018, §5212(a)(1)-(8)]
+- *established* — Board committees need 3+ directors; committees of the corporation cannot bind the board. [EV-G-021, §712]
+- *established* — Corporation managed by its board except as certificate provides. [EV-G-020, §701(a)]
+- *established* — Business and affairs managed by or under the direction of the board; committees per resolution/bylaws; applies to nonstock corporations. [EV-G-016, §141(a),(c)(2),(j)]
+- *established* — Powers exercised by or under the authority of the board; officers' duties per bylaws or board resolution; committees may not authorize distributions or fundamental transactions. [EV-G-023, §§8.01(b), 8.25(e), 8.41]
+
+**Supporting interpretation.** Nonprofit statutes in the sampled states (CA, NY, DE, Model-Act state VT) let boards act 'by or under the direction of' the board and delegate to officers, committees or agents while retaining oversight; fund acceptance and grant approval are not on any non-delegable list found. A deterministic policy is not a legal person: the lawful structure is a board resolution adopting the policy and delegating its execution to a named officer or committee who remains accountable, with board oversight reporting. 'Committee' authority limits (director-only membership, 2+ in CA, 3+ in NY) apply only when a board committee is used. California's 'distributions' bar for committees (VT §8.25(e)) concerns distributions to members, not charitable grants (interpretation). Jurisdiction table: per sponsor state of incorporation record (1) board-direction statute, (2) delegation clause, (3) committee composition minimum and non-delegable list, (4) officer statute, (5) articles/bylaws restrictions. Conservative default: delegate to a named officer by board resolution, report monthly to the board, never to a non-director 'committee of the corporation'.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Fund acceptance rule tier.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Yes in the sampled states, subject to the sponsor's articles and bylaws: the board may adopt the acceptance policy and delegate its execution to a named officer or board committee under its ultimate direction. Build deterministic acceptance with human fallback; activate the A3 outcome only after the board resolution is recorded.
+
+**Remaining uncertainty.** States outside the sample; sponsor bylaws; RMNCA 3rd-edition text not fetched.
+
+**Consequences if wrong.** Acceptances voidable/ultra vires; governance finding.
+
+**Conservative fallback.** AcceptRecommended plus one-click officer batch approval.
+
+**Alternative business or architecture design.** Officer batch approval (cost: minutes/day) vs full automation (requires resolution).
+
+**External authorization required.** Sponsor board resolution adopting the acceptance policy version and delegating execution to a named officer/committee; bylaws check by sponsor.
+
+**Acceptance criteria.**
+
+- Given no recorded board resolution, when the rule passes, then outcome is AcceptRecommended, not Accepted.
+- Given a recorded resolution naming an officer and policy version, when the rule passes, then Accepted is attributed to that officer's delegated authority.
+
+**Reconsideration triggers.**
+
+- Sponsor incorporated in a state not in the table.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### RR-OPS-004-r1#Q1 — Auditor/CPA acceptance (SPD-PLT-001)
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Each active control MUST have an owner role and a backup role, each resolving to at least one named person at all times. Controls classified Key (money movement, authority and delegation, financial close and reconciliation, access management) and all Manual controls MUST also have an independent reviewer role whose holders are disjoint from the owner role's holders for that control, enforced by th \| proposed_answer: Continuous evidence; replace manual procedures only after auditor acceptance.
+
+**Relevant requirements.** RR-OPS-004-r1, SPD-PLT-001, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl, requirements/discovery/2026-11-24-initial-38-question-resolutions.md
+
+**Authoritative findings.**
+
+- *established* — Where segregation is not practical, management designs alternative control activities. [EV-G-015, paras 10.21, 10.23 (p.73)]
+- *established* — Separate responsibilities so that one individual does not control all critical stages of an IT process, e.g. designing, testing and implementing. [EV-G-015, para 11.16 (p.78)]
+- *established* — If GITCs are not properly designed or implemented, the auditor may not rely on automated controls in affected applications. [EV-G-010, GITC section]
+- *interpretation* — Automated controls may be relied on with effective change controls without repeated testing (application material). [EV-G-012, unverified pinpoint]
+
+**Supporting interpretation.** Independent reviewer roles for key manual controls align with monitoring and segregation norms (COSO principle 10/12, Green Book 10.21-10.23). Duplicate of SPD-PLT-001 on the auditor-acceptance gate; see master dossier.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Applies to the control register and operating model for R1.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Continuous control evidence is acceptable in principle; no auditing or COSO source located requires an independent reviewer for every control. Keep independent review for Key and Manual controls as designed; replace manual review procedures only after the sponsor's auditor confirms which it will rely on.
+
+**Remaining uncertainty.** Auditor's acceptance of specific evidence forms; AU-C 330 application text not fetched.
+
+**Consequences if wrong.** Auditor requires manual sign-offs retroactively; evidence gaps for prior periods cannot be recreated.
+
+**Conservative fallback.** Keep owner attestation for Key controls in the first audited year, then remove after auditor confirmation.
+
+**Alternative business or architecture design.** Produce both machine evidence and a lightweight quarterly owner acknowledgment for Key controls in year 1 (cost: ~minutes per control per quarter; friction low; removes retroactive-evidence risk).
+
+**External authorization required.** Sponsor external auditor confirmation of the evidence it will rely on.
+
+**Acceptance criteria.**
+
+- Given a Key control, when the owner and reviewer role holders overlap, then assignment is rejected.
+- Given a machine-evaluated control with a Fail result, when the due period lapses without action, then an escalation work item is opened.
+- Given a policy change classified material, when the author attempts approval, then it is refused.
+
+**Reconsideration triggers.**
+
+- Auditor management letter comment on control evidence.
+
+**Related questions.**
+
+- **SPD-PLT-001**: See master dossier: evidence from inception; SOC scope by actual reliance.
+
+**Corrections to prior records.**
+
+- none
+
+### RR-REQ-X-032-r1#Q1 — Does any state or program term require a periodic statement delivery to the donor?
+
+**Disposition:** established-by-authoritative-evidence · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Unbound MUST generate a statement for every eligible fund for each sponsor-configured statement period (default monthly) as a pure query over the certified close snapshot (REQ-X-040), and MUST publish it to the Document Center (REQ-X-035) without human review unless the close recorded an exception affecting that fund. Notification of availability MUST follow the recipient's communication preferenc \| proposed_answer: Configurable delivery obligations, paper and accessible alternatives.
+
+**Relevant requirements.** RR-REQ-X-032-r1, REQ-X-032, REQ-X-035, REQ-X-040, SPD-ENT-003, SPD-CFG-002, RCD-020, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl
+
+**Authoritative findings.**
+
+- *established* — DAF deduction requires a contemporaneous written acknowledgment of the sponsor's exclusive legal control; no periodic statement requirement. [EV-G-030, §170(f)(18)(B)]
+- *established* — $250+ gifts require contemporaneous written acknowledgment. [EV-G-030, §170(f)(8)]
+- *established* — E-SIGN consent applies where a law requires information be provided in writing to a consumer. [EV-G-031, §7001(c)(1)]
+- *established* — Vanguard Charitable issues quarterly statements, January statement summarises prior year, electronic default; errors to be reported within 60 days. [EV-G-033, Statements section]
+- *established* — NPT posts a quarterly statement to GivingPoint. [EV-G-034, p.17]
+- *established* — Fidelity Charitable sends statements to the Primary Account Holder; no frequency stated. [EV-G-032, p.4]
+
+**Supporting interpretation.** No federal statute or regulation found requiring periodic DAF account statements to donors; obligations arise from the sponsor's own program terms (contract). No state law requiring them was found, but a 50-state search was not done. Method: per state check charitable-solicitation and consumer-protection statutes for donor-reporting duties; conservative default: whatever the program terms promise is mandatory. E-SIGN consent is needed only for legally required writings (e.g. contribution acknowledgments), not for contractual statements.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Statement generation and notification.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** No federal law requires periodic DAF statements; none found at state level (sample, not exhaustive). Program terms create the duty (Vanguard and NPT promise quarterly). Make delivery obligations configurable per sponsor program terms, with paper and accessible alternatives.
+
+**Remaining uncertainty.** State-level donor-reporting rules not exhaustively searched; Schwab terms not retrievable.
+
+**Consequences if wrong.** Breach of program terms; donor complaints.
+
+**Conservative fallback.** Quarterly notification with statement for all funds.
+
+**Alternative business or architecture design.** Publish-only with in-app availability (lowest cost) vs mailed paper (highest cost).
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given program terms promising quarterly statements, when the quarter closes, then each eligible donor receives notice within the configured days.
+- Given no e-consent on file for a legally required acknowledgment, then paper is sent.
+
+**Reconsideration triggers.**
+
+- State enacts DAF donor-reporting law; final §4966 regs add reporting.
+
+**Related questions.**
+
+- **SPD-ENT-003**: No legal requirement found; program terms govern.
+
+**Corrections to prior records.**
+
+- RR-REQ-X-032-r1 default monthly: Monthly default exceeds observed large-sponsor practice (quarterly). → Distinguish generation (monthly OK) from notification (quarterly default).
+
+### RR-REQ-X-073-r1#Q1 — Are the 3/12-month thresholds acceptable to the sponsor's auditor?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Unbound MUST maintain a critical-vendor register recording assurance type, legal entity and report period; MUST require a bridge letter when the period end is more than 3 months old and mark assurance Expired after 12 months; and MUST map every complementary user entity control to an internal control owner before the vendor is marked Assured. AI may extract report metadata for human confirmation o \| proposed_answer: Treat thresholds as provisional; configurable only within approved control policy. \| hold_resolution: Source: requirements/discovery/2026-11-23-cross-industry/data/refinements.jsonl, parent REQ-X-073. Approve 3-month bridge request and 12-month stale-report alert as provisional monitoring defaults, not universal audit standards. Bridge letters do not extend independent assurance. Track coverage gap, report scope, opinion, exceptions, complementary controls and time-limited risk acceptance independently. Critical vendor suspension requires risk-based continuity decision. Test bridge letter with unmapped CUEC, adverse opinion, expired risk acceptance and vendor outage. Auditor confirms reliance criteria.
+
+**Relevant requirements.** RR-REQ-X-073-r1, REQ-X-073, requirements/discovery/2026-11-23-cross-industry/data/refinements.jsonl:14, research/daf-theoretical-enterprise-validation/19-questions/VENDOR-ASSURANCE-SOC-CONTROL-OWNERSHIP-2026-11-23.md, requirements/discovery/2026-11-24-three-evidence-hold-resolutions.md
+
+**Authoritative findings.**
+
+- *established* — A bridge letter is signed by service-organization management, not the service auditor, and provides no attestation over the gap period. [EV-G-008, definition and signer sections]
+- *established* — AICPA guidance does not set bridge-letter requirements. [EV-G-008, AICPA note]
+- *established* — Most bridge letters cover no more than three months; SOC reports typically cover 6-12 months and recur at least annually. [EV-G-008, duration section]
+- *established* — No formal guidance; auditors generally would not accept a bridge letter covering more than three months. [EV-G-009, duration passage]
+- *established* — User auditor evaluates the period covered and time elapsed, and may obtain additional evidence for the remaining period. [EV-G-001, para 17(c); A34]
+
+**Supporting interpretation.** Bridge letters are management assertions, not assurance. Three months is a practice tolerance; 12 months is consistent with annual report cycles but is not a standard. The relevant gap is between the vendor report period end and the user entity's (sponsor's) fiscal year-end or the reliance date, not report age alone.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Unbound's own critical-vendor register (and sponsors relying on Unbound's reports).
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Keep 3-month bridge request and 12-month stale-report alert as configurable monitoring defaults, labelled practice not standard. Compute the gap against each relying party's fiscal year-end/reliance date. Never treat a bridge letter as extending assurance; require compensating procedures or risk acceptance beyond 3 months. Auditor confirms reliance criteria.
+
+**Remaining uncertainty.** Practice sources only (levels 10); AICPA silent.
+
+**Consequences if wrong.** Over- or under-triggering vendor work; false comfort.
+
+**Conservative fallback.** Shorter gap tolerance for critical vendors and direct inquiry with evidence.
+
+**Alternative business or architecture design.** Request vendors align report period ends to the sponsor fiscal year-end (no bridge needed; cost: negotiation only).
+
+**External authorization required.** Sponsor external auditor confirms tolerance used in its reliance.
+
+**Acceptance criteria.**
+
+- Given a SOC 2 period ending 5 months before the sponsor fiscal year-end and no bridge letter, when evaluated, then status BridgeRequired.
+- Given a bridge letter, when assurance status is computed, then the gap is shown as management assertion, not Assured.
+- Given a report period end older than 12 months, then status Expired and a risk-acceptance work item.
+
+**Reconsideration triggers.**
+
+- AICPA issues guidance on bridge letters.
+- Auditor states different tolerance.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- RR-REQ-X-073-r1 statement: Triggers bridge letter by 'period end more than 3 months old' irrespective of the relying party's year-end. → Measure gap from report period end to relying party's fiscal year-end or reliance date; label thresholds as practice defaults.
+
+### RR-SOC2-024-r1#Q1 — Auditor/CPA acceptance (SPD-PLT-001)
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Each control in the register MUST be classified MachineEvaluated or Manual. A MachineEvaluated control MUST be evaluated continuously by MON-005 over its complete expected population (MON-002), and its owner MUST act on every Fail, InsufficientEvidence or StaleEvidence result within the control's due period; no periodic owner attestation is required for its passing results. A Manual control (e.g. \| proposed_answer: Evidence engineering from inception; assurance timing driven by contracts and auditor reliance.
+
+**Relevant requirements.** RR-SOC2-024-r1, SPD-PLT-001, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl, requirements/discovery/2026-11-24-initial-38-question-resolutions.md
+
+**Authoritative findings.**
+
+- *established* — Where segregation is not practical, management designs alternative control activities. [EV-G-015, paras 10.21, 10.23 (p.73)]
+- *established* — Separate responsibilities so that one individual does not control all critical stages of an IT process, e.g. designing, testing and implementing. [EV-G-015, para 11.16 (p.78)]
+- *established* — If GITCs are not properly designed or implemented, the auditor may not rely on automated controls in affected applications. [EV-G-010, GITC section]
+- *interpretation* — Automated controls may be relied on with effective change controls without repeated testing (application material). [EV-G-012, unverified pinpoint]
+
+**Supporting interpretation.** Automated controls tend to be more reliable (Green Book 10.05); reliance depends on effective GITCs (SAS 145). Duplicate of SPD-PLT-001 on the auditor-acceptance gate; see master dossier.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Applies to the control register and operating model for R1.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Machine-evaluated controls without periodic owner attestation are consistent with how auditors rely on automated controls (effective ITGCs plus single-instance or baseline testing). Retain owner action on every Fail/InsufficientEvidence. Auditor confirms scope.
+
+**Remaining uncertainty.** Auditor's acceptance of specific evidence forms; AU-C 330 application text not fetched.
+
+**Consequences if wrong.** Auditor requires manual sign-offs retroactively; evidence gaps for prior periods cannot be recreated.
+
+**Conservative fallback.** Keep owner attestation for Key controls in the first audited year, then remove after auditor confirmation.
+
+**Alternative business or architecture design.** Produce both machine evidence and a lightweight quarterly owner acknowledgment for Key controls in year 1 (cost: ~minutes per control per quarter; friction low; removes retroactive-evidence risk).
+
+**External authorization required.** Sponsor external auditor confirmation of the evidence it will rely on.
+
+**Acceptance criteria.**
+
+- Given a Key control, when the owner and reviewer role holders overlap, then assignment is rejected.
+- Given a machine-evaluated control with a Fail result, when the due period lapses without action, then an escalation work item is opened.
+- Given a policy change classified material, when the author attempts approval, then it is refused.
+
+**Reconsideration triggers.**
+
+- Auditor management letter comment on control evidence.
+
+**Related questions.**
+
+- **SPD-PLT-001**: See master dossier: evidence from inception; SOC scope by actual reliance.
+
+**Corrections to prior records.**
+
+- none
+
+### RR-UNB-ACC-017-r1#Q1 — External auditor accepts generated evidence in lieu of checklist.
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Each legal entity MUST have accounting periods with soft and hard close, period locks (UNB-XIN-EVA-002) and late-event routing (XID-EVA-002) without modifying posted journals. Close certification MUST be granted when continuous invariants (UNB-ACC-030) pass, reconciliation breaks above materiality are resolved (RR-UNB-ACC-018-r1) and the period sample is attested (RCD-037); the system MUST generat \| proposed_answer: Replace manual checklists only when auditor accepts equivalent generated evidence.
+
+**Relevant requirements.** RR-UNB-ACC-017-r1, UNB-ACC-030, RCD-037, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl, requirements/discovery/2026-11-24-simplification-economics/18-REFINED-REQUIREMENTS.md
+
+**Authoritative findings.**
+
+- *established* — SAS 145 requires identifying IT applications, risks arising from IT and the GITCs addressing them; ineffective GITCs may preclude reliance on automated controls. [EV-G-010, GITC section]
+- *established* — Reliance on system-generated reports may require testing their completeness and accuracy and related GITCs. [EV-G-010, report reliance passage]
+- *established* — SAS 142 (AU-C 500) requires evaluating reliability of information regardless of source: accuracy, completeness, authenticity, management bias. [EV-G-011, reliability passage]
+- *established* — Issuer benchmarking (AS 2201 B28-B33): an automated control may be concluded effective without retesting if ITGCs are effective and configuration unchanged. [EV-G-013, benchmarking section]
+- *interpretation* — Automated control evidence plus effective change controls may support operating effectiveness (AU-C/ISA 330 application material). [EV-G-012, unverified]
+
+**Supporting interpretation.** Auditors can accept generated close evidence in place of manual checklists, provided (a) ITGCs over the platform (access, change management, operations) are effective and evidenced, and (b) the generated reports are shown complete and accurate (IPE). A checklist is not itself required by any standard; it is evidence of performance, which generated certification can provide.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Close certification, invariants, reconciliation-break evidence.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Approve: replace manual close checklists with generated close certification when the auditor accepts it; build IPE support (query definition, parameters, population counts, hash, run log) into every generated report; keep change-management evidence for invariant code. Auditor confirms in year 1.
+
+**Remaining uncertainty.** AU-C 330/500 primary text not fetched; individual auditor practice varies.
+
+**Consequences if wrong.** Auditor re-performs close procedures; higher fees.
+
+**Conservative fallback.** Run generated evidence alongside a one-page signed close attestation in year 1.
+
+**Alternative business or architecture design.** Export full populations for auditor data analytics (SAS 142 recognises full-population techniques) rather than samples.
+
+**External authorization required.** Sponsor external auditor acceptance of generated evidence.
+
+**Acceptance criteria.**
+
+- Given a generated close report, when exported, then it includes query version, parameters, row counts, hash and run timestamp.
+- Given a code change to an invariant, when deployed, then change ticket, approver distinct from author, and test evidence exist.
+
+**Reconsideration triggers.**
+
+- Auditor rejects generated evidence.
+
+**Related questions.**
+
+- **RR-UNB-GOV-002-r1#Q1**: Independent approval of material policy changes supports ITGC change-management reliance.
+
+**Corrections to prior records.**
+
+- none
+
+### RR-UNB-GOV-002-r1#Q1 — Auditor/CPA acceptance (SPD-PLT-001)
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Every policy parameter that changes approval, eligibility, agent permissions, financial limits or risk MUST be versioned and automatically back-tested against the historical corpus before publication. A change that loosens a control (per CTL-010 monotonic classification) MUST require independent approval with author different from approver; a change that only tightens a control, or adopts an uncha \| proposed_answer: Single authoritative control register with evidence, ownership, testing and exceptions. \| hold_resolution: Source: requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl, parent UNB-GOV-002. Reject blanket one-approver tightening exception. Require independent approval for material changes to financial controls, eligibility, permissions or customer rights regardless of direction. Allow streamlined low-risk changes only within independently approved change policy; ambiguous or mixed changes treated as material. Back-test representative history plus synthetic edge cases. Test lowered grant limit creating deadline breaches, compound changes, author self-approval and missing evidence. Estimated 50 hours/year savings unvalidated. Auditor/CPA confirms reliance.
+
+**Relevant requirements.** RR-UNB-GOV-002-r1, SPD-PLT-001, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl, requirements/discovery/2026-11-24-initial-38-question-resolutions.md
+
+**Authoritative findings.**
+
+- *established* — Where segregation is not practical, management designs alternative control activities. [EV-G-015, paras 10.21, 10.23 (p.73)]
+- *established* — Separate responsibilities so that one individual does not control all critical stages of an IT process, e.g. designing, testing and implementing. [EV-G-015, para 11.16 (p.78)]
+- *established* — If GITCs are not properly designed or implemented, the auditor may not rely on automated controls in affected applications. [EV-G-010, GITC section]
+- *interpretation* — Automated controls may be relied on with effective change controls without repeated testing (application material). [EV-G-012, unverified pinpoint]
+
+**Supporting interpretation.** IT segregation means no one individual controls all critical stages, including designing, testing and implementing systems (Green Book 11.16). Duplicate of SPD-PLT-001 on the auditor-acceptance gate; see master dossier.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Applies to the control register and operating model for R1.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Adopt the hold resolution: independent approval for any material change to financial controls, eligibility, permissions or customer rights regardless of direction; streamlined path only inside an independently approved change policy; back-testing plus synthetic edge cases. Auditor/CPA confirms reliance.
+
+**Remaining uncertainty.** Auditor's acceptance of specific evidence forms; AU-C 330 application text not fetched.
+
+**Consequences if wrong.** Auditor requires manual sign-offs retroactively; evidence gaps for prior periods cannot be recreated.
+
+**Conservative fallback.** Keep owner attestation for Key controls in the first audited year, then remove after auditor confirmation.
+
+**Alternative business or architecture design.** Produce both machine evidence and a lightweight quarterly owner acknowledgment for Key controls in year 1 (cost: ~minutes per control per quarter; friction low; removes retroactive-evidence risk).
+
+**External authorization required.** Sponsor external auditor confirmation of the evidence it will rely on.
+
+**Acceptance criteria.**
+
+- Given a Key control, when the owner and reviewer role holders overlap, then assignment is rejected.
+- Given a machine-evaluated control with a Fail result, when the due period lapses without action, then an escalation work item is opened.
+- Given a policy change classified material, when the author attempts approval, then it is refused.
+
+**Reconsideration triggers.**
+
+- Auditor management letter comment on control evidence.
+
+**Related questions.**
+
+- **SPD-PLT-001**: See master dossier: evidence from inception; SOC scope by actual reliance.
+
+**Corrections to prior records.**
+
+- RR-UNB-GOV-002-r1 (refinements.jsonl): Allows a tightening-only change with a single approver. → Tightening (e.g. lower grant limit) can harm donors/charities and deadlines; hold resolution correctly requires independent approval for material changes in either direction.
+
+### SPD-ADV-003 — While Unbound keeps the sponsor's DAF program ledger without a SOC 1 report (SPD-PLT-001), how will the sponsor's external auditor obtain assurance over Unbound's IT general controls, and who bears t…
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Ask the sponsor's auditor before R1 build which evidence it will accept (direct testing vs SOC 1 Type I/II); record the resulting audit cost in the bearer map; plan SOC 1 Type II before any second sponsor. \| decision_review_direction: Determine assurance evidence before live reliance; allocate costs explicitly; no sponsor-count trigger.
+
+**Relevant requirements.** SPD-ADV-003, SPD-PLT-001, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md, requirements/discovery/2026-11-24-simplification-economics/22-ADVERSARIAL-REVIEW.md, requirements/discovery/2026-11-24-simplification-economics/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — A user auditor who cannot obtain sufficient understanding from the user entity may obtain a type 1/2 report, contact the service organization, visit it and perform procedures, or use another auditor. [EV-G-001, para 12(a)-(d)]
+- *established* — Where reliance on service-organization controls is planned, operating-effectiveness evidence may come from a type 2 report, the user auditor's own tests at the service organization, or another auditor's tests. [EV-G-001, para 16]
+- *established* — User auditor must evaluate time period covered and time elapsed, and whether CUECs are relevant. [EV-G-001, para 17(b)-(c)]
+- *established* — Additional evidence for the remaining period may come from extending tests of controls. [EV-G-001, A34]
+- *established* — In SOC 2, subservice organizations may be presented using the inclusive or carve-out method. [EV-G-004, footnote 1]
+- *established* — Reliance on system reports may require testing completeness and accuracy and related GITCs. [EV-G-010, GITC section]
+- *established* — Information used as audit evidence must be evaluated for accuracy, completeness, authenticity and bias regardless of source. [EV-G-011, reliability passage]
+
+**Supporting interpretation.** Three routes: (1) SOC 1 type 2 (Unbound pays; carve-out of hosting/custodian subservice orgs with CSOCs listed); (2) user auditor tests Unbound ITGCs and application controls directly (site visit/remote; sponsor pays incremental audit fees; Unbound bears staff time); (3) substantive approach: reconcile ledger to independently received custodian/bank statements, confirm balances, test grants to supporting documents. For one sponsor, (2)+(3) is usually cheapest. Who pays is a commercial term, not law.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** R1 single sponsor; Unbound keeps program ledger.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Before live reliance, obtain the sponsor auditor's planned approach. Contract: right-to-audit, evidence pack, and named cost bearer (default: sponsor bears its auditor fees; Unbound bears its own staff time and any SOC report it chooses). No sponsor-count trigger; SOC 1 type 2 when reliance by more than one user auditor makes it cheaper than repeated direct testing.
+
+**Remaining uncertainty.** Auditor choice and fees; AU-C 402 text not fetched.
+
+**Consequences if wrong.** Unbudgeted audit fees or a qualified/delayed audit.
+
+**Conservative fallback.** Budget a SOC 1 type 2 in year 2.
+
+**Alternative business or architecture design.** Make the sponsor receive custodian and bank data directly and run an independent reconciliation (SPD-ORG-006), lowering reliance on Unbound controls. Cost: low; friction: moderate; exposure reduced; no lost opportunity.
+
+**External authorization required.** Sponsor external auditor's written planned approach; executed contract clause on assurance cost allocation.
+
+**Acceptance criteria.**
+
+- Given go-live readiness, when the assurance register is checked, then the auditor's approach and cost bearer are recorded, else cutover is blocked.
+- Given subservice providers, when the system description is generated, then each is marked carve-out or inclusive with CSOCs.
+
+**Reconsideration triggers.**
+
+- Auditor fee quotes exceed SOC 1 cost.
+- Second sponsor.
+
+**Related questions.**
+
+- **SPD-PLT-001**: No legal requirement; reliance-driven.
+- **XID-INV-008**: No universal SOC 1 type 2 launch rule.
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ENT-003 — What is the default statement notification and paper policy (RR-REQ-X-032-r1)?
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Generate and publish every period; notify by quarterly digest by default plus correction alerts; monthly notification as donor opt-in; paper on request or without e-consent, free as an accommodation. \| decision_review_direction: Generate per approved cadence; quarterly digest candidate, monthly opt-in, paper/accommodation and mandatory delivery override.
+
+**Relevant requirements.** RR-REQ-X-032-r1, REQ-X-032, REQ-X-035, REQ-X-040, SPD-ENT-003, SPD-CFG-002, RCD-020, requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl
+
+**Authoritative findings.**
+
+- *established* — DAF deduction requires a contemporaneous written acknowledgment of the sponsor's exclusive legal control; no periodic statement requirement. [EV-G-030, §170(f)(18)(B)]
+- *established* — $250+ gifts require contemporaneous written acknowledgment. [EV-G-030, §170(f)(8)]
+- *established* — E-SIGN consent applies where a law requires information be provided in writing to a consumer. [EV-G-031, §7001(c)(1)]
+- *established* — Vanguard Charitable issues quarterly statements, January statement summarises prior year, electronic default; errors to be reported within 60 days. [EV-G-033, Statements section]
+- *established* — NPT posts a quarterly statement to GivingPoint. [EV-G-034, p.17]
+- *established* — Fidelity Charitable sends statements to the Primary Account Holder; no frequency stated. [EV-G-032, p.4]
+
+**Supporting interpretation.** No federal statute or regulation found requiring periodic DAF account statements to donors; obligations arise from the sponsor's own program terms (contract). No state law requiring them was found, but a 50-state search was not done. Method: per state check charitable-solicitation and consumer-protection statutes for donor-reporting duties; conservative default: whatever the program terms promise is mandatory. E-SIGN consent is needed only for legally required writings (e.g. contribution acknowledgments), not for contractual statements.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Statement generation and notification.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Generate every configured period; default notification a quarterly digest plus correction alerts (matching Vanguard/NPT quarterly practice); monthly opt-in; paper on request or absent e-consent; any cadence promised in the sponsor's program terms overrides defaults.
+
+**Remaining uncertainty.** State-level donor-reporting rules not exhaustively searched; Schwab terms not retrievable.
+
+**Consequences if wrong.** Breach of program terms; donor complaints.
+
+**Conservative fallback.** Quarterly notification with statement for all funds.
+
+**Alternative business or architecture design.** Publish-only with in-app availability (lowest cost) vs mailed paper (highest cost).
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given program terms promising quarterly statements, when the quarter closes, then each eligible donor receives notice within the configured days.
+- Given no e-consent on file for a legally required acknowledgment, then paper is sent.
+
+**Reconsideration triggers.**
+
+- State enacts DAF donor-reporting law; final §4966 regs add reporting.
+
+**Related questions.**
+
+- **RR-REQ-X-032-r1#Q1**: No legal requirement found; program terms govern.
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ENT-006 — May the sponsor board delegate routine fund acceptance to a deterministic policy (RR-ADM-003-r1), and may intake prefill from held facts (RR-ADM-002-r1)?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US states (sampled) · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Build the deterministic tier now; outcome AcceptRecommended for batch A4 approval until delegation is recorded (same pattern as RCD-005). \| decision_review_direction: Deterministic recommendation until formal delegation; verified prefill not identity proof.
+
+**Relevant requirements.** SPD-ENT-006, RR-ADM-003-r1, RR-ADM-002-r1, RCD-005, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md
+
+**Authoritative findings.**
+
+- *established* — Corporate powers exercised by or under the direction of the board; board may delegate management of activities to any person, management company or committee if activities remain under the board's ultimate direction. [EV-G-017, §5210]
+- *established* — Board committees may exercise board authority except eight listed matters; grant approval and fund acceptance are not listed. [EV-G-018, §5212(a)(1)-(8)]
+- *established* — Board committees need 3+ directors; committees of the corporation cannot bind the board. [EV-G-021, §712]
+- *established* — Corporation managed by its board except as certificate provides. [EV-G-020, §701(a)]
+- *established* — Business and affairs managed by or under the direction of the board; committees per resolution/bylaws; applies to nonstock corporations. [EV-G-016, §141(a),(c)(2),(j)]
+- *established* — Powers exercised by or under the authority of the board; officers' duties per bylaws or board resolution; committees may not authorize distributions or fundamental transactions. [EV-G-023, §§8.01(b), 8.25(e), 8.41]
+
+**Supporting interpretation.** Nonprofit statutes in the sampled states (CA, NY, DE, Model-Act state VT) let boards act 'by or under the direction of' the board and delegate to officers, committees or agents while retaining oversight; fund acceptance and grant approval are not on any non-delegable list found. A deterministic policy is not a legal person: the lawful structure is a board resolution adopting the policy and delegating its execution to a named officer or committee who remains accountable, with board oversight reporting. 'Committee' authority limits (director-only membership, 2+ in CA, 3+ in NY) apply only when a board committee is used. California's 'distributions' bar for committees (VT §8.25(e)) concerns distributions to members, not charitable grants (interpretation). Prefill from held facts is a product-policy question: no statute found requiring re-entry; prefilled data is not identity proof and must be re-verified where KYC rules apply.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Fund intake.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Delegation permissible in sampled states via board resolution to an accountable officer/committee; keep AcceptRecommended until recorded. Allow prefill from verified held facts, marked as prefill, with donor confirmation; it never substitutes for identity verification.
+
+**Remaining uncertainty.** Bylaw restrictions; other states.
+
+**Consequences if wrong.** Invalid acceptances.
+
+**Conservative fallback.** Human batch approval.
+
+**Alternative business or architecture design.** See RR-ADM-003-r1#Q1.
+
+**External authorization required.** Sponsor board resolution.
+
+**Acceptance criteria.**
+
+- Given prefilled fields, when the donor submits, then each prefilled field records source and confirmation.
+
+**Reconsideration triggers.**
+
+- Counsel identifies state restriction.
+
+**Related questions.**
+
+- **RR-ADM-003-r1#Q1**: Delegation lawful in sampled states via resolution.
+- **RCD-005**: Same pattern for grants; fund managers remain the accountable humans.
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ORG-001 — When routine payment release is performed by the board-delegated deterministic gate, does the gate count as the 'releaser' for SoD purposes, so that PA-2/NotReceived resolution needs two humans (not …
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Yes, provided the gate is a published, independently approved policy version and the two human approvers did not author or publish it. \| decision_review_direction: Do not count deterministic gate as independent person until accepted.
+
+**Relevant requirements.** SPD-ORG-001, PA-2, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md, requirements/discovery/2026-11-24-simplification-economics/18-REFINED-REQUIREMENTS.md, requirements/discovery/2026-11-24-approved-corrections-and-decision-gates.md:49
+
+**Authoritative findings.**
+
+- *established* — Segregation of duties is typically built into control activities; where not practical, management selects alternative control activities. [EV-G-014, p.4 Control Activities]
+- *established* — Principles 10 (control activities), 11 (general controls over technology), 12 (policies and procedures). [EV-G-014, p.7]
+- *established* — Smaller entities may have less formal but effective internal control; framework applies to not-for-profits. [EV-G-014, p.2]
+- *established* — Separate authority, custody and accounting; collusion risk remains. [EV-G-015, para 10.22 (p.73)]
+- *established* — Where segregation is not practical due to limited personnel, design alternative controls. [EV-G-015, para 10.23 (p.73)]
+- *established* — No one individual should control all critical stages of an IT process, incl. designing, testing and implementing systems. [EV-G-015, para 11.16 (p.78)]
+- *established* — Automated controls tend to be more reliable than manual. [EV-G-015, para 10.05 (p.67)]
+
+**Supporting interpretation.** SoD standards concern individuals and incompatible duties; an automated gate is a control, not a person. If the gate performs release, the incompatible duties move to (a) who can author, approve, publish or deploy the gate's policy/code and (b) who resolves exceptions. Two humans can then suffice for PA-2/NotReceived if neither can change the gate and gate changes pass independent change management with effective ITGCs.
+
+**Competing interpretation.** An auditor may view exception resolution as overriding the automated release, requiring the human pair to be independent of anyone with payment-system admin access, which at small staffing can still demand a third person.
+
+**Applicability to Unbound.** Payment release and NotReceived resolution in R1.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Interpretation: yes, conditionally. The gate may count as the releaser if it is a published, independently approved policy version, the two humans have no authoring, publishing, deployment or admin rights over it, and ITGCs are effective. Implement as an authority flag; keep three-distinct-person rule until the auditor and board accept the design (review direction stands).
+
+**Remaining uncertainty.** No authority directly addresses an automated gate as a 'person' for SoD.
+
+**Consequences if wrong.** Control deficiency finding; fraud risk if gate authors also resolve exceptions.
+
+**Conservative fallback.** Three distinct persons, or two humans plus after-the-fact independent review within 1 business day.
+
+**Alternative business or architecture design.** Two humans plus automated detective analytics and a monthly independent review by the outsourced reconciler (cost: low; friction: low).
+
+**External authorization required.** External auditor acceptance of the SoD design and board/audit committee approval of the delegation to the gate.
+
+**Acceptance criteria.**
+
+- Given a principal with policy-publish or deploy rights on the release gate, when assigned to PA-2 resolution, then assignment is refused.
+- Given a gate policy change, when published, then author and approver differ and the change is logged.
+
+**Reconsideration triggers.**
+
+- Auditor comment; staffing changes.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ORG-002 — May the sponsor's DoA name contracted or fractional individuals (not employees) for A4 decisions (exception grants, sanctions true-match, treasury exception release), and in what appointment form?
+
+**Disposition:** external-authorization-required · **Confidence:** high · **Jurisdiction:** US states (sampled) and US federal · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Allow only for individuals appointed by board resolution as officers/agents of the sponsor with conflict attestations; vendor staff without such appointment stay below A3 (UNB-XIN-CLM-008). \| decision_review_direction: Support formally appointed fractional officers with scope, expiry and independence.
+
+**Relevant requirements.** SPD-ORG-002, UNB-SMP-CLR-001, UNB-SMP-ORG-003, UNB-XIN-CLM-008, requirements/discovery/2026-11-24-simplification-economics/24-DECISION-TEAMS-AND-PRICING.md, requirements/discovery/2026-11-24-simplification-economics/19-REJECTED-APPROACHES.md, requirements/discovery/2026-11-24-human-intervention-and-question-resolution.md
+
+**Authoritative findings.**
+
+- *established* — Officers are chosen by the board; other officers as bylaws/board provide; no employment requirement. [EV-G-019, §5213(a)-(b)]
+- *established* — Board may appoint other officers; no requirement that officers be directors or employees; president and secretary cannot be combined. [EV-G-022, §713]
+- *established* — Officers with titles and duties stated in bylaws or board resolution. [EV-G-016, §142(a)]
+- *established* — Board may delegate management to any person or management company under ultimate direction. [EV-G-017, §5210]
+- *established* — Officers have duties per bylaws or board resolution. [EV-G-023, §8.41]
+- *established* — A person designated an officer, or who regularly exercises general authority to make administrative or policy decisions, is an officer for §4958; a contractor acting solely as attorney, accountant or investment adviser is not. [EV-G-027, §53.4958-1(d)(2)(i)(A)-(B)]
+- *established* — Officers and individuals with similar powers are fund managers under §4966. [EV-G-025, §4966(d)(3)(A)]
+
+**Supporting interpretation.** State nonprofit statutes sampled do not require officers or agents to be employees; a board may appoint a contracted or fractional individual as an officer or authorise them as an agent. Consequence: an appointed officer becomes an organization manager (§4958) and fund manager (§4966) with personal excise-tax exposure, should be covered by D&O insurance and indemnification, the conflict-of-interest policy, and Form 990 officer reporting (from memory, unverified). Officer status may also make the person (and their firm's fees) relevant for disqualified-person analysis (unverified).
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Sponsor DoA for A3/A4. Unbound vendor staff appointed as sponsor officers would conflict with 'Unbound does not supply decision staff' and create cross-sponsor independence problems.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Yes. Contracted/fractional individuals may hold A4 authority if appointed by sponsor board resolution as officers (or authorised agents) with defined scope, expiry, conflict attestation, D&O coverage, and acknowledgement of §4966/§4958 manager status. Vendor staff without such appointment stay below A3.
+
+**Remaining uncertainty.** Unsampled states; insurance availability; Form 990 reporting details unverified.
+
+**Consequences if wrong.** Decisions made without authority; personal excise tax exposure unrecognised.
+
+**Conservative fallback.** Only employees or directors hold A4.
+
+**Alternative business or architecture design.** Fractional officer via board resolution (low cost, needs D&O) vs employee hire (higher fixed cost) vs director committee (unpaid, slower).
+
+**External authorization required.** Sponsor board resolution of appointment; bylaws permitting additional officers.
+
+**Acceptance criteria.**
+
+- Given a principal of type Vendor/Administrator, when an A3+ DoA entry is created without a linked board resolution, then refused.
+- Given an appointment past expiry, when the principal acts, then refused.
+
+**Reconsideration triggers.**
+
+- New state of incorporation; insurer refuses coverage.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-ORG-006 — Independent reconciler below 10k accounts: outsourced firm or internal person outside the payment chain?
+
+**Disposition:** business-policy-decision · **Confidence:** high · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Outsourced monthly review plus daily automated matching, until workload exceeds ~0.5 FTE. \| decision_review_direction: Independent reconciliation frequency by risk; daily matching and timely exception review; no fixed FTE cutoff.
+
+**Relevant requirements.** SPD-ORG-006, requirements/discovery/2026-11-24-simplification-economics/04-MINIMUM-TOUCH-OPERATING-MODEL.md, requirements/discovery/2026-11-24-simplification-economics/data/decisions.csv
+
+**Authoritative findings.**
+
+- *established* — Segregation of duties is typically built into control activities; where not practical, management selects alternative control activities. [EV-G-014, p.4 Control Activities]
+- *established* — Separate authority, custody and accounting; collusion risk remains. [EV-G-015, para 10.22 (p.73)]
+- *established* — Where segregation is not practical due to limited personnel, design alternative controls. [EV-G-015, para 10.23 (p.73)]
+
+**Supporting interpretation.** The requirement is separation of accounting/reconciliation from authority and custody, not a particular employment form. An outsourced firm or internal person both satisfy it if they hold no payment authority or custody.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Below 10k accounts.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Either is acceptable; choose by cost. Daily automated matching, exceptions reviewed promptly by someone outside the payment chain, and at least monthly independent review; no fixed FTE cutoff.
+
+**Remaining uncertainty.** Cost and workload.
+
+**Consequences if wrong.** Reconciliation breaks undetected.
+
+**Conservative fallback.** Outsourced monthly review.
+
+**Alternative business or architecture design.** Internal accountant without payment rights (cost fixed salary) vs outsourced (variable).
+
+**External authorization required.** Finance authority and audit committee approval.
+
+**Acceptance criteria.**
+
+- Given a reconciler principal, when granted payment release or bank admin rights, then refused.
+
+**Reconsideration triggers.**
+
+- Exception volume rises.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### SPD-PLT-001 — In release 1 (one sponsor, platform operated for that sponsor), does any party need a SOC 2 (or SOC 1) report on the platform, and if not, which SOC2-family requirements become conditional?
+
+**Disposition:** external-authorization-required · **Confidence:** high · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Keep SOC2-family evidence engineering (by-product evidence, integrity, missing-evidence detection) — it serves the sponsor's own audit and bank/custodian due diligence. Defer the SOC 2 system description, CUEC/CSOC and audit-period work until a user entity (second sponsor, partner) or counterparty contract requires a report. \| decision_review_direction: Evidence from inception; SOC scope/timing based on actual reliance and contract.
+
+**Relevant requirements.** SPD-PLT-001, RR-OPS-004-r1, RR-SOC2-024-r1, RR-UNB-GOV-002-r1, RCD-031, SPD-ADV-003, XID-INV-008, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md, requirements/discovery/2026-11-24-simplification-economics/18-REFINED-REQUIREMENTS.md, requirements/governance/SOC2-CONTROLS-EVIDENCE-AND-ENTERPRISE-DIRECTIVE.md:118, requirements/discovery/2026-11-24-open-decision-resolution-review.md:74
+
+**Authoritative findings.**
+
+- *established* — A SOC 1 report addresses controls at a service organization relevant to user entities' ICFR; criteria are in AT-C 320 .15-.17; its intended users are service-org management, user entities and their auditors; a type 2 may provide evidence of operating effectiveness. [EV-G-004, pp.1-3 rows 'criteria' and 'purpose']
+- *established* — SOC 2 covers security, availability, processing integrity, confidentiality or privacy using DC 200 and TSP 100 (2017 TSC with revised points of focus 2022). [EV-G-004, p.2 row 'criteria']
+- *established* — Type 1 = design as of a date; type 2 = design and operating effectiveness throughout a period, with tests and results. [EV-G-005, SOC 1 section]
+- *established* — A user auditor who cannot obtain sufficient understanding from the user entity may obtain a type 1/2 report, contact the service organization, visit it and perform procedures, or use another auditor. [EV-G-001, para 12(a)-(d)]
+- *established* — Where reliance on service-organization controls is planned, operating-effectiveness evidence may come from a type 2 report, the user auditor's own tests at the service organization, or another auditor's tests. [EV-G-001, para 16]
+- *interpretation* — No statute, regulation or AICPA standard located requires a software vendor to a nonprofit to hold a SOC 1 or SOC 2 report; a SOC report is an engagement the service organization chooses to commission. [EV-G-004, whole table (absence of any mandate)]
+
+**Supporting interpretation.** No party is legally required to obtain a SOC report on Unbound in release 1. But if Unbound keeps the sponsor's DAF program ledger (fund balances, contributions, grants), the platform is a service organization whose controls are likely relevant to the sponsor's ICFR. The sponsor's auditor must then either obtain a SOC 1 (type 2 for reliance) or get equivalent evidence itself (direct testing of Unbound ITGCs and application controls, or a mainly substantive audit). SOC 2 is a commercial and due-diligence artefact (banks, custodians, later sponsors), not an audit necessity.
+
+**Competing interpretation.** If Unbound staff operate the platform for the sponsor under the sponsor's direction and the ledger reconciles daily to custodian and bank records the sponsor receives independently, the auditor may treat the system as the sponsor's own IT and test it directly or substantively, so no SOC report is needed. The other view: a vendor-hosted multi-tenant codebase is a service organization regardless, and auditors will ask for a SOC 1 as soon as one exists.
+
+**Applicability to Unbound.** Release 1: single sponsor, platform operated for it. The SOC 2 system description, CUEC/CSOC catalogue and audit-period work can be conditional, but evidence engineering, control register and ITGC evidence are needed under every assurance route because direct testing by the sponsor's auditor uses the same evidence.
+
+**Business assumptions.**
+
+- Unbound holds the authoritative DAF subledger for the sponsor in R1.
+- Sponsor has an annual independent audit under GAAS (AU-C), not PCAOB.
+- Custodian and bank statements reach the sponsor independently of Unbound.
+
+**Recommended answer.** No report is legally required. Keep evidence engineering from inception. Make SOC 2 description/CUEC/audit-period work conditional on (a) a contract or counterparty demanding a report, or (b) a second user entity. Before go-live, obtain the sponsor auditor's written planned approach (SOC 1 type 2, direct testing, or substantive) and size SOC 1 timing from that, not from sponsor count.
+
+**Remaining uncertainty.** Exact AU-C 402 wording not fetched (gated); relied on converged ISA 402. The auditor's planned reliance strategy is unknown.
+
+**Consequences if wrong.** Auditor may refuse reliance late in the first audit, forcing expanded substantive testing (higher fee, delay) or an emergency SOC 1 type 1 that does not support reliance; bank/custodian onboarding may stall without SOC 2.
+
+**Conservative fallback.** Commission a SOC 1 type 2 (ledger and ITGC objectives) for the first full period after go-live, and a SOC 2 type 1 readiness assessment; costs per bearer map.
+
+**Alternative business or architecture design.** (A) Sponsor-titled reconciliation: daily automated reconciliation of the ledger to custodian/bank files that the sponsor receives directly makes a substantive audit feasible. Cost: low build. Friction: low. Exposure: auditor may still test ITGCs. Lost opportunity: none. (B) Right-to-audit clause plus a standing ITGC evidence pack for direct testing. Cost: auditor hours billed to sponsor (~tens of hours). (C) Early SOC 1 type 2. Cost: highest (typically five-to-six-figure annual fee plus a 6-12 month observation period, industry estimate, unverified). Exposure: lowest. Prefer A+B in R1, C when more than one user entity or a contract requires it.
+
+**External authorization required.** Sponsor's external auditor's documented planned approach to Unbound as service organization (engagement planning memo or written confirmation); any counterparty contract clause requiring a SOC report.
+
+**Acceptance criteria.**
+
+- Given R1 with no SOC report, when the sponsor auditor plans the audit, then a written planned approach (report, direct testing or substantive) is recorded in the assurance register before production cutover.
+- Given a counterparty contract requiring SOC 2, when the contract is executed, then SOC 2 description and CUEC work items are created automatically.
+- Given any control in the register, when evidence is requested for a period, then the system produces complete population evidence with integrity hashes and flags missing evidence.
+
+**Reconsideration triggers.**
+
+- Second user entity (sponsor or partner) onboarded.
+- Sponsor auditor states it will require a SOC 1.
+- Bank, custodian or payment-processor contract requires SOC 2.
+- Unbound begins to hold or move funds.
+
+**Related questions.**
+
+- **RR-OPS-004-r1#Q1**: No standard requires an independent reviewer per control; continuous evidence acceptable; auditor confirms which manual procedures it will stop requiring.
+- **RR-SOC2-024-r1#Q1**: Machine-evaluated controls without periodic owner attestation are consistent with automated-control reliance if ITGCs are effective; auditor confirms.
+- **RR-UNB-GOV-002-r1#Q1**: Independent approval for material policy changes regardless of direction matches IT change-segregation norms; auditor confirms reliance.
+- **RCD-031**: Confirm readiness for SOC 1 (ledger/ICFR) and SOC 2 (security); no attestation claimed.
+- **SPD-ADV-003**: Auditor chooses SOC 1 reliance, direct testing or substantive approach; allocate cost explicitly.
+
+**Corrections to prior records.**
+
+- SPD-PLT-001 context (20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md): Defers CUEC work entirely until a second user entity. → CUEC/user-entity control mapping is still needed in R1 if the auditor tests directly, because the auditor must know which controls the sponsor itself performs.
+
+### SPD-PLT-004 — How are segregation-of-duties and independence requirements met at release-1 staffing (mandatory rotation, CISO reporting line, reviewer per control, reconciliation outside payment chain)?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Keep engine-enforced SoD and reconciliation outside the payment chain (outsourced accountant if needed); replace mandatory rotation with enforced leave where >=2 trained staff and anomaly analytics otherwise; give CISO direct committee access rather than a reporting line; independent reviewer only for key and manual controls (RR-OPS-004-r1). \| decision_review_direction: Engine SoD, independent reconciliation, direct committee access; compensating controls require acceptance.
+
+**Relevant requirements.** SPD-PLT-004, RR-OPS-004-r1, TVR-ORG-006, TVR-SEC-006, requirements/discovery/2026-11-24-simplification-economics/20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md, requirements/discovery/2026-11-24-simplification-economics/data/register.jsonl
+
+**Authoritative findings.**
+
+- *established* — Segregation of duties is typically built into control activities; where not practical, management selects alternative control activities. [EV-G-014, p.4 Control Activities]
+- *established* — Principles 10 (control activities), 11 (general controls over technology), 12 (policies and procedures). [EV-G-014, p.7]
+- *established* — Smaller entities may have less formal but effective internal control; framework applies to not-for-profits. [EV-G-014, p.2]
+- *established* — Separate authority, custody and accounting; collusion risk remains. [EV-G-015, para 10.22 (p.73)]
+- *established* — Where segregation is not practical due to limited personnel, design alternative controls. [EV-G-015, para 10.23 (p.73)]
+- *established* — No one individual should control all critical stages of an IT process, incl. designing, testing and implementing systems. [EV-G-015, para 11.16 (p.78)]
+- *established* — Automated controls tend to be more reliable than manual. [EV-G-015, para 10.05 (p.67)]
+
+**Supporting interpretation.** Neither COSO nor the Green Book mandates job rotation, a CISO reporting line or an independent reviewer per control. They require segregated incompatible duties or alternative controls where impractical. Enforced leave/rotation are practice controls (not verified here).
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** R1 small staffing.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Adopt: engine-enforced SoD; reconciliation outside the payment chain; enforced leave where at least 2 trained staff, anomaly analytics otherwise; CISO direct access to the audit and risk committee; independent reviewer only for Key and Manual controls. Document each as an alternative control with expiry; auditor acceptance.
+
+**Remaining uncertainty.** Auditor and board risk appetite.
+
+**Consequences if wrong.** Significant deficiency reported to the board.
+
+**Conservative fallback.** Add outsourced monthly independent review of all payment exceptions.
+
+**Alternative business or architecture design.** Outsourced controller/reviewer firm (cost: few thousand USD/month, estimate unverified) vs internal hire (higher fixed cost).
+
+**External authorization required.** Audit and risk committee approval of alternative controls; auditor review.
+
+**Acceptance criteria.**
+
+- Given fewer than 2 eligible principals for an SoD command class on a future day, then a staffing alert is raised (UNB-SMP-CLR-001).
+
+**Reconsideration triggers.**
+
+- Staff growth beyond minimum.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### UNB-SMP-CLR-001#Q1 — Which roles may be held by outsourced principals?
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US states (sampled) and US federal · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: The platform MUST maintain a roster of authorized workforce principals per sponsor by role and calendar day (including holidays and declared absences) and MUST compute, for each SoD-constrained command class, whether at least two eligible, mutually independent principals are available on each day of a forward horizon of at least 30 days. A day with fewer than two eligible principals for any SoD-co \| proposed_answer: Permit qualified contracted roles with documented appointment, independence and scope.
+
+**Relevant requirements.** SPD-ORG-002, UNB-SMP-CLR-001, UNB-SMP-ORG-003, UNB-XIN-CLM-008, requirements/discovery/2026-11-24-simplification-economics/24-DECISION-TEAMS-AND-PRICING.md, requirements/discovery/2026-11-24-simplification-economics/19-REJECTED-APPROACHES.md, requirements/discovery/2026-11-24-human-intervention-and-question-resolution.md
+
+**Authoritative findings.**
+
+- *established* — Officers are chosen by the board; other officers as bylaws/board provide; no employment requirement. [EV-G-019, §5213(a)-(b)]
+- *established* — Board may appoint other officers; no requirement that officers be directors or employees; president and secretary cannot be combined. [EV-G-022, §713]
+- *established* — Officers with titles and duties stated in bylaws or board resolution. [EV-G-016, §142(a)]
+- *established* — Board may delegate management to any person or management company under ultimate direction. [EV-G-017, §5210]
+- *established* — Officers have duties per bylaws or board resolution. [EV-G-023, §8.41]
+- *established* — A person designated an officer, or who regularly exercises general authority to make administrative or policy decisions, is an officer for §4958; a contractor acting solely as attorney, accountant or investment adviser is not. [EV-G-027, §53.4958-1(d)(2)(i)(A)-(B)]
+- *established* — Officers and individuals with similar powers are fund managers under §4966. [EV-G-025, §4966(d)(3)(A)]
+
+**Supporting interpretation.** State nonprofit statutes sampled do not require officers or agents to be employees; a board may appoint a contracted or fractional individual as an officer or authorise them as an agent. Consequence: an appointed officer becomes an organization manager (§4958) and fund manager (§4966) with personal excise-tax exposure, should be covered by D&O insurance and indemnification, the conflict-of-interest policy, and Form 990 officer reporting (from memory, unverified). Officer status may also make the person (and their firm's fees) relevant for disqualified-person analysis (unverified). Duplicate of SPD-ORG-002; see master.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Sponsor DoA for A3/A4. Unbound vendor staff appointed as sponsor officers would conflict with 'Unbound does not supply decision staff' and create cross-sponsor independence problems.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Roles may be held by outsourced principals when appointed by sponsor board resolution as officers/agents with scope, expiry, independence and conflict attestations; never by Unbound vendor staff for A3+.
+
+**Remaining uncertainty.** Unsampled states; insurance availability; Form 990 reporting details unverified.
+
+**Consequences if wrong.** Decisions made without authority; personal excise tax exposure unrecognised.
+
+**Conservative fallback.** Only employees or directors hold A4.
+
+**Alternative business or architecture design.** Fractional officer via board resolution (low cost, needs D&O) vs employee hire (higher fixed cost) vs director committee (unpaid, slower).
+
+**External authorization required.** Sponsor board resolution of appointment; bylaws permitting additional officers.
+
+**Acceptance criteria.**
+
+- Given a principal of type Vendor/Administrator, when an A3+ DoA entry is created without a linked board resolution, then refused.
+- Given an appointment past expiry, when the principal acts, then refused.
+
+**Reconsideration triggers.**
+
+- New state of incorporation; insurer refuses coverage.
+
+**Related questions.**
+
+- **SPD-ORG-002**: Permitted by board appointment with scope, expiry and attestations.
+
+**Corrections to prior records.**
+
+- none
+
+### UNB-SMP-ORG-003#Q2 — Appointment form if OperatorDedicated is ever enabled (SPD-ORG-002).
+
+**Disposition:** external-authorization-required · **Confidence:** medium · **Jurisdiction:** US states (sampled) and US federal · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Every principal MUST be recorded with an employing Organization of type Sponsor, Administrator or Vendor, and with the sponsors each Administrator is contracted to act for. A delegation-of-authority entry at level A3 or above for a sponsor (UNB-XIN-ERP-005; UNB-RCN-PLT-005) MUST be refused unless the principal belongs to that sponsor's DecisionTeam and holds no active A3+ entry for any other spons \| proposed_answer: Formal sponsor appointment, scope, expiry and conflict attestations.
+
+**Relevant requirements.** SPD-ORG-002, UNB-SMP-CLR-001, UNB-SMP-ORG-003, UNB-XIN-CLM-008, requirements/discovery/2026-11-24-simplification-economics/24-DECISION-TEAMS-AND-PRICING.md, requirements/discovery/2026-11-24-simplification-economics/19-REJECTED-APPROACHES.md, requirements/discovery/2026-11-24-human-intervention-and-question-resolution.md
+
+**Authoritative findings.**
+
+- *established* — Officers are chosen by the board; other officers as bylaws/board provide; no employment requirement. [EV-G-019, §5213(a)-(b)]
+- *established* — Board may appoint other officers; no requirement that officers be directors or employees; president and secretary cannot be combined. [EV-G-022, §713]
+- *established* — Officers with titles and duties stated in bylaws or board resolution. [EV-G-016, §142(a)]
+- *established* — Board may delegate management to any person or management company under ultimate direction. [EV-G-017, §5210]
+- *established* — Officers have duties per bylaws or board resolution. [EV-G-023, §8.41]
+- *established* — A person designated an officer, or who regularly exercises general authority to make administrative or policy decisions, is an officer for §4958; a contractor acting solely as attorney, accountant or investment adviser is not. [EV-G-027, §53.4958-1(d)(2)(i)(A)-(B)]
+- *established* — Officers and individuals with similar powers are fund managers under §4966. [EV-G-025, §4966(d)(3)(A)]
+
+**Supporting interpretation.** State nonprofit statutes sampled do not require officers or agents to be employees; a board may appoint a contracted or fractional individual as an officer or authorise them as an agent. Consequence: an appointed officer becomes an organization manager (§4958) and fund manager (§4966) with personal excise-tax exposure, should be covered by D&O insurance and indemnification, the conflict-of-interest policy, and Form 990 officer reporting (from memory, unverified). Officer status may also make the person (and their firm's fees) relevant for disqualified-person analysis (unverified). Duplicate of SPD-ORG-002; see master.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Sponsor DoA for A3/A4. Unbound vendor staff appointed as sponsor officers would conflict with 'Unbound does not supply decision staff' and create cross-sponsor independence problems.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Appointment form: sponsor board resolution naming the individual, office/agency, scope by decision class and limit, start/expiry, independence and conflict attestations, D&O/indemnification confirmation, and acknowledgement of fund-manager status.
+
+**Remaining uncertainty.** Unsampled states; insurance availability; Form 990 reporting details unverified.
+
+**Consequences if wrong.** Decisions made without authority; personal excise tax exposure unrecognised.
+
+**Conservative fallback.** Only employees or directors hold A4.
+
+**Alternative business or architecture design.** Fractional officer via board resolution (low cost, needs D&O) vs employee hire (higher fixed cost) vs director committee (unpaid, slower).
+
+**External authorization required.** Sponsor board resolution of appointment; bylaws permitting additional officers.
+
+**Acceptance criteria.**
+
+- Given a principal of type Vendor/Administrator, when an A3+ DoA entry is created without a linked board resolution, then refused.
+- Given an appointment past expiry, when the principal acts, then refused.
+
+**Reconsideration triggers.**
+
+- New state of incorporation; insurer refuses coverage.
+
+**Related questions.**
+
+- **SPD-ORG-002**: Permitted by board appointment with scope, expiry and attestations.
+
+**Corrections to prior records.**
+
+- none
+
+### XID-INV-008 — Is a SOC 1 Type II required before the first outsourced/white-label sponsor?
+
+**Disposition:** reasoned-interpretation · **Confidence:** medium · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Yes, Type I at launch, Type II within 12 months. \| decision_review_direction: SOC1 timing driven by auditor reliance and contracts; no universal launch rule.
+
+**Relevant requirements.** XID-INV-008, requirements/discovery/2026-11-23-cross-industry/15-OPEN-DECISIONS-AND-SCENARIOS.md:35, requirements/discovery/2026-11-23-cross-industry/03-MISSING-REQUIREMENTS-REGISTER.md, requirements/discovery/2026-11-23-cross-industry/09-REJECTED-RECOMMENDATIONS.md
+
+**Authoritative findings.**
+
+- *established* — Type 1 = design as of a date; type 2 = design and operating effectiveness throughout a period, with tests and results. [EV-G-005, SOC 1 section]
+- *established* — A user auditor who cannot obtain sufficient understanding from the user entity may obtain a type 1/2 report, contact the service organization, visit it and perform procedures, or use another auditor. [EV-G-001, para 12(a)-(d)]
+- *established* — Where reliance on service-organization controls is planned, operating-effectiveness evidence may come from a type 2 report, the user auditor's own tests at the service organization, or another auditor's tests. [EV-G-001, para 16]
+- *interpretation* — No source found mandating a SOC 1 type 2 before onboarding an outsourced sponsor. [EV-G-004, n/a]
+
+**Supporting interpretation.** A type 1 gives the user auditor design/implementation evidence only; for controls reliance the auditor needs a type 2 or its own tests. So 'Type I at launch' rarely changes the first audit. Requirement arises from each outsourced sponsor's auditor and contract, not from law.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** White-label/outsourced sponsors are user entities; each auditor decides.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** No. There is no universal rule. Offer each outsourced sponsor contractually: right-to-audit and direct-testing support from day one, and a SOC 1 type 2 covering the first full period once any user auditor plans to rely on Unbound controls or when two or more user entities exist (cost spreading). Skip a stand-alone type 1 unless a contract asks.
+
+**Remaining uncertainty.** Market expectation of sponsors' auditors.
+
+**Consequences if wrong.** Lost sales to sponsors whose procurement requires SOC 1.
+
+**Conservative fallback.** Start SOC 1 type 2 observation period at first outsourced sponsor go-live.
+
+**Alternative business or architecture design.** Type 1 at launch (cost moderate; little audit value) vs direct testing (sponsor pays auditor hours) vs type 2 (highest cost, best scale).
+
+**External authorization required.** Each outsourced sponsor's auditor and contract.
+
+**Acceptance criteria.**
+
+- Given an outsourced sponsor contract, when signed, then it states the assurance route and cost bearer.
+
+**Reconsideration triggers.**
+
+- Procurement RFPs requiring SOC 1 type 2.
+
+**Related questions.**
+
+- **SPD-PLT-001**: Reliance-driven timing.
+
+**Corrections to prior records.**
+
+- XID-INV-008 recommendation 'Type I at launch, Type II within 12 months': Presented as a requirement; no authority found; type 1 does not support operating-effectiveness reliance. → Treat as a commercial option; trigger type 2 by user-auditor reliance or contract.
+
+### XID-SVC-003 — Complaint definition, acknowledgement and response defaults, and regulator-originated routing.
+
+**Disposition:** business-policy-decision · **Confidence:** medium · **Jurisdiction:** US (benchmarks: US CFPB, UK FCA) · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: Dissatisfaction-based definition; 2/15 business days defaults. \| decision_review_direction: Dissatisfaction-based complaints; 2/15 business day targets subject to mandatory deadlines; regulator escalation.
+
+**Relevant requirements.** XID-SVC-003, requirements/discovery/2026-11-23-cross-industry/industry/svc.md:126, requirements/discovery/2026-11-23-cross-industry/15-OPEN-DECISIONS-AND-SCENARIOS.md:38, REQ-X-042
+
+**Authoritative findings.**
+
+- *established* — CFPB: companies generally respond in 15 days; final response within 60 days if more time is needed. [EV-G-037, process steps]
+- *established* — UK: 8 weeks for most complaints; 15 days for payment services/e-money. [EV-G-038, page body]
+- *interpretation* — FCA complaint definition: any expression of dissatisfaction, whether justified or not. [EV-G-039, Glossary (search excerpt)]
+- *established* — Vanguard Charitable disputes: written Notice of Claim and 60-day informal resolution before arbitration. [EV-G-033, Arbitration section]
+
+**Supporting interpretation.** No US law found imposing complaint deadlines on 501(c)(3) DAF sponsors generally (interpretation; not 50-state verified). CFPB and FCA rules do not bind charities but give benchmarks: a dissatisfaction-based definition, ~15-day response, 60-day/8-week outer limit.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Service case kernel.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Dissatisfaction-based definition (whether justified or not). Acknowledge within 2 business days; substantive response target 15 business days; outer limit 60 calendar days with a holding response; regulator-originated complaints (state AG/charity regulator, IRS) routed to counsel within 1 business day and answered by the regulator's deadline. Mandatory deadlines in contracts or law override.
+
+**Remaining uncertainty.** DISP primary text not fetched; state-specific rules unverified.
+
+**Consequences if wrong.** Regulator escalation; reputational harm.
+
+**Conservative fallback.** Shorter targets.
+
+**Alternative business or architecture design.** Complaint flagged only when the customer uses the word 'complaint' (cheaper, undercounts).
+
+**External authorization required.** none
+
+**Acceptance criteria.**
+
+- Given a contact flagged dissatisfied and staff-confirmed, then acknowledgement within 2 business days.
+- Given a regulator-originated complaint, then counsel is assigned within 1 business day.
+
+**Reconsideration triggers.**
+
+- State charity regulator issues complaint-handling rule.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
+### XID-TRS-003 — Default successor response window.
+
+**Disposition:** business-policy-decision · **Confidence:** high · **Jurisdiction:** US · **Batch:** G (Assurance, internal control and board delegation)
+
+**Original provisional answer.** Register context: Recommendation: 90 days (observed at Fidelity) as default, configurable. \| decision_review_direction: 90-day successor response candidate; reminders, accessibility and lawful disposition.
+
+**Relevant requirements.** XID-TRS-003, requirements/discovery/2026-11-23-cross-industry/15-OPEN-DECISIONS-AND-SCENARIOS.md:57, /home/user/daf-landscape/research/mission-2026-11-14/b49-03-bequests-legacy-dafs.md
+
+**Authoritative findings.**
+
+- *established* — Fidelity: if no nominated successor responds within 90 days of notification, the account terminates and balance becomes unrestricted funds. [EV-G-032, p.15]
+- *established* — Vanguard: no successor response window stated; may contact successors to confirm willingness. [EV-G-033, Succession section]
+- *established* — NPT: succession may continue in perpetuity; successors must notify in writing; no window. [EV-G-034, p.10]
+- *interpretation* — JCF: successors who do not respond within 1 year lose to JCF Special Gifts Fund. [EV-G-036, line 192]
+
+**Supporting interpretation.** No statute sets a successor response window; it is a program term. Observed range: 90 days (Fidelity) to 1 year (JCF) to none.
+
+**Competing interpretation.** 
+
+**Applicability to Unbound.** Configurable sponsor parameter.
+
+**Business assumptions.**
+
+- none recorded
+
+**Recommended answer.** Default 90 days after documented notice, configurable 90-365 days; at least three contact attempts through every verified channel; accessible formats; disposition per the program terms in force.
+
+**Remaining uncertainty.** Schwab terms not retrieved.
+
+**Consequences if wrong.** Donor family complaints or litigation over terminated accounts.
+
+**Conservative fallback.** 180 days with reminders.
+
+**Alternative business or architecture design.** Longer window delays charitable deployment but reduces dispute risk.
+
+**External authorization required.** Sponsor program terms must state the window (counsel review of terms).
+
+**Acceptance criteria.**
+
+- Given notice sent, when 90 days pass without response and three attempts are logged, then the case moves to the program-term disposition for human decision.
+
+**Reconsideration triggers.**
+
+- Litigation trend (successor-adviser suits) or regulator guidance.
+
+**Related questions.**
+
+- none
+
+**Corrections to prior records.**
+
+- none
+
 ## Evidence register
 
 | ID | Level | Source | Status | Effective | Fetched | Pinpoint |
 |---|---|---|---|---|---|---|
+| EV-A-001 | 1 | [26 U.S.C. §4966 Taxes on taxable distributions](https://uscode.house.gov/us/usc/119-118/t26/s4966/) (Office of the Law Revision Counsel) | in force | 2006-08-17 (PPA §12… | yes | §4966(a)(1)-(2), (b), (c)(1)-(2), (d)(1)-(4) |
+| EV-A-002 | 1 | [26 U.S.C. §4967 Taxes on prohibited benefits](https://uscode.house.gov/us/usc/119-136/t26/s4967/) (Office of the Law Revision Counsel) | in force | taxable years begin… | yes | §4967(a)(1)-(2), (b), (c), (d) |
+| EV-A-003 | 1 | [26 U.S.C. §4962 Abatement of first tier taxes in certain cases](https://uscode.house.gov/us/usc/119-136/t26/s4962/) (Office of the Law Revision Counsel) | in force | 2007-12-29 amendmen… | yes | §4962(a), (b); amendment note 2007 'substituted D, or G for… |
+| EV-A-004 | 1 | [26 U.S.C. §4963 Definitions (first tier tax, second tier tax, taxable event, correct, cor…](https://uscode.house.gov/us/usc/119-118/t26/s4963/) (Office of the Law Revision Counsel) | in force | n/a | yes | §4963(a), (b), (c), (d), (e)(1)-(2) |
+| EV-A-005 | 1 | [26 U.S.C. §4958 Taxes on excess benefit transactions](https://uscode.house.gov/us/usc/119-136/t26/s4958/) (Office of the Law Revision Counsel) | in force | n/a | yes | §4958(a), (c)(2), (f)(1)(E)-(F), (f)(4), (f)(6), (f)(7), (f… |
+| EV-A-006 | 1 | [26 U.S.C. §170 (b)(1)(A)(vii), (b)(1)(F), (b)(1)(I), (f)(18), (p)](https://uscode.house.gov/us/usc/119-136/t26/s170/) (Office of the Law Revision Counsel) | in force | (I) and (p): taxabl… | yes | §170(b)(1)(A)(vii) and (F); (b)(1)(I) 0.5% floor; (f)(18); … |
+| EV-A-007 | 1 | [Chapter 42 subchapter structure (Subchapter G: Donor Advised Funds, §§4966-4967)](https://www.law.cornell.edu/uscode/text/26/subtitle-D/chapter-42) (Legal Information Institute (reproducin…) | in force | n/a | yes | Chapter 42 table of subchapters |
+| EV-A-008 | 3 | [Notice 2017-73, Request for Comments on Application of Excise Taxes With Respect to Donor…](https://www.irs.gov/pub/irs-drop/n-17-73.pdf) (IRS / Treasury) | guidance | 2017-12-04 (release) | yes | §4 (pledge conditions 1-3), §3 (event tickets), §7 'Taxpaye… |
+| EV-A-009 | 3 | [REG-142338-07, Taxes on Taxable Distributions From Donor Advised Funds Under Section 4966…](https://www.govinfo.gov/content/pkg/FR-2023-11-14/html/2023-24982.htm) (IRS / Treasury) | proposed | proposed; would app… | yes | Preamble: Definition of donor; Distributions (fees, deemed … |
+| EV-A-010 | 3 | [Federal Register document search: IRS documents matching 'donor advised funds' (newest fi…](https://www.federalregister.gov/api/v1/documents.json?conditions[term]=%22donor+advised+funds%22&conditions[agencies][]=internal-revenue-service&order=newest&per_page=20) (Federal Register (OFR/GPO) API) | n/a | n/a | yes | Results 1-20 of 27 (2026-11-24): latest §4966 items are 202… |
+| EV-A-011 | 3 | [2026-2027 Priority Guidance Plan (initial), Exempt Organizations item 4](https://www.irs.gov/pub/irs-counsel/2026-2027-initial-pgp.pdf) (Treasury / IRS Office of Chief Counsel) | guidance | 2026-09-29 | yes | Exempt Organizations items 4 and 5 |
+| EV-A-012 | 2 | [26 CFR §53.4945-5 Grants to organizations](https://www.ecfr.gov/current/title-26/chapter-I/subchapter-D/part-53/subpart-53.4945/section-53.4945-5) (eCFR (Office of the Federal Register)) | in force | as amended by TD 97… | yes | (a)(5)(i)-(ii) good faith determination, currency, qualifie… |
+| EV-A-013 | 2 | [26 CFR §53.4941(d)-2(f)(2), (f)(9) incidental or tenuous benefit](https://www.ecfr.gov/current/title-26/chapter-I/subchapter-D/part-53/subpart-53.4941(d)/section-53.4941(d)-2) (eCFR) | in force | n/a | yes | (f)(2); (f)(9) Examples 1, 2, 4 |
+| EV-A-014 | 3 | [T.D. 9740, Reliance Standards for Making Good Faith Determinations, 80 FR 57709 (preamble)](https://www.govinfo.gov/content/pkg/FR-2015-09-25/html/2015-24346.htm) (IRS / Treasury) | in force | 2015-09-25 | yes | Preamble 'Reliance on Written Advice Shared by Another Foun… |
+| EV-A-015 | 3 | [Rev. Proc. 2017-53 (equivalency determinations)](https://www.irs.gov/pub/irs-drop/rp-17-53.pdf) (IRS) | guidance | 2017 (2017-40 I.R.B… | yes | §2 (scope incl. DAF sponsors 'until further guidance'); §3.… |
+| EV-A-016 | 3 | [Rev. Proc. 2018-32 (reliance on Tax Exempt Organization Search and EO BMF)](https://www.irs.gov/pub/irs-drop/rp-18-32.pdf) (IRS) | guidance | 2018 | yes | §1 purpose; §2 (grants under §§4942, 4945 and 4966); §5.01 … |
+| EV-A-017 | 3 | [Instructions for Form 4720 (2025)](https://www.irs.gov/pub/irs-pdf/i4720.pdf) (IRS) | guidance | tax year 2025 | yes | 'Abatement' (p.6); 'Initial Tax Liability and Correction' (… |
+| EV-A-018 | 3 | [Instructions for Schedule F (Form 990) (Rev. December 2024)](https://www.irs.gov/pub/irs-pdf/i990sf.pdf) (IRS) | guidance | continuous-use from… | yes | Part II line 1 columns (c)-(i), col (f) manner of cash disb… |
+| EV-A-019 | 2 | [T.D. 10056, Trump Accounts (temporary regulations), 91 FR 61705](https://www.govinfo.gov/content/pkg/FR-2026-09-30/html/2026-20026.htm) (IRS / Treasury) | in force | taxable years begin… | yes | Preamble E 'Tax Implications of Contributions'; Temp. Reg. … |
+| EV-A-020 | 3 | [IR-2026-135 (nonitemizer charitable deduction reminder)](https://www.irs.gov/newsroom/irs-reminder-permanent-charitable-contribution-deduction-begins-for-returns-filed-next-year-for-taxpayers-who-do-not-itemize) (IRS Newsroom) | guidance | 2026-11-10 (per lan… | yes | Paragraph on qualifying contributions |
+| EV-A-021 | 3 | [Instructions for Form 8283 (Rev. December 2025)](https://www.irs.gov/pub/irs-pdf/i8283.pdf) (IRS) | guidance | Rev. 12-2025 | yes | Section B, Part V Donee Acknowledgment |
+| EV-A-022 | 3 | [About Form 8282, Donee Information Return](https://www.irs.gov/forms-pubs/about-form-8282) (IRS) | guidance | Form rev. Oct 2021 | yes | Purpose statement |
+| EV-A-023 | 6 | [IRS information letter 2024-0007 (UIL 170.07-07)](https://www.irs.gov/pub/irs-wd/24-0007.pdf) (IRS) | guidance | release 2024-03-29 | yes | p.1-2 paragraph on earmarking/conduit |
+| EV-A-024 | 3 | [Rev. Rul. 63-252 and Rev. Rul. 66-79 (control and discretion; conduit doctrine)](https://www.charitableplanning.com/library/irs/revrul/1963/252) (IRS) | guidance | 1963; 1966 | no | Holdings (not read in full text) |
+| EV-A-025 | 9 | [Fidelity Charitable Program Guidelines (© 2026, CGF-PC-04/24)](https://www.fidelitycharitable.org/content/dam/fc-public/docs/programs/fidelity-charitable-program-guidelines.pdf) (Fidelity Investments Charitable Gift Fu…) | n/a | 2026 copyright | yes | Account Holder (charities not eligible); Contributions (cos… |
+| EV-A-026 | 9 | [Fidelity Charitable grant pledge help text](https://charitablegift.fidelity.com/public/grants/pgPaymentNonLegallyBindingPledgePopup.html) (Fidelity Charitable) | n/a | n/a | yes | Pledge popup text |
+| EV-A-027 | 10 | [NGOsource 'Equivalency Determination on File' badge and repository model](https://www.ngosource.org/about-equivalency-determination-on-file-badge) (NGOsource (Council on Foundations/TechS…) | n/a | n/a | no | Badge page (fetch failed; content seen only in search snipp… |
+| EV-A-028 | 3 | [California Attorney General, Registry of Charities and Fundraisers: Delinquency](https://www.oag.ca.gov/charities/delinquency) (California Department of Justice) | guidance | n/a | yes | Intro (citing Cal. Code Regs. tit. 11 §312); FAQ 6 |
+| EV-A-029 | 10 | [Venable, Regulations Implementing California's Charitable Fundraising Platform law (AB 48…](https://www.venable.com/insights/publications/2024/05/regulations-implementing-californias-charitable) (Venable LLP) | n/a | regulations approve… | yes | Solicitation Types A-E; good standing verification |
+| EV-A-030 | 1 | [8 Del. C. §141(a), (c), (j)](https://delcode.delaware.gov/title8/c001/sc04/index.html) (State of Delaware) | in force | n/a | yes | §141(a), §141(c)(2), §141(j) |
+| EV-A-031 | 1 | [UPMIFA §3(c)(1) / state Uniform Prudent Investor Act cost standard](https://data.capitol.hawaii.gov/hrsarchive/hrs1999/Vol12/hrs554c/HRS_554C-7.htm) (Uniform Law Commission; state enactment…) | in force | varies by state | no | UPMIFA §3(c)(1) (not fetched); HRS §554C-7 seen in search s… |
+| EV-A-032 | 3 | [California AG charities webinar citing Cal. Code Regs. tit. 11 §999.9.4](https://oag.ca.gov/sites/all/files/agweb/pdfs/charities/publications/guide-webinar.pdf) (California Department of Justice) | guidance | n/a | no | Slide citing §999.9.4 (search snippet only) |
+| EV-A-033 | 1 | [26 U.S.C. §4946(d) Members of family](https://uscode.house.gov/us/usc/119-136/t26/s4946/) (Office of the Law Revision Counsel) | in force | n/a | yes | §4946(d) |
 | EV-B-001 | 2 | [26 CFR 1.170A-1 Charitable, etc., contributions and gifts; allowance of deduction](https://www.law.cornell.edu/cfr/text/26/1.170A-1) (U.S. Treasury / IRS (via Cornell LII)) | in force | in force (current C… | yes | §1.170A-1(b) Time of making contribution |
 | EV-B-002 | 3 | [Publication 526 (2025), Charitable Contributions](https://www.irs.gov/publications/p526) (IRS) | guidance | tax year 2025 | yes | 'When To Deduct' (checks, text message, credit card, pay-by… |
 | EV-B-003 | 1 | [26 U.S.C. §170(f)(8) and (f)(18)](https://www.law.cornell.edu/uscode/text/26/170) (U.S. Congress (via Cornell LII)) | in force | in force | yes | §170(f)(8)(A)-(C); §170(f)(18)(A)-(B) |
@@ -3375,6 +6350,46 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 | EV-C-046 | 7 | [Request for Comment - Return Efficiencies - Return Time Frames](https://www.nacha.org/rules/request-comment-return-efficiencies) (Nacha) | proposed | proposed 2028-09-15 | no | Search snippet only |
 | EV-C-047 | 7 | [ACH Network Risk and Enforcement Topics (rule page)](https://www.nacha.org/rules/ach-network-risk-and-enforcement-topics) (Nacha) | in force | 2015-09-18 (reiniti… | no | Search snippet only |
 | EV-C-048 | 12 | [Nacha Return entry addenda (type 99) layout - study guide](https://open-exam-prep.com/study-guides/aap-nacha/ach-file-architecture-formatting/exception-record-formats) (open-exam-prep.com AAP study guide (sea…) | guidance | n/a | no | Search snippet only |
+| EV-D-001 | 2 | [31 CFR 1010.100(ff) Money services business; (ff)(5) Money transmitter; (ff)(8) Limitation](https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-31.xml?section=1010.100) (FinCEN / eCFR) | in force | eCFR up to date as … | yes | §1010.100(ff)(5)(i)(A)-(B); (ff)(5)(ii)(A)-(F); (ff)(8) |
+| EV-D-002 | 3 | [FIN-2019-G001 Application of FinCEN's Regulations to Certain Business Models Involving Co…](https://www.fincen.gov/system/files/2019-05/FinCEN%20Guidance%20CVC%20FINAL%20508.pdf) (FinCEN) | guidance | 2019-05-09 | yes | §2 pp.8-9 (exemptions a-f; 'FinCEN interprets these exempti… |
+| EV-D-003 | 3 | [FIN-2014-R009 Application of Money Services Business Regulations to a Company Acting as a…](https://www.fincen.gov/resources/statutes-regulations/administrative-rulings/application-money-services-business) (FinCEN) | guidance | 2014-08-27 | yes | Ruling text: 'As an ISO, the Company does not take possessi… |
+| EV-D-004 | 11 | [2022-2026 Money Transmission Modernization Act Proposed and Enacted Legislation (August 2…](https://www.csbs.org/mtma-legislative-update-august-2026) (Conference of State Bank Supervisors) | n/a | 2026-08 | yes | Enactment lists by year: Texas S.B. 895/H.B. 3573 full MTMA… |
+| EV-D-005 | 11 | [CSBS Money Transmission Modernization Act (MTMA) overview page](https://www.csbs.org/node/231461) (Conference of State Bank Supervisors) | n/a | As of November 2026 | yes | Page text: 'To date, thirty-one states have enacted the law… |
+| EV-D-006 | 11 | [Money Transmission Modernization Act (model law text)](https://www.csbs.org/sites/default/files/2023-02/CSBS%20Money%20Transmission%20Modernization%20Act.pdf) (Conference of State Bank Supervisors) | n/a | n/a (model; effecti… | yes | §2.01(q) 'Money transmission' (selling/issuing payment inst… |
+| EV-D-007 | 1 | [Cal. Fin. Code §2010(l) (Money Transmission Act exemption: agent of payee)](https://california.public.law/codes/financial_code_section_2010) (California Legislature (via california.…) | in force | updated 2025-01-01 … | yes | §2010(l), (l)(1)-(3) |
+| EV-D-008 | 3 | [DFPI interpretive opinion letter, June 9, 2022: agent of payee for NPO donations; operati…](https://dfpi.ca.gov/wp-content/uploads/sites/337/2022/07/Agent-of-the-payee-for-NPO-donations-operating-account-funds-related-to-exempt-activities-not-stored-value-6-9-20.pdf) (California Department of Financial Prot…) | guidance | 2022-06-09 | yes | §II.A pp.2-3 and §III; fn 5 citing Cal. Code Regs. tit. 10 … |
+| EV-D-009 | 3 | [Final Statement of Reasons for Adoption of Rules under the California Money Transmission …](https://dfpi.ca.gov/wp-content/uploads/sites/337/2021/06/L1.-Final-Statement-of-Reasons.pdf) (California DFPI) | in force | rules eff. 2021-10-… | yes | pp.1-2: §80.126.30 ('services' include 501(c)(3) charitable… |
+| EV-D-010 | 1 | [N.Y. Banking Law §641(1)](https://www.nysenate.gov/legislation/laws/BNK/641) (New York Legislature) | in force | n/a | yes | §641(1) |
+| EV-D-011 | 3 | [NY Banking Dept interpretive letter, July 9, 2007 (processor of tax/tuition/school meal p…](https://www.dfs.ny.gov/legal/interpret/lo070709b.htm) (New York State Banking Department (now …) | guidance | 2007-07-09 | yes | Letter text on credit card payments going 'directly from th… |
+| EV-D-012 | 1 | [Fla. Stat. §560.103(27) 'Money transmitter' (2026 Florida Statutes)](https://m.flsenate.gov/Statutes/560.103) (Florida Legislature) | in force | 2026 statutes | yes | §560.103(27)(a) |
+| EV-D-013 | 6 | [Texas S.B. 895 (88R) enrolled bill analysis (MTMA adoption; Tex. Fin. Code ch. 152)](https://capitol.texas.gov/tlodocs/88R/analysis/html/SB00895F.htm) (Texas Legislature (Senate Research Cent…) | in force | statute eff. 2023-0… | yes | Analysis of Sec. 152.004(2) agent-of-payee exemption (writt… |
+| EV-D-014 | 1 | [Investment Company Act §3(c)(10), 15 U.S.C. 80a-3(c)(10)](https://www.law.cornell.edu/uscode/text/15/80a-3) (US Congress (LII)) | in force | as amended by Pub. … | yes | §3(c)(10)(A)-(D), esp. (B)(i) 'assets of the general endowm… |
+| EV-D-015 | 1 | [Investment Company Act §7(e), 15 U.S.C. 80a-7(e)](https://www.law.cornell.edu/uscode/text/15/80a-7) (US Congress (LII)) | in force | 1995-12-08 | yes | §7(e) Disclosure by exempt charitable organizations |
+| EV-D-016 | 1 | [Securities Act §3(a)(4), 15 U.S.C. 77c(a)(4)](https://www.law.cornell.edu/uscode/text/15/77c) (US Congress (LII)) | in force | n/a | yes | §3(a)(4) |
+| EV-D-017 | 1 | [Exchange Act §3(e), 15 U.S.C. 78c(e)](https://www.law.cornell.edu/uscode/text/15/78c) (US Congress (LII)) | in force | 1995-12-08 | yes | §3(e)(1) charitable organization not a broker/dealer when t… |
+| EV-D-018 | 1 | [Investment Advisers Act §202(a)(11), 15 U.S.C. 80b-2(a)(11)](https://www.law.cornell.edu/uscode/text/15/80b-2) (US Congress (LII)) | in force | n/a | yes | §202(a)(11) and exclusions (A)-(E) |
+| EV-D-019 | 1 | [Investment Advisers Act §203(b)(4), 15 U.S.C. 80b-3(b)(4)](https://www.law.cornell.edu/uscode/text/15/80b-3) (US Congress (LII)) | in force | 1995-12-08 | yes | §203(b)(4) |
+| EV-D-020 | 3 | [Release IA-1092, Applicability of the Investment Advisers Act to Financial Planners, Pens…](https://www.sec.gov/files/rules/interp/1987/ia-1092.pdf) (SEC (with NASAA)) | guidance | 1987-10-08 (date no… | yes | §II.2 'Business' standard pp.8-10 (holding out; separate co… |
+| EV-D-021 | 4 | [Lowe v. SEC, 472 U.S. 181 (1985)](https://www.law.cornell.edu/supremecourt/text/472/181) (US Supreme Court (LII)) | in force | 1985-06-10 | yes | Opinion of the Court (Stevens, J.) discussing §202(a)(11)(D… |
+| EV-D-022 | 3 | [Guide to Broker-Dealer Registration (April 2008)](https://www.sec.gov/about/divisions-offices/division-trading-markets/division-trading-markets-compliance-guides/guide-broker-dealer-registration) (SEC Division of Trading and Markets) | guidance | 2008-04 (page updat… | yes | §II.A 'Who is a broker' question list |
+| EV-D-023 | 1 | [26 U.S.C. §4958(c)(2), (f)(1)(E)-(F), (f)(7), (f)(8)](https://www.law.cornell.edu/uscode/text/26/4958) (US Congress (LII)) | in force | PPA 2006 amendments | yes | §4958(c)(2)(A)-(B); (f)(1)(F); (f)(7); (f)(8)(A)-(B) |
+| EV-D-024 | 1 | [26 U.S.C. §4966(d)(2) donor advised fund definition](https://www.law.cornell.edu/uscode/text/26/4966) (US Congress (LII)) | in force | 2006-08-17 | yes | §4966(d)(2)(A)(iii) |
+| EV-D-025 | 3 | [Taxes on Taxable Distributions From Donor Advised Funds Under Section 4966 (proposed rule…](https://www.govinfo.gov/content/pkg/FR-2023-11-14/html/2023-24982.htm) (Treasury/IRS) | proposed | n/a (proposed 2023-… | yes | 88 FR 77926, Explanation of Provisions §1.C (personal inves… |
+| EV-D-026 | 12 | [Status of REG-142338-07 (search results: Council on Foundations page updated 2026-05-08; …](https://cof.org/node/20145) (Council on Foundations / EY (secondary)) | n/a | n/a | no | Search result snippets only |
+| EV-D-027 | 1 | [Cal. Gov. Code §12599.9 (charitable fundraising platforms and platform charities; AB 488)](https://california.public.law/codes/government_code_section_12599.9) (California Legislature (via california.…) | in force | eff. 2023-01-01; mi… | yes | §12599.9(a)(1)(A)-(E), (a)(2)(A)-(E), (a)(5)-(6), (b)(1), (… |
+| EV-D-028 | 3 | [Initial Statement of Reasons, AB 488 implementing regulations (11 CCR §§314-322)](https://www.oag.ca.gov/system/files/media/pf-initial-statement-of-reasons.pdf) (California Department of Justice (Attor…) | guidance | n/a | yes | pp.9-10, §314(m)-(q) 'solicitation type A'...'E' |
+| EV-D-029 | 3 | [Final Statement of Reasons Attachment A (responses to comments), AB 488 regulations](https://oag.ca.gov/system/files/media/pf-fsor-attachment-a.pdf) (California Department of Justice) | guidance | n/a | yes | Resp. 14-15 p.9 (DAF sponsor as donor); Resp. 18 p.9 (types… |
+| EV-D-030 | 3 | [Final Statement of Reasons, AB 488 regulations (Title 11, Ch. 4 and 15)](https://oag.ca.gov/system/files/media/pf-final-statement-of-reasons.pdf) (California Department of Justice) | in force | regs effective 2024… | yes | Section 'Effective Date of Regulations and Annual Reporting… |
+| EV-D-031 | 1 | [Cal. Gov. Code §12599 (commercial fundraiser for charitable purposes)](https://california.public.law/codes/government_code_section_12599) (California Legislature (via california.…) | in force | mirror updated 2024… | yes | §12599(a)(1)-(3) and exclusions; §12599(b) registration ($2… |
+| EV-D-032 | 1 | [Cal. Gov. Code §12599.1 (fundraising counsel for charitable purposes)](https://california.public.law/codes/government_code_section_12599.1) (California Legislature (via california.…) | in force | mirror updated 2024… | yes | §12599.1(a)-(c) |
+| EV-D-033 | 1 | [N.Y. Executive Law §171-a(4),(5),(9)](https://www.nysenate.gov/legislation/laws/EXC/171-A) (New York Legislature) | in force | n/a | yes | §171-a(4) professional fund raiser; (5) professional solici… |
+| EV-D-034 | 2 | [31 CFR 1020.220 (CIP for banks) and 1020.100(b) (customer definition)](https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-31.xml?section=1020.220) (FinCEN / eCFR) | in force | eCFR up to date as … | yes | §1020.220(a)(1)-(2); §1020.100(b)(1)-(2) |
+| EV-D-035 | 2 | [31 CFR 1010.230 (beneficial ownership for legal entity customers)](https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-31.xml?section=1010.230) (FinCEN / eCFR) | in force | eCFR up to date as … | yes | §1010.230(e)(1)-(3) |
+| EV-D-036 | 2 | [31 CFR 1022.210 (AML programs for money services businesses)](https://www.ecfr.gov/api/versioner/v1/full/2026-11-20/title-31.xml?section=1022.210) (FinCEN / eCFR) | in force | eCFR up to date as … | yes | §1022.210(a)-(d) |
+| EV-D-037 | 3 | [OFAC Frequently Asked Questions (General) 11, 13, 15](https://ofac.treasury.gov/faqs/topic/1501) (US Treasury OFAC) | guidance | n/a | yes | FAQ 11; FAQ 13; FAQ 15 |
+| EV-D-038 | 3 | [A Framework for OFAC Compliance Commitments (May 2, 2019)](https://ofac.treasury.gov/system/files/126/framework_ofac_cc.pdf) (US Treasury OFAC) | guidance | 2019-05-02 | yes | p.1 (risk-based SCP; five components); p.10 §VI Sanctions S… |
+| EV-D-039 | 3 | [FinCEN final rule delaying Investment Adviser AML/CFT rule to January 1, 2028 (91 FR 36, …](https://www.fincen.gov/news/news-releases/fincen-issues-final-rule-postpone-effective-date-investment-adviser-rule-2028) (FinCEN) | in force | 2028-01-01 | no | Search snippets only |
+| EV-D-040 | 12 | [daf-landscape REG-042 (prior research record on 31 CFR 1010.100(ff)(5) and sponsor paying…](file:///home/user/daf-landscape/research (grep REG-042)) (daf-landscape repository (internal)) | n/a | n/a | yes | REG-042 row |
 | EV-E-001 | 9 | [Fidelity Charitable Program Guidelines (Terms and Conditions)](https://www.fidelitycharitable.org/content/dam/fc-public/docs/programs/fidelity-charitable-program-guidelines.pdf) (Fidelity Investments Charitable Gift Fu…) | in force | © 2026 (PDF text; a… | yes | 'Donors, Account Holders, and Authorized Persons' (Fidelity… |
 | EV-E-002 | 9 | [Vanguard Charitable Policies and Guidelines (January 2026)](https://www.vanguardcharitable.org/sites/default/files/2026-01/policies_and_guidelines_january_2026_011326_final_0.pdf) (Vanguard Charitable) | in force | 2026-01 | yes | p.3-4 'Account structure' (death/incapacity of an advisor; … |
 | EV-E-003 | 9 | [DAFgiving360 Program Policies (Updated December 2024)](https://static1.squarespace.com/static/557c669ae4b0e197d11bcb11/t/67c50d53d910296aef195450/1740967255089/DAFgiving360-2024-Program-Policies.pdf) (DAFgiving360 (formerly Schwab Charitabl…) | in force | 2024-12 (a 2026 rev… | yes | 'Account privilege limitations' (limit/suspend/terminate; f… |
@@ -3438,3 +6453,43 @@ Seven domain batches researched the 59 externally gated confirmations and the fu
 | EV-F-035 | 1 | [18 U.S.C. 2511(2)(d) (federal one-party consent)](https://www.law.cornell.edu/uscode/text/18/2511) (US Congress (via LII)) | in force | n/a | yes | 2511(2)(d) |
 | EV-F-036 | 10 | [Reporter's Recording Guide - Introduction](https://www.rcfp.org/introduction-to-reporters-recording-guide/) (Reporters Committee for Freedom of the …) | n/a | n/a | yes | Introduction (all-party state list; interstate calls) |
 | EV-F-037 | 1 | [Public Law 118-50, div. D, s.3111 (21st Century Peace through Strength Act) - IEEPA/TWEA …](https://www.govinfo.gov/content/pkg/FR-2025-03-21/html/2025-04864.htm) (US Congress (as described in 90 FR 1328…) | in force | 2024-04-24 | no | Described at 90 FR 13286 Background; statute text not fetch… |
+| EV-G-001 | 5 | [ISA (UK and Ireland) 402 (Updated June 2013), Audit Considerations Relating to an Entity …](https://www.frc.org.uk/docs/4288/html) (Financial Reporting Council (UK), based…) | superseded | 2013-06 | yes | paras 12(a)-(d), 16, 17(b)-(c), A34, A39, A41 |
+| EV-G-002 | 5 | [AU-C section 402, Audit Considerations Relating to an Entity Using a Service Organization…](https://www.aicpa-cima.com/resources/download/aicpa-statements-on-auditing-standards-currently-effective) (AICPA Auditing Standards Board) | in force | in force (as amende… | no | Not retrieved: AICPA download is account-gated; DART copy s… |
+| EV-G-003 | 5 | [PCAOB AS 2601, Consideration of an Entity's Use of a Service Organization](https://pcaobus.org/oversight/standards/auditing-standards/details/AS2601) (PCAOB) | in force | in force | no | Fetch returned HTTP 403; content known only from search-res… |
+| EV-G-004 | 10 | [Appendix A: Comparison of SOC 1, SOC 2 and SOC for Cybersecurity Examinations and Related…](https://dol.gov/sites/dolgov/files/ebsa/pdf_files/2022-cybersecurity-issues-affecting-health-benefit-plans-blanco-best-written-statement-appendix-a-07-18.pdf) (US Department of Labor EBSA (hosting wi…) | n/a | 2022-07 | yes | pp.1-3; footnote 1 (inclusive vs carve-out); row 'criteria'… |
+| EV-G-005 | 10 | [The 3 faces of SOC (Journal of Accountancy newsletter, 13 June 2016, archived)](https://www.journalofaccountancy.com/newsletters/2016/jun/3-face-of-soc.html) (AICPA Journal of Accountancy) | n/a | 2016-06-13 | yes | sections SOC 1, SOC 2, SOC 3 |
+| EV-G-006 | 5 | [2017 Trust Services Criteria for Security, Availability, Processing Integrity, Confidenti…](https://www.aicpa-cima.com/resources/article/2017-trust-services-criteria-with-revised-points-of-focus-2022) (AICPA Assurance Services Executive Comm…) | in force | 2022 (PoF revision)… | yes | landing page description; the criteria PDF itself is accoun… |
+| EV-G-007 | 10 | [To the Point No. 2022-13: AICPA revises guidance on applying its Trust Services Criteria …](https://ey.com/content/dam/ey-unified-site/ey-com/en-us/technical/accountinglink/documents/ey-ttp17549-221us-11-02-2022.pdf) (EY) | n/a | 2022-11-02 | yes | p.1 'What you need to know'; p.4 SOC 2 guide revisions and … |
+| EV-G-008 | 10 | [What Are Bridge (aka Gap) Letters & How Do They Relate to SOC Reports? (M. Kovash, Linfor…](https://linfordco.com/blog/gap-or-bridge-letters-for-ssae-16soc-1-reports/) (Linford & Company LLP) | n/a | 2026-06-05 | yes | sections on definition, signer, duration, contents |
+| EV-G-009 | 10 | [How bridge letters help mind the gap between audit periods (17 Sep 2025)](https://www.grantthornton.co.uk/insights/how-bridge-letters-help-mind-the-gap-between-audit-periods/) (Grant Thornton UK LLP) | n/a | 2025-09-17 | yes | whole article |
+| EV-G-010 | 10 | [Considering IT risk during audit risk assessment procedures (D. Arman, AICPA, JofA 1 Nov …](https://www.journalofaccountancy.com/issues/2023/nov/considering-it-risk-during-audit-risk-assessment-procedures/) (AICPA Journal of Accountancy) | guidance | SAS 145 effective f… | yes | sections on GITCs and system-generated reports |
+| EV-G-011 | 10 | [8 things to know about the audit evidence standard (B. Dohrer, AICPA Insights, 1 Oct 2023…](https://www.aicpa-cima.com/news/article/8-things-to-know-about-the-audit-evidence-standard) (AICPA & CIMA) | guidance | SAS 142 effective f… | yes | effective-date and reliability attributes passages |
+| EV-G-012 | 5 | [AU-C 330 (and ISA 330) application material on testing automated controls and reliance on…](https://www.aicpa-cima.com/resources/download/aicpa-statements-on-auditing-standards-currently-effective) (AICPA ASB / IAASB) | in force | in force | no | Not retrieved (gated). From memory: application material st… |
+| EV-G-013 | 10 | [Develop an effective SAP automated controls benchmarking strategy (Protiviti, 16 Nov 2022…](https://tcblog.protiviti.com/2022/11/16/develop-an-effective-sap-automated-controls-benchmarking-strategy) (Protiviti) | n/a | 2022-11-16 | yes | benchmarking section; AS 2201 B28-B33 reference; re-baselin… |
+| EV-G-014 | 5 | [Internal Control - Integrated Framework: Executive Summary (May 2013)](https://www.coso.org/_files/ugd/3059fc_1df7d5dd38074006bce8fdf621a942cf.pdf) (COSO) | in force | 2013-05 | yes | p.2 (smaller entities); p.4 Control Activities (segregation… |
+| EV-G-015 | 5 | [Standards for Internal Control in the Federal Government (Green Book), 2025 revision, GAO…](https://www.gao.gov/products/gao-25-107721) (US Government Accountability Office) | in force | FY2026 | yes | paras 10.05-10.08 (p.67-68), 10.21-10.23 (p.73), 11.16 (p.7… |
+| EV-G-016 | 1 | [8 Del. C. §141 (board of directors; committees) and §142 (officers)](https://delcode.delaware.gov/title8/c001/sc04/index.html) (State of Delaware) | in force | current as accessed | yes | §141(a), §141(c)(2), §141(j), §142(a) |
+| EV-G-017 | 1 | [California Corporations Code §5210 (Nonprofit Public Benefit Corporation Law)](https://california.public.law/codes/corporations_code_section_5210) (State of California (via california.pub…) | in force | current as accessed | yes | §5210 |
+| EV-G-018 | 1 | [California Corporations Code §5212 (committees)](https://california.public.law/codes/ca_corp_code_section_5212) (State of California (via california.pub…) | in force | last amended 2012-0… | yes | §5212(a)(1)-(8), (b), (c), (d) |
+| EV-G-019 | 1 | [California Corporations Code §5213 (officers)](https://california.public.law/codes/corporations_code_section_5213) (State of California (via california.pub…) | in force | last amended 2023-0… | yes | §5213(a)-(c) |
+| EV-G-020 | 1 | [New York Not-for-Profit Corporation Law §701 (board of directors)](https://www.nysenate.gov/legislation/laws/NPC/701) (New York State Senate) | in force | as displayed (revis… | yes | §701(a)-(b) |
+| EV-G-021 | 1 | [New York Not-for-Profit Corporation Law §712 (executive committee and other committees)](https://www.nysenate.gov/legislation/laws/NPC/712) (New York State Senate) | in force | as displayed (revis… | yes | §712(a)-(c) |
+| EV-G-022 | 1 | [New York Not-for-Profit Corporation Law §713 (officers)](https://www.nysenate.gov/legislation/laws/NPC/713) (New York State Senate) | in force | as displayed (revis… | yes | §713(a)-(b) and employee-chair restriction |
+| EV-G-023 | 1 | [Vermont Nonprofit Corporations Act, 11B V.S.A. chapter 8 (§§8.01, 8.25, 8.40, 8.41) - Mod…](https://legislature.vermont.gov/statutes/fullchapter/11B/008) (State of Vermont (unofficial online cop…) | in force | as accessed | yes | §8.01(b), §8.25(a),(d),(e), §8.40(a),(c), §8.41 |
+| EV-G-024 | 10 | [Model Nonprofit Corporation Act, Third Edition (2008), §§8.01, 8.25, 8.40, 8.41](https://americanbar.org/content/dam/aba-cms-dotorg/products/inv/book/438742137/intro.pdf) (American Bar Association, Business Law …) | n/a | 2008-08 | no | Text of §§8.01, 8.25, 8.40-8.41 not retrieved; only bibliog… |
+| EV-G-025 | 1 | [26 U.S.C. §4966 (taxes on taxable distributions)](https://www.law.cornell.edu/uscode/text/26/4966) (US Congress (Cornell LII)) | in force | 2006 (PPA); current | yes | §4966(a)(2), (b)(1)-(2), (d)(2)(A), (d)(3) |
+| EV-G-026 | 1 | [26 U.S.C. §4958 (excess benefit transactions)](https://www.law.cornell.edu/uscode/text/26/4958) (US Congress (Cornell LII)) | in force | current | yes | §4958(a)(2), (f)(2) |
+| EV-G-027 | 2 | [Treas. Reg. §53.4958-1(d)(2) (organization manager; officer definition)](https://www.law.cornell.edu/cfr/text/26/53.4958-1) (US Treasury/IRS (Cornell LII)) | in force | current | yes | §53.4958-1(d)(2)(i)(A)-(B), (d)(2)(ii) |
+| EV-G-028 | 2 | [Taxes on Taxable Distributions From Donor Advised Funds Under Section 4966 (NPRM, REG-142…](https://www.federalregister.gov/documents/2023/11/14/2023-24982/taxes-on-taxable-distributions-from-donor-advised-funds-under-section-4966) (US Treasury/IRS) | proposed | n/a (proposed) | no | Not fetched; existence and docket confirmed via search resu… |
+| EV-G-029 | 11 | [Proposed Rule: Taxes on Taxable Distributions from Donor Advised Funds under Section 4966…](https://cof.org/node/20145) (Council on Foundations) | n/a | 2026-05-08 | yes | status sentence |
+| EV-G-030 | 1 | [26 U.S.C. §170(f)(18) and §170(f)(8)](https://www.law.cornell.edu/uscode/text/26/170) (US Congress (Cornell LII)) | in force | current | yes | §170(f)(18)(B); §170(f)(8)(A)-(C) |
+| EV-G-031 | 1 | [15 U.S.C. §7001(c) (E-SIGN consumer consent)](https://www.law.cornell.edu/uscode/text/15/7001) (US Congress (Cornell LII)) | in force | 2000; current | yes | §7001(c)(1)(A)-(D) |
+| EV-G-032 | 9 | [Fidelity Charitable Program Guidelines (CGF-PC-04/24; (c) 2026)](https://www.fidelitycharitable.org/content/dam/fc-public/docs/programs/fidelity-charitable-program-guidelines.pdf) (Fidelity Investments Charitable Gift Fu…) | n/a | as downloaded 2026-… | yes | p.4 'Primary Account Holder'; p.15 'Successor Account Holde… |
+| EV-G-033 | 9 | [Vanguard Charitable Policies and Guidelines (updated 9 Jan 2026)](https://www.vanguardcharitable.org/company-policies/policies-and-guidelines) (Vanguard Charitable) | n/a | 2026-01-09 | yes | Statements section; Succession section; Arbitration section… |
+| EV-G-034 | 9 | [A Guide to your Donor-Advised Fund (NPT; PDF created 2026-10-15)](https://www.nptrust.org/wp-content/uploads/2024/09/A-Guide-to-your-Donor-Advised-Fund-NPT.pdf) (National Philanthropic Trust) | n/a | 2026-10-15 | yes | p.17 'DAF Account Statements'; p.10 Legacy Plan |
+| EV-G-035 | 9 | [DAFgiving360 (Schwab) Program Policies](https://www.dafgiving360.org/features/program-policies) (DAFgiving360) | n/a | n/a | no | HTTP 403 on all attempts; content not retrieved. |
+| EV-G-036 | 11 | [b49-03 bequests and legacy DAFs (daf-landscape research note, table rows 1 and 15)](file:///home/user/daf-landscape/research/mission-2026-11-14/b49-03-bequests-legacy-dafs.md) (daf-landscape repository (local, read-o…) | n/a | 2026-11 | no | lines 178 and 192 |
+| EV-G-037 | 3 | [Learn how the complaint process works](https://www.consumerfinance.gov/complaint/process/) (Consumer Financial Protection Bureau) | guidance | current | yes | process steps and timelines |
+| EV-G-038 | 6 | [Time limits for businesses](https://www.financial-ombudsman.org.uk/businesses/resolving-complaint/time-limits-businesses) (Financial Ombudsman Service (UK)) | guidance | current | yes | page body |
+| EV-G-039 | 2 | [FCA Handbook DISP 1.6.2R and Glossary 'complaint'](https://www.handbook.fca.org.uk/handbook/DISP/1/6.html) (Financial Conduct Authority (UK)) | in force | current | no | Page is a JavaScript app; text not retrieved. Search-result… |
+| EV-G-040 | 11 | [Minneapolis Foundation DonorView FAQ (as recorded in daf-landscape queue-npt-dafgiving360…](https://www.minneapolisfoundation.org/donorview-faq/) (daf-landscape repository (local)) | n/a | 2026-11 | no | queue-npt-dafgiving360-misc.md line 43 |
