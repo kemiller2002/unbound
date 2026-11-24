@@ -20,6 +20,8 @@ Discovery-specific gates:
   D7  every new requirement and refinement is tested by a scenario (ERROR here; WARN in G11)
   D8  daf-landscape (if present beside this repository) has no working-tree changes
   D9  identifiers cited in the mission Markdown reports resolve
+  D10 decision outcomes reference an existing open decision, carry decision, rationale, authority and
+      confirmation_required, and the decision row's status agrees with the outcome
 
 Usage: python3 -I tools/reqaudit/validate_discovery.py <repo-root> [mission-dir]
 """
@@ -129,6 +131,19 @@ def g_tested(new_reqs: Iterable[str], edges: Tuple[dict, ...]) -> Tuple[Issue, .
     return tuple(Issue("ERROR", "D7", r, "no tested_by scenario") for r in new_reqs if r not in tested)
 
 
+def g_outcomes(outcomes: Tuple[dict, ...], decs: Tuple[dict, ...]) -> Tuple[Issue, ...]:
+    status = {d["decision_id"]: d.get("status") for d in decs}
+    def check(o: dict) -> Iterable[Issue]:
+        i = o.get("decision_id", "?")
+        if i not in status:
+            yield Issue("ERROR", "D10", i, "outcome for an unknown decision")
+        elif status[i] != o.get("status"):
+            yield Issue("ERROR", "D10", i, f"decisions.csv status {status[i]!r} disagrees with outcome {o.get('status')!r}")
+        yield from (Issue("ERROR", "D10", i, f"missing or empty field '{f}'")
+                    for f in ("decision", "rationale", "authority", "confirmation_required", "confidence") if empty(o.get(f)))
+    return tuple(x for o in outcomes for x in check(o))
+
+
 def g_landscape(root: Path) -> Tuple[Issue, ...]:
     other = root.parent / "daf-landscape"
     if not (other / ".git").exists():
@@ -167,6 +182,7 @@ def main(argv) -> int:
     atlas, rejected = v.load_jsonl(data / "capability-atlas.jsonl"), v.load_jsonl(data / "rejected.jsonl")
     failures, events = v.load_jsonl(data / "failure-catalog.jsonl"), v.load_jsonl(data / "event-matrix.jsonl")
     regs = v.load_jsonl(data / "regulatory-applicability.jsonl")
+    outcomes = v.load_jsonl(data / "decision-outcomes.jsonl")
     edges = v.load_csv(data / "trace-edges.csv")
     sets = {
         "refinements": tuple(r["refinement_id"] for r in refs_), "gaps": tuple(g["id"] for g in gaps),
@@ -204,7 +220,7 @@ def main(argv) -> int:
         *g_refs_list("D6", failures, "id", ("covered_by", "new_ids"), ok),
         *g_refs_list("D1", regs, "id", ("related_OB_ids", "existing_requirement_ids"), ok),
         *g_tested(sets["refinements"] + sets["gaps"], edges),
-        *g_landscape(root), *g_reports(mission, ok),
+        *g_outcomes(outcomes, decs), *g_landscape(root), *g_reports(mission, ok),
     )
     errors = tuple(i for i in issues if i.level == "ERROR")
     for i in issues:

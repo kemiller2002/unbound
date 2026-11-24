@@ -116,6 +116,8 @@ Neither is a missing feature, and both now have requirements and open decisions.
 
 ## 6. Remaining uncertainties and the evidence needed to resolve them
 
+**Update 2026-11-24:** all 41 legal and accounting questions now have provisional decisions, made at the owner's direction ([16](16-LEGAL-AND-ACCOUNTING-DECISIONS.md)). The rows below remain uncertain until the confirmations listed in report 16 are obtained. Five decisions keep their features switched off until an opinion is on file.
+
 | Uncertainty | Evidence needed | Records |
 |---|---|---|
 | Operator money-transmission, investment-adviser and broker-dealer status for each operating model | Counsel opinion per feature set | XID-REG-001, XID-REG-002, XID-INV-004 |

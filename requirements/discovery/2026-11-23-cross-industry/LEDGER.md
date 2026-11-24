@@ -41,6 +41,7 @@ python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must st
 | 9 | Integrator | Merge; refinement renumbering (no collisions found); duplicate screen (token-similarity over all cross-pass pairs, then topical review); XIF-INT, XIC-INT, XID-INT | data/*, reports 00–09, 11–13, 15 |
 | 10 | Adversarial, independent brief | §16: assume failure; priorities; contradictions; legal spot-checks; arithmetic | XIF-ADV, XIC-ADV, XID-ADV, XRJ-ADV, UNB-XIN-ADV, priority-challenges.jsonl |
 | 11 | Integrator | Applied the adversarial revisions; wrote 10, 14 and this ledger | §4 below |
+| 12 | Integrator, at the owner's direction (2026-11-24) | Decided the 41 legal and accounting questions after reading the accounting rules; verified §4966(c)(2), §4962, 47 CFR 64.1200, FINRA 2165 and Rev. Proc. 2017-53 | `data/decision-outcomes.jsonl`, report 16, gate D10 |
 
 ## 3. Integrator fixups applied to research-pass output
 
@@ -107,6 +108,6 @@ The harness does not report the integrating session's own token use, and it is n
   - FASB Codification sections were not read directly. ASU 2018-08 was read.
 - **No measured operating data.** Every cost and volume figure without a source is Illustrative or `[A]`.
 - **Nothing executed.** There is no implementation, the scenarios have not been run, and no PostgreSQL benchmark exists.
-- **No review by counsel or a CPA.** Forty-one open decisions are typed legal (29) or accounting (12).
+- **No review by counsel or a CPA.** The 41 legal (29) and accounting (12) decisions are `decided-provisional`: owner-directed defaults with recorded confirmations, not opinions. Since report 16, `data/` is maintained directly; the merge is not re-run.
 - **Prior blockers unchanged.** The Conditor bootstrap (RCD-002) is still not done. The records have not yet been adopted into the domain files (RCD-001).
 - **Not reviewed by the adversarial pass.** Five industry reports (bnk, inv, svc, erp, grt) were assessed only through their data files.

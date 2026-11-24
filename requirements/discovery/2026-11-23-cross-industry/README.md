@@ -38,6 +38,7 @@ This is requirements engineering only. No application code was written. All data
 | §5 | Business-model analysis | [13-BUSINESS-MODEL-ANALYSIS.md](13-BUSINESS-MODEL-ANALYSIS.md) | `business-models.jsonl` |
 | §16 | Final adversarial review | [14-ADVERSARIAL-REVIEW.md](14-ADVERSARIAL-REVIEW.md) | `XIF-ADV-*`, `priority-challenges.jsonl` |
 | — | Open decisions and acceptance scenarios | [15-OPEN-DECISIONS-AND-SCENARIOS.md](15-OPEN-DECISIONS-AND-SCENARIOS.md) | `decisions.csv`, `scenarios.csv` |
+| — | Decisions on the 41 legal and accounting questions (provisional; confirmations listed) | [16-LEGAL-AND-ACCOUNTING-DECISIONS.md](16-LEGAL-AND-ACCOUNTING-DECISIONS.md) | `decision-outcomes.jsonl` |
 | — | Independent industry assessments (eight research passes) | [`industry/`](industry/) | — |
 | — | Checkpoint ledger (resume here) | [LEDGER.md](LEDGER.md) | `validation-report.json` |
 
@@ -106,6 +107,7 @@ python3 -I -B tools/reqaudit/validate.py .                                      
 - D7: every new requirement and refinement is tested by a scenario. This is an ERROR, not a warning.
 - D8: `daf-landscape` is unchanged.
 - D9: every identifier cited in the reports resolves.
+- D10: every decision outcome references an existing decision, carries its rationale, authority and required confirmation, and agrees with the decision's status.
 
 ## Evidence discipline
 

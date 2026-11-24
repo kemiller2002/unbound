@@ -43,7 +43,7 @@ def load(data: Path) -> Dict[str, tuple]:
                 F=cv("findings.csv"), C=cv("conflicts.csv"), S=cv("scenarios.csv"), D=cv("decisions.csv"),
                 X=jl("rejected.jsonl"), FC=jl("failure-catalog.jsonl"), EV=jl("event-matrix.jsonl"),
                 RA=jl("regulatory-applicability.jsonl"), BM=jl("business-models.jsonl"), E=cv("trace-edges.csv"),
-                PC=jl("priority-challenges.jsonl"), DU=cv("duplicates.csv"),
+                PC=jl("priority-challenges.jsonl"), O=jl("decision-outcomes.jsonl"), DU=cv("duplicates.csv"),
                 V=json.loads((data / "validation-report.json").read_text()) if (data / "validation-report.json").exists() else {})
 
 
@@ -309,6 +309,30 @@ def g_adv_decisions(d) -> str:
 def g_adv_requirements(d) -> str:
     return table(("ID", "P", "Statement", "Business problem"),
                  tuple((g["id"], g.get("priority"), g.get("statement"), g.get("business_problem")) for g in d["G"] if g["id"].startswith("UNB-XIN-ADV-")), 600)
+
+
+def g_outcome_summary(d) -> str:
+    q = {x["decision_id"]: x for x in d["D"]}
+    c = Counter((q.get(o["decision_id"], {}).get("type"), o.get("confidence")) for o in d["O"])
+    types = tuple(sorted({k[0] for k in c})); confs = tuple(sorted({k[1] for k in c}))
+    return table(("Type", *confs, "Total"), tuple((t, *(c[(t, k)] for k in confs), sum(c[(t, k)] for k in confs)) for t in types))
+
+
+def g_outcomes(d) -> str:
+    q = {x["decision_id"]: x for x in d["D"]}
+    def one(o) -> str:
+        x = q.get(o["decision_id"], {})
+        auth = "\n".join(f"  - {a}" for a in o.get("authority", ()))
+        cons = "\n".join(f"  - {a}" for a in o.get("requirement_consequences", ()))
+        return (f"### {o['decision_id']} ({x.get('type', '?')})\n\n"
+                f"**Question.** {cell(x.get('question'), 600)}\n\n"
+                f"**Decision.** {o['decision']}\n\n"
+                f"**Rationale.** {o['rationale']}\n\n"
+                f"- **Confidence:** {o.get('confidence')} · **Status:** {o.get('status')} · **Confirmation required:** {o.get('confirmation_required')}\n"
+                f"- **Authority:**\n{auth}\n"
+                f"- **Requirement consequences:**\n{cons}\n")
+    order = lambda o: (q.get(o["decision_id"], {}).get("type", ""), o["decision_id"])
+    return "\n".join(one(o) for o in sorted(d["O"], key=order))
 
 
 def g_trace(d) -> str:
