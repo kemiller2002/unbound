@@ -86,6 +86,12 @@ def surge(res):
     return table(("Ent.", "December extra staff (x base)", "$/fund-yr", "Δ vs normal C", "Exception SLA attainment", "P90 wait (days)"), rows)
 
 
+def staffed(res):
+    rows = [(f"{r['admin_funds']:,}", r["licence_scale"], money(r["unbound_admin_cost_per_fund"]), money(r["sponsor_retained_decision_cost_per_fund"]),
+             "yes" if r["team_floor_binding"] else "no", f"{r['margin_vs_ren_low']:+,.0f}") for r in res["staffed_offer"]]
+    return table(("Funds administered", "Platform cost scale", "Unbound admin cost $/fund-yr", "Sponsor-retained decision cost $/fund-yr", "Team floor binds", "Headroom vs Ren low ($413)"), rows)
+
+
 def main():
     res = json.load(open(os.path.join(HERE, "enterprise-results.json")))
     lic = res["meta"]["licence_per_account"]
@@ -109,7 +115,8 @@ def main():
              "## 4. Revenue and margin\n\n" + revenue(res),
              "## 5. One-way sensitivity (approach C; top six plus licence scale)\n\n" + sensitivity(res),
              "## 6. Stress scenarios (approach C)\n\n" + stress(res),
-             "## 7. December surge staffing (TEV-001; pooled queue simulation)\n\n" + surge(res)]
+             "## 7. December surge staffing (TEV-001; pooled queue simulation)\n\n" + surge(res),
+             "## 8. Staffed administration offer vs Ren (OD-M-08)\n\nAssumptions: " + res["staffed_assumptions"]["basis"] + "\n\n" + staffed(res)]
     with open(os.path.join(HERE, "..", "05a-ECONOMIC-TABLES.md"), "w") as fh:
         fh.write("\n\n".join(parts) + "\n")
 

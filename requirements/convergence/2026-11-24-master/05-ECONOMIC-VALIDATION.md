@@ -65,6 +65,27 @@ about 1M funds, which exceeds the addressable traditional market.
 
 Public Form 990 data puts incumbent software at $32–$129 per DAF-year for large national sponsors, about $100 per fund-year (all funds) at community foundations and $413–$745 for fully outsourced administration. Unbound's break-even (≈$81 at 100k platform funds, ≈$131 at 50k) is therefore inside or above the large-national band: price competition is viable only against mid-size nationals, community foundations priced per fund, and outsourced-administration buyers. EV-01 stands and is sharper.
 
+
+## 3b. Staffed administration offer (OD-M-08, report 05a section 8)
+
+After the owner chose to compete with Ren on two fronts, the model priced an Unbound-operated administration team
+(Ren-class outsourced administration) for sponsors of about 5,000 funds, with Unbound's own platform at cost, a 4-FTE team
+floor, 15% supervision, and Unbound staff preparing half of the exception and complex-gift work while each sponsor's own
+appointed people decide (SPD-ADV-001). All are assumptions.
+
+| Funds administered | Unbound cost $/fund-yr (platform at 100k / 25k funds) | Ren administration price evidence |
+|---|---|---|
+| 10,000 | 192 / 298 | $413–745 per DAF-year (Form 990 contractor payments, two sponsors; floors) |
+| 50,000 | 153 / 260 | |
+| 100,000 | 149 / 256 | |
+
+**Finding EV-12a.** The staffed offer has far more economic room than the software-only offer: modelled cost sits
+$115–265 per fund-year below the lowest observed Ren administration price, against a software offer whose break-even sits
+inside iPhi's price band (report 13). It is the more defensible business case. Caveats: the two Ren price points may bundle
+services not modelled here (gift consulting, investment administration); they are averages over large, asset-heavy
+sponsors (33–37 bps); Unbound's sales, build capex and assurance costs are in the vendor P&L, not in this per-fund figure;
+and every handling-time lever is still unmeasured, so the shadow replay and time study (report 12) gate any price.
+
 ## 4. Why each activity exists, and what each approach does with it
 
 Unchanged from the first version and still valid as a classification (law, contract, integrity, value, risk,

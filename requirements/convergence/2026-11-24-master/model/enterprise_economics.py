@@ -338,6 +338,41 @@ def december_surge(cfg, e):
     return tuple(one(sf) for sf in SURGE_LEVELS)
 
 
+# ---------------------------------------------------------------------------- staffed administration offer (OD-M-08)
+
+STAFFED = {"team_floor_fte": 4.0, "supervision_share": 0.15, "prep_share": 0.5,
+           "ren_price_per_daf": (413.0, 745.0), "ipHi_software_per_daf": (32.0, 129.0),
+           "basis": "[A] floor of 4 FTE for coverage and segregation of duties; 15% supervision overhead; Unbound staff prepare "
+                    "half of exception and complex-gift work while sponsors' own appointed people decide (SPD-ADV-001). "
+                    "[market-data] Ren administration $413-745 per DAF-year and iPhi software $32-129 per DAF-year from Form 990 "
+                    "contractor payments (report 13; floors, may bundle services not modelled such as gift consulting)."}
+ADMIN_LINES = ("staff:queue:service", "staff:queue:ops", "staff:surge:service", "staff:surge:ops", "payments:grants",
+               "payments:contributions", "recurring_obligations", "advisor_relationships", "identity_new_accounts")
+
+
+def staffed_offer(cfg, admin_funds, licence_which):
+    """Unbound's cost per fund to run Ren-class outsourced administration for sponsors of 5,000 funds each (E5 mix),
+    with Unbound's own platform at cost (no licence markup)."""
+    ev = evaluate(cfg, "E5", "C", admin_funds, random.Random(0), random.Random(0), False, licence_which=licence_which, markup=0.0)
+    ay, v = ev["accounts_year"], ev["values"]
+    usd = lambda pred: sum(l["usd"] for l in ev["lines"] if pred(l))
+    admin_ops = usd(lambda l: l["line"] in ADMIN_LINES or l["line"] == "unbound_licence")
+    reserved = usd(lambda l: l["line"] in ("staff:queue:exceptions", "staff:queue:complex", "staff:surge:exceptions", "staff:surge:complex"))
+    prep = reserved * STAFFED["prep_share"]
+    staff_usd = usd(lambda l: l["line"] in ADMIN_LINES[:4]) + prep
+    floor_usd = STAFFED["team_floor_fte"] * v["loaded_cost_per_fte"]
+    staff_usd_floored = max(staff_usd, floor_usd)
+    cost = admin_ops - usd(lambda l: l["line"] in ADMIN_LINES[:4]) + staff_usd_floored * (1 + STAFFED["supervision_share"]) + prep * 0
+    return {"admin_funds": admin_funds, "licence_scale": licence_which, "unbound_admin_cost_per_fund": cost / ay,
+            "sponsor_retained_decision_cost_per_fund": (reserved - prep) / ay,
+            "team_floor_binding": staff_usd < floor_usd,
+            "margin_vs_ren_low": STAFFED["ren_price_per_daf"][0] - cost / ay}
+
+
+def staffed_table(cfg):
+    return tuple(staffed_offer(cfg, n, w) for n in (10000, 25000, 50000, 100000) for w in ("adverse", "base"))
+
+
 # ---------------------------------------------------------------------------- vendor P&L (ADV-B-002)
 
 def vendor_pnl(cfg, platform_funds, price_per_fund):
@@ -387,6 +422,7 @@ def results(base_cfg):
             "comparison": comparison, "scales": scales, "revenue": revenue, "licence_sensitivity": corrected,
             "vendor_pnl": vendor_table(cfg), "vendor_assumptions": VENDOR,
             "december_surge": {e: december_surge(cfg, e) for e in ents},
+            "staffed_offer": staffed_table(cfg), "staffed_assumptions": {k: v for k, v in STAFFED.items()},
             "sensitivity": {e: sensitivity(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "stress": {e: stress(cfg, e, ENTERPRISES[e]["accounts"]) for e in ents},
             "segment_cost_to_serve": segment}

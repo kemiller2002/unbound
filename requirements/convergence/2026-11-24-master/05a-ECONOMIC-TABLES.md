@@ -375,3 +375,18 @@ Assumptions [A]: [A] build_capex from parameters.json amortised over 5 years; sa
 | E5 | 1.0 | 258 | +3 | 0.77 | 8.9 |
 | E5 | 2.0 | 262 | +7 | 1.00 | 0.5 |
 | E5 | 3.0 | 267 | +12 | 1.00 | 0.0 |
+
+## 8. Staffed administration offer vs Ren (OD-M-08)
+
+Assumptions: [A] floor of 4 FTE for coverage and segregation of duties; 15% supervision overhead; Unbound staff prepare half of exception and complex-gift work while sponsors' own appointed people decide (SPD-ADV-001). [market-data] Ren administration $413-745 per DAF-year and iPhi software $32-129 per DAF-year from Form 990 contractor payments (report 13; floors, may bundle services not modelled such as gift consulting).
+
+| Funds administered | Platform cost scale | Unbound admin cost $/fund-yr | Sponsor-retained decision cost $/fund-yr | Team floor binds | Headroom vs Ren low ($413) |
+|---|---|---|---|---|---|
+| 10,000 | adverse | 298 | 43 | no | +115 |
+| 10,000 | base | 192 | 43 | no | +221 |
+| 25,000 | adverse | 271 | 42 | no | +142 |
+| 25,000 | base | 165 | 42 | no | +248 |
+| 50,000 | adverse | 260 | 42 | no | +153 |
+| 50,000 | base | 153 | 42 | no | +260 |
+| 100,000 | adverse | 256 | 42 | no | +157 |
+| 100,000 | base | 149 | 42 | no | +264 |

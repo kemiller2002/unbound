@@ -3513,6 +3513,86 @@
    }
   ]
  },
+ "staffed_assumptions": {
+  "basis": "[A] floor of 4 FTE for coverage and segregation of duties; 15% supervision overhead; Unbound staff prepare half of exception and complex-gift work while sponsors' own appointed people decide (SPD-ADV-001). [market-data] Ren administration $413-745 per DAF-year and iPhi software $32-129 per DAF-year from Form 990 contractor payments (report 13; floors, may bundle services not modelled such as gift consulting).",
+  "ipHi_software_per_daf": [
+   32.0,
+   129.0
+  ],
+  "prep_share": 0.5,
+  "ren_price_per_daf": [
+   413.0,
+   745.0
+  ],
+  "supervision_share": 0.15,
+  "team_floor_fte": 4.0
+ },
+ "staffed_offer": [
+  {
+   "admin_funds": 10000,
+   "licence_scale": "adverse",
+   "margin_vs_ren_low": 114.7725,
+   "sponsor_retained_decision_cost_per_fund": 42.8588,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 298.2275
+  },
+  {
+   "admin_funds": 10000,
+   "licence_scale": "base",
+   "margin_vs_ren_low": 220.9601,
+   "sponsor_retained_decision_cost_per_fund": 42.8588,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 192.0399
+  },
+  {
+   "admin_funds": 25000,
+   "licence_scale": "adverse",
+   "margin_vs_ren_low": 142.2009,
+   "sponsor_retained_decision_cost_per_fund": 42.3225,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 270.7991
+  },
+  {
+   "admin_funds": 25000,
+   "licence_scale": "base",
+   "margin_vs_ren_low": 248.3885,
+   "sponsor_retained_decision_cost_per_fund": 42.3225,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 164.6115
+  },
+  {
+   "admin_funds": 50000,
+   "licence_scale": "adverse",
+   "margin_vs_ren_low": 153.4379,
+   "sponsor_retained_decision_cost_per_fund": 42.3225,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 259.5621
+  },
+  {
+   "admin_funds": 50000,
+   "licence_scale": "base",
+   "margin_vs_ren_low": 259.6255,
+   "sponsor_retained_decision_cost_per_fund": 42.3225,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 153.3745
+  },
+  {
+   "admin_funds": 100000,
+   "licence_scale": "adverse",
+   "margin_vs_ren_low": 157.3241,
+   "sponsor_retained_decision_cost_per_fund": 42.2431,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 255.6759
+  },
+  {
+   "admin_funds": 100000,
+   "licence_scale": "base",
+   "margin_vs_ren_low": 263.5118,
+   "sponsor_retained_decision_cost_per_fund": 42.2431,
+   "team_floor_binding": false,
+   "unbound_admin_cost_per_fund": 149.4882
+  }
+ ],
  "stress": {
   "E1": [
    {
