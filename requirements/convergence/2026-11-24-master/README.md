@@ -21,6 +21,7 @@ and the path to pass are in its section 23).
 | 13 | [Evidence-backlog results](13-EVIDENCE-BACKLOG-RESULTS.md) | delegated research + verification |
 | 14 | [Public-data replay](14-PUBLIC-DATA-REPLAY.md) and [14a tables](14a-PUBLIC-DATA-REPLAY-TABLES.md) | F# tool in `replay/`; public IRS and OFAC data |
 | 15 | [Savings claims](15-SAVINGS-CLAIMS.md) and `data/claims-register.jsonl` | approved by the board (OD-M-13); CLM-01 awaits a price |
+| 16 | [Synthetic operating year and internal time study](16-SYNTHETIC-OPERATING-YEAR-AND-INTERNAL-TIME-STUDY.md), [16a tables](16a-SYNTHETIC-OPERATING-YEAR-TABLES.md) | OD-M-14: no design partner; F# `synth` generator |
 
 Sources of truth: `clauses/` (convergence clause source and adversarial amendments), `data/` (dossiers, evidence,
 clauses, catalogs, findings), `requirements/questions/` (resolution log), `requirements/baseline/` and
