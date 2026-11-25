@@ -62,7 +62,8 @@ results reported with confidence intervals using the error-bound method of CNV-F
    lever-dependent conclusions; until then report 05 stands as written.
 2. Record each measured value as an `evidence-reviewed` event on the questions it settles (for example RR-UNB-GRT-003-r1#Q1,
    UNB-XIN-ECO-006#Q1, UNB-XIN-SVC-008#Q1) and close the corresponding CNV-EVB-001 items.
-3. Only then may CNV-ECO-003's gate pass and a licence price list be prepared.
+3. Only then may CNV-ECO-003's gate pass for customer cost-saving claims and segment commitments. Licence prices are not
+   gated on this protocol: the board sets them at what the market will bear (OD-M-11, 2026-11-25).
 
 ## 6. Owner-side prerequisites
 

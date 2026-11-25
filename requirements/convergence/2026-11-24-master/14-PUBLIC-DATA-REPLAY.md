@@ -12,7 +12,7 @@ byte-identical, and input hashes are in `replay/out/replay-results.json`. Genera
 [report 14a](14a-PUBLIC-DATA-REPLAY-TABLES.md). The tool has 20 fixture tests.
 
 **Status.** This is evidence: measured on public data, with the interpretation labelled. It does **not** satisfy
-CNV-ECO-003, which still needs a real sponsor's 12-month history and a 90-day time study. Neither does it give legal
+the CNV-ECO-003 gate on customer cost-saving claims and segment commitments, which still needs a real sponsor's 12-month history and a 90-day time study. Neither does it give legal
 authorization: counsel confirms the class rules (OD-P-LEG).
 
 ## 1. What public data can and cannot measure
@@ -112,8 +112,8 @@ investment and programme costs. The comparisons in report 05 stay relative, not 
 | Model base `exception_rate` 8% for approaches without reuse | Public data suggests about 11% for eligibility alone. Recommend a sensitivity run at 11.2% for A8, B and C0 at the next model revision. |
 | Recipient registry with reusable, evidenced determinations shared across sponsors | Supported (§3.2) |
 | Re-screening at disbursement plus revocation monitoring | Supported (§3.3) |
-| Sanctions matcher recall target, subgroup reporting, alert-is-not-evidence | **Proposed** for owner ratification (§3.4); not recorded as a clause |
-| Gate change ("public-data replay sets pilot prices; first staffed client validates with a 12-month price review") | **Not recorded.** Awaiting the owner's explicit confirmation. |
+| Sanctions matcher recall target, subgroup reporting, alert-is-not-evidence | **Adopted for now** (OD-M-10, 2026-11-25): CNV-GRT-006 amended; the recall target value is set by the sponsor compliance officer |
+| Pricing gate | **Decided** (OD-M-11, 2026-11-25): the board sets licence prices at what the market will bear, informed by this replay and report 13; no client validation or 12-month price review. CNV-ECO-003 amended: price lists are no longer gated on a real-sponsor replay; customer cost-saving claims and segment commitments still are. |
 
 ## 5. Limits
 

@@ -38,7 +38,7 @@ ACTOR = "Master mission agent (convergence; product-owner directions and mission
 CLAUSE_MODULES = ("c1_finance_payments", "c2_grants_law", "c3_governance_regulatory", "c4_platform_product",
                   "c5_adversarial_business", "c6_adversarial_technical")
 AMENDMENT_MODULES = ("c7_amendments", "c8_owner_decisions", "c9_evidence_amendments", "c10_round2_amendments",
-                     "c11_round2_partial_closures")  # applied in order; each records revision history
+                     "c11_round2_partial_closures", "c14_replay_owner_decisions")  # applied in order; each records revision history
 CONTROL_MATRIX = Path("requirements/governance/MASTER-ENTERPRISE-CONTROL-MATRIX.csv")
 CROSSWALK = Path("requirements/governance/CONVERGENCE-CLAUSE-TO-CONTROL-CROSSWALK.csv")
 RECORD_FILES = ("requirements/reconciliation/2026-11-23/data/refinements.jsonl",
@@ -63,7 +63,7 @@ def amend(c, a):
                 amends=list(dict.fromkeys(c["amends"] + list(a.get("amends_add", ())))),
                 dependencies=list(dict.fromkeys(c["dependencies"] + list(a.get("dependencies", ())))),
                 release_scope=a.get("release_scope", c["release_scope"]),
-                revision_history=c.get("revision_history", []) + [{"on": ON, "source": "owner decision" if "owner decision" in a["finding"] else ("evidence backlog (report 13)" if a["finding"].startswith("EVB-") else ("report 08 round 2" if "ADV-R2" in a["finding"] else "report 08 adversarial review")),
+                revision_history=c.get("revision_history", []) + [{"on": a.get("on", ON), "source": "owner decision" if "owner decision" in a["finding"] else ("evidence backlog (report 13)" if a["finding"].startswith("EVB-") else ("report 08 round 2" if "ADV-R2" in a["finding"] else "report 08 adversarial review")),
                                                                     "findings": a["finding"], "original_statement": c["statement"]}])
 
 
