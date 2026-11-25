@@ -8,14 +8,22 @@ The **authoritative append-only rule applies identically in every isolation prof
 
 ## Mandatory requirements
 - **UNB-TEN-001:** Every partner SHALL have an immutable tenant identity independent of database name, schema name, hostname and infrastructure location.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-002:** Support shared-database/separate-schema, dedicated-database, and dedicated-infrastructure deployment profiles through explicit configuration and validated compatibility; partner business logic must not fork by tier.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-003:** Every authoritative event, fund, party relationship, grant, journal entry, policy, evidence reference, agent action and projection SHALL have an enforced tenant security boundary. Cross-tenant access is denied by default, including administrator, background job, support, analytics and agent paths.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-004:** Tenant routing SHALL derive from verified identity and authorized tenancy context, never a client-supplied schema/database name or unverified header. Use an independently tested routing and connection-broker boundary.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 > Adopted 2026-11-23: refined by `RR-UNB-TEN-004-r1` (adopted); the adopted requirement is below under 'Adopted reconciliation requirements'.
 - **UNB-TEN-005:** For shared databases with separate schemas, partner-specific roles SHALL be unable to read/write other schemas; default schema search paths, SECURITY DEFINER routines, migrations, connection pooling, shared extensions and administrative credentials require threat modeling and negative tests.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-006:** For dedicated databases, credentials, encryption keys, backup/restore policy, resource quotas, monitoring, recovery objectives and access reviews SHALL be partner-scoped to the degree promised by contract.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-007:** Shared services (identity, registry, charity intelligence, orchestration, telemetry, support and model services) SHALL have an explicit classification: shared public reference, permitted aggregated information, partner-confidential information, or prohibited cross-tenant flow. Shared infrastructure must not become an unreviewed data-sharing mechanism.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-008:** Support per-partner retention, residency, encryption-key management, privacy policy, audit export, disaster recovery objectives, data processing agreements and access restrictions where technically and legally applicable.
+> Converged 2026-11-24: governed by `CNV-TEN-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-TEN-009:** Tenant isolation SHALL apply to caches, queues, event streams, outboxes, object storage, search indexes, backups, logs, observability, prompt/context construction, embeddings, evaluation datasets and generated documents, not just relational tables.
 - **UNB-TEN-010:** Partner-specific policies and configurations SHALL be versioned immutable records with sponsor/partner authority boundaries; a partner's preferences cannot override the sponsoring charity's reserved legal authority.
 - **UNB-TEN-011:** Tenant provisioning, migration, upgrade, suspension and offboarding SHALL use a governed, reproducible plan with approvals, inventory, integrity verification, rollback/compensation strategy and evidence.
@@ -133,3 +141,29 @@ Status: adopted at the product owner's direction from [requirements/discovery/20
     - AC-3: Given Program crashes after 4,000 funds; when resumed; then no fund transfers twice (TransferProgramId + FundId key).
     - AC-D1: Given a TransferProgram with no master agreement recorded; when the first transfer is proposed; then it is blocked with MASTER_AGREEMENT_REQUIRED.
 <!-- END ADOPTED: cross-industry-discovery -->
+
+<!-- BEGIN ADOPTED: convergence-2026-11-24 -->
+## Converged requirements: master mission (2026-11-24)
+
+Status: adopted into the baseline by the master mission. Clauses resolving product-owner-approved directions are binding for design; clauses resting on agent-recommended evidence answers are binding for design as conservative positions pending owner ratification. No clause is a legal, accounting, bank or auditor approval: each activation gate names the authorization still required before production use. Where a clause conflicts with an earlier requirement in this file, the clause governs and the earlier requirement is annotated.
+
+- **CNV-ARC-002 — Tenant isolation and operator access:** The tenant unit SHALL be the legal sponsor; partner and program isolation SHALL be threat-tested. Operator access to a tenant SHALL be denied by default; read diagnostics SHALL be scoped, expiring and pre-approved by the sponsor; writes SHALL require per-case approval; revocation SHALL take effect immediately and every access SHALL be evidenced. A minimal shared party core SHALL be partitioned by role and tenant.
+  - Provenance: resolves XID-IAM-001, UNB-XIN-IAM-002#Q1, XID-CRM-003, RCD-004; amends UNB-XIN-IAM-002; related findings RCF-PLT-001. Evidence and reasoning: [convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md](convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md), [convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md](convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md).
+  - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
+  - Activation gate: none beyond release scope.
+  - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-004, UNB-CTRL-007, UNB-CTRL-008; operator Unbound; service-organization report relevance SOC2; automated; complementary user entity control CUEC-CNV-ARC-002.
+  - Acceptance:
+    - AC-1: Given an operator without an active grant, when they query tenant B, then the request is refused and alerted.
+    - AC-2: Given a revoked grant, when the operator session continues, then the next request is refused.
+- **CNV-TEN-001 — Tenant unit, administrator principal and shared stores (ADV-T-006, ADV-T-019, ADV-T-024):** Isolation profiles SHALL be selected per legal sponsor; partner and program isolation SHALL be enforced inside the sponsor cell by typed partitioning and negative tests, and a partner needing dedicated infrastructure SHALL be served by a dedicated sponsor cell or a separate legal sponsor. An Administrator principal type SHALL hold a per-sponsor ServiceDelegation (task classes, data classes, expiry) recorded in each sponsor's cell; a federated queue projection SHALL contain only routing metadata (case id, kind, priority, due time, sponsor id) and no donor PII; opening an item SHALL authenticate into that sponsor's cell under the delegation. A normative SharedStoreRegister SHALL list each cross-tenant store with permitted fields and classification, writers, readers and inference risks; donor and advisor PII SHALL NOT enter any shared store except as a keyed token for authorized checks. On the shared cluster a sponsor 'cell' is its schema and database role; the same delegation, routing-metadata and SharedStoreRegister rules apply (OD-P-PLT cut M). The shared party core SHALL hold only a keyed token, role class and sponsor id, never names or contact details. This clause depends on acceptance of the database-per-sponsor architecture decision.
+  - Provenance: resolves Phase 3 feedback; amends UNB-TEN-001, UNB-TEN-002, UNB-TEN-003, UNB-TEN-004, UNB-TEN-005, UNB-TEN-006, UNB-TEN-007, UNB-TEN-008. Evidence and reasoning: [convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md](convergence/2026-11-24-master/02-EVIDENCE-DOSSIERS.md), [convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md](convergence/2026-11-24-master/03-AUTHORITATIVE-BASELINE-AND-CONVERGENCE.md).
+  - Classification: normative; release scope: initial-implementation; operating models: E1, E2, E3, E4, E5.
+  - Activation gate: none beyond release scope.
+  - Ownership: domain owner: Architecture; financial system of record: n/a; policy owner: Unbound architecture owner; data owner: Unbound; operational owner: Unbound operations; evidence owner: Unbound engineering.
+  - Internal control: UNB-CTRL-007, UNB-CTRL-008, UNB-CTRL-009; operator Unbound; service-organization report relevance SOC2; automated.
+  - Acceptance:
+    - AC-1: Given an administrator user without a delegation for sponsor B, when they open a B case from the federated queue, then access is refused.
+    - AC-2: Given a new cross-tenant store not in the register, when deployment runs, then the release check fails.
+    - AC-3: Given a party-core schema with a column outside its register entry, when the schema check runs, then it fails.
+<!-- END ADOPTED: convergence-2026-11-24 -->

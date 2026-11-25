@@ -1,0 +1,48 @@
+{
+  "register": {
+    "open decision": 101,
+    "awaiting confirmation": 72,
+    "requirement question": 143
+  },
+  "register_total": 316,
+  "proposal_rows": 143,
+  "proposal_rows_per_artifact": {
+    "2026-11-24-initial-38-question-resolutions.md": 38,
+    "2026-11-24-human-intervention-and-question-resolution.md": 21,
+    "2026-11-24-question-resolutions-accounting-banking-economics.md": 29,
+    "2026-11-24-final-55-question-resolutions.md": 55
+  },
+  "proposal_orphans": [],
+  "proposal_count_mismatches": {},
+  "disposition_rows": 143,
+  "dispositions": {
+    "revise": 29,
+    "approved": 111,
+    "hold": 3
+  },
+  "disposition_orphans": [],
+  "disposition_count_mismatches": {},
+  "correction_rows": 29,
+  "corrections_joined": 29,
+  "holds_joined": 3,
+  "decision_review_rows": 101,
+  "decision_review_ids_not_open_decisions": [],
+  "confirmation_review_rows": 72,
+  "confirmation_classes": {
+    "External": 59,
+    "Product": 8,
+    "Validation": 5
+  },
+  "confirmation_review_ids_not_confirmations": [],
+  "evidence_review_ids": [
+    "RCD-014",
+    "RCD-016",
+    "RCD-024",
+    "RCD-044",
+    "XID-INV-005",
+    "XID-NPG-007"
+  ],
+  "evidence_review_ids_unknown": [],
+  "flag_counts": {},
+  "questions_with_flags": []
+}

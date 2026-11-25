@@ -1,5 +1,7 @@
 # Check of the 2026-11-24 product-owner review
 
+> **Reconciliation note (2026-11-25).** This check was written in PR #9 before it was reconciled with the master mission (PR #8). Answers and approvals are now recorded only in `requirements/questions/` (see `../README.md`). Section 3's SPD-ORG-002 conflict was already enforced there by clause CNV-GOV-004. The SPD-ECN-004 note is recorded as an `evidence-reviewed` event. The `--check` command and the tests named in this file were replaced by `questions_lib.py` and `test_question_register.py`.
+
 **Scope.** This checks the eleven review files under `requirements/discovery/2026-11-24-*.md` (commits `0cf42ce`..`ab1638d`). It also records how they were turned into resolution records and source-record revisions. It is a consistency and spot-fact check by the integrating agent, not legal, accounting or audit review.
 
 ## 1. Coverage

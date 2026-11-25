@@ -1,0 +1,1393 @@
+{
+  "as_of": "2026-11-11",
+  "sanctions_operating_threshold": 0.92,
+  "inputs": [
+    {
+      "name": "pub78.txt",
+      "source": "https://apps.irs.gov/pub/epostcard/data-download-pub78.zip",
+      "sha256": "7cecf75c63bc1dedf2477272bbf957c57b09e6970132b1b75a48dd73c658dcc7"
+    },
+    {
+      "name": "revocation.txt",
+      "source": "https://apps.irs.gov/pub/epostcard/data-download-revocation.zip",
+      "sha256": "baf3191e3056acd9d9ddd2abcc448af1b069ed2c99261b883d3610543cf266e2"
+    },
+    {
+      "name": "eo1.csv",
+      "source": "https://www.irs.gov/pub/irs-soi/eo1.csv",
+      "sha256": "5d1047c15cb6109b73ed244da97961b92a3ec122ac4419f354d248dc059df4e6"
+    },
+    {
+      "name": "eo2.csv",
+      "source": "https://www.irs.gov/pub/irs-soi/eo2.csv",
+      "sha256": "46db809791e9cfe785c74fd6028ed18612f8a639edf763142c017cce3446ccfa"
+    },
+    {
+      "name": "eo3.csv",
+      "source": "https://www.irs.gov/pub/irs-soi/eo3.csv",
+      "sha256": "4902eab594c4be7312192bb03ee5082580ca208bd4f6b9b5a6bcfc009c8f27f4"
+    },
+    {
+      "name": "eo4.csv",
+      "source": "https://www.irs.gov/pub/irs-soi/eo4.csv",
+      "sha256": "3c161b91056ea9291723aa608e40fe093a605238866e4ef8de8d6d9e26ce325c"
+    },
+    {
+      "name": "sdn.csv",
+      "source": "https://www.treasury.gov/ofac/downloads/sdn.csv",
+      "sha256": "89b2a6d6d825d3a0a5033c9d523ef8a5e05a0b766ccff1ad934aea7436da49b9"
+    },
+    {
+      "name": "alt.csv",
+      "source": "https://www.treasury.gov/ofac/downloads/alt.csv",
+      "sha256": "2e342dc26cd1df3e11efba14d54d61d9290e255b502667b5eb2244e203b3ff5a"
+    },
+    {
+      "name": "xml/202312859349302266",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202312859349302266_public.xml",
+      "sha256": "ed88b19af24c70353b0478002295006002aedfa1da76b058013a4c60f47a7346"
+    },
+    {
+      "name": "xml/202400299349302175",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202400299349302175_public.xml",
+      "sha256": "48c8d45e3ce19d2796970591cede39ecec976c47a827f249108585d3c10dd449"
+    },
+    {
+      "name": "xml/202401949349301515",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202401949349301515_public.xml",
+      "sha256": "519f8b8238d00851dd24a7d01292bf2df5df2e36b8c0b76b8e2d1477a03bab07"
+    },
+    {
+      "name": "xml/202411989349301411",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202411989349301411_public.xml",
+      "sha256": "1a210d5f5cb4dd763c2f9da18f10cb6ddcb74a58f232e373119508fdfc55f416"
+    },
+    {
+      "name": "xml/202412829349301586",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202412829349301586_public.xml",
+      "sha256": "4b800c7214fe2b7521e9649fc7015b07c8f1e2f313bac4d95a75c81386a010c7"
+    },
+    {
+      "name": "xml/202413109349303336",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202413109349303336_public.xml",
+      "sha256": "82ab72f545b762d19f4d700158d74a5e5d9b9999bf3b1fc5e2602e833c2ce026"
+    },
+    {
+      "name": "xml/202413109349304401",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202413109349304401_public.xml",
+      "sha256": "922ca54df0087b335eebb6b6dbf4d21404468de855be4fc279d0366a349d094c"
+    },
+    {
+      "name": "xml/202421169349301122",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202421169349301122_public.xml",
+      "sha256": "dc30bf42c563b9f2b589dde598ad1eaeef38c6b82813a8333d9720713ada7462"
+    },
+    {
+      "name": "xml/202423139349302852",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202423139349302852_public.xml",
+      "sha256": "b0a89814131c1ac5a5478940bf8ba196e36338f5b2fa94903f34e5940836845d"
+    },
+    {
+      "name": "xml/202423149349300537",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202423149349300537_public.xml",
+      "sha256": "d547b0ec51de59115a77ed7a8ca00f62294ba5d67472a9514f42b76455cf6c31"
+    },
+    {
+      "name": "xml/202430459349302913",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202430459349302913_public.xml",
+      "sha256": "9f45f351e24adbbc584bfc08acbaa6f5a5c68e16d9ce6c51dfd31f7508439bef"
+    },
+    {
+      "name": "xml/202431319349304428",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202431319349304428_public.xml",
+      "sha256": "9e857c9a636e80a43395870a3d98630c8ed713cadaaed4df716785851c905457"
+    },
+    {
+      "name": "xml/202433119349303518",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202433119349303518_public.xml",
+      "sha256": "649091249351b0c370057a8b22b951b70b5a540a22de021de6888c374bf6e2a6"
+    },
+    {
+      "name": "xml/202433149349300023",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202433149349300023_public.xml",
+      "sha256": "1f459edd308658a93303f42f56baaff70fb47ba77f0bae438b60d31a7599b177"
+    },
+    {
+      "name": "xml/202433189349308423",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202433189349308423_public.xml",
+      "sha256": "7c1dae2d015b6d91514255f494f63b41ba21ac0711cf1ad19c987f2627b144ac"
+    },
+    {
+      "name": "xml/202441369349301334",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202441369349301334_public.xml",
+      "sha256": "b169a66a3d757387f80f615e6ab7df4a432890df23870934be3fe288d37a2d62"
+    },
+    {
+      "name": "xml/202442479349301654",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202442479349301654_public.xml",
+      "sha256": "fc4c41207e9b5d5b2ed1d42bcac75028d2256dea70c659747311b2563bf6f04d"
+    },
+    {
+      "name": "xml/202443109349303629",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202443109349303629_public.xml",
+      "sha256": "06307101720b15bead69692ba556299356453d70685a2fee20afb3f582cceb2f"
+    },
+    {
+      "name": "xml/202443169349301749",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202443169349301749_public.xml",
+      "sha256": "57b234b7441fc3a6a5b26f76d8d948ae81fe08c0f1f3c68756f8ecc6f4e6df16"
+    },
+    {
+      "name": "xml/202443169349306424",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202443169349306424_public.xml",
+      "sha256": "b1c6793ce9645ced6f3c31c07e783b7f8c391d796aa3dbfb9db680eb337d51e7"
+    },
+    {
+      "name": "xml/202443189349305024",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202443189349305024_public.xml",
+      "sha256": "b5e4ca6e5c337b5a92575e2e4cf2d3db22ddec81aa62564c7a56474c38ce9940"
+    },
+    {
+      "name": "xml/202443199349305349",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202443199349305349_public.xml",
+      "sha256": "083c3ca667996ecb4a7afd3e35fe1b81922e57fce0e642e26e56b9541779f652"
+    },
+    {
+      "name": "xml/202501959349302200",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202501959349302200_public.xml",
+      "sha256": "a5999880be025fb3b9a6d00e91374d8cb3605aaa9db6a010a3d48067da861aff"
+    },
+    {
+      "name": "xml/202503109349303645",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202503109349303645_public.xml",
+      "sha256": "334fba871745b9c1e885141d9b97922980023ea3523d33def94bd7ef41a31290"
+    },
+    {
+      "name": "xml/202503149349303740",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202503149349303740_public.xml",
+      "sha256": "b62fd9700cb90e0bc91ca2e946e802432205dbb895c1e167aff49d0e0f107185"
+    },
+    {
+      "name": "xml/202510169349301041",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202510169349301041_public.xml",
+      "sha256": "4e26f45e944c513088daf9f90d19aac58c70d4b2f6782b355a4ae41c71981180"
+    },
+    {
+      "name": "xml/202511119349301416",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202511119349301416_public.xml",
+      "sha256": "8085bf0ca98654a19ef20acea2d25d2fd981c8909b1ac54f1ee53875c779cee8"
+    },
+    {
+      "name": "xml/202512589349301891",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202512589349301891_public.xml",
+      "sha256": "7abb3edb029dced8a1b8b8c0eb1e81b815d13b038810bfd2db6a89e119aa8888"
+    },
+    {
+      "name": "xml/202513109349303201",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202513109349303201_public.xml",
+      "sha256": "b7a808b855dba3fd6e83681e8564d76be44fc6b2c60b93e21d7356bfa107346c"
+    },
+    {
+      "name": "xml/202513159349303936",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202513159349303936_public.xml",
+      "sha256": "00e54679626940015bae23053104f17d88c176c9e9024a889d4188cda23e84a1"
+    },
+    {
+      "name": "xml/202513189349305651",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202513189349305651_public.xml",
+      "sha256": "6ab90d3ace59ab2c480d53dac27963e0d3fbd1a7ab5e4658623e44073f1a5abc"
+    },
+    {
+      "name": "xml/202513219349310376",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202513219349310376_public.xml",
+      "sha256": "6f3b47ed1105f736e5ed258fe8bd2187c63d0a21140da26b9b418728497f4126"
+    },
+    {
+      "name": "xml/202520389349300807",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202520389349300807_public.xml",
+      "sha256": "14d3619624ada0dbca841f0cb723d13aecbeed55ed39e111230c9fcca0469364"
+    },
+    {
+      "name": "xml/202521349349310887",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202521349349310887_public.xml",
+      "sha256": "ee7bdcc4994c0edf52fb6b3576513d9f8376387314a19cf241476ac4a9c0c7be"
+    },
+    {
+      "name": "xml/202523009349302062",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202523009349302062_public.xml",
+      "sha256": "1aad118b8d4b18cef9b0acc242c996e89bedea3f3ad3effe3e34d31ea8d67d8c"
+    },
+    {
+      "name": "xml/202533149349305653",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202533149349305653_public.xml",
+      "sha256": "324a6ae4d97daa1da3fec55ce3befdb96ea700ceca82c6b81531272e74d97746"
+    },
+    {
+      "name": "xml/202533189349305673",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202533189349305673_public.xml",
+      "sha256": "0887c1d3bd321c8894ac04b53765bd0a812e6f94aaa4b4f6091c9f7ca1fb37b6"
+    },
+    {
+      "name": "xml/202533199349302978",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202533199349302978_public.xml",
+      "sha256": "92dffdbf09b6c3c3844407c60cacfca1c5bead7fa4612142076ad54c6da4ceb2"
+    },
+    {
+      "name": "xml/202540529349300904",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202540529349300904_public.xml",
+      "sha256": "abd79f80ea4b3e38bd067e09cc312bc7138940ffc32c6f2ac5169ca72d64cbd6"
+    },
+    {
+      "name": "xml/202543109349303959",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202543109349303959_public.xml",
+      "sha256": "b9b9a135b6a65eaf36c2ef2120bc888473de1d0f941dd20e8ebd0e6e4a6dd764"
+    },
+    {
+      "name": "xml/202543149349302739",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202543149349302739_public.xml",
+      "sha256": "9838a2c4855ef2f272c51a59a33c1d8db77c84baeb4a45fdaa9ed3a25349b2aa"
+    },
+    {
+      "name": "xml/202543169349307999",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202543169349307999_public.xml",
+      "sha256": "533ec328c18978545b2a06e1aa6b6061f38d73b899dc25797e3630fb5b76bf05"
+    },
+    {
+      "name": "xml/202543189349301959",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202543189349301959_public.xml",
+      "sha256": "429a836d1a775d8d5d3370077760ab8c4dc95f95ce24a148677fda46181bff3f"
+    },
+    {
+      "name": "xml/202543189349305969",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202543189349305969_public.xml",
+      "sha256": "fa34e3f02f6ccb05c1341cd27d1b72f0189fbf8f7003743ae38e4b28e3acd9e6"
+    },
+    {
+      "name": "xml/202610409349301411",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202610409349301411_public.xml",
+      "sha256": "071e75362bb4bf66a8737ee9740e21c3bb3ecb0655b58300a0e91b5f16ebf468"
+    },
+    {
+      "name": "xml/202611249349302616",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202611249349302616_public.xml",
+      "sha256": "557f7de991d749494b530c3e1decface0820e510d85a3c9c55c0ca719c9a7a39"
+    },
+    {
+      "name": "xml/202640449349302259",
+      "source": "https://gt990datalake-rawdata.s3.amazonaws.com/EfileData/XmlFiles/202640449349302259_public.xml",
+      "sha256": "83fe9af41fde9860993fca9ffc2ad57df993fdec4795a84e9d2f00fb3960aee5"
+    }
+  ],
+  "returns_parsed": 47,
+  "pooled": {
+    "sponsors": 20,
+    "schedule_i_rows": 151567,
+    "schedule_i_dollars": 22105176221,
+    "exception_share_rows": {
+      "conservative": 0.1283,
+      "standard": 0.1118
+    },
+    "exception_share_dollars": {
+      "conservative": 0.1135,
+      "standard": 0.0598
+    },
+    "per_sponsor_exception_share_standard": {
+      "n": 20,
+      "min": 0.0322,
+      "p50": 0.1083,
+      "max": 0.2383,
+      "mean": 0.1019
+    },
+    "determination_reuse_within_sponsor": 0.644,
+    "determination_reuse_within_sponsor_dollars": 0.7069,
+    "determination_reuse_any_sponsor_in_sample": 0.723,
+    "recipient_overlap_with_prior_year": 0.669,
+    "revoked_during_year_per_1000_rows": 1.7154,
+    "granted_while_revoked_rows": 72,
+    "granted_while_revoked_visible_in_year": 71,
+    "sponsor_label_mismatch_rows": 6,
+    "sanctions_alerts_per_1000_rows": 1.0556
+  },
+  "classes": [
+    {
+      "class": "PublicCharityPub78",
+      "rows": 115305,
+      "dollars": 18600819531
+    },
+    {
+      "class": "PublicCharityBmf",
+      "rows": 16985,
+      "dollars": 1016311664
+    },
+    {
+      "class": "ReligiousUnlisted",
+      "rows": 9969,
+      "dollars": 390897292
+    },
+    {
+      "class": "UnknownEin",
+      "rows": 2964,
+      "dollars": 352825855
+    },
+    {
+      "class": "GroupCentral",
+      "rows": 1986,
+      "dollars": 1067740010
+    },
+    {
+      "class": "NoEin",
+      "rows": 1513,
+      "dollars": 111339841
+    },
+    {
+      "class": "SupportingOrgUnknown",
+      "rows": 761,
+      "dollars": 176947056
+    },
+    {
+      "class": "GovernmentUnverified",
+      "rows": 736,
+      "dollars": 54169225
+    },
+    {
+      "class": "SupportingOrg",
+      "rows": 725,
+      "dollars": 184079156
+    },
+    {
+      "class": "PrivateOperatingFoundation",
+      "rows": 493,
+      "dollars": 114509401
+    },
+    {
+      "class": "PrivateFoundation",
+      "rows": 63,
+      "dollars": 28554081
+    },
+    {
+      "class": "Non501c3",
+      "rows": 36,
+      "dollars": 1750675
+    },
+    {
+      "class": "ForeignAddressedCharity",
+      "rows": 26,
+      "dollars": 5012134
+    },
+    {
+      "class": "SupportingOrgType3Nfi",
+      "rows": 3,
+      "dollars": 182800
+    },
+    {
+      "class": "UnknownStatus",
+      "rows": 2,
+      "dollars": 37500
+    }
+  ],
+  "revocation_posting_lag_days": {
+    "n": 369247,
+    "min": 21,
+    "p50": 89,
+    "max": 2328,
+    "mean": 109.6592
+  },
+  "sanctions": [
+    {
+      "method": "token_weighted",
+      "distinct_recipient_names": 111803,
+      "alerts_by_threshold": [
+        {
+          "threshold": 0.85,
+          "alerts": 1482
+        },
+        {
+          "threshold": 0.9,
+          "alerts": 237
+        },
+        {
+          "threshold": 0.92,
+          "alerts": 102
+        },
+        {
+          "threshold": 0.95,
+          "alerts": 29
+        },
+        {
+          "threshold": 0.98,
+          "alerts": 5
+        }
+      ],
+      "injected_listed_names": 500,
+      "recall_by_threshold": [
+        {
+          "threshold": 0.85,
+          "recall": 0.964
+        },
+        {
+          "threshold": 0.9,
+          "recall": 0.956
+        },
+        {
+          "threshold": 0.92,
+          "recall": 0.948
+        },
+        {
+          "threshold": 0.95,
+          "recall": 0.936
+        },
+        {
+          "threshold": 0.98,
+          "recall": 0.906
+        }
+      ],
+      "recall_by_variant_at_operating_threshold": {
+        "exact": 1,
+        "case_and_punctuation": 0.91,
+        "dropped_character": 0.83,
+        "token_reorder": 1,
+        "legal_suffix": 1
+      },
+      "subgroup_names": 379,
+      "subgroup_alert_rate": 0.0026,
+      "other_alert_rate": 0.0009
+    },
+    {
+      "method": "naive_whole_string",
+      "distinct_recipient_names": 111803,
+      "alerts_by_threshold": [
+        {
+          "threshold": 0.85,
+          "alerts": 19383
+        },
+        {
+          "threshold": 0.9,
+          "alerts": 3259
+        },
+        {
+          "threshold": 0.92,
+          "alerts": 1169
+        },
+        {
+          "threshold": 0.95,
+          "alerts": 109
+        },
+        {
+          "threshold": 0.98,
+          "alerts": 3
+        }
+      ],
+      "injected_listed_names": 500,
+      "recall_by_threshold": [
+        {
+          "threshold": 0.85,
+          "recall": 0.976
+        },
+        {
+          "threshold": 0.9,
+          "recall": 0.958
+        },
+        {
+          "threshold": 0.92,
+          "recall": 0.952
+        },
+        {
+          "threshold": 0.95,
+          "recall": 0.93
+        },
+        {
+          "threshold": 0.98,
+          "recall": 0.878
+        }
+      ],
+      "recall_by_variant_at_operating_threshold": {
+        "exact": 1,
+        "case_and_punctuation": 0.95,
+        "dropped_character": 0.81,
+        "token_reorder": 1,
+        "legal_suffix": 1
+      },
+      "subgroup_names": 379,
+      "subgroup_alert_rate": 0.0422,
+      "other_alert_rate": 0.0103
+    }
+  ],
+  "safety": [
+    {
+      "category": "control_public_charity",
+      "expected": "straight_through",
+      "cases": 100,
+      "caught": 0,
+      "correct_route": 100
+    },
+    {
+      "category": "ein_not_in_irs_lists",
+      "expected": "person",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    },
+    {
+      "category": "listed_name_with_clean_public_charity_ein",
+      "expected": "person",
+      "cases": 100,
+      "caught": 88,
+      "correct_route": 88
+    },
+    {
+      "category": "no_ein",
+      "expected": "person",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    },
+    {
+      "category": "not_501c3",
+      "expected": "person",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    },
+    {
+      "category": "private_foundation",
+      "expected": "person",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    },
+    {
+      "category": "revoked_in_force",
+      "expected": "block",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    },
+    {
+      "category": "type3_non_functionally_integrated",
+      "expected": "person",
+      "cases": 100,
+      "caught": 100,
+      "correct_route": 100
+    }
+  ],
+  "sponsors": [
+    {
+      "ein": "110303001",
+      "name": "FIDELITY INVESTMENTS CHARITABLE GIFT FUND",
+      "tax_year": 2023,
+      "prior_year": 2022,
+      "rows": 80308,
+      "rows_with_ein": 80303,
+      "dollars": 12514527756,
+      "exception_rows": {
+        "conservative": 10971,
+        "standard": 10196
+      },
+      "exception_dollars": {
+        "conservative": 1543251455,
+        "standard": 651105643
+      },
+      "blocked": 103,
+      "sanctions_alerts": 70,
+      "reuse_within_sponsor": 0.7223,
+      "reuse_within_sponsor_dollars": 0.7967,
+      "reuse_any_sponsor": 0.7534,
+      "recipient_overlap_prior": 0.7176,
+      "revoked_during_year": 162
+    },
+    {
+      "ein": "113813663",
+      "name": "THE GOLDMAN SACHS CHARITABLE GIFT FUND",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 2572,
+      "rows_with_ein": 2572,
+      "dollars": 229119184,
+      "exception_rows": {
+        "conservative": 185,
+        "standard": 86
+      },
+      "exception_dollars": {
+        "conservative": 18454269,
+        "standard": 2996954
+      },
+      "blocked": 0,
+      "sanctions_alerts": 3,
+      "reuse_within_sponsor": 0.4535,
+      "reuse_within_sponsor_dollars": 0.6227,
+      "reuse_any_sponsor": 0.8023,
+      "recipient_overlap_prior": 0.7033,
+      "revoked_during_year": 1
+    },
+    {
+      "ein": "141782466",
+      "name": "THE AYCO CHARITABLE FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 4719,
+      "rows_with_ein": 4719,
+      "dollars": 287690130,
+      "exception_rows": {
+        "conservative": 540,
+        "standard": 178
+      },
+      "exception_dollars": {
+        "conservative": 31441816,
+        "standard": 6951604
+      },
+      "blocked": 1,
+      "sanctions_alerts": 8,
+      "reuse_within_sponsor": 0.5843,
+      "reuse_within_sponsor_dollars": 0.6889,
+      "reuse_any_sponsor": 0.809,
+      "recipient_overlap_prior": 0.6514,
+      "revoked_during_year": 3
+    },
+    {
+      "ein": "237343119",
+      "name": "GREATER WASHINGTON COMMUNITY FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1417,
+      "rows_with_ein": 1417,
+      "dollars": 116850076,
+      "exception_rows": {
+        "conservative": 186,
+        "standard": 157
+      },
+      "exception_dollars": {
+        "conservative": 8459876,
+        "standard": 7428824
+      },
+      "blocked": 3,
+      "sanctions_alerts": 3,
+      "reuse_within_sponsor": 0.3567,
+      "reuse_within_sponsor_dollars": 0.5723,
+      "reuse_any_sponsor": 0.4268,
+      "recipient_overlap_prior": 0.5815,
+      "revoked_during_year": 2
+    },
+    {
+      "ein": "262048480",
+      "name": "IMPACTASSETSINC",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 2733,
+      "rows_with_ein": 2733,
+      "dollars": 580073941,
+      "exception_rows": {
+        "conservative": 162,
+        "standard": 106
+      },
+      "exception_dollars": {
+        "conservative": 18586565,
+        "standard": 12235956
+      },
+      "blocked": 3,
+      "sanctions_alerts": 8,
+      "reuse_within_sponsor": 0.566,
+      "reuse_within_sponsor_dollars": 0.6313,
+      "reuse_any_sponsor": 0.783,
+      "recipient_overlap_prior": 0.5858,
+      "revoked_during_year": 2
+    },
+    {
+      "ein": "311663020",
+      "name": "THE US CHARITABLE GIFT TRUST",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 6518,
+      "rows_with_ein": 6086,
+      "dollars": 231369518,
+      "exception_rows": {
+        "conservative": 1185,
+        "standard": 1075
+      },
+      "exception_dollars": {
+        "conservative": 30838604,
+        "standard": 24787755
+      },
+      "blocked": 2,
+      "sanctions_alerts": 12,
+      "reuse_within_sponsor": 0.4521,
+      "reuse_within_sponsor_dollars": 0.5161,
+      "reuse_any_sponsor": 0.6074,
+      "recipient_overlap_prior": 0.5235,
+      "revoked_during_year": 2
+    },
+    {
+      "ein": "311709466",
+      "name": "T ROWE PRICE PROGRAM FOR CHARITABLE",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 2900,
+      "rows_with_ein": 2900,
+      "dollars": 132526568,
+      "exception_rows": {
+        "conservative": 381,
+        "standard": 314
+      },
+      "exception_dollars": {
+        "conservative": 15882775,
+        "standard": 8065458
+      },
+      "blocked": 1,
+      "sanctions_alerts": 4,
+      "reuse_within_sponsor": 0.5764,
+      "reuse_within_sponsor_dollars": 0.6685,
+      "reuse_any_sponsor": 0.7834,
+      "recipient_overlap_prior": 0.6059,
+      "revoked_during_year": 0
+    },
+    {
+      "ein": "311774905",
+      "name": "GS DONOR ADVISED PHILANTHROPY FUND",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 7424,
+      "rows_with_ein": 7424,
+      "dollars": 2957478954,
+      "exception_rows": {
+        "conservative": 512,
+        "standard": 239
+      },
+      "exception_dollars": {
+        "conservative": 143814807,
+        "standard": 66423782
+      },
+      "blocked": 2,
+      "sanctions_alerts": 10,
+      "reuse_within_sponsor": 0.4561,
+      "reuse_within_sponsor_dollars": 0.5506,
+      "reuse_any_sponsor": 0.749,
+      "recipient_overlap_prior": 0.5952,
+      "revoked_during_year": 13
+    },
+    {
+      "ein": "316044264",
+      "name": "COLUMBUS FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1747,
+      "rows_with_ein": 1747,
+      "dollars": 242682197,
+      "exception_rows": {
+        "conservative": 282,
+        "standard": 227
+      },
+      "exception_dollars": {
+        "conservative": 46604354,
+        "standard": 42300986
+      },
+      "blocked": 3,
+      "sanctions_alerts": 1,
+      "reuse_within_sponsor": 0.652,
+      "reuse_within_sponsor_dollars": 0.8999,
+      "reuse_any_sponsor": 0.7445,
+      "recipient_overlap_prior": 0.6548,
+      "revoked_during_year": 3
+    },
+    {
+      "ein": "340714588",
+      "name": "THE CLEVELAND FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1016,
+      "rows_with_ein": 1016,
+      "dollars": 184237952,
+      "exception_rows": {
+        "conservative": 128,
+        "standard": 104
+      },
+      "exception_dollars": {
+        "conservative": 47847423,
+        "standard": 34986095
+      },
+      "blocked": 1,
+      "sanctions_alerts": 1,
+      "reuse_within_sponsor": 0.6442,
+      "reuse_within_sponsor_dollars": 0.9488,
+      "reuse_any_sponsor": 0.7404,
+      "recipient_overlap_prior": 0.7037,
+      "revoked_during_year": 1
+    },
+    {
+      "ein": "341747398",
+      "name": "AMERICAN ENDOWMENT FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 14380,
+      "rows_with_ein": 13535,
+      "dollars": 1258148401,
+      "exception_rows": {
+        "conservative": 2097,
+        "standard": 1912
+      },
+      "exception_dollars": {
+        "conservative": 141972823,
+        "standard": 94140176
+      },
+      "blocked": 15,
+      "sanctions_alerts": 18,
+      "reuse_within_sponsor": 0.5413,
+      "reuse_within_sponsor_dollars": 0.6119,
+      "reuse_any_sponsor": 0.6736,
+      "recipient_overlap_prior": 0.5835,
+      "revoked_during_year": 20
+    },
+    {
+      "ein": "411802412",
+      "name": "THRIVENT CHARITABLE IMPACT & INVESTING",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 2565,
+      "rows_with_ein": 2541,
+      "dollars": 84640658,
+      "exception_rows": {
+        "conservative": 442,
+        "standard": 365
+      },
+      "exception_dollars": {
+        "conservative": 12262990,
+        "standard": 7829927
+      },
+      "blocked": 2,
+      "sanctions_alerts": 3,
+      "reuse_within_sponsor": 0.5973,
+      "reuse_within_sponsor_dollars": 0.5781,
+      "reuse_any_sponsor": 0.7589,
+      "recipient_overlap_prior": 0.6144,
+      "revoked_during_year": 6
+    },
+    {
+      "ein": "426139033",
+      "name": "COMMUNITY FDN OF GREATER DES MOINES",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1259,
+      "rows_with_ein": 1259,
+      "dollars": 55679468,
+      "exception_rows": {
+        "conservative": 328,
+        "standard": 300
+      },
+      "exception_dollars": {
+        "conservative": 10383821,
+        "standard": 9626763
+      },
+      "blocked": 2,
+      "sanctions_alerts": 0,
+      "reuse_within_sponsor": 0.5433,
+      "reuse_within_sponsor_dollars": 0.6944,
+      "reuse_any_sponsor": 0.6,
+      "recipient_overlap_prior": 0.6489,
+      "revoked_during_year": 1
+    },
+    {
+      "ein": "566037615",
+      "name": "The Winston-Salem Foundation",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 823,
+      "rows_with_ein": 744,
+      "dollars": 90387506,
+      "exception_rows": {
+        "conservative": 126,
+        "standard": 111
+      },
+      "exception_dollars": {
+        "conservative": 9456870,
+        "standard": 8950405
+      },
+      "blocked": 1,
+      "sanctions_alerts": 1,
+      "reuse_within_sponsor": 0.1351,
+      "reuse_within_sponsor_dollars": 0.4358,
+      "reuse_any_sponsor": 0.1892,
+      "recipient_overlap_prior": 0.5128,
+      "revoked_during_year": 3
+    },
+    {
+      "ein": "581493949",
+      "name": "NATL CHRISTIAN CHARITABLE FDN INC",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 16327,
+      "rows_with_ein": 16316,
+      "dollars": 2575590738,
+      "exception_rows": {
+        "conservative": 1369,
+        "standard": 1156
+      },
+      "exception_dollars": {
+        "conservative": 310237408,
+        "standard": 235544875
+      },
+      "blocked": 19,
+      "sanctions_alerts": 14,
+      "reuse_within_sponsor": 0.5796,
+      "reuse_within_sponsor_dollars": 0.4028,
+      "reuse_any_sponsor": 0.7266,
+      "recipient_overlap_prior": 0.6806,
+      "revoked_during_year": 32
+    },
+    {
+      "ein": "581723645",
+      "name": "COMMUNITY FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 761,
+      "rows_with_ein": 695,
+      "dollars": 134269952,
+      "exception_rows": {
+        "conservative": 125,
+        "standard": 107
+      },
+      "exception_dollars": {
+        "conservative": 16425722,
+        "standard": 14288867
+      },
+      "blocked": 0,
+      "sanctions_alerts": 2,
+      "reuse_within_sponsor": 0.6916,
+      "reuse_within_sponsor_dollars": 0.7753,
+      "reuse_any_sponsor": 0.757,
+      "recipient_overlap_prior": 0.6715,
+      "revoked_during_year": 0
+    },
+    {
+      "ein": "751750059",
+      "name": "CHRISTIAN COMMUNITY FOUNDATION INC",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1651,
+      "rows_with_ein": 1649,
+      "dollars": 161772714,
+      "exception_rows": {
+        "conservative": 181,
+        "standard": 127
+      },
+      "exception_dollars": {
+        "conservative": 14864743,
+        "standard": 12196227
+      },
+      "blocked": 2,
+      "sanctions_alerts": 1,
+      "reuse_within_sponsor": 0.5984,
+      "reuse_within_sponsor_dollars": 0.8664,
+      "reuse_any_sponsor": 0.7953,
+      "recipient_overlap_prior": 0.6354,
+      "revoked_during_year": 3
+    },
+    {
+      "ein": "813222963",
+      "name": "GiveClear Foundation",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 816,
+      "rows_with_ein": 773,
+      "dollars": 28760236,
+      "exception_rows": {
+        "conservative": 112,
+        "standard": 90
+      },
+      "exception_dollars": {
+        "conservative": 3734726,
+        "standard": 2753962
+      },
+      "blocked": 2,
+      "sanctions_alerts": 1,
+      "reuse_within_sponsor": 0,
+      "reuse_within_sponsor_dollars": 0,
+      "reuse_any_sponsor": 0.3889,
+      "recipient_overlap_prior": 0.1066,
+      "revoked_during_year": 2
+    },
+    {
+      "ein": "846048381",
+      "name": "THE DENVER FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 1184,
+      "rows_with_ein": 1178,
+      "dollars": 131693864,
+      "exception_rows": {
+        "conservative": 95,
+        "standard": 65
+      },
+      "exception_dollars": {
+        "conservative": 7741518,
+        "standard": 3255813
+      },
+      "blocked": 1,
+      "sanctions_alerts": 0,
+      "reuse_within_sponsor": 0.4615,
+      "reuse_within_sponsor_dollars": 0.3403,
+      "reuse_any_sponsor": 0.5846,
+      "recipient_overlap_prior": 0.6596,
+      "revoked_during_year": 2
+    },
+    {
+      "ein": "951866094",
+      "name": "SANTA BARBARA FOUNDATION",
+      "tax_year": 2024,
+      "prior_year": 2023,
+      "rows": 447,
+      "rows_with_ein": 447,
+      "dollars": 107676408,
+      "exception_rows": {
+        "conservative": 35,
+        "standard": 23
+      },
+      "exception_dollars": {
+        "conservative": 76156736,
+        "standard": 75303635
+      },
+      "blocked": 2,
+      "sanctions_alerts": 0,
+      "reuse_within_sponsor": 0.5217,
+      "reuse_within_sponsor_dollars": 0.0029,
+      "reuse_any_sponsor": 0.7391,
+      "recipient_overlap_prior": 0.5817,
+      "revoked_during_year": 2
+    }
+  ],
+  "calibration": [
+    {
+      "ein": "110303001",
+      "name": "FIDELITY INVESTMENTS CHARITABLE GIFT FUND",
+      "tax_year": 2023,
+      "daf_count": 204614,
+      "employees": 0,
+      "total_expenses": 12921946074,
+      "grants_paid": 12693064054,
+      "salaries": 0,
+      "daf_grants": 12657447280,
+      "daf_assets": 66199578792,
+      "schedule_i_rows": 80308,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 1118.6039,
+      "salary_per_fund": 0
+    },
+    {
+      "ein": "113813663",
+      "name": "THE GOLDMAN SACHS CHARITABLE GIFT FUND",
+      "tax_year": 2024,
+      "daf_count": 763,
+      "employees": 0,
+      "total_expenses": 238694707,
+      "grants_paid": 237201083,
+      "salaries": 0,
+      "daf_grants": 237116083,
+      "daf_assets": 636396163,
+      "schedule_i_rows": 2572,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 1957.5675,
+      "salary_per_fund": 0
+    },
+    {
+      "ein": "141782466",
+      "name": "THE AYCO CHARITABLE FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 5585,
+      "employees": 0,
+      "total_expenses": 305238000,
+      "grants_paid": 301861484,
+      "salaries": 0,
+      "daf_grants": 300935148,
+      "daf_assets": 1158002128,
+      "schedule_i_rows": 4719,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 604.5687,
+      "salary_per_fund": 0
+    },
+    {
+      "ein": "237343119",
+      "name": "GREATER WASHINGTON COMMUNITY FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 491,
+      "employees": 43,
+      "total_expenses": 130100629,
+      "grants_paid": 120341984,
+      "salaries": 5178773,
+      "daf_grants": 102381607,
+      "daf_assets": 377976586,
+      "schedule_i_rows": 1417,
+      "funds_per_employee": 11.4186,
+      "non_grant_expense_per_fund": 19875.0407,
+      "salary_per_fund": 10547.3992
+    },
+    {
+      "ein": "262048480",
+      "name": "IMPACTASSETSINC",
+      "tax_year": 2024,
+      "daf_count": 2197,
+      "employees": 54,
+      "total_expenses": 627276057,
+      "grants_paid": 591997031,
+      "salaries": 8801304,
+      "daf_grants": 432478470,
+      "daf_assets": 2896880396,
+      "schedule_i_rows": 2733,
+      "funds_per_employee": 40.6852,
+      "non_grant_expense_per_fund": 16057.8179,
+      "salary_per_fund": 4006.0555
+    },
+    {
+      "ein": "311663020",
+      "name": "THE US CHARITABLE GIFT TRUST",
+      "tax_year": 2024,
+      "daf_count": 10740,
+      "employees": 0,
+      "total_expenses": 277614618,
+      "grants_paid": 258359159,
+      "salaries": 256667,
+      "daf_grants": 258359159,
+      "daf_assets": 1188558132,
+      "schedule_i_rows": 6518,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 1792.8733,
+      "salary_per_fund": 23.8982
+    },
+    {
+      "ein": "311709466",
+      "name": "T ROWE PRICE PROGRAM FOR CHARITABLE",
+      "tax_year": 2024,
+      "daf_count": 4343,
+      "employees": 0,
+      "total_expenses": 146755544,
+      "grants_paid": 144929825,
+      "salaries": 641430,
+      "daf_grants": 144935344,
+      "daf_assets": 645496766,
+      "schedule_i_rows": 2900,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 420.382,
+      "salary_per_fund": 147.6928
+    },
+    {
+      "ein": "311774905",
+      "name": "GS DONOR ADVISED PHILANTHROPY FUND",
+      "tax_year": 2024,
+      "daf_count": 4134,
+      "employees": 0,
+      "total_expenses": 3113313637,
+      "grants_paid": 3082130420,
+      "salaries": 0,
+      "daf_grants": 3071806783,
+      "daf_assets": 12640914117,
+      "schedule_i_rows": 7424,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 7543.1101,
+      "salary_per_fund": 0
+    },
+    {
+      "ein": "316044264",
+      "name": "COLUMBUS FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 1533,
+      "employees": 72,
+      "total_expenses": 272733262,
+      "grants_paid": 256714864,
+      "salaries": 10974049,
+      "daf_grants": 171929535,
+      "daf_assets": 1232316877,
+      "schedule_i_rows": 1747,
+      "funds_per_employee": 21.2917,
+      "non_grant_expense_per_fund": 10449.0528,
+      "salary_per_fund": 7158.5447
+    },
+    {
+      "ein": "340714588",
+      "name": "THE CLEVELAND FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 690,
+      "employees": 109,
+      "total_expenses": 222320279,
+      "grants_paid": 190667043,
+      "salaries": 14357572,
+      "daf_grants": 56011580,
+      "daf_assets": 493328839,
+      "schedule_i_rows": 1016,
+      "funds_per_employee": 6.3303,
+      "non_grant_expense_per_fund": 45874.2551,
+      "salary_per_fund": 20808.0754
+    },
+    {
+      "ein": "341747398",
+      "name": "AMERICAN ENDOWMENT FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 15947,
+      "employees": 149,
+      "total_expenses": 1364155138,
+      "grants_paid": 1305303631,
+      "salaries": 12555729,
+      "daf_grants": 1305303631,
+      "daf_assets": 8377997971,
+      "schedule_i_rows": 14380,
+      "funds_per_employee": 107.0268,
+      "non_grant_expense_per_fund": 3690.4438,
+      "salary_per_fund": 787.3411
+    },
+    {
+      "ein": "352129262",
+      "name": "Renaissance Charitable Foundation Inc",
+      "tax_year": 2024,
+      "daf_count": 25824,
+      "employees": 0,
+      "total_expenses": 801921038,
+      "grants_paid": 770759425,
+      "salaries": 0,
+      "daf_grants": 770759425,
+      "daf_assets": 5913566776,
+      "schedule_i_rows": 1,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 1206.692,
+      "salary_per_fund": 0
+    },
+    {
+      "ein": "411802412",
+      "name": "THRIVENT CHARITABLE IMPACT & INVESTING",
+      "tax_year": 2024,
+      "daf_count": 8346,
+      "employees": 1,
+      "total_expenses": 110361627,
+      "grants_paid": 94784782,
+      "salaries": 5492396,
+      "daf_grants": 79384742,
+      "daf_assets": 594270055,
+      "schedule_i_rows": 2565,
+      "funds_per_employee": 8346,
+      "non_grant_expense_per_fund": 1866.3845,
+      "salary_per_fund": 658.0872
+    },
+    {
+      "ein": "426139033",
+      "name": "COMMUNITY FDN OF GREATER DES MOINES",
+      "tax_year": 2024,
+      "daf_count": 1044,
+      "employees": 41,
+      "total_expenses": 96607690,
+      "grants_paid": 84694702,
+      "salaries": 4133264,
+      "daf_grants": 43480736,
+      "daf_assets": 350752697,
+      "schedule_i_rows": 1259,
+      "funds_per_employee": 25.4634,
+      "non_grant_expense_per_fund": 11410.908,
+      "salary_per_fund": 3959.0651
+    },
+    {
+      "ein": "566037615",
+      "name": "The Winston-Salem Foundation",
+      "tax_year": 2024,
+      "daf_count": 822,
+      "employees": 36,
+      "total_expenses": 100460896,
+      "grants_paid": 92665055,
+      "salaries": 4119763,
+      "daf_grants": 76598788,
+      "daf_assets": 261499155,
+      "schedule_i_rows": 823,
+      "funds_per_employee": 22.8333,
+      "non_grant_expense_per_fund": 9483.9915,
+      "salary_per_fund": 5011.8771
+    },
+    {
+      "ein": "581493949",
+      "name": "NATL CHRISTIAN CHARITABLE FDN INC",
+      "tax_year": 2024,
+      "daf_count": 31943,
+      "employees": 285,
+      "total_expenses": 2701290053,
+      "grants_paid": 2604923993,
+      "salaries": 44383315,
+      "daf_grants": 2433041612,
+      "daf_assets": 5683681676,
+      "schedule_i_rows": 16327,
+      "funds_per_employee": 112.0807,
+      "non_grant_expense_per_fund": 3016.8131,
+      "salary_per_fund": 1389.4536
+    },
+    {
+      "ein": "581723645",
+      "name": "COMMUNITY FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 919,
+      "employees": 20,
+      "total_expenses": 149115390,
+      "grants_paid": 137494744,
+      "salaries": 3139444,
+      "daf_grants": 121011936,
+      "daf_assets": 736114909,
+      "schedule_i_rows": 761,
+      "funds_per_employee": 45.95,
+      "non_grant_expense_per_fund": 12644.8814,
+      "salary_per_fund": 3416.1523
+    },
+    {
+      "ein": "751750059",
+      "name": "CHRISTIAN COMMUNITY FOUNDATION INC",
+      "tax_year": 2024,
+      "daf_count": 1227,
+      "employees": 26,
+      "total_expenses": 193891954,
+      "grants_paid": 176413707,
+      "salaries": 3696065,
+      "daf_grants": 157887409,
+      "daf_assets": 674316911,
+      "schedule_i_rows": 1651,
+      "funds_per_employee": 47.1923,
+      "non_grant_expense_per_fund": 14244.7001,
+      "salary_per_fund": 3012.2779
+    },
+    {
+      "ein": "813222963",
+      "name": "GiveClear Foundation",
+      "tax_year": 2024,
+      "daf_count": 228,
+      "employees": 0,
+      "total_expenses": 33572987,
+      "grants_paid": 31760654,
+      "salaries": 8793,
+      "daf_grants": 31758054,
+      "daf_assets": 215283755,
+      "schedule_i_rows": 816,
+      "funds_per_employee": null,
+      "non_grant_expense_per_fund": 7948.8289,
+      "salary_per_fund": 38.5658
+    },
+    {
+      "ein": "846048381",
+      "name": "THE DENVER FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 610,
+      "employees": 68,
+      "total_expenses": 161755855,
+      "grants_paid": 143235358,
+      "salaries": 6901299,
+      "daf_grants": 98524137,
+      "daf_assets": 728497400,
+      "schedule_i_rows": 1184,
+      "funds_per_employee": 8.9706,
+      "non_grant_expense_per_fund": 30361.4705,
+      "salary_per_fund": 11313.6049
+    },
+    {
+      "ein": "951866094",
+      "name": "SANTA BARBARA FOUNDATION",
+      "tax_year": 2024,
+      "daf_count": 249,
+      "employees": 48,
+      "total_expenses": 120022004,
+      "grants_paid": 109030325,
+      "salaries": 6004592,
+      "daf_grants": 98096229,
+      "daf_assets": 142955176,
+      "schedule_i_rows": 447,
+      "funds_per_employee": 5.1875,
+      "non_grant_expense_per_fund": 44143.2892,
+      "salary_per_fund": 24114.8273
+    }
+  ]
+}

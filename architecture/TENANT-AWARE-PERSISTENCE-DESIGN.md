@@ -3,12 +3,16 @@ Date: 2026-11-21 | Status: design specification, NOT implemented or validated
 
 ## Mandatory Strata integration requirement
 **UNB-TEC-STRATA-001 (MANDATORY):** Unbound SHALL use **Strata** as an explicit component of its data/persistence architecture. Strata integration is required, not an optional alternative to be silently replaced by generic database access. Before implementation, discover and verify the actual Strata repository, package/API surface, current release, supported storage backends, append-only guarantees and compatibility with the current EF stack. Record the verified integration contract and pin its version through the approved EF installation/governance process. Do not invent Strata capabilities or claim it is installed before verification.
+> Converged 2026-11-24: governed by `CNV-ARC-004` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **UNB-TEC-STRATA-002:** The tenant-aware connection/persistence layer SHALL integrate Strata while preserving all three partner isolation profiles (separate schema, separate database, dedicated infrastructure), or document an explicit incompatibility requiring owner review before implementation.
+> Converged 2026-11-24: governed by `CNV-ARC-004` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **UNB-TEC-STRATA-003:** Strata's role in authoritative event persistence, projection management, schema evolution, integrity verification, and correction handling SHALL be determined from verified functionality. Any capabilities Strata does not provide SHALL be implemented through separately governed components, without relaxing append-only requirements.
+> Converged 2026-11-24: governed by `CNV-ARC-004` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **UNB-TEC-STRATA-004:** Automated integration and adversarial tests SHALL demonstrate Strata-backed tenant isolation, append-only corrections, bitemporal history, deterministic replay, backup/restore verification, and migration between isolation profiles where supported. Do not mark tests passed without execution evidence.
+> Converged 2026-11-24: governed by `CNV-ARC-004` (section 'Converged requirements: master mission' in the domain file named by each clause).
 
 **Architecture gate:** Strata is a binding product selection. Its specific integration design remains pending technical verification; a discovered limitation is a design blocker to escalate, not permission to substitute it without approval.
 
