@@ -45,6 +45,7 @@ Unbound SHALL accommodate sponsor-approved segregated custody accounts, omnibus 
 
 ## Portfolio operations and integrations
 - **UNB-INV-031:** Support policy-governed rebalance proposals, drift detection, manager reviews, trade staging, restricted lists, pretrade controls and posttrade compliance.
+> Converged 2026-11-24: governed by `CNV-LEG-001` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-INV-032:** Investment order routing is optional per custodian entitlement. Read-only feeds, file imports, manager-managed execution and API execution are separate capability profiles.
 - **UNB-INV-033:** Each custodian/manager integration SHALL declare verified entitlements, account scope, data freshness, order authority, reconciliation sources, failure modes and contractual restrictions.
 - **UNB-INV-034:** Support transfers between segregated accounts and pools with explicit sale/transfer, valuation, fees, tax lots, settlement and sponsor approvals; never assume a book transfer moves external assets.

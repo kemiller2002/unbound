@@ -44,6 +44,7 @@ Source events.csv describes 58 events; detailed row-by-row reconciliation remain
 ## Governance and control conversion
 **UNB-GOV-001:** Sponsor board and delegated decision-makers SHALL retain authority over mission, risk appetite, policy, investment oversight and legally reserved decisions.
 **UNB-GOV-002:** Every policy parameter that changes approval, eligibility, agent permissions, financial limits or risk SHALL be versioned, reviewed, tested and independently approved.
+> Converged 2026-11-24: governed by `CNV-GOV-007` (section 'Converged requirements: master mission' in the domain file named by each clause).
 **UNB-GOV-003:** Enforce separation of duties, conflict recusals and authority limits in the authorization engine rather than relying solely on warnings or written policy.
 **UNB-GOV-004:** Preserve independent audit evidence and board-readable reporting; distinguish objective snapshots from agent-generated interpretation.
 **UNB-GOV-005:** Related-party infrastructure/sponsor arrangements SHALL be disclosed, independently reviewed and subject to documented commercial reasonableness controls where applicable.

@@ -1,4 +1,5 @@
 # REQ-X-058: Nonprofit recipient operations and self-service
+> Converged 2026-11-24: governed by `CNV-GOV-007` (section 'Converged requirements: master mission' in the domain file named by each clause).
 Date: 2026-11-23. Proposed theoretical requirements, not implementation or legal validation.
 
 **Architectural invariant:** REQ-X-057, one Unbound component monolith, one authoritative accounting, policy, case, document, evidence and AI assistance system. All role-specific UX and external provider integrations reuse domain contracts.

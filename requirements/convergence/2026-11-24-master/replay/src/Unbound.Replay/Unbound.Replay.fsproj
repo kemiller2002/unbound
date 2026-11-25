@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Domain.fs" />
+    <Compile Include="Csv.fs" />
+    <Compile Include="Sources.fs" />
+    <Compile Include="NameMatch.fs" />
+    <Compile Include="Screening.fs" />
+    <Compile Include="Stats.fs" />
+    <Compile Include="Analysis.fs" />
+    <Compile Include="Json.fs" />
+    <Compile Include="Report.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>

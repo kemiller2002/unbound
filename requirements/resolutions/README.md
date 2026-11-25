@@ -1,51 +1,24 @@
-# Resolutions: answers to the open-questions register
+# Resolutions of 2026-11-24: applied revisions (historical import)
 
-This directory holds the answers to the questions in [`../OPEN-QUESTIONS.md`](../OPEN-QUESTIONS.md). The register is generated; the answers here are the source of truth for it.
+**Answers to the open questions are recorded only in [`../questions/`](../questions/README.md).** That append-only event log comes from the master mission (PR #8) and feeds `tools/reqaudit/render_questions.py`. This directory was a parallel import of the same 2026-11-24 review, made in PR #9 before the two lines of work were reconciled. It is kept because it is the source of the revisions PR #9 applied to the requirement records. No generator reads `resolutions.jsonl` any more.
 
-## How an answer finds its question
+| File | Status | Content |
+|---|---|---|
+| `2026-11-24/revisions.jsonl` | **Live input** to `tools/reqaudit/apply_revisions_2026_11_24.py` | The revised statements and added acceptance criteria. There are 14 superseding refinements and 18 gap-requirement revisions, plus the new requirement UNB-SMP-ORG-004. |
+| `2026-11-24/resolutions.jsonl` | Historical | 316 records (QR-0001…) importing the review. The QR numbers are cited by the revisions and by the two domain-file pointers. For the current answer and approval status of any question, use `../open-questions.csv`. |
+| `2026-11-24/CHECK.md` | Historical, with a reconciliation note | The integrator's check of the review: facts verified, two conflicts with SPD-ADV-001, and choices made where the review was silent. |
 
-Every question has a **stable key**:
+## How the two lines were reconciled (2026-11-25)
 
-```
-<record id>#<first 10 hex digits of sha256(kind | question text, whitespace-collapsed and lower-cased)>
-```
+**Question system.** The master mission's event log and generator are authoritative. PR #9's stable-hash generator and its importer were removed. Their purpose is covered by `questions_lib.py`, which pins each question's text by SHA-256 and fails on changed text, orphans or invalid closures, and by `test_question_register.py`.
 
-For example `UNB-SMP-ORG-003#…` for a question on UNB-SMP-ORG-003. Kinds are `open decision`, `awaiting confirmation` and `requirement question`.
+**Requirement records.** Each side's changes were merged field by field, and no field was changed by both:
+- The master mission added `converged_by` and `revision_history` to 121 records.
+- PR #9 added `revisions` to 18 gap requirements, 14 superseding refinements and UNB-SMP-ORG-004.
 
-The key has three consequences:
-- **Moving questions doesn't move answers.** Adding, removing or reordering other questions on the same record never re-attaches an answer to the wrong question.
-- **Editing a question's text orphans its answer.** The generator reports the orphan as an error (`--check` exits 1). It never silently re-attaches the answer. Re-answer the edited question, or restore its text.
-- **Later answers win.** When two resolution records carry the same key, the later one supersedes. A later dated batch can therefore revise an earlier answer without deleting it.
+**Precedence.** It follows [`../AUTHORITATIVE-BASELINE.md`](../AUTHORITATIVE-BASELINE.md): convergence clauses `CNV-*` govern where they conflict. PR #9's revisions and new records are simplification-mission proposals. They appear in the baseline with status `unvalidated` or `proposed` and do not override a clause.
 
-## Files
-
-| Path | Content |
-|---|---|
-| `<date>/resolutions.jsonl` | One record per answered question. Fields: `resolution_id` (QR-nnnn, never reused), `question_key`, `record_id`, `kind`, `question` (exact text when answered), `disposition`, `answer` (the product direction), `gate` and `gate_type` (`external`, `validation` or `none`), `revision` (the revised record, if any), `answered_by`, `answered_on`, plus provenance fields. |
-| `<date>/revisions.jsonl` | The text of each revision a batch made to a source record. Applied as additions only (see below). |
-| `2026-11-24/CHECK.md` | The integrator's check of the 2026-11-24 review: verified claims, conflicts and choices made where the review was silent. |
-
-## Commands
-
-```
-python3 -I -B tools/reqaudit/render_questions.py .            # regenerate OPEN-QUESTIONS.md and open-questions.csv
-python3 -I -B tools/reqaudit/render_questions.py . --check    # integrity only; exit 1 on duplicate keys or orphaned answers
-python3 -I -B tools/reqaudit/test_render_questions.py         # key stability, joins, orphan detection, determinism, committed output
-```
-
-## Recording new answers
-
-1. Create a new dated directory with a `resolutions.jsonl`.
-2. Take each `question_key` from `open-questions.csv` and continue the QR numbering.
-3. Regenerate the register.
-
-Do not edit the generated register or CSV by hand.
-
-## How revisions are applied to source records
-
-`tools/reqaudit/apply_revisions_2026_11_24.py` applies a batch's revisions without editing any existing text:
-- **A refinement** `RR-<orig>-r<n>` is superseded by a new `RR-<orig>-r<n+1>` in the simplification mission's `refinements.jsonl`. It copies the original text and adds the revised statement, the added acceptance criteria and `supersedes_refinement`.
-- **A gap requirement** (`UNB-XIN-*`, `UNB-SMP-*`) gets an entry in its `revisions` list. The original `statement` stays as it was, because some of these were adopted verbatim into domain files.
-- **A domain file that adopted a revised record** gets a one-line pointer under that record's provenance line.
-
-Answering a question does not change a decision record's own `status`. The answers are product directions, and external gates stay open until the named counsel, CPA, auditor, bank, board or counterparty confirms.
+**Event log.**
+- 32 `applied-to-requirement` events add each PR #9 revision to its question's `applied_to`, alongside the existing clause references.
+- One `evidence-reviewed` event records the surge-bench constraint on SPD-ECN-004.
+- The other conflict in `CHECK.md` (SPD-ORG-002, fractional officers) was already enforced by clause CNV-GOV-004, which refuses a second sponsor's appointment.

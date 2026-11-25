@@ -13,6 +13,7 @@ Define the deterministic investment valuation and unitization engine for sponsor
 - **UNB-NAV-006:** A valuation SHALL have immutable source high-water marks, as-of/effective time, recorded time, price-source versions, FX rates, posting policy, rounding policy, code/rule version, reviewer and integrity checkpoint.
 - **UNB-NAV-007:** Validate custodian cash/positions, security identifiers, quantities, corporate actions, liabilities, accrued fees, unrecognized items and interfund allocations before publication; material unexplained breaks prevent final publication.
 - **UNB-NAV-008:** Define independent maker-checker approval for published NAV and privileged overrides; AI may propose resolutions but cannot approve its own calculations or overrides.
+> Converged 2026-11-24: governed by `CNV-FIN-005` (section 'Converged requirements: master mission' in the domain file named by each clause).
 - **UNB-NAV-009:** Support daily, periodic and event-driven valuations, with explicit calendars, market closures, holidays, valuation freezes and after-cutoff processing.
 - **UNB-NAV-010:** Every published valuation and dependent report must remain reproducible as originally issued, even after a correction.
 - **UNB-NAV-011:** Define separate calculated NAV, approved NAV, published NAV and currently effective NAV; API consumers must explicitly request the intended view.
