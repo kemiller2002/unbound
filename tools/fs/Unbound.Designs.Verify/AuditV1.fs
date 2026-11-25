@@ -333,7 +333,7 @@ let report (generated: string) (pages: Json) : Json =
     JObj [
         "generated", str generated
         "viewports", JArr(viewports |> List.map viewportJson)
-        "axeVersion", str "axe-core (scratchpad)"
+        "axeVersion", str "axe-core 4.10.2 (vendor/axe-core-4.10.2)"
         "pages", pages
     ]
 

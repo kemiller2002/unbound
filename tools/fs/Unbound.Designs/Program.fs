@@ -21,7 +21,7 @@ let private buildV2 (root: string) : int =
         |> List.map (fun id ->
             match BuildV2.screenById id with
             | Some s -> s
-            | None -> failwith ("Cannot find module '" + Path.Combine(root, "tools", "screens", id + ".mjs") + "'"))
+            | None -> failwith ("Unknown screen id: " + id))
     let registryPath = Path.GetFullPath(Path.Combine(root, "..", "vendor", "forma-1.0.2", "icons-registry.json"))
     let registry =
         match parseJson (readText registryPath) with

@@ -367,11 +367,11 @@ let failLines (r: Json) =
 
 let report (results: Json list) : Json =
     JObj [
-        "generated_by", str "requirements/ui/designs/tools/verify-documents.mjs"
+        "generated_by", str "tools/fs/Unbound.Designs.Verify (verify-documents)"
         "folio", JObj [ "source", str "kemiller2002/folio"; "commit", str "56a18e1"; "version", str "0.4.2"; "vendored_at", str "requirements/ui/designs/vendor/folio-0.4.2" ]
         "renderer",
         objOpt [
-            "engine", Some(str "Chromium via Playwright (preinstalled)")
+            "engine", Some(str "Chromium headless shell via the DevTools protocol (tools/fs/Unbound.Designs.Verify)")
             "browser", results |> List.tryHead |> Option.map (fun r -> r ? browser)
             "pdf_options", Some pdfOptionsJson
         ]

@@ -122,7 +122,7 @@ let pageRecord (file: string) (manifestEntry: Json option) (components: string l
 
 let report (results: Json list) : Json =
     JObj [
-        "generated_by", str "tools/verify-screens.mjs"
+        "generated_by", str "tools/fs/Unbound.Designs.Verify (verify-screens)"
         "forma", JObj [ "version", str "1.0.2"; "commit", str "d7c499e"; "stylesheet", str "vendor/forma-1.0.2/all.css" ]
         "axe", JObj [ "version", str "4.10.2"; "tags", strs axeTags ]
         "widths", JArr(widths |> List.map jint)
