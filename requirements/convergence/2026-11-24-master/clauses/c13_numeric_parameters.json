@@ -1,0 +1,454 @@
+{
+  "PARAMETERS": [
+    [
+      "CNV-FIN-003",
+      "60 days",
+      "authority",
+      "Nacha Operating Rules: consumer unauthorized return window"
+    ],
+    [
+      "CNV-FIN-003",
+      "2 banking days",
+      "authority",
+      "Nacha Operating Rules: CCD return window"
+    ],
+    [
+      "CNV-FIN-003",
+      "540 days",
+      "authority",
+      "card network maximum dispute window (batch C)"
+    ],
+    [
+      "CNV-FIN-003",
+      "up to two years",
+      "authority",
+      "Nacha warranty-claim period"
+    ],
+    [
+      "CNV-FIN-003",
+      "one year",
+      "authority",
+      "Nacha business-entry claim period"
+    ],
+    [
+      "CNV-FIN-004",
+      "100%",
+      "policy",
+      "sponsor controller (provisional calibration)"
+    ],
+    [
+      "CNV-FIN-001",
+      "twelve months",
+      "policy",
+      "sponsor investment committee"
+    ],
+    [
+      "CNV-PAY-002",
+      "90 days",
+      "authority",
+      "narrowest RUUPA timely-void window (batch C); configurable shorter"
+    ],
+    [
+      "CNV-PAY-002",
+      "30 days",
+      "policy",
+      "sponsor treasurer (callback contact age)"
+    ],
+    [
+      "CNV-PAY-002",
+      "six banking days",
+      "authority",
+      "Nacha NOC correction timing"
+    ],
+    [
+      "CNV-PAY-002",
+      "one business day",
+      "policy",
+      "minimum cooling-off floor (sponsor may lengthen)"
+    ],
+    [
+      "CNV-PAY-004",
+      "30 days",
+      "policy",
+      "sponsor CFO (unknown-outcome tier)"
+    ],
+    [
+      "CNV-PAY-005",
+      "180 days",
+      "authority",
+      "Nacha reinitiation rule"
+    ],
+    [
+      "CNV-PAY-005",
+      "two years",
+      "authority",
+      "Nacha authorization retention"
+    ],
+    [
+      "CNV-PAY-007",
+      "two business days",
+      "policy",
+      "sponsor treasurer (attestation ceiling)"
+    ],
+    [
+      "CNV-PAY-007",
+      "one business day",
+      "policy",
+      "sponsor treasurer (attestation validity)"
+    ],
+    [
+      "CNV-GRT-003",
+      "24 hours",
+      "policy",
+      "operational target, not a legal threshold"
+    ],
+    [
+      "CNV-GRT-003",
+      "180 days",
+      "policy",
+      "sponsor (deep review; may tighten)"
+    ],
+    [
+      "CNV-GRT-003",
+      "30 days",
+      "policy",
+      "refresh lead time"
+    ],
+    [
+      "CNV-GRT-005",
+      "90 days",
+      "policy",
+      "sponsor board (maximum discretionary hold)"
+    ],
+    [
+      "CNV-GRT-006",
+      "10 business days",
+      "authority",
+      "31 CFR 501.603/501.604 reporting"
+    ],
+    [
+      "CNV-GRT-006",
+      "12 months",
+      "policy",
+      "sponsor compliance officer (disposition reuse backstop)"
+    ],
+    [
+      "CNV-GRT-006",
+      "30 June",
+      "authority",
+      "OFAC annual blocked property report date"
+    ],
+    [
+      "CNV-GRT-009",
+      "35%",
+      "authority",
+      "IRC §4958(f)(3) / §4966(d)(2) 35% controlled entities"
+    ],
+    [
+      "CNV-GRT-012",
+      "60-day",
+      "policy",
+      "product default reconsideration filing window"
+    ],
+    [
+      "CNV-GRT-012",
+      "30-day",
+      "policy",
+      "product default response target"
+    ],
+    [
+      "CNV-GRT-013",
+      "1.10",
+      "policy",
+      "review trigger, not a legal safe harbour (XID-ECO-002)"
+    ],
+    [
+      "CNV-GRT-014",
+      "0.5%",
+      "authority",
+      "IRC §170(b)(1)(I) floor from 2026 (batch A)"
+    ],
+    [
+      "CNV-GOV-001",
+      "12 months",
+      "policy",
+      "sponsor CFO (pending-approach expiry)"
+    ],
+    [
+      "CNV-GOV-002",
+      "3-month",
+      "policy",
+      "practice, not standard (batch G)"
+    ],
+    [
+      "CNV-GOV-002",
+      "12 months",
+      "policy",
+      "practice, not standard (batch G)"
+    ],
+    [
+      "CNV-GOV-007",
+      "30-day",
+      "policy",
+      "sponsor controller (aggregation window candidate)"
+    ],
+    [
+      "CNV-GOV-007",
+      "35%",
+      "authority",
+      "IRC 35% controlled entities"
+    ],
+    [
+      "CNV-GOV-008",
+      "12 months",
+      "policy",
+      "sponsor board (delegation expiry)"
+    ],
+    [
+      "CNV-ENT-001",
+      "90 days",
+      "policy",
+      "published sponsor practice (Fidelity); configurable"
+    ],
+    [
+      "CNV-ENT-001",
+      "90–365",
+      "policy",
+      "configurable range (published sponsor practice)"
+    ],
+    [
+      "CNV-ENT-001",
+      "7 business days",
+      "authority",
+      "Uniform Power of Attorney Act §120 response period (enacting states)"
+    ],
+    [
+      "CNV-ENT-001",
+      "15 business days",
+      "policy",
+      "program terms (FINRA 2165 analogy only)"
+    ],
+    [
+      "CNV-ENT-001",
+      "10-business-day",
+      "policy",
+      "program terms (FINRA 2165 analogy only)"
+    ],
+    [
+      "CNV-ENT-001",
+      "30 further business days",
+      "policy",
+      "program terms (FINRA 2165 analogy only)"
+    ],
+    [
+      "CNV-ENT-001",
+      "2 business days",
+      "policy",
+      "program terms (notice)"
+    ],
+    [
+      "CNV-ENT-002",
+      "25%",
+      "authority",
+      "Form 990 Schedule N threshold for significant dispositions"
+    ],
+    [
+      "CNV-ENT-002",
+      "90 days",
+      "policy",
+      "contract (read-only retention)"
+    ],
+    [
+      "CNV-ENT-002",
+      "35 days",
+      "policy",
+      "contract (backup expiry)"
+    ],
+    [
+      "CNV-PLT-001",
+      "10 business days",
+      "authority",
+      "CAN-SPAM opt-out (16 CFR 316.5 / 15 U.S.C. 7704)"
+    ],
+    [
+      "CNV-PLT-001",
+      "3 per 30 days",
+      "authority",
+      "47 CFR 64.1200 residential prerecorded-call limit"
+    ],
+    [
+      "CNV-PLT-001",
+      "25 November 2026",
+      "authority",
+      "FCC revocation rules effective date (batch F)"
+    ],
+    [
+      "CNV-PLT-004",
+      "10 years",
+      "authority",
+      "31 CFR 501.601 as amended 2025"
+    ],
+    [
+      "CNV-PLT-004",
+      "7 years",
+      "policy",
+      "platform floor"
+    ],
+    [
+      "CNV-PLT-004",
+      "10-year",
+      "authority",
+      "31 CFR 501.601 as amended 2025, applied as the release-1 floor (OD-P-PLT cut L)"
+    ],
+    [
+      "CNV-PLT-005",
+      "2 business days",
+      "policy",
+      "complaint acknowledgment (CFPB/FCA benchmarks only)"
+    ],
+    [
+      "CNV-PLT-005",
+      "15 business days",
+      "policy",
+      "complaint response target"
+    ],
+    [
+      "CNV-PLT-005",
+      "60 calendar days",
+      "policy",
+      "complaint outer limit"
+    ],
+    [
+      "CNV-PLT-005",
+      "1 business day",
+      "policy",
+      "regulator-originated routing"
+    ],
+    [
+      "CNV-PLT-007",
+      "one business day",
+      "policy",
+      "sponsor-approved hold window default"
+    ],
+    [
+      "CNV-PLT-011",
+      "72 hours",
+      "policy",
+      "sponsor (post-change hold)"
+    ],
+    [
+      "CNV-EXP-001",
+      "18 months",
+      "policy",
+      "API deprecation notice (commercial)"
+    ],
+    [
+      "CNV-ECO-001",
+      "60%",
+      "illustrative",
+      "experimental dominance threshold; not an anonymity guarantee"
+    ],
+    [
+      "CNV-ECO-003",
+      "12 months",
+      "empirical",
+      "shadow replay minimum coverage"
+    ],
+    [
+      "CNV-ECO-003",
+      "90-day",
+      "empirical",
+      "time study duration"
+    ],
+    [
+      "CNV-ECO-003",
+      "30 days",
+      "policy",
+      "Unbound board (claim withdrawal or restatement window, OD-M-12)"
+    ],
+    [
+      "CNV-ECO-004",
+      "5,000–50,000",
+      "market-data",
+      "entry segment band from DAFRC FY2024 sponsor distribution"
+    ],
+    [
+      "CNV-ECO-004",
+      "25%",
+      "policy",
+      "Unbound board (concentration cap)"
+    ],
+    [
+      "CNV-ECO-004",
+      "12 months",
+      "policy",
+      "OD-M-04 reopening window"
+    ],
+    [
+      "CNV-ECO-004",
+      "10,000",
+      "policy",
+      "OD-M-04 sponsor size band"
+    ],
+    [
+      "CNV-ECO-005",
+      "15%",
+      "illustrative",
+      "stress scenario magnitude"
+    ],
+    [
+      "CNV-ECO-005",
+      "20%",
+      "illustrative",
+      "stress scenario magnitude"
+    ],
+    [
+      "CNV-ECO-005",
+      "5%",
+      "illustrative",
+      "stress scenario magnitude"
+    ],
+    [
+      "CNV-LEG-002",
+      "1 July 2026",
+      "authority",
+      "HRS §467B-2.3 effective date"
+    ],
+    [
+      "CNV-LEG-002",
+      "1 July",
+      "authority",
+      "HRS §467B-2.3 annual renewal date"
+    ],
+    [
+      "CNV-SVC-002",
+      "five working days",
+      "policy",
+      "surge activation lead time candidate"
+    ],
+    [
+      "CNV-SVC-002",
+      "1 December",
+      "policy",
+      "December readiness gate date"
+    ],
+    [
+      "CNV-FIN-009",
+      "line 4",
+      "authority",
+      "Form 990 Schedule D Part I line reference (not a duration)"
+    ],
+    [
+      "CNV-GRT-013",
+      "35%",
+      "authority",
+      "IRC 35% controlled entities"
+    ],
+    [
+      "CNV-EVB-001",
+      "90-day",
+      "empirical",
+      "time study duration"
+    ]
+  ]
+}

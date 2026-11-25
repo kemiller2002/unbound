@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PyCompat.fs" />
+    <Compile Include="Io.fs" />
+    <Compile Include="QuestionsLib.fs" />
+    <Compile Include="RenderQuestions.fs" />
+    <Compile Include="ReviewMap.fs" />
+    <Compile Include="IntegrateDossiers.fs" />
+    <Compile Include="AdoptConvergence.fs" />
+    <Compile Include="RenderDecisionRegister.fs" />
+    <Compile Include="RenderRatificationPackets.fs" />
+    <Compile Include="AdversarialTemplates.fs" />
+    <Compile Include="RenderAdversarial.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Unbound.Py/Unbound.Py.fsproj" />
+  </ItemGroup>
+</Project>

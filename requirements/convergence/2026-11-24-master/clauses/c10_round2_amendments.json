@@ -1,0 +1,166 @@
+{
+  "AMENDMENTS": {
+    "CNV-ECO-003": {
+      "finding": "ADV-R2-001, ADV-R2-002, ADV-R2-009",
+      "append": "Platform scale for licence computation SHALL be the sum over the maintained target-sponsor list of funds × stage-gated adoption probability; any run needing more than a stated share of listed sponsors SHALL be labelled share-dependent with the share shown. Viability SHALL be tested on Unbound's fully loaded annual result (amortised build capex, sales, implementation, compliance staff, assurance fees) being non-negative at P90 cost and adverse scale, naming the party whose result is tested; contribution margin alone SHALL NOT establish viability. Price-list approval SHALL additionally require measured results showing C below both B and C0 at P50 for the sponsor size band being priced, from a replay covering that band, and SHALL be approved by the Unbound board.",
+      "acceptance_add": [
+        "Given recorded studies whose measured C is not below B at P50 for the band, when a price list is submitted, then it is refused.",
+        "Given a configuration with positive contribution margin but a negative fully loaded vendor result, when viability is assessed, then it is not viable."
+      ]
+    },
+    "CNV-ECO-004": {
+      "finding": "ADV-R2-007",
+      "append": "Release-1 account classes SHALL be enumerated, and every enterprise mix used in economics SHALL use only release-1 classes; advisor-managed funds are a release-1 class only where the sponsor operates a sponsor-engaged investment-manager program permitted by CNV-GRT-009 (uniform sponsor contract, no donor designation); otherwise E3 economics SHALL be labelled dependent on that program.",
+      "acceptance_add": [
+        "Given an economics run whose mix uses a class scoped deferred, when built, then the build fails."
+      ]
+    },
+    "CNV-PAY-002": {
+      "finding": "ADV-R2-010, ADV-R2-067",
+      "append": "Destination evidence combinations SHALL be exactly: (a) bank-originated account-owner match plus cooling-off plus notice on both the old and new verified channels; or (b) charity document plus registry-sourced callback plus cooling-off plus notice. The cooling-off period SHALL be the one in UNB-RCN-WF-028, which a sponsor may lengthen but never shorten below one business day. A callback contact SHALL come only from a record verified at least a sponsor-set period before the change request (30 days [policy default, owner: sponsor treasurer]) or an independent public source recorded with retrieval date; any contact or signatory change inside that period disqualifies the contact. Charity users who submit contact or bank-detail changes SHALL be authenticated at CAL3 or above (CNV-PLT-003). Destination evidence SHALL be scoped per sponsor; cross-sponsor reuse only under a written reliance policy.",
+      "acceptance_add": [
+        "Given a charity contact changed 5 days before a bank-detail change, when the callback is placed, then the changed contact is ineligible and the callback goes to an earlier-verified or public-source contact.",
+        "Given an account-owner match, when the change is applied, then cooling-off and dual-channel notice still apply before release."
+      ]
+    },
+    "CNV-EXP-002": {
+      "finding": "ADV-R2-068",
+      "append": "A partner rail's enrolment SHALL satisfy CNV-PAY-002 only where the partner contract carries equivalent controls (owner verification, cooling-off at least as long as the sponsor's, notice to the charity's verified channels, and a destination-change event delivered to the sponsor before the next release); a rail lacking them SHALL be subject to CNV-PAY-002 in full.",
+      "replace": [
+        [
+          "Given a grantee enrolled with a supported rail partner, when a grant is released, then no additional enrolment is requested.",
+          "Given a grantee enrolled with a supported rail partner whose contract carries the CNV-PAY-002 equivalent controls, when a grant is released, then no additional enrolment is requested."
+        ]
+      ]
+    },
+    "CNV-PLT-007": {
+      "finding": "ADV-R2-011, ADV-R2-066, ADV-R2-069, ADV-R2-078",
+      "append": "This clause SHALL apply only to discretionary platform safety holds. One HoldType register (extending UNB-XIN-EVA-010) SHALL state for each hold type who may place it, who may release it, maximum duration, expiry behaviour {convert-to-sponsor-decision-task, auto-release, never-auto-release} and whether it is a dispatch-fence input; legally mandatory holds (sanctions blocks, revocation, court orders), registry public-fact holds and integrity holds SHALL never auto-release and SHALL convert to a sponsor decision task, never expire silently. An OutOfBandPaymentRecorded command (sponsor-authorised, referencing the grant and the bank transaction) SHALL cancel the matching queued instruction, register the debit as expected and not trigger the unmatched-debit hold. Operator emergency access SHALL be a two-person break-glass class limited to hold publication, credential revocation and read, auto-expiring within the existing break-glass limit, notifying the sponsor immediately and visible in the sponsor's access view; every other write keeps per-case approval (CNV-ARC-002).",
+      "replace": [
+        [
+          "Given a break-glass freeze with no sponsor decision after one business day, when the window ends, then the freeze expires or converts to a recorded sponsor decision.",
+          "Given a discretionary break-glass freeze with no sponsor decision after the window, when it ends, then it converts to a sponsor decision task; a legally mandatory or integrity hold never auto-releases."
+        ]
+      ],
+      "acceptance_add": [
+        "Given an out-of-band payment registered for grant G, when the freeze ends, then the queued instruction for G is never dispatched and no unmatched-debit hold is raised.",
+        "Given a break-glass session, when it attempts to post a ledger entry, then the write is refused."
+      ]
+    },
+    "CNV-LEG-001": {
+      "finding": "ADV-R2-070",
+      "append": "'Execute' means moving funds, or releasing an irreversible instruction, using credentials or authority that the sponsor has not delegated for that instruction; relaying a sponsor-authorised instruction under the sponsor's delegation is permitted and is not execution by Unbound.",
+      "acceptance_add": [
+        "Given a deployment where Unbound relays a dual-approved sponsor instruction under delegation, when the funds-flow conformance check runs, then it passes."
+      ]
+    },
+    "CNV-ARC-003": {
+      "finding": "ADV-R2-012, ADV-R2-065, ADV-R2-072, ADV-R2-077",
+      "append": "The residual exposure window SHALL be declared as maximum beacon age plus p99 publication-to-applied lag, both basis-tagged [method: benchmark, CNV-ARC-001]; holds classified legally mandatory (sanctions, revocation, court order) SHALL additionally be confirmed by a synchronous registry check at the irreversible step, failing closed on timeout. A rail table SHALL give, for each rail, the irreversible step, the fence location and the post-hand-off response to a new hold (ACH recall or reversal request, partner cancel, stop payment, positive-pay void) with a deadline. This clause depends on acceptance of the database-per-sponsor architecture decision; if that decision changes, this clause SHALL be re-opened.",
+      "replace": [
+        [
+          "Given the hold registry unavailable for longer than the freshness bound, when a sponsor cell attempts dispatch, then dispatch is refused and all non-dispatch functions continue.",
+          "Given the hold registry unavailable for longer than the freshness bound, when a sponsor cell attempts dispatch, then dispatch is refused and all non-dispatch functions continue; given a stalled replica in cell A only, other cells continue to dispatch."
+        ]
+      ],
+      "acceptance_add": [
+        "Given a sanctions hold published one second after the latest beacon, when dispatch runs, then the synchronous mandatory-hold check blocks it.",
+        "Given a hold published after an ACH file was transmitted, when detected, then the rail table's recall response is initiated within its deadline."
+      ],
+      "dependencies": [
+        "CNV-ARC-001"
+      ]
+    },
+    "CNV-GRT-006": {
+      "finding": "ADV-R2-073",
+      "append": "Every release screening SHALL record the list version and fetch time and SHALL fail closed when the list is older than a basis-tagged bound or the screening service is unavailable; list updates SHALL be distributed as versioned inter-cell messages covered by the dispatch fence; a potential match at release SHALL open a disposition task with a sponsor-set due date and escalation to the compliance officer and SHALL never auto-release."
+    },
+    "CNV-PLT-012": {
+      "finding": "ADV-R2-071",
+      "replace": [
+        [
+          "A partner outage SHALL move unsent instructions to the fallback rail only after the partner confirms non-execution or the instruction reaches the unknown-outcome process (CNV-PAY-004);",
+          "A partner outage SHALL move to the fallback rail only instructions with partner-confirmed non-execution, reusing the original idempotency chain; instructions with any partner acknowledgment SHALL stay in unknown-outcome handling (CNV-PAY-004);"
+        ]
+      ]
+    },
+    "CNV-ENT-001": {
+      "finding": "ADV-R2-074",
+      "replace": [
+        [
+          "Installments already approved and reserved SHALL proceed;",
+          "On death and succession only, installments already approved and reserved SHALL proceed;"
+        ]
+      ],
+      "append": "During a protective suspension, approved-but-unpaid grants authorised by the suspended representative SHALL be held until re-confirmed by the principal or decided by the sponsor, and expiry SHALL convert to a recorded sponsor decision, never release by default.",
+      "acceptance_add": [
+        "Given a grant approved by a representative who is then protectively suspended, when its payment date arrives, then it is held pending re-confirmation."
+      ]
+    },
+    "CNV-GOV-010": {
+      "finding": "ADV-R2-075",
+      "append": "The matrix SHALL define one level set, map recommend, prepare and execute to levels, classify routine board-delegated grant approval (CNV-GRT-001) as the level deterministic policy may hold under delegation, identify the reserved level that replaces 'A3+' wording elsewhere, and classify every external communication and payment-instruction preparation by actor type; CI SHALL fail when any clause or API contract uses a level outside the set.",
+      "acceptance_add": [
+        "Given a clause text containing an authority label outside the defined set, when the baseline builds, then it fails."
+      ]
+    },
+    "CNV-GOV-003": {
+      "finding": "ADV-R2-076",
+      "append": "A change to a gate module SHALL carry a materiality class; a material change SHALL require the sponsor's acceptance (with notice to its auditor) before activation for that sponsor, and until accepted that sponsor SHALL revert to the three-distinct-person rule.",
+      "acceptance_add": [
+        "Given a material gate change released without a sponsor acceptance record, when that sponsor releases a payment, then three distinct persons are required."
+      ]
+    },
+    "CNV-TEN-001": {
+      "finding": "ADV-R2-077, ADV-R2-079",
+      "append": "The shared party core SHALL hold only a keyed token, role class and sponsor id, never names or contact details. This clause depends on acceptance of the database-per-sponsor architecture decision.",
+      "acceptance_add": [
+        "Given a party-core schema with a column outside its register entry, when the schema check runs, then it fails."
+      ],
+      "dependencies": [
+        "CNV-ARC-001"
+      ]
+    },
+    "CNV-ARC-005": {
+      "finding": "ADV-R2-077, ADV-R2-082",
+      "append": "Security or control fixes that need no schema change SHALL have an emergency release path that continues to unaffected tenants while a failed tenant is tracked as an open risk.",
+      "acceptance_add": [
+        "Given a failed migration on one tenant, when a flagged emergency fix is released, then other tenants receive it."
+      ]
+    },
+    "CNV-ECO-001": {
+      "finding": "ADV-R2-080",
+      "append": "Cross-sponsor benchmarks SHALL require written sponsor opt-in in the master agreement and a SharedStoreRegister entry, compute dominance per cut, and exclude staff metrics until a privacy review is recorded.",
+      "acceptance_add": [
+        "Given a benchmark cell in which one sponsor holds 60% of the measure, when rendered, then it is suppressed unless the recorded dominance threshold for that metric is higher and justified."
+      ]
+    },
+    "CNV-PLT-011": {
+      "finding": "ADV-R2-081",
+      "append": "Where a sponsor has not configured the recommendation threshold, the hold SHALL apply to all non-recurring recommendations above an Unbound default set by the Unbound product owner [policy default], and activation SHALL record the threshold in force.",
+      "acceptance_add": [
+        "Given a sponsor without a configured threshold, when a contact change is followed by a large one-off recommendation, then the recommendation is held."
+      ]
+    },
+    "CNV-PAY-001": {
+      "finding": "ADV-R2-083",
+      "replace": [
+        [
+          "Given a role table without an executed ODFI agreement reference, when payment activation is requested, then activation is refused.",
+          "Given a role table without the agreement its rail requires (an ODFI origination agreement for sponsor-originated ACH; a partner agreement naming the Third-Party Sender and its ODFI for partner rails), when payment activation is requested, then activation is refused."
+        ]
+      ]
+    },
+    "CNV-ENT-002": {
+      "finding": "ADV-R2-084",
+      "append": "The exit certificate SHALL list each retention class with its end date and the sponsor's signed acceptance of custody, and the export manifest SHALL cover every class including ACH authorizations.",
+      "acceptance_add": [
+        "Given an export lacking ACH authorizations, when the exit certificate is requested, then it is refused."
+      ]
+    },
+    "CNV-GOV-011": {
+      "finding": "ADV-R2-085, ADV-R2-086",
+      "append": "Each clause SHALL carry a numeric-parameter table (value, unit, basis tag, owner) and generation SHALL fail for any number in a clause statement not listed there; counts and decision status quoted in mission reports SHALL be generated from the clause and decision files."
+    }
+  }
+}
