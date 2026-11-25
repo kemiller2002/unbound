@@ -43,6 +43,7 @@
 | 22 | [Adversarial review](22-ADVERSARIAL-REVIEW.md) | `disposition-challenges.jsonl` |
 | 23 | [Executive findings](23-EXECUTIVE-FINDINGS.md) | — |
 | 24 | [Per-sponsor decisions, software-only Unbound, and pricing](24-DECISION-TEAMS-AND-PRICING.md): owner decisions SPD-ADV-001 and SPD-ADV-004 applied | `tools/fs/Unbound.Economics` (DecisionTeams.fs), `model/decision-teams-results.json` |
+| 25 | [Test scenario links for the 2026-11-24 revisions](25-TESTED-BY-LINK-PROPOSALS.md): agent-drafted, owner to confirm | `scenarios.csv` (SPS-REV-*) |
 | — | [Ledger](LEDGER.md) | `validation-report.json` |
 
 Reports 01–22 are **generated** by `assemble-simplification` (`tools/fs/Unbound.ReqAudit`) from `data/`. Never edit them by hand.

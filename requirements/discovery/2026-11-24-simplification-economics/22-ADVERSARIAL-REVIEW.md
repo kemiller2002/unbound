@@ -257,14 +257,14 @@ Plus the executed transitive check over all 481 consolidate rows (12 orphans, SP
 | Measure | Value |
 |---|---|
 | Errors | 0 |
-| Warnings | 3 |
+| Warnings | 4 |
 | Register rows | 1487 |
-| Trace edges | 1574 |
+| Trace edges | 1616 |
 | Records: refinements | 54 |
 | Records: gaps | 16 |
 | Records: findings | 157 |
 | Records: conflicts | 0 |
-| Records: scenarios | 77 |
+| Records: scenarios | 89 |
 | Records: decisions | 59 |
 | Records: rejected | 66 |
 | Records: work | 143 |
