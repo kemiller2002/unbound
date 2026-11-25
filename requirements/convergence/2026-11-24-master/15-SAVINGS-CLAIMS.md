@@ -16,10 +16,10 @@ US advertising law requires a reasonable basis for an objective claim at the tim
 carries its source and disclosure. This is a design rule, not legal advice; counsel should review the wording before
 publication.
 
-Machine-readable register: [`data/claims-register.jsonl`](data/claims-register.jsonl) (CNV-GOV-008). Every claim below
-is a **draft awaiting board approval**.
+Machine-readable register: [`data/claims-register.jsonl`](data/claims-register.jsonl) (CNV-GOV-008). **Approved by the
+board on 2026-11-25 (OD-M-13)**: CLM-02 to CLM-05 as written; CLM-01 as a template, usable once the price is set.
 
-## 1. Draft claims
+## 1. Approved claims
 
 | ID | Audience | Claim | Basis |
 |---|---|---|---|

@@ -20,7 +20,7 @@ and the path to pass are in its section 23).
 | 12 | [Evidence-phase protocol](12-EVIDENCE-PHASE-PROTOCOL.md) | hand |
 | 13 | [Evidence-backlog results](13-EVIDENCE-BACKLOG-RESULTS.md) | delegated research + verification |
 | 14 | [Public-data replay](14-PUBLIC-DATA-REPLAY.md) and [14a tables](14a-PUBLIC-DATA-REPLAY-TABLES.md) | F# tool in `replay/`; public IRS and OFAC data |
-| 15 | [Savings claims](15-SAVINGS-CLAIMS.md) and `data/claims-register.jsonl` | drafts awaiting board approval (OD-M-12) |
+| 15 | [Savings claims](15-SAVINGS-CLAIMS.md) and `data/claims-register.jsonl` | approved by the board (OD-M-13); CLM-01 awaits a price |
 
 Sources of truth: `clauses/` (convergence clause source and adversarial amendments), `data/` (dossiers, evidence,
 clauses, catalogs, findings), `requirements/questions/` (resolution log), `requirements/baseline/` and
