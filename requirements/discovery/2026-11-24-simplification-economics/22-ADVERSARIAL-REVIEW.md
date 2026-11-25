@@ -257,7 +257,7 @@ Plus the executed transitive check over all 481 consolidate rows (12 orphans, SP
 | Measure | Value |
 |---|---|
 | Errors | 0 |
-| Warnings | 4 |
+| Warnings | 3 |
 | Register rows | 1487 |
 | Trace edges | 1616 |
 | Records: refinements | 54 |
