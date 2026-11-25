@@ -1,0 +1,30 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="JsCompat.fs" />
+    <Compile Include="Markup.fs" />
+    <Compile Include="Gaps.fs" />
+    <Compile Include="Model.fs" />
+    <Compile Include="Shell.fs" />
+    <Compile Include="Screens/S001.fs" />
+    <Compile Include="Screens/S002.fs" />
+    <Compile Include="Screens/S003.fs" />
+    <Compile Include="Screens/S004.fs" />
+    <Compile Include="Screens/S005.fs" />
+    <Compile Include="Screens/S006.fs" />
+    <Compile Include="Screens/S007.fs" />
+    <Compile Include="Screens/S008.fs" />
+    <Compile Include="Screens/S009.fs" />
+    <Compile Include="Screens/S010.fs" />
+    <Compile Include="Screens/S011.fs" />
+    <Compile Include="Screens/S012.fs" />
+    <Compile Include="Screens/S013.fs" />
+    <Compile Include="Screens/W001.fs" />
+    <Compile Include="BuildScreens.fs" />
+    <Compile Include="DocumentKit.fs" />
+    <Compile Include="BuildDocuments.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>
