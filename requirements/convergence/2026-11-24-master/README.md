@@ -19,6 +19,7 @@ and the path to pass are in its section 23).
 | 11 | [Owner ratification packets](11-OWNER-RATIFICATION-PACKETS.md) | `tools/reqaudit/render_ratification_packets.py` |
 | 12 | [Evidence-phase protocol](12-EVIDENCE-PHASE-PROTOCOL.md) | hand |
 | 13 | [Evidence-backlog results](13-EVIDENCE-BACKLOG-RESULTS.md) | delegated research + verification |
+| 14 | [Public-data replay](14-PUBLIC-DATA-REPLAY.md) and [14a tables](14a-PUBLIC-DATA-REPLAY-TABLES.md) | F# tool in `replay/`; public IRS and OFAC data |
 
 Sources of truth: `clauses/` (convergence clause source and adversarial amendments), `data/` (dossiers, evidence,
 clauses, catalogs, findings), `requirements/questions/` (resolution log), `requirements/baseline/` and
