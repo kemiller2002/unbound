@@ -70,6 +70,7 @@ PARAMETERS = (
     ("CNV-ECO-001", "60%", I, "experimental dominance threshold; not an anonymity guarantee"),
     ("CNV-ECO-003", "12 months", E, "shadow replay minimum coverage"),
     ("CNV-ECO-003", "90-day", E, "time study duration"),
+    ("CNV-ECO-003", "30 days", P, "Unbound board (claim withdrawal or restatement window, OD-M-12)"),
     ("CNV-ECO-004", "5,000–50,000", D, "entry segment band from DAFRC FY2024 sponsor distribution"),
     ("CNV-ECO-004", "25%", P, "Unbound board (concentration cap)"),
     ("CNV-ECO-004", "12 months", P, "OD-M-04 reopening window"),
