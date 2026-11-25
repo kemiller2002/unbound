@@ -16,7 +16,7 @@ Date: 2026-11-23 | Baseline revision: `777a70d27a70e7e6851560ed513a872b5b4d134b`
 
 ## 2. Corpus scope and extraction method
 
-The extractor `tools/reqaudit/inventory.py` (pure functional pipeline, re-runnable) scans 181 files in `requirements/`, `architecture/` and `research/daf-theoretical-enterprise-validation/`. It recognises eight definition styles found in the repository:
+The extractor `inventory` (`tools/fs/Unbound.ReqAudit`) (pure functional pipeline, re-runnable) scans 181 files in `requirements/`, `architecture/` and `research/daf-theoretical-enterprise-validation/`. It recognises eight definition styles found in the repository:
 
 | Site | Example | Count of definition sites |
 |---|---|---:|
@@ -58,12 +58,12 @@ Largest requirement families: REQ-X 84, UNB-NAV 53, ADM 49, UNB-GRANT 48, UNB-CH
 
 ## 4. Narrative-only requirements and ID migration strategy
 
-132 normative statements (containing SHALL/MUST/must/never/required/prohibited and similar) have no identifier (`data/narrative-requirements.csv`; `tools/reqaudit/narrative.py`). 30 files contain requirements **only** in narrative or unlabelled form, including `CHARTER.md`, `PRINCIPLES.md`, `EXPANSION-ROADMAP-AND-GATES.md`, `DAF-LANDSCAPE-CONVERSION-WAVE-02/03.md`, `ui/CONTROL-OPERATIONS-ROLE-WORKSPACES.md` and `ui/DAF-ADMINISTRATION-AND-SPONSOR-EXPERIENCE.md`.
+132 normative statements (containing SHALL/MUST/must/never/required/prohibited and similar) have no identifier (`data/narrative-requirements.csv`; `narrative` (`tools/fs/Unbound.ReqAudit`)). 30 files contain requirements **only** in narrative or unlabelled form, including `CHARTER.md`, `PRINCIPLES.md`, `EXPANSION-ROADMAP-AND-GATES.md`, `DAF-LANDSCAPE-CONVERSION-WAVE-02/03.md`, `ui/CONTROL-OPERATIONS-ROLE-WORKSPACES.md` and `ui/DAF-ADMINISTRATION-AND-SPONSOR-EXPERIENCE.md`.
 
 **Migration strategy (adopted, reversible):**
 1. Existing identifiers are **never** renumbered or reused, even when they collide. Collisions are disambiguated by qualified reference `ID@path` (for example `INV-01@CROSS-WORKFLOW-FINANCIAL-AUTHORITY…md`).
 2. Statements without an identifier receive a content-addressed surrogate `NARR-<8 hex>` = `sha256(path + "\n" + normalized text)[:8]`. The surrogate is stable across line moves and changes if the wording changes, so a reworded statement is never silently treated as the original.
-3. Refinements use `RR-<original-id>-r<n>`. New gap-analysis requirements use `UNB-RCN-<domain>-<nnn>` with `origin: gap-analysis`. Neither scheme overlaps any existing family (verified by `tools/reqaudit/validate.py`).
+3. Refinements use `RR-<original-id>-r<n>`. New gap-analysis requirements use `UNB-RCN-<domain>-<nnn>` with `origin: gap-analysis`. Neither scheme overlaps any existing family (verified by `validate` (`tools/fs/Unbound.ReqAudit`)).
 4. Original files are not edited. Supersession is recorded in the traceability graph (`data/trace-edges.csv`); adoption into the domain files is an owner decision (RCD-001).
 
 ## 5. Identifier integrity defects found at baseline
@@ -84,7 +84,7 @@ Largest requirement families: REQ-X 84, UNB-NAV 53, ADM 49, UNB-GRANT 48, UNB-CH
 
 ## 7. Baseline quality signals
 
-Heuristic triage only (`tools/reqaudit/quality.py`; definitions in report 02). Denominator: the 1,148 canonical requirement identifiers.
+Heuristic triage only (`quality` (`tools/fs/Unbound.ReqAudit`); definitions in report 02). Denominator: the 1,148 canonical requirement identifiers.
 
 | Area | Requirements | No RFC 2119 keyword | No acceptance signal | Vague terms | ≥8 clauses | Cited by any test/scenario |
 |---|---:|---:|---:|---:|---:|---:|
@@ -107,8 +107,8 @@ The structural headline: **acceptance tests exist (272 `*-T*` cases) but do not 
 ## 8. Reproduce
 
 ```bash
-python3 -I tools/reqaudit/inventory.py . requirements/reconciliation/2026-11-23/data
-python3 -I tools/reqaudit/quality.py requirements/reconciliation/2026-11-23/data .
-python3 -I tools/reqaudit/narrative.py . requirements/reconciliation/2026-11-23/data/narrative-requirements.csv
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- inventory . requirements/reconciliation/2026-11-23/data
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- quality requirements/reconciliation/2026-11-23/data .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- narrative . requirements/reconciliation/2026-11-23/data/narrative-requirements.csv
 ```
 The inventory excludes `requirements/reconciliation/`, so re-running after this mission reproduces the baseline counts as long as the original files are unchanged.

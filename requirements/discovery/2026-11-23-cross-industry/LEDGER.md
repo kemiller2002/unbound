@@ -22,10 +22,10 @@ No original line was changed or removed (`git diff --numstat 777a70d` shows zero
 3. To add a record, append to the matching data file using the schema of the existing rows. Then run:
 
 ```bash
-python3 -I -B tools/reqaudit/graph.py requirements/discovery/2026-11-23-cross-industry/data
-python3 -I -B tools/reqaudit/validate_discovery.py .
-python3 -I -B tools/reqaudit/render_discovery.py .
-python3 -I -B tools/reqaudit/validate.py .        # reconciliation gates must still pass
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- graph requirements/discovery/2026-11-23-cross-industry/data
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-discovery .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- render-discovery .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate .        # reconciliation gates must still pass
 ```
 
 4. Do not reuse IDs. Do not change `priority_as_proposed`, which preserves the research pass's original priority.

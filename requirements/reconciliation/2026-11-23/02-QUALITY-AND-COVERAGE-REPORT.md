@@ -4,7 +4,7 @@ Date: 2026-11-23 | Denominator: **1,148 canonical requirement identifiers** (`da
 
 ## 1. How the audit was done
 
-1. **Automated heuristics** over every canonical requirement (`tools/reqaudit/quality.py`): RFC 2119 keyword present; vague terms; ≥8 clauses (compound); acceptance signal (Given/When/Then or test wording, or cited by a test or scenario). These are triage signals only.
+1. **Automated heuristics** over every canonical requirement (`quality` (`tools/fs/Unbound.ReqAudit`)): RFC 2119 keyword present; vague terms; ≥8 clauses (compound); acceptance signal (Given/When/Then or test wording, or cited by a test or scenario). These are triage signals only.
 2. **Semantic audit** by four role-separated domain passes (GRT grants, charities and payments; FIN finance and investments; PLT platform, AI, UI and governance; ENT enterprise, donor lifecycle and operating model) against a common brief and the 14 mission dimensions. Each pass read its files in full, checked evidence, and recorded only material defects confirmed by reading.
 3. **Integrating review** added the regulatory (REG) and architecture (ARC) findings, merged overlapping records, resolved inconsistencies between passes (for example the tenancy recommendation; see [03](03-CONFLICT-REGISTER.md)), and spot-verified every critical finding against the source.
 

@@ -1,16 +1,16 @@
 # Resolutions of 2026-11-24: applied revisions (historical import)
 
-**Answers to the open questions are recorded only in [`../questions/`](../questions/README.md).** That append-only event log comes from the master mission (PR #8) and feeds `tools/reqaudit/render_questions.py`. This directory was a parallel import of the same 2026-11-24 review, made in PR #9 before the two lines of work were reconciled. It is kept because it is the source of the revisions PR #9 applied to the requirement records. No generator reads `resolutions.jsonl` any more.
+**Answers to the open questions are recorded only in [`../questions/`](../questions/README.md).** That append-only event log comes from the master mission (PR #8) and feeds `render-questions` (`tools/fs/Unbound.Convergence`). This directory was a parallel import of the same 2026-11-24 review, made in PR #9 before the two lines of work were reconciled. It is kept because it is the source of the revisions PR #9 applied to the requirement records. No generator reads `resolutions.jsonl` any more.
 
 | File | Status | Content |
 |---|---|---|
-| `2026-11-24/revisions.jsonl` | **Live input** to `tools/reqaudit/apply_revisions_2026_11_24.py` | The revised statements and added acceptance criteria. There are 14 superseding refinements and 18 gap-requirement revisions, plus the new requirement UNB-SMP-ORG-004. |
+| `2026-11-24/revisions.jsonl` | Input to the one-off migration `apply_revisions_2026_11_24.py`, which has been applied (re-running it changes nothing) and was retired on 2026-11-25; it is in git history at commit `e32819f` | The revised statements and added acceptance criteria. There are 14 superseding refinements and 18 gap-requirement revisions, plus the new requirement UNB-SMP-ORG-004. |
 | `2026-11-24/resolutions.jsonl` | Historical | 316 records (QR-0001…) importing the review. The QR numbers are cited by the revisions and by the two domain-file pointers. For the current answer and approval status of any question, use `../open-questions.csv`. |
 | `2026-11-24/CHECK.md` | Historical, with a reconciliation note | The integrator's check of the review: facts verified, two conflicts with SPD-ADV-001, and choices made where the review was silent. |
 
 ## How the two lines were reconciled (2026-11-25)
 
-**Question system.** The master mission's event log and generator are authoritative. PR #9's stable-hash generator and its importer were removed. Their purpose is covered by `questions_lib.py`, which pins each question's text by SHA-256 and fails on changed text, orphans or invalid closures, and by `test_question_register.py`.
+**Question system.** The master mission's event log and generator are authoritative. PR #9's stable-hash generator and its importer were removed. Their purpose is covered by `QuestionsLib.fs` (`tools/fs/Unbound.Convergence`), which pins each question's text by SHA-256 and fails on changed text, orphans or invalid closures, and by its regression tests (`tools/fs/Unbound.Convergence.Tests`).
 
 **Requirement records.** Each side's changes were merged field by field, and no field was changed by both:
 - The master mission added `converged_by` and `revision_history` to 121 records.

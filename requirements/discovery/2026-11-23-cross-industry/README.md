@@ -83,10 +83,10 @@ Every record field from mission §11 is present in `gap-requirements.jsonl`. Gat
 ## Quality gates
 
 ```bash
-python3 -I -B tools/reqaudit/graph.py requirements/discovery/2026-11-23-cross-industry/data   # regenerate trace edges
-python3 -I -B tools/reqaudit/validate_discovery.py .                                       # G1-G9 + D1-D9; non-zero exit on error
-python3 -I -B tools/reqaudit/render_discovery.py .                                         # refresh generated tables
-python3 -I -B tools/reqaudit/validate.py .                                                 # reconciliation gates still pass
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- graph requirements/discovery/2026-11-23-cross-industry/data   # regenerate trace edges
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-discovery .                                       # G1-G9 + D1-D9; non-zero exit on error
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- render-discovery .                                         # refresh generated tables
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate .                                                 # reconciliation gates still pass
 ```
 
 `validate_discovery.py` reuses the reconciliation gates and adds the following.

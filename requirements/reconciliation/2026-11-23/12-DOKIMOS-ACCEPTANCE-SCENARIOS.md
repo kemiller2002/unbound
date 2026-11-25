@@ -37,7 +37,7 @@ Every scenario states the expected state-machine states using the repository's s
 | Refund of accepted assets | DKS-FIN-016 |
 | Persistence integrity | DKS-ARC-001, DKS-FIN-019 |
 
-Each ID above was checked against the scenario titles and stimuli in `data/scenarios.csv`. `tools/reqaudit/validate.py` (gate G11) reports any refinement or gap requirement with no scenario.
+Each ID above was checked against the scenario titles and stimuli in `data/scenarios.csv`. `validate` (`tools/fs/Unbound.ReqAudit`) (gate G11) reports any refinement or gap requirement with no scenario.
 
 ## 3. Counts
 

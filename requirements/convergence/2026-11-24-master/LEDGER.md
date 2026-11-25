@@ -20,15 +20,15 @@ Branch: `claude/unbound-master-agent-0r5kql` from `main` @ `ab1638d`. Repositori
 ## Resume procedure
 
 ```bash
-python3 -I -B tools/reqaudit/test_question_register.py .
-python3 -I -B tools/reqaudit/render_questions.py .      # must exit 0 and leave git clean
-python3 -I -B tools/reqaudit/review_map.py . requirements/convergence/2026-11-24-master/data
-python3 -I -B tools/reqaudit/integrate_dossiers.py . requirements/convergence/2026-11-24-master/research-batches   # idempotent
-python3 -I -B tools/reqaudit/adopt_convergence.py .              # idempotent; edit clauses/ then rerun
-python3 -I -B tools/reqaudit/render_decision_register.py . && python3 -I -B tools/reqaudit/render_adversarial.py .
-python3 -I -B requirements/convergence/2026-11-24-master/model/enterprise_economics.py && python3 -I -B requirements/convergence/2026-11-24-master/model/render_tables.py
+dotnet test tools/fs/Unbound.Convergence.Tests
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- render-questions .      # must exit 0 and leave git clean
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- review-map . requirements/convergence/2026-11-24-master/data
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- integrate-dossiers . requirements/convergence/2026-11-24-master/research-batches   # idempotent
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- adopt-convergence .              # idempotent; edit clauses/ then rerun
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- render-decision-register . && dotnet run --project tools/fs/Unbound.Convergence -c Release -- render-adversarial .
+dotnet run --project tools/fs/Unbound.Economics -c Release -- enterprise-economics && dotnet run --project tools/fs/Unbound.Economics -c Release -- render-tables
 (cd requirements/convergence/2026-11-24-master/replay && dotnet test tests/Unbound.Replay.Tests)   # full run: replay/README.md
-python3 -I -B tools/reqaudit/validate.py . && python3 -I -B tools/reqaudit/validate_discovery.py . && python3 -I -B tools/reqaudit/validate_simplification.py .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate . && dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-discovery . && dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-simplification .
 ```
 
 **Next action for a resuming agent:** obtain the owner's decisions OD-M-01..06 (report 10 §21) and ratification of the

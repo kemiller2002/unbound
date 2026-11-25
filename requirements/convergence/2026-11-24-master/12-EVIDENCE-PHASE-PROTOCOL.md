@@ -65,7 +65,7 @@ results reported with confidence intervals using the error-bound method of CNV-F
 
 ## 5. How results feed back
 
-1. Replace the [A] parameters in `model/enterprise_economics.py` with measured distributions, re-run, and replace report 05's
+1. Replace the [A] parameters in `tools/fs/Unbound.Economics/EnterpriseEconomics.fs` with measured distributions, re-run, and replace report 05's
    lever-dependent conclusions; until then report 05 stands as written.
 2. Record each measured value as an `evidence-reviewed` event on the questions it settles (for example RR-UNB-GRT-003-r1#Q1,
    UNB-XIN-ECO-006#Q1, UNB-XIN-SVC-008#Q1) and close the corresponding CNV-EVB-001 items.

@@ -42,7 +42,7 @@ This matches how existing servicers work. In the daf-landscape research on Ren, 
 
 ## 3. How the model was re-run
 
-`model/decision_teams.py` imports the executed model `model.py` unchanged. Its reproduction check asserts that the pooled view equals `model.py`'s own figure in every run. It then reassigns each cost line to the party that bears it.
+`DecisionTeams.fs` (`tools/fs/Unbound.Economics`) uses the executed model `Model.fs` unchanged. Its reproduction check asserts that the pooled view equals the model's own figure in every run. It then reassigns each cost line to the party that bears it.
 
 **Vendor costs [A].** Unbound bears:
 - leadership, engineering, AI agent ownership, security and philanthropic-intelligence staff;
@@ -70,7 +70,7 @@ This matches how existing servicers work. In the daf-landscape research on Ren, 
 
 The run uses the same seed (20261124) and 300 Monte Carlo runs per cell. A second run produced a byte-identical `decision-teams-results.json` (`hashes.txt`).
 
-Command: `cd model && python3 -I -B decision_teams.py`
+Command: `cd model && dotnet run --project ../../../../tools/fs/Unbound.Economics -c Release -- decision-teams`
 
 ## 4. Results
 
@@ -213,7 +213,7 @@ The rules that would apply:
 | Organization type on every principal (Sponsor, Administrator, Vendor) | UNB-SMP-ORG-003 | Already required at release 1 |
 | StaffingModel values OperatorDedicated and AffiliatedSponsor | UNB-SMP-ORG-003 | Release flag plus a recorded owner decision; no schema change |
 | Typed fee components | UNB-SMP-ECN-004 | Configuration plus a recorded owner decision; new contracts only |
-| Model mode `future_operator_dedicated` | `model/decision_teams.py` | Already computed; economics in section 6 |
+| Model mode `future_operator_dedicated` | `DecisionTeams.fs` | Already computed; economics in section 6 |
 
 ## 8. Limitations
 

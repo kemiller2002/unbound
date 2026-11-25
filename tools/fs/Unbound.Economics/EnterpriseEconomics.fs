@@ -684,7 +684,7 @@ let results (baseCfg: Json) : Json =
               [ "seed", ji SEED
                 "mc_runs", ji MC_RUNS
                 "theoretical", JBool true
-                "basis", js "simplification model.py + decision_teams.py unchanged; assumptions in this file are [A]"
+                "basis", js "simplification Model.fs + DecisionTeams.fs unchanged; assumptions in this file are [A]"
                 "enterprises", ENTERPRISES
                 "approaches", jo (items APPROACHES |> List.map (fun (k, v) -> k, jo (items v |> List.filter (fun (kk, _) -> kk <> "overrides"))))
                 "licence", LICENCE

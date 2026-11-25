@@ -17,10 +17,10 @@ questions are accounted for in the resolution log. No application code was writt
 Reproduce (idempotent; a second run changes nothing):
 
 ```bash
-python3 -I -B tools/reqaudit/adopt_convergence.py .
-python3 -I -B tools/reqaudit/render_questions.py .
-python3 -I -B tools/reqaudit/validate.py . && python3 -I -B tools/reqaudit/validate_discovery.py . && python3 -I -B tools/reqaudit/validate_simplification.py .
-python3 -I -B tools/reqaudit/test_question_register.py .
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- adopt-convergence .
+dotnet run --project tools/fs/Unbound.Convergence -c Release -- render-questions .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate . && dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-discovery . && dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-simplification .
+dotnet test tools/fs/Unbound.Convergence.Tests
 ```
 
 All three earlier mission validators report 0 errors after adoption; the register reports 0 validation errors and

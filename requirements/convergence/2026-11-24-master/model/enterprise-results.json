@@ -1792,7 +1792,7 @@
     "platform": true
    }
   },
-  "basis": "simplification model.py + decision_teams.py unchanged; assumptions in this file are [A]",
+  "basis": "simplification Model.fs + DecisionTeams.fs unchanged; assumptions in this file are [A]",
   "complex_policy": {
    "basis": "OD-M-09 (owner decision): complex assets are rare and are sold on receipt by a contracted intermediary, so internal handling is intake checks and proceeds reconciliation (1 hour [A]) and the complex share is a quarter of the earlier mix assumption [A]. Applied to every approach, so it is a business policy, not an Unbound-only lever; the intermediary fee stays fund-borne.",
    "complex_hours": 1.0,

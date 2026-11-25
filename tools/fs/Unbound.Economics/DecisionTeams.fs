@@ -50,7 +50,7 @@ let DT_PARAMS : Json =
                 "low", jf 0.8
                 "high", jf 1.3
                 "label", js "A"
-                "source", js "customer's loaded cost per FTE relative to model.py loaded_cost_per_fte" ]
+                "source", js "customer's loaded cost per FTE relative to the base model's loaded_cost_per_fte" ]
           "tenant_authority_setup_cost",
           jo
               [ "value", ji 15000
@@ -299,10 +299,10 @@ let results (cfg: Json) : Outputs =
                         [ "SPD-ADV-001", js "one decision team per sponsor, never shared"
                           "SPD-ADV-004",
                           js "Unbound is a software platform only; customers employ all staff; operator services are a future hook" ]
-                    "command", js "python3 -I -B decision_teams.py"
+                    "command", js "dotnet run --project tools/fs/Unbound.Economics -c Release -- decision-teams"
                     "seed", cfg?meta?seed
                     "mc_runs", cfg?meta?mc_runs_normal
-                    "base_model", js "model.py (unchanged)"
+                    "base_model", js "Model.fs (unchanged)"
                     "dt_params", DT_PARAMS
                     "vendor_lines", jl (PyText.sortStrings VENDOR_LINES |> List.map js)
                     "reserved_queues", jl (RESERVED |> List.map js)

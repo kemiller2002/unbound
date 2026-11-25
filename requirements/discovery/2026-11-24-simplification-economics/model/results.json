@@ -721,7 +721,7 @@
   }
  },
  "meta": {
-  "command": "python3 -I -B model.py",
+  "command": "dotnet run --project tools/fs/Unbound.Economics -c Release -- model",
   "disclaimer": "THEORETICAL MODEL OUTPUTS from labelled assumptions; not observations.",
   "mc_runs_normal": 300,
   "mc_runs_scenarios": 100,

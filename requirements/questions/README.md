@@ -9,9 +9,9 @@ This directory is the **only** place where answers to the questions in
 | `resolution-events.jsonl` | Append-only event log. One JSON object per line. Never edit or delete a line; append a new event instead. |
 | `question-clusters.csv` | Duplicate and related questions: `member_id`, `canonical_id`, `relation` (`same-question`, `sub-question`, `related`), `basis`. |
 
-Tools: `tools/reqaudit/questions_lib.py` (fold and validation), `tools/reqaudit/render_questions.py`
-(generator), `tools/reqaudit/seed_resolutions.py` (one-time seed from the 2026-11-24 review artifacts),
-`tools/reqaudit/test_question_register.py` (regression tests).
+Tools (F#, `tools/fs/Unbound.Convergence`): `QuestionsLib.fs` (fold and validation), the `render-questions` subcommand
+(generator) and `tools/fs/Unbound.Convergence.Tests` (regression tests). The one-time seed script that created the log from the
+2026-11-24 review artifacts was retired after use; it is in git history (commit `e32819f`, `tools/reqaudit/seed_resolutions.py`).
 
 ## Stable identifiers
 

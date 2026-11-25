@@ -22,14 +22,14 @@ let BUSINESS_MAP =
 let ROUND2_OTHER =
     Map.ofList
         [ "ADV-R2-030", "addressed with ADV-R2-075 (CNV-GOV-010 amended: one level set)"
-          "ADV-R2-032", "tooling: baseline rows now carry full source text and hash (adopt_convergence.py)"
+          "ADV-R2-032", "tooling: baseline rows now carry full source text and hash (adopt-convergence)"
           "ADV-R2-054", "tooling: textual clause citations are now derived as declared dependencies and cycle-checked"
           "ADV-R2-021",
           "model: December surge staffing re-run (05a section 7); full exception-SLA attainment at twice base staff for +$1 to +$20 per fund-year"
           "ADV-R2-033",
           "34 clauses tagged internal-control with operator, report relevance, automation and CUEC; crosswalk requirements/governance/CONVERGENCE-CLAUSE-TO-CONTROL-CROSSWALK.csv"
           "ADV-R2-063",
-          "numeric basis tags applied (clauses/c13_numeric_parameters.py); generation fails on any untagged number with a unit" ]
+          "numeric basis tags applied (clauses/c13_numeric_parameters.json); generation fails on any untagged number with a unit" ]
 
 /// cell = lambda t, n: (" ".join(str(t).split()).replace("|", "\\|"))[:n]
 let cell (t: Json) (n: int) : string = cpTake n ((joinWs (str t)).Replace("|", "\\|"))

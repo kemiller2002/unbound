@@ -1121,7 +1121,7 @@ let results (cfg: Json) : Outputs =
     let meta =
         jo
             [ "seed", cfg?meta?seed
-              "command", js "python3 -I -B model.py"
+              "command", js "dotnet run --project tools/fs/Unbound.Economics -c Release -- model"
               "mc_runs_normal", cfg?meta?mc_runs_normal
               "mc_runs_scenarios", cfg?meta?mc_runs_scenarios
               "disclaimer", js "THEORETICAL MODEL OUTPUTS from labelled assumptions; not observations." ]

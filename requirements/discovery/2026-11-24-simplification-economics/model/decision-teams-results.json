@@ -46,8 +46,8 @@
    "sponsor_direct",
    "via_administrator"
   ],
-  "base_model": "model.py (unchanged)",
-  "command": "python3 -I -B decision_teams.py",
+  "base_model": "Model.fs (unchanged)",
+  "command": "dotnet run --project tools/fs/Unbound.Economics -c Release -- decision-teams",
   "decisions": {
    "SPD-ADV-001": "one decision team per sponsor, never shared",
    "SPD-ADV-004": "Unbound is a software platform only; customers employ all staff; operator services are a future hook"
@@ -58,7 +58,7 @@
     "high": 1.3,
     "label": "A",
     "low": 0.8,
-    "source": "customer's loaded cost per FTE relative to model.py loaded_cost_per_fte",
+    "source": "customer's loaded cost per FTE relative to the base model's loaded_cost_per_fte",
     "value": 1.0
    },
    "dedicated_mgmt_overhead": {

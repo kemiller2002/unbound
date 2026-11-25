@@ -26,7 +26,7 @@
 | 05 | [Human-intervention taxonomy](05-HUMAN-INTERVENTION-TAXONOMY.md) | — |
 | 06 | [Economic target engineering](06-ECONOMIC-TARGET-ENGINEERING.md) | `model/` |
 | 07 | [Theoretical cost floor](07-THEORETICAL-COST-FLOOR.md) | `model/results.json` |
-| 08 | [Enterprise simulation specification](08-ENTERPRISE-SIMULATION-SPECIFICATION.md) | `model/model.py`, `model/parameters.json` |
+| 08 | [Enterprise simulation specification](08-ENTERPRISE-SIMULATION-SPECIFICATION.md) | `tools/fs/Unbound.Economics` (Model.fs), `model/parameters.json` |
 | 09 | [Simulation scenarios and results](09-SIMULATION-SCENARIOS-AND-RESULTS.md) | `model/results.json`, `results.csv` |
 | 10 | [Organizational and staffing models](10-ORGANIZATIONAL-AND-STAFFING-MODELS.md) | `roles.jsonl` |
 | 11 | [Customer friction analysis](11-CUSTOMER-FRICTION-ANALYSIS.md) | `interactions.jsonl` |
@@ -42,20 +42,20 @@
 | 21 | [Research transfer candidates](21-RESEARCH-TRANSFER-CANDIDATES.md) | `transfer.jsonl` |
 | 22 | [Adversarial review](22-ADVERSARIAL-REVIEW.md) | `disposition-challenges.jsonl` |
 | 23 | [Executive findings](23-EXECUTIVE-FINDINGS.md) | — |
-| 24 | [Per-sponsor decisions, software-only Unbound, and pricing](24-DECISION-TEAMS-AND-PRICING.md): owner decisions SPD-ADV-001 and SPD-ADV-004 applied | `model/decision_teams.py`, `model/decision-teams-results.json` |
+| 24 | [Per-sponsor decisions, software-only Unbound, and pricing](24-DECISION-TEAMS-AND-PRICING.md): owner decisions SPD-ADV-001 and SPD-ADV-004 applied | `tools/fs/Unbound.Economics` (DecisionTeams.fs), `model/decision-teams-results.json` |
 | — | [Ledger](LEDGER.md) | `validation-report.json` |
 
-Reports 01–22 are **generated** by `tools/reqaudit/assemble_simplification.py` from `data/`. Never edit them by hand.
+Reports 01–22 are **generated** by `assemble-simplification` (`tools/fs/Unbound.ReqAudit`) from `data/`. Never edit them by hand.
 
 ## Reproduce and validate
 
 ```bash
-python3 -I -B tools/reqaudit/graph.py requirements/discovery/2026-11-24-simplification-economics/data
-python3 -I -B tools/reqaudit/validate_simplification.py .      # G1-G9, D2/D3/D5/D7/D8, S1-S7
-python3 -I -B tools/reqaudit/assemble_simplification.py .      # regenerate reports 01-22
-python3 -I -B tools/reqaudit/validate_discovery.py .           # previous mission still valid
-python3 -I -B tools/reqaudit/validate.py .                     # reconciliation still valid
-cd requirements/discovery/2026-11-24-simplification-economics/model && python3 -I -B model.py && sha256sum -c hashes.txt
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- graph requirements/discovery/2026-11-24-simplification-economics/data
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-simplification .      # G1-G9, D2/D3/D5/D7/D8, S1-S7
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- assemble-simplification .      # regenerate reports 01-22
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-discovery .           # previous mission still valid
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate .                     # reconciliation still valid
+cd requirements/discovery/2026-11-24-simplification-economics/model && dotnet run --project ../../../../tools/fs/Unbound.Economics -c Release -- model && dotnet run --project ../../../../tools/fs/Unbound.Economics -c Release -- decision-teams && sha256sum -c hashes.txt
 ```
 
 The new mission-specific gates are:
