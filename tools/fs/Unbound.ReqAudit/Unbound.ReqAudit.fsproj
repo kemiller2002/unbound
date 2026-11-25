@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PyCompat.fs" />
+    <Compile Include="Io.fs" />
+    <Compile Include="Graph.fs" />
+    <Compile Include="Validate.fs" />
+    <Compile Include="ValidateDiscovery.fs" />
+    <Compile Include="ValidateSimplification.fs" />
+    <Compile Include="Render.fs" />
+    <Compile Include="RenderDiscovery.fs" />
+    <Compile Include="Assemble.fs" />
+    <Compile Include="Inventory.fs" />
+    <Compile Include="Quality.fs" />
+    <Compile Include="Narrative.fs" />
+    <Compile Include="Workflows.fs" />
+    <Compile Include="Ia.fs" />
+    <Compile Include="UiClass.fs" />
+    <Compile Include="Adopt.fs" />
+    <Compile Include="Benchmark.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Unbound.Py/Unbound.Py.fsproj" />
+  </ItemGroup>
+</Project>
