@@ -912,7 +912,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
 - **Requirement:** Every screen state MUST pass axe-core with tags wcag2a, wcag2aa, wcag21a, wcag21aa and wcag22aa at the five viewports of UNB-UI-R-001 with zero violations, and MUST have no console errors or failed resource loads.
 - **Traces to:** UNB-UX-005, UNB-UX-006, UNB-UI-G-008
 - **Acceptance criteria:**
-  - **AC-1** Given the v2 prototype set; when tools/verify.mjs runs; then every state passes at every viewport.
+  - **AC-1** Given the v2 prototype set; when the v2 verifier (verify-v2, tools/fs/Unbound.Designs.Verify) runs; then every state passes at every viewport.
 
 ### UNB-UI-A-002 — Keyboard and focus (accessibility)
 - **Requirement:** Every function is operable by keyboard in a logical order; focus is always visible (2.4.7, 2.4.13 target: 3 px outline) and never obscured by fixed chrome (2.4.11); a skip link reaches main; dialogs trap and return focus; no keyboard traps.
@@ -941,7 +941,7 @@ The "Filed as" column in §4 maps each gap to its issue. Gaps that release 1 doe
   - **AC-1** Given a grant recommendation reviewed on a review step; when the donor goes back to edit the amount; then all other fields keep their values.
 
 ### UNB-UI-V-001 — Reference images and comparison (visual-regression)
-- **Requirement:** Each screen state has committed reference images at 390 and 1280 px (requirements/ui/designs/v2/rendered/<screen>/<state>-<width>.png) produced by tools/verify.mjs with deviceScaleFactor 1, reduced motion and fonts loaded. A visual change is accepted only by replacing the reference in a reviewed change; comparisons use a per-pixel threshold of 0.1 and fail above 0.5% changed pixels.
+- **Requirement:** Each screen state has committed reference images at 390 and 1280 px (requirements/ui/designs/v2/rendered/<screen>/<state>-<width>.png) produced by the v2 verifier (verify-v2, tools/fs/Unbound.Designs.Verify) with deviceScaleFactor 1, reduced motion and fonts loaded. A visual change is accepted only by replacing the reference in a reviewed change; comparisons use a per-pixel threshold of 0.1 and fail above 0.5% changed pixels.
 - **Traces to:** UNB-UX-005, INT-020, ADV-700, ADV-701
 - **Acceptance criteria:**
   - **AC-1** Given a CSS change that moves the balance panel 8 px; when the comparison runs against references; then it fails and reports the states and widths affected.

@@ -97,6 +97,7 @@ The integrating session's own token use is not reported by the harness and is no
   3. `dotnet run --project tools/fs/Unbound.Authoring -c Release -- ui-trace .`: defects, state matrix, coverage, UIR records, DKS-UI scenarios.
 
   The first-pass builder (`ui_build.py`) and the decision scripts (`decide.py`, `wf_decide.py`) were retired on 2026-11-25 (see `tools/fs/README.md`); they are in git history at commit `e32819f`.
+- **Editorial change, 2026-11-25.** The verification tool named in UNB-UI-A-001 (AC-1), UNB-UI-V-001 and scenarios DKS-UI-015, DKS-UI-016 and DKS-UI-019 changed from `tools/verify.mjs` to `verify-v2` (`tools/fs/Unbound.Designs.Verify`), the behaviour-identical F# port. No requirement behaviour changed. The resolution notes for UXD-001 and UXD-002 still name `verify.mjs`, because they record what was run at the time.
 - **Audit.** 63 v1 defects (`data/ui-defects.csv`); 47 are resolved in v2 or prevented by the gate, and 16 are open on screens not yet redesigned (roadmap waves 2–3).
 - **Filed (owner instruction, 2026-11-24).** FORMA-GAP-18..26 are kemiller2002/forma#199–#207; the primary-button finding is a comment on forma#186.
 - **Workflow-model issues found while specifying views** (not yet fixed in `workflows/`):

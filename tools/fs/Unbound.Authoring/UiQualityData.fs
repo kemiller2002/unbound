@@ -341,7 +341,7 @@ let a11y : Spec list =
           [ "UNB-UX-005"; "UNB-UX-006"; "UNB-UI-G-008" ]
           []
           []
-          [ ("the v2 prototype set", "tools/verify.mjs runs", "every state passes at every viewport") ]
+          [ ("the v2 prototype set", "the v2 verifier (verify-v2, tools/fs/Unbound.Designs.Verify) runs", "every state passes at every viewport") ]
           []
           []
       req "UNB-UI-A-002" "accessibility" "Keyboard and focus"
@@ -380,7 +380,7 @@ let a11y : Spec list =
 /// ui_quality.py: VR
 let vr : Spec list =
     [ req "UNB-UI-V-001" "visual-regression" "Reference images and comparison"
-          "Each screen state has committed reference images at 390 and 1280 px (requirements/ui/designs/v2/rendered/<screen>/<state>-<width>.png) produced by tools/verify.mjs with deviceScaleFactor 1, reduced motion and fonts loaded. A visual change is accepted only by replacing the reference in a reviewed change; comparisons use a per-pixel threshold of 0.1 and fail above 0.5% changed pixels."
+          "Each screen state has committed reference images at 390 and 1280 px (requirements/ui/designs/v2/rendered/<screen>/<state>-<width>.png) produced by the v2 verifier (verify-v2, tools/fs/Unbound.Designs.Verify) with deviceScaleFactor 1, reduced motion and fonts loaded. A visual change is accepted only by replacing the reference in a reviewed change; comparisons use a per-pixel threshold of 0.1 and fail above 0.5% changed pixels."
           [ "UNB-UX-005"; "INT-020"; "ADV-700"; "ADV-701" ]
           []
           []
