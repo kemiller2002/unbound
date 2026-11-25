@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PyCompat.fs" />
+    <Compile Include="Model.fs" />
+    <Compile Include="DecisionTeams.fs" />
+    <Compile Include="EnterpriseEconomics.fs" />
+    <Compile Include="RenderTables.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Unbound.Py/Unbound.Py.fsproj" />
+  </ItemGroup>
+</Project>
