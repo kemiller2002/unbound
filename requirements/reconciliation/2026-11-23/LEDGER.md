@@ -91,12 +91,12 @@ The integrating session's own token use is not reported by the harness and is no
   - Location: `requirements/ui/designs/v2/`.
   - Rebuild and verify: `SCREENS=S-001,S-003,S-004,S-008,S-011,S-012,W-001 node tools/build.mjs`, then `node tools/verify.mjs`. A partial build keeps the other screens' entries in `pages.json`.
   - Result: 42 of 42 pages pass at five viewports.
-- **Data authoring scripts.** Copied to `tools/reqaudit/authoring/`, with their scratchpad inputs in `specs/`. Run them in this order; each is idempotent:
-  1. `ui_quality.py`: UI quality requirements, revisions with content-addressed tags, RCD-050..053.
-  2. `merge_specs.py`: panel and view specs; gaps FORMA-GAP-24..26 and UNB-GAP-W-02.
-  3. `ui_trace.py`: defects, state matrix, coverage, UIR records, DKS-UI scenarios.
+- **Data authoring steps.** F# (`tools/fs/Unbound.Authoring`), with their former scratchpad inputs in `tools/fs/Unbound.Authoring/specs/`. Run them in this order from the repository root; each is idempotent and reproduces the committed data unchanged:
+  1. `dotnet run --project tools/fs/Unbound.Authoring -c Release -- ui-quality .`: UI quality requirements, revisions with content-addressed tags, RCD-050..053.
+  2. `dotnet run --project tools/fs/Unbound.Authoring -c Release -- merge-specs .`: panel and view specs; gaps FORMA-GAP-24..26 and UNB-GAP-W-02.
+  3. `dotnet run --project tools/fs/Unbound.Authoring -c Release -- ui-trace .`: defects, state matrix, coverage, UIR records, DKS-UI scenarios.
 
-  Do **not** re-run the old `ui_build.py` alone: it rewrites `ui-requirements.jsonl` from the first-pass records only.
+  The first-pass builder (`ui_build.py`) and the decision scripts (`decide.py`, `wf_decide.py`) were retired on 2026-11-25 (see `tools/fs/README.md`); they are in git history at commit `e32819f`.
 - **Audit.** 63 v1 defects (`data/ui-defects.csv`); 47 are resolved in v2 or prevented by the gate, and 16 are open on screens not yet redesigned (roadmap waves 2–3).
 - **Filed (owner instruction, 2026-11-24).** FORMA-GAP-18..26 are kemiller2002/forma#199–#207; the primary-button finding is a comment on forma#186.
 - **Workflow-model issues found while specifying views** (not yet fixed in `workflows/`):
