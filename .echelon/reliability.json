@@ -1,0 +1,74 @@
+{
+  "schema": "echelon.reliability/v1",
+  "systemClass": "transactional-application",
+  "tenets": {
+    "continuousAvailability": {
+      "applicability": "applicable"
+    },
+    "cacheReadiness": {
+      "applicability": "applicable"
+    },
+    "reliabilityByConstruction": {
+      "applicability": "applicable"
+    }
+  },
+  "families": [
+    {
+      "family": "EAR-CMD",
+      "state": "partially-compliant",
+      "evidence": [
+        {
+          "class": "integration-test",
+          "ref": "execution/tests/Echelon.Execution.Postgres.Tests/Tests.fs"
+        },
+        {
+          "class": "automated",
+          "ref": "execution/tests/Echelon.Execution.Tests/Tests.fs"
+        }
+      ]
+    },
+    {
+      "family": "EAR-API",
+      "state": "partially-compliant",
+      "evidence": [
+        {
+          "class": "automated",
+          "ref": "execution/tests/Echelon.Execution.Tests/Tests.fs"
+        }
+      ]
+    },
+    {
+      "family": "EAR-AVL",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-QRY",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-QCS",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-MSG",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-PRS",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-SEC",
+      "state": "unverified"
+    },
+    {
+      "family": "EAR-OBS",
+      "state": "unverified"
+    }
+  ],
+  "designEvidence": {
+    "decision": "requirements/discovery/2026-11-25-availability-architecture/04-DECISIONS-AND-OPEN-QUESTIONS.md",
+    "failureModes": "requirements/discovery/2026-11-25-availability-architecture/03-DEADLINES-AND-FAILURE-SCENARIOS.md"
+  },
+  "migrationPlan": "execution/README.md"
+}
