@@ -74,7 +74,7 @@ let ``regeneration is idempotent and keeps answers`` () =
     let second = run d [], readText (csvPath d)
     Assert.True((fst first).Code = 0, (fst first).Err)
     Assert.Equal(snd first, snd second)
-    Assert.Equal(316, (readCsv d).Length)
+    Assert.Equal(338, (readCsv d).Length) // 316 + 22 file-ingestion questions (2026-11-26)
     Assert.True(readCsv d |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
 
 [<Fact>]
