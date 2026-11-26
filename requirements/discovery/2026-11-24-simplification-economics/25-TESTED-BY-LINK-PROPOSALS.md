@@ -1,5 +1,7 @@
 # 25: Test scenario links for the 2026-11-24 revisions
 
+> **Confirmed by the owner on 2026-11-26 (OD-M-15).** The 12 new scenarios (SPS-REV-001..012) and the links to existing scenarios below are owner-confirmed; their `mock_data_notes` now say so.
+
 **Date:** 2026-11-25. **Status:** agent-drafted proposals for owner confirmation. Nothing here is approved.
 
 The owner review of 2026-11-24 (`requirements/resolutions/2026-11-24/revisions.jsonl`) added 12 superseding refinements to `data/refinements.jsonl`. No scenario in `data/scenarios.csv` cited them, so gate D7 failed with 12 errors once the trace graph was regenerated.
