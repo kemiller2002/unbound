@@ -74,8 +74,14 @@ let ``regeneration is idempotent and keeps answers`` () =
     let second = run d [], readText (csvPath d)
     Assert.True((fst first).Code = 0, (fst first).Err)
     Assert.Equal(snd first, snd second)
-    Assert.Equal(316, (readCsv d).Length)
-    Assert.True(readCsv d |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
+    let rows = readCsv d
+    let isCno (r: Json) = (getStr "source" r).Contains "2026-11-26-charity-network-and-onboarding"
+    Assert.Equal(343, rows.Length)
+    // The 316 questions registered up to 2026-11-25 are all answered; the 27 registered by the
+    // charity-network and onboarding package (2026-11-26) are open and unanswered until the owner resolves them.
+    Assert.Equal(27, rows |> List.filter isCno |> List.length)
+    Assert.True(rows |> List.filter (isCno >> not) |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
+    Assert.True(rows |> List.filter isCno |> List.forall (fun r -> getStr "resolution_status" r = "open"))
 
 [<Fact>]
 let ``hand-edited answer is not silently discarded`` () =
