@@ -1,0 +1,120 @@
+{
+  "profile_id": "charity.reference.irs-bmf",
+  "version": 2,
+  "status": "draft",
+  "title": "IRS Exempt Organizations Business Master File extract",
+  "description_for_ai": "Monthly IRS public dataset (a current-state snapshot delivered as several regional files, ingested as one artifact set) of tax-exempt organizations, retrieved automatically from the IRS website. It replaces collecting IRS determination letters from charities for routine grants. A new snapshot is compared with the previous one; organizations that disappear or change status open re-screening work for pending and recurring grants.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*",
+    "cross_tenant_source": true
+  },
+  "artifact_class": "reference-dataset",
+  "purpose": "charity.reference.irs-bmf",
+  "sources": [
+    {
+      "kind": "government-dataset",
+      "dataset_ref": "irs-eo-bmf",
+      "authentication": [
+        "tls-pinned-host"
+      ]
+    }
+  ],
+  "delivery": [
+    "https-scheduled-pull"
+  ],
+  "formats": [
+    {
+      "type": "csv",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header_row": true,
+      "schema_ref": "irs-eo-bmf-csv@current",
+      "max_bytes": 314572800,
+      "max_records": 2500000
+    }
+  ],
+  "validation_rules": [
+    "ein.checksum",
+    "dataset.subsection-codes-known"
+  ],
+  "duplicate_detection": {
+    "artifact": [
+      "sha256"
+    ],
+    "record_key": [
+      "ein"
+    ]
+  },
+  "atomicity": "all-or-nothing",
+  "hold_rules": [
+    {
+      "metric": "record-count-vs-prior-snapshot",
+      "comparison": "outside",
+      "value": [
+        0.95,
+        1.05
+      ]
+    },
+    {
+      "metric": "schema-version-change",
+      "comparison": "gt",
+      "value": 0
+    }
+  ],
+  "output": {
+    "kind": "reference-snapshot",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "expectation": {
+    "calendar": "monthly",
+    "day_of_month": 20,
+    "grace_minutes": 1440
+  },
+  "effective_dates": "snapshot-publication-date",
+  "retention_class": "reference-snapshots",
+  "notifications": [
+    {
+      "on": "held",
+      "to": "platform-operations"
+    },
+    {
+      "on": "lapsed",
+      "to": "platform-operations"
+    }
+  ],
+  "sponsor_configurable": [],
+  "record_schema": {
+    "version": "irs-eo-bmf@current",
+    "unknown_fields": "ignore-and-report",
+    "fields": [
+      {
+        "name": "ein",
+        "source": "EIN",
+        "type": "ein",
+        "required": true
+      },
+      {
+        "name": "name",
+        "source": "NAME",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "subsection",
+        "source": "SUBSECTION",
+        "type": "text",
+        "required": true
+      },
+      {
+        "name": "status",
+        "source": "STATUS",
+        "type": "text",
+        "required": true
+      }
+    ]
+  }
+}

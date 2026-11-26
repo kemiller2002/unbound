@@ -1,0 +1,181 @@
+{
+  "profile_id": "grant.bulk-recommendation.csv",
+  "version": 2,
+  "status": "draft",
+  "title": "Bulk grant recommendations (CSV template)",
+  "description_for_ai": "Lets a donor or an advisor holding grant-recommendation authority submit many grant recommendations at once. Each row becomes exactly the same grant.recommend command a donor creates in the interface, with the same eligibility, balance, policy and approval checks. A row never bypasses a control because it arrived in a file.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "command-batch",
+  "purpose": "grant.recommendation",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "donor-primary",
+        "donor-joint",
+        "advisor-grant-delegate"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    },
+    {
+      "kind": "service-identity",
+      "authentication": [
+        "oauth-client-credentials"
+      ],
+      "on_behalf_of_principal": true
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "api-upload",
+    "api-records"
+  ],
+  "formats": [
+    {
+      "type": "csv",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header_row": true,
+      "schema_ref": "grant-recommendation-csv@1",
+      "max_bytes": 2097152,
+      "max_records": 2000
+    }
+  ],
+  "record_schema": {
+    "version": "1",
+    "unknown_fields": "hold-run",
+    "fields": [
+      {
+        "name": "fund_ref",
+        "source": "Fund",
+        "aliases": [
+          "Fund ID",
+          "Account"
+        ],
+        "type": "identifier",
+        "required": true,
+        "transforms": [
+          "trim"
+        ]
+      },
+      {
+        "name": "charity_ein",
+        "source": "EIN",
+        "type": "ein",
+        "required": true,
+        "transforms": [
+          "strip-non-digits"
+        ]
+      },
+      {
+        "name": "amount",
+        "source": "Amount",
+        "type": "money-usd",
+        "required": true,
+        "transforms": [
+          "trim"
+        ]
+      },
+      {
+        "name": "purpose_text",
+        "source": "Purpose",
+        "type": "text",
+        "required": false,
+        "transforms": [
+          "trim",
+          "nfc-normalize",
+          "neutralize-formula-prefix"
+        ],
+        "sensitivity": "confidential"
+      },
+      {
+        "name": "requested_date",
+        "source": "Date",
+        "type": "date",
+        "date_format": "yyyy-MM-dd",
+        "required": false
+      },
+      {
+        "name": "client_ref",
+        "source": "Reference",
+        "type": "identifier",
+        "required": true,
+        "transforms": [
+          "trim"
+        ]
+      }
+    ]
+  },
+  "validation_rules": [
+    "fund.exists-in-tenant",
+    "ein.checksum",
+    "money.positive",
+    "date.not-past"
+  ],
+  "control_totals": {
+    "source": "requester-declared",
+    "measures": [
+      "record-count",
+      "sum-amount"
+    ],
+    "on_mismatch": "reject-run"
+  },
+  "duplicate_detection": {
+    "artifact": [
+      "sha256"
+    ],
+    "record_key": [
+      "fund_ref",
+      "client_ref"
+    ],
+    "window_days": 400,
+    "near_duplicate_fields": [
+      "fund_ref",
+      "charity_ein",
+      "amount",
+      "requested_date"
+    ]
+  },
+  "atomicity": "record-independent",
+  "hold_rules": [
+    {
+      "metric": "invalid-share",
+      "comparison": "gt",
+      "value": 0.25,
+      "sponsor_bounds": [
+        0.05,
+        0.5
+      ]
+    }
+  ],
+  "output": {
+    "kind": "command",
+    "operation": "grant.recommend@1",
+    "submission": "requester-confirms"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "grant-records",
+  "notifications": [
+    {
+      "on": "completed-with-invalid",
+      "to": "requester"
+    }
+  ],
+  "service_expectations": {
+    "receipt_to_outcome_p95_minutes": 10
+  },
+  "sponsor_configurable": [
+    "field-aliases",
+    "hold-rule-values-within-bounds",
+    "max-records-below-platform-limit",
+    "activation"
+  ]
+}

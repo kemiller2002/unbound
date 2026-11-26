@@ -1,0 +1,1041 @@
+{
+  "schema": "unbound.ingestion.lifecycle/1",
+  "status": "proposed",
+  "note": "Six small orthogonal state machines (revision 1 after adversarial review R1/R2: hold release re-evaluates, revocation suspends runs, no override of unscanned bytes, expectations satisfied only by accepted runs, explicit record machine) replace the 21-state single lifecycle proposed in the mission brief. Each transition is executed by one durable command (Echelon.Execution) or recorded by an authorized human decision command; history is append-only, current state is a reconstructable projection. Artifact 'Quarantined' is unrelated to Echelon.Execution's command state 'Quarantined' (poison command); UI and logs always qualify the machine name.",
+  "machines": [
+    {
+      "id": "Expectation",
+      "purpose": "A promise that a source will deliver something by a deadline (daily bank report, monthly BMF release, payroll file). Exists before any bytes; drives missing and late detection.",
+      "initial": "Open",
+      "states": [
+        {
+          "id": "Open",
+          "terminal": false,
+          "meaning": "Awaiting delivery for an expected business date inside or before its window"
+        },
+        {
+          "id": "Lapsed",
+          "terminal": false,
+          "meaning": "Window plus grace passed without an accepted delivery; an exception case is open"
+        },
+        {
+          "id": "Delivered",
+          "terminal": false,
+          "meaning": "A matching artifact (or artifact set) for the expected business date was released; its Run has not yet completed"
+        },
+        {
+          "id": "Suspended",
+          "terminal": false,
+          "meaning": "An authorized pause covers the source; the window does not run"
+        },
+        {
+          "id": "Satisfied",
+          "terminal": true,
+          "meaning": "A Run for the expected business date and sequence Completed; the source's completeness watermark advanced"
+        },
+        {
+          "id": "Waived",
+          "terminal": true,
+          "meaning": "An authorized person declared the delivery not required, with reason; a later delivery opens an 'unexpected delivery' exception"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Open",
+          "event": "ArtifactMatched",
+          "to": "Delivered",
+          "actor": "system",
+          "authorization": "profile expectation rule (business date and sequence must match)",
+          "evidence": "artifact or set id"
+        },
+        {
+          "from": "Lapsed",
+          "event": "ArtifactMatched",
+          "to": "Delivered",
+          "actor": "system",
+          "authorization": "profile expectation rule",
+          "evidence": "artifact or set id; lateness"
+        },
+        {
+          "from": "Delivered",
+          "event": "RunAccepted",
+          "to": "Satisfied",
+          "actor": "system",
+          "authorization": "Run Completed for the expected business date",
+          "evidence": "run id; watermark advanced"
+        },
+        {
+          "from": "Delivered",
+          "event": "RunRejected",
+          "to": "Lapsed",
+          "actor": "system",
+          "authorization": "Run Rejected, Cancelled or Superseded without a replacement",
+          "evidence": "run id; exception opened"
+        },
+        {
+          "from": "Open",
+          "event": "WindowElapsed",
+          "to": "Lapsed",
+          "actor": "system (scheduled command)",
+          "authorization": "profile schedule",
+          "evidence": "schedule version, evaluation time"
+        },
+        {
+          "from": "Open",
+          "event": "Pause",
+          "to": "Suspended",
+          "actor": "human",
+          "authorization": "ingestion.source.pause",
+          "evidence": "pause id, reason"
+        },
+        {
+          "from": "Lapsed",
+          "event": "Pause",
+          "to": "Suspended",
+          "actor": "human",
+          "authorization": "ingestion.source.pause",
+          "evidence": "pause id, reason"
+        },
+        {
+          "from": "Suspended",
+          "event": "Resume",
+          "to": "Open",
+          "actor": "human",
+          "authorization": "ingestion.source.resume",
+          "evidence": "pause id"
+        },
+        {
+          "from": "Open",
+          "event": "Waive",
+          "to": "Waived",
+          "actor": "human",
+          "authorization": "ingestion.expectation.waive in sponsor scope",
+          "evidence": "reason, actor, time"
+        },
+        {
+          "from": "Lapsed",
+          "event": "Waive",
+          "to": "Waived",
+          "actor": "human",
+          "authorization": "ingestion.expectation.waive in sponsor scope",
+          "evidence": "reason; exception closed"
+        }
+      ]
+    },
+    {
+      "id": "Artifact",
+      "purpose": "Custody and security of one immutable byte sequence (a file, an API record batch, a scanned page set, or a member of an artifact set). Identity = generated ArtifactId; content identity = SHA-256 bound to the stored object version.",
+      "initial": "Receiving",
+      "states": [
+        {
+          "id": "Receiving",
+          "terminal": false,
+          "meaning": "An intake slot exists (row committed) and bytes are being written to quarantine storage; nothing may read them"
+        },
+        {
+          "id": "Abandoned",
+          "terminal": true,
+          "meaning": "Upload interrupted or never completed within the slot lifetime; any partial object is deleted by the reconciler"
+        },
+        {
+          "id": "Quarantined",
+          "terminal": false,
+          "meaning": "Bytes complete, hashed and durable; awaiting or undergoing security inspection. Inspection attempts are a projection, not states"
+        },
+        {
+          "id": "Rejected",
+          "terminal": true,
+          "meaning": "Security policy refused the artifact (type not permitted, structure mismatch, malware, limits, encryption or password protection, failed source authentication or integrity). Never-released bytes are kept only for the security-evidence period; PDFs with active content are not rejected but released only as derivatives (UNB-ING-SEC-010)"
+        },
+        {
+          "id": "Released",
+          "terminal": false,
+          "meaning": "Inspection passed under a recorded policy version; the artifact may be parsed or presented through safe derivatives"
+        },
+        {
+          "id": "Revoked",
+          "terminal": false,
+          "meaning": "A released artifact was found unsafe or altered (re-inspection, threat report, integrity failure); downloads are blocked, every non-submitted Run derived from it is Suspended, and an impact case lists derived records and commands"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Receiving",
+          "event": "BytesCommitted",
+          "to": "Quarantined",
+          "actor": "system",
+          "authorization": "intake authorization already checked for source, tenant and profile purpose",
+          "evidence": "size, SHA-256, storage checksum and version id, channel evidence"
+        },
+        {
+          "from": "Receiving",
+          "event": "SourceAuthenticationFailed",
+          "to": "Rejected",
+          "actor": "system",
+          "authorization": "profile source authentication (signature, host key, client credential)",
+          "evidence": "failed check"
+        },
+        {
+          "from": "Receiving",
+          "event": "SlotExpired",
+          "to": "Abandoned",
+          "actor": "system (reconciler)",
+          "authorization": "storage reconciliation policy",
+          "evidence": "slot age, object presence"
+        },
+        {
+          "from": "Quarantined",
+          "event": "InspectionPassed",
+          "to": "Released",
+          "actor": "system",
+          "authorization": "security policy version; clean verdict for exact hash and version",
+          "evidence": "structure verdict, scanner engine and signature version, limits observed, derivative ids"
+        },
+        {
+          "from": "Quarantined",
+          "event": "InspectionFailed",
+          "to": "Rejected",
+          "actor": "system",
+          "authorization": "security policy version",
+          "evidence": "failed rule ids, scanner verdict"
+        },
+        {
+          "from": "Quarantined",
+          "event": "IntegrityFailed",
+          "to": "Rejected",
+          "actor": "system",
+          "authorization": "hash verification",
+          "evidence": "expected vs actual hash"
+        },
+        {
+          "from": "Released",
+          "event": "ReleaseInvalidated",
+          "to": "Revoked",
+          "actor": "system",
+          "authorization": "re-inspection verdict, threat report or integrity failure under the security policy",
+          "evidence": "verdict or report, impacted runs"
+        },
+        {
+          "from": "Revoked",
+          "event": "ImpactResolved",
+          "to": "Rejected",
+          "actor": "human",
+          "authorization": "ingestion.security.resolve; retention follows the highest derived class (UNB-ING-RET-001)",
+          "evidence": "impact case outcome, corrective commands"
+        },
+        {
+          "from": "Revoked",
+          "event": "FalsePositiveConfirmed",
+          "to": "Released",
+          "actor": "human (security owner) with system evidence",
+          "authorization": "second managed engine's clean verdict on the exact hash and version recorded as evidence; not available for integrity failures",
+          "evidence": "second verdict, decision"
+        }
+      ]
+    },
+    {
+      "id": "Run",
+      "purpose": "One processing of one released artifact or complete artifact set (or one API record batch) under one profile version. Re-processing is a new run. Evidence documents do not use Runs.",
+      "initial": "Pending",
+      "states": [
+        {
+          "id": "Pending",
+          "terminal": false,
+          "meaning": "Created for a released artifact; waiting for dependencies declared by the profile (e.g. prior day's statement)"
+        },
+        {
+          "id": "Parsing",
+          "terminal": false,
+          "meaning": "Isolated parser converts bytes to typed staged records and computes control totals; validation runs in the same step"
+        },
+        {
+          "id": "CompletedWithUnknowns",
+          "terminal": false,
+          "meaning": "Every command reached a terminal state but some records have an ambiguous external outcome (reconciliation obligations open)"
+        },
+        {
+          "id": "Completed",
+          "terminal": true,
+          "meaning": "Every record outcome is final (none Valid, Held, Submitted, KeyConflict or OutcomeUnknown). Partial processing is Completed with non-zero rejected counts"
+        },
+        {
+          "id": "Rejected",
+          "terminal": true,
+          "meaning": "Structural failure (schema version unknown, control totals disagree, header/trailer invalid) or an authorized decision rejected a held run; no record was submitted"
+        },
+        {
+          "id": "Validated",
+          "terminal": false,
+          "meaning": "Every record has an outcome (valid, invalid, duplicate, held). This is the dry-run result; nothing has been submitted"
+        },
+        {
+          "id": "Held",
+          "terminal": false,
+          "meaning": "A hold rule fired (invalid share, value limit, volume, drift, dependency timeout or inspection fault); releasing it returns the Run to Validated, where hold rules, approval policy and submission mode are evaluated again in that order"
+        },
+        {
+          "id": "AwaitingApproval",
+          "terminal": false,
+          "meaning": "Business policy (not the file itself) requires approval of the effects, e.g. migration opening balances or a manual journal batch"
+        },
+        {
+          "id": "Suspended",
+          "terminal": false,
+          "meaning": "The source artifact was revoked while the Run had not submitted; nothing may submit until the artifact is reinstated or the Run is rejected"
+        },
+        {
+          "id": "Submitting",
+          "terminal": false,
+          "meaning": "Valid records are being submitted as business commands through the same intake as the interface, using principal-independent business idempotency keys; guard: artifact still Released, source not paused, approval and submission-mode conditions satisfied"
+        },
+        {
+          "id": "Submitted",
+          "terminal": false,
+          "meaning": "Every valid record has a durable command receipt; outcomes pending"
+        },
+        {
+          "id": "Superseded",
+          "terminal": true,
+          "meaning": "A corrected artifact replaced this run before submission; after submission, corrections are reversal commands, not supersession"
+        },
+        {
+          "id": "Cancelled",
+          "terminal": true,
+          "meaning": "An authorized person cancelled before submission"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Pending",
+          "event": "DependenciesMet",
+          "to": "Parsing",
+          "actor": "system",
+          "authorization": "profile dependency rule; source not paused",
+          "evidence": "dependency run or observation ids"
+        },
+        {
+          "from": "Pending",
+          "event": "DependencyTimeout",
+          "to": "Held",
+          "actor": "system",
+          "authorization": "profile dependency timeout",
+          "evidence": "missing dependency"
+        },
+        {
+          "from": "Pending",
+          "event": "Cancel",
+          "to": "Cancelled",
+          "actor": "human",
+          "authorization": "ingestion.run.cancel",
+          "evidence": "reason"
+        },
+        {
+          "from": "Pending",
+          "event": "ArtifactRevoked",
+          "to": "Suspended",
+          "actor": "system",
+          "authorization": "artifact revocation",
+          "evidence": "revocation id"
+        },
+        {
+          "from": "Pending",
+          "event": "SupersededBy",
+          "to": "Superseded",
+          "actor": "system or human",
+          "authorization": "correction rule: same source, same business date, later sequence; serialised with submission on the source ordering key",
+          "evidence": "superseding run id"
+        },
+        {
+          "from": "Parsing",
+          "event": "StructureInvalid",
+          "to": "Rejected",
+          "actor": "system",
+          "authorization": "profile version",
+          "evidence": "structural errors with positions"
+        },
+        {
+          "from": "Parsing",
+          "event": "RecordsEvaluated",
+          "to": "Validated",
+          "actor": "system",
+          "authorization": "profile version; supervisor-recomputed control totals",
+          "evidence": "record outcome counts, totals declared vs computed"
+        },
+        {
+          "from": "Parsing",
+          "event": "DriftDetected",
+          "to": "Held",
+          "actor": "system",
+          "authorization": "schema drift rule",
+          "evidence": "drift report"
+        },
+        {
+          "from": "Parsing",
+          "event": "InspectionFault",
+          "to": "Held",
+          "actor": "system",
+          "authorization": "infrastructure or sandbox fault (never a terminal rejection)",
+          "evidence": "fault id; retry decision"
+        },
+        {
+          "from": "Parsing",
+          "event": "ArtifactRevoked",
+          "to": "Suspended",
+          "actor": "system",
+          "authorization": "artifact revocation",
+          "evidence": "revocation id"
+        },
+        {
+          "from": "Validated",
+          "event": "ThresholdBreached",
+          "to": "Held",
+          "actor": "system",
+          "authorization": "profile hold rules (evaluated first)",
+          "evidence": "rule id, measured value"
+        },
+        {
+          "from": "Validated",
+          "event": "ApprovalRequired",
+          "to": "AwaitingApproval",
+          "actor": "system",
+          "authorization": "approval policy of the target commands (evaluated second)",
+          "evidence": "policy id"
+        },
+        {
+          "from": "Validated",
+          "event": "AutoSubmit",
+          "to": "Submitting",
+          "actor": "system",
+          "authorization": "submission mode automatic (institution and government sources only); guards: artifact Released at current policy version; source not paused; hold rules clear; approval satisfied or not required; submission mode satisfied",
+          "evidence": "submission decision record"
+        },
+        {
+          "from": "Validated",
+          "event": "SubmitRequested",
+          "to": "Submitting",
+          "actor": "human",
+          "authorization": "requester confirms the preview and holds authority for every target command; guards: artifact Released at current policy version; source not paused; hold rules clear; approval satisfied or not required; submission mode satisfied",
+          "evidence": "requester, preview hash, per-command evidence"
+        },
+        {
+          "from": "Validated",
+          "event": "Cancel",
+          "to": "Cancelled",
+          "actor": "human",
+          "authorization": "ingestion.run.cancel",
+          "evidence": "reason"
+        },
+        {
+          "from": "Validated",
+          "event": "SupersededBy",
+          "to": "Superseded",
+          "actor": "system or human",
+          "authorization": "correction rule, serialised with submission on the source ordering key",
+          "evidence": "superseding run id"
+        },
+        {
+          "from": "Validated",
+          "event": "ArtifactRevoked",
+          "to": "Suspended",
+          "actor": "system",
+          "authorization": "artifact revocation",
+          "evidence": "revocation id"
+        },
+        {
+          "from": "Held",
+          "event": "ReleaseHold",
+          "to": "Validated",
+          "actor": "human",
+          "authorization": "ingestion.run.release-hold; cannot be the uploader when the profile demands segregation; releases the hold only",
+          "evidence": "decision, reason; hold cleared flag"
+        },
+        {
+          "from": "Held",
+          "event": "RejectRun",
+          "to": "Rejected",
+          "actor": "human",
+          "authorization": "ingestion.run.reject",
+          "evidence": "reason"
+        },
+        {
+          "from": "Held",
+          "event": "Cancel",
+          "to": "Cancelled",
+          "actor": "human",
+          "authorization": "ingestion.run.cancel",
+          "evidence": "reason"
+        },
+        {
+          "from": "Held",
+          "event": "SupersededBy",
+          "to": "Superseded",
+          "actor": "human",
+          "authorization": "ingestion.run.supersede (a held run is never superseded automatically)",
+          "evidence": "superseding run id"
+        },
+        {
+          "from": "Held",
+          "event": "ArtifactRevoked",
+          "to": "Suspended",
+          "actor": "system",
+          "authorization": "artifact revocation",
+          "evidence": "revocation id"
+        },
+        {
+          "from": "AwaitingApproval",
+          "event": "Approved",
+          "to": "Submitting",
+          "actor": "human",
+          "authorization": "approval policy of the target commands (dual control where required); guards: artifact Released at current policy version; source not paused; hold rules clear; approval satisfied or not required; submission mode satisfied",
+          "evidence": "approvers bound to the content hash"
+        },
+        {
+          "from": "AwaitingApproval",
+          "event": "ApprovalRefused",
+          "to": "Rejected",
+          "actor": "human",
+          "authorization": "approval policy",
+          "evidence": "reason"
+        },
+        {
+          "from": "AwaitingApproval",
+          "event": "Cancel",
+          "to": "Cancelled",
+          "actor": "human",
+          "authorization": "ingestion.run.cancel",
+          "evidence": "reason"
+        },
+        {
+          "from": "AwaitingApproval",
+          "event": "ArtifactRevoked",
+          "to": "Suspended",
+          "actor": "system",
+          "authorization": "artifact revocation",
+          "evidence": "revocation id"
+        },
+        {
+          "from": "Suspended",
+          "event": "ArtifactReinstated",
+          "to": "Pending",
+          "actor": "system",
+          "authorization": "artifact returned to Released (false positive confirmed); processing restarts from the beginning",
+          "evidence": "reinstatement id"
+        },
+        {
+          "from": "Suspended",
+          "event": "RejectRun",
+          "to": "Rejected",
+          "actor": "human",
+          "authorization": "ingestion.run.reject",
+          "evidence": "impact case outcome"
+        },
+        {
+          "from": "Submitting",
+          "event": "AllReceiptedOrRefused",
+          "to": "Submitted",
+          "actor": "system",
+          "authorization": "Echelon.Execution receipts; intake refusals become record outcomes (KeyConflict, Declined)",
+          "evidence": "command id or refusal per record"
+        },
+        {
+          "from": "Submitted",
+          "event": "RecordReleased",
+          "to": "Submitted",
+          "actor": "human",
+          "authorization": "a record-level hold is released and the record submitted as its own command linked to the run",
+          "evidence": "record id, command id"
+        },
+        {
+          "from": "Submitted",
+          "event": "AllCommandsTerminal",
+          "to": "Completed",
+          "actor": "system",
+          "authorization": "no record Valid, Held, Submitted, KeyConflict or OutcomeUnknown",
+          "evidence": "outcome per record"
+        },
+        {
+          "from": "Submitted",
+          "event": "TerminalWithUnknowns",
+          "to": "CompletedWithUnknowns",
+          "actor": "system",
+          "authorization": "every command terminal; some outcomes ambiguous",
+          "evidence": "open reconciliation obligations"
+        },
+        {
+          "from": "CompletedWithUnknowns",
+          "event": "UnknownsResolved",
+          "to": "Completed",
+          "actor": "system",
+          "authorization": "reconciliation resolved every ambiguous outcome",
+          "evidence": "resolution per record"
+        }
+      ]
+    },
+    {
+      "id": "Reconciliation",
+      "purpose": "Agreement between Unbound's ledger and an external observation set for one scope (bank account and business date; custodian account and as-of date; payment partner and settlement date). Matched and Resolved scopes are immutable; a later restatement, return or ledger correction for a closed scope opens a new reconciliation item in the current period linked to the closed scope (UNB-ING-FIN-007), and the closed scope shows the link.",
+      "initial": "Open",
+      "states": [
+        {
+          "id": "Open",
+          "terminal": false,
+          "meaning": "Observation set and ledger period present; matching not finished"
+        },
+        {
+          "id": "Matched",
+          "terminal": true,
+          "meaning": "Every item matched by deterministic rules within tolerance"
+        },
+        {
+          "id": "Break",
+          "terminal": false,
+          "meaning": "Unmatched or mismatched items remain; each is an exception case with ageing"
+        },
+        {
+          "id": "Resolved",
+          "terminal": true,
+          "meaning": "Every break closed by a correcting command, a timing explanation that later matched, or an authorized write-off with evidence"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Open",
+          "event": "AllMatched",
+          "to": "Matched",
+          "actor": "system",
+          "authorization": "matching rule version",
+          "evidence": "match pairs, rule ids"
+        },
+        {
+          "from": "Open",
+          "event": "UnmatchedRemain",
+          "to": "Break",
+          "actor": "system",
+          "authorization": "matching rule version",
+          "evidence": "break items"
+        },
+        {
+          "from": "Break",
+          "event": "LaterObservationMatched",
+          "to": "Matched",
+          "actor": "system",
+          "authorization": "matching rule version",
+          "evidence": "late item pairs"
+        },
+        {
+          "from": "Break",
+          "event": "BreaksResolved",
+          "to": "Resolved",
+          "actor": "human or system",
+          "authorization": "reconciliation.break.resolve (write-off requires dual control and threshold)",
+          "evidence": "per-break resolution"
+        }
+      ]
+    },
+    {
+      "id": "Retention",
+      "purpose": "Lifecycle of stored bytes and derived personal data independent of processing state.",
+      "initial": "Retained",
+      "states": [
+        {
+          "id": "Retained",
+          "terminal": false,
+          "meaning": "Within the retention period of the artifact's record class"
+        },
+        {
+          "id": "Held",
+          "terminal": false,
+          "meaning": "A legal hold applies; disposal is impossible regardless of period"
+        },
+        {
+          "id": "Eligible",
+          "terminal": false,
+          "meaning": "Retention period ended and no hold; disposal scheduled"
+        },
+        {
+          "id": "Disposed",
+          "terminal": true,
+          "meaning": "Bytes and safe derivatives destroyed; a tombstone keeps id, hash, class, dates and the disposal authority. Ledger entries derived from the artifact are never disposed with it"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Retained",
+          "event": "LegalHoldApplied",
+          "to": "Held",
+          "actor": "human",
+          "authorization": "legal.hold.apply",
+          "evidence": "hold id, matter"
+        },
+        {
+          "from": "Eligible",
+          "event": "LegalHoldApplied",
+          "to": "Held",
+          "actor": "human",
+          "authorization": "legal.hold.apply",
+          "evidence": "hold id, matter"
+        },
+        {
+          "from": "Held",
+          "event": "LegalHoldReleased",
+          "to": "Retained",
+          "actor": "human",
+          "authorization": "legal.hold.release",
+          "evidence": "hold id, release reason"
+        },
+        {
+          "from": "Retained",
+          "event": "PeriodEnded",
+          "to": "Eligible",
+          "actor": "system",
+          "authorization": "retention schedule version",
+          "evidence": "record class, trigger date"
+        },
+        {
+          "from": "Eligible",
+          "event": "DisposalExecuted",
+          "to": "Disposed",
+          "actor": "system",
+          "authorization": "retention schedule version; disposal batch approved by records owner",
+          "evidence": "storage deletion confirmation, tombstone"
+        }
+      ]
+    },
+    {
+      "id": "Record",
+      "purpose": "Outcome of one input record of a Run. Invariant (UNB-ING-FIN-003): outcome counts equal input count; at Completed no record is Valid, Held, Submitted, KeyConflict or OutcomeUnknown.",
+      "initial": "Staged",
+      "states": [
+        {
+          "id": "Staged",
+          "terminal": false,
+          "meaning": "Parsed and awaiting evaluation"
+        },
+        {
+          "id": "Valid",
+          "terminal": false,
+          "meaning": "Passed validation; eligible for submission"
+        },
+        {
+          "id": "Invalid",
+          "terminal": true,
+          "meaning": "Failed validation; reasons and source position retained; corrections arrive as new records in a new run"
+        },
+        {
+          "id": "Duplicate",
+          "terminal": true,
+          "meaning": "Same natural key and same payload hash already accepted; reference to the original; no effect"
+        },
+        {
+          "id": "KeyConflict",
+          "terminal": false,
+          "meaning": "Same natural key with a different payload hash, or an intake idempotency conflict; not applied; DuplicateKeyConflict case open"
+        },
+        {
+          "id": "Held",
+          "terminal": false,
+          "meaning": "Individually above a value or risk threshold, a near-duplicate, or awaiting per-record affirmation"
+        },
+        {
+          "id": "Excluded",
+          "terminal": true,
+          "meaning": "An authorized person excluded it, with reason"
+        },
+        {
+          "id": "Submitted",
+          "terminal": false,
+          "meaning": "Command receipted; carries the command id"
+        },
+        {
+          "id": "Effected",
+          "terminal": true,
+          "meaning": "Command completed successfully"
+        },
+        {
+          "id": "Declined",
+          "terminal": true,
+          "meaning": "Command refused by business rules at execution, exactly as for an interactive request"
+        },
+        {
+          "id": "OutcomeUnknown",
+          "terminal": false,
+          "meaning": "External effect ambiguous; reconciliation obligation open (CNV-PAY-004)"
+        }
+      ],
+      "transitions": [
+        {
+          "from": "Staged",
+          "event": "Validate",
+          "to": "Valid",
+          "actor": "system",
+          "authorization": "profile rules and handler validate mode",
+          "evidence": "rule results"
+        },
+        {
+          "from": "Staged",
+          "event": "Reject",
+          "to": "Invalid",
+          "actor": "system",
+          "authorization": "profile rules",
+          "evidence": "reasons, position"
+        },
+        {
+          "from": "Staged",
+          "event": "MatchExisting",
+          "to": "Duplicate",
+          "actor": "system",
+          "authorization": "record identity and payload hash",
+          "evidence": "original record id"
+        },
+        {
+          "from": "Staged",
+          "event": "KeyCollision",
+          "to": "KeyConflict",
+          "actor": "system",
+          "authorization": "record identity, different payload hash",
+          "evidence": "both payload hashes; case id"
+        },
+        {
+          "from": "Staged",
+          "event": "Hold",
+          "to": "Held",
+          "actor": "system",
+          "authorization": "record-level hold rule",
+          "evidence": "rule id"
+        },
+        {
+          "from": "Held",
+          "event": "Release",
+          "to": "Valid",
+          "actor": "human",
+          "authorization": "ingestion.record.release or per-record affirmation",
+          "evidence": "decision or affirmation evidence"
+        },
+        {
+          "from": "Held",
+          "event": "Exclude",
+          "to": "Excluded",
+          "actor": "human",
+          "authorization": "ingestion.record.exclude",
+          "evidence": "reason"
+        },
+        {
+          "from": "Held",
+          "event": "Expire",
+          "to": "Invalid",
+          "actor": "system",
+          "authorization": "profile hold expiry",
+          "evidence": "expiry reason"
+        },
+        {
+          "from": "KeyConflict",
+          "event": "ResolveAsCorrection",
+          "to": "Excluded",
+          "actor": "human",
+          "authorization": "conflict case decision: the correcting record is processed through a compensating command or observation",
+          "evidence": "case outcome"
+        },
+        {
+          "from": "KeyConflict",
+          "event": "ResolveAsError",
+          "to": "Invalid",
+          "actor": "human",
+          "authorization": "conflict case decision",
+          "evidence": "case outcome"
+        },
+        {
+          "from": "Valid",
+          "event": "Submit",
+          "to": "Submitted",
+          "actor": "system or human",
+          "authorization": "run submission (guards as for Run Submitting)",
+          "evidence": "command id"
+        },
+        {
+          "from": "Valid",
+          "event": "Exclude",
+          "to": "Excluded",
+          "actor": "human",
+          "authorization": "ingestion.record.exclude before submission",
+          "evidence": "reason"
+        },
+        {
+          "from": "Valid",
+          "event": "IntakeConflict",
+          "to": "KeyConflict",
+          "actor": "system",
+          "authorization": "intake idempotency conflict",
+          "evidence": "conflict detail"
+        },
+        {
+          "from": "Submitted",
+          "event": "Effect",
+          "to": "Effected",
+          "actor": "system",
+          "authorization": "command completed",
+          "evidence": "outcome"
+        },
+        {
+          "from": "Submitted",
+          "event": "Decline",
+          "to": "Declined",
+          "actor": "system",
+          "authorization": "command refused at execution",
+          "evidence": "reason"
+        },
+        {
+          "from": "Submitted",
+          "event": "Ambiguous",
+          "to": "OutcomeUnknown",
+          "actor": "system",
+          "authorization": "external effect ambiguous",
+          "evidence": "obligation"
+        },
+        {
+          "from": "OutcomeUnknown",
+          "event": "ReconciledEffected",
+          "to": "Effected",
+          "actor": "system",
+          "authorization": "reconciliation",
+          "evidence": "evidence"
+        },
+        {
+          "from": "OutcomeUnknown",
+          "event": "ReconciledNotEffected",
+          "to": "Declined",
+          "actor": "system",
+          "authorization": "reconciliation",
+          "evidence": "evidence"
+        }
+      ]
+    }
+  ],
+  "proposed_state_mapping": [
+    {
+      "proposed": "Expected",
+      "disposition": "kept",
+      "maps_to": "Expectation.Open",
+      "reason": "An expectation exists before any file; it is its own entity"
+    },
+    {
+      "proposed": "Receiving",
+      "disposition": "kept",
+      "maps_to": "Artifact.Receiving",
+      "reason": "Needed for interrupted-upload and orphan reconciliation"
+    },
+    {
+      "proposed": "Received",
+      "disposition": "merged",
+      "maps_to": "Artifact.Quarantined",
+      "reason": "Receipt and quarantine are the same commit; a received-but-not-quarantined state would be a window where unsafe bytes are addressable"
+    },
+    {
+      "proposed": "Quarantined",
+      "disposition": "kept",
+      "maps_to": "Artifact.Quarantined",
+      "reason": "Owner requirement (unbound#18)"
+    },
+    {
+      "proposed": "Security inspection pending",
+      "disposition": "projection",
+      "maps_to": "Artifact.Quarantined + inspection attempt status",
+      "reason": "Queue position is operational detail of the inspection command, already tracked by Echelon.Execution"
+    },
+    {
+      "proposed": "Security inspection in progress",
+      "disposition": "projection",
+      "maps_to": "Artifact.Quarantined + inspection attempt status",
+      "reason": "As above; a lease, not a business state"
+    },
+    {
+      "proposed": "Security rejected",
+      "disposition": "kept",
+      "maps_to": "Artifact.Rejected",
+      "reason": "Terminal security outcome"
+    },
+    {
+      "proposed": "Structurally validated",
+      "disposition": "merged",
+      "maps_to": "Run.Validated",
+      "reason": "Structure and business validation run in one isolated pass; splitting them adds a state without adding a decision"
+    },
+    {
+      "proposed": "Business validation pending",
+      "disposition": "merged",
+      "maps_to": "Run.Parsing",
+      "reason": "No decision happens between structure and business validation"
+    },
+    {
+      "proposed": "Business validation failed",
+      "disposition": "split",
+      "maps_to": "record outcome Invalid, or Run.Held when a threshold is breached, or Run.Rejected for structural failure",
+      "reason": "Failure is usually per record; whole-run failure is a threshold or structural decision"
+    },
+    {
+      "proposed": "Awaiting approval",
+      "disposition": "kept",
+      "maps_to": "Run.AwaitingApproval",
+      "reason": "Only when the business commands themselves require approval; files never require approval merely for being files"
+    },
+    {
+      "proposed": "Ready for processing",
+      "disposition": "removed",
+      "maps_to": "Run.Submitting",
+      "reason": "A state with no possible decision; approval satisfied means submit"
+    },
+    {
+      "proposed": "Processing",
+      "disposition": "renamed",
+      "maps_to": "Run.Submitting / Run.Submitted",
+      "reason": "Distinguishes 'commands being created' from 'commands executing'"
+    },
+    {
+      "proposed": "Partially processed where permitted",
+      "disposition": "removed",
+      "maps_to": "Run.Completed (or CompletedWithUnknowns) with per-record outcome counts",
+      "reason": "Partial is a property of outcomes, not a phase"
+    },
+    {
+      "proposed": "Processed",
+      "disposition": "renamed",
+      "maps_to": "Run.Completed",
+      "reason": "Completed means every record outcome is final"
+    },
+    {
+      "proposed": "Awaiting reconciliation",
+      "disposition": "moved",
+      "maps_to": "Reconciliation.Open",
+      "reason": "Reconciliation scope is an account-date, not a file; one file may feed several scopes and one scope several files"
+    },
+    {
+      "proposed": "Reconciled",
+      "disposition": "moved",
+      "maps_to": "Reconciliation.Matched / Reconciliation.Resolved",
+      "reason": "As above"
+    },
+    {
+      "proposed": "Exception",
+      "disposition": "removed",
+      "maps_to": "exception case (work item) referencing any entity; Run.Held where a person must decide before processing continues",
+      "reason": "An exception is a work item about a state, not a state; modelling it as a state loses which state it interrupted"
+    },
+    {
+      "proposed": "Superseded",
+      "disposition": "kept",
+      "maps_to": "Run.Superseded",
+      "reason": "Pre-submission correction; post-submission correction is by reversal"
+    },
+    {
+      "proposed": "Archived",
+      "disposition": "projection",
+      "maps_to": "storage tier attribute under Retention.Retained",
+      "reason": "Archive tier is a cost optimisation, not a business state"
+    },
+    {
+      "proposed": "Disposed under authorized retention policy",
+      "disposition": "kept",
+      "maps_to": "Retention.Disposed",
+      "reason": "Terminal with tombstone"
+    }
+  ]
+}
