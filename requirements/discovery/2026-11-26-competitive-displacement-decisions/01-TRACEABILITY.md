@@ -23,7 +23,7 @@ Forward trace: each proposed requirement to the existing requirements and conver
 | UNB-CDD-CIV-012 | Typed human review queues for charity intelligence | UNB-CHAR-013; UNB-CHAR-030; CNV-TEN-001; CNV-AIO-002 | DEC-003; DEC-005 | XRI-002; XRI-006 | P1 | initial-implementation |
 | UNB-CDD-CIV-013 | Auditable evidence and decision histories | UNB-CHAR-025; UNB-CHAR-040; CNV-ARC-004; UNB-CNET-001 | DEC-003; DEC-005 | XRI-002; XRI-005 | P0 | initial-implementation |
 | UNB-CDD-ONB-001 | Sponsor-approved validation summary before cutover | UNB-ONB-013; UNB-ONB-011; RR-REQ-X-061-r1 | DEC-010; DEC-007 | — | P0 | initial-implementation |
-| UNB-CDD-ONB-002 | Evidence-selected source cluster and repeatable source packages | UNB-ONB-002; UNB-ONB-006; UNB-TRN-006 | DEC-007; DEC-011 | — | P1 | commercial-availability |
+| UNB-CDD-ONB-002 | Unbound-owned source-cluster selection record | UNB-ONB-002; UNB-ONB-006; UNB-TRN-006 | DEC-007; DEC-011 | — | P1 | commercial-availability |
 | UNB-CDD-ONB-003 | Process SLAs only after a measured rehearsal | UNB-ONB-030; UNB-ONB-031 | DEC-010 | — | P1 | commercial-availability |
 | UNB-CDD-ONB-004 | Onboarding maturity claimed only from measured data | UNB-ONB-030; UNB-ONB-032 | DEC-010; DEC-012 | — | P2 | commercial-availability |
 | UNB-CDD-CMF-001 | Operating modes as configuration, not forks | UNB-ONB-023; CNV-TEN-001; CNV-GOV-005; UNB-ONB-024 | DEC-001; DEC-006; DEC-002 | XRI-008; XRI-001 | P1 | architectural-support |

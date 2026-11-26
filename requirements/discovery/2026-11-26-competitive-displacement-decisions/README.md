@@ -49,6 +49,38 @@ Open charity-network decisions are **not** answered by the approvals and remain 
 
 UNB-CDD-CMF-005 makes this explicit.
 
+## Release-1 scope impact
+
+This package proposes 20 requirements with release scope `initial-implementation`, 11 of them P0. They are listed in [05](05-RECONCILIATION-AND-ARCHITECTURE.md), generated from the data.
+
+- They are **proposals pending owner ratification**: they would add to Release-1 scope only once the owner ratifies them into the baseline.
+- The ratified Release-1 scope is unchanged until then.
+- None was moved to a later scope to avoid this.
+
+## Ownership of what is made (owner decision OD-P3-01)
+
+The owner decided on 2026-11-26, in the owner's words: "EF owns all property we make". It is recorded in kemiller2002/echelon-organization-administration as OD-DAF-IP-001 (`strategy/daf-entry/04-owner-decision-register.md`). Echelon Foundry owns the IP this initiative creates, including Unbound requirements and tooling.
+
+- This is an ownership decision, not a sponsor or administrator role; UNB-CDD-CMF-005 is unaffected.
+- No LICENSE file is changed.
+- **TODO (counsel):** confirm how copyright in contributed work is assigned to Echelon Foundry (contributor assignment or work-for-hire terms) and whether repository licence notices need to change.
+
+## Kill rule
+
+The DEC-008 kill rule ("no named partner") is read with two owner decisions:
+
+- **OD-P3-04:** the clock starts when DAF commercialization becomes its own cost center at Echelon Foundry. It is recorded as OD-DAF-CAP-001/002 in echelon-organization-administration.
+- **OD-P3-02:** the kill rule does not stop Transitus.
+
+Neither changes an Unbound requirement.
+
+## Source-cluster selection (DEC-007)
+
+Unbound owns the single first-incumbent source-cluster selection record (UNB-CDD-ONB-002).
+
+- Transitus consumes that record through its proposed TRN-REQ-MP-010 and does not keep its own.
+- Package versioning and the drift test are Transitus TRN-REQ-MP-004. They are cited here, not re-specified.
+
 ## Contents
 
 | File | Content |

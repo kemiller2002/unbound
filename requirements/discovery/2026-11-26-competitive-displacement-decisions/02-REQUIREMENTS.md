@@ -327,11 +327,11 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Open questions | — |
 | Conflicts | — |
 
-### UNB-CDD-ONB-002 — Evidence-selected source cluster and repeatable source packages
+### UNB-CDD-ONB-002 — Unbound-owned source-cluster selection record
 
 | Field | Value |
 |---|---|
-| Requirement | Vendor-specific source packages MUST be versioned per incumbent platform and report version, carry a layout drift test, and be built only after a customer-authorised sample from that source exists (DEC-011). The first incumbent source cluster on which migrations concentrate MUST be selected by a recorded decision that cites evidence (contract-end calendar per V-5, authorised sample availability, commercial practicality) and MUST NOT be selected arbitrarily. The canonical historical import remains available for every source; adapters over self-service reports MUST be labelled balance-level unless a contracted incumbent export supplies transaction history. |
+| Requirement | Unbound MUST own the single source-cluster selection record: the first incumbent source cluster on which migrations concentrate MUST be selected by a recorded Unbound decision that cites evidence (contract-end calendar per V-5, authorised sample availability, commercial practicality) and MUST NOT be selected arbitrarily. Transitus consumes this record (proposed TRN-REQ-MP-010) and keeps no selection record of its own. Vendor-specific source packages MUST be built only after a customer-authorised sample from that source exists (DEC-011); their per-report-version declaration and drift test are specified by Transitus (proposed TRN-REQ-MP-004) and are not re-specified here. The canonical historical import remains available for every source; adapters over self-service reports MUST be labelled balance-level unless a contracted incumbent export supplies transaction history. |
 | Business rationale | Approved DEC-007 concentrates early migrations on one incumbent where commercially practical, preserving V-5; approved DEC-011 defers customer-specific proprietary packages until authorised source data exists. |
 | Refines / applicable existing requirements | UNB-ONB-002; UNB-ONB-006; UNB-TRN-006 |
 | Origin | refinement (parent UNB-ONB-002) |
@@ -339,11 +339,11 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Research (daf-landscape research/competitive-displacement/) | 08-frictionless-onboarding.md; 18-transitus-implications.md; 22-commercial-validation-plan.md |
 | Research ids | HYP-011; HYP-012; OQ-012; SRC-066 |
 | Evidence gates | V-5 |
-| Acceptance criteria | Given no customer-authorised sample from incumbent X, When a package for X is proposed, Then it is refused and the canonical import is offered; And Given the source-cluster decision record, When it is reviewed, Then it cites the V-5 evidence used. |
+| Acceptance criteria | Given no Unbound source-cluster selection record, When a vendor-specific package is proposed, Then it is refused; And Given no customer-authorised sample from incumbent X, When a package for X is proposed, Then it is refused and the canonical import is offered; And Given the selection record, When it is reviewed, Then it cites the V-5 evidence used and is the record Transitus references. |
 | Dependencies | — |
 | Security implications | Authorised samples contain donor data and are handled under the sponsor's MSA and DPA only. |
-| Failure behaviour | If drift is detected on a report version, the package MUST stop accepting that version until updated. |
-| Verification method | Review of the source-cluster decision record + automated drift tests |
+| Failure behaviour | Without a current selection record no vendor-specific package may be published; drift handling follows the Transitus package rules (TRN-REQ-MP-004). |
+| Verification method | Review of the selection record and of the Transitus reference to it |
 | Priority | P1 |
 | Status | proposed · not implemented · not validated |
 | Release scope | commercial-availability |
@@ -492,7 +492,7 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 
 | Field | Value |
 |---|---|
-| Requirement | Every operating mode MUST support multiple independent legal sponsors, each with its own cell and role table, and multiple administrators or partners, each acting under per-sponsor ServiceDelegations. No mode MUST require Echelon Foundry, or any entity affiliated with it, to act as sponsor, administrator, Originator, ODFI, Third-Party Sender or operator of sponsor workflows; the platform provider's roles are those of CNV-PAY-001 and CNV-LEG-001. Activation MUST reject a configuration that hard-wires a specific operator entity into a sponsor role. |
+| Requirement | Every operating mode MUST support multiple independent legal sponsors, each with its own cell and role table, and multiple administrators or partners, each acting under per-sponsor ServiceDelegations. An operating mode MUST NOT require Echelon Foundry, or any entity affiliated with it, to act as sponsor, administrator, Originator, ODFI, Third-Party Sender or operator of sponsor workflows; the platform provider's roles are those of CNV-PAY-001 and CNV-LEG-001. Activation MUST reject a configuration that hard-wires a specific operator entity into a sponsor role. |
 | Business rationale | Global constraint for this initiative: Unbound must not require Echelon Foundry to become a DAF sponsor or administrator; independent sponsors and partners are the licensing route (DEC-001, DEC-002, DEC-006). |
 | Refines / applicable existing requirements | CNV-TEN-001; CNV-PAY-001; CNV-LEG-001 |
 | Origin | refinement (parent CNV-TEN-001) |

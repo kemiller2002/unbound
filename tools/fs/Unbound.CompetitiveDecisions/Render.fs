@@ -143,7 +143,15 @@ let reconciliation (i: Inputs) : string =
     let constraints =
         table [ "Constraint"; "Governing ids"; "Source"; "Effect of this package"; "Evidence" ]
             (i.Constraints |> List.map (fun c -> [ col "constraint" c; semi (col "governing_ids" c); col "governing_source" c; col "package_effect" c; col "evidence" c ]))
-    "## Reconciliation with ratified clauses and owner decisions\n\n" + recon + "\n## Architecture and platform constraints\n\n" + constraints
+    let release1 = i.Requirements |> List.filter (fun r -> fs "release_scope" r = "initial-implementation")
+    let p0 = release1 |> List.filter (fun r -> fs "priority" r = "P0") |> List.length
+    let scope =
+        $"This package proposes {release1.Length} requirements with release scope initial-implementation ({p0} P0). They would add to Release-1 scope only if the owner ratifies them into the baseline; until then the ratified Release-1 scope is unchanged and none of them is moved to another scope.\n\n"
+        + table [ "Requirement"; "Title"; "Priority"; "Status" ]
+            (release1 |> List.map (fun r -> [ fs "id" r; fs "title" r; fs "priority" r; "proposed, pending owner ratification" ]))
+    "## Reconciliation with ratified clauses and owner decisions\n\n" + recon
+    + "\n## Release-1 scope impact (proposals pending owner ratification)\n\n" + scope
+    + "\n## Architecture and platform constraints\n\n" + constraints
 
 /// (document, renderer) pairs.
 let SECTIONS: (string * (Inputs -> string)) list =
