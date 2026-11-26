@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Echelon.Execution.Postgres/Echelon.Execution.Postgres.fsproj" />
+    <Project Path="src/Echelon.Execution/Echelon.Execution.fsproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Echelon.Execution.Postgres.Tests/Echelon.Execution.Postgres.Tests.fsproj" />
+    <Project Path="tests/Echelon.Execution.Tests/Echelon.Execution.Tests.fsproj" />
+  </Folder>
+</Solution>

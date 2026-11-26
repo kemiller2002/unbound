@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>PostgreSQL adapter for Echelon.Execution (one managed PostgreSQL database; CNV-ARC-001).</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Schema.sql" LogicalName="Echelon.Execution.Postgres.Schema.sql" />
+    <Compile Include="PostgresStore.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Npgsql" Version="11.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Echelon.Execution/Echelon.Execution.fsproj" />
+  </ItemGroup>
+</Project>
