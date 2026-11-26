@@ -76,12 +76,18 @@ let ``regeneration is idempotent and keeps answers`` () =
     Assert.Equal(snd first, snd second)
     let rows = readCsv d
     let isCno (r: Json) = (getStr "source" r).Contains "2026-11-26-charity-network-and-onboarding"
-    Assert.Equal(365, rows.Length) // 316 up to 2026-11-25, 27 charity-network (open), 22 file-ingestion (answered or proposed)
+    let isCdd (r: Json) = (getStr "source" r).Contains "2026-11-26-competitive-displacement-decisions"
+    let isOpenPackage (r: Json) = isCno r || isCdd r
+    // 316 up to 2026-11-25, 27 charity-network (open), 22 file-ingestion (answered or proposed),
+    // 9 competitive-displacement decisions (open: OD-CDD-01..05 and four requirement questions)
+    Assert.Equal(374, rows.Length)
     // The 316 questions registered up to 2026-11-25 and the 22 file-ingestion questions are answered; the 27 registered by the
-    // charity-network and onboarding package (2026-11-26) are open and unanswered until the owner resolves them.
+    // charity-network and onboarding package and the 9 registered by the competitive-displacement decisions package
+    // (both 2026-11-26) are open and unanswered until the owner resolves them.
     Assert.Equal(27, rows |> List.filter isCno |> List.length)
-    Assert.True(rows |> List.filter (isCno >> not) |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
-    Assert.True(rows |> List.filter isCno |> List.forall (fun r -> getStr "resolution_status" r = "open"))
+    Assert.Equal(9, rows |> List.filter isCdd |> List.length)
+    Assert.True(rows |> List.filter (isOpenPackage >> not) |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
+    Assert.True(rows |> List.filter isOpenPackage |> List.forall (fun r -> getStr "resolution_status" r = "open"))
 
 [<Fact>]
 let ``hand-edited answer is not silently discarded`` () =
