@@ -60,7 +60,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given the database fails after the request is parsed and before commit, When the client receives a response, Then it is 'not accepted, retry' and a retry after recovery creates exactly one command. |
 | Verification | Integration test |
 | Priority | P0 |
-| Status | proposed · not implemented |
+| Status | proposed · module implemented and tested (execution/); Unbound API wiring pending |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-004
@@ -96,7 +96,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given interleaved commands on funds A and B, When processed, Then per-fund order equals acceptance order and A and B progress concurrently; Given a transfer from A to B conflicting with a grant on A, Then balances never go negative. |
 | Verification | Integration test (property) |
 | Priority | P0 |
-| Status | proposed · not implemented |
+| Status | proposed · per-key ordering implemented and tested in execution/; multi-fund transactions are application code (pending) |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-006
@@ -114,7 +114,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given sponsor A floods recommendations at 10x quota-share, When sponsor B submits, Then B's oldest-command age stays within objective and A receives throttling responses, not false receipts. |
 | Verification | Integration test (load) |
 | Priority | P1 |
-| Status | proposed · not implemented |
+| Status | proposed · per-tenant queue limit and fair claiming implemented in execution/; priority classes by operation pending |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-007
@@ -132,7 +132,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given a command on fund A that fails deterministically, When retried N times, Then it is quarantined, fund A stops, fund B continues and an alert is raised. |
 | Verification | Integration test |
 | Priority | P0 |
-| Status | proposed · not implemented |
+| Status | proposed · implemented and tested in execution/ |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-008
@@ -150,7 +150,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given a grant recommendation withdrawn before dispatch, When processed, Then it is cancelled; Given withdrawal after dispatch, Then the request is refused with the reason. |
 | Verification | Integration test |
 | Priority | P1 |
-| Status | proposed · not implemented |
+| Status | proposed · expiry implemented in execution/; per-operation cancellation windows pending |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-009
@@ -186,7 +186,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given processing is paused for sponsor A, When commands arrive, Then they are accepted, not claimed, sponsor A users see a delay notice, and resume processes them in order. |
 | Verification | Integration test |
 | Priority | P1 |
-| Status | proposed · not implemented |
+| Status | proposed · pause/resume/drain implemented in execution/; metrics pending (U-07) |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-011
@@ -204,7 +204,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given a database failover in progress, When donors submit, Then no receipts are issued, the status surface reports the outage, and no receipted request is lost. |
 | Verification | Integration test + Operational evidence |
 | Priority | P0 |
-| Status | proposed · not implemented |
+| Status | proposed · refusal implemented and tested in execution/; status surface pending |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-012
@@ -294,7 +294,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given non-terminal v1 commands exist, When a release removing v1 support is proposed, Then the release gate fails. |
 | Verification | Automated |
 | Priority | P0 |
-| Status | proposed · not implemented |
+| Status | proposed · versioning and upcasting implemented in execution/; release gate pending |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-017
@@ -348,7 +348,7 @@ conflict (baseline precedence rule). *Echelon requirements* link to the portfoli
 | Acceptance criteria | Given the solution, When Dokimos reference-boundary rules run, Then the execution project references no Unbound domain project. |
 | Verification | Automated |
 | Priority | P1 |
-| Status | proposed · not implemented |
+| Status | proposed · implemented: execution/ (separate projects, no Unbound domain references) |
 | Release scope | initial-implementation |
 
 ### UNB-AVL-020
