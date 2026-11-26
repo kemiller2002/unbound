@@ -79,7 +79,7 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | Unbound MUST define the domain operations ingestion loads through (e.g. charity registry observation, OFAC list update, ACH return and NOC recording, bank activity recording, custodian transaction and position recording), each with a declared natural key, idempotency behaviour, read-back query and execution class. Authorized domain loading interfaces are mandatory; no ingestion path may bypass them. |
+| Statement | Unbound MUST define the domain operations ingestion loads through (e.g. charity registry observation, OFAC list update, ACH return and NOC recording, bank activity recording, custodian transaction and position recording), each with a declared natural key, idempotency behaviour, read-back query and execution class. Authorized domain loading interfaces are mandatory; no ingestion path may bypass them. These operations, each with a read-back query, are a precondition for any Transitus load or verification against Unbound. |
 | Rationale | No domain API exists yet; Transitus cannot load without it (Transitus OQ-15). |
 | Refines / parent | — |
 | Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
@@ -205,15 +205,51 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | Before any sponsor's historical import, Unbound MUST perform at least one migration rehearsal: a dry run of the canonical historical import pipeline against the sponsor's export, executing every validation and reconciliation gate (record conservation, per-fund balance, grants-paid control totals) and producing a rehearsal evidence package, with no system-of-record effect; the MigrationRun MUST NOT reach CutoverAuthorized without a rehearsal whose evidence shows zero unexplained differences. |
+| Statement | Before any sponsor's historical import, Unbound MUST perform at least one migration rehearsal: the canonical historical import pipeline runs end to end against the sponsor's export and loads only into an isolated, disposable rehearsal sponsor cell (UNB-TRN-013), executing every validation and reconciliation gate (record conservation, per-fund balance, grants-paid control totals) and producing a rehearsal evidence package; the MigrationRun MUST NOT reach CutoverAuthorized without a rehearsal whose evidence shows zero unexplained differences. |
 | Rationale | Owner direction: migration rehearsal is required in release 1; rehearsal turns the MigrationRun 'Reconciled' and 'ParallelValidated' states into evidence-backed transitions. |
 | Refines / parent | RR-REQ-X-061-r1; CNV-EXP-002 |
-| Source | Owner resolution on kemiller2002/transitus#1 (2026-11-26): canonical historical import and migration rehearsal are required in Unbound R1. |
+| Source | Owner resolution on kemiller2002/transitus#1 (2026-11-26); independent challenge TRN-REV-02 (kemiller2002/transitus docs/reviews/agent-reviews/adv-E.md) |
 | Applicability | Unbound platform (all sponsor tenants) |
 | Responsible system | Unbound (MigrationRun); Transitus (dry-run pipeline, reconciliation, evidence) |
-| Dependencies | UNB-TRN-006 UNB-TRN-011 |
-| Transitus requirements | TRN-REQ-MP-009 TRN-REQ-EX-004 TRN-REQ-VR-013 |
+| Dependencies | UNB-TRN-006 UNB-TRN-011 UNB-TRN-013 UNB-TRN-014 |
+| Transitus requirements | TRN-REQ-MIG-001 TRN-REQ-MIG-003 TRN-REQ-VR-013 |
 | Acceptance criteria | Given a sponsor export with one fund whose closing balance differs from the predecessor statement, When the rehearsal runs, Then the evidence package reports the difference, no record is loaded, and CutoverAuthorized is refused. |
+| Verification | Integration test |
+| Priority | P0 |
+| Status | proposed · not implemented |
+| Release scope | initial-implementation |
+
+### UNB-TRN-013
+
+| Field | Value |
+|---|---|
+| Statement | Unbound MUST be able to provision an isolated, disposable rehearsal sponsor cell (schema and role per CNV-ARC-001, no connection to live sponsor data or external payment rails), run a migration rehearsal into it, and tear it down with evidence of provisioning, use and destruction. |
+| Rationale | A migration rehearsal that only stops at a load plan cannot prove domain-level acceptance; rehearsing in a live sponsor schema risks live data (TRN-REV-02 C13). |
+| Refines / parent | RR-REQ-X-061-r1 |
+| Source | Owner resolution on kemiller2002/transitus#1 (2026-11-26); independent challenge TRN-REV-02 (kemiller2002/transitus docs/reviews/agent-reviews/adv-E.md) |
+| Applicability | Unbound platform (all sponsor tenants) |
+| Responsible system | Unbound |
+| Dependencies | UNB-TRN-012 |
+| Transitus requirements | TRN-REQ-MIG-001 |
+| Acceptance criteria | Given a rehearsal, When it completes and the cell is torn down, Then no rehearsal record exists in any live schema and the teardown evidence lists the destroyed objects. |
+| Verification | Integration test |
+| Priority | P0 |
+| Status | proposed · not implemented |
+| Release scope | initial-implementation |
+
+### UNB-TRN-014
+
+| Field | Value |
+|---|---|
+| Statement | Unbound MUST define a versioned canonical historical import shape covering funds and opening balances, donors and advisors, successors, contributions, grants and payees, fees, acknowledgments and documents (by reference to preserved raw evidence), and the control file used for reconciliation, with acceptance tests; Transitus's unbound.canonical-history package implements it. |
+| Rationale | No canonical shape exists in Unbound today (TRN-REV-02 C4, C15); CNV-EXP-002 requires full fund history including acknowledgments and documents. |
+| Refines / parent | CNV-EXP-002; RR-REQ-X-061-r1 |
+| Source | Owner resolution on kemiller2002/transitus#1 (2026-11-26); independent challenge TRN-REV-02 (kemiller2002/transitus docs/reviews/agent-reviews/adv-E.md) |
+| Applicability | Unbound platform (all sponsor tenants) |
+| Responsible system | Unbound |
+| Dependencies | UNB-TRN-012 |
+| Transitus requirements | TRN-REQ-MIG-002 TRN-REQ-MIG-004 TRN-REQ-MP-009 |
+| Acceptance criteria | Given the canonical shape v1 and a synthetic sponsor history, When validated, Then every entity named in CNV-EXP-002 is representable and the control file reconciles. |
 | Verification | Integration test |
 | Priority | P0 |
 | Status | proposed · not implemented |

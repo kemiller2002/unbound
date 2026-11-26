@@ -8,7 +8,7 @@ Source revision assessed: `e2f6385f3c8901b9a8d3362c48429e64525f3edc` (main, 2026
 
 | File | Content |
 |---|---|
-| [02-REQUIREMENTS.md](02-REQUIREMENTS.md) | UNB-TRN-001..012: where Unbound uses Transitus for file ingestion, raw evidence, reconciliation gates, loading, quotas, bulk import, exceptions and migration reconciliation. Generated from `data/gap-requirements.jsonl` |
+| [02-REQUIREMENTS.md](02-REQUIREMENTS.md) | UNB-TRN-001..014: where Unbound uses Transitus for file ingestion, raw evidence, reconciliation gates, loading, quotas, bulk import, exceptions and migration reconciliation. Generated from `data/gap-requirements.jsonl` |
 | [04-DECISIONS-AND-OPEN-QUESTIONS.md](04-DECISIONS-AND-OPEN-QUESTIONS.md) | Boundary decisions, owner questions and proposed changes to Echelon.Execution |
 
 ## Boundary

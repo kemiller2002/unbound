@@ -30,6 +30,26 @@ For Transitus to be its second consumer, Echelon.Execution needs:
 
 There is also a reported limitation: the queue-limit check runs before duplicate lookup, so an idempotent retry from a sponsor that is at its limit is throttled.
 
+## Unbound-side conflicts raised by the Transitus revision (for the Unbound owner)
+
+| Conflict | Evidence | Proposed resolution |
+|---|---|---|
+| Migration in release 1 is now an owner decision, but Unbound records still defer it. | `discovery/2026-11-23-cross-industry/17-RELEASE-1-SCOPE.md:108` (UNB-XIN-OTH-002, "no migration in R1"); `discovery/2026-11-24-simplification-economics/02-REQUIREMENT-SIMPLIFICATION-MATRIX.md:1731,1750` (RR-REQ-X-061-r1 and UNB-RCN-WF-020 "defer") | Record the owner decision in `owner-decisions.jsonl` (next id OD-M-16) and re-scope those rows through the ratification process. This PR does not edit them. |
+| CNV-ARC-001 requires row-level security on every tenant table, but bulk `COPY` cannot target RLS tables. | baseline CNV-ARC-001 | Accept `INSERT`-only staging (Transitus default), or grant a documented exception for transient load tables. |
+| Staging public IRS data once per deployment conflicts with the CNV-TEN-001 SharedStoreRegister. | baseline CNV-TEN-001 | Register public reference data in the SharedStoreRegister, or stage it per sponsor (the Transitus phase-1 default). |
+| There is no design partner (OD-M-14), so no real predecessor export exists to rehearse. | `owner-decisions.jsonl` OD-M-14 | Rehearse on synthetic canonical fixtures until an export exists. |
+
+## Echelon.Execution prerequisites before migration rehearsal
+
+These must be in place before rehearsal:
+- G2: dependency resume;
+- G3: payload purge (UNB-AVL-009);
+- a quota share and separate worker role for bulk work (UNB-TRN-007);
+- a fix for the queue-limit idempotency defect;
+- the RM-05 benchmark.
+
+Transitus reaches the module only through a host-implemented port and never references it (TRN-REQ-ARC-011).
+
 ## Threat-model additions
 
 Transitus threat model TRN-SEC-01 covers malicious files, archive bombs, XXE, formula injection, path traversal, replay and duplicate financial processing for ingestion. Unbound-specific consequences, such as a duplicated ACH return reversing a contribution twice, are mitigated by UNB-TRN-003 and UNB-TRN-004.
