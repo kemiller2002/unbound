@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Durable command execution for Echelon transactional applications (INIT-012, incubated in Unbound; ADR-EAR-004). No Unbound domain references.</Description>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Types.fs" />
+    <Compile Include="Lifecycle.fs" />
+    <Compile Include="Policy.fs" />
+    <Compile Include="Store.fs" />
+    <Compile Include="Intake.fs" />
+    <Compile Include="Worker.fs" />
+    <Compile Include="InMemoryStore.fs" />
+  </ItemGroup>
+</Project>
