@@ -7,7 +7,7 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | Unbound's ingestion of external files for its release-1 feeds — IRS EO BMF, Publication 78, auto-revocation list, OFAC SDN, state charity registries, NACHA returns and notifications of change, bank activity, custodian files — MUST be implemented as Unbound-owned F# feed modules that use the Transitus Formats, Checks and Evidence libraries for parsing, validation, reconciliation and evidence, rather than bespoke per-feed parsing. |
+| Statement | Unbound's ingestion of external files for its release-1 feeds — IRS EO BMF, Publication 78, auto-revocation list, OFAC SDN, state charity registries, NACHA returns and notifications of change, bank activity, custodian files (Schwab's documented format first) and the canonical historical import — MUST be implemented as Unbound-owned F# feed modules that use the Transitus Formats, Checks and Evidence libraries for parsing, validation, reconciliation and evidence, rather than bespoke per-feed parsing. |
 | Rationale | One governed implementation of parsing limits, control totals and raw evidence instead of one per feed; Transitus keeps no Unbound business rules. |
 | Refines / parent | UNB-EXT-019; UNB-KNOW-027; UNB-CUST-009 |
 | Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
@@ -79,7 +79,7 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | Unbound MUST define the domain operations ingestion loads through (e.g. charity registry observation, OFAC list update, ACH return and NOC recording, bank activity recording, custodian transaction and position recording), each with a declared natural key, idempotency behaviour, read-back query and execution class. |
+| Statement | Unbound MUST define the domain operations ingestion loads through (e.g. charity registry observation, OFAC list update, ACH return and NOC recording, bank activity recording, custodian transaction and position recording), each with a declared natural key, idempotency behaviour, read-back query and execution class. Authorized domain loading interfaces are mandatory; no ingestion path may bypass them. |
 | Rationale | No domain API exists yet; Transitus cannot load without it (Transitus OQ-15). |
 | Refines / parent | — |
 | Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
@@ -97,19 +97,19 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | If CNV-EXP-002 remains in release scope, historical-import operations MAY accept batches only while the sponsor programme is not live (before SingleWriterActive), MUST preserve per-record idempotency keys and per-record receipts, and MUST be unavailable after go-live. |
+| Statement | Historical-import operations MAY accept batches only while the sponsor programme is not live (before SingleWriterActive), MUST preserve per-record idempotency keys and per-record receipts, and MUST be unavailable after go-live. |
 | Rationale | Pre-go-live batches avoid live-traffic conflicts with per-fund ordering (UNB-AVL-005) and quarantine (UNB-AVL-007); per-record commands remain the rule afterwards. |
 | Refines / parent | RR-REQ-X-061-r1; CNV-EXP-002 |
-| Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
+| Source | Transitus initiative (kemiller2002/transitus, 2026-11-26); Owner resolution on kemiller2002/transitus#1 (2026-11-26): canonical historical import and migration rehearsal are required in Unbound R1. |
 | Applicability | Unbound platform (all sponsor tenants) |
 | Responsible system | Unbound (feed modules, domain operations); Transitus libraries (formats, checks, evidence) |
 | Dependencies | UNB-AVL-005 UNB-AVL-007 |
 | Transitus requirements | TRN-REQ-AD-012 |
 | Acceptance criteria | Given a live sponsor, When a batch historical import is submitted, Then it is refused. |
 | Verification | Integration test |
-| Priority | P1 |
+| Priority | P0 |
 | Status | proposed · not implemented |
-| Release scope | conditional (owner decision on CNV-EXP-002 vs simplification REQ-X-061 'Out') |
+| Release scope | initial-implementation |
 
 ### UNB-TRN-007
 
@@ -117,7 +117,7 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 |---|---|
 | Statement | Bulk ingestion commands MUST use a configurable share of the sponsor's queued-command quota, at lower priority than interactive commands, processed by a separate worker role, so that imports cannot throttle donor and staff operations. |
 | Rationale | The per-sponsor queue limit would otherwise let a migration starve interactive work (Transitus review C9). |
-| Refines / parent | UNB-AVL-006 |
+| Refines / parent | UNB-AVL-006 (proposed, discovery/2026-11-25-availability-architecture; not in baseline) |
 | Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
 | Applicability | Unbound platform (all sponsor tenants) |
 | Responsible system | Unbound (feed modules, domain operations); Transitus libraries (formats, checks, evidence) |
@@ -135,7 +135,7 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 |---|---|
 | Statement | Ingestion command payloads MUST carry dataset and record references and hashes only, never personal values, consistent with UNB-AVL-009 vault references. |
 | Rationale | Prevents the durable command store becoming a copy of imported personal data. |
-| Refines / parent | UNB-AVL-009 |
+| Refines / parent | UNB-AVL-009 (proposed, discovery/2026-11-25-availability-architecture; not in baseline) |
 | Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
 | Applicability | Unbound platform (all sponsor tenants) |
 | Responsible system | Unbound (feed modules, domain operations); Transitus libraries (formats, checks, evidence) |
@@ -187,18 +187,36 @@ Mission: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](dat
 
 | Field | Value |
 |---|---|
-| Statement | If migration is in scope, the MigrationRun 'Reconciled' state MUST require a Transitus conservation table (every source record loaded, rejected or excluded with reason) and per-fund balance reconciliation (opening plus movements equals closing) with zero unexplained differences. |
+| Statement | The MigrationRun 'Reconciled' state MUST require a Transitus conservation table (every source record loaded, rejected or excluded with reason) and per-fund balance reconciliation (opening plus movements equals closing) with zero unexplained differences. |
 | Rationale | Makes the reconciliation step of the migration state machine evidential. |
 | Refines / parent | RR-REQ-X-061-r1 |
-| Source | Transitus initiative (kemiller2002/transitus, 2026-11-26) |
+| Source | Transitus initiative (kemiller2002/transitus, 2026-11-26); Owner resolution on kemiller2002/transitus#1 (2026-11-26): canonical historical import and migration rehearsal are required in Unbound R1. |
 | Applicability | Unbound platform (all sponsor tenants) |
 | Responsible system | Unbound (feed modules, domain operations); Transitus libraries (formats, checks, evidence) |
 | Dependencies | — |
 | Transitus requirements | TRN-REQ-VR-002 TRN-REQ-VR-007 |
 | Acceptance criteria | Given a migration with one unexplained fund difference, When Reconciled is requested, Then the transition is refused. |
 | Verification | Integration test |
-| Priority | P1 |
+| Priority | P0 |
 | Status | proposed · not implemented |
-| Release scope | conditional (as UNB-TRN-006) |
+| Release scope | initial-implementation |
+
+### UNB-TRN-012
+
+| Field | Value |
+|---|---|
+| Statement | Before any sponsor's historical import, Unbound MUST perform at least one migration rehearsal: a dry run of the canonical historical import pipeline against the sponsor's export, executing every validation and reconciliation gate (record conservation, per-fund balance, grants-paid control totals) and producing a rehearsal evidence package, with no system-of-record effect; the MigrationRun MUST NOT reach CutoverAuthorized without a rehearsal whose evidence shows zero unexplained differences. |
+| Rationale | Owner direction: migration rehearsal is required in release 1; rehearsal turns the MigrationRun 'Reconciled' and 'ParallelValidated' states into evidence-backed transitions. |
+| Refines / parent | RR-REQ-X-061-r1; CNV-EXP-002 |
+| Source | Owner resolution on kemiller2002/transitus#1 (2026-11-26): canonical historical import and migration rehearsal are required in Unbound R1. |
+| Applicability | Unbound platform (all sponsor tenants) |
+| Responsible system | Unbound (MigrationRun); Transitus (dry-run pipeline, reconciliation, evidence) |
+| Dependencies | UNB-TRN-006 UNB-TRN-011 |
+| Transitus requirements | TRN-REQ-MP-009 TRN-REQ-EX-004 TRN-REQ-VR-013 |
+| Acceptance criteria | Given a sponsor export with one fund whose closing balance differs from the predecessor statement, When the rehearsal runs, Then the evidence package reports the difference, no record is loaded, and CutoverAuthorized is refused. |
+| Verification | Integration test |
+| Priority | P0 |
+| Status | proposed · not implemented |
+| Release scope | initial-implementation |
 
 <!-- END GENERATED -->
