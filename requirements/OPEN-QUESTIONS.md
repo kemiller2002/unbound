@@ -14,17 +14,18 @@ Every question in the requirements missions that still needs an answer, in one p
 
 | Who answers | Open decisions | Awaiting confirmation | Requirement questions | Total |
 |---|---|---|---|---|
-| Counsel | 12 | 40 | 0 | 52 |
+| Counsel | 16 | 40 | 0 | 56 |
 | Finance: CFO, controller, CPA, auditor | 17 | 19 | 0 | 36 |
-| Technology: architecture, security, privacy | 16 | 4 | 0 | 20 |
-| Product owner | 34 | 6 | 143 | 183 |
-| Sponsor governance and operations | 22 | 3 | 0 | 25 |
-| **Total** | **101** | **72** | **143** | **316** |
+| Technology: architecture, security, privacy | 17 | 4 | 0 | 21 |
+| Product owner | 41 | 6 | 157 | 204 |
+| Sponsor governance and operations | 23 | 3 | 0 | 26 |
+| **Total** | **114** | **72** | **157** | **343** |
 
 ## Resolution status
 
 | Resolution status | Approval | Evidence disposition | Questions |
 |---|---|---|---|
+| open | not-approved | — | 27 |
 | resolved | approved-owner | business-policy-decision | 40 |
 | resolved | approved-owner | empirical-validation-required | 8 |
 | resolved | approved-owner | established-by-authoritative-evidence | 18 |
@@ -38,10 +39,13 @@ Every question in the requirements missions that still needs an answer, in one p
 | superseded-by-duplicate | approved-owner | external-authorization-required | 3 |
 | superseded-by-duplicate | approved-owner | reasoned-interpretation | 17 |
 
-## Decide first: open decisions that block implementation (25)
+## Decide first: open decisions that block implementation (28)
 
 | ID | Question | Who answers |
 |---|---|---|
+| OD-CNO-01 | Is migration (platform replacement) in Release 1 or a Release 1.x gate before the first institutional customer, given CNV-EXP-002 (initial-implementation), the CNV-ECO-003 amendment (12-month replay of a real sponsor's history) and the CNV-ECO-004 entry segment, while the proposed R1 scope (RR-REQ-X-061-r1 deferral) says no migration? | Product owner |
+| OD-CNO-02 | Should CNV-PAY-002 admit a third destination-evidence class for partner-bank accounts titled to the charity (e.g. Chariot deposit accounts at Column N.A.) when the partner contract attests equivalent change controls, so CNV-EXP-002 can be met for partner-enrolled charities? | Product owner |
+| OD-CNO-07 | Does CNV-EXP-002's 'full fund history' apply only to platform replacement (not inter-sponsor transfers, per UNB-XIN-EVA-009) and mean 'all history the predecessor holds, with shortfall disclosed'? | Product owner |
 | SPD-CFG-001 | When a new Policy Pack version is published, does it auto-apply to attested sponsors after a notice and objection window, or require re-attestation? | Counsel |
 | SPD-CFG-003 | Who bears liability for an error in platform-maintained Policy Pack content that a sponsor adopted by attestation? | Counsel |
 | SPD-CLR-003 | In what order and by when are the 41 provisional decisions confirmed, and which block production activation? | Counsel |
@@ -68,9 +72,9 @@ Every question in the requirements missions that still needs an answer, in one p
 | XID-SVC-001 | Adopt case kernel with per-kind profiles instead of RCF-PLT-025's single shared lifecycle? | Technology: architecture, security, privacy |
 | XID-SVC-004 | Values of the ContactAssuranceMatrix; is KBA permitted for anything beyond public info? | Technology: architecture, security, privacy |
 
-## 1. Open decisions (101)
+## 1. Open decisions (114)
 
-### Counsel (12)
+### Counsel (16)
 
 | ID | Question | Recommendation | Blocks | Owner | Status | Current answer |
 |---|---|---|---|---|---|---|
@@ -79,6 +83,10 @@ Every question in the requirements missions that still needs an answer, in one p
 | SPD-CLR-003 | In what order and by when are the 41 provisional decisions confirmed, and which block production activation? | Order by downstream dependency count and irreversibility; accounting set confirmed together before first audited year; all production activation gated by UNB-SMP-CLR-002. | Y | General counsel + external CPA | resolved; business-policy-decision | Gate each capability by dependency and irreversibility, confirm accounting before live posting. |
 | SPD-ORG-002 | May the sponsor's DoA name contracted or fractional individuals (not employees) for A4 decisions (exception grants, sanctions true-match, treasury exception release), and in what appointment form? | Allow only for individuals appointed by board resolution as officers/agents of the sponsor with conflict attestations; vendor staff without such appointment stay below A3 (UNB-XIN-CLM-008). | Y | Sponsor counsel + board | resolved; external-authorization-required | Yes. Contracted/fractional individuals may hold A4 authority if appointed by sponsor board resolution as officers (or authorised agents) with defined scope, expiry, conflict attestation, D&O coverage, and acknowledgement of §4966/§4958 manager status. Vendor staff without such appointment stay belo… |
 | XID-ADV-010 | Who provides counsel/CPA-approved default configuration packs (rail obligations, unclaimed property, decline reasons, assurance matrix, recognition point, discretionary policy), and can a sponsor adopt them by attestation? | Platform maintains reviewed default packs; sponsors attest adoption and may only tighten; deviations need sponsor counsel. | Y | General counsel (platform) + sponsor counsel | resolved; business-policy-decision | Reviewed versioned packs, sponsor adoption and lawful deviations. |
+| OD-CNO-05 | How do CNV-GRT-004 (published judgments propagate as shared holds) and CNV-GRT-005 (adjudicated findings are sponsor-discretionary) interact, and may a neutral 're-verify destination' signal be shared when the charity is the fraud victim? | Share only primary-source public facts; defer victim-side signals and cross-sponsor destination evidence beyond Release 1 pending counsel on imputed awareness (Rev. Proc. 2018-32 §4.04/§5.02). | N | Counsel + product owner | open |  |
+| OD-CNO-11 | May a federated identity provider's proofing satisfy CNV-PLT-003 under a trust agreement, and should bulk-imported contacts be exempt from CNV-PLT-011 change holds at import? | Treat federated assertions as evidence only until counsel approves a reliance arrangement; exempt import from change holds but assign migration-provenance contact assurance. | N | Counsel | open |  |
+| OD-CNO-12 | How do Nacha 2026 False Pretenses monitoring obligations allocate between Unbound (TPSP) and a rail partner that transmits the entries? | Assume Unbound carries a TPSP programme for all sponsor credit entries it prepares; confirm allocation with counsel and partner contracts. | N | Counsel | open |  |
+| OD-CNO-13 | Does a Pub 78/BMF listing after an unreinstated revocation constitute a 'subsequent listing' under Rev. Proc. 2018-32 §4.06 for the ~19,700 affected Pub 78 EINs? | Treat as StatusConflict requiring review until counsel answers. | N | Counsel | open |  |
 | SPD-ADV-002 | May a sanctions false-positive disposition made by one sponsor's authorised officer be relied on by another sponsor's screening (RR-UNB-EXT-004-r2)? | No by default: reuse scoped to the disposing sponsor legal entity; cross-sponsor reliance only with counsel approval, a recorded reliance event per relying sponsor, and invalidation propagated to all relying sponsors. | N | Sponsor counsel | resolved; business-policy-decision | No by default for donors and advisors. For recipient organizations, allow reuse of a disposition made by a platform-level qualified reviewer, or by another sponsor's officer, only if the relying sponsor has adopted a written reliance policy. Each reuse is recorded as a reliance event for that spons… |
 | SPD-CLR-004 | What operating model applies if counsel answers RCD-005 Q1 negatively or narrowly (no Tier-1 policy approval)? | Pre-define the fallback: human approval with AI-prepared dossiers and batch sign-off by an authorized officer within DoA limits; recompute staffing and economics before launch. | N | General counsel + product owner | resolved; business-policy-decision | AI dossiers and individual accountable batch decisions if delegation unavailable. |
 | SPD-CXP-001 | Is one explicit grouped acknowledgment, with each representation shown verbatim and one evidence record per representation, acceptable evidence for grant affirmations? | Option A: yes, except for any representation counsel requires to stand alone. | N | Sponsor counsel | resolved; business-policy-decision | Grouped explicit affirmation with per-representation evidence and separate mandatory acknowledgments. |
@@ -109,7 +117,7 @@ Every question in the requirements missions that still needs an answer, in one p
 | XID-BNK-004 | Are instant payment rails allowed for grants? | Not in release 1. | N | Sponsor CFO + compliance | resolved; business-policy-decision | Defer instant rails R1; retain adapter boundary. |
 | XID-ERP-004 | Allow relationship/household fee-tier aggregation? | Off by default; opt-in with consent. | N | Sponsor CFO | resolved; business-policy-decision | Household aggregation opt-in with privacy and consent. |
 
-### Technology: architecture, security, privacy (16)
+### Technology: architecture, security, privacy (17)
 
 | ID | Question | Recommendation | Blocks | Owner | Status | Current answer |
 |---|---|---|---|---|---|---|
@@ -119,6 +127,7 @@ Every question in the requirements missions that still needs an answer, in one p
 | XID-IAM-001 | Default operator-access delegation categories sponsors pre-approve. | Read-only diagnostics and document regeneration pre-approved; all writes per-case. | Y | Sponsor + security owner | resolved; business-policy-decision | Default deny; scoped expiring sponsor-approved access, writes per case. |
 | XID-SVC-001 | Adopt case kernel with per-kind profiles instead of RCF-PLT-025's single shared lifecycle? | Yes; profiles code-defined (F# types) with sponsor parameters. | Y | Architecture owner | resolved; business-policy-decision | Common case kernel, typed profiles and configurable parameters. |
 | XID-SVC-004 | Values of the ContactAssuranceMatrix; is KBA permitted for anything beyond public info? | KBA public-only; possession factor for account data. | Y | Security owner | resolved; business-policy-decision | KBA not sufficient for private data or instructions; risk-based verified authentication. |
+| OD-CNO-06 | Should CNV-TEN-001's cell model gain a charity-scoped partition for charity-controlled data (representatives, private uploads, payment profile) shared by explicit charity authorisation? | Defer; keep charity data sponsor-scoped in Release 1; revisit with cross-sponsor reuse. | N | Architecture + product owner | open |  |
 | SPD-ARX-001 | Where does the hold registry live in release 1? | Separate schema and database role inside the single R1 sponsor database, same HoldPublicationVersion contract; physically separate only when a second sponsor arrives, after TB-02. | N | Architecture owner | resolved; business-policy-decision | Separate schema/role candidate; isolation based on failure domain not sponsor count. |
 | SPD-ARX-002 | Is the protective emergency plane second durable store (REQ-X-047) built for release 1? | Defer until TB-07 shows the managed primary cannot meet declared RTO/RPO. | N | Architecture owner | resolved; business-policy-decision | Second store only if declared recovery/protection objectives cannot otherwise be met. |
 | SPD-DSH-002 | What small-group suppression threshold applies to every cross-sponsor benchmark? | Use the UNB-XIN-ECO-021 threshold (at least 5 contributing sponsors) for all cross-sponsor metrics, plus a dominance rule [A]. | N | Privacy owner | resolved; business-policy-decision; dup of XID-ECO-006 | Experimental suppression thresholds plus differencing tests. |
@@ -130,16 +139,23 @@ Every question in the requirements missions that still needs an answer, in one p
 | XID-SAS-001 | Does any operating model require Profile C (dedicated cell) or a separate implementation at release 1? | No. Serve all 10 models from one release; activate Profile C only on a cited contract clause (UNB-RCN-PLT-012). | N | Architecture owner + product owner | resolved; business-policy-decision | One codebase; dedicated deployment only justified by isolation, resilience or contract. |
 | XID-WFA-001 | Adopt a durable-workflow engine or in-database state machines + outbox + timer table? | In-database; revisit if >50 long-running process types, cross-cell orchestration, or scheduler incidents exceed threshold. | N | Architecture owner | resolved; business-policy-decision | DB workflows initially; revisit on measured complexity/reliability, not arbitrary count. |
 
-### Product owner (34)
+### Product owner (41)
 
 | ID | Question | Recommendation | Blocks | Owner | Status | Current answer |
 |---|---|---|---|---|---|---|
+| OD-CNO-01 | Is migration (platform replacement) in Release 1 or a Release 1.x gate before the first institutional customer, given CNV-EXP-002 (initial-implementation), the CNV-ECO-003 amendment (12-month replay of a real sponsor's history) and the CNV-ECO-004 entry segment, while the proposed R1 scope (RR-REQ-X-061-r1 deferral) says no migration? | Option (a): make a minimal migration capability (single-extract cutover, legacy vault, opening-balance epoch, reconciliation gates) a gate before the first institutional customer. | Y | Product owner | open |  |
+| OD-CNO-02 | Should CNV-PAY-002 admit a third destination-evidence class for partner-bank accounts titled to the charity (e.g. Chariot deposit accounts at Column N.A.) when the partner contract attests equivalent change controls, so CNV-EXP-002 can be met for partner-enrolled charities? | Admit the class only with contractual change-control attestation, owner-change events and the UNB-CNET-018 minimums; otherwise require CNV-PAY-002 in full. | Y | Sponsor treasurer + product owner | open |  |
+| OD-CNO-07 | Does CNV-EXP-002's 'full fund history' apply only to platform replacement (not inter-sponsor transfers, per UNB-XIN-EVA-009) and mean 'all history the predecessor holds, with shortfall disclosed'? | Yes to both, with sponsor written waiver for importing less than available. | Y | Product owner | open |  |
 | SPD-ENT-002 | Which reconciliation window and outcome set apply to reconsideration, and which record survives? | UNB-XIN-CLM-001 survives; window default 60 days (RCD-046); outcomes {Upheld, Reversed, Modified, Withdrawn, Referred}; response 30 days. | Y | Product owner with sponsor operations | resolved; business-policy-decision | 60-day filing, 30-day response; preserve original and outcomes. |
 | XID-ADV-001 | Which optional money-movement and legal features are in release 1 (card contributions, ACH debit intake, direct foreign grants, call recording, pooled investment vehicles, distribution partners, embedded checkout)? | Exclude card intake, call recording, direct foreign grants (use intermediaries) and partner exit tooling from R1; this removes ~8 conditional P0s. | Y | Product owner + general counsel | resolved; business-policy-decision | R1 domestic standard DAF; defer card, direct foreign, recording, pooled vehicles and embedded checkout activation; ACH debit conditional; basic exit/export mandatory. |
 | XID-ADV-002 | Is high-volume-low-balance a release-1 business model, and if so what minimum economics (fee floor, servicing class, digital-only) are acceptable? | Not an R1 model unless UNB-XIN-ADV-001 is adopted and a fee floor passes the XID-ECO-002 reasonableness review. | Y | Product owner + CFO + counsel | resolved; business-policy-decision | High-volume low-balance remains architecturally supported but not offered: at realistic licence scale (100k platform funds) the AI-native approach costs more than an AI-enhanced self-built operation (E4 $121 vs $57); activation requires an executed employer or administrator funding commitment cover… |
 | XID-ADV-004 | Default co-advisor authority mode by instruction kind (resolves XID-TRS-002 vs XID-EVA-006). | Any-one for grants below threshold; AllRequired for large grants, transfers-out, closure, successor and authority changes. | Y | Product owner + counsel | resolved; business-policy-decision | Recorded authority; absent explicit any-one require joint or resolve ambiguity. |
 | XID-ERP-003 | Confirm ERP boundary: AP, procurement, budgeting, HR, payroll, fixed assets are integrations; AR only for partner invoices. | Adopt (consistent with RCD-013). | Y | Product owner | resolved; business-policy-decision | Integrate generic ERP functions; native DAF-specific payables/receivables and reconciliation as needed. |
 | XID-INV-007 | Which functions is Unbound book of record for, per sponsor model? | FundAttribution and FundStatements authoritative always; GL configurable. | Y | Product owner + sponsor CFO | resolved; business-policy-decision | Explicit authority map by function and sponsor; no forced duplicate attribution. |
+| OD-CNO-04 | Does CNV-GRT-003's 'fail safe when stale' mean behind the latest publication (proposed) rather than older than a wall-clock age? | Stale = Unbound lags the latest published release beyond the source's freshness limit, or no release observed within its maximum expected interval. | N | Product owner + sponsor compliance | open |  |
+| OD-CNO-08 | Should the migration rollback boundary in RR-REQ-X-061-r1 move to the earlier of first live posting and first irreversible external effect? | Yes. | N | Product owner | open |  |
+| OD-CNO-09 | Should the public charity registry layer be published as open data or a separate product/repository, now or later? | Not in Release 1; keep the layer publication-ready; no new repository. | N | Owner | open |  |
+| OD-CNO-10 | Approve the onboarding commercial model: fixed price inside a published data-quality gate, included in servicing fees for added sponsors where payback is within term, separate fee for the first sponsor and out-of-gate work, early-exit recovery limited to straight-line unamortised balance, minimum annual fee about $220k for a 1,000-account sponsor on the C0 base (about $160k if AI-native levers are proven). | Approve as working policy pending CNV-ECO-003 evidence; first one to three sponsors on design-partner terms. | N | Owner + commercial | open |  |
 | SPD-CLR-005 | What standing do Clarity and EDF evaluations have in the requirements gate, and what independent (non-same-model) validation is required before their conclusions are relied on? | Treat both as evaluation vocabulary, not gates; require at least one human or different-model review of any conclusion that changes a P0/P1 requirement. | N | Requirements owner | resolved; business-policy-decision | Clarity/EDF evaluation methods, not proof; independent evidence and reviewer for material changes. |
 | SPD-CMP-001 | Which segment is Unbound's primary competitive entry point: D2C small-balance donors, the advisor channel, or community-foundation/independent-sponsor administration? | Treat CF/independent-sponsor administration as the leading hypothesis to test (largest documented cost gap and observed switching), but do not commit until CF requirements (external GL, non-DAF fund types) are scoped and priced; keep D2C small-balance out. | N | product owner | resolved; business-policy-decision | Revised after adversarial review (ADV-B-003/004) and verified DAFRC FY2024 data: community foundations are NOT the entry segment (median 46 DAFs; redesign adds nothing over licensed traditional software; non-DAF fund types out of scope). Entry segment: mid-size national and single-issue sponsors (~… |
 | SPD-CMP-002 | Should Unbound commit to publishing measured service levels (turnaround P50/P90 by rail, response times) and WCAG conformance to donors and charities? | Yes, once measured; publish only measured figures with method and period. | N | product owner | resolved; business-policy-decision | Publish measured service and verified accessibility with methodology. |
@@ -169,12 +185,13 @@ Every question in the requirements missions that still needs an answer, in one p
 | XID-SAS-004 | Initial SLO targets and contractual SLA ceiling. | Three SLOs at 99.5-99.9%; SLAs no tighter. | N | Product owner | resolved; business-policy-decision | Capability SLOs before benchmark; numeric commitments only after evidence. |
 | XID-SVC-005 | Which sponsor models offer live phone channels at release 1? | None; async + scheduled callback. | N | Product owner | resolved; business-policy-decision | Support live phone integration, callback and async; activation by sponsor and accessibility needs. |
 
-### Sponsor governance and operations (22)
+### Sponsor governance and operations (23)
 
 | ID | Question | Recommendation | Blocks | Owner | Status | Current answer |
 |---|---|---|---|---|---|---|
 | XID-ECO-008 | Structural cost floors (SoD/minimum staffing) used by the ratchet | Set per sponsor from SoD design; revisit annually. | Y | COO + Compliance | resolved; business-policy-decision | Structural floors from control and coverage model; revisit on change and annually. |
 | XID-NPG-004 | What criteria and maximum review period govern discretionary holds? | Adjudicated findings or regulator actions only; 90-day maximum review. | Y | Sponsor board | resolved; business-policy-decision | Board-approved criteria: adjudicated findings, regulator actions, and official pending matters (indictment, AG or IRS action, government investigation the sponsor is informed of); media allegations only with elevated approval. Maximum review period 90 days, renewable once per new evidence, with aut… |
+| OD-CNO-03 | Is importing an unchanged bank destination from a predecessor platform a 'bank-detail change' that triggers cooling-off and notice, and must imported incumbent bank details (e.g. Ren-paid charities) be re-verified before electronic payment? | Imported destinations enter LegacyImported and need an owner-match recheck; the import itself is not a bank change for cooling-off. | N | Sponsor treasurer | open |  |
 | SPD-CLR-002 | Is the staffing minimum stated as headcount or as roster coverage by role and day? | Roster coverage (UNB-SMP-CLR-001); withdraw "below 6-8" as a target. | N | COO + sponsor board | resolved; business-policy-decision | Roster coverage not headcount target. |
 | SPD-CXP-002 | May donor identity proofing be risk-based, with a document and selfie step only when database verification fails or risk is elevated? | Yes for release 1 individuals funding by ACH, wire or check from US accounts. Use the document step for entities, complex assets and failed matches. | N | Sponsor compliance and counsel (with RCD-023) | resolved; business-policy-decision | Yes. Use risk-based proofing. Default: validate core attributes against authoritative or credible sources, confirm the funding account owner matches, and send a confirmation code to a validated address/phone. Step up to document plus selfie, or a non-biometric alternative such as a live-video proof… |
 | SPD-CXP-003 | Above which fund balance band, if any, should advisory-privilege holders re-attest affiliations annually rather than only at onboarding and on change? | Merge into SPD-ENT-004 (SPF-ADV-017). | N | Sponsor compliance | resolved; business-policy-decision; dup of SPD-ENT-004 | Merge into SPD-ENT-004; risk not balance alone. |
@@ -295,7 +312,7 @@ Every question in the requirements missions that still needs an answer, in one p
 | RCD-031 | SOC 1 versus SOC 2 scope. | Design for SOC 1 Type II (fund-accounting controls) and SOC 2 Type II (platform security). Readiness only; no attestation claimed. | Compliance owner | resolved; established-by-authoritative-evidence | Confirm with clarification: design for SOC 1 (AT-C 320; ledger/ICFR objectives) and SOC 2 (AT-C 105/205 with TSP 100 2017 TSC, revised points of focus 2022). Type 2 requires an observation period (commonly 6-12 months) so readiness evidence must exist from the period start. Actual report scope and… |
 | RCD-035 | Must every NAV have a human checker? | In-tolerance NAVs are published by deterministic policy (A3) under sponsor delegation, with a sampled human review the next business day. Out-of-tolerance NAVs need a human approver (A4). | Investment committee delegation | resolved; business-policy-decision | No law or standard requires a human checker for every NAV. Publish in-tolerance NAVs by deterministic policy under a recorded investment-committee delegation; route out-of-tolerance, stale, missing or manually overridden prices to a human approver before publication; perform a risk-based next-busin… |
 
-## 3. Open questions on proposed requirements (143)
+## 3. Open questions on proposed requirements (157)
 
 Most of these are answered by the product owner, routing to counsel, finance or architecture where the question says so.
 
@@ -337,6 +354,20 @@ Most of these are answered by the product owner, routing to counsel, finance or 
 | RR-UNB-RULE-019-r1#Q1 | Expedited path for legally mandated changes | Simplification and economics | resolved; business-policy-decision | Documented emergency authorization, impact analysis and independent retrospective review. |
 | RR-UNB-RULE-019-r1#Q2 | Observation period length | Simplification and economics | resolved; business-policy-decision | Seven days is illustrative; require representative volume, risk coverage and rollback readiness, not elapsed time alone. |
 | RR-UNB-TEN-016-r1#Q1 | Read-only retention period and who pays (XID-REC-001). | Cross-industry discovery | superseded-by-duplicate; business-policy-decision; dup of XID-REC-001 | Complete verified export; 90-day read-only period at platform cost (longer at sponsor cost); mandatory retention and legal holds override deletion; sponsor retains records per IRC §6001/Reg. §1.6001-1. |
+| UNB-CNET-004#Q1 | Does the owner accept 'stale = behind the latest publication' as the reading of CNV-GRT-003's fail-safe rule (OD-CNO-04)? | Charity network and onboarding | open |  |
+| UNB-CNET-005#Q1 | Does a Pub 78/BMF listing after an unreinstated revocation constitute a 'subsequent listing' under Rev. Proc. 2018-32 §4.06 (OD-CNO-13)? | Charity network and onboarding | open |  |
+| UNB-CNET-008#Q1 | May a reinstatement date on the revocation list alone support releasing a held grant (counsel)? | Charity network and onboarding | open |  |
+| UNB-CNET-014#Q1 | Should CNV-PAY-002 admit a third evidence class for partner-bank accounts titled to the charity with partner-attested controls (OD-CNO-02)? | Charity network and onboarding | open |  |
+| UNB-CNET-016#Q1 | Is importing an unchanged predecessor bank record a 'bank change' that triggers cooling-off (OD-CNO-03)? | Charity network and onboarding | open |  |
+| UNB-CNET-020#Q1 | Should CNV-TEN-001's cell model gain a charity-scoped partition (OD-CNO-06)? | Charity network and onboarding | open |  |
+| UNB-CNET-023#Q1 | How do Nacha TPSP monitoring obligations allocate between Unbound and a rail partner that transmits the entries (OD-CNO-12)? | Charity network and onboarding | open |  |
+| UNB-CNET-024#Q1 | Should the public layer ever be openly published, and as a separate repository or product (OD-CNO-09)? | Charity network and onboarding | open |  |
+| UNB-ONB-001#Q1 | Confirm that CNV-EXP-002 applies to platform replacement only and that 'full history' means all history the predecessor holds (OD-CNO-07). | Charity network and onboarding | open |  |
+| UNB-ONB-004#Q1 | Approve the onboarding commercial model: included in servicing fee inside the gate for added sponsors; separate fee for first sponsor and out-of-gate work (OD-CNO-10). | Charity network and onboarding | open |  |
+| UNB-ONB-008#Q1 | Confirm the reading of CNV-EXP-002 'full fund history' as all history the predecessor holds (OD-CNO-07). | Charity network and onboarding | open |  |
+| UNB-ONB-017#Q1 | Confirm the rollback boundary as the earlier of first live posting and first irreversible external effect (OD-CNO-08). | Charity network and onboarding | open |  |
+| UNB-ONB-022#Q1 | Should bulk-imported contacts be exempt from CNV-PLT-011 change holds at import (OD-CNO-11)? | Charity network and onboarding | open |  |
+| UNB-ONB-027#Q1 | May a federated identity provider's proofing satisfy CNV-PLT-003 under a trust agreement (counsel, OD-CNO-11)? | Charity network and onboarding | open |  |
 | UNB-SMP-ARX-001#Q1 | What donor-visible SLA is acceptable during suspension? | Simplification and economics | resolved; business-policy-decision | Read-only access only if confidentiality and integrity remain trustworthy; otherwise status-only channel. |
 | UNB-SMP-ARX-001#Q2 | Which paths may use HumanQueue at all? | Simplification and economics | resolved; business-policy-decision | Genuine exceptions, reserved authority, unresolved evidence conflicts and mandatory independent controls only. |
 | UNB-SMP-CFG-001#Q1 | Exact question wording requires sponsor user research (none exists). | Simplification and economics | resolved; business-policy-decision | Use plain-language outcome-based questions with examples and progressive disclosure. |

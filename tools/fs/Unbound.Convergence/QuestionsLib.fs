@@ -8,11 +8,13 @@ open Unbound.Convergence.PyCompat
 let RECON = "requirements/reconciliation/2026-11-23"
 let DISC = "requirements/discovery/2026-11-23-cross-industry"
 let SIMP = "requirements/discovery/2026-11-24-simplification-economics"
+let CNO = "requirements/discovery/2026-11-26-charity-network-and-onboarding"
 
 let MISSIONS =
     [ RECON, "Reconciliation", "14-OPEN-DECISIONS.md"
       DISC, "Cross-industry discovery", "15-OPEN-DECISIONS-AND-SCENARIOS.md"
-      SIMP, "Simplification and economics", "20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md" ]
+      SIMP, "Simplification and economics", "20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md"
+      CNO, "Charity network and onboarding", "04-DECISIONS-AND-OPEN-QUESTIONS.md" ]
 
 let EVENTS = "requirements/questions/resolution-events.jsonl"
 let CLUSTERS = "requirements/questions/question-clusters.csv"

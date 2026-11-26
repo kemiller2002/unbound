@@ -6,12 +6,13 @@ open Unbound.Py.PyJson
 open Unbound.Convergence.PyCompat
 module QL = Unbound.Convergence.QuestionsLib
 
-let RECON, DISC, SIMP = QL.RECON, QL.DISC, QL.SIMP
+let RECON, DISC, SIMP, CNO = QL.RECON, QL.DISC, QL.SIMP, QL.CNO
 
 let SOURCES =
     [ RECON, "Reconciliation", "14-OPEN-DECISIONS.md"
       DISC, "Cross-industry discovery", "15-OPEN-DECISIONS-AND-SCENARIOS.md"
-      SIMP, "Simplification and economics", "20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md" ]
+      SIMP, "Simplification and economics", "20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md"
+      CNO, "Charity network and onboarding", "04-DECISIONS-AND-OPEN-QUESTIONS.md" ]
 
 let OWNER_GROUPS =
     [ "Counsel", [ "counsel"; "legal"; " gc "; " gc,"; "(gc" ]
