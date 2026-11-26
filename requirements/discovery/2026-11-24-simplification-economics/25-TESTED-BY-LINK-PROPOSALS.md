@@ -50,3 +50,19 @@ dotnet run --project tools/fs/Unbound.Convergence -c Release -- render-questions
 - **XDS-ADV-004** (cross-industry mission, not changed) assumes an "Any-one below threshold" default. RR-ADM-023-r2 makes AllRequired the default unless the agreement grants any-one.
 - **SPS-FIN-003** is linked to RR-UNB-GFUND-012-r2 on the strength of the revision's own AC-1 and `validation_scenarios`. If the owner wants the four conditions stated in its preconditions, edit that row.
 - **RR-REQ-X-007-r4** supersedes r2. SPS-ORG-005 and SPS-ORG-006 cite r3 and r1 and were not linked to r4. The sample size of 99 assumes zero expected errors; the owner may prefer another sampling plan.
+
+## Applied 2026-11-26: conflicts with the 2026-11-24 revisions resolved
+
+Done on the owner's instruction ("Do what you recommend"). No requirement statement changed. Each record names its basis
+in an `editorial_revisions` entry, so reverting is an edit to the same rows.
+
+| Item | Change |
+|---|---|
+| RR-UNB-GOV-002-r2 acceptance criteria | The two criteria carried over from r1 contradicted the r2 statement. They are replaced. **AC-R2:** tightening and loosening of the auto-approval ceiling are both material and both need independent approval. **AC-R3:** a change that cannot be classified is treated as material, not as a loosening. |
+| RR-UNB-RULE-019-r2 AC-2 | "Staged with a 14-day observation period" replaced by "before sponsor A has processed the declared representative volume". Elapsed time alone does not satisfy observation. |
+| SPS-PLT-008 | Retired as historical. It still tests the superseded RR-UNB-GOV-002-r1, which keeps that record's coverage, but its title and notes now say so. Current behaviour is SPS-REV-011. |
+| SPS-EDF-002 | The 14-day observation precondition was removed. The scenario now starts before the declared representative volume is reached. |
+| XDS-ADV-004 (cross-industry) | Expected states follow RR-ADM-023-r2. With no declared mode the fund is AllRequired, so neither spouse's recommendation proceeds without co-signature. It previously used the superseded "any-one below threshold" default. |
+
+Validators after the change report 0 errors: validate-simplification (3 warnings), validate-discovery (0) and validate (60).
+Each warning count is unchanged.
