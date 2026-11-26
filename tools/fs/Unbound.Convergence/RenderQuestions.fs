@@ -12,6 +12,7 @@ let SOURCES =
     [ RECON, "Reconciliation", "14-OPEN-DECISIONS.md"
       DISC, "Cross-industry discovery", "15-OPEN-DECISIONS-AND-SCENARIOS.md"
       SIMP, "Simplification and economics", "20-OPEN-DECISIONS-AND-EVIDENCE-GAPS.md"
+      QL.FIL, "File ingestion and STP", "14-QUESTIONS-AND-OWNER-DECISIONS.md"
       CNO, "Charity network and onboarding", "04-DECISIONS-AND-OPEN-QUESTIONS.md" ]
 
 let OWNER_GROUPS =

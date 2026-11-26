@@ -1,0 +1,172 @@
+{
+  "profile_id": "bank.account-reporting.prior-day",
+  "version": 2,
+  "status": "draft",
+  "title": "Prior-day bank account reporting (BAI2 or camt.053)",
+  "description_for_ai": "The sponsor's bank reports yesterday's balances and every credit and debit on each sponsor account. Records become external observations used to match expected contributions, confirm disbursements and reconcile cash. Observations never move money and never post to the ledger directly; matched observations confirm commands that already exist, and unmatched credits open orphan-receipt cases. When the bank omits its reference, the record key falls back to file id and record sequence (UNB-ING-FIN-004).",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "observation-set",
+  "purpose": "bank.account-reporting.prior-day",
+  "sources": [
+    {
+      "kind": "institution",
+      "institution_ref": "sponsor-operating-bank",
+      "authentication": [
+        "oauth-client-credentials",
+        "ssh-key-pinned-host",
+        "pgp-signature"
+      ]
+    }
+  ],
+  "delivery": [
+    "https-scheduled-pull",
+    "sftp-pull",
+    "partner-webhook-reference"
+  ],
+  "formats": [
+    {
+      "type": "bai2",
+      "encoding": "us-ascii",
+      "schema_ref": "bai2-2005",
+      "max_bytes": 52428800,
+      "max_records": 500000
+    },
+    {
+      "type": "iso20022-camt.053",
+      "encoding": "utf-8",
+      "schema_ref": "camt.053.001.08",
+      "max_bytes": 104857600,
+      "max_records": 500000
+    }
+  ],
+  "validation_rules": [
+    "account.registered-to-tenant",
+    "statement.opening-equals-prior-closing",
+    "currency.usd-only",
+    "statement.business-date-expected"
+  ],
+  "control_totals": {
+    "source": "file-trailer",
+    "measures": [
+      "record-count",
+      "sum-credits",
+      "sum-debits",
+      "opening-closing-balance"
+    ],
+    "on_mismatch": "reject-run"
+  },
+  "duplicate_detection": {
+    "artifact": [
+      "sha256",
+      "source-business-date-sequence"
+    ],
+    "record_key": [
+      "account_ref",
+      "bank_reference",
+      "business_date"
+    ],
+    "window_days": 3650,
+    "near_duplicate_fields": [
+      "account_ref",
+      "amount",
+      "value_date",
+      "type_code"
+    ]
+  },
+  "atomicity": "all-or-nothing",
+  "hold_rules": [
+    {
+      "metric": "schema-version-change",
+      "comparison": "gt",
+      "value": 0
+    }
+  ],
+  "output": {
+    "kind": "observation",
+    "observation_type": "bank-transaction",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "expectation": {
+    "calendar": "us-federal-reserve-business-days",
+    "window_local": "05:00-08:00",
+    "time_zone": "America/New_York",
+    "grace_minutes": 120
+  },
+  "dependencies": [],
+  "effective_dates": "from-observation-as-of",
+  "retention_class": "financial-records",
+  "notifications": [
+    {
+      "on": "lapsed",
+      "to": "sponsor-operations"
+    },
+    {
+      "on": "rejected",
+      "to": "platform-operations"
+    }
+  ],
+  "service_expectations": {
+    "receipt_to_outcome_p95_minutes": 30,
+    "max_queue_age_minutes": 15
+  },
+  "sponsor_configurable": [
+    "notifications",
+    "expectation-window",
+    "grace-minutes",
+    "activation"
+  ],
+  "record_schema": {
+    "version": "canonical-bank-transaction@1",
+    "unknown_fields": "hold-run",
+    "fields": [
+      {
+        "name": "account_ref",
+        "source": "account",
+        "type": "identifier",
+        "required": true
+      },
+      {
+        "name": "bank_reference",
+        "source": "bank reference / AcctSvcrRef",
+        "type": "identifier",
+        "required": false
+      },
+      {
+        "name": "business_date",
+        "source": "as-of date",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "value_date",
+        "source": "value date / ValDt",
+        "type": "date",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "source": "amount",
+        "type": "money-usd",
+        "required": true
+      },
+      {
+        "name": "type_code",
+        "source": "BAI type code / BkTxCd",
+        "type": "enum",
+        "required": true
+      },
+      {
+        "name": "record_sequence",
+        "source": "position in file",
+        "type": "integer",
+        "required": true
+      }
+    ]
+  }
+}

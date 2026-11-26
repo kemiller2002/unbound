@@ -1,0 +1,70 @@
+{
+  "profile_id": "correspondence.scanned-mail.vendor",
+  "version": 1,
+  "status": "draft",
+  "title": "Scanned physical mail from a mailroom vendor",
+  "description_for_ai": "A mailroom vendor delivers scanned envelopes as PDFs with an index. Deterministic rules route payment-destination, authority, succession and legal items to fixed queues; AI may classify the rest. Nothing in a letter changes an account or payment destination by itself.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "evidence-document",
+  "purpose": "correspondence.scanned-mail",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "donor-primary",
+        "successor-designee",
+        "sponsor-reviewer"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "api-upload",
+    "mailroom-vendor"
+  ],
+  "formats": [
+    {
+      "type": "pdf",
+      "max_bytes": 20971520,
+      "max_pages": 50,
+      "password_protected": "refuse"
+    }
+  ],
+  "output": {
+    "kind": "evidence-attachment",
+    "attach_to": "case",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "ai-proposal",
+    "fields": [
+      "document_type",
+      "sender_name",
+      "referenced_fund"
+    ],
+    "provider_policy_ref": "ai-provider-policy/in-region-no-retention",
+    "corroboration": [
+      "ein.matches-irs-bmf"
+    ],
+    "review": "always-human"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "account-records",
+  "notifications": [
+    {
+      "on": "rejected",
+      "to": "requester"
+    }
+  ],
+  "sponsor_configurable": [
+    "notifications",
+    "ai-extraction-enablement",
+    "retention-longer-than-minimum"
+  ]
+}

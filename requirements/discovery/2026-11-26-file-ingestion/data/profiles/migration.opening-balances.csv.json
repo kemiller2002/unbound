@@ -1,0 +1,145 @@
+{
+  "profile_id": "migration.opening-balances.csv",
+  "version": 2,
+  "status": "draft",
+  "title": "Migration wave: fund opening balances",
+  "description_for_ai": "During a sponsor migration, the predecessor platform's closing fund balances become Unbound opening balances. The whole wave succeeds or fails together, must agree to the predecessor's trial balance control totals, runs first as a dry run, and requires two authorized sponsor approvers before posting. Opening balances post as dated, reversible migration entries, never as edits. The wave executes as one atomic batch command (UNB-ING-FIN-011); the manifest arrives with the file as one artifact set.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "command-batch",
+  "purpose": "migration.opening-balance",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "sponsor-migration-lead"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    },
+    {
+      "kind": "institution",
+      "institution_ref": "predecessor-platform",
+      "authentication": [
+        "ssh-key-pinned-host",
+        "pgp-signature"
+      ]
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "sftp-pull"
+  ],
+  "formats": [
+    {
+      "type": "csv",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header_row": true,
+      "schema_ref": "migration-opening-balance@1",
+      "max_bytes": 209715200,
+      "max_records": 1500000
+    }
+  ],
+  "record_schema": {
+    "version": "1",
+    "unknown_fields": "hold-run",
+    "fields": [
+      {
+        "name": "legacy_fund_id",
+        "source": "legacy_fund_id",
+        "type": "identifier",
+        "required": true,
+        "transforms": [
+          "trim"
+        ]
+      },
+      {
+        "name": "pool_id",
+        "source": "pool",
+        "type": "identifier",
+        "required": true
+      },
+      {
+        "name": "units",
+        "source": "units",
+        "type": "decimal",
+        "scale": 6,
+        "required": true
+      },
+      {
+        "name": "market_value",
+        "source": "market_value",
+        "type": "money-usd",
+        "required": true
+      },
+      {
+        "name": "cash",
+        "source": "cash",
+        "type": "money-usd",
+        "required": true
+      },
+      {
+        "name": "as_of",
+        "source": "as_of",
+        "type": "date",
+        "date_format": "yyyy-MM-dd",
+        "required": true
+      }
+    ]
+  },
+  "validation_rules": [
+    "migration.fund-mapped",
+    "migration.units-times-nav-equals-value",
+    "migration.as-of-equals-cutover",
+    "money.non-negative"
+  ],
+  "control_totals": {
+    "source": "separate-manifest",
+    "measures": [
+      "record-count",
+      "sum-field"
+    ],
+    "sum_fields": [
+      "market_value",
+      "cash",
+      "units"
+    ],
+    "on_mismatch": "reject-run"
+  },
+  "duplicate_detection": {
+    "artifact": [
+      "sha256",
+      "source-file-id"
+    ],
+    "record_key": [
+      "legacy_fund_id",
+      "pool_id"
+    ]
+  },
+  "atomicity": "all-or-nothing",
+  "output": {
+    "kind": "command",
+    "operation": "migration.post-opening-balances@1",
+    "submission": "requester-confirms"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "financial-records",
+  "notifications": [
+    {
+      "on": "rejected",
+      "to": "requester"
+    },
+    {
+      "on": "held",
+      "to": "sponsor-operations"
+    }
+  ],
+  "sponsor_configurable": []
+}

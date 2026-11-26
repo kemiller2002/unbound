@@ -1,0 +1,87 @@
+{
+  "schema": "unbound.ingestion.catalogs/1",
+  "status": "proposed",
+  "note": "Closed catalogs referenced by profiles (UNB-ING-PRF-001). Each entry is a reviewed F# function; adding one is a control-relevant change under CNV-PLT-010. Business rules of target commands are not catalog entries: previews call the handlers' validate mode (UNB-ING-BND-002).",
+  "validation_rules": {
+    "fund.exists-in-tenant": "Fund reference resolves in the artifact's tenant",
+    "ein.checksum": "Nine digits, valid prefix",
+    "money.positive": "Amount > 0",
+    "money.non-negative": "Amount >= 0",
+    "date.not-past": "Date is today or later",
+    "date.not-future": "Date is not after today",
+    "account.registered-to-tenant": "Bank or custody account registered to the tenant",
+    "statement.opening-equals-prior-closing": "Opening balance equals the prior completed statement's closing balance",
+    "statement.business-date-expected": "Business date and sequence match an open expectation",
+    "currency.usd-only": "Currency is USD",
+    "dataset.subsection-codes-known": "IRS subsection codes are in the known set",
+    "migration.fund-mapped": "Legacy fund id exists in the migration crosswalk",
+    "migration.units-times-nav-equals-value": "units x NAV equals market value within one cent",
+    "migration.as-of-equals-cutover": "As-of date equals the wave's cutover date",
+    "fund.accepts-payroll-from-employer": "Fund participates in the employer's payroll program",
+    "employee.enrolled-to-fund": "Employee reference is enrolled to that fund in the enrollment registry"
+  },
+  "corroborations": {
+    "appraisal.valuation-date-within-60-days-before-gift": "Deterministic date window (consistency with the gift record)",
+    "appraisal.value-consistent-with-8283-section-b": "Consistency check against the donor's own Form 8283 (not independent corroboration)",
+    "death-certificate.decedent-matches-donor-record": "Name and date of birth match the donor record",
+    "ein.matches-irs-bmf": "EIN, legal name and status agree with the active IRS BMF snapshot",
+    "routing.checksum-and-account-validation": "ABA checksum plus account-validation or call-back result"
+  },
+  "purposes": {
+    "grant.recommendation": [
+      "csv",
+      "json"
+    ],
+    "bank.account-reporting.prior-day": [
+      "bai2",
+      "iso20022-camt.053"
+    ],
+    "charity.reference.irs-bmf": [
+      "csv"
+    ],
+    "contribution.noncash.appraisal": [
+      "pdf"
+    ],
+    "migration.opening-balance": [
+      "csv"
+    ],
+    "contribution.payroll-allocation": [
+      "csv"
+    ],
+    "succession.death-certificate": [
+      "pdf",
+      "jpeg",
+      "png"
+    ],
+    "correspondence.scanned-mail": [
+      "pdf"
+    ],
+    "charity.determination-letter": [
+      "pdf",
+      "jpeg",
+      "png"
+    ]
+  },
+  "operations": {
+    "grant.recommend@1": {
+      "interactive": true
+    },
+    "migration.post-opening-balances@1": {
+      "interactive": true,
+      "note": "one atomic batch command (UNB-ING-FIN-011), also available to the migration console"
+    },
+    "contribution.allocate-received-funds@1": {
+      "interactive": true
+    }
+  },
+  "hold_metrics": [
+    "invalid-share",
+    "record-count-vs-30-day-median",
+    "record-count-vs-prior-snapshot",
+    "total-amount",
+    "single-record-amount",
+    "first-run-from-source",
+    "schema-version-change",
+    "late-arrival-minutes"
+  ]
+}

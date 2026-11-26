@@ -1,0 +1,80 @@
+{
+  "profile_id": "charity.determination-letter.document",
+  "version": 1,
+  "status": "draft",
+  "title": "IRS determination letter (exception path)",
+  "description_for_ai": "Used only when public IRS data lags (newly recognised organisations). AI may propose EIN, legal name, subsection and effective date; each proposal must agree with the IRS BMF once published, or the vetting specialist decides.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "evidence-document",
+  "purpose": "charity.determination-letter",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "donor-primary",
+        "successor-designee",
+        "sponsor-reviewer"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "api-upload"
+  ],
+  "formats": [
+    {
+      "type": "pdf",
+      "max_bytes": 20971520,
+      "max_pages": 50,
+      "password_protected": "refuse"
+    },
+    {
+      "type": "jpeg",
+      "max_bytes": 20971520,
+      "max_pixels": 50000000
+    },
+    {
+      "type": "png",
+      "max_bytes": 20971520,
+      "max_pixels": 50000000
+    }
+  ],
+  "output": {
+    "kind": "evidence-attachment",
+    "attach_to": "charity",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "ai-proposal",
+    "fields": [
+      "ein",
+      "legal_name",
+      "subsection",
+      "effective_date"
+    ],
+    "provider_policy_ref": "ai-provider-policy/in-region-no-retention",
+    "corroboration": [
+      "ein.matches-irs-bmf"
+    ],
+    "review": "always-human"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "account-records",
+  "notifications": [
+    {
+      "on": "rejected",
+      "to": "requester"
+    }
+  ],
+  "sponsor_configurable": [
+    "notifications",
+    "ai-extraction-enablement",
+    "retention-longer-than-minimum"
+  ]
+}

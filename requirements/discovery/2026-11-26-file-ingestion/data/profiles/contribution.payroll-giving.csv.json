@@ -1,0 +1,151 @@
+{
+  "profile_id": "contribution.payroll-giving.csv",
+  "version": 2,
+  "status": "draft",
+  "title": "Employer payroll-deduction contribution allocation",
+  "description_for_ai": "An employer or its giving platform sends, for each payroll, how one lump-sum payment splits across employees' donor-advised funds. The expected credit is declared through a contribution intent with a reference; the run waits (up to 72 hours, then holds) until the referenced bank credit is observed, and its total must equal that credit. Rows that do not match an enrolled employee-fund pair are held for the employer to correct, and any unallocated remainder goes to Unidentified suspense, never silently dropped. Correction rows map to adjustment commands.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "command-batch",
+  "purpose": "contribution.payroll-allocation",
+  "sources": [
+    {
+      "kind": "institution",
+      "institution_ref": "employer-or-giving-platform",
+      "authentication": [
+        "oauth-client-credentials",
+        "ssh-key-pinned-host"
+      ]
+    }
+  ],
+  "delivery": [
+    "api-upload",
+    "sftp-pull"
+  ],
+  "formats": [
+    {
+      "type": "csv",
+      "encoding": "utf-8",
+      "delimiter": ",",
+      "header_row": true,
+      "schema_ref": "payroll-allocation@1",
+      "max_bytes": 20971520,
+      "max_records": 200000
+    }
+  ],
+  "record_schema": {
+    "version": "1",
+    "unknown_fields": "hold-run",
+    "fields": [
+      {
+        "name": "employee_ref",
+        "source": "employee_id",
+        "type": "identifier",
+        "required": true
+      },
+      {
+        "name": "fund_ref",
+        "source": "fund_id",
+        "type": "identifier",
+        "required": true
+      },
+      {
+        "name": "amount",
+        "source": "amount",
+        "type": "money-usd",
+        "required": true
+      },
+      {
+        "name": "pay_date",
+        "source": "pay_date",
+        "type": "date",
+        "date_format": "yyyy-MM-dd",
+        "required": true
+      },
+      {
+        "name": "record_kind",
+        "source": "kind",
+        "type": "enum",
+        "required": true,
+        "enum_map": {
+          "deduction": "deduction",
+          "correction": "correction"
+        }
+      }
+    ]
+  },
+  "validation_rules": [
+    "fund.exists-in-tenant",
+    "fund.accepts-payroll-from-employer",
+    "employee.enrolled-to-fund",
+    "money.positive"
+  ],
+  "control_totals": {
+    "source": "funds-received",
+    "measures": [
+      "sum-amount",
+      "record-count"
+    ],
+    "on_mismatch": "reject-run"
+  },
+  "duplicate_detection": {
+    "artifact": [
+      "sha256",
+      "source-file-id"
+    ],
+    "record_key": [
+      "employee_ref",
+      "fund_ref",
+      "pay_date"
+    ],
+    "window_days": 400
+  },
+  "atomicity": "hold-on-threshold",
+  "hold_rules": [
+    {
+      "metric": "invalid-share",
+      "comparison": "gt",
+      "value": 0.02,
+      "sponsor_bounds": [
+        0.0,
+        0.1
+      ]
+    },
+    {
+      "metric": "first-run-from-source",
+      "comparison": "gt",
+      "value": true
+    }
+  ],
+  "output": {
+    "kind": "command",
+    "operation": "contribution.allocate-received-funds@1",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "dependencies": [
+    "bank-observation-referenced-by-contribution-intent"
+  ],
+  "effective_dates": "from-command-rules",
+  "retention_class": "contribution-records",
+  "notifications": [
+    {
+      "on": "held",
+      "to": "source-contact"
+    },
+    {
+      "on": "held",
+      "to": "sponsor-operations"
+    }
+  ],
+  "sponsor_configurable": [
+    "notifications",
+    "hold-rule-values-within-bounds",
+    "activation"
+  ],
+  "dependency_timeout_hours": 72
+}

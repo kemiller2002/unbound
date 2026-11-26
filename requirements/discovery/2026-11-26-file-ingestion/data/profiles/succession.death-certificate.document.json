@@ -1,0 +1,79 @@
+{
+  "profile_id": "succession.death-certificate.document",
+  "version": 1,
+  "status": "draft",
+  "title": "Death certificate for a succession case",
+  "description_for_ai": "A successor or representative uploads a death certificate to a succession case. AI extraction (only where the sponsor enabled it under an approved provider policy) may propose the decedent's name, date of birth and date of death on the masked raster; the successor is activated only by a reviewer's decision.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "evidence-document",
+  "purpose": "succession.death-certificate",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "donor-primary",
+        "successor-designee",
+        "sponsor-reviewer"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "api-upload"
+  ],
+  "formats": [
+    {
+      "type": "pdf",
+      "max_bytes": 20971520,
+      "max_pages": 50,
+      "password_protected": "refuse"
+    },
+    {
+      "type": "jpeg",
+      "max_bytes": 20971520,
+      "max_pixels": 50000000
+    },
+    {
+      "type": "png",
+      "max_bytes": 20971520,
+      "max_pixels": 50000000
+    }
+  ],
+  "output": {
+    "kind": "evidence-attachment",
+    "attach_to": "case",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "ai-proposal",
+    "fields": [
+      "decedent_name",
+      "date_of_birth",
+      "date_of_death"
+    ],
+    "provider_policy_ref": "ai-provider-policy/in-region-no-retention",
+    "corroboration": [
+      "death-certificate.decedent-matches-donor-record"
+    ],
+    "review": "always-human"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "account-records",
+  "notifications": [
+    {
+      "on": "rejected",
+      "to": "requester"
+    }
+  ],
+  "sponsor_configurable": [
+    "notifications",
+    "ai-extraction-enablement",
+    "retention-longer-than-minimum"
+  ]
+}

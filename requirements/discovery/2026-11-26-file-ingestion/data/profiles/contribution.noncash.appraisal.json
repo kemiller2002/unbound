@@ -1,0 +1,58 @@
+{
+  "profile_id": "contribution.noncash.appraisal",
+  "version": 2,
+  "status": "draft",
+  "title": "Qualified appraisal for a noncash contribution",
+  "description_for_ai": "A donor or the donor's adviser uploads the qualified appraisal supporting a noncash contribution. The document is evidence attached to the contribution case and reviewed by the complex-asset specialist. Release 1 uses no AI extraction for appraisals (review R2-17); deterministic checks compare the appraisal's dates and values with the gift record and the donor's Form 8283 as consistency checks.",
+  "owner_scope": "platform",
+  "tenant_scope": {
+    "sponsors": "*"
+  },
+  "artifact_class": "evidence-document",
+  "purpose": "contribution.noncash.appraisal",
+  "sources": [
+    {
+      "kind": "principal-role",
+      "roles": [
+        "donor-primary",
+        "advisor-delegate",
+        "sponsor-complex-asset-specialist"
+      ],
+      "authentication": [
+        "interactive-session-mfa"
+      ]
+    }
+  ],
+  "delivery": [
+    "browser-upload",
+    "api-upload"
+  ],
+  "formats": [
+    {
+      "type": "pdf",
+      "max_bytes": 52428800,
+      "max_pages": 400,
+      "password_protected": "refuse"
+    }
+  ],
+  "output": {
+    "kind": "evidence-attachment",
+    "attach_to": "contribution",
+    "submission": "automatic"
+  },
+  "extraction": {
+    "mode": "none"
+  },
+  "effective_dates": "from-command-rules",
+  "retention_class": "contribution-records",
+  "notifications": [
+    {
+      "on": "rejected",
+      "to": "requester"
+    }
+  ],
+  "sponsor_configurable": [
+    "notifications",
+    "retention-longer-than-minimum"
+  ]
+}
