@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="PyCompat.fs" />
+    <Compile Include="Io.fs" />
+    <Compile Include="UiQualityData.fs" />
+    <Compile Include="UiQuality.fs" />
+    <Compile Include="MergeSpecsData.fs" />
+    <Compile Include="MergeSpecs.fs" />
+    <Compile Include="UiTraceData.fs" />
+    <Compile Include="UiTrace.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Unbound.Py/Unbound.Py.fsproj" />
+  </ItemGroup>
+</Project>

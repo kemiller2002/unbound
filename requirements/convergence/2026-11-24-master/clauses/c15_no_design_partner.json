@@ -1,0 +1,18 @@
+{
+  "AMENDMENTS": {
+    "CNV-ECO-003": {
+      "on": "2026-11-25",
+      "finding": "OD-M-14 owner decision (report 16)",
+      "replace": [
+        [
+          "No segment commitment SHALL be approved until (a) a shadow replay of at least 12 months of a real sponsor's grant and contribution history and (b) a 90-day time study have measured exception incidence, handling minutes, determination-reuse share, complex-gift handling hours and contact rates.",
+          "Segment commitments SHALL be approved by the Unbound board on the public-data replay (report 14) and an internal time study of Unbound's own team working the synthetic operating year (report 16). The first paying sponsor's contract SHALL include the evidence obligations of report 12, so that a shadow replay of at least 12 months of its grant and contribution history and a 90-day time study at that sponsor measure exception incidence, handling minutes, determination-reuse share, complex-gift handling hours and contact rates; modelled savings claims SHALL be restated from those measurements under the withdrawal rule. Those measurements SHALL NOT be a condition of price (OD-M-11)."
+        ]
+      ],
+      "acceptance_add": [
+        "Given a first-sponsor contract without the report-12 evidence obligations, when submitted for signature, then it is refused.",
+        "Given a segment commitment without a board record citing reports 14 and 16, when approval is requested, then it is refused."
+      ]
+    }
+  }
+}

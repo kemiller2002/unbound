@@ -1,11 +1,11 @@
 # 05 — Economic validation and business redesign (Phase 4, revised after adversarial review)
 
-**Status:** theoretical. The model ([`model/enterprise_economics.py`](model/enterprise_economics.py)) imports the
-executed simplification model (`requirements/discovery/2026-11-24-simplification-economics/model/model.py`) and
-`decision_teams.py` **unchanged**. About 60 of the 73 base parameters are assumptions; the enterprises, approach
+**Status:** theoretical. The model (`tools/fs/Unbound.Economics`, module `EnterpriseEconomics.fs`) uses the
+executed simplification model (`Model.fs`, inputs in `requirements/discovery/2026-11-24-simplification-economics/model/parameters.json`) and
+`DecisionTeams.fs` **unchanged** (ported byte-identical from the original Python on 2026-11-25). About 60 of the 73 base parameters are assumptions; the enterprises, approach
 overrides, mixes, licence scales and vendor assumptions added here are labelled. Nothing is observed business
 performance. Tables: [05a-ECONOMIC-TABLES.md](05a-ECONOMIC-TABLES.md). Reproduce:
-`python3 -I -B model/enterprise_economics.py && python3 -I -B model/render_tables.py` (byte-identical; `model/hashes.txt`).
+`dotnet run --project tools/fs/Unbound.Economics -c Release -- enterprise-economics && dotnet run --project tools/fs/Unbound.Economics -c Release -- render-tables` (from the repository root) (byte-identical; `model/hashes.txt`).
 
 **Revision.** The first version of this report (commit `42d83f0`) priced the Unbound licence at a whole-platform
 scale of 1–3 million funds, compared Unbound against a traditional operation given a 30% per-item review rate, and

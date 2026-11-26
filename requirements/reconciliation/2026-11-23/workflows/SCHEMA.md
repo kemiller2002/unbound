@@ -1,6 +1,6 @@
 # Workflow model schema (WFM)
 
-Each release-1 workflow is one JSON file `WFM-nn-<slug>.json`, validated by `tools/reqaudit/workflows.py` (checks W1–W11).
+Each release-1 workflow is one JSON file `WFM-nn-<slug>.json`, validated by `workflows` (`tools/fs/Unbound.ReqAudit`) (checks W1–W11).
 
 ```json
 {

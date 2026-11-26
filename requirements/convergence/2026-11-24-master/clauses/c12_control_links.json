@@ -1,0 +1,355 @@
+{
+  "CONTROL_LINKS": {
+    "CNV-FIN-001": {
+      "controls": [
+        "UNB-CTRL-025",
+        "UNB-CTRL-043"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-FIN-003": {
+      "controls": [
+        "UNB-CTRL-052",
+        "UNB-CTRL-053"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-FIN-004": {
+      "controls": [
+        "UNB-CTRL-046",
+        "UNB-CTRL-047",
+        "UNB-CTRL-048"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-FIN-005": {
+      "controls": [
+        "UNB-CTRL-037",
+        "UNB-CTRL-038",
+        "UNB-CTRL-039"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-FIN-011": {
+      "controls": [
+        "UNB-CTRL-043",
+        "UNB-CTRL-044"
+      ],
+      "operator": "sponsor",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-PAY-001": {
+      "controls": [
+        "UNB-CTRL-049"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-PAY-002": {
+      "controls": [
+        "UNB-CTRL-031",
+        "UNB-CTRL-032",
+        "UNB-CTRL-033",
+        "UNB-CTRL-049"
+      ],
+      "operator": "shared",
+      "report": "SOC1+SOC2",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-PAY-004": {
+      "controls": [
+        "UNB-CTRL-049",
+        "UNB-CTRL-051"
+      ],
+      "operator": "sponsor",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-PAY-005": {
+      "controls": [
+        "UNB-CTRL-053"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PAY-007": {
+      "controls": [
+        "UNB-CTRL-046",
+        "UNB-CTRL-049"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-GRT-001": {
+      "controls": [
+        "UNB-CTRL-025",
+        "UNB-CTRL-026",
+        "UNB-CTRL-027"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-GRT-003": {
+      "controls": [
+        "UNB-CTRL-016",
+        "UNB-CTRL-017"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-GRT-005": {
+      "controls": [
+        "UNB-CTRL-028",
+        "UNB-CTRL-030"
+      ],
+      "operator": "sponsor",
+      "report": "none",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-GRT-006": {
+      "controls": [
+        "UNB-CTRL-016",
+        "UNB-CTRL-018",
+        "UNB-CTRL-028"
+      ],
+      "operator": "shared",
+      "report": "SOC1+SOC2",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-GRT-009": {
+      "controls": [
+        "UNB-CTRL-025",
+        "UNB-CTRL-028"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-GRT-011": {
+      "controls": [
+        "UNB-CTRL-027",
+        "UNB-CTRL-030"
+      ],
+      "operator": "sponsor",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-GOV-003": {
+      "controls": [
+        "UNB-CTRL-001",
+        "UNB-CTRL-003",
+        "UNB-CTRL-046"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-GOV-004": {
+      "controls": [
+        "UNB-CTRL-001",
+        "UNB-CTRL-004"
+      ],
+      "operator": "sponsor",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-GOV-005": {
+      "controls": [
+        "UNB-CTRL-070",
+        "UNB-CTRL-071",
+        "UNB-CTRL-072"
+      ],
+      "operator": "shared",
+      "report": "SOC1+SOC2",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-GOV-010": {
+      "controls": [
+        "UNB-CTRL-001",
+        "UNB-CTRL-064",
+        "UNB-CTRL-067"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1+SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-ARC-002": {
+      "controls": [
+        "UNB-CTRL-004",
+        "UNB-CTRL-007",
+        "UNB-CTRL-008"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-ARC-003": {
+      "controls": [
+        "UNB-CTRL-049",
+        "UNB-CTRL-050"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-TEN-001": {
+      "controls": [
+        "UNB-CTRL-007",
+        "UNB-CTRL-008",
+        "UNB-CTRL-009"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PLT-003": {
+      "controls": [
+        "UNB-CTRL-004",
+        "UNB-CTRL-019"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PLT-004": {
+      "controls": [
+        "UNB-CTRL-074",
+        "UNB-CTRL-086"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": true
+    },
+    "CNV-PLT-007": {
+      "controls": [
+        "UNB-CTRL-076",
+        "UNB-CTRL-077",
+        "UNB-CTRL-049"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1+SOC2",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-PLT-009": {
+      "controls": [
+        "UNB-CTRL-074"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1+SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PLT-010": {
+      "controls": [
+        "UNB-CTRL-070",
+        "UNB-CTRL-071",
+        "UNB-CTRL-073"
+      ],
+      "operator": "Unbound",
+      "report": "SOC1+SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PLT-011": {
+      "controls": [
+        "UNB-CTRL-019",
+        "UNB-CTRL-020",
+        "UNB-CTRL-031"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-PLT-012": {
+      "controls": [
+        "UNB-CTRL-082",
+        "UNB-CTRL-049"
+      ],
+      "operator": "shared",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-AIO-001": {
+      "controls": [
+        "UNB-CTRL-064",
+        "UNB-CTRL-065"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-AIO-002": {
+      "controls": [
+        "UNB-CTRL-064",
+        "UNB-CTRL-066"
+      ],
+      "operator": "Unbound",
+      "report": "SOC2",
+      "automated": true,
+      "cuec": false
+    },
+    "CNV-ENT-001": {
+      "controls": [
+        "UNB-CTRL-022",
+        "UNB-CTRL-023"
+      ],
+      "operator": "sponsor",
+      "report": "SOC1",
+      "automated": false,
+      "cuec": true
+    },
+    "CNV-ENT-002": {
+      "controls": [
+        "UNB-CTRL-007",
+        "UNB-CTRL-079"
+      ],
+      "operator": "shared",
+      "report": "SOC2",
+      "automated": false,
+      "cuec": true
+    }
+  }
+}

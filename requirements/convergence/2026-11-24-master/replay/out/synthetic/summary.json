@@ -1,0 +1,108 @@
+{
+  "seed": "20261125",
+  "year": 2025,
+  "config": {
+    "funds": 10000,
+    "portfolio_share": 0.6,
+    "portfolio_size": "3-8",
+    "grant_sigma": 1,
+    "contribution_sigma": 1.2,
+    "inject_per_1000_grants_per_category": 0.5,
+    "reuse_minutes": 5,
+    "ops_minutes": 15
+  },
+  "inputs": [
+    {
+      "name": "parameters.json",
+      "sha256": "2bc46425eb6c539eb09bd907e8d9c0ea5a3420fe87e11f5ee24a2b726a43c1e0"
+    },
+    {
+      "name": "pub78.txt",
+      "sha256": "7cecf75c63bc1dedf2477272bbf957c57b09e6970132b1b75a48dd73c658dcc7"
+    },
+    {
+      "name": "revocation.txt",
+      "sha256": "baf3191e3056acd9d9ddd2abcc448af1b069ed2c99261b883d3610543cf266e2"
+    },
+    {
+      "name": "eo1.csv",
+      "sha256": "5d1047c15cb6109b73ed244da97961b92a3ec122ac4419f354d248dc059df4e6"
+    },
+    {
+      "name": "eo2.csv",
+      "sha256": "46db809791e9cfe785c74fd6028ed18612f8a639edf763142c017cce3446ccfa"
+    },
+    {
+      "name": "eo3.csv",
+      "sha256": "4902eab594c4be7312192bb03ee5082580ca208bd4f6b9b5a6bcfc009c8f27f4"
+    },
+    {
+      "name": "eo4.csv",
+      "sha256": "3c161b91056ea9291723aa608e40fe093a605238866e4ef8de8d6d9e26ce325c"
+    },
+    {
+      "name": "sdn.csv",
+      "sha256": "89b2a6d6d825d3a0a5033c9d523ef8a5e05a0b766ccff1ad934aea7436da49b9"
+    },
+    {
+      "name": "alt.csv",
+      "sha256": "2e342dc26cd1df3e11efba14d54d61d9290e255b502667b5eb2244e203b3ff5a"
+    }
+  ],
+  "grants": 71475,
+  "contributions": 64932,
+  "grant_dollars": 381485658,
+  "contribution_dollars": 477106702,
+  "december_grant_share": 0.1947,
+  "items_by_kind": {
+    "ach_return": 105,
+    "block_review": 153,
+    "complex_intake": 109,
+    "contact": 2956,
+    "exception_first": 4443,
+    "exception_reuse": 3298,
+    "onboarding_review": 1504,
+    "recon_break": 1358,
+    "sanctions_alert": 62
+  },
+  "items_by_month": {
+    "1": 1090,
+    "2": 947,
+    "3": 1011,
+    "4": 1068,
+    "5": 1006,
+    "6": 1006,
+    "7": 1042,
+    "8": 1086,
+    "9": 1050,
+    "10": 1086,
+    "11": 1007,
+    "12": 2589
+  },
+  "peak_week": {
+    "week": 51,
+    "items": 663
+  },
+  "mean_week_items": 263.9245,
+  "exception_first_per_1000_grants": 63.029,
+  "exception_reuse_per_1000_grants": 46.142,
+  "injected_cases": 95,
+  "injected_outcome": [
+    {
+      "category": "private_foundation",
+      "injected_grants": 29,
+      "surfaced_to_a_person": 29
+    },
+    {
+      "category": "revoked",
+      "injected_grants": 30,
+      "surfaced_to_a_person": 30
+    },
+    {
+      "category": "sanctioned_name",
+      "injected_grants": 38,
+      "surfaced_to_a_person": 36
+    }
+  ],
+  "model_hours": 5353.75
+}

@@ -1,6 +1,7 @@
 /// Entry point. All file and network effects live here; everything it calls is pure.
 ///   fetch <dataDir> <returns.csv>                       download public inputs (idempotent)
 ///   run   <dataDir> <returns.csv> <out.json> <out.md>   compute the replay
+///   synth <dataDir> <returns.csv> <parameters.json> <outDir> <out.md> [funds] [seed]   synthetic operating year
 module Unbound.Replay.Program
 
 open System
@@ -219,11 +220,81 @@ let run (dataDir: string) (returnsCsv: string) (outJson: string) (outMd: string)
     File.WriteAllText(outMd, Report.toMarkdown results)
     printfn $"wrote    {outJson}, {outMd}"
 
+let private loadReturns dataDir returnsCsv =
+    File.ReadLines returnsCsv
+    |> Sources.parseReturnList
+    |> List.choose (fun (_, _, oid) ->
+        match Sources.parseReturn oid (XDocument.Load(xmlPath dataDir oid)) with
+        | Ok r -> Some r
+        | Error e -> eprintfn $"skip {e}"; None)
+
+let synth (dataDir: string) (returnsCsv: string) (paramsPath: string) (outDir: string) (outMd: string) (funds: int) (seed: uint64) =
+    let config = { Synthetic.defaultConfig with Funds = funds; Seed = seed }
+    let p = Synthetic.parseParams "market" (File.ReadAllText paramsPath)
+    let parsed = loadReturns dataDir returnsCsv
+
+    // Recipient pool: every recipient of the itemising sponsors' latest returns, weighted by how many rows name it.
+    let pool =
+        pairs parsed
+        |> List.filter (fst >> itemises)
+        |> List.collect (fun (r, _) -> r.Recipients)
+        |> List.groupBy recipientKey
+        |> List.sortBy fst
+        |> List.map (fun (_, rs) -> List.head rs, float rs.Length)
+        |> Array.ofList
+
+    let recipients = pool |> Array.map fst
+    let cumulative = pool |> Array.map snd |> Synthetic.cumulate
+    let samples = safetySamples dataDir
+    let needed = Set.ofSeq (Seq.append (recipients |> Seq.choose (fun r -> r.Ein)) (samples.PF @ samples.PC @ samples.Revoked))
+    let registry = loadRegistry dataDir needed
+    let primary, aliases = loadSdn dataDir
+    let index = NameMatch.buildIndex 400 (primary @ aliases)
+    let neutralRecipient category ein name = (case category ExpectPerson ein name).Recipient
+
+    let injections =
+        [ "revoked", samples.Revoked |> List.filter (registry.Pub78.ContainsKey >> not) |> List.map (fun e -> neutralRecipient "" (Some e) (neutral e))
+          "private_foundation", samples.PF |> List.map (fun e -> neutralRecipient "" (Some e) (neutral e))
+          "sanctioned_name",
+          primary
+          |> List.filter (fun n -> n.Kind = Entity)
+          |> List.indexed
+          |> List.filter (fun (i, _) -> i % 37 = 0)
+          |> List.truncate 100
+          |> List.mapi (fun i (_, n) -> neutralRecipient "" (Some samples.PC.[i]) (NameMatch.mutate (1 + i % 4) n.Name)) ]
+        |> List.map (fun (k, rs) -> k, Array.ofList rs)
+
+    let fs = Synthetic.funds p config cumulative
+    let evs = Synthetic.events p config recipients cumulative injections fs
+    printfn $"synth    {fs.Length} funds, {evs.Length} events"
+
+    let names =
+        evs |> List.choose (fun e -> match e.Txn with Synthetic.Grant(r, _, _) -> Some r.Name | _ -> None) |> List.distinct |> Array.ofList
+
+    let scores = names |> Array.Parallel.map (fun n -> n, fst (NameMatch.best NameMatch.weighted index n)) |> Map.ofArray
+    let asOf = DateOnly(config.Year, 12, 31)
+    let screenGrant = Screening.screen Standard 0.92 registry asOf (fun n -> scores.TryFind n |> Option.defaultValue 0.0)
+    let items = Synthetic.workItems p config screenGrant fs evs
+    let summary = Synthetic.summarize config evs items
+    let sample = Synthetic.timeStudySample config 40 30 items
+    Directory.CreateDirectory outDir |> ignore
+    let write name (ls: string seq) = File.WriteAllLines(Path.Combine(outDir, name), ls)
+    write "events.jsonl" (evs |> Seq.map (SyntheticReport.eventLine config.Year))
+    write "work-items.jsonl" (items |> Seq.map (SyntheticReport.itemLine config.Year))
+    write "time-study-sample.jsonl" (sample |> Seq.map (SyntheticReport.itemLine config.Year))
+    write "time-study-answer-key.jsonl" (sample |> Seq.map SyntheticReport.answerKeyLine)
+    let inputs = [ "parameters.json", sha256 paramsPath ] @ (sources |> List.map (fun (n, _, _) -> n, sha256 (Path.Combine(dataDir, n))))
+    File.WriteAllText(Path.Combine(outDir, "summary.json"), Json.render (SyntheticReport.summaryJson config inputs summary))
+    File.WriteAllText(outMd, SyntheticReport.toMarkdown config summary (sample |> List.countBy (fun w -> w.Kind)))
+    printfn $"wrote    {outDir}, {outMd}"
+
 [<EntryPoint>]
 let main argv =
     match List.ofArray argv with
     | [ "fetch"; dataDir; returnsCsv ] -> fetch dataDir returnsCsv; 0
     | [ "run"; dataDir; returnsCsv; outJson; outMd ] -> run dataDir returnsCsv outJson outMd; 0
+    | [ "synth"; dataDir; returnsCsv; paramsPath; outDir; outMd ] -> synth dataDir returnsCsv paramsPath outDir outMd 10000 20261125UL; 0
+    | [ "synth"; dataDir; returnsCsv; paramsPath; outDir; outMd; funds; seed ] -> synth dataDir returnsCsv paramsPath outDir outMd (int funds) (uint64 seed); 0
     | _ ->
-        eprintfn "usage: fetch <dataDir> <returns.csv> | run <dataDir> <returns.csv> <out.json> <out.md>"
+        eprintfn "usage: fetch <dataDir> <returns.csv> | run <dataDir> <returns.csv> <out.json> <out.md> | synth <dataDir> <returns.csv> <parameters.json> <outDir> <out.md> [funds seed]"
         2

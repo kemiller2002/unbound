@@ -53,18 +53,18 @@ Domains: `GRT` grants, charities and payments · `FIN` finance, contributions an
 
 ## Relationship vocabulary (`data/trace-edges.csv`)
 
-`refines`, `supersedes`, `conflicts_with`, `duplicates`, `depends_on`, `derived_from`, `validated_by`, `implemented_by` (reserved), `tested_by`, plus `affects` (finding → requirement) and `decided_by` (record → open decision). The graph is **generated** from the records by `tools/reqaudit/graph.py` and must not be edited by hand.
+`refines`, `supersedes`, `conflicts_with`, `duplicates`, `depends_on`, `derived_from`, `validated_by`, `implemented_by` (reserved), `tested_by`, plus `affects` (finding → requirement) and `decided_by` (record → open decision). The graph is **generated** from the records by `graph` (`tools/fs/Unbound.ReqAudit`) and must not be edited by hand.
 
 ## Quality gates
 
 ```bash
-python3 -I tools/reqaudit/inventory.py . requirements/reconciliation/2026-11-23/data   # baseline inventory
-python3 -I tools/reqaudit/quality.py requirements/reconciliation/2026-11-23/data .     # heuristic signals
-python3 -I tools/reqaudit/graph.py requirements/reconciliation/2026-11-23/data          # regenerate edges
-python3 -I tools/reqaudit/render.py .                                                    # refresh generated tables in reports
-python3 -I tools/reqaudit/validate.py .                                                  # gates G1-G12; non-zero exit on error
-python3 -I tools/reqaudit/workflows.py .                                                 # workflow checks W1-W11; writes surface inventory
-python3 -I tools/reqaudit/ia.py                                                          # every surface mapped to a workspace
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- inventory . requirements/reconciliation/2026-11-23/data   # baseline inventory
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- quality requirements/reconciliation/2026-11-23/data .     # heuristic signals
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- graph requirements/reconciliation/2026-11-23/data          # regenerate edges
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- render .                                                    # refresh generated tables in reports
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate .                                                  # gates G1-G12; non-zero exit on error
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- workflows .                                                 # workflow checks W1-W11; writes surface inventory
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- ia                                                          # every surface mapped to a workspace
 ```
 
 Gates: duplicate identifiers (G1); collisions with baseline IDs (G2); originals exist (G3) and are quoted verbatim at the baseline revision (G4); required fields (G5); Given/When/Then acceptance criteria (G6); gap-analysis origin and finding (G7); references resolve (G8); edge vocabulary and endpoints (G9); identifiers cited in these reports resolve (G10); every refinement and gap requirement is tested by a scenario (G11, warning).

@@ -173,3 +173,67 @@ let ``church and government names are classified without IRS listing`` () =
 let ``current Pub 78 listing supersedes a revocation without reinstatement date`` () =
     let r = { registry with Pub78 = registry.Pub78.Add("888888888", { Ein = "888888888"; Codes = [ "PC" ] }) }
     Assert.Equal(StraightThrough, (Screening.screen Standard 0.92 r asOf noSanctions (recipient (Some "888888888") "X" "")).Route)
+
+// ---- Synthetic operating year ----
+
+[<Fact>]
+let ``uniform draws are deterministic, in range and key-sensitive`` () =
+    let a = Synthetic.uniform 7UL [ 1; 2; 3 ]
+    Assert.Equal(a, Synthetic.uniform 7UL [ 1; 2; 3 ])
+    Assert.NotEqual(a, Synthetic.uniform 7UL [ 1; 2; 4 ])
+    let xs = [ for i in 0..9999 -> Synthetic.uniform 1UL [ i ] ]
+    Assert.True(xs |> List.forall (fun x -> x >= 0.0 && x < 1.0))
+    Assert.InRange(List.average xs, 0.49, 0.51)
+
+[<Fact>]
+let ``Poisson draws have the requested mean`` () =
+    let mean = [ for i in 0..19999 -> float (Synthetic.poisson 8.0 (Synthetic.uniform 3UL [ i ])) ] |> List.average
+    Assert.InRange(mean, 7.9, 8.1)
+
+[<Fact>]
+let ``log-normal draws have the requested arithmetic mean`` () =
+    let mean = [ for i in 0..49999 -> Synthetic.lognormal 3000.0 1.0 (Synthetic.uniform 5UL [ i; 0 ]) (Synthetic.uniform 5UL [ i; 1 ]) ] |> List.average
+    Assert.InRange(mean, 2850.0, 3150.0)
+
+[<Fact>]
+let ``weighted choice follows the weights`` () =
+    let cum = Synthetic.cumulate [ 1.0; 3.0 ]
+    let share = [ for i in 0..9999 -> Synthetic.choose cum (Synthetic.uniform 9UL [ i ]) ] |> List.filter ((=) 1) |> List.length |> float
+    Assert.InRange(share / 10000.0, 0.73, 0.77)
+
+[<Fact>]
+let ``stable hash is FNV-1a (independently computed value)`` () =
+    Assert.Equal(823376872, Synthetic.stableHash "F000001-D010-3")
+
+let private paramsJson =
+    """{"params": {"grants_mult": {"value": 1.0}, "avg_grant_scale": {"value": 1.0}, "contacts_mult": {"value": 1.0},
+    "complex_share_mult": {"value": 1.0}, "december_k": {"value": 3}, "december_days": {"value": 25},
+    "recon_break_rate": {"value": 0.0}, "ach_return_rate": {"value": 0.0}, "new_account_share": {"value": 0.0},
+    "minutes_per_exception": {"value": 45}, "contact_minutes": {"value": 20}},
+    "segments": {"typical": {"grants": 8, "avg_grant": 3000, "contribs": 2, "avg_contrib": 12000, "contacts": 0.0,
+    "complex_share": 0.0, "check_share": 0.0, "mix": {"ach": 1.0}}},
+    "mixes": {"market": {"typical": 1.0}}}"""
+
+[<Fact>]
+let ``December surge weights the last 25 days threefold`` () =
+    let p = Synthetic.parseParams "market" paramsJson
+    let cfg = { Synthetic.defaultConfig with Funds = 400; InjectPer1000 = 0.0 }
+    let pool = [| recipient (Some "111111111") "A" ""; recipient (Some "222222222") "B" "" |]
+    let fs = Synthetic.funds p cfg (Synthetic.cumulate [ 1.0; 1.0 ])
+    let evs = Synthetic.events p cfg pool (Synthetic.cumulate [ 1.0; 1.0 ]) [] fs
+    let lateDec = evs |> List.filter (fun e -> e.Day >= 340) |> List.length |> float
+    // 25 days x 3 out of 340 + 75 = 18.1% of arrivals
+    Assert.InRange(lateDec / float evs.Length, 0.165, 0.197)
+
+[<Fact>]
+let ``repeat exception recipients become reuse items`` () =
+    let p = Synthetic.parseParams "market" paramsJson
+    let cfg = { Synthetic.defaultConfig with Funds = 50; InjectPer1000 = 0.0 }
+    let pool = [| recipient (Some "222222222") "PF" "" |]
+    let fs = Synthetic.funds p cfg (Synthetic.cumulate [ 1.0 ])
+    let evs = Synthetic.events p cfg pool (Synthetic.cumulate [ 1.0 ]) [] fs
+    let screenGrant = Screening.screen Standard 0.92 registry asOf noSanctions
+    let items = Synthetic.workItems p cfg screenGrant fs evs
+    Assert.Equal(1, items |> List.filter (fun w -> w.Kind = "exception_first") |> List.length)
+    Assert.Equal((evs |> List.length) - 1 - (evs |> List.filter (fun e -> match e.Txn with Synthetic.Contribution _ -> true | _ -> false) |> List.length),
+                 items |> List.filter (fun w -> w.Kind = "exception_reuse") |> List.length)

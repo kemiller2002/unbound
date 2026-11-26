@@ -1,0 +1,21 @@
+{
+  "clause_modules": [
+    "c1_finance_payments",
+    "c2_grants_law",
+    "c3_governance_regulatory",
+    "c4_platform_product",
+    "c5_adversarial_business",
+    "c6_adversarial_technical"
+  ],
+  "amendment_modules": [
+    "c7_amendments",
+    "c8_owner_decisions",
+    "c9_evidence_amendments",
+    "c10_round2_amendments",
+    "c11_round2_partial_closures",
+    "c14_replay_owner_decisions",
+    "c15_no_design_partner"
+  ],
+  "numeric_parameters_module": "c13_numeric_parameters",
+  "control_links_module": "c12_control_links"
+}

@@ -9,8 +9,8 @@
 3. Run the validator:
 
 ```bash
-python3 -I -B tools/reqaudit/graph.py requirements/discovery/2026-11-24-simplification-economics/data
-python3 -I -B tools/reqaudit/validate_simplification.py .
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- graph requirements/discovery/2026-11-24-simplification-economics/data
+dotnet run --project tools/fs/Unbound.ReqAudit -c Release -- validate-simplification .
 ```
 
 ## Passes

@@ -3,7 +3,7 @@
 Date: 2026-11-23. Folio kemiller2002/folio@56a18e1 (v0.4.2), vendored at `../vendor/folio-0.4.2/` (design review only).
 Renderer: Chromium 157.0.8103.78 (Playwright 1.63.0, preinstalled), `page.pdf({format:'Letter', printBackground:true, preferCSSPageSize:true})`.
 Evidence: `verification.json` (every check, hash and axe result); PDFs and page-1 PNGs (1280 px) in `../rendered/`.
-Tools: `../tools/build-documents.mjs` generates the HTML from seeded synthetic data. `../tools/verify-documents.mjs` renders and checks it.
+Tools: `build-documents` (`tools/fs/Unbound.Designs.V1`) generates the HTML from seeded synthetic data. `verify-documents` (`tools/fs/Unbound.Designs.Verify`) renders and checks it.
 
 **Authoring rule followed:** Folio custom elements, Folio recipe classes (`ef-identity`, `ef-meta-list`, `ef-category-grid`, `ef-dense`) and semantic HTML only. There is no `<style>` element, no `style=""` attribute and no consumer stylesheet. Every document passes `html_has_no_authored_css` and `html_uses_only_folio_custom_elements`.
 

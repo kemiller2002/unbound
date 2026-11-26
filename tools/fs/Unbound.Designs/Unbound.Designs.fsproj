@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="JsCompat.fs" />
+    <Compile Include="Ui.fs" />
+    <Compile Include="Screen.fs" />
+    <Compile Include="S001.fs" />
+    <Compile Include="S004.fs" />
+    <Compile Include="S003.fs" />
+    <Compile Include="S008.fs" />
+    <Compile Include="S011.fs" />
+    <Compile Include="S012.fs" />
+    <Compile Include="W001.fs" />
+    <Compile Include="BuildV2.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>

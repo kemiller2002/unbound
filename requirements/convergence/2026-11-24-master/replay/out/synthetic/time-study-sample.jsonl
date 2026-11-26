@@ -1,0 +1,382 @@
+{"date": "2025-01-03","kind": "sanctions_alert","reference": "F001609-D002-717","fund": "F001609","system_finding": "sanctions_alert"}
+{"date": "2025-01-03","kind": "recon_break","reference": "F006686-D002-883","fund": "F006686","system_finding": "unmatched bank line"}
+{"date": "2025-01-03","kind": "onboarding_review","reference": "F006893-O","fund": "F006893","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-01-04","kind": "recon_break","reference": "F000683-D003-1030","fund": "F000683","system_finding": "unmatched bank line"}
+{"date": "2025-01-04","kind": "onboarding_review","reference": "F006401-O","fund": "F006401","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-01-05","kind": "exception_first","reference": "F001110-D004-1355","fund": "F001110","system_finding": "religious_org_not_listed"}
+{"date": "2025-01-06","kind": "sanctions_alert","reference": "F003745-D005-1830","fund": "F003745","system_finding": "sanctions_alert"}
+{"date": "2025-01-06","kind": "block_review","reference": "F008272-D005-1995","fund": "F008272","system_finding": "revoked"}
+{"date": "2025-01-13","kind": "complex_intake","reference": "F001550-D012-4056","fund": "F001550","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-01-13","kind": "complex_intake","reference": "F007346-D012-4245","fund": "F007346","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-01-14","kind": "onboarding_review","reference": "F004459-O","fund": "F004459","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-01-16","kind": "block_review","reference": "F008991-D015-5253","fund": "F008991","system_finding": "revoked"}
+{"date": "2025-01-17","kind": "exception_first","reference": "F003366-D016-5411","fund": "F003366","system_finding": "religious_org_not_listed"}
+{"date": "2025-01-18","kind": "onboarding_review","reference": "F003626-O","fund": "F003626","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-01-18","kind": "sanctions_alert","reference": "F006445-D017-5846","fund": "F006445","system_finding": "sanctions_alert"}
+{"date": "2025-01-18","kind": "block_review","reference": "F009835-D017-5956","fund": "F009835","system_finding": "revoked"}
+{"date": "2025-01-19","kind": "complex_intake","reference": "F003097-D018-6079","fund": "F003097","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-01-19","kind": "block_review","reference": "F005649-D018-6152","fund": "F005649","system_finding": "revoked"}
+{"date": "2025-01-25","kind": "sanctions_alert","reference": "F004014-D024-8096","fund": "F004014","system_finding": "sanctions_alert"}
+{"date": "2025-01-28","kind": "complex_intake","reference": "F003301-D027-9061","fund": "F003301","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-01-28","kind": "contact","reference": "F004338-K0","fund": "F004338","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-01-30","kind": "exception_reuse","reference": "F000790-D029-9605","fund": "F000790","system_finding": "religious_org_not_listed"}
+{"date": "2025-01-31","kind": "sanctions_alert","reference": "F009753-D030-10227","fund": "F009753","system_finding": "sanctions_alert"}
+{"date": "2025-02-02","kind": "block_review","reference": "F001413-D032-10586","fund": "F001413","system_finding": "revoked"}
+{"date": "2025-02-02","kind": "recon_break","reference": "F008995-D032-10838","fund": "F008995","system_finding": "unmatched bank line"}
+{"date": "2025-02-03","kind": "contact","reference": "F007840-K0","fund": "F007840","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-02-05","kind": "complex_intake","reference": "F002823-D035-11578","fund": "F002823","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-02-06","kind": "contact","reference": "F003526-K0","fund": "F003526","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-02-07","kind": "contact","reference": "F009643-K0","fund": "F009643","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-02-08","kind": "recon_break","reference": "F008944-D038-12734","fund": "F008944","system_finding": "unmatched bank line"}
+{"date": "2025-02-09","kind": "block_review","reference": "F004068-D039-12906","fund": "F004068","system_finding": "revoked"}
+{"date": "2025-02-10","kind": "ach_return","reference": "F007667-D037-12399","fund": "F007667","system_finding": "ACH debit returned"}
+{"date": "2025-02-11","kind": "block_review","reference": "F004998-D041-13577","fund": "F004998","system_finding": "revoked"}
+{"date": "2025-02-11","kind": "exception_first","reference": "F006633-D041-13621","fund": "F006633","system_finding": "government_unit_unverified"}
+{"date": "2025-02-11","kind": "onboarding_review","reference": "F009932-O","fund": "F009932","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-02-13","kind": "block_review","reference": "F003672-D043-14228","fund": "F003672","system_finding": "revoked"}
+{"date": "2025-02-14","kind": "exception_first","reference": "F005522-D044-14643","fund": "F005522","system_finding": "religious_org_not_listed"}
+{"date": "2025-02-14","kind": "complex_intake","reference": "F008201-D044-14748","fund": "F008201","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-02-14","kind": "exception_first","reference": "F008894-D044-14770","fund": "F008894","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-02-17","kind": "contact","reference": "F007704-K0","fund": "F007704","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-02-19","kind": "ach_return","reference": "F003740-D046-15259","fund": "F003740","system_finding": "ACH debit returned"}
+{"date": "2025-02-20","kind": "complex_intake","reference": "F009078-D050-16790","fund": "F009078","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-02-20","kind": "ach_return","reference": "F009280-D047-15798","fund": "F009280","system_finding": "ACH debit returned"}
+{"date": "2025-02-21","kind": "sanctions_alert","reference": "F002869-D051-16909","fund": "F002869","system_finding": "sanctions_alert"}
+{"date": "2025-02-22","kind": "exception_first","reference": "F005549-D052-17318","fund": "F005549","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-02-23","kind": "ach_return","reference": "F009966-D050-16815","fund": "F009966","system_finding": "ACH debit returned"}
+{"date": "2025-02-24","kind": "sanctions_alert","reference": "F000422-D054-17822","fund": "F000422","system_finding": "sanctions_alert"}
+{"date": "2025-02-25","kind": "exception_first","reference": "F004089-D055-18275","fund": "F004089","system_finding": "religious_org_not_listed"}
+{"date": "2025-02-26","kind": "onboarding_review","reference": "F006515-O","fund": "F006515","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-02-26","kind": "exception_first","reference": "F007369-D056-18727","fund": "F007369","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-02-28","kind": "exception_reuse","reference": "F005402-D058-19299","fund": "F005402","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-02","kind": "exception_first","reference": "F002897-D060-19856","fund": "F002897","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-04","kind": "complex_intake","reference": "F001768-D062-20457","fund": "F001768","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-03-04","kind": "sanctions_alert","reference": "F004465-D062-20535","fund": "F004465","system_finding": "sanctions_alert"}
+{"date": "2025-03-04","kind": "sanctions_alert","reference": "F009707-D062-20710","fund": "F009707","system_finding": "sanctions_alert"}
+{"date": "2025-03-05","kind": "complex_intake","reference": "F009309-D063-20994","fund": "F009309","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-03-07","kind": "ach_return","reference": "F008960-D062-20691","fund": "F008960","system_finding": "ACH debit returned"}
+{"date": "2025-03-08","kind": "ach_return","reference": "F004352-D063-20846","fund": "F004352","system_finding": "ACH debit returned"}
+{"date": "2025-03-09","kind": "sanctions_alert","reference": "F002941-D067-22091","fund": "F002941","system_finding": "sanctions_alert"}
+{"date": "2025-03-13","kind": "contact","reference": "F006666-K1","fund": "F006666","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-03-17","kind": "sanctions_alert","reference": "F001673-D075-24701","fund": "F001673","system_finding": "sanctions_alert"}
+{"date": "2025-03-17","kind": "sanctions_alert","reference": "F003074-D075-24753","fund": "F003074","system_finding": "sanctions_alert"}
+{"date": "2025-03-18","kind": "complex_intake","reference": "F004535-D076-25176","fund": "F004535","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-03-18","kind": "exception_reuse","reference": "F008318-D076-25297","fund": "F008318","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-19","kind": "exception_reuse","reference": "F000549-D077-25378","fund": "F000549","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-19","kind": "sanctions_alert","reference": "F001247-D077-25410","fund": "F001247","system_finding": "sanctions_alert"}
+{"date": "2025-03-21","kind": "exception_first","reference": "F005634-D079-26199","fund": "F005634","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-22","kind": "onboarding_review","reference": "F001126-O","fund": "F001126","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-03-24","kind": "contact","reference": "F004960-K0","fund": "F004960","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-03-25","kind": "contact","reference": "F009764-K1","fund": "F009764","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-03-26","kind": "contact","reference": "F002508-K0","fund": "F002508","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-03-27","kind": "exception_first","reference": "F003224-D085-28105","fund": "F003224","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-27","kind": "onboarding_review","reference": "F004881-O","fund": "F004881","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-03-29","kind": "onboarding_review","reference": "F002685-O","fund": "F002685","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-03-29","kind": "onboarding_review","reference": "F006226-O","fund": "F006226","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-03-31","kind": "exception_reuse","reference": "F003398-D089-29338","fund": "F003398","system_finding": "religious_org_not_listed"}
+{"date": "2025-03-31","kind": "exception_first","reference": "F005881-D089-29414","fund": "F005881","system_finding": "religious_org_not_listed"}
+{"date": "2025-04-01","kind": "sanctions_alert","reference": "F009707-D090-29802","fund": "F009707","system_finding": "sanctions_alert"}
+{"date": "2025-04-03","kind": "onboarding_review","reference": "F007559-O","fund": "F007559","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-04-06","kind": "sanctions_alert","reference": "F001747-D095-31179","fund": "F001747","system_finding": "sanctions_alert"}
+{"date": "2025-04-07","kind": "exception_reuse","reference": "F006707-D096-31698","fund": "F006707","system_finding": "religious_org_not_listed"}
+{"date": "2025-04-08","kind": "exception_first","reference": "F003340-D097-31922","fund": "F003340","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-04-08","kind": "ach_return","reference": "F005446-D094-30955","fund": "F005446","system_finding": "ACH debit returned"}
+{"date": "2025-04-08","kind": "onboarding_review","reference": "F006718-O","fund": "F006718","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-04-09","kind": "exception_reuse","reference": "F001890-D098-32194","fund": "F001890","system_finding": "religious_org_not_listed"}
+{"date": "2025-04-09","kind": "recon_break","reference": "F008840-D098-32440","fund": "F008840","system_finding": "unmatched bank line"}
+{"date": "2025-04-10","kind": "ach_return","reference": "F000783-D096-31495","fund": "F000783","system_finding": "ACH debit returned"}
+{"date": "2025-04-11","kind": "sanctions_alert","reference": "F000794-D100-32804","fund": "F000794","system_finding": "sanctions_alert"}
+{"date": "2025-04-11","kind": "complex_intake","reference": "F003908-D100-32896","fund": "F003908","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-04-11","kind": "onboarding_review","reference": "F004244-O","fund": "F004244","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-04-14","kind": "recon_break","reference": "F002455-D103-33862","fund": "F002455","system_finding": "unmatched bank line"}
+{"date": "2025-04-14","kind": "block_review","reference": "F005812-D103-33986","fund": "F005812","system_finding": "revoked"}
+{"date": "2025-04-14","kind": "contact","reference": "F006708-K0","fund": "F006708","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-04-17","kind": "complex_intake","reference": "F009320-D106-35035","fund": "F009320","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-04-20","kind": "exception_first","reference": "F004977-D109-35886","fund": "F004977","system_finding": "religious_org_not_listed"}
+{"date": "2025-04-21","kind": "ach_return","reference": "F004239-D107-35197","fund": "F004239","system_finding": "ACH debit returned"}
+{"date": "2025-04-25","kind": "exception_reuse","reference": "F001428-D114-37431","fund": "F001428","system_finding": "supporting_org_control_check"}
+{"date": "2025-04-27","kind": "sanctions_alert","reference": "F007486-D116-38285","fund": "F007486","system_finding": "sanctions_alert"}
+{"date": "2025-04-28","kind": "recon_break","reference": "F002139-D117-38428","fund": "F002139","system_finding": "unmatched bank line"}
+{"date": "2025-04-28","kind": "exception_reuse","reference": "F004409-D117-38489","fund": "F004409","system_finding": "religious_org_not_listed"}
+{"date": "2025-04-28","kind": "exception_first","reference": "F007309-D117-38597","fund": "F007309","system_finding": "religious_org_not_listed"}
+{"date": "2025-05-02","kind": "exception_first","reference": "F003309-D121-39770","fund": "F003309","system_finding": "religious_org_not_listed"}
+{"date": "2025-05-04","kind": "exception_reuse","reference": "F002450-D123-40387","fund": "F002450","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-05-05","kind": "sanctions_alert","reference": "F001086-D124-40677","fund": "F001086","system_finding": "sanctions_alert"}
+{"date": "2025-05-05","kind": "block_review","reference": "F004977-D124-40794","fund": "F004977","system_finding": "revoked"}
+{"date": "2025-05-07","kind": "exception_first","reference": "F004979-D126-41414","fund": "F004979","system_finding": "no_ein"}
+{"date": "2025-05-09","kind": "contact","reference": "F003961-K0","fund": "F003961","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-05-10","kind": "onboarding_review","reference": "F006577-O","fund": "F006577","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-05-11","kind": "ach_return","reference": "F007937-D127-41830","fund": "F007937","system_finding": "ACH debit returned"}
+{"date": "2025-05-13","kind": "onboarding_review","reference": "F000761-O","fund": "F000761","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-05-14","kind": "exception_reuse","reference": "F005140-D133-43676","fund": "F005140","system_finding": "sanctions_alert"}
+{"date": "2025-05-17","kind": "sanctions_alert","reference": "F006153-D136-44692","fund": "F006153","system_finding": "sanctions_alert"}
+{"date": "2025-05-18","kind": "onboarding_review","reference": "F005503-O","fund": "F005503","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-05-21","kind": "exception_first","reference": "F004506-D140-45988","fund": "F004506","system_finding": "no_ein"}
+{"date": "2025-05-22","kind": "recon_break","reference": "F007402-D141-46393","fund": "F007402","system_finding": "unmatched bank line"}
+{"date": "2025-05-24","kind": "exception_first","reference": "F001413-D143-46865","fund": "F001413","system_finding": "government_unit_unverified"}
+{"date": "2025-05-28","kind": "contact","reference": "F006143-K0","fund": "F006143","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-05-29","kind": "exception_reuse","reference": "F005163-D148-48645","fund": "F005163","system_finding": "religious_org_not_listed"}
+{"date": "2025-05-30","kind": "onboarding_review","reference": "F001113-O","fund": "F001113","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-05-30","kind": "complex_intake","reference": "F004708-D149-48956","fund": "F004708","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-05-30","kind": "sanctions_alert","reference": "F007837-D149-49065","fund": "F007837","system_finding": "sanctions_alert"}
+{"date": "2025-05-31","kind": "exception_first","reference": "F003025-D150-49249","fund": "F003025","system_finding": "religious_org_not_listed"}
+{"date": "2025-06-03","kind": "complex_intake","reference": "F001379-D153-50158","fund": "F001379","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-06-04","kind": "exception_first","reference": "F007400-D154-50704","fund": "F007400","system_finding": "religious_org_not_listed"}
+{"date": "2025-06-05","kind": "ach_return","reference": "F003899-D152-49889","fund": "F003899","system_finding": "ACH debit returned"}
+{"date": "2025-06-06","kind": "complex_intake","reference": "F001703-D156-51147","fund": "F001703","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-06-07","kind": "ach_return","reference": "F000556-D154-50456","fund": "F000556","system_finding": "ACH debit returned"}
+{"date": "2025-06-08","kind": "block_review","reference": "F003489-D158-51857","fund": "F003489","system_finding": "revoked"}
+{"date": "2025-06-08","kind": "exception_first","reference": "F003762-D158-51872","fund": "F003762","system_finding": "religious_org_not_listed"}
+{"date": "2025-06-09","kind": "exception_first","reference": "F000800-D159-52111","fund": "F000800","system_finding": "religious_org_not_listed"}
+{"date": "2025-06-09","kind": "sanctions_alert","reference": "F006130-D159-52280","fund": "F006130","system_finding": "sanctions_alert"}
+{"date": "2025-06-12","kind": "onboarding_review","reference": "F003286-O","fund": "F003286","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-06-13","kind": "complex_intake","reference": "F002830-D163-53480","fund": "F002830","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-06-13","kind": "sanctions_alert","reference": "F006017-D163-53595","fund": "F006017","system_finding": "sanctions_alert"}
+{"date": "2025-06-13","kind": "contact","reference": "F007455-K1","fund": "F007455","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-06-15","kind": "exception_first","reference": "F001880-D165-54178","fund": "F001880","system_finding": "private_foundation_expenditure_responsibility"}
+{"date": "2025-06-16","kind": "onboarding_review","reference": "F003278-O","fund": "F003278","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-06-16","kind": "ach_return","reference": "F009247-D163-53717","fund": "F009247","system_finding": "ACH debit returned"}
+{"date": "2025-06-17","kind": "onboarding_review","reference": "F005037-O","fund": "F005037","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-06-20","kind": "contact","reference": "F005492-K1","fund": "F005492","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-06-21","kind": "sanctions_alert","reference": "F006455-D171-56347","fund": "F006455","system_finding": "sanctions_alert"}
+{"date": "2025-06-22","kind": "block_review","reference": "F000706-D172-56478","fund": "F000706","system_finding": "revoked"}
+{"date": "2025-06-25","kind": "block_review","reference": "F003425-D175-57556","fund": "F003425","system_finding": "revoked"}
+{"date": "2025-06-27","kind": "onboarding_review","reference": "F005040-O","fund": "F005040","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-06-28","kind": "sanctions_alert","reference": "F002739-D178-58530","fund": "F002739","system_finding": "sanctions_alert"}
+{"date": "2025-06-28","kind": "recon_break","reference": "F009977-D178-58779","fund": "F009977","system_finding": "unmatched bank line"}
+{"date": "2025-07-01","kind": "recon_break","reference": "F008215-D181-59692","fund": "F008215","system_finding": "unmatched bank line"}
+{"date": "2025-07-02","kind": "ach_return","reference": "F008705-D179-59043","fund": "F008705","system_finding": "ACH debit returned"}
+{"date": "2025-07-03","kind": "complex_intake","reference": "F009008-D183-60386","fund": "F009008","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-07-04","kind": "ach_return","reference": "F003100-D181-59529","fund": "F003100","system_finding": "ACH debit returned"}
+{"date": "2025-07-04","kind": "block_review","reference": "F005192-D184-60573","fund": "F005192","system_finding": "revoked"}
+{"date": "2025-07-05","kind": "sanctions_alert","reference": "F001339-D185-60753","fund": "F001339","system_finding": "sanctions_alert"}
+{"date": "2025-07-05","kind": "onboarding_review","reference": "F003887-O","fund": "F003887","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-07-06","kind": "contact","reference": "F000467-K0","fund": "F000467","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-07-07","kind": "exception_first","reference": "F009103-D187-61634","fund": "F009103","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-07-11","kind": "sanctions_alert","reference": "F001108-D191-62686","fund": "F001108","system_finding": "sanctions_alert"}
+{"date": "2025-07-12","kind": "onboarding_review","reference": "F001032-O","fund": "F001032","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-07-16","kind": "contact","reference": "F004944-K0","fund": "F004944","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-07-17","kind": "onboarding_review","reference": "F006570-O","fund": "F006570","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-07-18","kind": "onboarding_review","reference": "F008346-O","fund": "F008346","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-07-19","kind": "recon_break","reference": "F009479-D199-65471","fund": "F009479","system_finding": "unmatched bank line"}
+{"date": "2025-07-22","kind": "sanctions_alert","reference": "F005069-D202-66326","fund": "F005069","system_finding": "sanctions_alert"}
+{"date": "2025-07-23","kind": "ach_return","reference": "F001517-D200-65540","fund": "F001517","system_finding": "ACH debit returned"}
+{"date": "2025-07-25","kind": "ach_return","reference": "F001767-D202-66220","fund": "F001767","system_finding": "ACH debit returned"}
+{"date": "2025-07-25","kind": "sanctions_alert","reference": "F009271-D205-67471","fund": "F009271","system_finding": "sanctions_alert"}
+{"date": "2025-07-26","kind": "exception_first","reference": "F006535-D206-67712","fund": "F006535","system_finding": "supporting_org_type_unknown"}
+{"date": "2025-07-27","kind": "ach_return","reference": "F002386-D204-66907","fund": "F002386","system_finding": "ACH debit returned"}
+{"date": "2025-07-29","kind": "complex_intake","reference": "F003055-D209-68623","fund": "F003055","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-07-29","kind": "block_review","reference": "F003978-D209-68648","fund": "F003978","system_finding": "revoked"}
+{"date": "2025-07-30","kind": "sanctions_alert","reference": "F000467-D210-68907","fund": "F000467","system_finding": "sanctions_alert"}
+{"date": "2025-07-30","kind": "complex_intake","reference": "F002672-D210-68981","fund": "F002672","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-07-31","kind": "exception_reuse","reference": "F007721-D211-69477","fund": "F007721","system_finding": "supporting_org_control_check"}
+{"date": "2025-08-01","kind": "block_review","reference": "F003117-D212-69637","fund": "F003117","system_finding": "revoked"}
+{"date": "2025-08-01","kind": "sanctions_alert","reference": "F009657-D212-69853","fund": "F009657","system_finding": "sanctions_alert"}
+{"date": "2025-08-03","kind": "onboarding_review","reference": "F008910-O","fund": "F008910","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-08-04","kind": "block_review","reference": "F007998-D215-70785","fund": "F007998","system_finding": "revoked"}
+{"date": "2025-08-05","kind": "sanctions_alert","reference": "F006880-D216-71055","fund": "F006880","system_finding": "sanctions_alert"}
+{"date": "2025-08-07","kind": "recon_break","reference": "F005205-D218-71698","fund": "F005205","system_finding": "unmatched bank line"}
+{"date": "2025-08-07","kind": "ach_return","reference": "F008822-D215-70811","fund": "F008822","system_finding": "ACH debit returned"}
+{"date": "2025-08-10","kind": "contact","reference": "F003834-K0","fund": "F003834","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-08-13","kind": "complex_intake","reference": "F003973-D224-73584","fund": "F003973","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-08-14","kind": "exception_first","reference": "F005751-D225-73983","fund": "F005751","system_finding": "religious_org_not_listed"}
+{"date": "2025-08-14","kind": "ach_return","reference": "F007798-D222-73051","fund": "F007798","system_finding": "ACH debit returned"}
+{"date": "2025-08-16","kind": "complex_intake","reference": "F003421-D227-74609","fund": "F003421","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-08-18","kind": "exception_first","reference": "F003882-D229-75262","fund": "F003882","system_finding": "supporting_org_type_unknown"}
+{"date": "2025-08-18","kind": "ach_return","reference": "F004844-D226-74309","fund": "F004844","system_finding": "ACH debit returned"}
+{"date": "2025-08-19","kind": "recon_break","reference": "F003216-D230-75586","fund": "F003216","system_finding": "unmatched bank line"}
+{"date": "2025-08-19","kind": "block_review","reference": "F008603-D230-75768","fund": "F008603","system_finding": "revoked"}
+{"date": "2025-08-20","kind": "block_review","reference": "F008401-D231-76094","fund": "F008401","system_finding": "revoked"}
+{"date": "2025-08-22","kind": "ach_return","reference": "F000624-D230-75484","fund": "F000624","system_finding": "ACH debit returned"}
+{"date": "2025-08-22","kind": "exception_reuse","reference": "F003878-D233-76599","fund": "F003878","system_finding": "supporting_org_type_unknown"}
+{"date": "2025-08-22","kind": "exception_first","reference": "F005704-D233-76677","fund": "F005704","system_finding": "religious_org_not_listed"}
+{"date": "2025-08-24","kind": "ach_return","reference": "F009421-D232-76453","fund": "F009421","system_finding": "ACH debit returned"}
+{"date": "2025-08-25","kind": "onboarding_review","reference": "F002858-O","fund": "F002858","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-08-26","kind": "exception_reuse","reference": "F009099-D237-78041","fund": "F009099","system_finding": "sanctions_alert"}
+{"date": "2025-08-27","kind": "exception_first","reference": "F001422-D238-78120","fund": "F001422","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-08-27","kind": "block_review","reference": "F008140-D238-78347","fund": "F008140","system_finding": "revoked"}
+{"date": "2025-08-27","kind": "complex_intake","reference": "F008233-D238-78352","fund": "F008233","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-08-27","kind": "sanctions_alert","reference": "F008242-D238-78353","fund": "F008242","system_finding": "sanctions_alert"}
+{"date": "2025-08-28","kind": "block_review","reference": "F007401-D239-78664","fund": "F007401","system_finding": "revoked"}
+{"date": "2025-08-30","kind": "recon_break","reference": "F000245-D241-79045","fund": "F000245","system_finding": "unmatched bank line"}
+{"date": "2025-08-30","kind": "exception_reuse","reference": "F008046-D241-79300","fund": "F008046","system_finding": "religious_org_not_listed"}
+{"date": "2025-08-31","kind": "recon_break","reference": "F003701-D242-79486","fund": "F003701","system_finding": "unmatched bank line"}
+{"date": "2025-08-31","kind": "exception_reuse","reference": "F007752-D242-79617","fund": "F007752","system_finding": "religious_org_not_listed"}
+{"date": "2025-09-01","kind": "exception_first","reference": "F002621-D243-79767","fund": "F002621","system_finding": "private_foundation_expenditure_responsibility"}
+{"date": "2025-09-02","kind": "ach_return","reference": "F005379-D241-79214","fund": "F005379","system_finding": "ACH debit returned"}
+{"date": "2025-09-02","kind": "exception_first","reference": "F007243-D244-80289","fund": "F007243","system_finding": "private_foundation_expenditure_responsibility"}
+{"date": "2025-09-03","kind": "complex_intake","reference": "F004126-D245-80512","fund": "F004126","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-09-08","kind": "recon_break","reference": "F006060-D250-82202","fund": "F006060","system_finding": "unmatched bank line"}
+{"date": "2025-09-10","kind": "onboarding_review","reference": "F003746-O","fund": "F003746","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-09-12","kind": "sanctions_alert","reference": "F001829-D254-83388","fund": "F001829","system_finding": "sanctions_alert"}
+{"date": "2025-09-13","kind": "complex_intake","reference": "F005197-D255-83815","fund": "F005197","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-09-13","kind": "block_review","reference": "F006666-D255-83861","fund": "F006666","system_finding": "revoked"}
+{"date": "2025-09-14","kind": "complex_intake","reference": "F002821-D256-84084","fund": "F002821","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-09-15","kind": "onboarding_review","reference": "F009112-O","fund": "F009112","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-09-20","kind": "exception_reuse","reference": "F002120-D262-86026","fund": "F002120","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-09-21","kind": "exception_first","reference": "F000033-D263-86275","fund": "F000033","system_finding": "no_ein"}
+{"date": "2025-09-21","kind": "contact","reference": "F000033-K5","fund": "F000033","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-09-21","kind": "contact","reference": "F002101-K0","fund": "F002101","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-09-24","kind": "onboarding_review","reference": "F002502-O","fund": "F002502","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-09-25","kind": "onboarding_review","reference": "F003944-O","fund": "F003944","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-09-28","kind": "complex_intake","reference": "F003079-D270-88715","fund": "F003079","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-09-28","kind": "exception_reuse","reference": "F003407-D270-88726","fund": "F003407","system_finding": "religious_org_not_listed"}
+{"date": "2025-09-28","kind": "ach_return","reference": "F004989-D267-87733","fund": "F004989","system_finding": "ACH debit returned"}
+{"date": "2025-09-28","kind": "sanctions_alert","reference": "F009116-D270-88941","fund": "F009116","system_finding": "sanctions_alert"}
+{"date": "2025-09-30","kind": "exception_reuse","reference": "F007402-D272-89556","fund": "F007402","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-09-30","kind": "contact","reference": "F009580-K0","fund": "F009580","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-10-01","kind": "onboarding_review","reference": "F000613-O","fund": "F000613","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-01","kind": "exception_reuse","reference": "F009582-D273-89999","fund": "F009582","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-10-01","kind": "onboarding_review","reference": "F009753-O","fund": "F009753","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-02","kind": "block_review","reference": "F004310-D274-90165","fund": "F004310","system_finding": "revoked"}
+{"date": "2025-10-02","kind": "block_review","reference": "F009509-D274-90334","fund": "F009509","system_finding": "revoked"}
+{"date": "2025-10-03","kind": "sanctions_alert","reference": "F006621-D275-90558","fund": "F006621","system_finding": "sanctions_alert"}
+{"date": "2025-10-03","kind": "recon_break","reference": "F009538-D275-90652","fund": "F009538","system_finding": "unmatched bank line"}
+{"date": "2025-10-04","kind": "complex_intake","reference": "F001758-D276-90719","fund": "F001758","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-10-04","kind": "block_review","reference": "F009746-D276-90985","fund": "F009746","system_finding": "revoked"}
+{"date": "2025-10-04","kind": "sanctions_alert","reference": "F009938-D276-90994","fund": "F009938","system_finding": "sanctions_alert"}
+{"date": "2025-10-06","kind": "block_review","reference": "F009693-D278-91635","fund": "F009693","system_finding": "revoked"}
+{"date": "2025-10-07","kind": "contact","reference": "F003348-K0","fund": "F003348","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-10-08","kind": "complex_intake","reference": "F001194-D280-92021","fund": "F001194","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-10-08","kind": "onboarding_review","reference": "F002641-O","fund": "F002641","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-08","kind": "complex_intake","reference": "F009572-D280-92301","fund": "F009572","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-10-09","kind": "exception_reuse","reference": "F002430-D281-92393","fund": "F002430","system_finding": "supporting_org_type_unknown"}
+{"date": "2025-10-13","kind": "block_review","reference": "F001435-D285-93669","fund": "F001435","system_finding": "revoked"}
+{"date": "2025-10-16","kind": "block_review","reference": "F004433-D288-94725","fund": "F004433","system_finding": "revoked"}
+{"date": "2025-10-17","kind": "contact","reference": "F000961-K0","fund": "F000961","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-10-18","kind": "block_review","reference": "F008169-D290-95514","fund": "F008169","system_finding": "revoked"}
+{"date": "2025-10-19","kind": "exception_first","reference": "F002289-D291-95656","fund": "F002289","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-10-20","kind": "recon_break","reference": "F006499-D292-96141","fund": "F006499","system_finding": "unmatched bank line"}
+{"date": "2025-10-21","kind": "onboarding_review","reference": "F008146-O","fund": "F008146","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-21","kind": "recon_break","reference": "F008759-D293-96581","fund": "F008759","system_finding": "unmatched bank line"}
+{"date": "2025-10-22","kind": "recon_break","reference": "F006058-D294-96815","fund": "F006058","system_finding": "unmatched bank line"}
+{"date": "2025-10-25","kind": "recon_break","reference": "F005179-D297-97782","fund": "F005179","system_finding": "unmatched bank line"}
+{"date": "2025-10-25","kind": "exception_reuse","reference": "F006304-D297-97821","fund": "F006304","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-10-25","kind": "ach_return","reference": "F009817-D294-96953","fund": "F009817","system_finding": "ACH debit returned"}
+{"date": "2025-10-27","kind": "exception_first","reference": "F003631-D299-98377","fund": "F003631","system_finding": "supporting_org_control_check"}
+{"date": "2025-10-27","kind": "onboarding_review","reference": "F004020-O","fund": "F004020","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-27","kind": "exception_reuse","reference": "F005108-D299-98442","fund": "F005108","system_finding": "no_ein"}
+{"date": "2025-10-28","kind": "recon_break","reference": "F003123-D300-98698","fund": "F003123","system_finding": "unmatched bank line"}
+{"date": "2025-10-29","kind": "exception_reuse","reference": "F001441-D301-98972","fund": "F001441","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-10-31","kind": "onboarding_review","reference": "F005654-O","fund": "F005654","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-10-31","kind": "complex_intake","reference": "F007850-D303-99848","fund": "F007850","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-11-01","kind": "block_review","reference": "F001390-D304-99953","fund": "F001390","system_finding": "revoked"}
+{"date": "2025-11-04","kind": "contact","reference": "F003113-K0","fund": "F003113","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-11-05","kind": "sanctions_alert","reference": "F007106-D308-101458","fund": "F007106","system_finding": "sanctions_alert"}
+{"date": "2025-11-05","kind": "exception_reuse","reference": "F008647-D308-101504","fund": "F008647","system_finding": "government_unit_unverified"}
+{"date": "2025-11-06","kind": "block_review","reference": "F005530-D309-101718","fund": "F005530","system_finding": "revoked"}
+{"date": "2025-11-06","kind": "complex_intake","reference": "F005723-D309-101723","fund": "F005723","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-11-06","kind": "block_review","reference": "F005867-D309-101732","fund": "F005867","system_finding": "revoked"}
+{"date": "2025-11-06","kind": "block_review","reference": "F006392-D309-101744","fund": "F006392","system_finding": "revoked"}
+{"date": "2025-11-07","kind": "complex_intake","reference": "F009647-D310-102174","fund": "F009647","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-11-08","kind": "ach_return","reference": "F000299-D308-101231","fund": "F000299","system_finding": "ACH debit returned"}
+{"date": "2025-11-08","kind": "recon_break","reference": "F008119-D311-102460","fund": "F008119","system_finding": "unmatched bank line"}
+{"date": "2025-11-11","kind": "recon_break","reference": "F003185-D314-103301","fund": "F003185","system_finding": "unmatched bank line"}
+{"date": "2025-11-11","kind": "exception_first","reference": "F009843-D314-103529","fund": "F009843","system_finding": "not_501c3"}
+{"date": "2025-11-12","kind": "ach_return","reference": "F006601-D312-102745","fund": "F006601","system_finding": "ACH debit returned"}
+{"date": "2025-11-12","kind": "block_review","reference": "F008405-D315-103842","fund": "F008405","system_finding": "revoked"}
+{"date": "2025-11-13","kind": "exception_first","reference": "F006877-D316-104110","fund": "F006877","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-13","kind": "exception_reuse","reference": "F009719-D316-104218","fund": "F009719","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-14","kind": "ach_return","reference": "F000251-D314-103205","fund": "F000251","system_finding": "ACH debit returned"}
+{"date": "2025-11-15","kind": "exception_reuse","reference": "F000695-D318-104557","fund": "F000695","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-15","kind": "complex_intake","reference": "F009107-D318-104831","fund": "F009107","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-11-16","kind": "ach_return","reference": "F003239-D316-104004","fund": "F003239","system_finding": "ACH debit returned"}
+{"date": "2025-11-16","kind": "sanctions_alert","reference": "F009513-D319-105180","fund": "F009513","system_finding": "sanctions_alert"}
+{"date": "2025-11-17","kind": "exception_reuse","reference": "F000429-D320-105212","fund": "F000429","system_finding": "sanctions_alert"}
+{"date": "2025-11-17","kind": "contact","reference": "F000697-K0","fund": "F000697","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-11-17","kind": "recon_break","reference": "F007991-D320-105452","fund": "F007991","system_finding": "unmatched bank line"}
+{"date": "2025-11-18","kind": "recon_break","reference": "F002026-D321-105587","fund": "F002026","system_finding": "unmatched bank line"}
+{"date": "2025-11-18","kind": "block_review","reference": "F005396-D321-105691","fund": "F005396","system_finding": "revoked"}
+{"date": "2025-11-19","kind": "onboarding_review","reference": "F001550-O","fund": "F001550","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-11-21","kind": "exception_first","reference": "F001220-D324-106549","fund": "F001220","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-23","kind": "complex_intake","reference": "F000323-D326-107182","fund": "F000323","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-11-23","kind": "sanctions_alert","reference": "F004400-D326-107316","fund": "F004400","system_finding": "sanctions_alert"}
+{"date": "2025-11-23","kind": "exception_reuse","reference": "F006668-D326-107384","fund": "F006668","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-24","kind": "contact","reference": "F002582-K1","fund": "F002582","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-11-24","kind": "exception_first","reference": "F008047-D327-107796","fund": "F008047","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-26","kind": "exception_reuse","reference": "F002180-D329-108246","fund": "F002180","system_finding": "religious_org_not_listed"}
+{"date": "2025-11-27","kind": "contact","reference": "F009957-K0","fund": "F009957","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-11-29","kind": "block_review","reference": "F002709-D332-109267","fund": "F002709","system_finding": "revoked"}
+{"date": "2025-12-01","kind": "contact","reference": "F007613-K0","fund": "F007613","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-02","kind": "ach_return","reference": "F001016-D332-109209","fund": "F001016","system_finding": "ACH debit returned"}
+{"date": "2025-12-02","kind": "contact","reference": "F002927-K0","fund": "F002927","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-02","kind": "exception_reuse","reference": "F006239-D335-110385","fund": "F006239","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-03","kind": "exception_reuse","reference": "F004107-D336-110627","fund": "F004107","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-04","kind": "block_review","reference": "F000025-D337-110832","fund": "F000025","system_finding": "revoked"}
+{"date": "2025-12-04","kind": "recon_break","reference": "F000204-D337-110841","fund": "F000204","system_finding": "unmatched bank line"}
+{"date": "2025-12-05","kind": "contact","reference": "F008245-K1","fund": "F008245","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-06","kind": "block_review","reference": "F005919-D339-111752","fund": "F005919","system_finding": "revoked"}
+{"date": "2025-12-07","kind": "block_review","reference": "F001666-D340-112065","fund": "F001666","system_finding": "revoked"}
+{"date": "2025-12-07","kind": "ach_return","reference": "F009703-D337-111158","fund": "F009703","system_finding": "ACH debit returned"}
+{"date": "2025-12-08","kind": "complex_intake","reference": "F000950-D341-112937","fund": "F000950","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-08","kind": "sanctions_alert","reference": "F002719-D341-113112","fund": "F002719","system_finding": "sanctions_alert"}
+{"date": "2025-12-08","kind": "exception_reuse","reference": "F009580-D341-113791","fund": "F009580","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-09","kind": "sanctions_alert","reference": "F001600-D342-113999","fund": "F001600","system_finding": "sanctions_alert"}
+{"date": "2025-12-09","kind": "complex_intake","reference": "F002534-D342-114097","fund": "F002534","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-09","kind": "block_review","reference": "F003128-D342-114151","fund": "F003128","system_finding": "revoked"}
+{"date": "2025-12-09","kind": "block_review","reference": "F005031-D342-114328","fund": "F005031","system_finding": "revoked"}
+{"date": "2025-12-09","kind": "recon_break","reference": "F008355-D342-114665","fund": "F008355","system_finding": "unmatched bank line"}
+{"date": "2025-12-10","kind": "exception_first","reference": "F003749-D343-115207","fund": "F003749","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-12-10","kind": "onboarding_review","reference": "F008476-O","fund": "F008476","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-12-10","kind": "block_review","reference": "F008828-D343-115719","fund": "F008828","system_finding": "revoked"}
+{"date": "2025-12-11","kind": "exception_first","reference": "F007123-D344-116530","fund": "F007123","system_finding": "no_ein"}
+{"date": "2025-12-12","kind": "exception_reuse","reference": "F002910-D345-117076","fund": "F002910","system_finding": "sanctions_alert"}
+{"date": "2025-12-12","kind": "exception_reuse","reference": "F006415-D345-117420","fund": "F006415","system_finding": "no_ein"}
+{"date": "2025-12-13","kind": "recon_break","reference": "F009827-D346-118710","fund": "F009827","system_finding": "unmatched bank line"}
+{"date": "2025-12-14","kind": "contact","reference": "F003906-K0","fund": "F003906","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-14","kind": "exception_first","reference": "F004157-D347-119118","fund": "F004157","system_finding": "no_ein"}
+{"date": "2025-12-14","kind": "onboarding_review","reference": "F004200-O","fund": "F004200","system_finding": "new fund: identity and sanctions screening result to confirm"}
+{"date": "2025-12-14","kind": "exception_reuse","reference": "F008670-D347-119527","fund": "F008670","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-14","kind": "exception_reuse","reference": "F009618-D347-119623","fund": "F009618","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-16","kind": "complex_intake","reference": "F001490-D349-120768","fund": "F001490","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-17","kind": "exception_reuse","reference": "F001214-D350-121775","fund": "F001214","system_finding": "government_unit_unverified"}
+{"date": "2025-12-17","kind": "recon_break","reference": "F004763-D350-122118","fund": "F004763","system_finding": "unmatched bank line"}
+{"date": "2025-12-17","kind": "exception_reuse","reference": "F005464-D350-122186","fund": "F005464","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-17","kind": "recon_break","reference": "F007285-D350-122372","fund": "F007285","system_finding": "unmatched bank line"}
+{"date": "2025-12-17","kind": "contact","reference": "F007401-K0","fund": "F007401","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-18","kind": "exception_first","reference": "F001245-D351-122747","fund": "F001245","system_finding": "private_foundation_expenditure_responsibility"}
+{"date": "2025-12-18","kind": "block_review","reference": "F005919-D351-123240","fund": "F005919","system_finding": "revoked"}
+{"date": "2025-12-18","kind": "contact","reference": "F009772-K0","fund": "F009772","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-19","kind": "ach_return","reference": "F004245-D349-121067","fund": "F004245","system_finding": "ACH debit returned"}
+{"date": "2025-12-19","kind": "block_review","reference": "F008662-D352-124481","fund": "F008662","system_finding": "revoked"}
+{"date": "2025-12-19","kind": "sanctions_alert","reference": "F009416-D352-124541","fund": "F009416","system_finding": "sanctions_alert"}
+{"date": "2025-12-20","kind": "recon_break","reference": "F003414-D353-124915","fund": "F003414","system_finding": "unmatched bank line"}
+{"date": "2025-12-20","kind": "block_review","reference": "F003554-D353-124927","fund": "F003554","system_finding": "revoked"}
+{"date": "2025-12-20","kind": "ach_return","reference": "F004476-D350-122095","fund": "F004476","system_finding": "ACH debit returned"}
+{"date": "2025-12-21","kind": "exception_first","reference": "F000302-D354-125628","fund": "F000302","system_finding": "ein_not_in_irs_lists"}
+{"date": "2025-12-21","kind": "ach_return","reference": "F002487-D351-122874","fund": "F002487","system_finding": "ACH debit returned"}
+{"date": "2025-12-21","kind": "exception_first","reference": "F003213-D354-125919","fund": "F003213","system_finding": "private_foundation_expenditure_responsibility"}
+{"date": "2025-12-21","kind": "ach_return","reference": "F005879-D351-123234","fund": "F005879","system_finding": "ACH debit returned"}
+{"date": "2025-12-21","kind": "exception_reuse","reference": "F008028-D354-126410","fund": "F008028","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-22","kind": "complex_intake","reference": "F009592-D355-127601","fund": "F009592","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-23","kind": "sanctions_alert","reference": "F002232-D356-127868","fund": "F002232","system_finding": "sanctions_alert"}
+{"date": "2025-12-23","kind": "exception_first","reference": "F003675-D356-128008","fund": "F003675","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-23","kind": "ach_return","reference": "F007124-D353-125313","fund": "F007124","system_finding": "ACH debit returned"}
+{"date": "2025-12-24","kind": "recon_break","reference": "F006724-D357-129263","fund": "F006724","system_finding": "unmatched bank line"}
+{"date": "2025-12-24","kind": "ach_return","reference": "F007843-D354-126378","fund": "F007843","system_finding": "ACH debit returned"}
+{"date": "2025-12-25","kind": "recon_break","reference": "F000245-D358-129598","fund": "F000245","system_finding": "unmatched bank line"}
+{"date": "2025-12-25","kind": "contact","reference": "F005147-K0","fund": "F005147","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-25","kind": "recon_break","reference": "F005349-D358-130092","fund": "F005349","system_finding": "unmatched bank line"}
+{"date": "2025-12-25","kind": "recon_break","reference": "F006674-D358-130222","fund": "F006674","system_finding": "unmatched bank line"}
+{"date": "2025-12-25","kind": "contact","reference": "F006732-K0","fund": "F006732","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-25","kind": "exception_reuse","reference": "F007035-D358-130265","fund": "F007035","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-25","kind": "recon_break","reference": "F007819-D358-130337","fund": "F007819","system_finding": "unmatched bank line"}
+{"date": "2025-12-26","kind": "ach_return","reference": "F001228-D356-127763","fund": "F001228","system_finding": "ACH debit returned"}
+{"date": "2025-12-26","kind": "recon_break","reference": "F005603-D359-131137","fund": "F005603","system_finding": "unmatched bank line"}
+{"date": "2025-12-27","kind": "complex_intake","reference": "F001348-D360-131695","fund": "F001348","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-27","kind": "exception_reuse","reference": "F002083-D360-131778","fund": "F002083","system_finding": "religious_org_not_listed"}
+{"date": "2025-12-27","kind": "complex_intake","reference": "F002180-D360-131788","fund": "F002180","system_finding": "complex asset, sold on receipt (OD-M-09)"}
+{"date": "2025-12-27","kind": "block_review","reference": "F005649-D360-132129","fund": "F005649","system_finding": "revoked"}
+{"date": "2025-12-28","kind": "contact","reference": "F009127-K1","fund": "F009127","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-29","kind": "contact","reference": "F001318-K0","fund": "F001318","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-29","kind": "ach_return","reference": "F002991-D359-130851","fund": "F002991","system_finding": "ACH debit returned"}
+{"date": "2025-12-29","kind": "contact","reference": "F004740-K0","fund": "F004740","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-29","kind": "block_review","reference": "F006143-D362-134110","fund": "F006143","system_finding": "revoked"}
+{"date": "2025-12-30","kind": "contact","reference": "F000607-K0","fund": "F000607","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-30","kind": "recon_break","reference": "F001108-D363-134571","fund": "F001108","system_finding": "unmatched bank line"}
+{"date": "2025-12-30","kind": "contact","reference": "F002828-K0","fund": "F002828","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-30","kind": "block_review","reference": "F003152-D363-134777","fund": "F003152","system_finding": "revoked"}
+{"date": "2025-12-30","kind": "recon_break","reference": "F007427-D363-135177","fund": "F007427","system_finding": "unmatched bank line"}
+{"date": "2025-12-31","kind": "contact","reference": "F001132-K0","fund": "F001132","system_finding": "donor or advisor contact needing a person"}
+{"date": "2025-12-31","kind": "block_review","reference": "F003814-D364-135796","fund": "F003814","system_finding": "revoked"}
+{"date": "2025-12-31","kind": "block_review","reference": "F009496-D364-136355","fund": "F009496","system_finding": "revoked"}

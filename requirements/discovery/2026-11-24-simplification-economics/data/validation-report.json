@@ -4,7 +4,7 @@
     "gaps": 16,
     "findings": 157,
     "conflicts": 0,
-    "scenarios": 77,
+    "scenarios": 89,
     "decisions": 59,
     "rejected": 66,
     "work": 143,
@@ -16,7 +16,7 @@
     "roles": 24
   },
   "register_rows": 1487,
-  "trace_edges": 1574,
+  "trace_edges": 1616,
   "errors": 0,
   "warnings": 3,
   "errors_by_gate": {}

@@ -1,0 +1,789 @@
+{
+  "CLAUSES": [
+    {
+      "id": "CNV-ARC-001",
+      "title": "Modular monolith on managed PostgreSQL, accepted against declared objectives",
+      "statement": "The authoritative ledger and fact tables SHALL live in one managed PostgreSQL database per sponsor tenant (candidate) with a transactional outbox and durable process-manager rows; workflows SHALL use in-database state machines with a timer table, and a durable-workflow engine or message broker SHALL be adopted only on measured complexity or reliability evidence. Before architecture acceptance, capability-specific RTO and RPO, SLOs, workload and cost envelope SHALL be declared and benchmarked on a realistic managed instance including failover and contention; acknowledged financial facts SHALL NOT be lost without explicitly approved recovery semantics. A second durable protective store SHALL be built only if declared protection objectives cannot otherwise be met; the hold registry SHALL sit in a separate schema and role, isolated by failure domain. Event payloads SHALL carry references to a PII vault, with controlled immutable evidence exceptions. One codebase SHALL serve all operating models; dedicated deployments only by isolation, resilience or contract need. Measurable SLOs SHALL be defined per capability and servicing tier before the benchmark; numeric contractual SLA commitments SHALL be made only after benchmark and pilot evidence.",
+      "acceptance_criteria": [
+        "Given the benchmark report, when architecture acceptance is requested, then each capability's RTO, RPO and SLO is listed with measured results.",
+        "Given an event containing a donor's name, when published to the outbox, then validation rejects it unless it is a registered evidence exception."
+      ],
+      "resolves": [
+        "XID-EVA-001",
+        "UNB-XIN-EVA-013#Q1",
+        "XID-WFA-001",
+        "RR-UNB-RES-003-r1#Q1",
+        "SPD-ARX-001",
+        "SPD-ARX-002",
+        "XID-EVA-007",
+        "XID-SAS-001",
+        "RCD-004",
+        "UNB-XIN-SAS-005#Q1",
+        "XID-SAS-004",
+        "UNB-XIN-SAS-008#Q1"
+      ],
+      "amends": [
+        "UNB-XIN-EVA-013",
+        "RR-UNB-RES-003-r1",
+        "REQ-X-047",
+        "REQ-X-020",
+        "UNB-XIN-SAS-005",
+        "UNB-XIN-SAS-008"
+      ],
+      "related_findings": [],
+      "domain": "PLT",
+      "target_file": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
+      "release_scope": "architectural-support",
+      "activation_gate": "Empirical: benchmark against declared objectives (DG-09, DG-11).",
+      "owners": {
+        "domain_owner": "Architecture",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound architecture owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound engineering"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Empirical: benchmark against declared objectives (DG-09, DG-11)."
+    },
+    {
+      "id": "CNV-ARC-002",
+      "title": "Tenant isolation and operator access",
+      "statement": "The tenant unit SHALL be the legal sponsor; partner and program isolation SHALL be threat-tested. Operator access to a tenant SHALL be denied by default; read diagnostics SHALL be scoped, expiring and pre-approved by the sponsor; writes SHALL require per-case approval; revocation SHALL take effect immediately and every access SHALL be evidenced. A minimal shared party core SHALL be partitioned by role and tenant.",
+      "acceptance_criteria": [
+        "Given an operator without an active grant, when they query tenant B, then the request is refused and alerted.",
+        "Given a revoked grant, when the operator session continues, then the next request is refused."
+      ],
+      "resolves": [
+        "XID-IAM-001",
+        "UNB-XIN-IAM-002#Q1",
+        "XID-CRM-003",
+        "RCD-004"
+      ],
+      "amends": [
+        "UNB-XIN-IAM-002"
+      ],
+      "related_findings": [
+        "RCF-PLT-001"
+      ],
+      "domain": "TEN",
+      "target_file": "requirements/PARTNER-SEGREGATION-AND-TENANCY.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Architecture",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound architecture owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound engineering"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-ARC-003",
+      "title": "Global hold fencing at irreversible dispatch",
+      "statement": "Protected execution SHALL reference the immutable hold-publication version and SHALL check it atomically with authorization at the irreversible dispatch step (fencing token), with idempotency keys and reconciliation of in-flight payments; freshness checks alone SHALL NOT be relied on; unknown hold state SHALL fail closed.",
+      "acceptance_criteria": [
+        "Given a hold published between authorization and dispatch, when dispatch runs, then the fencing check fails and nothing is transmitted."
+      ],
+      "resolves": [
+        "UNB-XIN-SAS-005#Q1"
+      ],
+      "amends": [
+        "UNB-XIN-SAS-005"
+      ],
+      "related_findings": [],
+      "domain": "PLT",
+      "target_file": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Architecture",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound architecture owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound engineering"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-FIN-012",
+      "title": "Book-of-record function map and ERP boundary",
+      "statement": "Each sponsor SHALL have an explicit function map naming the book of record for each financial function (program ledger, fund attribution, entity GL, payables, budgeting, payroll, fixed assets). Unbound SHALL provide DAF program reporting, reconciliation, audit exports and DAF-specific payables and receivables; entity financial statements, generic AP, procurement, budgeting, HR, payroll and fixed assets SHALL be integrations with the sponsor ERP by default (configurable, not mandatory). One authoritative book SHALL exist per entity and accounting basis, internal or external; no duplicate authoritative books SHALL be forced. Where the GL or fund attribution is external (Shadow), grantable capacity SHALL be verified balances less commitments, fees and reservations, computed atomically, failing safe on stale data; external attribution SHALL be imported for comparison, and a shadow duplicate book SHALL be built only on demonstrated sponsor demand. The common double-entry journal component SHALL serve distinct entity books with separate permissions. Fee accruals and income attributions SHALL be computed daily, posted per approved policy, and unposted accruals subtracted from capacity. Vendor master data MAY be imported with provenance and validation.",
+      "acceptance_criteria": [
+        "Given a sponsor whose GL is external, when capacity is requested with a stale balance, then the request fails safe with StaleExternalBalance.",
+        "Given two entity books on the journal component, when a user with access to one queries the other, then access is refused."
+      ],
+      "resolves": [
+        "XID-INV-007",
+        "SPD-FIN-002",
+        "RR-UNB-ACC-022-r1#Q1",
+        "XID-ERP-003",
+        "SPD-FIN-007",
+        "RR-UNB-ACC-008-r1#Q1",
+        "SPD-FIN-003",
+        "RR-UNB-ACC-014-r2#Q1",
+        "XID-ADV-003",
+        "UNB-XIN-ADV-002#Q1",
+        "RR-UNB-ACC-004-r1#Q1",
+        "UNB-XIN-EVA-001#Q1",
+        "XID-ADV-007",
+        "UNB-XIN-ERP-004#Q1"
+      ],
+      "amends": [
+        "RR-UNB-ACC-022-r1",
+        "RR-UNB-ACC-008-r1",
+        "RR-UNB-ACC-014-r2",
+        "RR-UNB-ACC-004-r1",
+        "UNB-XIN-ADV-002",
+        "UNB-XIN-EVA-001",
+        "UNB-XIN-ERP-004"
+      ],
+      "related_findings": [],
+      "domain": "FIN",
+      "target_file": "requirements/FULL-ACCOUNTING-SYSTEM.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Sponsor controller approval of the function map.",
+      "owners": {
+        "domain_owner": "Finance",
+        "financial_system_of_record": "Unbound program ledger / sponsor GL per function map",
+        "policy_owner": "Sponsor controller",
+        "data_owner": "Sponsor",
+        "operational_owner": "Sponsor finance",
+        "evidence_owner": "Sponsor controller"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Sponsor controller approval of the function map."
+    },
+    {
+      "id": "CNV-FIN-013",
+      "title": "Custodian and advisor-fee feeds",
+      "statement": "Custodian adapters SHALL preserve the raw feed and normalized identifiers including delivering participant and memo; unmatched deliveries SHALL queue. Advisor fee debits SHALL be recorded as distinct transactions where feeds expose them and raised as reconciliation exceptions where they do not. Bank-specific ODFI monitoring overlays SHALL be versioned above the mandatory baseline, and activation SHALL be blocked until documented.",
+      "acceptance_criteria": [
+        "Given a DTC delivery without memo, when received, then it queues for matching and is not credited to a fund automatically."
+      ],
+      "resolves": [
+        "UNB-XIN-PAY-007#Q1",
+        "UNB-XIN-INV-001#Q1",
+        "UNB-XIN-BNK-002#Q1"
+      ],
+      "amends": [
+        "UNB-XIN-PAY-007",
+        "UNB-XIN-INV-001",
+        "UNB-XIN-BNK-002"
+      ],
+      "related_findings": [],
+      "domain": "FIN",
+      "target_file": "requirements/FULL-ACCOUNTING-SYSTEM.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Empirical: verify each custodian's and bank's actual feed content.",
+      "owners": {
+        "domain_owner": "Finance",
+        "financial_system_of_record": "Unbound program ledger / sponsor GL per function map",
+        "policy_owner": "Sponsor controller",
+        "data_owner": "Sponsor",
+        "operational_owner": "Sponsor finance",
+        "evidence_owner": "Sponsor controller"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Empirical: verify each custodian's and bank's actual feed content."
+    },
+    {
+      "id": "CNV-GRT-016",
+      "title": "Recorded instruction authority for multi-advisor funds",
+      "statement": "Instruction authority SHALL come from the recorded fund agreement, never from marital status. Absent explicit any-one authority, all authorized parties SHALL approve or the ambiguity SHALL be resolved before execution; closure, succession and authority changes SHALL require joint approval; conflicting instructions SHALL be detected and capacity reserved atomically. Changing only the funding source of an unchanged grant SHALL require notice only when recipient, amount, purpose, timing, donor costs, investment exposure, restrictions and tax or accounting consequences are unchanged and the funding instruction is authorized; otherwise approval SHALL be obtained. Fixed and percentage-of-available-capacity grants (frozen at approval), the closing sweep and recurring fixed grants SHALL ship in release 1; cash-first funding SHALL be configurable. Verified ACH SHALL be the default rail, with checks and authorized hand delivery supported; instant rails SHALL be deferred behind the rail adapter boundary.",
+      "acceptance_criteria": [
+        "Given a joint fund with no any-one clause, when one advisor recommends a grant, then it waits for the co-advisor.",
+        "Given a funding-source change that alters investment exposure, when submitted, then advisor approval is required."
+      ],
+      "resolves": [
+        "XID-ADV-004",
+        "XID-EVA-006",
+        "XID-TRS-002",
+        "RR-ADM-023-r1#Q1",
+        "UNB-XIN-EVA-012#Q1",
+        "SPD-FIN-004",
+        "RR-UNB-GFUND-012-r1#Q1",
+        "SPD-FIN-001",
+        "SPD-GRT-004",
+        "XID-BNK-004"
+      ],
+      "amends": [
+        "RR-ADM-023-r1",
+        "UNB-XIN-EVA-012",
+        "RR-UNB-GFUND-012-r1"
+      ],
+      "related_findings": [],
+      "domain": "GRT",
+      "target_file": "requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Sponsor fund-agreement wording on authority modes.",
+      "owners": {
+        "domain_owner": "Grants",
+        "financial_system_of_record": "Unbound program ledger",
+        "policy_owner": "Sponsor operations owner",
+        "data_owner": "Sponsor",
+        "operational_owner": "Sponsor grant operations",
+        "evidence_owner": "Sponsor compliance officer"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Sponsor fund-agreement wording on authority modes."
+    },
+    {
+      "id": "CNV-GOV-005",
+      "title": "Policy packs, configuration and change control",
+      "statement": "Policy packs SHALL be versioned and effective-dated; material changes SHALL require affirmative sponsor adoption; emergency mandatory changes SHALL use a separately authorized path with impact analysis and independent retrospective review; tightening SHALL NOT be assumed safe. Material changes to financial controls, eligibility, permissions or customer rights SHALL require independent approval regardless of direction; ambiguous or mixed changes SHALL be treated as material; author self-approval SHALL be impossible. Rollout SHALL use representative shadow replay with volume, risk coverage and rollback readiness criteria (not elapsed time alone), and cross-sponsor shadow evaluation only with privacy controls. Liability for platform-maintained content SHALL follow a contractual responsibility matrix; attestation SHALL NOT transfer liability for platform error. Each activation element SHALL map to its decision IDs and evidence dependencies, and unresolved mandatory dependencies SHALL block activation. Sponsor onboarding SHALL use plain-language outcome-based questions with examples and progressive disclosure; wording SHALL be validated by sponsor usability research. Workflow timing defaults SHALL be versioned candidates overridden by statutory and contractual deadlines.",
+      "acceptance_criteria": [
+        "Given a pack change that lowers a grant limit, when submitted by its author, then independent approval is required before adoption.",
+        "Given an activation element whose basis decision is unresolved, when activation is requested, then it is refused."
+      ],
+      "resolves": [
+        "SPD-CFG-001",
+        "SPD-CFG-003",
+        "UNB-SMP-CFG-002#Q1",
+        "UNB-SMP-CFG-002#Q2",
+        "XID-ADV-010",
+        "RR-UNB-RULE-019-r1#Q1",
+        "RR-UNB-RULE-019-r1#Q2",
+        "SPD-EDF-001",
+        "UNB-SMP-CLR-002#Q1",
+        "UNB-SMP-CFG-001#Q1",
+        "RCD-046",
+        "SPD-CLR-003",
+        "RR-ADM-002-r1#Q2",
+        "UNB-XIN-SAS-003#Q1"
+      ],
+      "amends": [
+        "UNB-SMP-CFG-001",
+        "UNB-SMP-CFG-002",
+        "UNB-SMP-CLR-002",
+        "RR-UNB-RULE-019-r1",
+        "RR-UNB-GOV-002-r1",
+        "RR-ADM-002-r1",
+        "UNB-XIN-SAS-003"
+      ],
+      "related_findings": [],
+      "domain": "GOV",
+      "target_file": "requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Product",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound product owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound product owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-GOV-006",
+      "title": "Justified human intervention and non-removable capabilities",
+      "statement": "Every mandatory human step SHALL record its legal, fiduciary, independent-control, uncertainty-resolution or measured economic justification, accountable owner, evidence, review date and safe automation alternative; convention-only steps SHALL be reviewed annually and on material change, and missing or expired justification SHALL trigger review, never automatic bypass. Human queues SHALL be used only for genuine exceptions, reserved authority, unresolved evidence conflicts and mandatory independent controls. Financial integrity, tenant isolation, audit, mandatory compliance and accessibility SHALL be non-removable; other features SHALL be configurable. Every existing obligation SHALL carry a basis (law, contract, policy, convention) and review date. Cost budgets SHALL be diagnostic signals and SHALL never deny mandatory service or fiduciary obligations. Recurring obligations SHALL be inventoried for all servicing classes. Delegated customer roles SHALL expire on events with risk-based recertification. Affiliation attestation SHALL be event-driven with periodic confirmation; decisions affected by a stale mandatory attestation SHALL be blocked.",
+      "acceptance_criteria": [
+        "Given a mandatory step whose justification expired, when the register runs, then a review task opens and the step remains in force.",
+        "Given a configuration disabling accessibility features, when saved, then it is rejected as non-removable."
+      ],
+      "resolves": [
+        "UNB-SMP-CXP-001#Q1",
+        "UNB-SMP-ARX-001#Q2",
+        "UNB-XIN-SAS-001#Q1",
+        "UNB-XIN-ADV-001#Q1",
+        "UNB-XIN-ADV-001#Q2",
+        "SPD-ENT-007",
+        "SPD-PLT-002",
+        "SPD-ENT-004",
+        "SPD-CXP-003",
+        "SPD-CXP-001"
+      ],
+      "amends": [
+        "UNB-SMP-CXP-001",
+        "UNB-SMP-ARX-001",
+        "UNB-XIN-SAS-001",
+        "UNB-XIN-ADV-001"
+      ],
+      "related_findings": [],
+      "domain": "GOV",
+      "target_file": "requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Product",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound product owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound product owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-GOV-007",
+      "title": "Authoritative control register and requirements governance",
+      "statement": "One control register SHALL be authoritative, preserving mappings and evidence of the UNB-CTRL, UNB-SCTRL, CTL and TVCTL catalogs before duplicates are retired. Cumulative delegation-of-authority limits SHALL aggregate by entity, beneficiary or counterparty and related transactions across approvers within a 30-day window (candidate) and detect splitting. REQ-X-058..077 and landscape-wave outcome records SHALL be reclassified as a non-normative capability index only after carrier coverage is verified, preserving IDs. Research tasks and hypotheses SHALL move to the evidence backlog with owners, dependencies and dates. Golden fixtures SHALL be built first for authorities with the highest decision risk, after verifying current text. Clarity and EDF outputs SHALL be evaluation methods, not proof; material changes SHALL require independent evidence. Competitive claims SHALL carry dated evidence and bounded wording; absence of evidence is not proof of absence. Technology mandates SHALL remain subject to verified capability and licence (the Echelon stack is PolyForm Noncommercial; a commercial licence SHALL be in place before commercial launch). Conditor SHALL be mandatory before implementation; the requirements-only waiver SHALL end at the implementation gate.",
+      "acceptance_criteria": [
+        "Given two approvals of $9,000 each to the same counterparty within 30 days by different approvers under a $10,000 limit, when the second is approved, then cumulative-limit escalation triggers."
+      ],
+      "resolves": [
+        "SPD-PLT-003",
+        "XID-ERP-005",
+        "SPD-ENT-001",
+        "SPD-ENT-008",
+        "XID-GOV-001",
+        "SPD-CLR-005",
+        "SPD-CMP-004",
+        "RCD-027",
+        "RCD-002",
+        "RCD-003"
+      ],
+      "amends": [
+        "UNB-GOV-002",
+        "REQ-X-058"
+      ],
+      "related_findings": [],
+      "domain": "GOV",
+      "target_file": "requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Commercial licence for Echelon components before commercial launch.",
+      "owners": {
+        "domain_owner": "Product",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound product owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound product owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Commercial licence for Echelon components before commercial launch."
+    },
+    {
+      "id": "CNV-SVC-001",
+      "title": "Case kernel, assignment, clocks and prioritisation",
+      "statement": "Cases SHALL use a common kernel with code-defined typed profiles (F# discriminated unions for invariants) and sponsor-configurable routing, deadlines and parameters. Assignment modes SHALL be configurable by case kind (skill-based for exceptions, cradle-to-grave for succession, relationship or round robin for service, restricted routing for fraud) with backup and escalation. Clocks SHALL use business calendars per channel and case, track end-to-end elapsed time alongside internal SLA, pause only for documented reasons and never pause statutory deadlines; workflow targets SHALL be versioned by step, risk and dependency, distinguishing external wait from internal delay. Prioritisation SHALL treat hard legal deadlines and imminent irreversible harm as simultaneous constraints, escalate collisions and prevent starvation; no opaque weighted score SHALL be used initially. Staff interactions with charities and custodians SHALL be recorded as contacts with audience and access classification. Live phone, callback and asynchronous channels SHALL be supported and activated per sponsor and accessibility needs.",
+      "acceptance_criteria": [
+        "Given a statutory deadline inside a paused case, when the pause is requested, then the statutory clock continues.",
+        "Given a low-priority case waiting beyond its starvation bound, when the queue is ordered, then it is escalated."
+      ],
+      "resolves": [
+        "XID-SVC-001",
+        "UNB-XIN-SVC-002#Q1",
+        "SPD-ORG-005",
+        "RR-REQ-X-048-r3#Q1",
+        "UNB-XIN-SVC-005#Q1",
+        "UNB-XIN-EVA-007#Q1",
+        "UNB-SMP-DSH-001#Q1",
+        "UNB-XIN-SVC-001#Q1",
+        "XID-SVC-005"
+      ],
+      "amends": [
+        "UNB-XIN-SVC-002",
+        "UNB-XIN-SVC-005",
+        "UNB-XIN-EVA-007",
+        "UNB-SMP-DSH-001",
+        "UNB-XIN-SVC-001",
+        "RR-REQ-X-048-r3"
+      ],
+      "related_findings": [
+        "RCF-PLT-025"
+      ],
+      "domain": "ADM",
+      "target_file": "requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Service operations",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Sponsor operations owner",
+        "data_owner": "Sponsor",
+        "operational_owner": "Sponsor or administrator service team",
+        "evidence_owner": "Sponsor operations owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-SVC-002",
+      "title": "Capacity planning, surge and suspension",
+      "statement": "Staffing forecasts SHALL separate incident-driven demand from routine workload while including expected surge capacity; backlog thresholds SHALL be illustrative until calibrated by severity, age and workload in a pilot. A December readiness gate SHALL require a surge plan (pre-contracted, pre-appointed qualified reviewers with activation lead time set from forecast and deadlines, five working days candidate) before 1 December, and simulated peak SHALL meet each legal deadline (TEV-001). During a platform suspension, donors SHALL see read-only access only if confidentiality and integrity remain trustworthy, otherwise a status-only channel, with no unsafe processing promises. Practical capacity SHALL be measured by role including leave, training, controls and incident load; utilization SHALL NOT be treated as productivity.",
+      "acceptance_criteria": [
+        "Given no recorded surge plan on 1 December, when readiness is assessed, then the gate fails and the sponsor executive is alerted."
+      ],
+      "resolves": [
+        "UNB-SMP-ORG-001#Q1",
+        "UNB-SMP-ORG-001#Q2",
+        "SPD-ECN-004",
+        "UNB-SMP-ARX-001#Q1",
+        "UNB-XIN-ECO-006#Q1",
+        "UNB-XIN-ECO-015#Q1",
+        "XID-ECO-008",
+        "UNB-XIN-SVC-008#Q1",
+        "UNB-XIN-ECO-017#Q1"
+      ],
+      "amends": [
+        "UNB-SMP-ORG-001",
+        "UNB-SMP-ARX-001",
+        "UNB-XIN-ECO-006",
+        "UNB-XIN-ECO-015",
+        "UNB-XIN-SVC-008",
+        "UNB-XIN-ECO-017"
+      ],
+      "related_findings": [],
+      "domain": "ADM",
+      "target_file": "requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Empirical: December interval data and time studies (evidence backlog).",
+      "owners": {
+        "domain_owner": "Service operations",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Sponsor operations owner",
+        "data_owner": "Sponsor",
+        "operational_owner": "Sponsor or administrator service team",
+        "evidence_owner": "Sponsor operations owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Empirical: December interval data and time studies (evidence backlog)."
+    },
+    {
+      "id": "CNV-ECO-001",
+      "title": "Cost attribution, metering and benchmarks",
+      "statement": "Unbound SHALL meter causal cost drivers (events, storage, compute, AI inference) and maintain non-posting cost attribution reconciled to invoices with absolute and relative residual tolerances per source; AUM-based allocation SHALL be used only when justified; showback SHALL be transparent and chargeback activated only for executed contracts, without double allocation. Finance SHALL own the attribution model and savings SHALL be verified independently; moving a cost to another bearer SHALL be reported as a transfer, not a saving. Cost ingestion SHALL map to FOCUS 1.4 as the internal target with version-aware adapters for providers on 1.2 and 1.3, preserving native invoice provenance with extensions x_Bearer, x_SourceInvoiceRef and x_CostObject, without claiming full FOCUS conformance. Cross-sponsor benchmarks SHALL use experimental suppression thresholds (at least five sponsors, at most 60% dominance) labelled as not an anonymity guarantee, with differencing, longitudinal and collusion tests, including staff metrics. Economic ranges SHALL be labelled scenarios until pilot observations replace them. Release-1 economics SHALL include initial metrics, AI metering, a monthly economics pack and reconciled non-posting attribution.",
+      "acceptance_criteria": [
+        "Given a cost source without calibration, when attribution runs, then residuals are reported and not written off.",
+        "Given a benchmark cell with four sponsors, when rendered, then it is suppressed."
+      ],
+      "resolves": [
+        "XID-ECO-001",
+        "XID-ECO-004",
+        "XID-SAS-003",
+        "UNB-XIN-SAS-009#Q1",
+        "UNB-XIN-ECO-001#Q1",
+        "XID-ECO-009",
+        "UNB-XIN-ECO-005#Q1",
+        "XID-ECO-006",
+        "SPD-DSH-002",
+        "UNB-XIN-ECO-021#Q1",
+        "UNB-XIN-ECO-003#Q1",
+        "XID-ADV-011"
+      ],
+      "amends": [
+        "UNB-XIN-SAS-009",
+        "UNB-XIN-ECO-001",
+        "UNB-XIN-ECO-005",
+        "UNB-XIN-ECO-021",
+        "UNB-XIN-ECO-003"
+      ],
+      "related_findings": [],
+      "domain": "ECO",
+      "target_file": "requirements/EXPANSION-ROADMAP-AND-GATES.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Economics",
+        "financial_system_of_record": "n/a (non-posting attribution)",
+        "policy_owner": "Sponsor CFO / Unbound CFO for platform costs",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound finance",
+        "evidence_owner": "Unbound finance"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    },
+    {
+      "id": "CNV-ECO-002",
+      "title": "Pricing, quotes, small balances and economic targets",
+      "statement": "Donor-facing quotes SHALL be shown for charged operations; any amount above the donor's accepted maximum SHALL require consent or be absorbed by the sponsor; required accessibility accommodations SHALL carry no fee. Small-balance pricing (minimum fees, digital-minimal fees, employer sponsorship, disclosed cross-subsidy) SHALL be modelled and SHALL never deny mandatory service; minimum grant sizes SHALL be a sponsor policy, not a universal restriction. Employer-subsidized terms SHALL be advertised only after an enforceable funding commitment. High-volume low-balance books SHALL be architected for but activated only with a positive contribution margin at adverse licence scale and a mandatory service floor whose metric and minimum are defined before any number is approved (TEV-010, TEV-011). Cost targets SHALL be expressed per operating model and servicing class as base, favourable and adverse ranges separating marginal, fully allocated and bearer costs; no single universal target SHALL be approved. Unbound licence prices SHALL derive from fully allocated and marginal cost scenarios with transparent tiers by servicing class and sponsor size only where cost supports them. Shared foundation costs SHALL be allocated to a community-foundation DAF program by documented driver (TEV-002). Household fee-tier aggregation SHALL be opt-in with privacy and consent.",
+      "acceptance_criteria": [
+        "Given an operation whose final cost exceeds the donor's accepted maximum, when executed, then consent is requested or the sponsor absorbs the difference.",
+        "Given an employer subsidy without an executed commitment, when a campaign is published, then publication is refused."
+      ],
+      "resolves": [
+        "XID-ECO-007",
+        "UNB-XIN-ECO-008#Q1",
+        "SPD-ECN-002",
+        "UNB-SMP-ECN-001#Q2",
+        "UNB-SMP-ECN-003#Q1",
+        "XID-ADV-002",
+        "UNB-SMP-ECN-002#Q1",
+        "SPD-ECN-001",
+        "SPD-CLR-001",
+        "UNB-SMP-ECN-004#Q1",
+        "UNB-SMP-ECN-004#Q2",
+        "XID-ERP-004",
+        "SPD-CMP-001",
+        "SPD-CMP-002"
+      ],
+      "amends": [
+        "UNB-XIN-ECO-008",
+        "UNB-SMP-ECN-001",
+        "UNB-SMP-ECN-002",
+        "UNB-SMP-ECN-003",
+        "UNB-SMP-ECN-004"
+      ],
+      "related_findings": [],
+      "domain": "ECO",
+      "target_file": "requirements/EXPANSION-ROADMAP-AND-GATES.md",
+      "release_scope": "commercial-availability",
+      "activation_gate": "Sponsor CFO approval of fee schedules and disclosures.",
+      "owners": {
+        "domain_owner": "Economics",
+        "financial_system_of_record": "n/a (non-posting attribution)",
+        "policy_owner": "Sponsor CFO / Unbound CFO for platform costs",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound finance",
+        "evidence_owner": "Unbound finance"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Sponsor CFO approval of fee schedules and disclosures."
+    },
+    {
+      "id": "CNV-EXP-001",
+      "title": "Experience, brand and API lifecycle",
+      "statement": "Every surface SHALL meet WCAG 2.2 AA with reflow; donor and advisor journeys and urgent approvals SHALL be mobile-first; complex accounting workbenches MAY be desktop-optimized. Phone navigation SHALL use a tab bar with inline actions (candidate) validated by moderated usability testing with assistive technology. The default unbranded theme SHALL be the Echelon brand manifest; sponsor overrides SHALL stay within verified contrast constraints. Reusable application-layer components SHALL be owned by Forma, with temporary Unbound adapters tracked by a migration issue and no duplicated design system. Statements and acknowledgments SHALL be rendered from shared data snapshots to accessible HTML and PDF, tested for semantic determinism, accessibility and throughput; byte-identical re-rendering only where justified (Folio provides markup only; the PDF pipeline is Unbound-owned until an upstream renderer exists). Breaking changes to supported public APIs SHALL receive 18 months' notice with a version lifecycle and migration path, and documented emergency exceptions. Authoritative business facts SHALL be separated from engagement and coordination data with relevant audit history preserved. Published service levels and accessibility conformance SHALL be measured with a stated methodology before publication.",
+      "acceptance_criteria": [
+        "Given a sponsor brand colour failing contrast, when the brand is compiled, then compilation fails with the failing pair named.",
+        "Given a breaking API change, when released, then the old version remains supported for 18 months unless an emergency exception is recorded."
+      ],
+      "resolves": [
+        "SPD-FIN-006",
+        "RCD-053",
+        "RCD-050",
+        "RCD-051",
+        "RCD-009",
+        "RR-UNB-API-STD-003-r1#Q1",
+        "RR-UNB-DATA-004-r1#Q1",
+        "SPD-CMP-002",
+        "SPD-DSH-001"
+      ],
+      "amends": [
+        "RR-UNB-API-STD-003-r1",
+        "RR-UNB-DATA-004-r1"
+      ],
+      "related_findings": [],
+      "domain": "EXP",
+      "target_file": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "Empirical: moderated usability tests (INT-020) and PDF accessibility verification.",
+      "owners": {
+        "domain_owner": "Product",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound product owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound product owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Empirical: moderated usability tests (INT-020) and PDF accessibility verification."
+    },
+    {
+      "id": "CNV-EVB-001",
+      "title": "Empirical validation backlog items",
+      "statement": "The following SHALL be measured before their dependent values are treated as validated: exception incidence and handling time (90-day time study), December interval arrivals, custodian and bank feed content, bank return-file layouts, practical capacity by role, employer willingness to pay, and California registry data access. Until measured, dependent values SHALL be labelled scenario assumptions and SHALL NOT be presented as observations.",
+      "acceptance_criteria": [
+        "Given a dashboard figure derived from an unmeasured parameter, when displayed, then it carries the 'scenario assumption' label."
+      ],
+      "resolves": [
+        "RR-UNB-GRT-003-r1#Q1",
+        "UNB-XIN-SVC-008#Q1",
+        "UNB-XIN-ECO-017#Q1",
+        "XID-ECO-003"
+      ],
+      "amends": [],
+      "related_findings": [],
+      "domain": "ECO",
+      "target_file": "requirements/EXPANSION-ROADMAP-AND-GATES.md",
+      "release_scope": "architectural-support",
+      "activation_gate": "Empirical measurements listed.",
+      "owners": {
+        "domain_owner": "Economics",
+        "financial_system_of_record": "n/a (non-posting attribution)",
+        "policy_owner": "Sponsor CFO / Unbound CFO for platform costs",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound finance",
+        "evidence_owner": "Unbound finance"
+      },
+      "evidence_batches": [],
+      "classification": "evidence-backlog",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "Empirical measurements listed."
+    },
+    {
+      "id": "CNV-AIO-001",
+      "title": "AI authority boundary and machine-readable assistance",
+      "statement": "AI agents and assistants MAY recommend and prepare; they SHALL NOT execute any action reserved to a human authority or exceed the recorded authority of the principal they act for, and the API SHALL reject execution without recorded authority. Every API operation, configuration field, user input and communication template SHALL publish machine-readable assistance documentation (purpose, expected values, constraints, examples, dependencies, validation rules, common mistakes, financial and regulatory implications, required authority and permitted agent level: recommend, prepare or execute). Repeated recommendations rejected for lack of authority SHALL be rate-limited, pattern-detected and reported to the agent owner, never auto-escalated to a decision (TEV-009). AI unavailability SHALL NOT stop deterministic paths. AI SHALL NOT produce individualized investment or tax advice.",
+      "acceptance_criteria": [
+        "Given an agent with prepare permission, when it calls the release endpoint, then the call is rejected with AuthorityRequired and logged.",
+        "Given a configuration field without assistance metadata, when the documentation build runs, then it fails."
+      ],
+      "resolves": [],
+      "amends": [
+        "UNB-AIO-001",
+        "UNB-AIO-002",
+        "UNB-AIO-003"
+      ],
+      "related_findings": [],
+      "domain": "AIO",
+      "target_file": "requirements/ai/AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md",
+      "release_scope": "initial-implementation",
+      "activation_gate": "",
+      "owners": {
+        "domain_owner": "Product",
+        "financial_system_of_record": "n/a",
+        "policy_owner": "Unbound product owner",
+        "data_owner": "Unbound",
+        "operational_owner": "Unbound operations",
+        "evidence_owner": "Unbound product owner"
+      },
+      "evidence_batches": [],
+      "classification": "normative",
+      "operating_models": [
+        "E1",
+        "E2",
+        "E3",
+        "E4",
+        "E5"
+      ],
+      "dependencies": [],
+      "activation_conditions": "none beyond release scope"
+    }
+  ]
+}

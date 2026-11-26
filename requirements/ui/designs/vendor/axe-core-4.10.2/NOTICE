@@ -1,0 +1,4 @@
+axe-core 4.10.2 (Deque Systems, Inc.), Mozilla Public License 2.0 — see LICENSE and LICENSE-3RD-PARTY.txt.
+Source: https://registry.npmjs.org/axe-core/-/axe-core-4.10.2.tgz (sha1 85228e3e1d8b8532a27659b332e39b7fa0e022df, matching the registry's published shasum).
+Unmodified copy of package/axe.min.js. It runs inside the browser page during design verification (requirements/ui/designs);
+it is the version recorded in the committed verification results.

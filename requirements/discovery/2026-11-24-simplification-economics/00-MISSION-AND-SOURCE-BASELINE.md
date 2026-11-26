@@ -46,7 +46,7 @@ Each slice was reviewed by its own role-separated agent pass. The remaining phas
 ## 3. Conventions
 
 - **Directory.** The mission follows the discovery-directory convention of `requirements/discovery/<date>-<topic>/`. Its data lives in `data/` and its reports are numbered.
-- **ID schemes.** The schemes are new; gate G2 verifies they do not collide with any existing family. The validator is `tools/reqaudit/validate_simplification.py`.
+- **ID schemes.** The schemes are new; gate G2 verifies they do not collide with any existing family. The validator is `validate-simplification` (`tools/fs/Unbound.ReqAudit`).
 
   | ID pattern | Record type |
   |---|---|

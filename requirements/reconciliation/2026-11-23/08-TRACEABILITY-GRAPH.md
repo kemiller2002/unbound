@@ -1,6 +1,6 @@
 # 08 — Bidirectional traceability graph
 
-Date: 2026-11-23 | Graph: [`data/trace-edges.csv`](data/trace-edges.csv) (`source, relationship, target, provenance`). **Generated** by `tools/reqaudit/graph.py` from the record files. Do not edit it by hand.
+Date: 2026-11-23 | Graph: [`data/trace-edges.csv`](data/trace-edges.csv) (`source, relationship, target, provenance`). **Generated** by `graph` (`tools/fs/Unbound.ReqAudit`) from the record files. Do not edit it by hand.
 
 ## 1. Model
 

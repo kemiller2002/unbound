@@ -10,8 +10,10 @@
     <Compile Include="Screening.fs" />
     <Compile Include="Stats.fs" />
     <Compile Include="Analysis.fs" />
+    <Compile Include="Synthetic.fs" />
     <Compile Include="Json.fs" />
     <Compile Include="Report.fs" />
+    <Compile Include="SyntheticReport.fs" />
     <Compile Include="Program.fs" />
   </ItemGroup>
 </Project>

@@ -1,0 +1,10 @@
+{"icons":[
+{"name":"help-circle","shapes":[{"element":"circle","cx":12,"cy":12,"r":9.5}]},
+{"name":"bell","shapes":[{"element":"path","d":"M6 8a6 6 0 0 1 12 0"},{"element":"line","x1":10,"y1":21,"x2":14,"y2":21,"hidden":true,"skip":false,"none":null}]},
+{"name":"chevron-down","shapes":[{"element":"path","d":"M6 9l6 6 6-6"}]},
+{"name":"menu","shapes":[{"element":"path","d":"M4 6h16"}]},
+{"name":"inbox","shapes":[{"element":"rect","x":0.5,"y":1e-7,"width":3}]},
+{"name":"globe","shapes":[{"element":"circle","r":0.8}]},
+{"name":"success","shapes":[{"element":"path","d":"M5 12l5 5"}]},
+{"name":"pending","shapes":[{"element":"path","d":"M12 7v5"}]}
+]}

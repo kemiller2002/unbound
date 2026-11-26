@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="JsCompat.fs" />
+    <Compile Include="Browser/Cdp.fs" />
+    <Compile Include="Browser/StaticServer.fs" />
+    <Compile Include="V2.fs" />
+    <Compile Include="Screens.fs" />
+    <Compile Include="Documents.fs" />
+    <Compile Include="AuditV1.fs" />
+    <Compile Include="Program.fs" />
+  </ItemGroup>
+</Project>

@@ -1,3 +1,7 @@
 bin/
 obj/
 out/run.log
+out/synth.log
+out/synthetic/events.jsonl
+out/synthetic/work-items.jsonl
+out/synthetic/time-study-answer-key.jsonl

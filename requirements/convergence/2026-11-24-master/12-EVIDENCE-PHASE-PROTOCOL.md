@@ -1,11 +1,18 @@
 # 12 — Evidence-phase protocol: shadow replay, time study and benchmark
 
+> **Revised 2026-11-25 (OD-M-14).** No design-partner sponsor will be available. This protocol now defines the
+> **evidence obligations written into the first paying sponsor's contract**: the §2 shadow replay and §3 time study run
+> during that sponsor's first 12 months, and their results restate the modelled savings claims (report 15). They are not a
+> condition of price (OD-M-11). Until then, handling-time evidence comes from the internal time study on the synthetic
+> operating year ([report 16](16-SYNTHETIC-OPERATING-YEAR-AND-INTERNAL-TIME-STUDY.md)). "Design-partner sponsor" below
+> reads as "first paying sponsor"; the independence criterion becomes "no price or fee tied to the results".
+
 **Purpose.** Report 10 recommends that the first step after the requirements gate is evidence, not production code:
 CNV-ECO-003 forbids prices, savings claims and segment commitments until a shadow replay and a time study exist, and
 CNV-ARC-001 requires a benchmark against declared objectives. This report specifies those three studies so a design-partner
 sponsor can be approached with a concrete, bounded request. It is a protocol, not results. Nothing here has been run.
 
-## 1. Design-partner sponsor
+## 1. First paying sponsor (formerly design-partner sponsor)
 
 | Criterion | Requirement | Why |
 |---|---|---|
@@ -58,7 +65,7 @@ results reported with confidence intervals using the error-bound method of CNV-F
 
 ## 5. How results feed back
 
-1. Replace the [A] parameters in `model/enterprise_economics.py` with measured distributions, re-run, and replace report 05's
+1. Replace the [A] parameters in `tools/fs/Unbound.Economics/EnterpriseEconomics.fs` with measured distributions, re-run, and replace report 05's
    lever-dependent conclusions; until then report 05 stands as written.
 2. Record each measured value as an `evidence-reviewed` event on the questions it settles (for example RR-UNB-GRT-003-r1#Q1,
    UNB-XIN-ECO-006#Q1, UNB-XIN-SVC-008#Q1) and close the corresponding CNV-EVB-001 items.

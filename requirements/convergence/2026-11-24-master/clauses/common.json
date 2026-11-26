@@ -1,0 +1,42 @@
+{
+  "CLASSIFICATIONS": [
+    "normative",
+    "capability-index",
+    "research-hypothesis",
+    "design-alternative",
+    "deferred",
+    "experimental-default",
+    "implementation-note",
+    "evidence-backlog"
+  ],
+  "RELEASE_SCOPES": [
+    "architectural-support",
+    "initial-implementation",
+    "sponsor-activation",
+    "commercial-availability",
+    "regulatory-authorization",
+    "deferred"
+  ],
+  "DOMAINS": {
+    "FIN": "requirements/FULL-ACCOUNTING-SYSTEM.md",
+    "PAY": "requirements/DEFERRED-PAYMENTS-AND-REMAINING-GAPS.md",
+    "GRT": "requirements/grants/END-TO-END-GRANT-LIFECYCLE-AND-OPERATING-MODEL.md",
+    "LEG": "requirements/charities/JURISDICTION-AWARE-REGULATORY-RULES-AND-ELIGIBILITY.md",
+    "ENT": "requirements/MULTI-PARTICIPANT-AND-SUCCESSOR-ACCOUNTS.md",
+    "ADM": "requirements/administration/DAF-ADMINISTRATION-AND-SPONSOR-OPERATIONS.md",
+    "PLT": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
+    "TEN": "requirements/PARTNER-SEGREGATION-AND-TENANCY.md",
+    "GOV": "requirements/governance/SPONSOR-AUTHORITY-AND-AUTONOMOUS-OPERATIONS.md",
+    "INV": "requirements/investments/ACCOUNT-STRUCTURES-AND-PORTFOLIO-MANAGEMENT.md",
+    "ECO": "requirements/EXPANSION-ROADMAP-AND-GATES.md",
+    "EXP": "requirements/PLATFORM-UX-API-AND-ASSURANCE-STANDARDS.md",
+    "AIO": "requirements/ai/AI-NATIVE-INTERACTION-AND-AGENT-COLLABORATION.md"
+  },
+  "OPERATING_MODELS": [
+    "E1",
+    "E2",
+    "E3",
+    "E4",
+    "E5"
+  ]
+}
