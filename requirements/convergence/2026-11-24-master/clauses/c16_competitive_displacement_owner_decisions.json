@@ -1,0 +1,22 @@
+{
+  "AMENDMENTS": {
+    "CNV-ECO-004": {
+      "on": "2026-11-27",
+      "finding": "OD-M-17, OD-M-20 (owner decisions; OD-CDD-01, OD-CDD-04, OD-CDD-05)",
+      "append": "Owner decisions of 2026-11-27 (PR #22 direction; OD-M-17, OD-M-20): the initial commercial route SHALL be partner-first, a module or capability inside an existing channel partner's offering followed by licensing (OD-CDD-01); the segment above is retained as the long-term destination, and partner-first commitments SHALL remain subject to the V-1 and V-6 evidence gates and to CNV-ECO-003. Revenue concentration SHALL be measured and disclosed at both end-sponsor and channel-partner level, and the concentration exception record above SHALL be required when either measure exceeds the cap (OD-CDD-05). The signed-anchor evidence gate of the approved DEC-002 SHALL apply to full-service administration, including the Unbound-operated administration offer of OD-M-08 where it is full-service, and SHALL NOT apply to limited operational support services (OD-CDD-04).",
+      "acceptance_add": [
+        "Given a partner-first commitment proposed before V-1 and V-6 have reported, when it is submitted for approval, then it is refused.",
+        "Given one channel partner whose sponsors together exceed the concentration cap after year three, when the quarterly disclosure runs, then a concentration exception record is required even though no single end sponsor exceeds it.",
+        "Given a full-service administration offer proposed without the signed-anchor evidence, when it is submitted, then it is refused; and given a limited operational support service, then the anchor gate does not apply."
+      ]
+    },
+    "CNV-GRT-003": {
+      "on": "2026-11-27",
+      "finding": "OD-M-18 (owner decision; OD-CDD-02)",
+      "append": "Owner decision of 2026-11-27 (PR #22 direction; OD-M-18, OD-CDD-02): within the deep-review interval above, whose ceiling is unchanged, the deep review MAY be satisfied by change-driven renewal: continuous monitoring of every monitorable eligibility predicate with no eligibility-relevant change, every non-monitorable evidence item within its freshness period, and targeted review of each changed or expired item. Event-triggered invalidation and approval- and release-time checks are unchanged. This clause does not decide who performs the deep review (open as OD-CDD-06).",
+      "acceptance_add": [
+        "Given a charity with continuous monitoring, no eligibility-relevant change and all non-monitorable evidence within its freshness period at the end of the deep-review interval, when renewal runs, then the deep review is renewed with targeted review only of changed or expired items, and no renewal extends beyond the interval ceiling."
+      ]
+    }
+  }
+}

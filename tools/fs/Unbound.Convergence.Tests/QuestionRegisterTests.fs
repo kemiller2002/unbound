@@ -76,12 +76,23 @@ let ``regeneration is idempotent and keeps answers`` () =
     Assert.Equal(snd first, snd second)
     let rows = readCsv d
     let isCno (r: Json) = (getStr "source" r).Contains "2026-11-26-charity-network-and-onboarding"
-    Assert.Equal(365, rows.Length) // 316 up to 2026-11-25, 27 charity-network (open), 22 file-ingestion (answered or proposed)
-    // The 316 questions registered up to 2026-11-25 and the 22 file-ingestion questions are answered; the 27 registered by the
-    // charity-network and onboarding package (2026-11-26) are open and unanswered until the owner resolves them.
+    let isCdd (r: Json) = (getStr "source" r).Contains "2026-11-26-competitive-displacement-decisions"
+    let qid (r: Json) = getStr "question_id" r
+    // Competitive-displacement questions the owner resolved on 2026-11-27 (PR #22 direction; OD-M-17..20).
+    let cddResolved =
+        Set.ofList [ "OD-CDD-01"; "OD-CDD-02"; "OD-CDD-03"; "OD-CDD-04"; "OD-CDD-05"; "UNB-CDD-CIV-008#Q1"; "UNB-CDD-CMF-007#Q1" ]
+    let isOpenPackage (r: Json) = isCno r || (isCdd r && not (cddResolved.Contains(qid r)))
+    // 316 up to 2026-11-25, 27 charity-network (open), 22 file-ingestion (answered or proposed),
+    // 10 competitive-displacement decisions (OD-CDD-01..06 and four requirement questions)
+    Assert.Equal(375, rows.Length)
+    // The 316 questions registered up to 2026-11-25, the 22 file-ingestion questions and the seven owner-resolved
+    // competitive-displacement questions are answered; the 27 charity-network questions and the three remaining
+    // competitive-displacement questions (OD-CDD-06 and two counsel questions) are open.
     Assert.Equal(27, rows |> List.filter isCno |> List.length)
-    Assert.True(rows |> List.filter (isCno >> not) |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
-    Assert.True(rows |> List.filter isCno |> List.forall (fun r -> getStr "resolution_status" r = "open"))
+    Assert.Equal(10, rows |> List.filter isCdd |> List.length)
+    Assert.True(rows |> List.filter (fun r -> cddResolved.Contains(qid r)) |> List.forall (fun r -> getStr "resolution_status" r = "resolved" && getStr "approval_status" r = "approved-owner"))
+    Assert.True(rows |> List.filter (isOpenPackage >> not) |> List.forall (fun r -> strip (getStr "answer" r) <> ""))
+    Assert.True(rows |> List.filter isOpenPackage |> List.forall (fun r -> getStr "resolution_status" r = "open"))
 
 [<Fact>]
 let ``hand-edited answer is not silently discarded`` () =

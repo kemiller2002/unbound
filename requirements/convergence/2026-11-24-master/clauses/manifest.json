@@ -14,7 +14,8 @@
     "c10_round2_amendments",
     "c11_round2_partial_closures",
     "c14_replay_owner_decisions",
-    "c15_no_design_partner"
+    "c15_no_design_partner",
+    "c16_competitive_displacement_owner_decisions"
   ],
   "numeric_parameters_module": "c13_numeric_parameters",
   "control_links_module": "c12_control_links"
