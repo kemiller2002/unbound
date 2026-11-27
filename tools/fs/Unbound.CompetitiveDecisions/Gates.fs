@@ -5,10 +5,12 @@
 ///   A2  requirements carry every mandated field; a refinement lists its parent in refines
 ///   A3  every cited requirement, clause or decision id resolves (baseline, sibling packages, owner decisions,
 ///       discovery decision registers, this package)
-///   A4  status ladder: requirements are proposed / not implemented / not validated; Given/When/Then; P0-P2; known
-///       release scope; approved decisions DEC-001..012; evidence gates V-1..V-9
-///   A5  approved decisions stay at 'Strategically approved' dated 2026-11-26, with conditions, an effect and a
-///       governing-text statement; no later ladder status is claimed anywhere in the package data
+///   A4  status ladder: requirements are proposed, or adopted with an approval basis and the ratifying owner decision;
+///       always not implemented / not validated; Given/When/Then; P0-P2; known release scope; approved decisions
+///       DEC-001..012; evidence gates V-1..V-9
+///   A5  approved decisions dated 2026-11-26 are at 'Strategically approved', or at 'Requirements incorporated' only
+///       when they list requirements and every one is adopted; conditions, an effect and a governing-text statement
+///       are present; no later ladder status is claimed anywhere in the package data
 ///   A6  implications: allowed disposition; evidence, ids, Given/When/Then acceptance and validation present;
 ///       disposition consistent with requirements created, refined and decisions raised; every created requirement
 ///       cites its implication
@@ -127,7 +129,10 @@ let a4 (i: Inputs) : Issue list =
     let checks: (string * (J -> bool)) list =
         [ "acceptance is not Given/When/Then", (fun r -> matches GWT (fs "acceptance" r))
           "priority not P0-P2", (fun r -> List.contains (fs "priority" r) [ "P0"; "P1"; "P2" ])
-          "status must be 'proposed'", (fun r -> fs "status" r = "proposed")
+          "status must be 'proposed', or 'adopted' with approval_basis and ratified_by",
+          (fun r ->
+              fs "status" r = "proposed"
+              || (fs "status" r = "adopted" && fs "approval_basis" r <> "" && i.ExternalIds.Contains(fs "ratified_by" r)))
           "implementation_status must be 'not implemented'", (fun r -> fs "implementation_status" r = "not implemented")
           "validation_status must be 'not validated'", (fun r -> fs "validation_status" r = "not validated")
           "unknown release scope", (fun r -> SCOPES.Contains(fs "release_scope" r))
@@ -142,16 +147,23 @@ let private statusTexts (i: Inputs) : (string * string) list =
     @ (i.Gates |> List.map (fun g -> col "gate" g, col "status" g))
 
 let a5 (i: Inputs) : Issue list =
+    let adopted = i.Requirements |> List.filter (fun r -> fs "status" r = "adopted") |> List.map (fs "id") |> Set.ofList
+    let incorporated (r: Map<string, string>) =
+        let rs = ids (col "requirement_ids" r) |> List.filter (fun x -> x.StartsWith "UNB-CDD-")
+        not rs.IsEmpty && rs |> List.forall adopted.Contains
     let rowIssues =
         i.Approved
         |> List.collect (fun r ->
             let d = col "decision_id" r
-            [ (col "unbound_status" r <> "Strategically approved"), $"""A5 {d} status must be 'Strategically approved' (got '{col "unbound_status" r}')"""
+            [ not (List.contains (col "unbound_status" r) [ "Strategically approved"; "Requirements incorporated" ]),
+              $"""A5 {d} status must be 'Strategically approved' or 'Requirements incorporated' (got '{col "unbound_status" r}')"""
+              (col "unbound_status" r = "Requirements incorporated" && not (incorporated r && (col "requirements_stage" r).StartsWith "Requirements incorporated")),
+              $"A5 {d} is 'Requirements incorporated' but lists no requirements or some are not adopted"
               (col "approval_date" r <> "2026-11-26"), $"A5 {d} approval date must be 2026-11-26"
               (col "conditions" r = ""), $"A5 {d} has no conditions"
               (col "unbound_effect" r = ""), $"A5 {d} has no Unbound effect"
               (col "governing_text_now" r = ""), $"A5 {d} does not state which text governs now"
-              ((col "requirements_stage" r).StartsWith "Requirements incorporated"), $"A5 {d} claims 'Requirements incorporated' before ratification"
+              ((col "requirements_stage" r).StartsWith "Requirements incorporated" && not (incorporated r)), $"A5 {d} claims 'Requirements incorporated' before ratification"
               (ids (col "preserved_gates" r) |> List.exists (fun g -> not (List.contains g VGATES))), $"A5 {d} preserved gate outside V-1..V-9" ]
             |> List.filter fst
             |> List.map snd)
@@ -204,8 +216,12 @@ let a7 (i: Inputs) : Issue list =
     let own = Set.ofList (decisionIds i)
     let weak =
         i.Decisions
-        |> List.filter (fun d -> col "status" d <> "open" || col "decision_owner" d = "" || col "recommendation" d = "" || col "governing_text_now" d = "")
-        |> List.map (fun d -> $"""A7 {col "decision_id" d} must be open with owner, recommendation and governing text""")
+        |> List.filter (fun d ->
+            col "status" d <> "open" || col "decision_owner" d = "" || col "recommendation" d = "" || col "governing_text_now" d = ""
+            // a resolution is all-or-nothing: answer, ratifying owner decision and date together
+            || List.distinct [ col "owner_resolution" d = ""; col "owner_decision" d = ""; col "resolved_on" d = "" ] |> List.length > 1
+            || (col "owner_decision" d <> "" && not (i.ExternalIds.Contains(col "owner_decision" d))))
+        |> List.map (fun d -> $"""A7 {col "decision_id" d} must be open with owner, recommendation and governing text, and any resolution complete and traced to a known owner decision""")
     let badDec =
         i.Decisions
         |> List.filter (fun d -> ids (col "approved_decisions" d) |> List.exists (fun x -> not (List.contains x DECS)))

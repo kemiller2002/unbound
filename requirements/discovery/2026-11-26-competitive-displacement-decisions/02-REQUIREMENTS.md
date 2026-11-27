@@ -1,6 +1,6 @@
 # 02 — Proposed requirements (UNB-CDD)
 
-Package: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](data/gap-requirements.jsonl) · Status: **proposed**. None of these records is adopted into the authoritative baseline; adoption follows the existing ratification process. Where a converged clause (`CNV-*`) states the behaviour, the clause governs on conflict.
+Package: [README](README.md) · Source data: [`data/gap-requirements.jsonl`](data/gap-requirements.jsonl) · Status: **adopted (owner-ratified 2026-11-27, PR #22 direction; OD-M-16)** with their proposed release scopes; they appear in `requirements/baseline/baseline.jsonl`. Evidence gates and activation gates remain; nothing is implemented, validated or implementation-authorized. Where a converged clause (`CNV-*`) states the behaviour, the clause governs on conflict.
 
 Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboarding gaps (everything else in onboarding is already covered by UNB-ONB-001..033 and UNB-TRN-*); **CMF** commercial and operating-mode flexibility; **OEM** operational economics measurement and prevention.
 
@@ -23,7 +23,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A record without a class, or with a class not in the active catalogue version, MUST be excluded from eligibility evaluation and routed to the steward queue; evaluation proceeds as if the record were absent (fail safe: absence never proves eligibility, UNB-CHAR-016). |
 | Verification method | Automated (catalogue conformance tests; property test that no evaluation consumes an unclassified record) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -46,7 +47,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A promotion request lacking a rule version or named decision-maker MUST be rejected and logged; a shared-layer write whose lineage includes a sponsor-scoped input MUST be refused. |
 | Verification method | Automated (lineage tests over promotion events; negative isolation tests) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -69,7 +71,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If provenance fields cannot be recorded, the AI output MUST be discarded rather than stored without provenance; AI unavailability MUST leave deterministic processing unaffected. |
 | Verification method | Automated (authorization tests proving AI principals cannot write authoritative tables) + review of dossier rendering |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -92,7 +95,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If a candidate source is unreachable or its release fails integrity gates (UNB-CNET-021), its evidence is marked unknown and no assurance is derived from it; legally applicable screening continues on the adopted lists. |
 | Verification method | Automated (source register conformance; screening scope tests) + counsel review of ScreeningScope |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | sponsor-activation |
 | Open questions | Which of the candidate lists (trade.gov CSL, FCDO UK Sanctions List, Federal Audit Clearinghouse, SAM.gov exclusions) does counsel add to the ScreeningScope matrix as legally applicable, and which remain advisory evidence only? |
 | Conflicts | — |
@@ -115,7 +119,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If a rights record is missing or ambiguous, the source MUST be treated as no licence found (internal link-out only) until a rights record is approved. |
 | Verification method | Automated (rights-filter tests for every egress path) + counsel review of rights records |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | Counsel to confirm the licence readings in the research (OQ-007, OQ-008) before any source is classified as redistributable. |
 | Conflicts | — |
@@ -138,7 +143,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A predicate missing from the register MUST be treated as non-monitorable with the shortest configured expiry. |
 | Verification method | Automated (register completeness check against the eligibility rule inputs) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -161,7 +167,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the refresh of expired evidence fails, the determination falls back to NeedsReview and new approvals hold; release-time checks follow CNV-GRT-003 fail-safe rules. |
 | Verification method | Automated (policy validation rules; temporal tests across the 180-day boundary) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -184,7 +191,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If change detection for a source is lapsed (UNB-CDD-CIV-006), the affected predicates MUST be treated as stale and fail safe, not as unchanged. |
 | Verification method | Automated (replay over archived IRS and sanctions releases; V-3 harness) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | May a renewal at the CNV-GRT-003 deep-review interval that finds continuous monitoring, no eligibility-relevant change and all evidence unexpired count as the deep review (OD-CDD-02)? |
 | Conflicts | Approved DEC-003 direction vs ratified CNV-GRT-003 'deep review SHALL default to 180 days' and RR-REQ-X-007-r1 'comprehensive charity review'; escalated as OD-CDD-02; ratified text governs now. |
@@ -207,7 +215,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If V-3 or V-9 evidence is unavailable, the investigation records the gap and the item stays open; nothing is adopted by default. |
 | Verification method | Investigation report reviewed by the product owner and sponsor compliance |
 | Priority | P2 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | deferred |
 | Open questions | — |
 | Conflicts | — |
@@ -230,7 +239,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If a snapshot fails integrity gates (UNB-CNET-021) it MUST NOT be offered for acceptance. |
 | Verification method | Automated (isolation and pinning tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -253,7 +263,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the resolver is unavailable, existing entities and links are unchanged and new records remain unlinked. |
 | Verification method | Automated (resolver tests; merge/unmerge reversibility tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -276,7 +287,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If an item passes its due time, it escalates per sponsor policy and the affected eligibility stays held where the item type requires a hold. |
 | Verification method | Automated (queue routing and isolation tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -299,7 +311,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the history write fails, the decision MUST NOT be committed (no decision without its evidence trail). |
 | Verification method | Automated (temporal replay tests) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -322,7 +335,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | Without a current approval, cutover authorisation MUST fail closed. |
 | Verification method | Automated (cutover gate tests) + rehearsal review |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -345,7 +359,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | Without a current selection record no vendor-specific package may be published; drift handling follows the Transitus package rules (TRN-REQ-MP-004). |
 | Verification method | Review of the selection record and of the Transitus reference to it |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | commercial-availability |
 | Open questions | — |
 | Conflicts | — |
@@ -368,7 +383,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the clock's start condition is disputed, the SLA does not start until a conforming extract is acknowledged in writing. |
 | Verification method | Review of commercial records against the gate |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | commercial-availability |
 | Open questions | — |
 | Conflicts | — |
@@ -391,7 +407,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | Missing metric inputs make the metric unavailable, never zero. |
 | Verification method | Automated (metric computation tests) |
 | Priority | P2 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | commercial-availability |
 | Open questions | — |
 | Conflicts | — |
@@ -414,7 +431,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A configuration naming an unsupported mode or omitting the role table MUST fail activation. |
 | Verification method | Automated (configuration validation tests per mode) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | architectural-support |
 | Open questions | — |
 | Conflicts | DEC-001 partner-first entry vs ratified CNV-ECO-004 entry segment (OD-M-05); escalated as OD-CDD-01; the ratified segment governs now, so modes (b) and (c) are architectural support only. |
@@ -437,7 +455,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A case kind with no eligible assignee MUST alert the sponsor's configured owner rather than defaulting to Unbound staff. |
 | Verification method | Automated (routing coverage test over all case kinds) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -460,7 +479,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A failed conformance check blocks activation; no partial activation. |
 | Verification method | Automated (conformance and isolation tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | architectural-support |
 | Open questions | — |
 | Conflicts | Partner-first entry (DEC-001) is not yet reflected in CNV-ECO-004; see OD-CDD-01. |
@@ -483,7 +503,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | An unknown module identifier fails activation. |
 | Verification method | Automated (catalogue validation tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | architectural-support |
 | Open questions | — |
 | Conflicts | — |
@@ -506,7 +527,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A role table that cannot be validated blocks activation. |
 | Verification method | Automated (role-table validation tests) |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -529,7 +551,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A role table without a TPSP for a file-creating mode MUST block activation. |
 | Verification method | Automated (role-table validation) + counsel review of TPSP allocation |
 | Priority | P0 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -552,7 +575,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A model missing the pricing-basis label fails the economics review checklist. |
 | Verification method | Review of economics outputs |
 | Priority | P2 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | commercial-availability |
 | Open questions | Should the existing 20 bps working assumptions in OD-CNO-10 and FIL-OD-10 be restated on a licence-first basis (OD-CDD-03)? |
 | Conflicts | Existing open or agent-recommended decisions OD-CNO-10 and FIL-OD-10 reason from a ~20 bps servicing fee; escalated as OD-CDD-03, not edited. |
@@ -575,7 +599,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A transition without an event record MUST raise an instrumentation exception; missing records make metrics unavailable rather than understated. |
 | Verification method | Automated (instrumentation coverage test over all workflow transitions) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -598,7 +623,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | A metric below its minimum sample is reported as 'insufficient sample', never as a value. |
 | Verification method | Automated (metric reproducibility tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -621,7 +647,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the metric falls below minimum sample in a later window, the last measured value stands with its window shown; it does not revert silently to the model. |
 | Verification method | Review of economics runs + automated parameter-link check |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | sponsor-activation |
 | Open questions | — |
 | Conflicts | — |
@@ -644,7 +671,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | Gaps in lifecycle events mark the touch's minutes as unknown, excluded from averages and counted in a data-quality metric. |
 | Verification method | Automated (derivation tests) |
 | Priority | P2 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -667,7 +695,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If a prevention mechanism is unavailable (e.g. no virtual-account product at the bank), the workflow proceeds with downstream controls and the metric records the mechanism as not applied. |
 | Verification method | Automated (workflow tests) + metric review |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |
@@ -690,7 +719,8 @@ Areas: **CIV** charity intelligence and vetting; **ONB** institutional onboardin
 | Failure behaviour | If the pre-check cannot run, submission is allowed with a notice and the approval-time check governs. |
 | Verification method | Automated (UI and rule tests) |
 | Priority | P1 |
-| Status | proposed · not implemented · not validated |
+| Status | adopted · not implemented · not validated |
+| Approval basis | owner-ratified 2026-11-27 (PR #22 direction) (OD-M-16) |
 | Release scope | initial-implementation |
 | Open questions | — |
 | Conflicts | — |

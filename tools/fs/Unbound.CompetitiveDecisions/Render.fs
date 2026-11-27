@@ -47,6 +47,7 @@ let requirements (i: Inputs) : string =
               [ "Verification method"; fs "verification" r ]
               [ "Priority"; fs "priority" r ]
               [ "Status"; $"""{fs "status" r} · {fs "implementation_status" r} · {fs "validation_status" r}""" ]
+              [ "Approval basis"; (match fs "approval_basis" r with "" -> "" | b -> $"""{b} ({fs "ratified_by" r})""") ]
               [ "Release scope"; fs "release_scope" r ]
               [ "Open questions"; joined (field "open_questions" r) ]
               [ "Conflicts"; joined (field "conflicts" r) ] ])
@@ -120,17 +121,21 @@ let decisions (i: Inputs) : string =
         table [ "Gate"; "Test"; "Informs"; "Unbound requirements"; "Lower-cost route"; "Status" ]
             (i.Gates |> List.map (fun g -> [ col "gate" g; col "test" g; semi (col "informs" g); semi (col "unbound_requirements" g); col "lower_cost_route" g; col "status" g ]))
     let ods =
-        table [ "ID"; "Type"; "Question"; "Affected"; "Owner"; "Recommendation"; "Alternatives"; "Governs now"; "Blocks"; "Reversible" ]
+        table [ "ID"; "Type"; "Question"; "Affected"; "Owner"; "Recommendation"; "Alternatives"; "Owner resolution"; "Governs now"; "Blocks"; "Reversible" ]
             (i.Decisions
              |> List.map (fun d ->
                  [ col "decision_id" d; col "type" d; col "question" d; semi (col "affected_ids" d); col "decision_owner" d; col "recommendation" d
-                   col "alternatives" d; col "governing_text_now" d; col "blocks_implementation" d; col "reversible" d ]))
+                   col "alternatives" d
+                   (match col "owner_resolution" d with
+                    | "" -> "open"
+                    | res -> $"""{res} ({col "owner_decision" d}, {col "resolved_on" d})""")
+                   col "governing_text_now" d; col "blocks_implementation" d; col "reversible" d ]))
     let questions =
         table [ "Requirement"; "Question" ]
             (i.Requirements |> List.collect (fun r -> strs (field "open_questions" r) |> List.map (fun q -> [ fs "id" r; q ])))
     "## Approved Phase II decisions: Unbound status\n\n" + approved
     + "\n## Validation gates (DEC-012)\n\n" + gates
-    + "\n## Owner decisions (registered as open decisions)\n\n" + ods
+    + "\n## Owner decisions (registered in the open-question register; resolutions are recorded as events)\n\n" + ods
     + "\n## Requirement questions (registered as `<id>#Q<n>`)\n\n" + questions
 
 let reconciliation (i: Inputs) : string =
@@ -146,11 +151,17 @@ let reconciliation (i: Inputs) : string =
     let release1 = i.Requirements |> List.filter (fun r -> fs "release_scope" r = "initial-implementation")
     let p0 = release1 |> List.filter (fun r -> fs "priority" r = "P0") |> List.length
     let scope =
-        $"This package proposes {release1.Length} requirements with release scope initial-implementation ({p0} P0). They would add to Release-1 scope only if the owner ratifies them into the baseline; until then the ratified Release-1 scope is unchanged and none of them is moved to another scope.\n\n"
+        let ratified = release1 |> List.forall (fun r -> fs "status" r = "adopted")
+        (if ratified then
+             $"This package's {release1.Length} requirements with release scope initial-implementation ({p0} P0) were owner-ratified into the baseline (see each record's approval basis), so they are part of Release-1 scope, subject to their evidence gates and activation gates. Nothing is implemented, validated or implementation-authorized, and no expenditure is authorized.\n\n"
+         else
+             $"This package proposes {release1.Length} requirements with release scope initial-implementation ({p0} P0). Those not yet adopted would add to Release-1 scope only if the owner ratifies them into the baseline; none of them is moved to another scope.\n\n")
         + table [ "Requirement"; "Title"; "Priority"; "Status" ]
-            (release1 |> List.map (fun r -> [ fs "id" r; fs "title" r; fs "priority" r; "proposed, pending owner ratification" ]))
+            (release1 |> List.map (fun r ->
+                [ fs "id" r; fs "title" r; fs "priority" r
+                  (if fs "status" r = "adopted" then $"""adopted: {fs "approval_basis" r}""" else "proposed, pending owner ratification") ]))
     "## Reconciliation with ratified clauses and owner decisions\n\n" + recon
-    + "\n## Release-1 scope impact (proposals pending owner ratification)\n\n" + scope
+    + "\n## Release-1 scope impact\n\n" + scope
     + "\n## Architecture and platform constraints\n\n" + constraints
 
 /// (document, renderer) pairs.

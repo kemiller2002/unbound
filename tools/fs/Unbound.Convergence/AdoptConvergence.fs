@@ -26,7 +26,9 @@ let RECORD_FILES =
       "requirements/discovery/2026-11-23-cross-industry/data/gap-requirements.jsonl"
       "requirements/discovery/2026-11-23-cross-industry/data/refinements.jsonl"
       "requirements/discovery/2026-11-24-simplification-economics/data/refinements.jsonl"
-      "requirements/discovery/2026-11-24-simplification-economics/data/gap-requirements.jsonl" ]
+      "requirements/discovery/2026-11-24-simplification-economics/data/gap-requirements.jsonl"
+      // Owner-ratified 2026-11-27 (OD-M-16; PR #22 direction): the 30 UNB-CDD requirements.
+      "requirements/discovery/2026-11-26-competitive-displacement-decisions/data/gap-requirements.jsonl" ]
 
 let private s (x: string) = JStr x
 let private valueError (msg: string) = raise (PyError("ValueError", msg))
@@ -349,7 +351,8 @@ let OWNER_BY_PREFIX =
       "UNB-SUCC", "Accounts and succession"; "UNB-XIN-TRS", "Accounts and succession"; "UNB-TEN", "Tenancy"; "UNB-PART", "Tenancy"
       "UNB-XIN-SAS", "Tenancy"; "UNB-API", "Platform"; "UNB-DATA", "Platform"; "UNB-RES", "Platform"; "UNB-AIO", "AI"; "UNB-AI", "AI"
       "UNB-EXP", "Experience"; "UNB-UI", "Experience"; "UNB-XIN-ECO", "Economics"; "UNB-ECO", "Economics"; "UNB-XIN-SVC", "Service"
-      "UNB-XIN-CLM", "Service"; "UNB-XIN-CRM", "Communications"; "UNB-SMP", "Operating model" ]
+      "UNB-XIN-CLM", "Service"; "UNB-XIN-CRM", "Communications"; "UNB-SMP", "Operating model"
+      "UNB-CDD-CIV", "Charity knowledge"; "UNB-CDD-ONB", "Administration"; "UNB-CDD-CMF", "Operating model"; "UNB-CDD-OEM", "Economics" ]
 
 let ownerOf (i: string) : string =
     OWNER_BY_PREFIX |> List.tryFind (fun (p, _) -> startsWith p i) |> Option.map snd |> Option.defaultValue "Product (route by domain)"
@@ -382,6 +385,8 @@ let baseline
     let recordStatus = adoption |> List.map (fun a -> str (item "record_id" a), item "status" a) |> Map.ofList
     let reqs = inv |> List.filter (fun r -> item "kind" r = s "requirement") |> List.map (fun r -> itemStr "identifier" r, r) |> toDict
     let scopeOf i = release.TryFind(s i) |> Option.defaultValue defaultScope
+    /// A record that states its own release scope keeps it unless the release-1 scope list names it.
+    let recordScopeOf i (r: Json) = release.TryFind(s i) |> Option.orElse (get "release_scope" r) |> Option.defaultValue defaultScope
     let rowReq (i: string) (r: Json) =
         let status =
             match adopted.TryFind i with
@@ -401,7 +406,7 @@ let baseline
         let stmt = getOr "statement" (s "") r
         JObj
             [ "id", s i; "kind", s "record"; "source", s f; "text", s (esc stmt); "text_sha256", s (textSha stmt); "status", st
-              "converged_by", convOf i; "classification", s (classify i stmt); "domain_owner", s (ownerOf i); "release_scope", scopeOf i ]
+              "converged_by", convOf i; "classification", s (classify i stmt); "domain_owner", s (ownerOf i); "release_scope", recordScopeOf i r ]
     let rows =
         (reqs |> sortByStrs (fun (i, _) -> [ i ]) |> List.map (fun (i, r) -> rowReq i r))
         @ (records |> sortByStrs (fun (i, _) -> [ i ]) |> List.map (fun (i, (r, f)) -> rowRec i r f))

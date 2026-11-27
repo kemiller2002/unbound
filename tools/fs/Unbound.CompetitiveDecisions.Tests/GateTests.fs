@@ -69,8 +69,25 @@ let ``A5 rejects a decision advanced beyond strategic approval`` () =
 
 [<Fact>]
 let ``A5 rejects claiming requirements incorporated before ratification`` () =
-    let i = inputs.Value |> withApproved (Map.add "requirements_stage" "Requirements incorporated")
-    Assert.True(has "A5" (Gates.a5 i))
+    // DEC-001's requirements reverted to proposed: its 'Requirements incorporated' status is no longer supported
+    let reverted = inputs.Value.Requirements |> List.map (fun r -> if fs "id" r = "UNB-CDD-CMF-001" then set "status" (JStr "proposed") r else r)
+    let i = { inputs.Value with Requirements = reverted }
+    Assert.True(has "A5 DEC-001" (Gates.a5 i))
+
+[<Fact>]
+let ``A5 rejects incorporation for a decision with no requirements`` () =
+    let i = { inputs.Value with Approved = inputs.Value.Approved |> List.map (fun r -> if Data.col "decision_id" r = "DEC-012" then Map.add "unbound_status" "Requirements incorporated" r else r) }
+    Assert.True(has "A5 DEC-012" (Gates.a5 i))
+
+[<Fact>]
+let ``A4 rejects an adopted requirement without a ratifying owner decision`` () =
+    let i = inputs.Value |> withRequirement (set "ratified_by" (JStr "OD-M-99"))
+    Assert.True(has "A4" (Gates.a4 i))
+
+[<Fact>]
+let ``A7 rejects an incomplete resolution`` () =
+    let i = { inputs.Value with Decisions = (inputs.Value.Decisions.Head |> Map.add "owner_decision" "") :: inputs.Value.Decisions.Tail }
+    Assert.True(has "A7" (Gates.a7 i))
 
 [<Fact>]
 let ``A6 rejects an unknown disposition class`` () =
