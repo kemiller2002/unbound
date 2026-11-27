@@ -141,6 +141,26 @@ let gReportsD (gate: string) (cited: Re) (docs: (string * string) list) (ok: str
 
 let missionDocs (mission: string) = rglobFiles mission "*.md" |> List.map (fun p -> name p, readText p)
 
+/// Identifiers defined in the machine-readable registers of the other discovery packages under
+/// requirements/discovery (refinements.jsonl refinement_id, gap-requirements.jsonl id). A later package may
+/// refine a requirement this mission introduced (e.g. RR-ADM-023-r1 -> RR-ADM-023-r2 in
+/// 2026-11-24-simplification-economics); citing that successor is a reference to a registered identifier, not an
+/// unknown one. Only register rows count: prose in another package never makes an identifier resolve. These IDs feed
+/// the resolver only; they are not part of the G2 collision set, because sibling packages legitimately re-list their
+/// predecessors.
+let siblingRegisterIds (discoveryRoot: string) (mission: string) : Set<string> =
+    let self = IO.Path.GetFullPath mission |> fun p -> p.TrimEnd(IO.Path.DirectorySeparatorChar)
+    if not (IO.Directory.Exists discoveryRoot) then Set.empty
+    else
+        IO.Directory.GetDirectories discoveryRoot
+        |> Array.toList
+        |> List.filter (fun dir -> IO.Path.GetFullPath(dir).TrimEnd(IO.Path.DirectorySeparatorChar) <> self)
+        |> List.sort
+        |> List.collect (fun dir ->
+            [ column "refinement_id" (Io.loadJsonl (IO.Path.Combine(dir, "data", "refinements.jsonl")))
+              column "id" (Io.loadJsonl (IO.Path.Combine(dir, "data", "gap-requirements.jsonl"))) ])
+        |> Set.unionMany
+
 let main (argv: string list) : int =
     let root = resolve argv.[0]
     let mission = combine root (if argv.Length > 1 then argv.[1] else MISSION)
@@ -186,7 +206,8 @@ let main (argv: string list) : int =
           "regulatory", ids "id" regs ]
     let setOf k = sets |> List.find (fst >> (=) k) |> snd
     let newIds = sets |> List.collect snd |> Set.ofList
-    let ok = resolver baseline (Set.union newIds prior) narr knownUndefined
+    let siblings = siblingRegisterIds (combine root "requirements/discovery") mission
+    let ok = resolver baseline (Set.unionMany [ newIds; prior; siblings ]) narr knownUndefined
     let split = Graph.idsOf
     let bf = baselineFiles root refs
     let issues =
