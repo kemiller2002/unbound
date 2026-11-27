@@ -129,6 +129,39 @@ let ``D1 enumerations print the value repr and the sorted allowed list`` () =
           "ERROR D1   ?: coverage=None not in ['contradictory', 'covered', 'missing', 'partial']" ],
         lines (VD.gEnum "D1" [ o [ "id", js "XCAP-A-1"; "coverage", js "sometimes" ]; o [ "coverage", JNull ] ] "id" "coverage" VD.COVERAGE))
 
+/// Build a throwaway discovery tree: one folder per package, each with optional data files and prose.
+let private discoveryTree (packages: (string * (string * string) list) list) =
+    let root = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "vd-" + System.Guid.NewGuid().ToString("N"))
+    packages
+    |> List.iter (fun (pkg, files) ->
+        files |> List.iter (fun (rel, text) ->
+            let p = System.IO.Path.Combine(root, pkg, rel)
+            System.IO.Directory.CreateDirectory(System.IO.Path.GetDirectoryName p) |> ignore
+            System.IO.File.WriteAllText(p, text)))
+    root
+
+[<Fact>]
+let ``D9 resolves identifiers registered by a sibling discovery package`` () =
+    let root =
+        discoveryTree
+            [ "a-mission", [ "data/refinements.jsonl", "{\"refinement_id\": \"RR-ADM-023-r1\"}\n"; "15.md", "cites RR-ADM-023-r2" ]
+              "b-later", [ "data/refinements.jsonl", "{\"refinement_id\": \"RR-ADM-023-r2\"}\n"
+                           "data/gap-requirements.jsonl", "{\"id\": \"UNB-XIN-ZZZ-001\"}\n" ]
+              "c-prose-only", [ "README.md", "mentions RR-GHOST-001-r9 in prose only" ] ]
+    let ids = VD.siblingRegisterIds root (System.IO.Path.Combine(root, "a-mission"))
+    Assert.Equal<string list>([ "RR-ADM-023-r2"; "UNB-XIN-ZZZ-001" ], Set.toList ids)
+    let okWith = resolver Set.empty ids Set.empty Set.empty
+    Assert.Empty(VD.gReportsD "D9" VD.CITED [ "15.md", "cites RR-ADM-023-r2" ] okWith)
+    Assert.Equal<string list>(
+        [ "ERROR D9   15.md: cites unknown identifier RR-GHOST-001-r9" ],
+        lines (VD.gReportsD "D9" VD.CITED [ "15.md", "cites RR-GHOST-001-r9" ] okWith))
+
+[<Fact>]
+let ``D9 sibling identifiers exclude the mission's own registers and a missing root`` () =
+    let root = discoveryTree [ "a-mission", [ "data/refinements.jsonl", "{\"refinement_id\": \"RR-SELF-001-r1\"}\n" ] ]
+    Assert.Empty(VD.siblingRegisterIds root (System.IO.Path.Combine(root, "a-mission")))
+    Assert.Empty(VD.siblingRegisterIds (System.IO.Path.Combine(root, "absent")) "x")
+
 [<Fact>]
 let ``D4 rejects AI observations in ledgers or synchronous paths`` () =
     let e = o [ "id", js "XEV-001"; "authority", js "observation-ai"; "source_of_truth_store", js "General Ledger"; "consistency", js "synchronous" ]
